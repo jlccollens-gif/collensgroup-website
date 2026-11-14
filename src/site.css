@@ -254,3 +254,9 @@ details.taalkeuze{position:relative;border:0;padding:0}
 .menu .taal-paneel a[aria-current]{font-weight:700;background:var(--lucht)}
 @media (max-width:520px){.taalkeuze summary{padding:7px 9px;font-size:13px;gap:4px}.taalkeuze summary svg{width:15px;height:15px}}
 @media (max-width:340px){.taalkeuze summary span{display:none}}
+.snel-paneel a[aria-current]{background:var(--lucht);font-weight:700}
+/* kleine schermen (<=380px): kop compact houden */
+@media (max-width:380px){.top .wrap{padding:0 14px}.links{gap:8px}.merk{font-size:16px}.menu{gap:6px}.taalkeuze summary{padding:6px 8px}.taalkeuze summary span{display:none}.top .knop{padding:8px 11px;font-size:13px}.etalage .tel-rechts{transform:rotate(7deg) scale(.92)}}
+.prijsblok{min-width:0}.prijsblok .lijst td:last-child{white-space:normal}
+.hero{overflow:hidden}
+@media (max-width:1000px){.menu > a:not(.knop){display:none}}

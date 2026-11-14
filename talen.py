@@ -5,7 +5,7 @@ TALEN = {
  "de": {
   "naam": "Deutsch", "og": "de_DE", "skip": "Zum Inhalt", "menu": "Schnellmenü", "hoofdmenu": "Hauptmenü",
   "title": "Websites, Apps, Games und KI zu fairen Festpreisen | Collens Group",
-  "desc": "Wir entwickeln Websites ab 495 €, Apps ab 3.150 €, Games ab 1.950 € und KI-Automatisierung ab 395 € für Kunden weltweit. Festpreis, kostenloses Konzept, alles gehört Ihnen.",
+  "desc": "Websites ab 495 €, Apps ab 3.150 €, Games ab 1.950 € und KI-Automatisierung ab 395 €. Festpreis, kostenloses Konzept, alles gehört Ihnen.",
   "nav": [("#leistungen", "Leistungen"), ("#preise", "Preise"), ("en-projects.html", "Projekte")],
   "cta": ("Angebot anfordern", "Angebot"),
   "h1": "Ihre App, Website oder Ihr Game live. In Wochen, nicht Monaten.",
@@ -39,7 +39,7 @@ TALEN = {
  "fr": {
   "naam": "Français", "og": "fr_FR", "skip": "Aller au contenu", "menu": "Menu rapide", "hoofdmenu": "Menu principal",
   "title": "Sites web, applis, jeux et IA à prix fixes justes | Collens Group",
-  "desc": "Nous créons des sites web dès 495 €, des applis dès 3 150 €, des jeux dès 1 950 € et de l'automatisation IA dès 395 € pour des clients du monde entier. Prix fixe, concept gratuit, tout vous appartient.",
+  "desc": "Sites web dès 495 €, applis dès 3 150 €, jeux dès 1 950 € et automatisation IA dès 395 €. Prix fixe, concept gratuit, tout vous appartient.",
   "nav": [("#services", "Services"), ("#tarifs", "Tarifs"), ("en-projects.html", "Projets")],
   "cta": ("Demander un devis", "Devis"),
   "h1": "Votre appli, site web ou jeu en ligne. En quelques semaines, pas en mois.",
@@ -73,9 +73,9 @@ TALEN = {
  "es": {
   "naam": "Español", "og": "es_ES", "skip": "Ir al contenido", "menu": "Menú rápido", "hoofdmenu": "Menú principal",
   "title": "Webs, apps, juegos e IA a precios fijos justos | Collens Group",
-  "desc": "Creamos webs desde 495 €, apps desde 3.150 €, juegos desde 1.950 € y automatización con IA desde 395 € para clientes de todo el mundo. Precio fijo, concepto gratis y todo es tuyo.",
+  "desc": "Webs desde 495 €, apps desde 3.150 €, juegos desde 1.950 € y automatización con IA desde 395 €. Precio fijo, concepto gratis y todo es tuyo.",
   "nav": [("#servicios", "Servicios"), ("#precios", "Precios"), ("en-projects.html", "Proyectos")],
-  "cta": ("Pedir presupuesto", "Presupuesto"),
+  "cta": ("Pedir presupuesto", "Contacto"),
   "h1": "Tu app, web o juego en línea. En semanas, no en meses.",
   "lead": "Creamos apps, webs, juegos y automatización con IA para empresas de todo el mundo. Precio fijo por adelantado, muy por debajo de las tarifas habituales de agencia, y todo es tuyo.",
   "cta1": "Presupuesto gratis", "cta2": "Nuestros servicios",

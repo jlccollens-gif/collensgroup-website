@@ -174,19 +174,19 @@ def page(path, title, desc, body, crumbs=None, extra_ld=None, extra_head="", lan
         home = f"{lang}.html"
         nav = "".join(f'<a href="{home + h if h.startswith("#") else h}">{t}</a>' for h, t in T["nav"])
         header = f'''<header class="top"><div class="wrap">
-<div class="links"><details class="snel"><summary aria-label="{T["menu"]}"><span></span><span></span><span></span></summary><nav class="snel-paneel" aria-label="{T["menu"]}"><a href="{home}">Home</a>{nav}<a href="{home}#contact">{T["cta"][0]}</a><a href="en.html">English</a><a href="index.html">Nederlands</a></nav></details><a class="merk" href="{home}" aria-label="{CONFIG["naam"]}, home">{LOGO}{CONFIG["naam"]}</a></div>
+<div class="links"><details class="snel"><summary aria-label="{T["menu"]}"><span></span><span></span><span></span></summary><nav class="snel-paneel" aria-label="{T["menu"]}"><a href="{home}">Home</a>{nav}</nav></details><a class="merk" href="{home}" aria-label="{CONFIG["naam"]}, home">{LOGO}{CONFIG["naam"]}</a></div>
 <nav class="menu" aria-label="{T["hoofdmenu"]}">{nav}{taal_menu}<a class="knop" href="{home}#contact"><span class="lang">{T["cta"][0]}</span><span class="kort">{T["cta"][1]}</span></a></nav>
 </div></header>'''
     elif lang == "en":
         head.append('</head><body><a class="skip" href="#inhoud">Skip to content</a>')
         header = f'''<header class="top"><div class="wrap">
-<div class="links"><details class="snel"><summary aria-label="Quick menu"><span></span><span></span><span></span></summary><nav class="snel-paneel" aria-label="Quick menu"><a href="en.html">Home</a><a href="en.html#services">Services</a><a href="en.html#pricing">Pricing</a><a href="en-app-development.html">App development</a><a href="en-website-design.html">Website design</a><a href="en-projects.html">Our work</a><a href="en.html#contact">Get a quote</a><a href="index.html">Nederlands</a></nav></details><a class="merk" href="en.html" aria-label="{CONFIG["naam"]}, home">{LOGO}{CONFIG["naam"]}</a></div>
+<div class="links"><details class="snel"><summary aria-label="Quick menu"><span></span><span></span><span></span></summary><nav class="snel-paneel" aria-label="Quick menu"><a href="en.html">Home</a><a href="en.html#services">Services</a><a href="en.html#pricing">Pricing</a><a href="en-app-development.html">App development</a><a href="en-website-design.html">Website design</a><a href="en-projects.html">Our work</a></nav></details><a class="merk" href="en.html" aria-label="{CONFIG["naam"]}, home">{LOGO}{CONFIG["naam"]}</a></div>
 <nav class="menu" aria-label="Main menu"><a href="en.html#services">Services</a><a href="en.html#pricing">Pricing</a><a href="en-projects.html">Our work</a>{taal_menu}<a class="knop" href="en.html#contact"><span class="lang">Get a quote</span><span class="kort">Quote</span></a></nav>
 </div></header>'''
     else:
         head.append('</head><body><a class="skip" href="#inhoud">Naar de inhoud</a>')
         header = f'''<header class="top"><div class="wrap">
-<div class="links"><details class="snel"><summary aria-label="Snelmenu"><span></span><span></span><span></span></summary><nav class="snel-paneel" aria-label="Snelmenu"><a href="index.html">Home</a><a href="website-laten-maken.html">Website laten maken</a><a href="goedkope-website-laten-maken.html">Goedkope website</a><a href="webshop-laten-maken.html">Webshop laten maken</a><a href="app-laten-maken-kosten.html">Wat kost een app?</a><a href="mvp-app-laten-maken.html">MVP-app</a><a href="game-laten-maken.html">Game laten maken</a><a href="ai-automatisering.html">AI & automatisering</a><a href="chatbot-laten-maken.html">AI-chatbot</a><a href="apps.html">Onze apps & games</a><a href="index.html#contact">Offerte aanvragen</a><a href="en.html">English</a></nav></details><a class="merk" href="index.html" aria-label="{CONFIG["naam"]}, naar de startpagina">{LOGO}{CONFIG["naam"]}</a></div>
+<div class="links"><details class="snel"><summary aria-label="Snelmenu"><span></span><span></span><span></span></summary><nav class="snel-paneel" aria-label="Snelmenu"><a href="index.html">Home</a><a href="website-laten-maken.html">Website laten maken</a><a href="goedkope-website-laten-maken.html">Goedkope website</a><a href="webshop-laten-maken.html">Webshop laten maken</a><a href="app-laten-maken-kosten.html">Wat kost een app?</a><a href="mvp-app-laten-maken.html">MVP-app</a><a href="game-laten-maken.html">Game laten maken</a><a href="ai-automatisering.html">AI & automatisering</a><a href="chatbot-laten-maken.html">AI-chatbot</a><a href="apps.html">Onze apps & games</a></nav></details><a class="merk" href="index.html" aria-label="{CONFIG["naam"]}, naar de startpagina">{LOGO}{CONFIG["naam"]}</a></div>
 <nav class="menu" aria-label="Hoofdmenu"><a href="website-laten-maken.html">Websites</a><a href="app-laten-maken-kosten.html">Apps</a><a href="game-laten-maken.html">Games</a><a href="ai-automatisering.html">AI</a>{taal_menu}<a class="knop" href="index.html#contact"><span class="lang">Vraag een offerte</span><span class="kort">Offerte</span></a></nav>
 </div></header>'''
     bc = ""
@@ -210,6 +210,7 @@ def page(path, title, desc, body, crumbs=None, extra_ld=None, extra_head="", lan
 <span>© {datetime.date.today().year} {CONFIG["naam"]} · Websites, apps, games en AI{kvk}</span>
 <span><a href="website-laten-maken.html">Websites</a> · <a href="goedkope-website-laten-maken.html">Goedkope website</a> · <a href="webshop-laten-maken.html">Webshop</a> · <a href="app-laten-maken-kosten.html">Apps</a> · <a href="mvp-app-laten-maken.html">MVP</a> · <a href="chatbot-laten-maken.html">Chatbot</a> · <a href="game-laten-maken.html">Games</a> · <a href="ai-automatisering.html">AI</a> · <a href="apps.html">Onze apps</a> · <a href="privacy.html">Privacy</a></span>
 </div></footer>'''
+    header = header.replace(f'<a href="{path}">', f'<a href="{path}" aria-current="page">', 1) if 'class="snel-paneel"' in header else header
     out = "".join(head) + header + bc + f'<main id="inhoud">{body}</main>' + footer + SNEL_JS + "</body></html>"
     with open(os.path.join(DIST, path), "w", encoding="utf-8") as f: f.write(out)
     return path
@@ -517,7 +518,7 @@ def en_pages(pages):
 <p><a class="knop geel" href="en.html#contact">Build something with us</a></p></div></section>''',
         crumbs=[("Home", "en.html"), ("Our work", "en-projects.html")], lang="en", alt=("apps.html", "en-projects.html")))
 
-    pages.append(page("en-lubbyc-privacy.html", "LubbyC privacy policy", "How LubbyC handles your data.",
+    pages.append(page("en-lubbyc-privacy.html", "LubbyC privacy policy", "How the LubbyC travel app handles your data: what we collect, why, who receives it and your rights.",
         '''<article class="tekst"><h1>LubbyC privacy policy</h1>
 <p>Last updated: 14 November 2026. Contact: <a href="mailto:collens-inc@outlook.com">collens-inc@outlook.com</a>.</p>
 <h2>What we collect</h2><ul>
@@ -600,7 +601,7 @@ def build():
         ("Wat kost een MVP-app laten maken?", "Bij Collens Group begint een MVP (Basis-pakket, tot 5 schermen) bij €3.150 zonder btw en is hij klaar in 3–5 weken. Accounts, een database of betalingen vallen onder het Standaard-pakket vanaf €6.750."),
         ("Is een app voor iPhone én Android duurder?", "Bij aparte native apps vaak bijna het dubbele. Wij bouwen met React Native, dus één codebase voor beide."),
     ]
-    pages.append(page("app-laten-maken-kosten.html", "Wat kost een app laten maken in 2026? Prijzen en rekenvoorbeelden | Collens Group",
+    pages.append(page("app-laten-maken-kosten.html", "Wat kost een app laten maken in 2026? | Collens Group",
         "Wat kost een app laten maken in 2026? Marktprijzen in Nederland, alle bijkomende kosten (Apple, Google, hosting, onderhoud) en onze vaste prijzen vanaf €3.150.",
         f'''<article class="tekst breed">
 <h1>Wat kost een app laten maken in 2026?</h1>
@@ -732,7 +733,7 @@ def build():
             crumbs=[("Home", "index.html"), ("Onze apps", "apps.html"), (a["naam"], f'app-{a["slug"]}.html')], extra_ld=[app_ld]))
 
     # PRIVACY
-    pages.append(page("privacy.html", "Privacy | Collens Group", "Hoe Collens Group omgaat met je gegevens.",
+    pages.append(page("privacy.html", "Privacy | Collens Group", "Hoe Collens Group omgaat met je gegevens: wat deze website verzamelt, waarvoor, en welke rechten je hebt.",
         f'''<article class="tekst"><h1>Privacy</h1><p>Laatst bijgewerkt: {datetime.date.today().strftime("%d-%m-%Y")}</p>
 <h2>Wat deze website verzamelt</h2><p>Deze website plaatst geen trackingcookies. {"We tellen bezoeken met GoatCounter, dat geen cookies gebruikt en geen persoonsgegevens opslaat." if CONFIG["goatcounter"] else "We gebruiken geen analytics."} Vul je het aanvraagformulier in, dan zet het formulier je bericht klaar zodat je het zelf naar ons mailt. Onze website wordt gehost door Cloudflare.</p>
 <h2>Als je contact met ons opneemt</h2><p>Stuur je ons een aanvraag, dan gebruiken we je naam, e-mailadres, bedrijfsnaam en je beschrijving alleen om je aanvraag te beantwoorden en, als je klant wordt, om het project uit te voeren. We bewaren deze gegevens niet langer dan nodig en delen ze niet met anderen, behalve als dat nodig is voor het project en je daarmee akkoord gaat.</p>
@@ -745,7 +746,7 @@ def build():
     taal_paginas(page, e, faq_html, faq_ld, contact_section, pages)
 
     # 404
-    page("404.html", "Pagina niet gevonden | Collens Group", "Deze pagina bestaat niet.",
+    page("404.html", "Pagina niet gevonden | Collens Group", "Deze pagina bestaat niet.", extra_head='<meta name="robots" content="noindex">', body=
          '<article class="tekst"><h1>Deze pagina bestaat niet</h1><p>De link is misschien verouderd. Ga naar de <a href="index.html">startpagina</a> of bekijk <a href="app-laten-maken-kosten.html">wat een app kost</a>.</p></article>')
 
     # robots, sitemap, llms.txt
