@@ -328,7 +328,7 @@ DIENSTEN = [
         "markt": ("Een eenvoudige zakelijke website kost bij Nederlandse freelancers meestal €800 tot €3.000 en bij bureaus €2.500 tot €12.000.",
                   "https://www.appypie.com/nl/?p=2729541", "Appy Pie, Website laten maken: wat het kost (okt. 2026)"),
         "pakketten": [
-            ("One-page", 495, "1–2 weken", ["1 pagina met alle info", "Contactformulier", "Mobielvriendelijk en snel", "Basis-SEO en Google-koppeling"]),
+            ("One-page", 495, "3–5 dagen", ["1 pagina met alle info", "Contactformulier", "Mobielvriendelijk en snel", "Basis-SEO en Google-koppeling"]),
             ("Bedrijfswebsite", 995, "2–3 weken", ["Tot 6 pagina's", "Teksten op Google afgestemd", "Contact- en offerteformulier", "Snelheid en Core Web Vitals in orde", "Gratis hosting mogelijk"]),
             ("Webshop", 1950, "3–5 weken", ["Tot 50 producten ingericht", "iDEAL en andere betaalmethoden", "Verzending en btw ingesteld", "Je beheert zelf je producten"]),
         ],
@@ -366,8 +366,8 @@ DIENSTEN = [
         "markt": ("Een AI-agent met no-code tools zoals Zapier of Make kost in Nederland eenmalig €2.000 tot €8.000.",
                   "https://searchlab.nl/kosten/wat-kost-een-ai-agent-laten-bouwen", "Searchlab, Wat kost een AI-agent laten bouwen (2026)"),
         "pakketten": [
-            ("Automatisering", 395, "1 week", ["1 workflow, bijv. formulier → CRM → mail", "Koppelt je bestaande apps", "Getest en gedocumenteerd"]),
-            ("AI-chatbot", 995, "1–2 weken", ["Beantwoordt vragen op je website", "Getraind op je eigen teksten", "Doorsturen naar jou bij twijfel"]),
+            ("Automatisering", 395, "2–5 dagen", ["1 workflow, bijv. formulier → CRM → mail", "Koppelt je bestaande apps", "Getest en gedocumenteerd"]),
+            ("AI-chatbot", 995, "1 week", ["Beantwoordt vragen op je website", "Getraind op je eigen teksten", "Doorsturen naar jou bij twijfel"]),
             ("AI-assistent", 1950, "2–4 weken", ["Meerdere workflows en koppelingen", "Mail, agenda, documenten en CRM", "Jij houdt altijd de eindcontrole"]),
         ],
         "extra": [("Extra workflow", "vanaf €195", "Per extra automatisering"),
@@ -461,10 +461,10 @@ EN_SERVICES = [
     ("AI & automation", "Chatbots and workflows", "from €395", "en.html#pricing", "#0E7C86"),
 ]
 EN_PRICES = [
-    ("Websites", [("One-page website", "€495", "1–2 weeks"), ("Business website (up to 6 pages)", "€995", "2–3 weeks"), ("Web shop (up to 50 products)", "€1,950", "3–5 weeks")]),
+    ("Websites", [("One-page website", "€495", "3–5 days"), ("Business website (up to 6 pages)", "€995", "2–3 weeks"), ("Web shop (up to 50 products)", "€1,950", "3–5 weeks")]),
     ("Apps (iOS and Android)", [("Basic / MVP app (up to 5 screens)", "€3,150", "3–5 weeks"), ("Standard app (accounts, database, push)", "€6,750", "6–10 weeks"), ("Custom / Pro app (payments, admin, roles)", "€13,050", "10–16+ weeks")]),
     ("Games (casual 2D)", [("Branded mini-game (web)", "€1,950", "2–3 weeks"), ("Casual game", "€4,950", "4–6 weeks"), ("2D game with levels", "€9,950", "8–12 weeks")]),
-    ("AI & automation", [("Automation (1 workflow)", "€395", "1 week"), ("AI chatbot trained on your content", "€995", "1–2 weeks"), ("AI assistant (multiple workflows)", "€1,950", "2–4 weeks")]),
+    ("AI & automation", [("Automation (1 workflow)", "€395", "2–5 days"), ("AI chatbot trained on your content", "€995", "1 week"), ("AI assistant (multiple workflows)", "€1,950", "2–4 weeks")]),
 ]
 EN_FAQ = [
     ("Do you work with clients outside the Netherlands?", "Yes. We work fully online with clients worldwide, in English or Dutch. Prices are in euros."),
