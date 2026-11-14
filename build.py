@@ -775,6 +775,9 @@ def build():
     page("404.html", "Pagina niet gevonden | Collens Group", "Deze pagina bestaat niet.", extra_head='<meta name="robots" content="noindex">', body=
          '<article class="tekst"><h1>Deze pagina bestaat niet</h1><p>De link is misschien verouderd. Ga naar de <a href="index.html">startpagina</a> of bekijk <a href="app-laten-maken-kosten.html">wat een app kost</a>.</p></article>')
 
+    from illustraties import verrijk
+    verrijk(DIST)
+
     # robots, sitemap, llms.txt
     with open(os.path.join(DIST, "robots.txt"), "w") as f:
         f.write("User-agent: *\nAllow: /\n" + (f"Sitemap: {CONFIG['base_url']}/sitemap.xml\n" if CONFIG["base_url"] else ""))
