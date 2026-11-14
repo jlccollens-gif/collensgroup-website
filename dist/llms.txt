@@ -22,6 +22,7 @@
 - [webshop-laten-maken.html](https://collensgroup.com/webshop-laten-maken)
 - [goedkope-website-laten-maken.html](https://collensgroup.com/goedkope-website-laten-maken)
 - [chatbot-laten-maken.html](https://collensgroup.com/chatbot-laten-maken)
+- [website-laten-maken-horeca.html](https://collensgroup.com/website-laten-maken-horeca)
 - [en-app-development.html](https://collensgroup.com/en-app-development)
 - [en-website-design.html](https://collensgroup.com/en-website-design)
 - [apps.html](https://collensgroup.com/apps)
