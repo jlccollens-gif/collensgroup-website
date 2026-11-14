@@ -921,7 +921,7 @@ def build():
     taal_paginas(page, e, faq_html, faq_ld, contact_section, pages, icoon)
 
     # 404
-    page("404.html", "Pagina niet gevonden | Collens Group", "Deze pagina bestaat niet.", extra_head='<meta name="robots" content="noindex">', body=
+    page("404.html", "Pagina niet gevonden | Collens Group", "Deze pagina bestaat niet (meer). Ga naar de startpagina of bekijk onze websites, apps, games en AI.", extra_head='<meta name="robots" content="noindex">', body=
          '<article class="tekst"><h1>Deze pagina bestaat niet</h1><p>De link is misschien verouderd. Ga naar de <a href="index.html">startpagina</a> of bekijk <a href="app-laten-maken-kosten.html">wat een app kost</a>.</p></article>')
 
     from illustraties import verrijk
