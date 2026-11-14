@@ -150,7 +150,7 @@ def footer_html(lang, kvk=""):
     return (f'<footer class="voet"><div class="wrap voet-grid"><div class="voet-merk"><a class="merk merk-licht" href="{home}">{LOGO}{CONFIG["naam"]}</a><p>{e(F["tag"])}</p></div>{kols}</div>'
             f'<div class="wrap voet-onder"><span>© {datetime.date.today().year} {CONFIG["naam"]}{kvk}</span><span>{e(F["copy"])}</span></div></footer>')
 
-SNEL_JS = """<script>(()=>{document.querySelectorAll('details.snel,details.taalkeuze').forEach(d=>{document.addEventListener('click',e=>{if(d.open&&!d.contains(e.target))d.open=false});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&d.open){d.open=false;d.querySelector('summary').focus()}});d.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>{d.open=false}))})})();</script>"""
+SNEL_JS = """<script>(()=>{const t=document.querySelector('[data-terug]');if(t){t.addEventListener('click',e=>{try{if(document.referrer&&new URL(document.referrer).host===location.host&&history.length>1){e.preventDefault();history.back()}}catch(_){}})}document.querySelectorAll('details.snel,details.taalkeuze').forEach(d=>{document.addEventListener('click',e=>{if(d.open&&!d.contains(e.target))d.open=false});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&d.open){d.open=false;d.querySelector('summary').focus()}});d.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>{d.open=false}))})})();</script>"""
 
 def page(path, title, desc, body, crumbs=None, extra_ld=None, extra_head="", lang="nl", alt=None):
     url = abs_url(path)
@@ -216,9 +216,13 @@ def page(path, title, desc, body, crumbs=None, extra_ld=None, extra_head="", lan
 </div></header>'''
     bc = ""
     if crumbs and len(crumbs) > 1:
-        bc = '<nav class="kruimel wrap" aria-label="Kruimelpad">' + ' / '.join(
+        terug_txt = {"nl": "Terug", "en": "Back", "de": "Zurück", "fr": "Retour", "es": "Volver"}.get(lang, "Terug")
+        ouder = crumbs[-2][1]
+        pijl = '<svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M12.5 4.5L7 10l5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+        bc = ('<div class="paginabalk"><div class="wrap"><a class="terug" href="' + ouder + '" data-terug>' + pijl + terug_txt + '</a>'
+              '<nav class="kruimel" aria-label="Kruimelpad">' + '<span class="sep">/</span>'.join(
             f'<a href="{p}">{e(n)}</a>' if i < len(crumbs) - 1 else f'<span aria-current="page">{e(n)}</span>'
-            for i, (n, p) in enumerate(crumbs)) + '</nav>'
+            for i, (n, p) in enumerate(crumbs)) + '</nav></div></div>')
     kvk = f' · KvK {e(CONFIG["kvk"])}' if CONFIG["kvk"] else ""
     footer = footer_html(lang, kvk)
     header = header.replace(f'<a href="{path}">', f'<a href="{path}" aria-current="page">', 1) if 'class="snel-paneel"' in header else header

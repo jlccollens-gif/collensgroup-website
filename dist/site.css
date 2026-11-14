@@ -305,3 +305,25 @@ footer.voet .voet-onder{display:flex}
 .app-rij{border-top:1px solid var(--lijn)}
 .top{box-shadow:0 1px 0 rgba(20,33,61,.06)}
 .merk-licht svg rect{fill:#22325A}
+/* paginabalk met terugknop */
+.paginabalk{background:var(--lucht);border-bottom:1px solid var(--lijn)}
+.paginabalk .wrap{display:flex;align-items:center;gap:16px;min-height:52px;flex-wrap:wrap}
+.terug{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:15px;color:var(--nacht);text-decoration:none;background:var(--wit);border:1px solid var(--lijn);border-radius:999px;padding:7px 14px 7px 10px}
+.terug:hover{border-color:var(--nacht)}
+.paginabalk .kruimel{padding:0;font-size:14px;color:var(--zacht);display:flex;flex-wrap:wrap;gap:6px}
+.paginabalk .kruimel a{color:var(--zacht);text-decoration:none}
+.paginabalk .kruimel a:hover{color:var(--nacht);text-decoration:underline}
+.paginabalk .sep{color:#AAB5C8}
+@media (max-width:520px){.paginabalk .kruimel{display:none}}
+/* binnenpagina's: rustige, redactionele kop */
+.tekst{padding-top:44px}
+.tekst h1{font-size:clamp(34px,4.6vw,54px);margin-bottom:16px}
+.tekst .lead2{background:none;border:0;padding:0;border-radius:0;font-size:21px;line-height:1.55;color:var(--tekst);max-width:38em;margin-bottom:8px}
+.tekst h2{font-size:28px;margin:48px 0 12px;padding-top:28px;border-top:1px solid var(--lijn)}
+.tekst h2:first-of-type{border-top:0;padding-top:0}
+.tekst .pakketten{margin:22px 0 8px}
+.tekst .lijst{background:var(--wit);border:1px solid var(--lijn);border-radius:16px;overflow:hidden}
+.tekst .lijst td{padding:14px 18px}
+.tekst details{background:var(--wit);border:1px solid var(--lijn);border-radius:14px;padding:16px 20px;margin-bottom:10px}
+.tekst details:last-of-type{border-bottom:1px solid var(--lijn)}
+.tekst .bron{font-size:13px}
