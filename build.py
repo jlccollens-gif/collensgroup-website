@@ -130,7 +130,7 @@ FOOT = {
         "kol": [("Diensten", [("website-laten-maken.html", "Website laten maken"), ("webshop-laten-maken.html", "Webshop laten maken"), ("app-laten-maken-kosten.html", "App laten maken"), ("game-laten-maken.html", "Game laten maken"), ("ai-automatisering.html", "AI & automatisering"), ("chatbot-laten-maken.html", "AI-chatbot")]),
                 ("Meer", [("apps.html", "Onze apps & games"), ("mvp-app-laten-maken.html", "MVP-app"), ("goedkope-website-laten-maken.html", "Goedkope website"), ("privacy.html", "Privacy")]),
                 ("Contact", [("index.html#contact", "Offerte aanvragen"), ("mailto:" + CONFIG["email"], CONFIG["email"])])],
-        "copy": "Alle prijzen zonder btw."},
+        "copy": "Alle prijzen zijn eindprijzen: we rekenen geen btw."},
  "en": {"tag": "Websites, apps, games and AI automation for businesses worldwide. Fixed price up front, and you own everything.",
         "kol": [("Services", [("en-website-design.html", "Website design"), ("en-app-development.html", "App development"), ("en.html#pricing", "Pricing")]),
                 ("More", [("en-projects.html", "Our work"), ("en-lubbyc-privacy.html", "LubbyC privacy")]),
@@ -250,15 +250,15 @@ def faq_ld(items):
 
 PAKKETTEN = '''<div class="pakketten">
 <article class="pakket"><h3>Basis / MVP</h3><p class="voor">Je idee snel testen met echte gebruikers.</p>
-<div class="prijs">€3.150<small>vanaf, geen btw</small></div>
+<div class="prijs">€3.150<small>vanaf, eindprijs zonder btw</small></div>
 <ul><li>Tot 5 schermen</li><li>Eenvoudige navigatie en content</li><li>Strak basisontwerp</li><li>Publicatieklaar voor iOS of Android</li></ul>
 <p class="duur">Klaar in 3–5 weken</p></article>
 <article class="pakket mid"><h3>Standaard</h3><p class="voor">Een complete app voor je klanten of team.</p>
-<div class="prijs">€6.750<small>vanaf, geen btw</small></div>
+<div class="prijs">€6.750<small>vanaf, eindprijs zonder btw</small></div>
 <ul><li>5 tot 12 schermen</li><li>Accounts en inloggen</li><li>Eigen database en API-koppelingen</li><li>Pushmeldingen</li><li>Live in App Store én Google Play</li></ul>
 <p class="duur">Klaar in 6–10 weken</p></article>
 <article class="pakket"><h3>Maatwerk / Pro</h3><p class="voor">Een volledig digitaal platform.</p>
-<div class="prijs">€13.050<small>vanaf, geen btw</small></div>
+<div class="prijs">€13.050<small>vanaf, eindprijs zonder btw</small></div>
 <ul><li>12+ schermen en complexe flows</li><li>Uitgebreide backend en beheerdashboard</li><li>Betalingen en abonnementen</li><li>Meerdere gebruikersrollen</li><li>Extra beveiliging</li></ul>
 <p class="duur">Klaar in 10–16+ weken</p></article></div>'''
 
@@ -381,7 +381,7 @@ DIENSTEN = [
 
 def dienst_pagina(d):
     kaarten = "".join(f'''<article class="pakket{' mid' if i == 1 else ''}"><h3>{e(n)}</h3>
-<div class="prijs">€{f"{p:,}".replace(",", ".")}<small>vanaf, geen btw</small></div>
+<div class="prijs">€{f"{p:,}".replace(",", ".")}<small>vanaf, eindprijs zonder btw</small></div>
 <ul>{''.join(f'<li>{e(x)}</li>' for x in items)}</ul><p class="duur">Klaar in {e(t)}</p></article>'''
         for i, (n, p, t, items) in enumerate(d["pakketten"]))
     extra = "".join(f'<tr><td>{e(n)}<small>{e(s)}</small></td><td>{e(p)}</td></tr>' for n, p, s in d["extra"])
@@ -395,7 +395,7 @@ def dienst_pagina(d):
 <h2>Vergeleken met de markt</h2><p>{e(tekst)} <span class="bron">Bron: <a href="{url}" rel="nofollow noopener">{e(bron)}</a>.</span></p>
 <h2>Onze pakketten</h2><div class="pakketten">{kaarten}</div>
 <h2>Extra</h2><table class="lijst">{extra}</table>
-<p class="noot">Alle prijzen zonder btw. Externe kosten (zoals domein, tools of store-accounts) staan vooraf in de offerte.</p>
+<p class="noot">Alle prijzen zijn eindprijzen: we rekenen geen btw. Externe kosten (zoals domein, tools of store-accounts) staan vooraf in de offerte.</p>
 <h2>Veelgestelde vragen</h2>{faq_html(d["faq"])}
 <p style="margin-top:32px"><a class="knop geel" href="index.html#contact">Vraag een vaste prijs aan</a></p>
 </article>''', crumbs=[("Home", "index.html"), (d["kort"], f'{d["slug"]}.html')],
@@ -591,7 +591,7 @@ def build():
 </div></div></section>
 
 <section id="pakketten" aria-labelledby="prijzen"><div class="wrap">
-<div class="intro"><h2 id="prijzen">App-pakketten</h2><p>Richtprijzen, zonder btw. Na een korte intake krijg je een definitieve prijsopgave op maat.</p></div>
+<div class="intro"><h2 id="prijzen">App-pakketten</h2><p>Richtprijzen. Dit zijn eindprijzen: we rekenen geen btw. Na een korte intake krijg je een definitieve prijsopgave op maat.</p></div>
 {PAKKETTEN}
 <div class="extra"><div><h3 style="margin-bottom:10px">Losse diensten</h3><table class="lijst">
 <tr><td>Ontwikkeling per uur<small>Uitbreidingen en losse opdrachten</small></td><td>€67,50 / uur</td></tr>
@@ -706,7 +706,7 @@ def build():
 <table class="tabel"><tr><th>Onderdeel</th><th>Inbegrepen</th></tr>
 <tr><td>Schermen</td><td>Tot 5</td></tr><tr><td>Navigatie en content</td><td>Eenvoudig en duidelijk</td></tr>
 <tr><td>Ontwerp</td><td>Strak, met standaard componenten</td></tr><tr><td>Platform</td><td>Publicatieklaar voor iOS of Android</td></tr>
-<tr><td>Prijs</td><td>vanaf €3.150 geen btw</td></tr><tr><td>Doorlooptijd</td><td>3 – 5 weken</td></tr></table>
+<tr><td>Prijs</td><td>vanaf €3.150, eindprijs zonder btw</td></tr><tr><td>Doorlooptijd</td><td>3 – 5 weken</td></tr></table>
 <p>Accounts, een database of betalingen nodig? Dan past het <a href="app-laten-maken-kosten.html">Standaard-pakket vanaf €6.750</a> beter.</p>
 
 <h2>Zo verloopt het</h2>
