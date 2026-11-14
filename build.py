@@ -101,9 +101,7 @@ APPS = [
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
          '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">')
-LOGO = ('<svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#14213D"/>'
-        '<path d="M21.5 10.2A8 8 0 1 0 21.5 21.8" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/>'
-        '<circle cx="23.2" cy="16" r="2.6" fill="#F2B705"/></svg>')
+LOGO = '<img src="img/logo-icon-96.png" width="32" height="32" alt="" style="border-radius:50%;display:block">'
 
 def e(s): return html.escape(s, quote=True)
 
@@ -117,7 +115,8 @@ def ld(obj): return '<script type="application/ld+json">' + json.dumps(obj, ensu
 ORG = {"@type": "ProfessionalService", "@id": "#org", "name": CONFIG["naam"],
        "description": "Websites, apps, games en AI-automatisering tegen vaste prijzen onder het marktgemiddelde.",
        "areaServed": [{"@type": "Country", "name": "Nederland"}, {"@type": "Country", "name": "België"}],
-       "priceRange": "€395 – €13.050+", "knowsLanguage": ["nl", "en"]}
+       "priceRange": "€395 – €13.050+", "knowsLanguage": ["nl", "en"],
+       "logo": CONFIG["base_url"] + "/img/collens-group-logo.png", "image": CONFIG["base_url"] + "/img/collens-group-logo.png"}
 
 GLOBE = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg>'
 NL_NAAR_EN = {"website-laten-maken.html": "en-website-design.html", "goedkope-website-laten-maken.html": "en-website-design.html", "webshop-laten-maken.html": "en-website-design.html",
@@ -168,7 +167,7 @@ def page(path, title, desc, body, crumbs=None, extra_ld=None, extra_head="", lan
     head = [f'<!DOCTYPE html><html lang="{lang}"><head><meta charset="utf-8">',
             '<meta name="viewport" content="width=device-width, initial-scale=1">',
             f'<title>{e(title)}</title><meta name="description" content="{e(desc)}">',
-            '<meta name="theme-color" content="#14213D"><link rel="icon" href="favicon.svg" type="image/svg+xml">',
+            '<meta name="theme-color" content="#14213D"><link rel="icon" href="img/favicon-48.png" type="image/png" sizes="48x48"><link rel="apple-touch-icon" href="img/apple-touch-icon.png">',
             f'<meta property="og:type" content="website"><meta property="og:locale" content="{ {"en": "en_US", "nl": "nl_NL", "de": "de_DE", "fr": "fr_FR", "es": "es_ES"}.get(lang, "nl_NL") }"><meta property="og:site_name" content="{CONFIG["naam"]}">',
             f'<meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}">',
             '<meta name="twitter:card" content="summary_large_image">']
@@ -564,7 +563,6 @@ def build():
     shutil.rmtree(DIST, ignore_errors=True); os.makedirs(DIST)
     for n in ("site.css", "og.png", "_headers", "aceaa1aae33f492c9fc3bb575567f4a2.txt"): shutil.copy(os.path.join(ROOT, "src", n), os.path.join(DIST, n))
     shutil.copytree(os.path.join(ROOT, "src", "img"), os.path.join(DIST, "img"))
-    with open(os.path.join(DIST, "favicon.svg"), "w") as f: f.write(LOGO.replace('aria-hidden="true"', 'xmlns="http://www.w3.org/2000/svg"'))
     pages = []
 
     # HOME
