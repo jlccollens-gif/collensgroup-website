@@ -25,6 +25,7 @@
 - [website-laten-maken-horeca.html](https://collensgroup.com/website-laten-maken-horeca)
 - [en-app-development.html](https://collensgroup.com/en-app-development)
 - [en-website-design.html](https://collensgroup.com/en-website-design)
+- [artikelen.html](https://collensgroup.com/artikelen)
 - [apps.html](https://collensgroup.com/apps)
 - [app-lubbyc.html](https://collensgroup.com/app-lubbyc)
 - [app-koffer-vol.html](https://collensgroup.com/app-koffer-vol)

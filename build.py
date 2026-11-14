@@ -127,7 +127,7 @@ EN_NAAR_NL = {"en-website-design.html": "website-laten-maken.html", "en-app-deve
 FOOT = {
  "nl": {"tag": "Websites, apps, games en AI-automatisering voor ondernemers in Nederland, België en daarbuiten. Vaste prijs vooraf, en alles is van jou.",
         "kol": [("Diensten", [("website-laten-maken.html", "Website laten maken"), ("webshop-laten-maken.html", "Webshop laten maken"), ("app-laten-maken-kosten.html", "App laten maken"), ("game-laten-maken.html", "Game laten maken"), ("ai-automatisering.html", "AI & automatisering"), ("chatbot-laten-maken.html", "AI-chatbot")]),
-                ("Meer", [("apps.html", "Onze apps & games"), ("mvp-app-laten-maken.html", "MVP-app"), ("goedkope-website-laten-maken.html", "Goedkope website"), ("privacy.html", "Privacy")]),
+                ("Meer", [("apps.html", "Onze apps & games"), ("mvp-app-laten-maken.html", "MVP-app"), ("goedkope-website-laten-maken.html", "Goedkope website"), ("artikelen.html", "Artikelen en gidsen"), ("privacy.html", "Privacy")]),
                 ("Contact", [("index.html#contact", "Offerte aanvragen"), ("mailto:" + CONFIG["email"], CONFIG["email"])])],
         "copy": "Alle prijzen zijn eindprijzen: we rekenen geen btw."},
  "en": {"tag": "Websites, apps, games and AI automation for businesses worldwide. Fixed price up front, and you own everything.",
@@ -210,7 +210,7 @@ def page(path, title, desc, body, crumbs=None, extra_ld=None, extra_head="", lan
     else:
         head.append('</head><body><a class="skip" href="#inhoud">Naar de inhoud</a>')
         header = f'''<header class="top"><div class="wrap">
-<div class="links"><details class="snel"><summary aria-label="Snelmenu"><span></span><span></span><span></span></summary><nav class="snel-paneel" aria-label="Snelmenu"><a href="index.html">Home</a><a href="website-laten-maken.html">Website laten maken</a><a href="goedkope-website-laten-maken.html">Goedkope website</a><a href="webshop-laten-maken.html">Webshop laten maken</a><a href="app-laten-maken-kosten.html">Wat kost een app?</a><a href="mvp-app-laten-maken.html">MVP-app</a><a href="game-laten-maken.html">Game laten maken</a><a href="ai-automatisering.html">AI & automatisering</a><a href="chatbot-laten-maken.html">AI-chatbot</a><a href="apps.html">Onze apps & games</a></nav></details><a class="merk" href="index.html" aria-label="{CONFIG["naam"]}, naar de startpagina">{LOGO}{CONFIG["naam"]}</a></div>
+<div class="links"><details class="snel"><summary aria-label="Snelmenu"><span></span><span></span><span></span></summary><nav class="snel-paneel" aria-label="Snelmenu"><a href="index.html">Home</a><a href="website-laten-maken.html">Website laten maken</a><a href="goedkope-website-laten-maken.html">Goedkope website</a><a href="webshop-laten-maken.html">Webshop laten maken</a><a href="app-laten-maken-kosten.html">Wat kost een app?</a><a href="mvp-app-laten-maken.html">MVP-app</a><a href="game-laten-maken.html">Game laten maken</a><a href="ai-automatisering.html">AI & automatisering</a><a href="chatbot-laten-maken.html">AI-chatbot</a><a href="apps.html">Onze apps & games</a><a href="artikelen.html">Artikelen en gidsen</a></nav></details><a class="merk" href="index.html" aria-label="{CONFIG["naam"]}, naar de startpagina">{LOGO}{CONFIG["naam"]}</a></div>
 <nav class="menu" aria-label="Hoofdmenu"><a href="website-laten-maken.html">Websites</a><a href="app-laten-maken-kosten.html">Apps</a><a href="game-laten-maken.html">Games</a><a href="ai-automatisering.html">AI</a>{taal_menu}<a class="knop" href="index.html#contact"><span class="lang">Vraag een offerte</span><span class="kort">Offerte</span></a></nav>
 </div></header>'''
     bc = ""
@@ -716,8 +716,19 @@ def build():
         extra_ld=[dict(SERVICE, name="MVP app laten maken", offers=[OFFERS[0]]), faq_ld(mvp_faq)]))
 
     for d in DIENSTEN: pages.append(dienst_pagina(d))
-    from landings import landing_pages
+    from landings import landing_pages, LANDINGS
     landing_pages(page, e, faq_html, faq_ld, pages)
+
+    # Artikelen & gidsen: overzicht van alle NL-artikelen (nieuwe landingspagina's komen er vanzelf bij)
+    items = [("app-laten-maken-kosten.html", "Wat kost een app laten maken?", "Prijzen, doorlooptijd en vaste kosten van een app, met wat de prijs bepaalt en hoe je bespaart."),
+             ("mvp-app-laten-maken.html", "MVP-app laten maken", "Test je app-idee eerst met een kleine versie: wat erin zit, wat het kost en hoe het verloopt.")]
+    items += [(f'{L["slug"]}.html', L["titel"].split(" | ")[0], L["desc"]) for L in LANDINGS if L["lang"] == "nl"]
+    kaarten = "".join(f'<a class="artikel" href="{u}"><h2>{e(t)}</h2><p>{e(d)}</p><span>Lees meer</span></a>' for u, t, d in items)
+    pages.append(page("artikelen.html", "Artikelen en gidsen over websites, apps en AI | Collens Group",
+        "Praktische gidsen over wat een website, webshop, app of AI-chatbot kost en hoe je het slim aanpakt. Eerlijke prijzen en heldere uitleg.",
+        f'''<article class="tekst breed"><h1>Artikelen en gidsen</h1>
+<p class="lead2">Eerlijke uitleg over wat een website, app of AI-oplossing kost en hoe je het slim aanpakt.</p>
+<div class="artikelen">{kaarten}</div></article>''', crumbs=[("Home", "index.html"), ("Artikelen", "artikelen.html")]))
 
     # APPS-OVERZICHT
     pages.append(page("apps.html", "Eigen apps, games en series | Collens Group",

@@ -343,3 +343,13 @@ footer.voet .voet-onder{display:flex}
 @keyframes stroom{to{stroke-dashoffset:-26}}
 @media (prefers-reduced-motion:reduce){.stroom{animation:none}}
 @media (max-width:820px){.kopblok{grid-template-columns:1fr;gap:26px}.illu{max-width:480px;width:100%;margin:0 auto}.illu-tels{height:320px}}
+
+/* artikelenoverzicht */
+.artikelen{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:28px}
+.artikel{display:flex;flex-direction:column;gap:8px;background:var(--wit);border:1px solid var(--lijn);border-radius:18px;padding:22px 22px 20px;text-decoration:none;color:var(--tekst);transition:border-color .15s,transform .15s}
+.artikel:hover{border-color:var(--blauw);transform:translateY(-2px)}
+.tekst .artikel h2{font-size:21px;margin:0;border:0;padding:0}
+.artikel p{margin:0;font-size:16px;color:var(--zacht)}
+.artikel span{margin-top:auto;font-weight:700;font-size:15px;color:var(--blauw)}
+@media (max-width:700px){.artikelen{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.artikel{transition:none}.artikel:hover{transform:none}}
