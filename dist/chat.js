@@ -2,23 +2,23 @@
 (() => {
   const TAAL = (document.documentElement.lang || "nl").slice(0, 2);
   const T = {
-    nl: { knop: "Twijfel je? Vraag de adviseur", kort: "Advies", titel: "Online adviseur", sub: "Collens Group · 24/7 online", sluit: "Sluiten", plek: "Typ je vraag…", stuur: "Versturen",
+    nl: { spreek: "Spreek je vraag in", stop: "Stop en verstuur", luistert: "Luistert… tik op ■ om te versturen", nietgehoord: "Ik verstond het niet. Probeer het nog eens of typ je vraag.", knop: "Twijfel je? Vraag de adviseur", kort: "Advies", titel: "Online adviseur", sub: "Collens Group · 24/7 online", sluit: "Sluiten", plek: "Typ je vraag…", stuur: "Versturen",
           hallo: "Hoi! Ik help je graag kiezen. Weet je nog niet precies wat je nodig hebt? Vertel wat je wilt bereiken, dan denk ik met je mee en adviseer ik welke oplossing en welk pakket passen.",
           snel: ["Ik weet nog niet wat ik nodig heb", "Wat kost een website?", "Ik heb een idee voor een app"], denkt: "Adviseur typt…", fout: "Sorry, dat lukte even niet. Probeer het nog eens, of mail naar info@collensgroup.com.",
           noot: "Je praat met een AI-adviseur (Claude). Deel geen gevoelige gegevens.", privacy: "Privacy", opnieuw: "Nieuw gesprek", klaar: "Doorgestuurd: we mailen je zo snel mogelijk." },
-    en: { knop: "Not sure? Ask our advisor", kort: "Advice", titel: "Online advisor", sub: "Collens Group · online 24/7", sluit: "Close", plek: "Type your question…", stuur: "Send",
+    en: { spreek: "Speak your question", stop: "Stop and send", luistert: "Listening… tap ■ to send", nietgehoord: "I didn't catch that. Please try again or type your question.", knop: "Not sure? Ask our advisor", kort: "Advice", titel: "Online advisor", sub: "Collens Group · online 24/7", sluit: "Close", plek: "Type your question…", stuur: "Send",
           hallo: "Hi! I'm happy to help you choose. Not sure exactly what you need? Tell me what you want to achieve and I'll think along and recommend the solution and package that fit.",
           snel: ["I'm not sure what I need", "How much is a website?", "I have an idea for an app"], denkt: "Advisor is typing…", fout: "Sorry, something went wrong. Please try again, or email info@collensgroup.com.",
           noot: "You're chatting with an AI advisor (Claude). Don't share sensitive information.", privacy: "Privacy", opnieuw: "New chat", klaar: "Sent: we'll email you as soon as possible." },
-    de: { knop: "Unsicher? Fragen Sie den Berater", kort: "Beratung", titel: "Online-Berater", sub: "Collens Group · 24/7 online", sluit: "Schließen", plek: "Ihre Frage…", stuur: "Senden",
+    de: { spreek: "Frage einsprechen", stop: "Stoppen und senden", luistert: "Hört zu… tippen Sie auf ■ zum Senden", nietgehoord: "Das habe ich nicht verstanden. Bitte erneut versuchen oder tippen.", knop: "Unsicher? Fragen Sie den Berater", kort: "Beratung", titel: "Online-Berater", sub: "Collens Group · 24/7 online", sluit: "Schließen", plek: "Ihre Frage…", stuur: "Senden",
           hallo: "Hallo! Ich helfe Ihnen gern bei der Wahl. Sie wissen noch nicht genau, was Sie brauchen? Erzählen Sie, was Sie erreichen möchten, dann denke ich mit und empfehle die passende Lösung.",
           snel: ["Ich weiß noch nicht, was ich brauche", "Was kostet eine Website?", "Ich habe eine App-Idee"], denkt: "Berater schreibt…", fout: "Entschuldigung, das hat nicht geklappt. Bitte erneut versuchen oder an info@collensgroup.com schreiben.",
           noot: "Sie chatten mit einem KI-Berater (Claude). Teilen Sie keine sensiblen Daten.", privacy: "Datenschutz", opnieuw: "Neues Gespräch", klaar: "Weitergeleitet: Wir melden uns so schnell wie möglich per E-Mail." },
-    fr: { knop: "Un doute ? Demandez au conseiller", kort: "Conseil", titel: "Conseiller en ligne", sub: "Collens Group · en ligne 24h/24", sluit: "Fermer", plek: "Votre question…", stuur: "Envoyer",
+    fr: { spreek: "Dites votre question", stop: "Arrêter et envoyer", luistert: "À l’écoute… touchez ■ pour envoyer", nietgehoord: "Je n'ai pas compris. Réessayez ou écrivez votre question.", knop: "Un doute ? Demandez au conseiller", kort: "Conseil", titel: "Conseiller en ligne", sub: "Collens Group · en ligne 24h/24", sluit: "Fermer", plek: "Votre question…", stuur: "Envoyer",
           hallo: "Bonjour ! Je vous aide volontiers à choisir. Vous ne savez pas encore ce qu'il vous faut ? Dites-moi ce que vous voulez accomplir, je réfléchis avec vous et vous recommande la bonne solution.",
           snel: ["Je ne sais pas ce qu'il me faut", "Combien coûte un site web ?", "J'ai une idée d'application"], denkt: "Le conseiller écrit…", fout: "Désolé, une erreur s'est produite. Réessayez ou écrivez à info@collensgroup.com.",
           noot: "Vous discutez avec un conseiller IA (Claude). Ne partagez pas d'informations sensibles.", privacy: "Confidentialité", opnieuw: "Nouvelle discussion", klaar: "Envoyé : nous vous écrirons au plus vite." },
-    es: { knop: "¿Dudas? Pregunta al asesor", kort: "Asesor", titel: "Asesor en línea", sub: "Collens Group · en línea 24/7", sluit: "Cerrar", plek: "Escribe tu pregunta…", stuur: "Enviar",
+    es: { spreek: "Di tu pregunta", stop: "Parar y enviar", luistert: "Escuchando… toca ■ para enviar", nietgehoord: "No lo he entendido. Inténtalo de nuevo o escribe tu pregunta.", knop: "¿Dudas? Pregunta al asesor", kort: "Asesor", titel: "Asesor en línea", sub: "Collens Group · en línea 24/7", sluit: "Cerrar", plek: "Escribe tu pregunta…", stuur: "Enviar",
           hallo: "¡Hola! Te ayudo a elegir. ¿Aún no sabes exactamente lo que necesitas? Cuéntame qué quieres conseguir y pienso contigo qué solución y paquete te encajan.",
           snel: ["No sé qué necesito", "¿Cuánto cuesta una web?", "Tengo una idea para una app"], denkt: "El asesor escribe…", fout: "Lo siento, algo falló. Inténtalo de nuevo o escribe a info@collensgroup.com.",
           noot: "Hablas con un asesor de IA (Claude). No compartas datos sensibles.", privacy: "Privacidad", opnieuw: "Nueva conversación", klaar: "Enviado: te escribiremos lo antes posible." },
@@ -51,6 +51,9 @@
 .cg-form textarea:focus{outline:none;border-color:#2457D6}
 .cg-form button{align-self:flex-end;height:46px;background:#F2B705;color:#14213D;border:0;border-radius:14px;padding:0 16px;font-weight:700;cursor:pointer}
 .cg-form button:disabled{opacity:.5;cursor:default}
+.cg-form .cg-mic{width:46px;padding:0;background:#fff;border:1.5px solid #C9D3E1;color:#14213D;font-size:20px}.cg-form .cg-mic[hidden]{display:none}
+.cg-form .cg-mic.aan{background:#C2410C;border-color:#C2410C;color:#fff;animation:cgpuls 1.2s ease-in-out infinite}
+@keyframes cgpuls{50%{box-shadow:0 0 0 6px rgba(194,65,12,.25)}}@media (prefers-reduced-motion:reduce){.cg-form .cg-mic.aan{animation:none}}
 .cg-noot{margin:0;padding:0 14px 10px;background:#fff;color:#5A6782;font-size:12px}.cg-noot a{color:#5A6782}
 .chat-blok{background:#14213D;color:#fff;padding:44px 0}.chat-blok h2{color:#fff;font-size:clamp(26px,3.2vw,36px)}
 .chat-blok-in{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center}
@@ -126,6 +129,39 @@
     } finally { bezig = false; knop.disabled = false; veld.focus(); }
   }
 
+  // Spraakbericht: opnemen in de browser, omzetten naar tekst op de server, daarna als gewone vraag versturen
+  function spraak(mic) {
+    if (!window.MediaRecorder || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return;
+    fetch("/api/spraak", { headers: { accept: "application/json" } }).then(r => (r.ok ? r.json() : null)).then(d => { if (d && d.actief) mic.hidden = false; }).catch(() => {});
+    let rec = null, stukken = [], stroom = null, timer = null, bord = null;
+    const type = ["audio/webm;codecs=opus", "audio/mp4", "audio/webm"].find(t => MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(t)) || "";
+    async function start() {
+      try { stroom = await navigator.mediaDevices.getUserMedia({ audio: true }); } catch (_) { return; }
+      stukken = []; rec = new MediaRecorder(stroom, type ? { mimeType: type } : undefined);
+      rec.ondataavailable = e => { if (e.data && e.data.size) stukken.push(e.data); };
+      rec.onstop = verwerk;
+      rec.start(); mic.classList.add("aan"); mic.textContent = "■"; mic.setAttribute("aria-label", T.stop); mic.title = T.stop;
+      bord = bel("bot", T.luistert, "denkt");
+      timer = setTimeout(stop, 60000);
+    }
+    function stop() { clearTimeout(timer); if (rec && rec.state !== "inactive") rec.stop(); if (stroom) stroom.getTracks().forEach(t => t.stop()); }
+    async function verwerk() {
+      mic.classList.remove("aan"); mic.textContent = "🎙"; mic.setAttribute("aria-label", T.spreek); mic.title = T.spreek;
+      const blob = new Blob(stukken, { type: (rec && rec.mimeType) || type || "audio/webm" });
+      if (blob.size < 2000) { if (bord) bord.remove(); return; }
+      if (bord) bord.textContent = T.denkt;
+      mic.disabled = true;
+      try {
+        const r = await fetch("/api/spraak", { method: "POST", headers: { "content-type": blob.type.split(";")[0] }, body: blob });
+        const d = await r.json().catch(() => ({}));
+        if (bord) bord.remove();
+        if (r.ok && d.tekst) verstuur(d.tekst); else bel("bot", T.nietgehoord);
+      } catch (_) { if (bord) bord.remove(); bel("bot", T.nietgehoord); }
+      finally { mic.disabled = false; }
+    }
+    mic.onclick = () => { if (bezig) return; if (rec && rec.state === "recording") stop(); else start(); };
+  }
+
   function bouw() {
     const st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
     fab = document.createElement("button");
@@ -140,10 +176,11 @@
     paneel.innerHTML = `<div class="cg-kop"><img src="img/logo-icon-96.png" alt=""><div><b>${esc(T.titel)}</b><small>${esc(T.sub)}</small></div>
 <div class="cg-acties"><button type="button" data-nieuw title="${esc(T.opnieuw)}" aria-label="${esc(T.opnieuw)}">↺</button><button type="button" data-sluit aria-label="${esc(T.sluit)}">✕</button></div></div>
 <div class="cg-log" role="log" aria-live="polite"></div>
-<form class="cg-form"><textarea rows="1" maxlength="2000" aria-label="${esc(T.plek)}" placeholder="${esc(T.plek)}"></textarea><button type="submit">${esc(T.stuur)}</button></form>
+<form class="cg-form"><button type="button" class="cg-mic" hidden aria-label="${esc(T.spreek)}" title="${esc(T.spreek)}">🎙</button><textarea rows="1" maxlength="2000" aria-label="${esc(T.plek)}" placeholder="${esc(T.plek)}"></textarea><button type="submit">${esc(T.stuur)}</button></form>
 <p class="cg-noot">${esc(T.noot)} <a href="${TAAL === "nl" ? "privacy.html" : "privacy.html"}">${esc(T.privacy)}</a></p>`;
     document.body.appendChild(paneel);
-    log = paneel.querySelector(".cg-log"); veld = paneel.querySelector("textarea"); knop = paneel.querySelector(".cg-form button");
+    log = paneel.querySelector(".cg-log"); veld = paneel.querySelector("textarea"); knop = paneel.querySelector(".cg-form button[type=submit]");
+    spraak(paneel.querySelector(".cg-mic"));
     paneel.querySelector("[data-sluit]").onclick = sluit;
     paneel.querySelector("[data-nieuw]").onclick = () => { berichten = []; klaar = false; bewaar(); teken(); veld.focus(); };
     paneel.querySelector("form").onsubmit = ev => { ev.preventDefault(); const t = veld.value; veld.value = ""; veld.style.height = ""; verstuur(t); };
