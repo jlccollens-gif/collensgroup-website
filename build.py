@@ -847,7 +847,12 @@ def build():
 <p>Probeer {e(a["naam"])} als eerste op je Android-telefoon en help ons de laatste puntjes op de i te zetten. Gratis, en je zit nergens aan vast.</p>
 <ol><li><strong>Word lid van de testersgroep.</strong> Log in met je Google-account en klik op "Lid worden". <a class="knop" href="https://groups.google.com/g/collens-group" target="_blank" rel="noopener">Naar de testersgroep</a></li>
 <li><strong>Open de test in Google Play.</strong> Klik op "Word tester" en installeer de app. <a class="knop knop-rand" href="https://play.google.com/apps/testing/{a["tester"]}" target="_blank" rel="noopener">Naar Google Play</a></li></ol>
-<p class="noot">Let op: krijg je bij stap 2 een melding dat de test niet beschikbaar is? Dan wordt de testversie nog vrijgegeven. Dat duurt enkele dagen; je lidmaatschap telt dan automatisch mee. Werkt alleen op Android. Je e-mailadres is alleen zichtbaar voor ons, niet voor andere testers.</p></div>'''
+<p class="noot">Let op: krijg je bij stap 2 een melding dat de test niet beschikbaar is? Dan wordt de testversie nog vrijgegeven. Dat duurt enkele dagen; je lidmaatschap telt dan automatisch mee. Werkt alleen op Android. Je e-mailadres is alleen zichtbaar voor ons, niet voor andere testers.</p>
+<details class="tester-en" lang="en"><summary>English: become a tester</summary>
+<p>Try {e(a["naam"])} first on your Android phone and help us polish the final details. Free, no strings attached.</p>
+<ol><li><strong>Join the testers group.</strong> Sign in with your Google account and click "Join group". <a class="knop" href="https://groups.google.com/g/collens-group" target="_blank" rel="noopener">Go to the testers group</a></li>
+<li><strong>Open the test in Google Play.</strong> Tap "Become a tester" and install the app. <a class="knop knop-rand" href="https://play.google.com/apps/testing/{a["tester"]}" target="_blank" rel="noopener">Go to Google Play</a></li></ol>
+<p class="noot">Android only. Does Google Play say the test is not available yet? Try again in a few days; your group membership counts automatically. Only we can see your email address.</p></details><script>(function(){{var d=document.querySelector('.tester-en');if(d&&(location.search.indexOf('campaign=en-')>-1||!/^nl/i.test(navigator.language||'nl')))d.open=true;}})();</script></div>'''
         cta = {"App": "Zelf een app laten maken?", "Game": "Zelf een game laten maken?", "Kinderserie": "Ook iets moois laten maken?"}[a["soort"]]
         pages.append(page(f'app-{a["slug"]}.html', a["titel"], a["kort"] + " " + a["status"] + ".",
             f'''<section class="app-hero" style="background:{a["kleur"]}"><div class="wrap">

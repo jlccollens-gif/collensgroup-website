@@ -362,3 +362,6 @@ footer.voet .voet-onder{display:flex}
 .tester ol{margin:18px 0 0;padding-left:22px;display:grid;gap:18px}
 .tester li .knop{display:table;margin-top:10px}
 @media (max-width:600px){.knop-licht{margin:10px 0 0}.tester{padding:22px}}
+.tester-en{margin-top:18px;border-top:1px solid rgba(0,0,0,.1);padding-top:14px}
+.tester-en summary{cursor:pointer;font-weight:600}
+.tester-en[open] summary{margin-bottom:10px}
