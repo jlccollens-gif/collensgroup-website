@@ -125,12 +125,12 @@ NL_NAAR_EN = {"website-laten-maken.html": "en-website-design.html", "goedkope-we
 EN_NAAR_NL = {"en-website-design.html": "website-laten-maken.html", "en-app-development.html": "app-laten-maken-kosten.html", "en-projects.html": "apps.html", "en-lubbyc-privacy.html": "app-lubbyc.html"}
 
 FOOT = {
- "nl": {"tag": "Websites, apps, games en AI-automatisering voor ondernemers in Nederland, België en daarbuiten. Vaste prijs vooraf, en alles is van jou.",
+ "nl": {"tag": "Websites, apps, games en AI-automatisering voor ondernemers in Nederland, België en daarbuiten. Vaste prijs vooraf.",
         "kol": [("Diensten", [("website-laten-maken.html", "Website laten maken"), ("webshop-laten-maken.html", "Webshop laten maken"), ("app-laten-maken-kosten.html", "App laten maken"), ("game-laten-maken.html", "Game laten maken"), ("ai-automatisering.html", "AI & automatisering"), ("chatbot-laten-maken.html", "AI-chatbot")]),
                 ("Meer", [("apps.html", "Onze apps & games"), ("mvp-app-laten-maken.html", "MVP-app"), ("goedkope-website-laten-maken.html", "Goedkope website"), ("artikelen.html", "Artikelen en gidsen"), ("privacy.html", "Privacy")]),
                 ("Contact", [("index.html#contact", "Offerte aanvragen"), ("mailto:" + CONFIG["email"], CONFIG["email"])])],
         "copy": "Alle prijzen zijn eindprijzen: we rekenen geen btw."},
- "en": {"tag": "Websites, apps, games and AI automation for businesses worldwide. Fixed price up front, and you own everything.",
+ "en": {"tag": "Websites, apps, games and AI automation for businesses worldwide. Fixed price up front.",
         "kol": [("Services", [("en-website-design.html", "Website design"), ("en-app-development.html", "App development"), ("en.html#pricing", "Pricing")]),
                 ("More", [("en-projects.html", "Our work"), ("en-lubbyc-privacy.html", "LubbyC privacy")]),
                 ("Contact", [("en.html#contact", "Get a quote"), ("mailto:" + CONFIG["email"], CONFIG["email"])])],
@@ -323,8 +323,8 @@ DIENSTEN = [
     {
         "slug": "website-laten-maken", "kort": "Websites", "kleur": "#2457D6",
         "titel": "Website laten maken vanaf €495 | Collens Group",
-        "desc": "Website of webshop laten maken onder de marktprijs: one-page vanaf €495, bedrijfswebsite vanaf €995, webshop vanaf €1.950. Snel, vindbaar in Google en van jou.",
-        "h1": "Website laten maken", "intro": "Snelle, vindbare websites en webshops voor ondernemers. Vaste prijs vooraf, ruim onder wat bureaus vragen, en alles staat op jouw naam.",
+        "desc": "Website of webshop laten maken onder de marktprijs: one-page vanaf €495, bedrijfswebsite vanaf €995, webshop vanaf €1.950. Snel en vindbaar in Google.",
+        "h1": "Website laten maken", "intro": "Snelle, vindbare websites en webshops voor ondernemers. Vaste prijs vooraf, ruim onder wat bureaus vragen.",
         "markt": ("Een eenvoudige zakelijke website kost bij Nederlandse freelancers meestal €800 tot €3.000 en bij bureaus €2.500 tot €12.000.",
                   "https://www.appypie.com/nl/?p=2729541", "Appy Pie, Website laten maken: wat het kost (okt. 2026)"),
         "pakketten": [
@@ -485,10 +485,10 @@ def en_pages(pages):
         for n, s, p, h, k in EN_SERVICES) + '</div>'
     en_offers = [{"@type": "Offer", "name": n, "price": int(p.replace("€", "").replace(",", "")), "priceCurrency": "EUR"} for _, rows in EN_PRICES for n, p, _ in rows]
     pages.append(page("en.html", "Websites, apps, games and AI at fair fixed prices | " + CONFIG["naam"],
-        "We build websites from €495, apps from €3,150, games from €1,950 and AI automation from €395 for clients worldwide. Fixed price, free concept, you own everything.",
+        "We build websites from €495, apps from €3,150, games from €1,950 and AI automation from €395 for clients worldwide. Fixed price and a free concept first.",
         f'''<section class="hero" aria-labelledby="kop"><div class="wrap"><div>
 <h1 id="kop">Your idea.<br>Live in weeks.</h1>
-<p class="lead">Websites from €495. Apps, games and AI made to measure. Fixed price, a free concept first, and you own it all.</p>
+<p class="lead">Websites from €495. Apps, games and AI made to measure. Fixed price and a free concept first.</p>
 <div class="acties"><a class="knop geel" href="#contact">Get a free quote</a><a class="zacht" href="#services">See what we build</a></div><ul class="vertrouwen"><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Fixed price up front</li><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Free concept first</li><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>You own the code</li></ul></div>
 <div class="etalage"><figure class="tel-links"><img src="img/koffer-spel.jpg" alt="Koffer Vol! puzzle game" width="240" height="480"></figure><figure class="tel-midden"><img src="img/lubbyc-kaart.jpg" alt="LubbyC travel app" width="240" height="480" fetchpriority="high"></figure><figure class="tel-rechts"><img src="img/eiland-rood.jpg" alt="Island Express driving game" width="240" height="480"></figure></div></div></section>
 
@@ -567,10 +567,10 @@ def build():
 
     # HOME
     pages.append(page("index.html", "App, website of game laten maken onder de marktprijs | Collens Group",
-        "Apps vanaf €3.150, websites vanaf €495, games vanaf €1.950 en AI-automatisering vanaf €395. Vaste prijs vooraf, onder het marktgemiddelde, en alles is van jou.",
+        "Apps vanaf €3.150, websites vanaf €495, games vanaf €1.950 en AI-automatisering vanaf €395. Vaste prijs vooraf, onder het marktgemiddelde.",
         f'''<section class="hero" aria-labelledby="kop"><div class="wrap"><div>
 <h1 id="kop">Jouw idee.<br>Live in weken.</h1>
-<p class="lead">Websites vanaf €495. Apps, games en AI op maat. Vaste prijs, eerst een gratis concept, en alles is van jou.</p>
+<p class="lead">Websites vanaf €495. Apps, games en AI op maat. Vaste prijs en eerst een gratis concept.</p>
 <div class="acties"><a class="knop geel" href="#contact">Vraag je gratis concept aan</a><a class="zacht" href="#diensten">Bekijk wat we maken</a></div><ul class="vertrouwen"><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Vaste prijs vooraf</li><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Eerst een gratis concept</li><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Code en design van jou</li></ul></div>
 <div class="etalage"><figure class="tel-links"><img src="img/koffer-spel.jpg" alt="Puzzelgame Koffer Vol!" width="240" height="480"></figure><figure class="tel-midden"><img src="img/lubbyc-kaart.jpg" alt="Reisapp LubbyC" width="240" height="480" fetchpriority="high"></figure><figure class="tel-rechts"><img src="img/eiland-rood.jpg" alt="Rijgame Eiland Express" width="240" height="480"></figure></div></div></section>
 

@@ -2,7 +2,7 @@
 LANDINGS = [
  {"slug":"webshop-laten-maken","lang":"nl","kort":"Webshop",
   "titel":"Webshop laten maken vanaf €1.950 | Collens Group",
-  "desc":"Webshop laten maken onder bureauprijzen: vanaf €1.950 met tot 50 producten, iDEAL en verzending ingericht. Vaste prijs, klaar in 3–5 weken, en de shop is van jou.",
+  "desc":"Webshop laten maken onder bureauprijzen: vanaf €1.950 met tot 50 producten, iDEAL en verzending ingericht. Vaste prijs, klaar in 3–5 weken.",
   "h1":"Webshop laten maken",
   "lead":"Een webshop die snel laadt, goed werkt op je telefoon en waarin je zelf je producten beheert. Vanaf €1.950 zonder btw, klaar in 3–5 weken.",
   "secties":[
@@ -16,7 +16,7 @@ LANDINGS = [
   "offers":[("Webshop",1950)], "rel":[("website-laten-maken.html","Alle websitepakketten"),("goedkope-website-laten-maken.html","Goedkope website laten maken")]},
  {"slug":"goedkope-website-laten-maken","lang":"nl","kort":"Goedkope website",
   "titel":"Goedkope website laten maken vanaf €495 | Collens Group",
-  "desc":"Goedkope website laten maken zonder dat het goedkoop oogt: one-page vanaf €495, bedrijfswebsite vanaf €995. Snel, vindbaar in Google en volledig van jou.",
+  "desc":"Goedkope website laten maken zonder dat het goedkoop oogt: one-page vanaf €495, bedrijfswebsite vanaf €995. Snel en vindbaar in Google.",
   "h1":"Goedkope website laten maken",
   "lead":"Een professionele website hoeft geen duizenden euro's te kosten. Een one-page site begint bij €495 en een bedrijfswebsite met tot 6 pagina's bij €995, zonder btw.",
   "secties":[
@@ -76,7 +76,7 @@ LANDINGS = [
   "offers":[("Basic / MVP app",3150),("Standard app",6750),("Custom / Pro app",13050)], "rel":[("en.html","All services and prices"),("en-website-design.html","Website design")]},
  {"slug":"en-website-design","lang":"en","kort":"Website design",
   "titel":"Affordable website design from €495 – fixed price | Collens Group",
-  "desc":"Affordable website design for small businesses: one-page site from €495, business website from €995, web shop from €1,950. Fast, mobile-friendly and fully yours.",
+  "desc":"Affordable website design for small businesses: one-page site from €495, business website from €995, web shop from €1,950. Fast and mobile-friendly.",
   "h1":"Affordable website design for small businesses",
   "lead":"Fast, mobile-friendly websites at a fixed price: a one-page site from €495, a business website with up to 6 pages from €995 and a web shop from €1,950.",
   "secties":[
