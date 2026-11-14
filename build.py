@@ -559,7 +559,93 @@ def en_pages(pages):
 <h2>Your rights</h2><p>You can request access, correction or deletion via the email address above, and you can file a complaint with your data protection authority (in the Netherlands: the Autoriteit Persoonsgegevens).</p></article>''',
         crumbs=[("Home", "en.html"), ("LubbyC privacy", "en-lubbyc-privacy.html")], lang="en", alt=("app-lubbyc.html", "en-lubbyc-privacy.html")))
 
+APP_PAKKETTEN = [
+    ("Basis / MVP app", 3150, "3–5 weken", "Je idee snel testen met echte gebruikers. Tot 5 schermen, eenvoudige navigatie en content, strak basisontwerp, publicatieklaar voor iOS of Android. Geen accounts, database of betalingen."),
+    ("Standaard app", 6750, "6–10 weken", "Een complete app voor klanten of team. 5 tot 12 schermen, accounts en inloggen, eigen database en API-koppelingen, pushmeldingen, live in App Store én Google Play."),
+    ("Maatwerk / Pro app", 13050, "10–16+ weken", "Een volledig digitaal platform. 12+ schermen en complexe flows, uitgebreide backend en beheerdashboard, betalingen en abonnementen, meerdere gebruikersrollen, extra beveiliging."),
+]
+
+def schrijf_kennis():
+    """Kennis voor de chat-adviseur, uit dezelfde gegevens als de site. Schrijft chatbot/kennis.js."""
+    eur = lambda p: "€" + f"{p:,}".replace(",", ".")
+    from landings import LANDINGS
+    import re as _re
+    r = [f"## Over Collens Group\nCollens Group maakt websites, webshops, apps (iPhone en Android tegelijk, met React Native), casual 2D-games en AI-chatbots en automatiseringen. "
+         "Voor ondernemers in Nederland en België, en in het Engels wereldwijd. Volledig online, per mail en video. Vaste prijs vooraf, onder het marktgemiddelde. "
+         "Alle prijzen zijn eindprijzen: er komt geen btw bij. Contact: " + CONFIG["email"] + ".",
+         "## Werkwijze\n1. Intake per mail: een paar korte vragen over idee, doelgroep en budget, geen afspraak nodig.\n2. Gratis concept: een klikbaar concept van 1–3 schermen.\n"
+         "3. Voorstel met vaste prijs, planning en precies wat erin zit.\n4. Ontwerp ter goedkeuring.\n5. Bouwen en testen, elke week een testversie.\n6. Live: hulp bij publicatie op het web, in de App Store en Google Play.\n"
+         "Elke stap rond je af met een akkoord. Meerwerk alleen na akkoord van de klant.\n"
+         "Betalen in drie delen: 40% bij akkoord, 40% bij een goedgekeurde testversie, 20% bij oplevering. Na de laatste betaling zijn code en design van de klant; apps staan op het eigen Apple- en Google-account van de klant.",
+         "## Apps (iPhone en Android)\n" + "\n".join(f"- {n}: vanaf {eur(p)}, klaar in {t}. {o}" for n, p, t, o in APP_PAKKETTEN) +
+         "\nLosse diensten: ontwikkeling per uur €67,50; schermontwerp (UI/UX, klikbaar prototype vóór de bouw) €675 – €1.800; App Store en Google Play setup €315; koppeling externe API of betaalprovider (bijv. Mollie, Stripe, boekhouding, CRM) €450 – €1.350.\n"
+         "Onderhoud per maand (optioneel): Basis Onderhoud €85,50 (monitoring, kritieke bugfixes, kleine iOS- en Android-updates); Groei & Support €265,50 (alles uit Basis plus tot 4 uur kleine aanpassingen en voorrang bij storingen).\n"
+         "Externe kosten die de klant zelf betaalt: Apple Developer Program $99 per jaar, Google Play $25 eenmalig, hosting/database vaak gratis tot $25 per maand voor kleine apps.\n"
+         "Marktvergelijking: een eenvoudige app kost bij Nederlandse bureaus en freelancers meestal €5.000 – €25.000 (Searchlab 2026)."]
+    for d in DIENSTEN:
+        r.append(f"## {d['h1']}\n{d['intro']}\n" + "\n".join(f"- {n}: vanaf {eur(p)}, klaar in {t}. Inbegrepen: {'; '.join(items)}." for n, p, t, items in d["pakketten"]) +
+                 "\nExtra: " + "; ".join(f"{n} {p} ({s})" for n, p, s in d["extra"]) + "." +
+                 f"\nMarkt: {d['markt'][0]}\n" + "\n".join(f"- V: {q} A: {a}" for q, a in d["faq"]) + f"\nPagina: {d['slug']}.html")
+    for L in LANDINGS:
+        if L["lang"] != "nl": continue
+        faq = " ".join(_re.sub(r"<[^>]+>", " ", f"V: {q} A: {a}") for q, a in L.get("faq", []))
+        faq = _re.sub(r"\s+", " ", html.unescape(faq))
+        r.append(f"## {L['titel'].split(' | ')[0]}\n{L.get('lead', '')}\n{faq}\nPagina: {L['slug']}.html")
+    r.append("## Veelgestelde vragen\n" + "\n".join(f"- V: {q} A: {a}" for q, a in FAQ))
+    r.append("## Eigen projecten (bewijs van ons werk)\n" + "\n".join(f"- {a['naam']} ({a['soort']}, {a['status']}): {a['kort']} Pagina: app-{a['slug']}.html" for a in APPS if a.get("publiceer")))
+    r.append("## Wat we niet doen\nGrote 3D-games en online multiplayer-games. Topposities in Google garanderen. Juridisch of financieel advies.")
+    r.append("## Pagina's\nNederlands: index.html (start, met contactformulier op index.html#contact), website-laten-maken.html, goedkope-website-laten-maken.html, webshop-laten-maken.html, website-laten-maken-horeca.html, "
+             "app-laten-maken-kosten.html, mvp-app-laten-maken.html, game-laten-maken.html, ai-automatisering.html, chatbot-laten-maken.html, apps.html, artikelen.html, privacy.html.\n"
+             "Engels: en.html (contact op en.html#contact), en-website-design.html, en-app-development.html, en-projects.html. Duits: de.html, Frans: fr.html, Spaans: es.html.")
+    tekst = "\n\n".join(r)
+    os.makedirs(os.path.join(ROOT, "chatbot"), exist_ok=True)
+    with open(os.path.join(ROOT, "chatbot", "kennis.js"), "w", encoding="utf-8") as f:
+        f.write("// Automatisch gemaakt door build.py (schrijf_kennis). Niet met de hand bewerken.\nexport const KENNIS = " + json.dumps(tekst, ensure_ascii=False) + ";\n")
+
+CHAT_BLOK = {
+    "nl": ("Weet je nog niet precies wat je nodig hebt?", "Geen probleem, daar is onze online adviseur voor. Vertel wat je wilt bereiken; hij stelt een paar vragen, denkt met je mee en adviseert welke oplossing en welk pakket bij je passen. Dag en nacht, gratis en zonder verplichtingen.", "Vraag het onze adviseur", "24/7 online · antwoord binnen seconden"),
+    "en": ("Not sure exactly what you need?", "No problem, that's what our online advisor is for. Tell it what you want to achieve; it asks a few questions, thinks along with you and recommends the solution and package that fit. Day and night, free and without obligation.", "Ask our advisor", "Online 24/7 · answers in seconds"),
+    "de": ("Sie wissen noch nicht genau, was Sie brauchen?", "Kein Problem, dafür gibt es unseren Online-Berater. Erzählen Sie, was Sie erreichen möchten; er stellt ein paar Fragen, denkt mit und empfiehlt die passende Lösung und das passende Paket. Rund um die Uhr, kostenlos und unverbindlich.", "Fragen Sie unseren Berater", "24/7 online · Antwort in Sekunden"),
+    "fr": ("Vous ne savez pas encore exactement ce qu'il vous faut ?", "Pas de souci, c'est le rôle de notre conseiller en ligne. Dites-lui ce que vous voulez accomplir ; il pose quelques questions, réfléchit avec vous et recommande la solution et la formule adaptées. Jour et nuit, gratuit et sans engagement.", "Demandez à notre conseiller", "En ligne 24h/24 · réponse en quelques secondes"),
+    "es": ("¿Aún no sabes exactamente lo que necesitas?", "No pasa nada, para eso está nuestro asesor en línea. Cuéntale qué quieres conseguir; te hace unas preguntas, piensa contigo y te recomienda la solución y el paquete adecuados. Día y noche, gratis y sin compromiso.", "Pregunta a nuestro asesor", "En línea 24/7 · respuesta en segundos"),
+}
+CHAT_CONTACT = {
+    "nl": ("Weet je nog niet precies wat je nodig hebt? Onze online adviseur denkt met je mee.", "Vraag het de adviseur"),
+    "en": ("Not sure exactly what you need? Our online advisor will help you choose.", "Ask the advisor"),
+    "de": ("Sie wissen noch nicht genau, was Sie brauchen? Unser Online-Berater hilft Ihnen.", "Berater fragen"),
+    "fr": ("Vous ne savez pas encore ce qu'il vous faut ? Notre conseiller en ligne vous aide.", "Demander au conseiller"),
+    "es": ("¿No sabes exactamente lo que necesitas? Nuestro asesor en línea te ayuda.", "Preguntar al asesor"),
+}
+CHAT_ICOON = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg>'
+
+def chat_inbouwen():
+    """Chatwidget op elke pagina, en op de startpagina's een duidelijke sectie voor wie nog twijfelt.
+    Beide blijven verborgen tot /api/chat meldt dat de adviseur actief is (dus pas na het instellen van de API-sleutel)."""
+    shutil.copy(os.path.join(ROOT, "src", "chat.js"), os.path.join(DIST, "chat.js"))
+    v = hashlib.md5(open(os.path.join(ROOT, "src", "chat.js"), "rb").read()).hexdigest()[:8]
+    homes = {"index.html": "nl", "en.html": "en", "de.html": "de", "fr.html": "fr", "es.html": "es"}
+    for f in os.listdir(DIST):
+        if not f.endswith(".html"): continue
+        p = os.path.join(DIST, f); h = open(p, encoding="utf-8").read()
+        h = h.replace("</body>", f'<script src="chat.js?v={v}" defer></script></body>', 1)
+        if f in homes:
+            kop, tekst, knop, sub = CHAT_BLOK[homes[f]]
+            blok = (f'<section class="chat-blok" data-chat-blok hidden aria-labelledby="chat-kop"><div class="wrap"><div class="chat-blok-in">'
+                    f'<span class="chat-blok-ico">{CHAT_ICOON}</span><div class="chat-blok-tekst"><h2 id="chat-kop">{e(kop)}</h2><p>{e(tekst)}</p></div>'
+                    f'<div class="chat-blok-actie"><button type="button" class="knop geel" data-chat-open>{e(knop)}</button><small>{e(sub)}</small></div></div></div></section>')
+            # direct na de sectie 'wat we maken' (de tweede sectie in main)
+            i = h.find("<section", h.find("<section", h.find('<main id="inhoud">') + 1) + 1)
+            if i > 0: h = h[:i] + blok + h[i:]
+        if '<p id="kanaal"' in h:
+            lang = h[h.find('<html lang="') + 12:][:2]
+            vraag, knop = CHAT_CONTACT.get(lang, CHAT_CONTACT["nl"])
+            regel = f'<p data-chat-blok hidden style="margin-top:18px">{e(vraag)} <button type="button" class="knop geel" data-chat-open style="margin-top:10px">{e(knop)}</button></p>'
+            j = h.find("</p>", h.find('<p id="kanaal"')) + 4
+            h = h[:j] + regel + h[j:]
+        open(p, "w", encoding="utf-8").write(h)
+
 def build():
+    schrijf_kennis()
     shutil.rmtree(DIST, ignore_errors=True); os.makedirs(DIST)
     for n in ("site.css", "og.png", "_headers", "aceaa1aae33f492c9fc3bb575567f4a2.txt"): shutil.copy(os.path.join(ROOT, "src", n), os.path.join(DIST, n))
     shutil.copytree(os.path.join(ROOT, "src", "img"), os.path.join(DIST, "img"))
@@ -780,6 +866,7 @@ def build():
     pages.append(page("privacy.html", "Privacy | Collens Group", "Hoe Collens Group omgaat met je gegevens: wat deze website verzamelt, waarvoor, en welke rechten je hebt.",
         f'''<article class="tekst"><h1>Privacy</h1><p>Laatst bijgewerkt: {datetime.date.today().strftime("%d-%m-%Y")}</p>
 <h2>Wat deze website verzamelt</h2><p>Deze website plaatst geen trackingcookies. {"We tellen bezoeken met GoatCounter, dat geen cookies gebruikt en geen persoonsgegevens opslaat." if CONFIG["goatcounter"] else "We gebruiken geen analytics."} Vul je het aanvraagformulier in, dan zet het formulier je bericht klaar zodat je het zelf naar ons mailt. Onze website wordt gehost door Cloudflare.</p>
+<h2>Online adviseur (chat)</h2><p>Gebruik je de chat-adviseur, dan worden je berichten verwerkt door het AI-model Claude van Anthropic om een antwoord te maken. Het gesprek blijft alleen in je eigen browser bewaard tot je het tabblad sluit; wij slaan het niet op. Geef je in de chat je naam en e-mailadres en vraag je ons contact op te nemen, dan sturen we het gesprek als mail naar ons team (via de maildienst Brevo) en gebruiken we het alleen om je te antwoorden. Deel in de chat geen gevoelige gegevens.</p>
 <h2>Als je contact met ons opneemt</h2><p>Stuur je ons een aanvraag, dan gebruiken we je naam, e-mailadres, bedrijfsnaam en je beschrijving alleen om je aanvraag te beantwoorden en, als je klant wordt, om het project uit te voeren. We bewaren deze gegevens niet langer dan nodig en delen ze niet met anderen, behalve als dat nodig is voor het project en je daarmee akkoord gaat.</p>
 <h2>Lettertypes</h2><p>Deze website laadt lettertypes via Google Fonts. Daarbij ziet Google je IP-adres.</p>
 <h2>Je rechten</h2><p>Je kunt ons altijd vragen welke gegevens we van je hebben, en vragen om ze aan te passen of te verwijderen. Ook kun je een klacht indienen bij de Autoriteit Persoonsgegevens.</p>
@@ -795,6 +882,7 @@ def build():
 
     from illustraties import verrijk
     verrijk(DIST)
+    chat_inbouwen()
 
     # robots, sitemap, llms.txt
     with open(os.path.join(DIST, "robots.txt"), "w") as f:
