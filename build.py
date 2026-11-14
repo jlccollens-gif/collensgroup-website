@@ -644,6 +644,19 @@ def chat_inbouwen():
             h = h[:j] + regel + h[j:]
         open(p, "w", encoding="utf-8").write(h)
 
+def engelse_screenshots(dist):
+    """Pagina's in een andere taal dan Nederlands tonen de Engelse screenshots van onze apps (img/naam-en.jpg)."""
+    import glob, re
+    en = {os.path.basename(p)[:-7] for p in glob.glob(os.path.join(dist, "img", "*-en.jpg"))}
+    for pad in glob.glob(os.path.join(dist, "*.html")):
+        html_ = open(pad, encoding="utf-8").read()
+        if '<html lang="nl"' in html_:
+            continue
+        nieuw = re.sub(r'img/([a-z0-9-]+)\.jpg', lambda m: f"img/{m.group(1)}-en.jpg" if m.group(1) in en else m.group(0), html_)
+        if nieuw != html_:
+            open(pad, "w", encoding="utf-8").write(nieuw)
+
+
 def build():
     schrijf_kennis()
     shutil.rmtree(DIST, ignore_errors=True); os.makedirs(DIST)
@@ -887,6 +900,7 @@ def build():
 
     from illustraties import verrijk
     verrijk(DIST)
+    engelse_screenshots(DIST)
     chat_inbouwen()
 
     # robots, sitemap, llms.txt
