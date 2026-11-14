@@ -260,3 +260,48 @@ details.taalkeuze{position:relative;border:0;padding:0}
 .prijsblok{min-width:0}.prijsblok .lijst td:last-child{white-space:normal}
 .hero{overflow:hidden}
 @media (max-width:1000px){.menu > a:not(.knop){display:none}}
+/* ===== professionele laag (14-11) ===== */
+:root{--display:"Plus Jakarta Sans",system-ui,sans-serif;--body:"Inter",system-ui,sans-serif}
+body{font-size:17px;line-height:1.65;-webkit-font-smoothing:antialiased}
+h1{font-variation-settings:normal;font-weight:800;letter-spacing:-.03em;line-height:1.05}
+h2{font-weight:800;letter-spacing:-.025em}
+h3{font-weight:700;letter-spacing:-.01em}
+.hero h1{font-size:clamp(38px,5.4vw,66px)}
+.hero p.lead{font-size:19px;line-height:1.6;max-width:34em}
+.knop{font-family:var(--body);font-weight:600;letter-spacing:-.005em;box-shadow:0 1px 2px rgba(20,33,61,.12)}
+.knop.geel{box-shadow:0 6px 18px rgba(242,183,5,.35)}
+.hero{background:radial-gradient(1200px 500px at 85% 20%,#DCE6F7 0,transparent 60%),var(--lucht)}
+.vertrouwen{list-style:none;padding:0;margin:-30px 0 48px;display:flex;flex-wrap:wrap;gap:10px 22px;font-size:15px;color:var(--tekst);font-weight:500}
+.vertrouwen li{display:flex;align-items:center;gap:8px}
+@media (max-width:860px){.vertrouwen{margin:-12px 0 28px}}
+/* dienstkaarten */
+.dienst{background:var(--wit);border:1px solid var(--lijn);border-top:1px solid var(--lijn);border-radius:18px;padding:24px 22px;gap:4px;box-shadow:0 1px 2px rgba(20,33,61,.04);transition:transform .15s,box-shadow .15s,border-color .15s}
+.dienst:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(20,33,61,.10);border-color:color-mix(in srgb,var(--k) 40%,var(--lijn))}
+.dienst-ico{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;margin-bottom:12px;color:var(--k);background:color-mix(in srgb,var(--k) 12%,#fff)}
+.dienst-naam{font-size:22px}
+.dienst-prijs{margin-top:auto;padding-top:14px;font-size:15px}
+.wit .dienst{background:var(--wit)}
+.diensten{gap:18px}
+/* footer */
+footer.voet{background:#0F1A31;color:#9AA7C0;padding:64px 0 0;font-size:15px}
+.voet-grid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:36px}
+.voet-merk p{margin-top:14px;max-width:32ch;color:#9AA7C0}
+.merk-licht{color:#fff!important}
+.voet-kol h2{font-family:var(--body);font-size:13px;font-weight:600;color:#fff;letter-spacing:.02em;margin:4px 0 14px}
+.voet-kol ul{list-style:none;padding:0;margin:0}
+.voet-kol li{margin:0 0 9px}
+.voet-kol a{color:#C9D3E1;text-decoration:none;word-break:break-word}
+.voet-kol a:hover{color:#fff;text-decoration:underline}
+.voet-onder{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;border-top:1px solid rgba(255,255,255,.08);margin-top:48px;padding-top:20px;padding-bottom:28px;font-size:14px;color:#7F8CA6}
+footer.voet .wrap{display:grid}
+footer.voet .voet-onder{display:flex}
+@media (max-width:860px){.voet-grid{grid-template-columns:1fr 1fr}.voet-merk{grid-column:1/-1}}
+@media (max-width:480px){.voet-grid{grid-template-columns:1fr}}
+/* rustiger kaarten en pakketten */
+.pakket{border:1px solid var(--lijn);background:var(--wit)}
+.pakket.mid{border-color:var(--nacht);box-shadow:0 24px 50px rgba(20,33,61,.25)}
+.feiten{border-top:1px solid var(--lijn)}
+.feiten h3{font-size:18px}
+.app-rij{border-top:1px solid var(--lijn)}
+.top{box-shadow:0 1px 0 rgba(20,33,61,.06)}
+.merk-licht svg rect{fill:#22325A}

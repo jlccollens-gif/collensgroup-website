@@ -100,10 +100,10 @@ APPS = [
 ]
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-         '<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,600..800&display=swap" rel="stylesheet">')
-LOGO = ('<svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="8" fill="#14213D"/>'
-        '<rect x="13.5" y="4" width="3" height="5" rx="1" fill="#F2B705"/><rect x="13.5" y="12" width="3" height="5" rx="1" fill="#F2B705"/>'
-        '<rect x="13.5" y="20" width="3" height="6" rx="1" fill="#F2B705"/></svg>')
+         '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">')
+LOGO = ('<svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#14213D"/>'
+        '<path d="M21.5 10.2A8 8 0 1 0 21.5 21.8" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round"/>'
+        '<circle cx="23.2" cy="16" r="2.6" fill="#F2B705"/></svg>')
 
 def e(s): return html.escape(s, quote=True)
 
@@ -124,6 +124,31 @@ NL_NAAR_EN = {"website-laten-maken.html": "en-website-design.html", "goedkope-we
               "app-laten-maken-kosten.html": "en-app-development.html", "mvp-app-laten-maken.html": "en-app-development.html",
               "apps.html": "en-projects.html", "app-lubbyc.html": "en-projects.html", "app-koffer-vol.html": "en-projects.html", "app-eiland-express.html": "en-projects.html", "app-manu-en-khanun.html": "en-projects.html"}
 EN_NAAR_NL = {"en-website-design.html": "website-laten-maken.html", "en-app-development.html": "app-laten-maken-kosten.html", "en-projects.html": "apps.html", "en-lubbyc-privacy.html": "app-lubbyc.html"}
+
+FOOT = {
+ "nl": {"tag": "Websites, apps, games en AI-automatisering voor ondernemers in Nederland, België en daarbuiten. Vaste prijs vooraf, en alles is van jou.",
+        "kol": [("Diensten", [("website-laten-maken.html", "Website laten maken"), ("webshop-laten-maken.html", "Webshop laten maken"), ("app-laten-maken-kosten.html", "App laten maken"), ("game-laten-maken.html", "Game laten maken"), ("ai-automatisering.html", "AI & automatisering"), ("chatbot-laten-maken.html", "AI-chatbot")]),
+                ("Meer", [("apps.html", "Onze apps & games"), ("mvp-app-laten-maken.html", "MVP-app"), ("goedkope-website-laten-maken.html", "Goedkope website"), ("privacy.html", "Privacy")]),
+                ("Contact", [("index.html#contact", "Offerte aanvragen"), ("mailto:" + CONFIG["email"], CONFIG["email"])])],
+        "copy": "Alle prijzen zonder btw."},
+ "en": {"tag": "Websites, apps, games and AI automation for businesses worldwide. Fixed price up front, and you own everything.",
+        "kol": [("Services", [("en-website-design.html", "Website design"), ("en-app-development.html", "App development"), ("en.html#pricing", "Pricing")]),
+                ("More", [("en-projects.html", "Our work"), ("en-lubbyc-privacy.html", "LubbyC privacy")]),
+                ("Contact", [("en.html#contact", "Get a quote"), ("mailto:" + CONFIG["email"], CONFIG["email"])])],
+        "copy": "Prices in euros."},
+}
+
+def footer_html(lang, kvk=""):
+    if lang in TALEN:
+        T = TALEN[lang]
+        F = {"tag": T["footer"], "kol": [(T["s_kop"], [(f"{lang}.html#" + T["nav"][0][0].lstrip("#"), T["nav"][0][1]), (f"{lang}.html#" + T["nav"][1][0].lstrip("#"), T["nav"][1][1]), ("en-projects.html", T["nav"][2][1])]),
+             ("Contact", [(f"{lang}.html#contact", T["cta"][0]), ("mailto:" + CONFIG["email"], CONFIG["email"])])], "copy": ""}
+        home = f"{lang}.html"
+    else:
+        F = FOOT[lang]; home = "en.html" if lang == "en" else "index.html"
+    kols = "".join(f'<div class="voet-kol"><h2>{e(k)}</h2><ul>' + "".join(f'<li><a href="{h}">{e(t)}</a></li>' for h, t in links) + '</ul></div>' for k, links in F["kol"])
+    return (f'<footer class="voet"><div class="wrap voet-grid"><div class="voet-merk"><a class="merk merk-licht" href="{home}">{LOGO}{CONFIG["naam"]}</a><p>{e(F["tag"])}</p></div>{kols}</div>'
+            f'<div class="wrap voet-onder"><span>© {datetime.date.today().year} {CONFIG["naam"]}{kvk}</span><span>{e(F["copy"])}</span></div></footer>')
 
 SNEL_JS = """<script>(()=>{document.querySelectorAll('details.snel,details.taalkeuze').forEach(d=>{document.addEventListener('click',e=>{if(d.open&&!d.contains(e.target))d.open=false});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&d.open){d.open=false;d.querySelector('summary').focus()}});d.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>{d.open=false}))})})();</script>"""
 
@@ -195,21 +220,7 @@ def page(path, title, desc, body, crumbs=None, extra_ld=None, extra_head="", lan
             f'<a href="{p}">{e(n)}</a>' if i < len(crumbs) - 1 else f'<span aria-current="page">{e(n)}</span>'
             for i, (n, p) in enumerate(crumbs)) + '</nav>'
     kvk = f' · KvK {e(CONFIG["kvk"])}' if CONFIG["kvk"] else ""
-    if lang in TALEN:
-        footer = f'''<footer><div class="wrap">
-<span>© {datetime.date.today().year} {CONFIG["naam"]} · {TALEN[lang]["footer"]}</span>
-<span><a href="{lang}.html">Home</a> · <a href="en-projects.html">Projects</a> · <a href="en.html">English</a> · <a href="index.html">Nederlands</a></span>
-</div></footer>'''
-    elif lang == "en":
-        footer = f'''<footer><div class="wrap">
-<span>© {datetime.date.today().year} {CONFIG["naam"]} · Websites, apps, games and AI · worldwide</span>
-<span><a href="en.html">Home</a> · <a href="en-app-development.html">App development</a> · <a href="en-website-design.html">Website design</a> · <a href="en-projects.html">Our work</a> · <a href="en-lubbyc-privacy.html">LubbyC privacy</a> · <a href="index.html">Nederlands</a></span>
-</div></footer>'''
-    else:
-      footer = f'''<footer><div class="wrap">
-<span>© {datetime.date.today().year} {CONFIG["naam"]} · Websites, apps, games en AI{kvk}</span>
-<span><a href="website-laten-maken.html">Websites</a> · <a href="goedkope-website-laten-maken.html">Goedkope website</a> · <a href="webshop-laten-maken.html">Webshop</a> · <a href="app-laten-maken-kosten.html">Apps</a> · <a href="mvp-app-laten-maken.html">MVP</a> · <a href="chatbot-laten-maken.html">Chatbot</a> · <a href="game-laten-maken.html">Games</a> · <a href="ai-automatisering.html">AI</a> · <a href="apps.html">Onze apps</a> · <a href="privacy.html">Privacy</a></span>
-</div></footer>'''
+    footer = footer_html(lang, kvk)
     header = header.replace(f'<a href="{path}">', f'<a href="{path}" aria-current="page">', 1) if 'class="snel-paneel"' in header else header
     out = "".join(head) + header + bc + f'<main id="inhoud">{body}</main>' + footer + SNEL_JS + "</body></html>"
     with open(os.path.join(DIST, path), "w", encoding="utf-8") as f: f.write(out)
@@ -386,11 +397,22 @@ def dienst_pagina(d):
 </article>''', crumbs=[("Home", "index.html"), (d["kort"], f'{d["slug"]}.html')],
         extra_ld=[{"@type": "Service", "name": d["h1"], "provider": {"@id": "#org"}, "areaServed": ["NL", "BE"], "offers": offers}, faq_ld(d["faq"])])
 
+ICONEN = {
+ "app": '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10.5 18.5h3"/></svg>',
+ "web": '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2.5" y="4" width="19" height="15" rx="2.5"/><path d="M2.5 8.5h19M6 6.3h.01M8.5 6.3h.01"/></svg>',
+ "game": '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 8h10a4.5 4.5 0 0 1 4.4 5.4l-.8 3.8a2.3 2.3 0 0 1-4 1L14.8 16H9.2l-1.8 2.2a2.3 2.3 0 0 1-4-1l-.8-3.8A4.5 4.5 0 0 1 7 8z"/><path d="M8 11v3M6.5 12.5h3M15.5 12h.01M17.5 13.5h.01"/></svg>',
+ "ai": '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3l1.8 4.6L18.5 9l-4.7 1.6L12 15l-1.8-4.4L5.5 9l4.7-1.4z"/><path d="M18 15l.9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9z"/></svg>',
+}
+def icoon(naam):
+    n = naam.lower()
+    k = "app" if "app" in n else "game" if ("game" in n or "jeu" in n or "jueg" in n) else "ai" if ("ai" in n or "ki" in n or "ia" in n) else "web"
+    return f'<span class="dienst-ico">{ICONEN[k]}</span>'
+
 def diensten_blok():
     items = [("Apps", "iPhone en Android", "vanaf €3.150", "app-laten-maken-kosten.html", "#14213D")] + \
             [(d["kort"], d["pakketten"][0][0] + " en meer", f'vanaf €{d["pakketten"][0][1]:,}'.replace(",", "."), f'{d["slug"]}.html', d["kleur"]) for d in DIENSTEN]
     return '<div class="diensten">' + "".join(
-        f'<a class="dienst" href="{h}" style="--k:{k}"><span class="dienst-naam">{e(n)}</span><span class="dienst-sub">{e(s)}</span><span class="dienst-prijs">{e(p)}</span></a>'
+        f'<a class="dienst" href="{h}" style="--k:{k}">{icoon(n)}<span class="dienst-naam">{e(n)}</span><span class="dienst-sub">{e(s)}</span><span class="dienst-prijs">{e(p)}</span></a>'
         for n, s, p, h, k in items) + '</div>'
 
 def app_rijen():
@@ -456,7 +478,7 @@ def en_pages(pages):
         "".join(f'<tr><td>{e(n)}<small>Ready in {e(t)}</small></td><td>from {e(p)}</td></tr>' for n, p, t in rows) +
         '</table></div>' for cat, rows in EN_PRICES)
     services = '<div class="diensten">' + "".join(
-        f'<a class="dienst" href="{h}" style="--k:{k}"><span class="dienst-naam">{e(n)}</span><span class="dienst-sub">{e(s)}</span><span class="dienst-prijs">{e(p)}</span></a>'
+        f'<a class="dienst" href="{h}" style="--k:{k}">{icoon(n)}<span class="dienst-naam">{e(n)}</span><span class="dienst-sub">{e(s)}</span><span class="dienst-prijs">{e(p)}</span></a>'
         for n, s, p, h, k in EN_SERVICES) + '</div>'
     en_offers = [{"@type": "Offer", "name": n, "price": int(p.replace("€", "").replace(",", "")), "priceCurrency": "EUR"} for _, rows in EN_PRICES for n, p, _ in rows]
     pages.append(page("en.html", "Websites, apps, games and AI at fair fixed prices | " + CONFIG["naam"],
@@ -464,7 +486,7 @@ def en_pages(pages):
         f'''<section class="hero" aria-labelledby="kop"><div class="wrap"><div>
 <h1 id="kop">Your app, website or game live. In weeks, not months.</h1>
 <p class="lead">We build apps, websites, games and AI automation for businesses worldwide. Fixed price up front, well below typical agency rates, and you own everything.</p>
-<div class="acties"><a class="knop geel" href="#contact">Get a free quote</a><a class="zacht" href="#services">See what we build</a></div></div>
+<div class="acties"><a class="knop geel" href="#contact">Get a free quote</a><a class="zacht" href="#services">See what we build</a></div><ul class="vertrouwen"><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Fixed price up front</li><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Free concept first</li><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>You own the code</li></ul></div>
 <div class="etalage"><figure class="tel-links"><img src="img/koffer-spel.jpg" alt="Koffer Vol! puzzle game" width="240" height="480"></figure><figure class="tel-midden"><img src="img/lubbyc-kaart.jpg" alt="LubbyC travel app" width="240" height="480" fetchpriority="high"></figure><figure class="tel-rechts"><img src="img/eiland-rood.jpg" alt="Island Express driving game" width="240" height="480"></figure></div></div></section>
 
 <section id="services" class="wit" aria-labelledby="s-kop"><div class="wrap">
@@ -547,7 +569,7 @@ def build():
         f'''<section class="hero" aria-labelledby="kop"><div class="wrap"><div>
 <h1 id="kop">Je app, website of game live. In weken, niet maanden.</h1>
 <p class="lead">Wij bouwen apps, websites, games en AI-automatisering voor ondernemers in Nederland en België. Vaste prijs vooraf, onder het marktgemiddelde, en alles is van jou.</p>
-<div class="acties"><a class="knop geel" href="#contact">Vraag gratis een prijs aan</a><a class="zacht" href="#diensten">Bekijk wat we maken</a></div></div>
+<div class="acties"><a class="knop geel" href="#contact">Vraag gratis een prijs aan</a><a class="zacht" href="#diensten">Bekijk wat we maken</a></div><ul class="vertrouwen"><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Vaste prijs vooraf</li><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Eerst een gratis concept</li><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Code en design van jou</li></ul></div>
 <div class="etalage"><figure class="tel-links"><img src="img/koffer-spel.jpg" alt="Puzzelgame Koffer Vol!" width="240" height="480"></figure><figure class="tel-midden"><img src="img/lubbyc-kaart.jpg" alt="Reisapp LubbyC" width="240" height="480" fetchpriority="high"></figure><figure class="tel-rechts"><img src="img/eiland-rood.jpg" alt="Rijgame Eiland Express" width="240" height="480"></figure></div></div></section>
 
 <section id="diensten" class="wit" aria-labelledby="diensten-kop"><div class="wrap">
@@ -743,7 +765,7 @@ def build():
         crumbs=[("Home", "index.html"), ("Privacy", "privacy.html")]))
 
     en_pages(pages)
-    taal_paginas(page, e, faq_html, faq_ld, contact_section, pages)
+    taal_paginas(page, e, faq_html, faq_ld, contact_section, pages, icoon)
 
     # 404
     page("404.html", "Pagina niet gevonden | Collens Group", "Deze pagina bestaat niet.", extra_head='<meta name="robots" content="noindex">', body=

@@ -3,7 +3,7 @@
 
 TALEN = {
  "de": {
-  "naam": "Deutsch", "og": "de_DE", "skip": "Zum Inhalt", "menu": "Schnellmenü", "hoofdmenu": "Hauptmenü",
+  "naam": "Deutsch", "trust": ['Festpreis im Voraus', 'Zuerst ein kostenloses Konzept', 'Code und Design gehören Ihnen'], "og": "de_DE", "skip": "Zum Inhalt", "menu": "Schnellmenü", "hoofdmenu": "Hauptmenü",
   "title": "Websites, Apps, Games und KI zu fairen Festpreisen | Collens Group",
   "desc": "Websites ab 495 €, Apps ab 3.150 €, Games ab 1.950 € und KI-Automatisierung ab 395 €. Festpreis, kostenloses Konzept, alles gehört Ihnen.",
   "nav": [("#leistungen", "Leistungen"), ("#preise", "Preise"), ("en-projects.html", "Projekte")],
@@ -37,7 +37,7 @@ TALEN = {
   "footer": "Websites, Apps, Games und KI · weltweit",
  },
  "fr": {
-  "naam": "Français", "og": "fr_FR", "skip": "Aller au contenu", "menu": "Menu rapide", "hoofdmenu": "Menu principal",
+  "naam": "Français", "trust": ["Prix fixe à l'avance", "D'abord un concept gratuit", 'Le code et le design sont à vous'], "og": "fr_FR", "skip": "Aller au contenu", "menu": "Menu rapide", "hoofdmenu": "Menu principal",
   "title": "Sites web, applis, jeux et IA à prix fixes justes | Collens Group",
   "desc": "Sites web dès 495 €, applis dès 3 150 €, jeux dès 1 950 € et automatisation IA dès 395 €. Prix fixe, concept gratuit, tout vous appartient.",
   "nav": [("#services", "Services"), ("#tarifs", "Tarifs"), ("en-projects.html", "Projets")],
@@ -71,7 +71,7 @@ TALEN = {
   "footer": "Sites web, applis, jeux et IA · dans le monde entier",
  },
  "es": {
-  "naam": "Español", "og": "es_ES", "skip": "Ir al contenido", "menu": "Menú rápido", "hoofdmenu": "Menú principal",
+  "naam": "Español", "trust": ['Precio fijo por adelantado', 'Primero un concepto gratis', 'El código y el diseño son tuyos'], "og": "es_ES", "skip": "Ir al contenido", "menu": "Menú rápido", "hoofdmenu": "Menú principal",
   "title": "Webs, apps, juegos e IA a precios fijos justos | Collens Group",
   "desc": "Webs desde 495 €, apps desde 3.150 €, juegos desde 1.950 € y automatización con IA desde 395 €. Precio fijo, concepto gratis y todo es tuyo.",
   "nav": [("#servicios", "Servicios"), ("#precios", "Precios"), ("en-projects.html", "Proyectos")],
@@ -128,11 +128,13 @@ def contact_lang(contact_section, T):
     return h
 
 
-def taal_paginas(page, e, faq_html, faq_ld, contact_section, pages):
+VINK='<svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+
+def taal_paginas(page, e, faq_html, faq_ld, contact_section, pages, icoon=lambda n: ''):
     for code, T in TALEN.items():
         ids = [h.lstrip("#") for h, _ in T["nav"][:2]]
         diensten = '<div class="diensten">' + "".join(
-            f'<a class="dienst" href="#{ids[1]}" style="--k:{k}"><span class="dienst-naam">{e(n)}</span><span class="dienst-sub">{e(s)}</span><span class="dienst-prijs">{e(p)}</span></a>'
+            f'<a class="dienst" href="#{ids[1]}" style="--k:{k}">{icoon(n)}<span class="dienst-naam">{e(n)}</span><span class="dienst-sub">{e(s)}</span><span class="dienst-prijs">{e(p)}</span></a>'
             for (n, s, p), k in zip(T["diensten"], ["#2457D6", "#14213D", "#7A3BD1", "#0E7C86"])) + '</div>'
         feiten = "".join(f'<div><h3>{e(a)}</h3><p>{e(b)}</p></div>' for a, b in T["feiten"])
         prijzen = "".join(f'<div class="prijsblok"><h3>{e(cat)}</h3><table class="lijst">' +
@@ -143,7 +145,7 @@ def taal_paginas(page, e, faq_html, faq_ld, contact_section, pages):
         body = f'''<section class="hero" aria-labelledby="kop"><div class="wrap"><div>
 <h1 id="kop">{e(T["h1"])}</h1>
 <p class="lead">{e(T["lead"])}</p>
-<div class="acties"><a class="knop geel" href="#contact">{e(T["cta1"])}</a><a class="zacht" href="#{ids[0]}">{e(T["cta2"])}</a></div></div>
+<div class="acties"><a class="knop geel" href="#contact">{e(T["cta1"])}</a><a class="zacht" href="#{ids[0]}">{e(T["cta2"])}</a></div><ul class="vertrouwen">{"".join(f'<li>{VINK}{e(x)}</li>' for x in T["trust"])}</ul></div>
 <div class="etalage"><figure class="tel-links"><img src="img/koffer-spel.jpg" alt="Koffer Vol!" width="240" height="480"></figure><figure class="tel-midden"><img src="img/lubbyc-kaart.jpg" alt="LubbyC" width="240" height="480" fetchpriority="high"></figure><figure class="tel-rechts"><img src="img/eiland-rood.jpg" alt="Island Express" width="240" height="480"></figure></div></div></section>
 <section id="{ids[0]}" class="wit" aria-labelledby="s-kop"><div class="wrap">
 <div class="intro"><h2 id="s-kop">{e(T["s_kop"])}</h2><p>{e(T["s_intro"])}</p></div>
