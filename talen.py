@@ -106,6 +106,10 @@ TALEN = {
  },
 }
 
+exec(open(__import__("os").path.join(__import__("os").path.dirname(__file__), "talen_azie.py"), encoding="utf-8").read())
+TALEN["th"] = TH
+TALEN["my"] = MY
+
 
 def contact_lang(contact_section, T):
     c = T["contact"]
@@ -134,14 +138,14 @@ def taal_paginas(page, e, faq_html, faq_ld, contact_section, pages, icoon=lambda
     for code, T in TALEN.items():
         ids = [h.lstrip("#") for h, _ in T["nav"][:2]]
         diensten = '<div class="diensten">' + "".join(
-            f'<a class="dienst" href="#{ids[1]}" style="--k:{k}">{icoon(n)}<span class="dienst-naam">{e(n)}</span><span class="dienst-sub">{e(s)}</span><span class="dienst-prijs">{e(p)}</span></a>'
-            for (n, s, p), k in zip(T["diensten"], ["#2457D6", "#14213D", "#7A3BD1", "#0E7C86"])) + '</div>'
+            f'<a class="dienst" href="#{ids[1]}" style="--k:{k}">{icoon(sleutel)}<span class="dienst-naam">{e(n)}</span><span class="dienst-sub">{e(s)}</span><span class="dienst-prijs">{e(p)}</span></a>'
+            for (n, s, p), k, sleutel in zip(T["diensten"], ["#2457D6", "#14213D", "#7A3BD1", "#0E7C86"], ["Websites", "Apps", "Games", "AI"])) + '</div>'
         feiten = "".join(f'<div><h3>{e(a)}</h3><p>{e(b)}</p></div>' for a, b in T["feiten"])
         prijzen = "".join(f'<div class="prijsblok"><h3>{e(cat)}</h3><table class="lijst">' +
-                          "".join(f'<tr><td>{e(n)}<small>{e(T["klaar"])} {e(t)}</small></td><td>{e(T["vanaf"])} {e(p)}</td></tr>' for n, p, t in rows) + '</table></div>'
+                          "".join(f'<tr><td>{e(n)}<small>{e(T["klaar"])} {e(t)}</small></td><td>{e((T["vanaf"] + " " + p + " " + T.get("vanaf_na", "")).strip())}</td></tr>' for n, p, t in rows) + '</table></div>'
                           for cat, rows in T["prijzen"])
         stappen = "".join(f'<li><h3>{e(a)}</h3><p>{e(b)}</p></li>' for a, b in T["stappen"])
-        offers = [{"@type": "Offer", "name": n, "price": int(p.replace("€", "").replace(".", "").replace(" ", "").replace(" ", "")), "priceCurrency": "EUR"} for _, rows in T["prijzen"] for n, p, _ in rows]
+        offers = [{"@type": "Offer", "name": n, "price": int(p.replace("€", "").replace(".", "").replace(",", "").replace(" ", "").replace(" ", "")), "priceCurrency": "EUR"} for _, rows in T["prijzen"] for n, p, _ in rows]
         body = f'''<section class="hero" aria-labelledby="kop"><div class="wrap"><div>
 <h1 id="kop">{e(T["h1"])}</h1>
 <p class="lead">{e(T["lead"])}</p>

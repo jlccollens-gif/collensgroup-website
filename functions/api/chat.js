@@ -14,7 +14,7 @@ const AFZENDER = "info@collensgroup.com";
 
 const TOEGESTAAN = [/^https:\/\/(www\.)?collensgroup\.com$/, /^https:\/\/[a-z0-9-]+\.collensgroup-website\.pages\.dev$/, /^https:\/\/collensgroup-website\.pages\.dev$/];
 
-const TALEN = { nl: "Nederlands", en: "English", de: "Deutsch", fr: "Français", es: "Español" };
+const TALEN = { nl: "Nederlands", en: "English", de: "Deutsch", fr: "Français", es: "Español", th: "ไทย (Thai)", my: "မြန်မာ (Burmese, Unicode)" };
 
 const ROL = `Je bent de online adviseur van Collens Group, 24/7 beschikbaar op collensgroup.com.
 

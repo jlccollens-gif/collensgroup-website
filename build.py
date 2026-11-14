@@ -168,13 +168,13 @@ def page(path, title, desc, body, crumbs=None, extra_ld=None, extra_head="", lan
             '<meta name="viewport" content="width=device-width, initial-scale=1">',
             f'<title>{e(title)}</title><meta name="description" content="{e(desc)}">',
             '<meta name="theme-color" content="#14213D"><link rel="icon" href="img/favicon-48.png" type="image/png" sizes="48x48"><link rel="apple-touch-icon" href="img/apple-touch-icon.png">',
-            f'<meta property="og:type" content="website"><meta property="og:locale" content="{ {"en": "en_US", "nl": "nl_NL", "de": "de_DE", "fr": "fr_FR", "es": "es_ES"}.get(lang, "nl_NL") }"><meta property="og:site_name" content="{CONFIG["naam"]}">',
+            f'<meta property="og:type" content="website"><meta property="og:locale" content="{ {"en": "en_US", "nl": "nl_NL", "de": "de_DE", "fr": "fr_FR", "es": "es_ES", "th": "th_TH", "my": "my_MM"}.get(lang, "nl_NL") }"><meta property="og:site_name" content="{CONFIG["naam"]}">',
             f'<meta property="og:title" content="{e(title)}"><meta property="og:description" content="{e(desc)}">',
             '<meta name="twitter:card" content="summary_large_image">']
     if url:
         head.append(f'<link rel="canonical" href="{url}"><meta property="og:url" content="{url}">')
         head.append(f'<meta property="og:image" content="{CONFIG["base_url"]}/og.png">')
-    HOMES = {"nl": "index.html", "en": "en.html", "de": "de.html", "fr": "fr.html", "es": "es.html"}
+    HOMES = {"nl": "index.html", "en": "en.html", "de": "de.html", "fr": "fr.html", "es": "es.html", "th": "th.html", "my": "my.html"}
     if path in HOMES.values() and CONFIG["base_url"]:
         head.append("".join(f'<link rel="alternate" hreflang="{c}" href="{abs_url(p)}">' for c, p in HOMES.items()) + f'<link rel="alternate" hreflang="x-default" href="{abs_url("en.html")}">')
     elif alt and CONFIG["base_url"]:
@@ -215,7 +215,7 @@ def page(path, title, desc, body, crumbs=None, extra_ld=None, extra_head="", lan
 </div></header>'''
     bc = ""
     if crumbs and len(crumbs) > 1:
-        terug_txt = {"nl": "Terug", "en": "Back", "de": "Zurück", "fr": "Retour", "es": "Volver"}.get(lang, "Terug")
+        terug_txt = {"nl": "Terug", "en": "Back", "de": "Zurück", "fr": "Retour", "es": "Volver", "th": "กลับ", "my": "နောက်သို့"}.get(lang, "Terug")
         ouder = crumbs[-2][1]
         pijl = '<svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M12.5 4.5L7 10l5.5 5.5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>'
         bc = ('<div class="paginabalk"><div class="wrap"><a class="terug" href="' + ouder + '" data-terug>' + pijl + terug_txt + '</a>'
@@ -596,7 +596,7 @@ def schrijf_kennis():
     r.append("## Wat we niet doen\nGrote 3D-games en online multiplayer-games. Topposities in Google garanderen. Juridisch of financieel advies.")
     r.append("## Pagina's\nNederlands: index.html (start, met contactformulier op index.html#contact), website-laten-maken.html, goedkope-website-laten-maken.html, webshop-laten-maken.html, website-laten-maken-horeca.html, "
              "app-laten-maken-kosten.html, mvp-app-laten-maken.html, game-laten-maken.html, ai-automatisering.html, chatbot-laten-maken.html, apps.html, artikelen.html, privacy.html.\n"
-             "Engels: en.html (contact op en.html#contact), en-website-design.html, en-app-development.html, en-projects.html. Duits: de.html, Frans: fr.html, Spaans: es.html.")
+             "Engels: en.html (contact op en.html#contact), en-website-design.html, en-app-development.html, en-projects.html. Duits: de.html, Frans: fr.html, Spaans: es.html, Thai: th.html, Birmaans: my.html.")
     tekst = "\n\n".join(r)
     os.makedirs(os.path.join(ROOT, "chatbot"), exist_ok=True)
     with open(os.path.join(ROOT, "chatbot", "kennis.js"), "w", encoding="utf-8") as f:
@@ -608,6 +608,8 @@ CHAT_BLOK = {
     "de": ("Sie wissen noch nicht genau, was Sie brauchen?", "Kein Problem, dafür gibt es unseren Online-Berater. Erzählen Sie, was Sie erreichen möchten; er stellt ein paar Fragen, denkt mit und empfiehlt die passende Lösung und das passende Paket. Rund um die Uhr, kostenlos und unverbindlich.", "Fragen Sie unseren Berater", "24/7 online · Antwort in Sekunden"),
     "fr": ("Vous ne savez pas encore exactement ce qu'il vous faut ?", "Pas de souci, c'est le rôle de notre conseiller en ligne. Dites-lui ce que vous voulez accomplir ; il pose quelques questions, réfléchit avec vous et recommande la solution et la formule adaptées. Jour et nuit, gratuit et sans engagement.", "Demandez à notre conseiller", "En ligne 24h/24 · réponse en quelques secondes"),
     "es": ("¿Aún no sabes exactamente lo que necesitas?", "No pasa nada, para eso está nuestro asesor en línea. Cuéntale qué quieres conseguir; te hace unas preguntas, piensa contigo y te recomienda la solución y el paquete adecuados. Día y noche, gratis y sin compromiso.", "Pregunta a nuestro asesor", "En línea 24/7 · respuesta en segundos"),
+    "th": ("ยังไม่แน่ใจว่าต้องการอะไรใช่ไหม?", "ไม่เป็นไร ที่ปรึกษาออนไลน์ของเราช่วยได้ บอกเราว่าคุณอยากทำอะไรให้สำเร็จ ที่ปรึกษาจะถามคำถามสั้น ๆ ช่วยคิด และแนะนำโซลูชันกับแพ็กเกจที่เหมาะกับคุณ ตลอด 24 ชั่วโมง ฟรีและไม่มีข้อผูกมัด", "ถามที่ปรึกษาของเรา", "ออนไลน์ 24/7 · ตอบภายในไม่กี่วินาที"),
+    "my": ("ဘာလိုအပ်သလဲ မသေချာသေးဘူးလား။", "ပြဿနာမရှိပါ၊ ကျွန်ုပ်တို့၏ အွန်လိုင်းအကြံပေးက ကူညီပါမည်။ သင်ရရှိလိုသည်ကို ပြောပြပါ၊ မေးခွန်းအနည်းငယ်မေးပြီး အတူစဉ်းစားကာ သင့်တော်သော ဖြေရှင်းချက်နှင့် ပက်ကေ့ချ်ကို အကြံပြုပါမည်။ နေ့ရောညပါ၊ အခမဲ့ဖြစ်ပြီး တာဝန်ဝတ္တရား မရှိပါ။", "အကြံပေးကို မေးရန်", "24/7 အွန်လိုင်း · စက္ကန့်ပိုင်းအတွင်း ဖြေကြားသည်"),
 }
 CHAT_CONTACT = {
     "nl": ("Weet je nog niet precies wat je nodig hebt? Onze online adviseur denkt met je mee.", "Vraag het de adviseur"),
@@ -615,6 +617,8 @@ CHAT_CONTACT = {
     "de": ("Sie wissen noch nicht genau, was Sie brauchen? Unser Online-Berater hilft Ihnen.", "Berater fragen"),
     "fr": ("Vous ne savez pas encore ce qu'il vous faut ? Notre conseiller en ligne vous aide.", "Demander au conseiller"),
     "es": ("¿No sabes exactamente lo que necesitas? Nuestro asesor en línea te ayuda.", "Preguntar al asesor"),
+    "th": ("ยังไม่แน่ใจว่าต้องการอะไร? ที่ปรึกษาออนไลน์ของเราช่วยคุณเลือกได้", "ถามที่ปรึกษา"),
+    "my": ("ဘာလိုအပ်သလဲ မသေချာသေးဘူးလား။ ကျွန်ုပ်တို့၏ အွန်လိုင်းအကြံပေးက ကူညီပါမည်။", "အကြံပေးကို မေးရန်"),
 }
 CHAT_ICOON = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20.5l1.4-4.9A8 8 0 1 1 21 12z"/><path d="M8.5 11h.01M12 11h.01M15.5 11h.01"/></svg>'
 
@@ -623,7 +627,7 @@ def chat_inbouwen():
     Beide blijven verborgen tot /api/chat meldt dat de adviseur actief is (dus pas na het instellen van de API-sleutel)."""
     shutil.copy(os.path.join(ROOT, "src", "chat.js"), os.path.join(DIST, "chat.js"))
     v = hashlib.md5(open(os.path.join(ROOT, "src", "chat.js"), "rb").read()).hexdigest()[:8]
-    homes = {"index.html": "nl", "en.html": "en", "de.html": "de", "fr.html": "fr", "es.html": "es"}
+    homes = {"index.html": "nl", "en.html": "en", "de.html": "de", "fr.html": "fr", "es.html": "es", "th.html": "th", "my.html": "my"}
     for f in os.listdir(DIST):
         if not f.endswith(".html"): continue
         p = os.path.join(DIST, f); h = open(p, encoding="utf-8").read()
@@ -655,6 +659,28 @@ def engelse_screenshots(dist):
         nieuw = re.sub(r'img/([a-z0-9-]+)\.jpg', lambda m: f"img/{m.group(1)}-en.jpg" if m.group(1) in en else m.group(0), html_)
         if nieuw != html_:
             open(pad, "w", encoding="utf-8").write(nieuw)
+
+
+def birmaans_afbreken(dist):
+    """Browsers kennen geen Birmaans woordenboek en breken woorden midden in een lettergreep af.
+    Daarom houden we elk stukje tussen twee spaties bij elkaar (de spaties in Birmaans scheiden zinsdelen)."""
+    import re
+    pad = os.path.join(dist, "my.html")
+    if not os.path.exists(pad):
+        return
+    h = open(pad, encoding="utf-8").read()
+    i = h.find("<body")
+    kop, romp = h[:i], h[i:]
+    romp = re.sub(r"(<summary[^>]*>)([^<]+)", r"\1<span>\2</span>", romp)  # flex-kinderen in <summary> bij elkaar houden
+    def tekst(m):
+        t = m.group(1)
+        if not re.search("[\u1000-\u109f]", t):
+            return m.group(0)
+        delen = re.split(r"(\s+)", t)
+        return "><span>" + "".join(f'<span class="nw">{d}</span>' if re.search("[\u1000-\u109f]", d) else d for d in delen) + "</span><"
+    stukken = re.split(r"(<script.*?</script>|<style.*?</style>)", romp, flags=re.S)
+    romp = "".join(st if st.startswith(("<script", "<style")) else re.sub(r">([^<>]+)<", tekst, st) for st in stukken)
+    open(pad, "w", encoding="utf-8").write(kop + romp)
 
 
 def build():
@@ -901,6 +927,7 @@ def build():
     from illustraties import verrijk
     verrijk(DIST)
     engelse_screenshots(DIST)
+    birmaans_afbreken(DIST)
     chat_inbouwen()
 
     # robots, sitemap, llms.txt

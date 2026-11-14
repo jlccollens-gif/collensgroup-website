@@ -38,3 +38,5 @@
 - [de.html](https://collensgroup.com/de)
 - [fr.html](https://collensgroup.com/fr)
 - [es.html](https://collensgroup.com/es)
+- [th.html](https://collensgroup.com/th)
+- [my.html](https://collensgroup.com/my)
