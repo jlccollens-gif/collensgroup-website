@@ -16,4 +16,5 @@ Statische website van Collens Group.
   - `ANTHROPIC_API_KEY` (verplicht)
   - `BREVO_API_KEY` (om aanvragen uit de chat naar info@ te mailen)
   - optioneel `LEAD_EMAIL`, `CHAT_MODEL`
+  - voor spraakberichten (🎙-knop in de chat): `ELEVENLABS_API_KEY` of `OPENAI_API_KEY`. Zonder deze sleutel blijft de knop verborgen. Backend: `functions/api/spraak.js`.
   Na het toevoegen een nieuwe deployment starten (Deployments → laatste → Retry deployment).
