@@ -1,0 +1,38 @@
+# Collens Group
+
+> Websites, apps, games en AI-automatisering in Nederland en België, tegen vaste prijzen onder het marktgemiddelde.
+
+## Prijzen (geen btw)
+- Websites: one-page €495, bedrijfswebsite €995, webshop €1.950
+- Games: merkgame €1.950, casual game €4.950, 2D-game met levels €9.950
+- AI: automatisering €395, AI-chatbot €995, AI-assistent €1.950
+- Basis / MVP app: vanaf €3.150, 3–5 weken
+- Standaard app: vanaf €6.750, 6–10 weken
+- Maatwerk / Pro app: vanaf €13.050, 10–16+ weken
+- Uurtarief: €67,50
+- Onderhoud: €85,50 of €265,50 per maand
+
+## Pagina's
+- [index.html](https://collensgroup.com/)
+- [app-laten-maken-kosten.html](https://collensgroup.com/app-laten-maken-kosten)
+- [mvp-app-laten-maken.html](https://collensgroup.com/mvp-app-laten-maken)
+- [website-laten-maken.html](https://collensgroup.com/website-laten-maken)
+- [game-laten-maken.html](https://collensgroup.com/game-laten-maken)
+- [ai-automatisering.html](https://collensgroup.com/ai-automatisering)
+- [webshop-laten-maken.html](https://collensgroup.com/webshop-laten-maken)
+- [goedkope-website-laten-maken.html](https://collensgroup.com/goedkope-website-laten-maken)
+- [chatbot-laten-maken.html](https://collensgroup.com/chatbot-laten-maken)
+- [en-app-development.html](https://collensgroup.com/en-app-development)
+- [en-website-design.html](https://collensgroup.com/en-website-design)
+- [apps.html](https://collensgroup.com/apps)
+- [app-lubbyc.html](https://collensgroup.com/app-lubbyc)
+- [app-koffer-vol.html](https://collensgroup.com/app-koffer-vol)
+- [app-eiland-express.html](https://collensgroup.com/app-eiland-express)
+- [app-manu-en-khanun.html](https://collensgroup.com/app-manu-en-khanun)
+- [privacy.html](https://collensgroup.com/privacy)
+- [en.html](https://collensgroup.com/en)
+- [en-projects.html](https://collensgroup.com/en-projects)
+- [en-lubbyc-privacy.html](https://collensgroup.com/en-lubbyc-privacy)
+- [de.html](https://collensgroup.com/de)
+- [fr.html](https://collensgroup.com/fr)
+- [es.html](https://collensgroup.com/es)
