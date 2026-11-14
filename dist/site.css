@@ -353,3 +353,12 @@ footer.voet .voet-onder{display:flex}
 .artikel span{margin-top:auto;font-weight:700;font-size:15px;color:var(--blauw)}
 @media (max-width:700px){.artikelen{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){.artikel{transition:none}.artikel:hover{transform:none}}
+
+/* testers */
+.knop-licht{background:#fff;color:var(--donker,#14213D)!important;margin-left:8px}
+.knop-rand{background:transparent;color:var(--donker,#14213D)!important;border:2px solid currentColor}
+.tester{margin:44px 0 10px;padding:30px;border-radius:24px;background:#fff;border:1px solid var(--lijn,#DCE3EE)}
+.tester h2{margin-top:0}
+.tester ol{margin:18px 0 0;padding-left:22px;display:grid;gap:18px}
+.tester li .knop{display:table;margin-top:10px}
+@media (max-width:600px){.knop-licht{margin:10px 0 0}.tester{padding:22px}}

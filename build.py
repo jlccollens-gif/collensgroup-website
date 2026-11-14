@@ -45,7 +45,7 @@ LUBBYC_PRIVACY = '''<p>Laatst bijgewerkt: 14-11-2026. Contact: <a href="mailto:c
 # Eigen apps, games en projecten. Alleen items met publiceer=True komen op de site.
 APPS = [
     {
-        "slug": "lubbyc", "naam": "LubbyC", "soort": "App", "kleur": "#0E4433", "letter": "L", "icoon": "img/lubbyc-icon.png", "publiceer": True,
+        "slug": "lubbyc", "naam": "LubbyC", "soort": "App", "kleur": "#0E4433", "letter": "L", "icoon": "img/lubbyc-icon.png", "publiceer": True, "tester": "com.lubbyc.app",
         "kort": "Ontmoet reizigers in de buurt en plan samen eten, strand of een tour in Thailand.",
         "titel": "LubbyC – samen reizen in Thailand: ontmoet reizigers in de buurt",
         "kop": "Alleen op reis, maar niet alleen eten vanavond.",
@@ -58,7 +58,7 @@ APPS = [
         "privacy": LUBBYC_PRIVACY,
     },
     {
-        "slug": "koffer-vol", "naam": "Koffer Vol!", "soort": "Game", "kleur": "#1F7A70", "letter": "🧳", "icoon": "img/koffervol-icon.png", "publiceer": True,
+        "slug": "koffer-vol", "naam": "Koffer Vol!", "soort": "Game", "kleur": "#1F7A70", "letter": "🧳", "icoon": "img/koffervol-icon.png", "publiceer": True, "tester": "com.collensgroup.koffervol",
         "kort": "Pak de juiste spullen in voor elke reis. Een slimme, vrolijke inpakpuzzel met 100 levels in 10 landen.",
         "titel": "Koffer Vol! – inpakpuzzel met 100 levels in 10 landen",
         "kop": "Past alles in de koffer?",
@@ -754,6 +754,14 @@ def build():
             klasse = "galerij tel" if a["soort"] in ("App", "Game") else "galerij breed"
             beelden = f'<div class="{klasse}">' + "".join(f'<figure><img src="{src}" alt="{e(alt)}" loading="lazy"><figcaption>{e(alt)}</figcaption></figure>' for src, alt in a["beelden"]) + '</div>'
         kenmerken = "<ul class='kenmerken'>" + "".join(f"<li>{e(k)}</li>" for k in a["kenmerken"]) + "</ul>"
+        tester = ""
+        if a.get("tester"):
+            winkels += '<a class="knop knop-licht" href="#tester">Word tester (gratis)</a>'
+            tester = f'''<div class="tester" id="tester"><h2>Word tester van {e(a["naam"])}</h2>
+<p>Probeer {e(a["naam"])} als eerste op je Android-telefoon en help ons de laatste puntjes op de i te zetten. Gratis, en je zit nergens aan vast.</p>
+<ol><li><strong>Word lid van de testersgroep.</strong> Log in met je Google-account en klik op "Lid worden". <a class="knop" href="https://groups.google.com/g/collens-group" target="_blank" rel="noopener">Naar de testersgroep</a></li>
+<li><strong>Open de test in Google Play.</strong> Klik op "Word tester" en installeer de app. <a class="knop knop-rand" href="https://play.google.com/apps/testing/{a["tester"]}" target="_blank" rel="noopener">Naar Google Play</a></li></ol>
+<p class="noot">Let op: krijg je bij stap 2 een melding dat de test niet beschikbaar is? Dan wordt de testversie nog vrijgegeven. Dat duurt enkele dagen; je lidmaatschap telt dan automatisch mee. Werkt alleen op Android. Je e-mailadres is alleen zichtbaar voor ons, niet voor andere testers.</p></div>'''
         cta = {"App": "Zelf een app laten maken?", "Game": "Zelf een game laten maken?", "Kinderserie": "Ook iets moois laten maken?"}[a["soort"]]
         pages.append(page(f'app-{a["slug"]}.html', a["titel"], a["kort"] + " " + a["status"] + ".",
             f'''<section class="app-hero" style="background:{a["kleur"]}"><div class="wrap">
@@ -763,6 +771,7 @@ def build():
 <h2>Over {e(a["naam"])}</h2><p>{e(a["intro"])}</p>{kenmerken}
 {beelden}
 {f'<div style="max-width:360px;margin:0 0 30px"><video src="{a["video"][0]}" poster="{a["video"][1]}" controls muted playsinline loop preload="none" style="width:100%;border-radius:22px;border:6px solid #0E1830"></video><p class="bron">Proefrit, 10 seconden</p></div>' if a.get("video") else ""}
+{tester}
 {privacy}
 <p style="margin-top:30px"><a class="knop" href="index.html#contact">{cta}</a></p></div></section>''',
             crumbs=[("Home", "index.html"), ("Onze apps", "apps.html"), (a["naam"], f'app-{a["slug"]}.html')], extra_ld=[app_ld]))
