@@ -487,8 +487,8 @@ def en_pages(pages):
     pages.append(page("en.html", "Websites, apps, games and AI at fair fixed prices | " + CONFIG["naam"],
         "We build websites from €495, apps from €3,150, games from €1,950 and AI automation from €395 for clients worldwide. Fixed price and a free concept first.",
         f'''<section class="hero" aria-labelledby="kop"><div class="wrap"><div>
-<h1 id="kop">Your idea.<br>Live in weeks.</h1>
-<p class="lead">Websites from €495. Apps, games and AI made to measure. Fixed price and a free concept first.</p>
+<h1 id="kop">Your idea.<br>Live in no time.</h1>
+<p class="lead">Free concept within 48 hours. Websites from €495, plus apps, games and AI. Fixed price.</p>
 <div class="acties"><a class="knop geel" href="#contact">Get a free quote</a><a class="zacht" href="#services">See what we build</a></div><ul class="vertrouwen"><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Fixed price up front</li><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Free concept first</li><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>You own the code</li></ul></div>
 <div class="etalage"><figure class="tel-links"><img src="img/koffer-spel.jpg" alt="Koffer Vol! puzzle game" width="240" height="480"></figure><figure class="tel-midden"><img src="img/lubbyc-kaart.jpg" alt="LubbyC travel app" width="240" height="480" fetchpriority="high"></figure><figure class="tel-rechts"><img src="img/eiland-rood.jpg" alt="Island Express driving game" width="240" height="480"></figure></div></div></section>
 
@@ -694,8 +694,8 @@ def build():
     pages.append(page("index.html", "App, website of game laten maken onder de marktprijs | Collens Group",
         "Apps vanaf €3.150, websites vanaf €495, games vanaf €1.950 en AI-automatisering vanaf €395. Vaste prijs vooraf, onder het marktgemiddelde.",
         f'''<section class="hero" aria-labelledby="kop"><div class="wrap"><div>
-<h1 id="kop">Jouw idee.<br>Live in weken.</h1>
-<p class="lead">Websites vanaf €495. Apps, games en AI op maat. Vaste prijs en eerst een gratis concept.</p>
+<h1 id="kop">Jouw idee.<br>Razendsnel live.</h1>
+<p class="lead">Gratis concept binnen 48 uur. Websites vanaf €495, plus apps, games en AI. Vaste prijs.</p>
 <div class="acties"><a class="knop geel" href="#contact">Vraag je gratis concept aan</a><a class="zacht" href="#diensten">Bekijk wat we maken</a></div><ul class="vertrouwen"><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Vaste prijs vooraf</li><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Eerst een gratis concept</li><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Code en design van jou</li></ul></div>
 <div class="etalage"><figure class="tel-links"><img src="img/koffer-spel.jpg" alt="Puzzelgame Koffer Vol!" width="240" height="480"></figure><figure class="tel-midden"><img src="img/lubbyc-kaart.jpg" alt="Reisapp LubbyC" width="240" height="480" fetchpriority="high"></figure><figure class="tel-rechts"><img src="img/eiland-rood.jpg" alt="Rijgame Eiland Express" width="240" height="480"></figure></div></div></section>
 
