@@ -535,7 +535,7 @@ def en_pages(pages):
 
 def build():
     shutil.rmtree(DIST, ignore_errors=True); os.makedirs(DIST)
-    for n in ("site.css", "og.png", "_headers"): shutil.copy(os.path.join(ROOT, "src", n), os.path.join(DIST, n))
+    for n in ("site.css", "og.png", "_headers", "aceaa1aae33f492c9fc3bb575567f4a2.txt"): shutil.copy(os.path.join(ROOT, "src", n), os.path.join(DIST, n))
     shutil.copytree(os.path.join(ROOT, "src", "img"), os.path.join(DIST, "img"))
     with open(os.path.join(DIST, "favicon.svg"), "w") as f: f.write(LOGO.replace('aria-hidden="true"', 'xmlns="http://www.w3.org/2000/svg"'))
     pages = []
