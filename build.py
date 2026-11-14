@@ -11,7 +11,7 @@ DIST = os.path.join(ROOT, "dist")
 CONFIG = {
     "naam": "Collens Group",
     "base_url": os.environ.get("BASE_URL", "https://collensgroup.com").rstrip("/"),   # gekozen domein
-    "email": "jlccollens@gmail.com",  # contactadres op de site
+    "email": json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "contact.json")))["email"],  # contactadres staat in contact.json
     "whatsapp": "",         # bv. 31612345678
     "gsc_verificatie": "",  # Google Search Console HTML-tag content-waarde
     "goatcounter": "",      # bv. lanceerbaan  -> https://lanceerbaan.goatcounter.com (cookieloos, gratis)
