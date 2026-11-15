@@ -371,3 +371,4 @@ footer.voet .voet-onder{display:flex}
 :lang(my) h1,:lang(my) h2,:lang(my) h3{line-height:1.6}
 :lang(my) h1{font-size:clamp(30px,5vw,48px)}
 .nw{white-space:nowrap}
+picture{display:contents}picture>source{display:none}

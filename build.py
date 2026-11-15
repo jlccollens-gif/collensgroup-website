@@ -683,6 +683,53 @@ def birmaans_afbreken(dist):
     open(pad, "w", encoding="utf-8").write(kop + romp)
 
 
+def thais_bijeen(dist):
+    """Thais heeft geen spaties tussen woorden; de browser breekt soms een vaste uitdrukking in tweeën
+    (bijv. 'พริบ / ตา'). Uitdrukkingen in deze lijst blijven in koppen bij elkaar."""
+    import re
+    pad = os.path.join(dist, "th.html")
+    if not os.path.exists(pad):
+        return
+    h = open(pad, encoding="utf-8").read()
+    for uitdr in ("ในพริบตา",):
+        h = re.sub(r"(<h[1-3][^>]*>[^<]*?)" + uitdr, lambda m: m.group(1) + f'<span class="nw">{uitdr}</span>', h)
+    open(pad, "w", encoding="utf-8").write(h)
+
+
+def webp_varianten(dist):
+    """Elke jpg/png in dist/img krijgt een kleinere .webp-versie (ca. 45% lichter).
+    Elke <img> wordt <picture> met webp-bron en de jpg/png als terugval.
+    picture heeft display:contents (site.css), dus de opmaak verandert niet."""
+    import re, glob
+    from PIL import Image
+    img_map = os.path.join(dist, "img")
+    gemaakt = set()
+    for pad in glob.glob(os.path.join(img_map, "*")):
+        naam, ext = os.path.splitext(pad)
+        if ext.lower() not in (".jpg", ".jpeg", ".png"):
+            continue
+        im = Image.open(pad)
+        if ext.lower() == ".png":
+            im.save(naam + ".webp", "WEBP", lossless=True, method=6)
+        else:
+            im.save(naam + ".webp", "WEBP", quality=80, method=6)
+        if os.path.getsize(naam + ".webp") < os.path.getsize(pad):
+            gemaakt.add(os.path.basename(pad))
+        else:
+            os.remove(naam + ".webp")
+    def vervang(m):
+        tag, src = m.group(0), m.group(1)
+        if os.path.basename(src) not in gemaakt:
+            return tag
+        return f'<picture><source srcset="{os.path.splitext(src)[0]}.webp" type="image/webp">{tag}</picture>'
+    for pad in glob.glob(os.path.join(dist, "*.html")):
+        h = open(pad, encoding="utf-8").read()
+        delen = re.split(r"(<picture.*?</picture>|<script.*?</script>)", h, flags=re.S)
+        h2 = "".join(d if d.startswith(("<picture", "<script")) else re.sub(r'<img [^>]*?src="(img/[^"]+\.(?:jpe?g|png))"[^>]*>', vervang, d) for d in delen)
+        if h2 != h:
+            open(pad, "w", encoding="utf-8").write(h2)
+
+
 def build():
     schrijf_kennis()
     shutil.rmtree(DIST, ignore_errors=True); os.makedirs(DIST)
@@ -928,7 +975,9 @@ def build():
     verrijk(DIST)
     engelse_screenshots(DIST)
     birmaans_afbreken(DIST)
+    thais_bijeen(DIST)
     chat_inbouwen()
+    webp_varianten(DIST)
 
     # robots, sitemap, llms.txt
     with open(os.path.join(DIST, "robots.txt"), "w") as f:
