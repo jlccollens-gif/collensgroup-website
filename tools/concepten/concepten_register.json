@@ -78,5 +78,221 @@
   "token": "cgc-boone-d1c05dac",
   "h1": "Aandrijftechniek die blijft draaien.",
   "lead": "Engineering, levering, revisie en reparatie van tandwielkasten, koppelingen en remmen. Onafhankelijk van merk of type."
+ },
+ "exofex": {
+  "bedrijf": "Exofex BV",
+  "site": "https://exofex.nl",
+  "mail": "info@exofex.nl",
+  "token": "cgc-exofex-20ed4218",
+  "h1": "Jouw lading van A naar B, persoonlijk geregeld.",
+  "lead": "Reefer en dry cargo, multimodaal transport, opslag en douane. Geen standaardpakketten, maar maatwerk voor mkb, food & feed en grondstoffen."
+ },
+ "european-road-cargo": {
+  "bedrijf": "European Road Cargo B.V.",
+  "site": "https://europeanroadcargo.com",
+  "mail": "info@europeanroadcargo.com",
+  "token": "cgc-european-road-cargo-d8df133e",
+  "h1": "Uw vracht over de Noordzee, en verder.",
+  "lead": "Ferrytransport tussen de EU en het VK, wegvervoer in Europa en het VK, en wereldwijde zee- en luchtvracht."
+ },
+ "ep-shipping": {
+  "bedrijf": "E.P. Shipping & Trading B.V.",
+  "site": "https://epship.nl",
+  "mail": "eps@epship.nl",
+  "token": "cgc-ep-shipping-a565490a",
+  "h1": "Kustvaart en overslag vanuit de Botlek.",
+  "lead": "Kustvaartbevrachting en scheepsagentuur in Nederlandse havens, met zusterbedrijf E.P. Stevedoring voor droge bulk aan de Laurenshaven."
+ },
+ "emq-logistics": {
+  "bedrijf": "EMQ Logistics B.V.",
+  "site": "https://emqlogistics.com",
+  "mail": "info@emqlogistics.com",
+  "token": "cgc-emq-logistics-ca47fe2b",
+  "h1": "No nonsense logistics, wereldwijd.",
+  "lead": "Zee-, lucht-, spoor- en wegvervoer met douane, verzekering en opslag. Veel ervaring met goederenstromen van en naar Azië en Amerika."
+ },
+ "ef-marine": {
+  "bedrijf": "EF Marine B.V.",
+  "site": "https://efmarine.eu",
+  "mail": "info@efmarine.eu",
+  "token": "cgc-ef-marine-0365ece7",
+  "h1": "Fixed Premium P&I, in plain language.",
+  "lead": "Fixed Premium P&I for shipowners, charterers and MultiModal operators, with AA- rated security from Swiss Re."
+ },
+ "birtchley-ross": {
+  "bedrijf": "Birtchley Ross Limited",
+  "site": "https://br-l.co.uk",
+  "mail": "info@br-l.co.uk",
+  "token": "cgc-birtchley-ross-4f1831b3",
+  "h1": "Solar, batteries and air con, done properly.",
+  "lead": "Solar PV, battery storage and air conditioning for homes and businesses in Liverpool and across the North West of England."
+ },
+ "homefix-0800": {
+  "bedrijf": "0800 Homefix Ltd",
+  "site": "https://0800homefix.com",
+  "mail": "office@0800homefix.com",
+  "token": "cgc-homefix-0800-72dcb35d",
+  "h1": "Plumber on the way within the hour.",
+  "lead": "Gas Safe registered plumbing, heating and drainage engineers, 365 days a year, with the price agreed before any work starts."
+ },
+ "chichester-build": {
+  "bedrijf": "Chichester Build and Groundworks Ltd",
+  "site": "https://chichesterlandscapedriveways.co.uk",
+  "mail": "info@chibuildandgroundworks.com",
+  "token": "cgc-chichester-build-9f0453d5",
+  "h1": "Driveways and patios built to last.",
+  "lead": "Over 15 years building driveways, patios, fencing, decking and groundworks across Chichester, Portsmouth and surrounding areas."
+ },
+ "taylor-made-technical": {
+  "bedrijf": "Taylor Made Technical Services Ltd",
+  "site": "https://tmts.ltd",
+  "mail": "info@tmts.ltd",
+  "token": "cgc-taylor-made-technical-1b8bd483",
+  "h1": "Heating and electrics, sorted 24/7.",
+  "lead": "Heating and electrical services for domestic and commercial customers across Kent and the South East, open 24/7."
+ },
+ "con-fused": {
+  "bedrijf": "Con-Fused Installations Ltd",
+  "site": "https://con-fused.co.uk",
+  "mail": "info@con-fused.co.uk",
+  "token": "cgc-con-fused-4c584a63",
+  "h1": "Electricians you can rely on, 24/7.",
+  "lead": "An established, NICEIC approved electrical contractor for homes and businesses across Essex, London and Kent, with its own directly employed engineers."
+ },
+ "eurocheck-marine": {
+  "bedrijf": "Eurocheck Marine B.V.",
+  "site": "https://www.eurocheckmarine.com",
+  "mail": "office@eurocheckmarine.com",
+  "token": "cgc-eurocheck-marine-a1a1ee82",
+  "h1": "Bunker surveys you can rely on.",
+  "lead": "Quantity and quality surveys across North West Europe, from Le Havre to Hamburg. Experienced surveyors, available round the clock."
+ },
+ "easy-road-transport": {
+  "bedrijf": "EASY Road Transport BV",
+  "site": "https://easyroadtransport.com",
+  "mail": "info@easyroadtransport.com",
+  "token": "cgc-easy-road-transport-c36ed828",
+  "h1": "Vandaag laden, morgen leveren.",
+  "lead": "FTL, groupage en spoedtransport naar Engeland, Wales en Schotland, en door Europa. Met eigen trailers en de douane volledig geregeld."
+ },
+ "eurorope": {
+  "bedrijf": "EuroRope Netherlands B.V.",
+  "site": "https://euro-rope.com",
+  "mail": "sales@euro-rope.com",
+  "token": "cgc-eurorope-a88e94a0",
+  "h1": "Wire ropes and lifting, done right.",
+  "lead": "Crane wire ropes, load testing, inspection and rigging for the maritime and offshore industries. Global support with local expertise."
+ },
+ "euro-index": {
+  "bedrijf": "EURO-INDEX b.v.",
+  "site": "https://www.euro-index.nl/en/",
+  "mail": "info@euro-index.nl",
+  "token": "cgc-euro-index-dd00096f",
+  "h1": "The right meter, calibrated and ready.",
+  "lead": "Measuring equipment for safety, maintenance and installation work. Sales, rental, repair, calibration and training, with our own accredited lab."
+ },
+ "eekels-logistics": {
+  "bedrijf": "Eekels Logistics BV",
+  "site": "https://eekelslogistics.nl/v3/",
+  "mail": "info@eekelslogistics.nl",
+  "token": "cgc-eekels-logistics-b88504c9",
+  "h1": "Afspraak is afspraak.",
+  "lead": "Internationale expediteur die het hele transport voor u regelt. Actief in heel Europa, met Zuidoost-Europa als specialisatie."
+ },
+ "essex-freight": {
+  "bedrijf": "Essex Freight Holland BV",
+  "site": "https://essexfreight.nl",
+  "mail": "info@essexfreight.nl",
+  "token": "cgc-essex-freight-fdbff823",
+  "h1": "Uw zending veilig naar de Caribbean.",
+  "lead": "Zee-, lucht- en wegvracht vanuit de Rotterdamse regio, met een eigen kantoor op Curaçao en agenten op Aruba en Bonaire."
+ },
+ "jps-plumbing": {
+  "bedrijf": "JPS Plumbing (Winchester) Ltd",
+  "site": "https://jpsplumbingandelectrical.co.uk",
+  "mail": "admin@jpsplumbing-winchester.co.uk",
+  "token": "cgc-jps-plumbing-3bf66465",
+  "h1": "Warm homes across Hampshire since 2008.",
+  "lead": "Gas Safe boiler installs, servicing and repairs, plus plumbing and hot water systems. Free, no-obligation quotes and a same-day or next-day response for emergencies."
+ },
+ "brick-by-brick": {
+  "bedrijf": "Brick By Brick Construction and Landscape Ltd",
+  "site": "https://brickbybrickconstructionandlandscape.co.uk",
+  "mail": "contact@brickbybrickconstructiongroup.co.uk",
+  "token": "cgc-brick-by-brick-20de13e1",
+  "h1": "Driveways, patios and gardens, built to last.",
+  "lead": "Brickwork, patios, driveways, landscaping and groundwork across Kent, Sussex and surrounding areas. Founded by two best friends, Alex and Tommey."
+ },
+ "robinson-heating": {
+  "bedrijf": "Robinson Heating And Plumbing Services Ltd",
+  "site": "https://www.robinsonplumbers-medway.co.uk",
+  "mail": "info@robinsonheatingandplumbing.com",
+  "token": "cgc-robinson-heating-ebcfa64d",
+  "h1": "Medway plumbers, day or night.",
+  "lead": "Boiler installs, repairs and servicing, central heating and emergency plumbing across Medway. Gas Safe registered, 24/7, 365 days a year."
+ },
+ "perth-pest": {
+  "bedrijf": "Perth Pest Control Pty Ltd",
+  "site": "http://www.perthpest.com.au",
+  "mail": "admin@perthpest.com.au",
+  "token": "cgc-perth-pest-d2018e5e",
+  "h1": "Pests out. Peace of mind back in.",
+  "lead": "Termite inspections and treatments, plus control for spiders, ants, bed bugs, rodents and more. Our own technicians, from Yanchep down to Mandurah."
+ },
+ "pesti-pest-control": {
+  "bedrijf": "VAV International Pty Ltd (trading as Pesti Pest Control)",
+  "site": "https://www.pestipestcontrolperth.com.au",
+  "mail": "solutions@pestipestcontrolperth.com.au",
+  "token": "cgc-pesti-pest-control-89926946",
+  "h1": "Pest control Perth families can trust.",
+  "lead": "Professional, friendly and reliable pest control for homes and businesses: termites, ants, cockroaches, spiders, bed bugs, rodents and more."
+ },
+ "radharc-landscaping": {
+  "bedrijf": "Radharc Landscaping Company Limited",
+  "site": "https://radharclandscaping.com",
+  "mail": "admin@radharclandscaping.com",
+  "token": "cgc-radharc-landscaping-9deacc54",
+  "h1": "Landscapes that stand the test of time.",
+  "lead": "Design, contracting and maintenance for gardens and commercial grounds across Galway and the west of Ireland, from our 8-acre site in Moycullen."
+ },
+ "sas-landscapes": {
+  "bedrijf": "SAS Landscapes Limited",
+  "site": "https://www.saslandscapes.ie",
+  "mail": "office@saslandscapes.ie",
+  "token": "cgc-sas-landscapes-e50ef1cb",
+  "h1": "Gardens designed, built and cared for.",
+  "lead": "Landscape design and construction in Dublin: natural stone and porcelain patios, planting, roll-out lawns and garden maintenance."
+ },
+ "hi-spec-plumbing": {
+  "bedrijf": "Hi-Spec Plumbing & Gas Ltd",
+  "site": "https://www.hispecplumbing.co.nz",
+  "mail": "info@hispecplumbing.co.nz",
+  "token": "cgc-hi-spec-plumbing-c95e4cee",
+  "h1": "Plumbing and gas, done properly.",
+  "lead": "Central heating, gas fitting, drainage, renovations and leak detection. Qualified plumbers and gasfitters with over 75 years of combined experience."
+ },
+ "polarity-group": {
+  "bedrijf": "Polarity Group Inc.",
+  "site": "https://www.polaritygroupinc.com",
+  "mail": "contact@polaritygroupinc.com",
+  "token": "cgc-polarity-group-14eaae78",
+  "h1": "Licensed electricians for the GTA.",
+  "lead": "Residential and commercial electrical work, emergency service, smart home installs and inspections across the Greater Toronto Area."
+ },
+ "absolve-pest": {
+  "bedrijf": "Absolve Pest Control Pte. Ltd.",
+  "site": "https://www.absolvepest.com",
+  "mail": "info@absolvepest.com",
+  "token": "cgc-absolve-pest-f84da35a",
+  "h1": "Pests gone. Projects on schedule.",
+  "lead": "Termite treatment and pest management for homes, businesses and builders across Singapore."
+ },
+ "p2-projects": {
+  "bedrijf": "P2 Projects (Pty) Ltd",
+  "site": "https://p2construction.co.za",
+  "mail": "info@p2construction.co.za",
+  "token": "cgc-p2-projects-3a73c7e8",
+  "h1": "Built right. Built to last.",
+  "lead": "Industrial, commercial and residential construction, as main contractor to architects and civil engineers. Over 25 years of experience."
  }
 }
