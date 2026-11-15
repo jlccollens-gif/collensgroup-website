@@ -195,6 +195,6 @@ if __name__ == "__main__":
     for c in C:
         d = os.path.join(OUT, c["slug"]); os.makedirs(d, exist_ok=True)
         open(os.path.join(d, "index.html"), "w").write(pagina(c))
-        reg[c["slug"]] = {"bedrijf": c["juridisch"], "token": token(c["slug"]), "h1": c["h1"], "lead": c["lead"]}
+        reg[c["slug"]] = {"bedrijf": c["juridisch"], "site": c.get("site", ""), "mail": c.get("mail", ""), "token": token(c["slug"]), "h1": c["h1"], "lead": c["lead"]}
     json.dump(reg, open(os.path.join(HERE, "concepten_register.json"), "w"), ensure_ascii=False, indent=1)
     print("\n".join(f"https://collensgroup.com/concept/{s}/" for s in reg))

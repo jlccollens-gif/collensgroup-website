@@ -169,5 +169,6 @@ EXTRA = {
    faq=[("Repareren jullie ook andere merken?","Ja, revisie en reparatie onafhankelijk van merk of type."),("In welke sectoren werken jullie?","Maritiem, industrie en infra, waaronder projecten voor Rijkswaterstaat."),("Komen jullie ook ter plaatse?","Ja, onze monteurs komen met specialistisch materieel.")],
    verbeterd=["Geen interne notities en bestandsnamen meer op de homepage (\"Homepage met zwak MSC\", \"nog plaatsen\")","Duidelijke productgroepen en merken","Aanvraagformulier per product of dienst, plus WhatsApp-knop","Belknop altijd zichtbaar op de telefoon","Bedrijfsgegevens voor Google (gestructureerde data)"]),
 }
-for c in C: c.update(EXTRA[c["slug"]])
+SITES = {'caliptus-shipping': 'https://caliptus-cars.com', 'br-dakwerken': 'https://benrdakwerken.nl', 'apex-shipping': 'http://www.apexshipping.nl', 'arimar': 'https://www.arimar.eu', 'beurtvaartadres': 'https://www.beurtvaartadres.nl', 'van-der-mark-transport': 'https://www.vandermarktransport.nl', 'dutch-freight-services': 'https://www.dutchfreight.nl', 'boxlines': 'https://www.boxlines.nl', 'donex-logistics': 'https://www.donexlogistics.nl', 'boone': 'https://www.boonebv.nl'}
+for c in C: c.update(EXTRA[c["slug"]]); c.setdefault("site", SITES.get(c["slug"], ""))
 

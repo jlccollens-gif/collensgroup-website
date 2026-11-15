@@ -1,60 +1,80 @@
 {
  "caliptus-shipping": {
   "bedrijf": "Caliptus Shipping",
+  "site": "https://caliptus-cars.com",
+  "mail": "info@caliptus-cars.com",
   "token": "cgc-caliptus-shipping-00d8e7d7",
   "h1": "Your cars and cargo, shipped from Rotterdam.",
   "lead": "RoRo shipping of cars, trucks and machines, plus air, road and rail freight. Door-to-door, with help on WhatsApp."
  },
  "br-dakwerken": {
   "bedrijf": "B en R Dakwerken – Nuenen B.V.",
+  "site": "https://benrdakwerken.nl",
+  "mail": "info@benrdakwerken.nl",
   "token": "cgc-br-dakwerken-e8a34012",
   "h1": "Een dak waar u weer jaren op kunt bouwen.",
   "lead": "Dakbedekking, reparatie, isolatie en dakgoten. Gecertificeerde vakmensen, een duidelijke offerte en nette afwerking."
  },
  "apex-shipping": {
   "bedrijf": "Apex Shipping B.V.",
+  "site": "http://www.apexshipping.nl",
+  "mail": "",
   "token": "cgc-apex-shipping-8b7fab80",
   "h1": "Uw zending, naar bijna elk land ter wereld.",
   "lead": "Expeditie, douaneafhandeling en opslag vanuit Rhoon, met een groot netwerk van agenten. Service staat bij ons voorop."
  },
  "arimar": {
   "bedrijf": "Arimar B.V.",
+  "site": "https://www.arimar.eu",
+  "mail": "",
   "token": "cgc-arimar-0ba2daf9",
   "h1": "Your agent in the port of Rotterdam.",
   "lead": "Arimar takes care of your vessel in port: from arrival to departure. One point of contact, available when you need us."
  },
  "beurtvaartadres": {
   "bedrijf": "Beurtvaartadres",
+  "site": "https://www.beurtvaartadres.nl",
+  "mail": "info@beurtvaartadres.nl",
   "token": "cgc-beurtvaartadres-0c97e851",
   "h1": "Documenten en douane, goed geregeld.",
   "lead": "Onafhankelijke kennispartner voor de logistieke keten: douanesoftware, vervoersdocumenten, trainingen en een webshop."
  },
  "van-der-mark-transport": {
   "bedrijf": "Van der Mark Int. Transport B.V.",
+  "site": "https://www.vandermarktransport.nl",
+  "mail": "",
   "token": "cgc-van-der-mark-transport-6277ae28",
   "h1": "Al meer dan 115 jaar onderweg voor u.",
   "lead": "Transport, distributie, warehousing en expeditie vanuit Oud-Beijerland en Puttershoek, vlak bij de Rotterdamse haven."
  },
  "dutch-freight-services": {
   "bedrijf": "Dutch Freight Services B.V.",
+  "site": "https://www.dutchfreight.nl",
+  "mail": "info@dutchfreight.nl",
   "token": "cgc-dutch-freight-services-c7bfef0b",
   "h1": "Heavy, oversized or hazardous? We move it.",
   "lead": "Independent international freight forwarding since 1988: project cargo, heavy-lift and dangerous goods by road, sea and air."
  },
  "boxlines": {
   "bedrijf": "Boxlines B.V.",
+  "site": "https://www.boxlines.nl",
+  "mail": "info@boxlines.nl",
   "token": "cgc-boxlines-d901bb28",
   "h1": "From a single pallet to complex cargo.",
   "lead": "Service-oriented, fast and customer-friendly shipping worldwide, with documents and insurance arranged for you."
  },
  "donex-logistics": {
   "bedrijf": "Donex Logistics B.V.",
+  "site": "https://www.donexlogistics.nl",
+  "mail": "info@donexlogistics.nl",
   "token": "cgc-donex-logistics-5357ec26",
   "h1": "Uw import en export, persoonlijk geregeld.",
   "lead": "Zee-, lucht-, spoor- en wegvervoer, douane en distributie. Maatwerk per land en per zending, met vaste contactpersonen."
  },
  "boone": {
   "bedrijf": "Boone BV",
+  "site": "https://www.boonebv.nl",
+  "mail": "info@boonebv.nl",
   "token": "cgc-boone-d1c05dac",
   "h1": "Aandrijftechniek die blijft draaien.",
   "lead": "Engineering, levering, revisie en reparatie van tandwielkasten, koppelingen en remmen. Onafhankelijk van merk of type."
