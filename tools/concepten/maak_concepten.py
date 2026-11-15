@@ -150,6 +150,16 @@ body.s3{background:#fff;color:#111;font-family:var(--sans3),Inter,system-ui,sans
 .s3 .waarom{background:linear-gradient(180deg,#fafafa,#f3f3f3)}
 @media(max-width:820px){.s1 .held .grid{grid-template-columns:1fr;min-height:0}.s1 .held .grid>div:first-child{padding:60px 0 40px}
  .s1 .paneel{margin:0 -28px;padding:40px 28px}.s1 .paneel::before{left:28px;right:28px;top:24px}.s1 .kunst{width:320px;height:320px}.s3 .paneel{padding:36px 14px 14px;border-radius:26px}}
+.mband{display:none}
+@media(max-width:820px){
+ .held h1{font-size:min(8.4vw,44px)!important;overflow-wrap:normal}.s1 .held h1{font-size:min(10.5vw,50px)!important}
+ .s1 .mband{display:block;position:relative;height:210px;overflow:hidden;background:radial-gradient(300px 220px at 80% 20%,color-mix(in srgb,var(--acc2) 60%,transparent),transparent 70%),linear-gradient(160deg,var(--inkt),color-mix(in srgb,var(--inkt) 65%,#000))}
+ .s1 .mband span{position:absolute;right:-30px;top:-20px;width:260px;height:260px;color:#f7f4ee;opacity:.28}.s1 .mband span svg{width:100%;height:100%}
+ .s1 .mband i{position:absolute;left:28px;bottom:30px;width:120px;height:1px;background:var(--acc2)}
+ .s1 .held .grid>div:first-child{padding-top:40px}.s1 .kunst{display:none}
+ .s3 .held{padding-top:56px}.s3 .held .acties,.s3 .held .certs{display:none}.s3 .lead{margin-bottom:8px}
+ .s3 .held .grid{gap:26px}
+}
 @media(max-width:820px){.held .grid,.twee{grid-template-columns:1fr;gap:40px}.cijfers{grid-template-columns:repeat(2,minmax(0,1fr))}.cijfer{padding:22px 18px}.cijfer b,.s1 .cijfer b,.s3 .cijfer b{font-size:24px}.kies span{display:none}.s1 .cijfer+.cijfer{border-left:0}
  nav.menu a.l,.cbar .tekst{display:none}nav.menu .knop{display:none}section.blok{padding:76px 0}.s3 .form{grid-template-columns:1fr}
  .s2 .contact .box,.s3 .contact .box{padding:30px}.s1 .dienst:not(:last-child){border-right:0}
@@ -195,7 +205,7 @@ def pagina(c):
 <header class="top"><div class="wrap"><a class="merk" href="#"><span class="mono">{e(c['init'])}</span><span class="tegel">{ic(c.get('logo','zee'),1.6)}</span><span class="stip"></span>
 <span class="naam"><span class="woord">{e(n)}</span><small>{e(c['titel'])}</small></span></a>
 <nav class="menu"><a class="l" href="#diensten">{t['diensten']}</a><a class="l" href="#waarom">{e(t['waarom'].format(n=kort))}</a><a class="l" href="#contact">{t['contact']}</a><a class="knop" href="#contact">{t['offerte']}</a></nav></div></header>
-<section class="held"><div class="wrap grid"><div><div class="ey">{e(c['eyebrow'])}</div><h1>{e(c['h1'])}</h1><p class="lead">{e(c['lead'])}</p>
+<section class="held"><div class="mband" aria-hidden="true"><span>{ic(c.get('logo','zee'),.6)}</span><i></i></div><div class="wrap grid"><div><div class="ey">{e(c['eyebrow'])}</div><h1>{e(c['h1'])}</h1><p class="lead">{e(c['lead'])}</p>
 <div class="acties"><a class="knop" href="#contact">{t['offerte']}</a>{f'<a class="knop alt" href="{telh}">{t["bel"]} {e(tel)}</a>' if tel else ''}</div>{certs}</div>
 <div class="paneel"><div class="kunst" aria-hidden="true">{ic(c.get('logo','zee'),.5)}</div><div class="chips" aria-hidden="true">{''.join(f'<span><b>{e(a)}</b>{e(b)}</span>' for a,b in c['feiten'][:2])}</div>
 <form class="form" onsubmit="event.preventDefault();this.innerHTML='<h3>{t['bedankt']}</h3>'"><h3>{t['snel']}</h3>{velden}<button class="knop" type="submit">{t['offerte']}</button><small>{t['snel_klein']}</small></form></div></div></section>
