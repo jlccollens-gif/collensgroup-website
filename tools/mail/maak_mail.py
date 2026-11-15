@@ -2,7 +2,7 @@
 Gebruik: python3 -I maak_mail.py concept.json > uit.json
 concept.json: {"taal":"nl|en","kicker":"Website-check","aanhef":"Goedendag team X,","kop":"...","alineas":["..."],
                "concept_url":"https://collensgroup.com/concept/<slug>/","prijs":"€995"}
-Inline bijlagen in deze volgorde: att0 = collens-mail-banner.png, att1 = collens-mail-icon.png, att2 = preview (tools/mail/preview.py)."""
+Inline bijlagen in deze volgorde: att0 = banner-v2 (Drive 1QvhwGOfSiIr_kMRuGfzV_yCjLHnbtSzA), att1 = icon-v2 (Drive 1XVrhYr-fQ98PZASt1LHyZAFlM1jgoLxJ); NOOIT de oude met drie gele streepjes, att2 = preview (tools/mail/preview.py)."""
 import json, sys, html
 NAVY, GOLD, INK, MUTED, LINE = "#0f1726", "#f2b705", "#1a2233", "#5b6676", "#e6e8ec"
 
@@ -36,7 +36,7 @@ def maak(c):
 <tr><td style="padding:26px 48px 0"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid {LINE};border-bottom:1px solid {LINE}"><tr>{usp_cells}</tr></table></td></tr>
 <tr><td style="padding:30px 48px 8px"><p style="margin:0 0 14px;font-size:15px;color:{INK}">{groet}</p>
 <table role="presentation" cellpadding="0" cellspacing="0"><tr>
-<td style="padding-right:14px;vertical-align:middle"><img src="cid:att1" width="46" height="46" alt="Collens Group" style="display:block;border:0;border-radius:10px"></td>
+<td style="padding-right:14px;vertical-align:middle"><img src="cid:att1" width="46" height="46" alt="Collens Group" style="display:block;border:0;border-radius:50%"></td>
 <td style="vertical-align:middle;font-size:14px;line-height:1.5;color:{INK}"><strong style="font-size:15px">Jeffrey Collens</strong><br><span style="color:{MUTED}">Collens Group · websites, apps, games en AI</span><br>
 <a href="https://collensgroup.com" style="color:{INK};text-decoration:none">collensgroup.com</a> <span style="color:{LINE}">|</span> <a href="mailto:info@collensgroup.com" style="color:{INK};text-decoration:none">info@collensgroup.com</a></td></tr></table></td></tr>
 <tr><td style="padding:30px 48px 0"></td></tr>
