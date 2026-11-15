@@ -1,72 +1,131 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Caliptus Shipping – car and cargo shipping from Rotterdam (concept)</title><meta name="robots" content="noindex,nofollow">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#0e2a3b;--ink:#0e1d26;--acc:#e07a1f;--licht:#f4f1ec;--held:#0e2a3b;--grijs:#5d6670}
-*{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--ink);background:var(--licht);line-height:1.6;font-size:17px}
-h1,h2,h3{font-family:"Sora",system-ui,sans-serif;line-height:1.08;margin:0;letter-spacing:-.02em}
-a{color:inherit} .wrap{max-width:1120px;margin:0 auto;padding:0 22px}
-.cb{background:#14213d;color:#fff;font-size:13px;text-align:center;padding:8px 12px} .cb b{color:#f2b705}
-header{background:#fff;border-bottom:1px solid #0001;position:sticky;top:0;z-index:5}
-header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
-.logo{font-family:"Sora",sans-serif;font-weight:800;font-size:21px;text-decoration:none;display:flex;align-items:center;gap:10px}
-.mk{width:40px;height:40px;border-radius:11px;background:linear-gradient(135deg,var(--acc),var(--held));display:grid;place-items:center;box-shadow:inset 0 0 0 2px #ffffff30} .mk svg{width:24px;height:24px}
-.wm{display:flex;flex-direction:column;line-height:1.05} .wm small{font-family:Inter,sans-serif;font-weight:400;font-size:11.5px;color:var(--grijs);letter-spacing:.01em;margin-top:3px}
-.logo i{width:30px;height:30px;border-radius:8px;background:var(--acc);display:grid;place-items:center;color:#fff;font-style:normal;font-size:15px}
-nav{display:flex;gap:22px;align-items:center;font-size:15px} nav a{text-decoration:none;color:var(--grijs)}
-.knop{display:inline-block;background:var(--acc);color:#fff!important;font-weight:600;padding:12px 22px;border-radius:10px;text-decoration:none;border:0;font-size:16px;cursor:pointer}
-.knop.wit{background:#fff;color:var(--ink)!important}
-.held{background:var(--held);color:#fff;position:relative;overflow:hidden}
-.held .wrap{padding-top:84px;padding-bottom:92px;position:relative}
-.held .eyebrow{color:var(--acc);font-weight:600;font-size:15px;margin-bottom:14px;filter:brightness(1.6)}
-.held h1{font-size:clamp(36px,5.6vw,70px);font-weight:800;max-width:15ch;overflow-wrap:break-word}
-.held p{font-size:20px;max-width:46ch;opacity:.88;margin:22px 0 32px}
-.wm-ic{position:absolute;left:-60px;bottom:-90px;width:430px;height:430px;opacity:.06;pointer-events:none} .wm-ic svg{width:100%;height:100%;stroke-width:.9}
-.cb a{color:#f2b705;font-weight:600;margin-left:6px}
-.held .vorm{position:absolute;right:-120px;top:-60px;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle at 30% 30%,var(--acc),transparent 65%);opacity:.35}
-.feiten{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:2px;background:#0001;margin-top:-46px;position:relative;border-radius:14px;overflow:hidden;box-shadow:0 18px 40px #0002}
-.f{background:#fff;padding:22px 24px} .f b{display:block;font-family:"Sora",sans-serif;font-size:30px;color:var(--acc)} .f span{color:var(--grijs);font-size:15px}
-section{padding:84px 0} .kop{font-size:clamp(30px,4vw,44px);font-weight:800;margin-bottom:30px}
-.ds{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
-.d{background:#fff;border-radius:14px;padding:26px;border:1px solid #0000000d} .d h3{font-size:21px;margin:14px 0 8px} .d p{margin:0;color:var(--grijs);font-size:16px}
-.di{width:54px;height:54px;border-radius:12px;background:var(--licht);display:grid;place-items:center}
-.waarom{background:#fff} .waarom .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
-.waarom ul{list-style:none;padding:0;margin:0;display:grid;gap:12px} .waarom li{padding:14px 18px 14px 46px;background:var(--licht);border-radius:12px;position:relative}
-.waarom li::before{content:"";position:absolute;left:18px;top:21px;width:14px;height:8px;border-left:3px solid var(--acc);border-bottom:3px solid var(--acc);transform:rotate(-45deg)}
-.waarom .intro{font-size:19px;color:var(--grijs)}
-.cta{background:var(--held);color:#fff;border-radius:18px;padding:44px;display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
-.cta h2{font-size:34px} .cta p{opacity:.85}
-form{display:grid;gap:10px} input,textarea{font:inherit;padding:12px 14px;border-radius:10px;border:0;width:100%} textarea{min-height:90px}
-.ct{display:grid;gap:6px;margin-top:18px;font-size:16px} .ct a{text-decoration:none}
-footer{padding:34px 0;color:var(--grijs);font-size:14px}
-.cg{background:#14213d;color:#fff;padding:22px 0} .cg .wrap{display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap} .cg .knop{background:#f2b705;color:#14213d!important}
-.hg{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(330px,.9fr);gap:44px;align-items:center}
-.snel{background:#fff;color:var(--ink);border-radius:16px;padding:26px;box-shadow:0 24px 60px #0004;display:grid;gap:10px} .snel h3{font-size:22px;margin-bottom:4px}
-.snel input,.snel select,.snel textarea{border:1px solid #d6dbe1;font:inherit;padding:11px 13px;border-radius:10px;width:100%;background:#fff} .snel small{color:var(--grijs);font-size:13px}
-.certs{display:flex;gap:8px;flex-wrap:wrap;margin-top:26px} .certs span{border:1px solid #ffffff40;border-radius:999px;padding:5px 12px;font-size:13px;opacity:.9}
-.stappen{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;counter-reset:st}
-.st{background:#fff;border-radius:14px;padding:24px;position:relative} .st::before{counter-increment:st;content:counter(st);display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:var(--acc);color:#fff;font-weight:700;margin-bottom:12px}
-.st h3{font-size:19px;margin-bottom:6px} .st p{margin:0;color:var(--grijs);font-size:15px}
-details{background:#fff;border-radius:12px;padding:16px 20px;margin-bottom:10px} summary{font-weight:600;cursor:pointer} details p{margin:10px 0 0;color:var(--grijs)}
-.cg ul{margin:6px 0 10px;padding-left:18px;font-size:14px;color:#c8d5e7} .cg b{color:#f2b705}
-.mobiel{display:none}
-@media(max-width:760px){.hg{grid-template-columns:1fr} header .knop,.wm small{display:none} .wm-ic{display:none} .held .knop.wit{margin-top:10px} .mobiel{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:9;background:#fff;box-shadow:0 -4px 20px #0002} .mobiel a{flex:1;text-align:center;padding:14px 6px;font-weight:600;text-decoration:none;color:var(--ink);border-right:1px solid #eee} .mobiel a:last-child{background:var(--acc);color:#fff} body{padding-bottom:52px} nav a:not(.knop){display:none} .waarom .wrap,.cta{grid-template-columns:1fr} .cta{padding:28px} .held .wrap{padding-top:56px}}
-</style></head><body>
-<div class="cb">Free concept made by Collens Group for Caliptus Shipping. No obligation: this is not a live website.<a href="#verbeterd">See what's improved ↓</a></div>
-<header><div class="wrap"><a class="logo" href="#"><span class="mk"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#fff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 15l2-5h14l2 5v3H3zM7 18v2M17 18v2M6 15h2m8 0h2"/></svg></span><span class="wm">Caliptus Shipping<small>car and cargo shipping from Rotterdam</small></span></a>
-<nav><a href="#diensten">What we do</a><a href="#waarom">Why Caliptus Shipping</a><a class="knop" href="#contact">Request a quote</a></nav></div></header>
-<section class="held"><div class="vorm"></div><div class="wm-ic"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#ffffff" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 15l2-5h14l2 5v3H3zM7 18v2M17 18v2M6 15h2m8 0h2"/></svg></div><div class="wrap hg"><div><div class="eyebrow">Rotterdam · air, sea, road and rail</div><h1>Your cars and cargo, shipped from Rotterdam.</h1><p>RoRo shipping of cars, trucks and machines, plus air, road and rail freight. Door-to-door, with help on WhatsApp.</p>
-<a class="knop" href="#contact">Request a quote</a> <a class="knop wit" href="tel:+31858769648">Call us: +31 (0)85 876 9648</a></div>
-<form class="snel" onsubmit="event.preventDefault();this.innerHTML='<h3>Thank you!</h3><p>We will contact you shortly.</p>'"><h3>Quick quote</h3><select><option>What do you want to ship?</option><option>Car</option><option>Truck or van</option><option>Machine</option><option>Container</option><option>Other cargo</option></select><input placeholder="From (city, country)"><input placeholder="To (city, country)"><input type="email" placeholder="Email" required><button class="knop" type="submit">Request a quote</button><small>Reply within one working day.</small></form></div></section>
-<div class="wrap"><div class="feiten"><div class="f"><b>RoRo</b><span>cars, trucks, machines, trailers</span></div><div class="f"><b>4 modes</b><span>air, sea, road and rail</span></div><div class="f"><b>Door-to-door</b><span>delivery by truck</span></div><div class="f"><b>WhatsApp</b><span>quick answers</span></div></div></div>
-<section id="diensten"><div class="wrap"><h2 class="kop">What we do</h2><div class="ds"><article class="d"><div class="di"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#e07a1f" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 15l2-5h14l2 5v3H3zM7 18v2M17 18v2M6 15h2m8 0h2"/></svg></div><h3>RoRo car shipping</h3><p>Cars, trucks, machines and trailers driven on and off the vessel.</p></article><article class="d"><div class="di"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#e07a1f" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17c2 1.5 4 1.5 6 0s4-1.5 6 0 4 1.5 6 0M5 13l2-6h10l2 6M9 7V4h6v3"/></svg></div><h3>Sea freight</h3><p>Containers and break bulk to and from ports worldwide.</p></article><article class="d"><div class="di"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#e07a1f" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 16l20-8-6 12-3-5-5 3 1-5z"/></svg></div><h3>Air freight</h3><p>Fast shipping for urgent and valuable cargo.</p></article><article class="d"><div class="di"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#e07a1f" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 16V7h11v9M14 10h4l3 3v3h-7M7 19a2 2 0 100-4 2 2 0 000 4zm10 0a2 2 0 100-4 2 2 0 000 4z"/></svg></div><h3>Road and rail</h3><p>Transport across Europe, by truck or by train.</p></article><article class="d"><div class="di"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#e07a1f" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10l9-6 9 6v10H3zM7 20v-6h10v6M7 17h10"/></svg></div><h3>Warehousing</h3><p>Safe storage in Rotterdam before or after shipping.</p></article><article class="d"><div class="di"><svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="#e07a1f" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18H6zM9 8h6M9 12h6M9 16h3"/></svg></div><h3>Documents</h3><p>We arrange the paperwork, so your cargo is not held up.</p></article></div></div></section>
-<section><div class="wrap"><h2 class="kop">How it works</h2><div class="stappen"><div class="st"><h3>Send your request</h3><p>Tell us what, from where and to where.</p></div><div class="st"><h3>Get a clear price</h3><p>We reply with a quote and the route.</p></div><div class="st"><h3>We collect</h3><p>Door-to-door by truck, or you drop off in Rotterdam.</p></div><div class="st"><h3>Shipped and tracked</h3><p>We handle documents and keep you updated on WhatsApp.</p></div></div></div></section><section class="waarom" id="waarom"><div class="wrap"><div><h2 class="kop">Why Caliptus Shipping</h2><p class="intro">A team in Rotterdam that knows the port and answers fast.</p></div><ul><li>Local knowledge of the port of Rotterdam</li><li>Palletised and loose cargo, from parcels to project cargo</li><li>Door-to-door delivery by truck</li><li>Reachable on WhatsApp</li></ul></div></section>
-<section style="padding-top:0"><div class="wrap" style="max-width:820px"><h2 class="kop">Frequently asked questions</h2><details><summary>Which vehicles can you ship?</summary><p>Cars, trucks, machines and trailers, by RoRo or in a container.</p></details><details><summary>Can you collect my vehicle?</summary><p>Yes, we offer door-to-door delivery by truck.</p></details><details><summary>Do you arrange the documents?</summary><p>Yes, we take care of the shipping paperwork.</p></details><details><summary>How do I get a price?</summary><p>Fill in the quick quote form or send us a WhatsApp message.</p></details></div></section><section id="contact"><div class="wrap"><div class="cta"><div><h2>Request a quote today</h2><p>You get a fast reply with a clear price.</p>
-<div class="ct"><a href="tel:+31858769648">☎ +31 (0)85 876 9648</a><a href="mailto:info@caliptus-cars.com">✉ info@caliptus-cars.com</a><span>⌖ Industrieweg 99e, 3044 AS Rotterdam</span></div></div>
-<form onsubmit="event.preventDefault();this.innerHTML='<p>✓</p>'"><input placeholder="Name" required><input type="email" placeholder="Email" required><textarea placeholder="Your question"></textarea><button class="knop wit" type="submit">Send</button></form></div></div></section>
-<footer><div class="wrap">© 2026 Caliptus Shipping · Industrieweg 99e, 3044 AS Rotterdam</div></footer>
-<div class="cg" id="verbeterd"><div class="wrap"><div><b>What this concept does better than your current site:</b><ul><li>The casino spam is gone: a clean, safe site that Google trusts again</li><li>Quote form right at the top, with vehicle type and route</li><li>WhatsApp and call buttons fixed at the bottom on mobile</li><li>Typos fixed (&quot;Reguest a quote&quot;, &quot;griculture&quot;)</li><li>Business details for Google (structured data)</li></ul><span>This concept was made free of charge by Collens Group. Like it? It can be live within a week, from €995.</span></div><a class="knop" href="mailto:info@collensgroup.com?subject=Concept Caliptus Shipping">Reply to this concept</a></div></div>
-<div class="mobiel"><a href="tel:+31858769648">☎ Call us</a><a href="https://wa.me/31614842245">WhatsApp</a><a href="#contact">Request a quote</a></div>
+<title>Caliptus Shipping – car and cargo shipping from Rotterdam (concept Collens Group)</title><meta name="robots" content="noindex,nofollow,noarchive"><meta name="generator" content="Collens Group concept cgc-caliptus-shipping-00d8e7d7">
+<meta name="copyright" content="Collens Group"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+<style>:root{--ivoor:#f7f4ee;--inkt:#0e2a3b;--lijn:#1b1b1b1f;--acc2:#e07a1f;--donker:#0e2a3b;--acc:#e07a1f;--acc3:#0e2a3b;--glow:#e07a1f55;--serif:'Cormorant Garamond',Georgia,serif;--sans2:'Sora',Inter,sans-serif;--sans3:'Manrope',Inter,sans-serif;--wm:url("data:image/svg+xml;utf8,<svg%20xmlns='http://www.w3.org/2000/svg'%20width='520'%20height='300'><text%20x='20'%20y='170'%20transform='rotate(-24%20260%20150)'%20font-family='Arial'%20font-size='26'%20font-weight='700'%20letter-spacing='6'%20fill='%23000'>CONCEPT%20·%20COLLENS%20GROUP</text></svg>")}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;-webkit-font-smoothing:antialiased;font-size:17px;line-height:1.65}
+a{color:inherit;text-decoration:none}img,svg{display:block}.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+h1,h2,h3{margin:0;font-weight:inherit}p{margin:0}
+/* concept-balk + stijlkiezer */
+.cbar{position:sticky;top:0;z-index:50;background:#0f1726;color:#d9e1ec;font:500 12.5px/1.2 Inter,system-ui,sans-serif;letter-spacing:.02em}
+.cbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;height:44px}
+.cbar .zie{color:#f2b705}
+.kies{display:flex;align-items:center;gap:6px}.kies span{opacity:.7;margin-right:4px}
+.kies button{font:600 12px Inter,sans-serif;color:#d9e1ec;background:transparent;border:1px solid #ffffff2e;border-radius:999px;padding:7px 13px;cursor:pointer}
+.kies button[aria-pressed=true]{background:#f2b705;color:#0f1726;border-color:#f2b705}
+/* watermerk */
+.wm{position:fixed;inset:0;z-index:40;pointer-events:none;background-image:var(--wm);background-repeat:repeat;background-size:520px 300px;opacity:.07}
+.stempel{position:fixed;right:18px;bottom:18px;z-index:41;pointer-events:none;font:700 11px Inter,sans-serif;letter-spacing:.24em;color:#0f1726;background:#f2b705;padding:8px 12px;border-radius:4px;opacity:.9}
+/* basis secties */
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:86px;gap:20px}
+.merk{display:flex;align-items:center;gap:14px}.merk .naam{display:flex;flex-direction:column;line-height:1}.merk small{font:500 11px Inter,sans-serif;letter-spacing:.16em;text-transform:uppercase;margin-top:6px;opacity:.6}
+nav.menu{display:flex;align-items:center;gap:30px;font:500 14.5px Inter,sans-serif}nav.menu a.l{opacity:.75}nav.menu a.l:hover{opacity:1}
+.knop{display:inline-flex;align-items:center;gap:10px;font:600 15px Inter,sans-serif;padding:15px 26px;cursor:pointer;border:0;transition:transform .15s}
+.knop:hover{transform:translateY(-1px)}
+.held .grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(340px,.8fr);gap:64px;align-items:center}
+.held h1{letter-spacing:-.02em;line-height:1.02;overflow-wrap:break-word}.held .grid>*{min-width:0}
+.lead{font-size:19px;max-width:44ch;margin:26px 0 36px}
+.acties{display:flex;gap:14px;flex-wrap:wrap}
+.form{display:grid;gap:12px;padding:34px}.form h3{font-size:22px;margin-bottom:6px}
+.form input,.form select,.form textarea{font:inherit;font-size:15px;padding:14px 15px;width:100%;background:transparent;color:inherit}
+.form small{font-size:13px;opacity:.65}
+.cijfers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}.cijfer{min-width:0;overflow-wrap:break-word}.cijfer{padding:30px 28px}.cijfer b{display:block;font-size:34px;line-height:1.1;letter-spacing:-.02em}.cijfer span{font-size:14px;opacity:.7}
+section.blok{padding:110px 0}.kopje{font:600 12px Inter,sans-serif;letter-spacing:.22em;text-transform:uppercase;margin-bottom:18px}
+.titel{font-size:clamp(32px,4vw,50px);letter-spacing:-.02em;line-height:1.08;max-width:20ch;margin-bottom:54px}
+.diensten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.dienst{padding:34px 30px}.dienst .ico{width:34px;height:34px;margin-bottom:26px}.dienst h3{font-size:21px;margin-bottom:10px}.dienst p{font-size:15.5px;opacity:.72}
+.stappen{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0}
+.stap{padding:30px 28px 30px 0}.stap .nr{font-size:15px;font-weight:600;margin-bottom:18px;display:block}.stap h3{font-size:20px;margin-bottom:8px}.stap p{font-size:15.5px;opacity:.72}
+.twee{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.lijst{list-style:none;margin:0;padding:0}.lijst li{padding:20px 0 20px 36px;position:relative;font-size:17px}
+.lijst li::before{content:"";position:absolute;left:0;top:29px;width:18px;height:1.5px;background:currentColor;opacity:.5}
+.certs{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}.certs span{font:500 12.5px Inter,sans-serif;letter-spacing:.06em;padding:8px 14px}
+details{padding:22px 0}summary{cursor:pointer;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:20px}summary::after{content:"+";font-size:22px;line-height:1}
+details[open] summary::after{content:"–"}details p{margin-top:12px;opacity:.75;max-width:62ch}
+.contact .twee{align-items:center}.gegevens{display:grid;gap:14px;margin-top:30px;font-size:17px}.gegevens div{display:flex;gap:14px;align-items:center}.gegevens svg{width:20px;height:20px;opacity:.7}
+footer.voet{padding:36px 0;font:400 13.5px Inter,sans-serif;opacity:.7}
+.cg{background:#0f1726;color:#d9e1ec;padding:44px 0 70px;font-family:Inter,sans-serif}.cg h2{font:600 20px Inter,sans-serif;color:#fff;margin-bottom:16px}
+.cg ul{margin:0 0 22px;padding-left:20px;display:grid;gap:6px;font-size:15px}.cg .rij{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;border-top:1px solid #ffffff1f;padding-top:22px}
+body .cg .knop{background:#f2b705;color:#0f1726;border-radius:6px}.cg small{display:block;margin-top:14px;opacity:.55;font-size:12px}
+.mob{display:none}
+/* ---------- STIJL 1: KLASSIEK (editoriaal, luxe) ---------- */
+body.s1{background:var(--ivoor);color:var(--inkt);font-family:Inter,system-ui,sans-serif}
+.s1 h1,.s1 h2,.s1 .titel,.s1 .cijfer b,.s1 .dienst h3,.s1 .stap h3,.s1 summary,.s1 .form h3,.s1 .merk .woord{font-family:var(--serif);font-weight:500}
+.s1 header.top{border-bottom:1px solid var(--lijn)}
+.s1 .merk .mono{width:46px;height:46px;border:1px solid var(--inkt);border-radius:50%;display:grid;place-items:center;font:500 22px var(--serif)}
+.s1 .merk .woord{font-size:24px}.s1 .merk .tegel,.s1 .merk .stip{display:none}
+.s1 .knop{background:var(--inkt);color:var(--ivoor);border-radius:0}.s1 .knop.alt{background:transparent;color:var(--inkt);box-shadow:inset 0 0 0 1px var(--inkt)}
+.s1 .held{padding:96px 0 110px}.s1 .held h1{font-size:clamp(46px,6.2vw,86px)}.s1 .held .ey{font:600 12px Inter,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--acc2);margin-bottom:26px}
+.s1 .lead{opacity:.78}
+.s1 .form{background:#fff;border:1px solid var(--lijn)}.s1 .form input,.s1 .form select,.s1 .form textarea{border:0;border-bottom:1px solid var(--lijn);padding-left:0;border-radius:0}
+.s1 .cijfers{border-top:1px solid var(--lijn);border-bottom:1px solid var(--lijn)}.s1 .cijfer+.cijfer{border-left:1px solid var(--lijn)}.s1 .cijfer b{color:var(--acc2);font-size:40px}
+.s1 .kopje{color:var(--acc2)}.s1 .diensten{border-top:1px solid var(--lijn)}.s1 .dienst{border-bottom:1px solid var(--lijn)}.s1 .dienst:not(:last-child){border-right:1px solid var(--lijn)}.s1 .dienst .ico{color:var(--acc2)}
+.s1 .stap{border-top:1px solid var(--inkt)}.s1 .stap .nr{font-family:var(--serif);font-size:30px;color:var(--acc2)}
+.s1 .waarom{background:#fff}.s1 .lijst li{border-bottom:1px solid var(--lijn)}.s1 .certs span{border:1px solid var(--lijn)}
+.s1 details{border-bottom:1px solid var(--lijn)}.s1 .contact{background:var(--inkt);color:var(--ivoor)}.s1 .contact .form{background:transparent;border-color:#ffffff30}
+.s1 .contact .form input,.s1 .contact .form textarea{border-bottom-color:#ffffff40}.s1 .contact .knop{background:var(--ivoor);color:var(--inkt)}
+/* ---------- STIJL 2: MODERN (donker, krachtig) ---------- */
+body.s2{background:var(--donker);color:#eef2f7;font-family:Inter,system-ui,sans-serif}
+.s2 h1,.s2 h2,.s2 .titel,.s2 .cijfer b,.s2 .dienst h3,.s2 .stap h3,.s2 summary,.s2 .form h3,.s2 .merk .woord{font-family:var(--sans2);font-weight:700}
+.s2 header.top{background:var(--donker);border-bottom:1px solid #ffffff14}
+.s2 .merk .tegel{width:46px;height:46px;border-radius:12px;background:linear-gradient(140deg,var(--acc),var(--acc3));display:grid;place-items:center;color:#fff}.s2 .merk .tegel svg{width:24px;height:24px}
+.s2 .merk .woord{font-size:21px}.s2 .merk .mono,.s2 .merk .stip{display:none}
+.s2 .knop{background:var(--acc);color:#fff;border-radius:10px}.s2 .knop.alt{background:#ffffff12;color:#fff;box-shadow:inset 0 0 0 1px #ffffff2a}
+.s2 .held{padding:110px 0 130px;background:radial-gradient(900px 600px at 85% 10%,var(--glow),transparent 60%),radial-gradient(700px 500px at 0% 100%,#ffffff08,transparent 60%)}
+.s2 .held h1{font-size:clamp(44px,6.4vw,84px)}.s2 .held .ey{display:inline-flex;gap:10px;align-items:center;font:600 13px Inter,sans-serif;color:var(--acc);background:#ffffff0d;border:1px solid #ffffff1a;padding:8px 14px;border-radius:999px;margin-bottom:28px}
+.s2 .lead{color:#b9c4d3}.s2 .form{background:#ffffff0a;border:1px solid #ffffff1c;border-radius:18px;backdrop-filter:blur(8px)}
+.s2 .form input,.s2 .form select,.s2 .form textarea{border:1px solid #ffffff22;border-radius:10px;background:#0000002a}.s2 .form select option{color:#111}
+.s2 .cijfers{gap:14px}.s2 .cijfer{background:#ffffff08;border:1px solid #ffffff14;border-radius:16px}.s2 .cijfer b{color:#fff}
+.s2 .kopje{color:var(--acc)}.s2 .diensten{gap:16px}.s2 .dienst{background:#ffffff07;border:1px solid #ffffff12;border-radius:18px}.s2 .dienst .ico{color:var(--acc)}
+.s2 .stappen{gap:16px}.s2 .stap{padding:28px;background:#ffffff07;border-radius:18px}.s2 .stap .nr{color:var(--acc)}
+.s2 .waarom{background:#ffffff05}.s2 .lijst li{border-bottom:1px solid #ffffff14}.s2 .lijst li::before{background:var(--acc);opacity:1}
+.s2 .certs span{background:#ffffff0d;border-radius:999px}.s2 details{border-bottom:1px solid #ffffff14}
+.s2 .contact .box{background:linear-gradient(140deg,var(--acc),var(--acc3));border-radius:26px;padding:56px}.s2 .contact .form{background:#0000002a}
+.s2 .contact .knop{background:#fff;color:#111}
+/* ---------- STIJL 3: MINIMAL (wit, rustig, groot) ---------- */
+body.s3{background:#fff;color:#111;font-family:var(--sans3),Inter,system-ui,sans-serif}
+.s3 h1,.s3 h2,.s3 .titel,.s3 .cijfer b,.s3 .dienst h3,.s3 .stap h3,.s3 summary,.s3 .form h3,.s3 .merk .woord{font-family:var(--sans3);font-weight:600}
+.s3 header.top .wrap{height:76px}.s3 .merk .woord{font-size:20px;letter-spacing:-.01em}.s3 .merk .stip{width:10px;height:10px;border-radius:50%;background:var(--acc)}.s3 .merk .mono,.s3 .merk .tegel{display:none}
+.s3 .merk small{display:none}.s3 .knop{background:#111;color:#fff;border-radius:999px;padding:14px 26px}.s3 .knop.alt{background:#f2f2f2;color:#111}
+.s3 .held{padding:120px 0 90px;text-align:center}.s3 .held .grid{grid-template-columns:1fr;gap:56px}.s3 .held h1{font-size:clamp(46px,7vw,96px);letter-spacing:-.04em;max-width:16ch;margin:0 auto}
+.s3 .held .ey{font-size:15px;color:var(--acc);margin-bottom:22px}.s3 .lead{margin:26px auto 36px;color:#555}.s3 .acties,.s3 .certs{justify-content:center}
+.s3 .form{max-width:760px;margin:0 auto;width:100%;grid-template-columns:1.2fr 1fr 1fr;align-items:end;padding:10px;background:#f5f5f5;border-radius:22px;text-align:left}
+.s3 .form h3,.s3 .form small{display:none}.s3 .form input,.s3 .form select{border:0;background:#fff;border-radius:14px}.s3 .form .knop{grid-column:1/-1}
+.s3 .form textarea{display:none}
+.s3 .cijfers{border-top:1px solid #eee}.s3 .cijfer{text-align:center}.s3 .cijfer b{font-size:44px;letter-spacing:-.03em}
+.s3 .kopje{color:#888;letter-spacing:.14em}.s3 .diensten{gap:14px}.s3 .dienst{background:#fff;border:1px solid #ececec;border-radius:20px}.s3 .dienst .ico{color:var(--acc)}
+.s3 .stap .nr{color:var(--acc)}.s3 .stap{border-top:2px solid #111}
+.s3 .waarom{background:#f7f7f7}.s3 .lijst li{border-bottom:1px solid #e6e6e6}.s3 .certs span{background:#fff;border:1px solid #e6e6e6;border-radius:999px}
+.s3 details{border-bottom:1px solid #eee}.s3 .contact .box{background:#f5f5f5;border-radius:30px;padding:56px}
+.s3 .contact .form{grid-template-columns:1fr;background:#fff}.s3 .contact .form textarea{display:block;border:0;background:#f5f5f5;border-radius:14px}.s3 .contact .form input{background:#f5f5f5}
+@media(max-width:820px){.held .grid,.twee{grid-template-columns:1fr;gap:40px}.cijfers{grid-template-columns:repeat(2,minmax(0,1fr))}.cijfer{padding:22px 18px}.cijfer b,.s1 .cijfer b,.s3 .cijfer b{font-size:24px}.kies span{display:none}.s1 .cijfer+.cijfer{border-left:0}
+ nav.menu a.l,.cbar .tekst{display:none}nav.menu .knop{display:none}section.blok{padding:76px 0}.s3 .form{grid-template-columns:1fr}
+ .s2 .contact .box,.s3 .contact .box{padding:30px}.s1 .dienst:not(:last-child){border-right:0}
+ .mob{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:45;background:#fff;box-shadow:0 -6px 24px #0000001f;font:600 15px Inter,sans-serif}
+ .mob a{flex:1;text-align:center;padding:16px 6px;color:#111;border-right:1px solid #eee}.mob a:last-child{background:var(--acc);color:#fff}body{padding-bottom:54px}.stempel{bottom:66px}}
+</style></head><body class="s1" data-cg="cgc-caliptus-shipping-00d8e7d7">
+<!-- cgc-caliptus-shipping-00d8e7d7 · Ontwerp en code © Collens Group (collensgroup.com). Concept, niet vrij te gebruiken. -->
+<div class="wm" aria-hidden="true"></div><div class="stempel" aria-hidden="true">CONCEPT</div>
+<div class="cbar"><div class="wrap"><span class="tekst">Concept by Collens Group for Caliptus Shipping · no obligation · not a live website · <a class="zie" href="#verbeterd">See the improvements</a></span>
+<div class="kies" role="group" aria-label="Choose a style"><span>Choose a style</span><button data-s="s1" aria-pressed="true">Classic</button><button data-s="s2" aria-pressed="false">Modern</button><button data-s="s3" aria-pressed="false">Minimal</button></div></div></div>
+<header class="top"><div class="wrap"><a class="merk" href="#"><span class="mono">C</span><span class="tegel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 15l2-5h14l2 5v3H3zM7 18v2M17 18v2M6 15h2m8 0h2"/></svg></span><span class="stip"></span>
+<span class="naam"><span class="woord">Caliptus Shipping</span><small>car and cargo shipping from Rotterdam</small></span></a>
+<nav class="menu"><a class="l" href="#diensten">Services</a><a class="l" href="#waarom">Why Caliptus Shipping</a><a class="l" href="#contact">Contact</a><a class="knop" href="#contact">Request a quote</a></nav></div></header>
+<section class="held"><div class="wrap grid"><div><div class="ey">Rotterdam · air, sea, road and rail</div><h1>Your cars and cargo, shipped from Rotterdam.</h1><p class="lead">RoRo shipping of cars, trucks and machines, plus air, road and rail freight. Door-to-door, with help on WhatsApp.</p>
+<div class="acties"><a class="knop" href="#contact">Request a quote</a><a class="knop alt" href="tel:+31858769648">Call +31 (0)85 876 9648</a></div></div>
+<form class="form" onsubmit="event.preventDefault();this.innerHTML='<h3>Thank you. We will be in touch shortly.</h3>'"><h3>Request a quote</h3><select aria-label='What do you want to ship?'><option>What do you want to ship?</option><option>Car</option><option>Truck or van</option><option>Machine</option><option>Container</option><option>Other cargo</option></select><input placeholder="From (city, country)" aria-label="From (city, country)"><input placeholder="To (city, country)" aria-label="To (city, country)"><input type="email" placeholder="Email address" aria-label="Email address" required><button class="knop" type="submit">Request a quote</button><small>You will hear from us within one working day.</small></form></div></section>
+<div class="wrap"><div class="cijfers"><div class="cijfer"><b>RoRo</b><span>cars, trucks, machines, trailers</span></div><div class="cijfer"><b>4 modes</b><span>air, sea, road and rail</span></div><div class="cijfer"><b>Door-to-door</b><span>delivery by truck</span></div><div class="cijfer"><b>WhatsApp</b><span>quick answers</span></div></div></div>
+<section class="blok" id="diensten"><div class="wrap"><div class="kopje">Services</div><h2 class="titel">What we do for you</h2><div class="diensten"><article class="dienst"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 15l2-5h14l2 5v3H3zM7 18v2M17 18v2M6 15h2m8 0h2"/></svg></div><h3>RoRo car shipping</h3><p>Cars, trucks, machines and trailers driven on and off the vessel.</p></article><article class="dienst"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17c2 1.5 4 1.5 6 0s4-1.5 6 0 4 1.5 6 0M5 13l2-6h10l2 6M9 7V4h6v3"/></svg></div><h3>Sea freight</h3><p>Containers and break bulk to and from ports worldwide.</p></article><article class="dienst"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 16l20-8-6 12-3-5-5 3 1-5z"/></svg></div><h3>Air freight</h3><p>Fast shipping for urgent and valuable cargo.</p></article><article class="dienst"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 16V7h11v9M14 10h4l3 3v3h-7M7 19a2 2 0 100-4 2 2 0 000 4zm10 0a2 2 0 100-4 2 2 0 000 4z"/></svg></div><h3>Road and rail</h3><p>Transport across Europe, by truck or by train.</p></article><article class="dienst"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10l9-6 9 6v10H3zM7 20v-6h10v6M7 17h10"/></svg></div><h3>Warehousing</h3><p>Safe storage in Rotterdam before or after shipping.</p></article><article class="dienst"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18H6zM9 8h6M9 12h6M9 16h3"/></svg></div><h3>Documents</h3><p>We arrange the paperwork, so your cargo is not held up.</p></article></div></div></section>
+<section class="blok"><div class="wrap"><div class="kopje">How we work</div><h2 class="titel">From request to delivery</h2><div class="stappen"><div class="stap"><span class="nr">01</span><h3>Send your request</h3><p>Tell us what, from where and to where.</p></div><div class="stap"><span class="nr">02</span><h3>Get a clear price</h3><p>We reply with a quote and the route.</p></div><div class="stap"><span class="nr">03</span><h3>We collect</h3><p>Door-to-door by truck, or you drop off in Rotterdam.</p></div><div class="stap"><span class="nr">04</span><h3>Shipped and tracked</h3><p>We handle documents and keep you updated on WhatsApp.</p></div></div></div></section>
+<section class="blok waarom" id="waarom"><div class="wrap twee"><div><div class="kopje">Why Caliptus Shipping</div><h2 class="titel">A team in Rotterdam that knows the port and answers fast.</h2></div><ul class="lijst"><li>Local knowledge of the port of Rotterdam</li><li>Palletised and loose cargo, from parcels to project cargo</li><li>Door-to-door delivery by truck</li><li>Reachable on WhatsApp</li></ul></div></section>
+<section class="blok"><div class="wrap twee"><div><div class="kopje">Frequently asked questions</div><h2 class="titel">Frequently asked questions</h2></div><div><details><summary>Which vehicles can you ship?</summary><p>Cars, trucks, machines and trailers, by RoRo or in a container.</p></details><details><summary>Can you collect my vehicle?</summary><p>Yes, we offer door-to-door delivery by truck.</p></details><details><summary>Do you arrange the documents?</summary><p>Yes, we take care of the shipping paperwork.</p></details><details><summary>How do I get a price?</summary><p>Fill in the quick quote form or send us a WhatsApp message.</p></details></div></div></section>
+<section class="blok contact" id="contact"><div class="wrap"><div class="box twee"><div><div class="kopje">Contact</div><h2 class="titel" style="margin-bottom:18px">Let's talk</h2><p>A question or a quote? We reply fast, with a clear price.</p>
+<div class="gegevens"><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 100 18 9 9 0 000-18zM12 7v5l3 2"/></svg><a href="tel:+31858769648">+31 (0)85 876 9648</a></div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12v18H6zM9 8h6M9 12h6M9 16h3"/></svg><a href="mailto:info@caliptus-cars.com">info@caliptus-cars.com</a></div><div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10l9-6 9 6v10H3zM7 20v-6h10v6M7 17h10"/></svg><span>Industrieweg 99e, 3044 AS Rotterdam</span></div></div></div>
+<form class="form" onsubmit="event.preventDefault();this.innerHTML='<h3>Thank you. We will be in touch shortly.</h3>'"><input placeholder="Name" aria-label="Name" required><input type="email" placeholder="Email address" aria-label="Email address" required><textarea placeholder="Your question" aria-label="Your question"></textarea><button class="knop" type="submit">Send</button></form></div></div></section>
+<footer class="voet"><div class="wrap">© 2026 Caliptus Shipping · Industrieweg 99e, 3044 AS Rotterdam</div></footer>
+<div class="cg" id="verbeterd"><div class="wrap"><h2>What this concept improves on your current website</h2><ul><li>The casino spam is gone: a clean, safe site that Google trusts again</li><li>Quote form right at the top, with vehicle type and route</li><li>WhatsApp and call buttons fixed at the bottom on mobile</li><li>Typos fixed (&quot;Reguest a quote&quot;, &quot;griculture&quot;)</li><li>Business details for Google (structured data)</li></ul><div class="rij"><span>Free concept made by Collens Group. Pick your favourite style; live within a week, from €995.</span><a class="knop" href="mailto:info@collensgroup.com?subject=Concept Caliptus Shipping">Reply to this concept</a></div><small>Design © Collens Group. Use only after agreement. · cgc-caliptus-shipping-00d8e7d7</small></div></div>
+<div class="mob"><a href="tel:+31858769648">Call</a><a href="https://wa.me/31614842245">WhatsApp</a><a href="#contact">Request a quote</a></div>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "LocalBusiness", "name": "Caliptus Shipping", "address": "Industrieweg 99e, 3044 AS Rotterdam", "telephone": "+31 (0)85 876 9648", "email": "info@caliptus-cars.com"}</script>
+<script>(function(){var b=document.body,k=document.querySelectorAll('.kies button');function z(s){b.className=s;k.forEach(function(x){x.setAttribute('aria-pressed',x.dataset.s===s)});try{history.replaceState(null,'','?stijl='+s.slice(1)+location.hash)}catch(e){}}
+k.forEach(function(x){x.onclick=function(){z(x.dataset.s)}});var m=location.search.match(/stijl=([123])/);if(m)z('s'+m[1]);})();</script>
 </body></html>
