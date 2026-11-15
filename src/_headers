@@ -6,3 +6,4 @@
   Cache-Control: public, max-age=604800
 /concept/*
   X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-cache, must-revalidate
