@@ -18,3 +18,6 @@ Statische website van Collens Group.
   - optioneel `LEAD_EMAIL`, `CHAT_MODEL`
   - voor spraakberichten (🎙-knop in de chat): `ELEVENLABS_API_KEY` of `OPENAI_API_KEY`. Zonder deze sleutel blijft de knop verborgen. Backend: `functions/api/spraak.js`.
   Na het toevoegen een nieuwe deployment starten (Deployments → laatste → Retry deployment).
+
+## Controle vóór elke push
+`python3 build.py && python3 qa.py && node tools/mobiel_check.js` — alle drie 0 fouten. De mobiele check test alle pagina's (ook /concept/) op 360 px: horizontaal scrollen, afgesneden tekst, kapotte interne links en Nederlandse afbeeldingen op anderstalige pagina's.
