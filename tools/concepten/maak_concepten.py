@@ -31,7 +31,7 @@ T = {
 }
 
 CSS = r"""
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;-webkit-font-smoothing:antialiased;font-size:17px;line-height:1.65}
+*{box-sizing:border-box}html{scroll-behavior:smooth;overflow-x:clip}body{overflow-x:clip}body{margin:0;-webkit-font-smoothing:antialiased;font-size:17px;line-height:1.65}
 a{color:inherit;text-decoration:none}img,svg{display:block}.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
 h1,h2,h3{margin:0;font-weight:inherit}p{margin:0}
 /* concept-balk + stijlkiezer */
@@ -117,7 +117,7 @@ body.s3{background:#fff;color:#111;font-family:var(--sans3),Inter,system-ui,sans
 .s3 .merk small{display:none}.s3 .knop{background:#111;color:#fff;border-radius:999px;padding:14px 26px}.s3 .knop.alt{background:#f2f2f2;color:#111}
 .s3 .held{padding:120px 0 90px;text-align:center}.s3 .held .grid{grid-template-columns:1fr;gap:56px}.s3 .held h1{font-size:clamp(46px,7vw,96px);letter-spacing:-.04em;max-width:16ch;margin:0 auto}
 .s3 .held .ey{font-size:15px;color:var(--acc);margin-bottom:22px}.s3 .lead{margin:26px auto 36px;color:#555}.s3 .acties,.s3 .certs{justify-content:center}
-.s3 .form{max-width:760px;margin:0 auto;width:100%;grid-template-columns:1.2fr 1fr 1fr;align-items:end;padding:10px;background:#f5f5f5;border-radius:22px;text-align:left}
+.s3 .form{max-width:760px;margin:0 auto;width:100%;grid-template-columns:1.3fr 1fr 1fr 1.1fr;align-items:end;padding:10px;background:#f5f5f5;border-radius:22px;text-align:left}
 .s3 .form h3,.s3 .form small{display:none}.s3 .form input,.s3 .form select{border:0;background:#fff;border-radius:14px}.s3 .form .knop{grid-column:1/-1}
 .s3 .form textarea{display:none}
 .s3 .cijfers{border-top:1px solid #eee}.s3 .cijfer{text-align:center}.s3 .cijfer b{font-size:44px;letter-spacing:-.03em}
@@ -126,6 +126,30 @@ body.s3{background:#fff;color:#111;font-family:var(--sans3),Inter,system-ui,sans
 .s3 .waarom{background:#f7f7f7}.s3 .lijst li{border-bottom:1px solid #e6e6e6}.s3 .certs span{background:#fff;border:1px solid #e6e6e6;border-radius:999px}
 .s3 details{border-bottom:1px solid #eee}.s3 .contact .box{background:#f5f5f5;border-radius:30px;padding:56px}
 .s3 .contact .form{grid-template-columns:1fr;background:#fff}.s3 .contact .form textarea{display:block;border:0;background:#f5f5f5;border-radius:14px}.s3 .contact .form input{background:#f5f5f5}
+.paneel{position:relative}.kunst,.chips{display:none}
+/* Klassiek: kunstpaneel */
+.s1 .held{padding:0}.s1 .held .grid{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:0;align-items:stretch;min-height:640px}
+.s1 .held .grid>div:first-child{padding:96px 64px 96px 0;display:flex;flex-direction:column;justify-content:center}
+.s1 .paneel{background:radial-gradient(520px 420px at 78% 18%,color-mix(in srgb,var(--acc2) 55%,transparent),transparent 70%),linear-gradient(160deg,var(--inkt),color-mix(in srgb,var(--inkt) 70%,#000));margin-right:calc(50% - 50vw);padding:80px 56px 80px 64px;display:flex;align-items:flex-end;overflow:hidden}
+.s1 .kunst{display:block;position:absolute;right:-40px;top:-30px;width:520px;height:520px;color:#f7f4ee;opacity:.22}.s1 .kunst svg{width:100%;height:100%}
+.s1 .paneel::before{content:"";position:absolute;left:64px;right:56px;top:56px;height:1px;background:linear-gradient(90deg,var(--acc2),transparent)}
+.s1 .paneel .form{position:relative;width:100%;max-width:440px;background:#f7f4eef7;border:0;box-shadow:0 40px 80px #00000055}
+.s1 .held h1{font-size:clamp(48px,6vw,92px);line-height:.98}.s1 .lead{font-size:20px}
+.s1 .cijfer b{font-style:italic;font-weight:500}.s1 .titel{font-size:clamp(36px,4.6vw,60px);line-height:1.02}
+.s1 .stap .nr{font-style:italic}.s1 .dienst{transition:background .3s}.s1 .dienst:hover{background:#fff}
+.s1 .waarom{background:linear-gradient(180deg,#fff,#fbf9f5)}
+/* Minimal: kaart met kleurverloop */
+.s3 .held{padding:110px 0 70px}.s3 .paneel{margin-top:10px;border-radius:36px;padding:70px 40px 44px;overflow:hidden;
+ background:radial-gradient(600px 400px at 15% 20%,color-mix(in srgb,var(--acc) 70%,#fff),transparent 65%),radial-gradient(700px 500px at 90% 80%,color-mix(in srgb,var(--donker) 85%,#fff),transparent 60%),linear-gradient(135deg,color-mix(in srgb,var(--acc) 35%,#fff),color-mix(in srgb,var(--donker) 60%,#fff))}
+.s3 .chips{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-bottom:26px}.s3 .chips span{background:#ffffffd9;backdrop-filter:blur(10px);border-radius:999px;padding:10px 18px;font-size:14px;color:#333;box-shadow:0 10px 30px #0000001a}
+.s3 .chips b{margin-right:8px;color:#111}
+.s3 .paneel .form{background:#ffffffe6;backdrop-filter:blur(14px);box-shadow:0 30px 70px #00000026}
+.s3 .held h1{font-weight:600}.s3 .titel{font-size:clamp(36px,5vw,64px);letter-spacing:-.035em;line-height:1.02}
+.s3 .dienst{transition:transform .25s,box-shadow .25s}.s3 .dienst:hover{transform:translateY(-4px);box-shadow:0 24px 50px #00000014}
+.s3 .cijfers{border:0}.s3 .cijfer b{background:linear-gradient(135deg,#111,color-mix(in srgb,var(--acc) 80%,#111));-webkit-background-clip:text;background-clip:text;color:transparent}
+.s3 .waarom{background:linear-gradient(180deg,#fafafa,#f3f3f3)}
+@media(max-width:820px){.s1 .held .grid{grid-template-columns:1fr;min-height:0}.s1 .held .grid>div:first-child{padding:60px 0 40px}
+ .s1 .paneel{margin:0 -28px;padding:40px 28px}.s1 .paneel::before{left:28px;right:28px;top:24px}.s1 .kunst{width:320px;height:320px}.s3 .paneel{padding:36px 14px 14px;border-radius:26px}}
 @media(max-width:820px){.held .grid,.twee{grid-template-columns:1fr;gap:40px}.cijfers{grid-template-columns:repeat(2,minmax(0,1fr))}.cijfer{padding:22px 18px}.cijfer b,.s1 .cijfer b,.s3 .cijfer b{font-size:24px}.kies span{display:none}.s1 .cijfer+.cijfer{border-left:0}
  nav.menu a.l,.cbar .tekst{display:none}nav.menu .knop{display:none}section.blok{padding:76px 0}.s3 .form{grid-template-columns:1fr}
  .s2 .contact .box,.s3 .contact .box{padding:30px}.s1 .dienst:not(:last-child){border-right:0}
@@ -173,7 +197,8 @@ def pagina(c):
 <nav class="menu"><a class="l" href="#diensten">{t['diensten']}</a><a class="l" href="#waarom">{e(t['waarom'].format(n=kort))}</a><a class="l" href="#contact">{t['contact']}</a><a class="knop" href="#contact">{t['offerte']}</a></nav></div></header>
 <section class="held"><div class="wrap grid"><div><div class="ey">{e(c['eyebrow'])}</div><h1>{e(c['h1'])}</h1><p class="lead">{e(c['lead'])}</p>
 <div class="acties"><a class="knop" href="#contact">{t['offerte']}</a>{f'<a class="knop alt" href="{telh}">{t["bel"]} {e(tel)}</a>' if tel else ''}</div>{certs}</div>
-<form class="form" onsubmit="event.preventDefault();this.innerHTML='<h3>{t['bedankt']}</h3>'"><h3>{t['snel']}</h3>{velden}<button class="knop" type="submit">{t['offerte']}</button><small>{t['snel_klein']}</small></form></div></section>
+<div class="paneel"><div class="kunst" aria-hidden="true">{ic(c.get('logo','zee'),.5)}</div><div class="chips" aria-hidden="true">{''.join(f'<span><b>{e(a)}</b>{e(b)}</span>' for a,b in c['feiten'][:2])}</div>
+<form class="form" onsubmit="event.preventDefault();this.innerHTML='<h3>{t['bedankt']}</h3>'"><h3>{t['snel']}</h3>{velden}<button class="knop" type="submit">{t['offerte']}</button><small>{t['snel_klein']}</small></form></div></div></section>
 <div class="wrap"><div class="cijfers">{feit}</div></div>
 <section class="blok" id="diensten"><div class="wrap"><div class="kopje">{t['diensten']}</div><h2 class="titel">{t['dt']}</h2><div class="diensten">{dien}</div></div></section>
 {stappen}
