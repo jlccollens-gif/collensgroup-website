@@ -2,6 +2,8 @@
 // Verstaat 90+ talen. Het geluid wordt alleen omgezet en niet bewaard.
 // Geheim (een van beide is genoeg), in Cloudflare Pages → Settings → Variables and Secrets:
 //   ELEVENLABS_API_KEY  (Scribe)  of  OPENAI_API_KEY (gpt-4o-mini-transcribe)
+// Sleutel staat in Cloudflare als ANTHROPIC_API_KEY (of, zoals op 15-11 ingevoerd, als "Lubbyc").
+const sleutel = (env) => env.ANTHROPIC_API_KEY || env.Lubbyc || "";
 const MAX_BYTES = 3 * 1024 * 1024; // ruim 1 minuut spraak
 const TOEGESTAAN = [/^https:\/\/(www\.)?collensgroup\.com$/, /^https:\/\/[a-z0-9-]+\.collensgroup-website\.pages\.dev$/, /^https:\/\/collensgroup-website\.pages\.dev$/];
 
@@ -10,7 +12,7 @@ const json = (data, status = 200) => new Response(JSON.stringify(data), {
 });
 
 export async function onRequestGet({ env }) {
-  return json({ actief: Boolean(env.ANTHROPIC_API_KEY && (env.ELEVENLABS_API_KEY || env.OPENAI_API_KEY)) });
+  return json({ actief: Boolean(sleutel(env) && (env.ELEVENLABS_API_KEY || env.OPENAI_API_KEY)) });
 }
 
 export async function onRequestPost({ request, env }) {

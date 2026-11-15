@@ -4,6 +4,8 @@
 //   BREVO_API_KEY      optioneel: nodig om aanvragen uit de chat naar je mail te sturen
 //   LEAD_EMAIL         optioneel: waar aanvragen heen gaan (standaard info@collensgroup.com)
 //   CHAT_MODEL         optioneel: ander Claude-model (standaard claude-sonnet-5-5)
+// Sleutel staat in Cloudflare als ANTHROPIC_API_KEY (of, zoals op 15-11 ingevoerd, als "Lubbyc").
+const sleutel = (env) => env.ANTHROPIC_API_KEY || env.Lubbyc || "";
 import { KENNIS } from "../../chatbot/kennis.js";
 
 const MODEL = "claude-sonnet-5-5";
@@ -100,7 +102,7 @@ function schoon(berichten) {
 async function vraagClaude(env, system, messages) {
   const r = await fetch("https://api.anthropic.com/v1/messages", {
     method: "POST",
-    headers: { "x-api-key": env.ANTHROPIC_API_KEY, "anthropic-version": "2023-06-01", "content-type": "application/json" },
+    headers: { "x-api-key": sleutel(env), "anthropic-version": "2023-06-01", "content-type": "application/json" },
     body: JSON.stringify({ model: env.CHAT_MODEL || MODEL, max_tokens: 800, system, messages, tools: TOOLS }),
   });
   if (!r.ok) throw new Error("Claude " + r.status + ": " + (await r.text()).slice(0, 300));
@@ -134,11 +136,11 @@ async function stuurAanvraag(env, invoer, gesprek, pagina) {
 }
 
 export async function onRequestGet({ env }) {
-  return json({ actief: Boolean(env.ANTHROPIC_API_KEY) });
+  return json({ actief: Boolean(sleutel(env)) });
 }
 
 export async function onRequestPost({ request, env }) {
-  if (!env.ANTHROPIC_API_KEY) return json({ fout: "niet-actief" }, 503);
+  if (!sleutel(env)) return json({ fout: "niet-actief" }, 503);
   if (!oorsprongOk(request)) return json({ fout: "niet-toegestaan" }, 403);
   let data;
   try { data = await request.json(); } catch { return json({ fout: "ongeldig" }, 400); }
