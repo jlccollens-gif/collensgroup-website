@@ -337,6 +337,7 @@ DIENSTEN = [
         "faq": [("Wat kost een website laten maken?", "Bij ons begint een one-page website bij €495, een bedrijfswebsite bij €995 en een webshop bij €1.950, zonder btw."),
                 ("Word ik gevonden in Google?", "Elke site bouwen we snel, mobielvriendelijk en met de technische basis die Google verwacht. Een toppositie kan niemand garanderen; wel helpen we je op weg met de juiste zoekwoorden."),
                 ("Wat kost een webshop laten maken?", "Volgens de kostengids van Searchlab (2026) betaal je bij een freelancer meestal €2.000 tot €8.000 en bij een bureau voor het mkb €5.000 tot €15.000. Bij ons begint een webshop bij €1.950 zonder btw, met tot 50 producten ingericht. Platformkosten komen daar los bij en staan vooraf in de offerte."),
+                ("Wat kost een website laten maken in België?", "Volgens de prijsgids van Lunidev (2026) kost een professionele bedrijfswebsite in België €2.000 tot €6.000 en een webshop €4.000 tot €15.000 of meer. Bij ons begint een bedrijfswebsite bij €995 en een webshop bij €1.950, zonder btw."),
                 ("Wat kost een website per maand?", "Hosting kan voor de meeste kleine sites gratis. Een domeinnaam kost rond €5 tot €15 per jaar. Onderhoud is optioneel vanaf €29 per maand.")],
     },
     {
@@ -354,7 +355,8 @@ DIENSTEN = [
         ],
         "extra": [("Extra level of spelmodus", "vanaf €395", "Na de eerste versie"),
                   ("Game-onderhoud", "€85,50 / maand", "Updates voor nieuwe iOS- en Android-versies")],
-        "faq": [("Welke games maken jullie?", "Casual 2D-games: puzzels, quizzen, reactie- en arcadespellen. Grote 3D-games of online multiplayer doen we niet."),
+        "faq": [("Wat kost een game laten maken?", "Een eenvoudige mobiele game begint in Nederland rond €10.000 (Juego Studios, 2026). Bij ons begint een merkgame voor de browser bij €1.950, een casual game bij €4.950 en een 2D-game met levels bij €9.950, zonder btw."),
+                ("Welke games maken jullie?", "Casual 2D-games: puzzels, quizzen, reactie- en arcadespellen. Grote 3D-games of online multiplayer doen we niet."),
                 ("Kan ik geld verdienen met mijn game?", "Ja, we kunnen advertenties of aankopen in de game inbouwen volgens de regels van Apple en Google."),
                 ("Ben ik eigenaar van de game?", "Ja. Na betaling zijn de code en de game van jou.")],
     },
@@ -372,7 +374,8 @@ DIENSTEN = [
         ],
         "extra": [("Extra workflow", "vanaf €195", "Per extra automatisering"),
                   ("Beheer", "€49 / maand", "Monitoring en kleine aanpassingen")],
-        "faq": [("Wat kost AI-automatisering per maand?", "De tools zelf zijn vaak gratis tot enkele tientjes per maand, afhankelijk van het gebruik. Dat staat altijd vooraf in de offerte."),
+        "faq": [("Wat kost een AI-chatbot laten maken?", "Een AI-chatbot die vragen op je website beantwoordt, getraind op je eigen teksten, begint bij ons bij €995 zonder btw en is in 1 week klaar. De kosten van de AI-dienst zelf hangen af van het gebruik en staan vooraf in de offerte."),
+                ("Wat kost AI-automatisering per maand?", "De tools zelf zijn vaak gratis tot enkele tientjes per maand, afhankelijk van het gebruik. Dat staat altijd vooraf in de offerte."),
                 ("Is mijn data veilig?", "We werken met officiële koppelingen, zonder wachtwoorden te delen, en richten alleen in wat nodig is."),
                 ("Wat kan ik automatiseren?", "Bijna alles wat steeds hetzelfde gaat: aanvragen verwerken, offertes maken, afspraken plannen, social media inplannen en rapportages.")],
     },
@@ -786,6 +789,11 @@ def build():
 <div class="intro"><h2 id="apps-kop">Eigen apps, games en series</h2><p>Wat we voor onszelf maken, maken we ook voor jou. Zo testen we onze werkwijze eerst op onszelf.</p></div>
 {app_rijen()}</div></section>
 
+<section aria-labelledby="past-kop"><div class="wrap" style="max-width:820px">
+<h2 id="past-kop">Past Collens Group bij jou?</h2>
+<h3>Wel als je…</h3><ul><li>een vaste prijs vooraf wilt in plaats van uurtje-factuurtje;</li><li>snel live wilt: een one-page website in 3–5 dagen, een app-MVP in 3–5 weken;</li><li>eerst een gratis concept wilt zien voordat je iets betaalt.</li></ul>
+<h3>Kies liever iets anders als je…</h3><ul><li>een grote 3D-game of online multiplayer zoekt;</li><li>onbeperkt werk voor een vast bedrag verwacht;</li><li>alles op locatie wilt bespreken: wij werken volledig online.</li></ul>
+</div></section>
 <section id="vragen" aria-labelledby="vragen-kop"><div class="wrap" style="max-width:820px">
 <h2 id="vragen-kop">Veelgestelde vragen</h2>{faq_html(FAQ)}</div></section>
 {contact_section()}''', crumbs=[("Home", "index.html")], extra_ld=[SERVICE, faq_ld(FAQ)], alt=("index.html", "en.html")))
