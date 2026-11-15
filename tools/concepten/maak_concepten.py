@@ -1,0 +1,200 @@
+"""Collens Group – homepage-concepten in 3 stijlen (Klassiek, Modern, Minimal), met watermerk en herkenningscode.
+Gebruik: python3 maak_concepten2.py  → schrijft collensgroup-website/src/concept/<slug>/index.html
+Data staat in concepten_data.py (alleen feiten van de eigen site van de prospect)."""
+import os, html, json, hashlib
+e = html.escape
+HERE = os.path.dirname(os.path.abspath(__file__))
+exec(open(os.path.join(HERE, "concepten_data.py")).read())
+OUT = os.path.join(HERE, "..", "..", "src", "concept")
+
+def ic(n, w=1.4):
+    return f'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="{w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{ICON[n]}</svg>'
+
+def token(slug):
+    return "cgc-" + slug + "-" + hashlib.sha1(("collens" + slug).encode()).hexdigest()[:8]
+
+T = {
+ "nl": dict(banner="Concept van Collens Group voor {n} · vrijblijvend · geen live website", stijl="Kies een stijl", stijlen=("Klassiek", "Modern", "Minimal"),
+            diensten="Diensten", dt="Wat wij voor u doen", st_titel="Van aanvraag tot oplevering", waarom="Waarom {n}", stappen="Werkwijze", faq="Veelgestelde vragen", offerte="Offerte aanvragen", bel="Bellen",
+            snel="Vraag een offerte aan", snel_klein="U ontvangt binnen één werkdag een reactie.", mail="E-mailadres", naam="Naam", vraag="Uw vraag",
+            verstuur="Versturen", bedankt="Dank u. We nemen snel contact met u op.", contact="Contact", contact_kop="Laten we kennismaken",
+            contact_tekst="Een vraag of een offerte? Wij reageren snel, met een heldere prijs.",
+            verb_kop="Wat dit concept verbetert ten opzichte van uw huidige website", cg="Gratis concept, gemaakt door Collens Group. Kies uw favoriete stijl; binnen een week live, vanaf €995.",
+            cg_knop="Reageer op dit concept", zie="Bekijk de verbeteringen", wm="CONCEPT · COLLENS GROUP", rechten="Ontwerp © Collens Group. Gebruik alleen na akkoord."),
+ "en": dict(banner="Concept by Collens Group for {n} · no obligation · not a live website", stijl="Choose a style", stijlen=("Classic", "Modern", "Minimal"),
+            diensten="Services", dt="What we do for you", st_titel="From request to delivery", waarom="Why {n}", stappen="How we work", faq="Frequently asked questions", offerte="Request a quote", bel="Call",
+            snel="Request a quote", snel_klein="You will hear from us within one working day.", mail="Email address", naam="Name", vraag="Your question",
+            verstuur="Send", bedankt="Thank you. We will be in touch shortly.", contact="Contact", contact_kop="Let's talk",
+            contact_tekst="A question or a quote? We reply fast, with a clear price.",
+            verb_kop="What this concept improves on your current website", cg="Free concept made by Collens Group. Pick your favourite style; live within a week, from €995.",
+            cg_knop="Reply to this concept", zie="See the improvements", wm="CONCEPT · COLLENS GROUP", rechten="Design © Collens Group. Use only after agreement."),
+}
+
+CSS = r"""
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;-webkit-font-smoothing:antialiased;font-size:17px;line-height:1.65}
+a{color:inherit;text-decoration:none}img,svg{display:block}.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+h1,h2,h3{margin:0;font-weight:inherit}p{margin:0}
+/* concept-balk + stijlkiezer */
+.cbar{position:sticky;top:0;z-index:50;background:#0f1726;color:#d9e1ec;font:500 12.5px/1.2 Inter,system-ui,sans-serif;letter-spacing:.02em}
+.cbar .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;height:44px}
+.cbar .zie{color:#f2b705}
+.kies{display:flex;align-items:center;gap:6px}.kies span{opacity:.7;margin-right:4px}
+.kies button{font:600 12px Inter,sans-serif;color:#d9e1ec;background:transparent;border:1px solid #ffffff2e;border-radius:999px;padding:7px 13px;cursor:pointer}
+.kies button[aria-pressed=true]{background:#f2b705;color:#0f1726;border-color:#f2b705}
+/* watermerk */
+.wm{position:fixed;inset:0;z-index:40;pointer-events:none;background-image:var(--wm);background-repeat:repeat;background-size:520px 300px;opacity:.07}
+.stempel{position:fixed;right:18px;bottom:18px;z-index:41;pointer-events:none;font:700 11px Inter,sans-serif;letter-spacing:.24em;color:#0f1726;background:#f2b705;padding:8px 12px;border-radius:4px;opacity:.9}
+/* basis secties */
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:86px;gap:20px}
+.merk{display:flex;align-items:center;gap:14px}.merk .naam{display:flex;flex-direction:column;line-height:1}.merk small{font:500 11px Inter,sans-serif;letter-spacing:.16em;text-transform:uppercase;margin-top:6px;opacity:.6}
+nav.menu{display:flex;align-items:center;gap:30px;font:500 14.5px Inter,sans-serif}nav.menu a.l{opacity:.75}nav.menu a.l:hover{opacity:1}
+.knop{display:inline-flex;align-items:center;gap:10px;font:600 15px Inter,sans-serif;padding:15px 26px;cursor:pointer;border:0;transition:transform .15s}
+.knop:hover{transform:translateY(-1px)}
+.held .grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(340px,.8fr);gap:64px;align-items:center}
+.held h1{letter-spacing:-.02em;line-height:1.02;overflow-wrap:break-word}.held .grid>*{min-width:0}
+.lead{font-size:19px;max-width:44ch;margin:26px 0 36px}
+.acties{display:flex;gap:14px;flex-wrap:wrap}
+.form{display:grid;gap:12px;padding:34px}.form h3{font-size:22px;margin-bottom:6px}
+.form input,.form select,.form textarea{font:inherit;font-size:15px;padding:14px 15px;width:100%;background:transparent;color:inherit}
+.form small{font-size:13px;opacity:.65}
+.cijfers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}.cijfer{min-width:0;overflow-wrap:break-word}.cijfer{padding:30px 28px}.cijfer b{display:block;font-size:34px;line-height:1.1;letter-spacing:-.02em}.cijfer span{font-size:14px;opacity:.7}
+section.blok{padding:110px 0}.kopje{font:600 12px Inter,sans-serif;letter-spacing:.22em;text-transform:uppercase;margin-bottom:18px}
+.titel{font-size:clamp(32px,4vw,50px);letter-spacing:-.02em;line-height:1.08;max-width:20ch;margin-bottom:54px}
+.diensten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.dienst{padding:34px 30px}.dienst .ico{width:34px;height:34px;margin-bottom:26px}.dienst h3{font-size:21px;margin-bottom:10px}.dienst p{font-size:15.5px;opacity:.72}
+.stappen{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0}
+.stap{padding:30px 28px 30px 0}.stap .nr{font-size:15px;font-weight:600;margin-bottom:18px;display:block}.stap h3{font-size:20px;margin-bottom:8px}.stap p{font-size:15.5px;opacity:.72}
+.twee{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.lijst{list-style:none;margin:0;padding:0}.lijst li{padding:20px 0 20px 36px;position:relative;font-size:17px}
+.lijst li::before{content:"";position:absolute;left:0;top:29px;width:18px;height:1.5px;background:currentColor;opacity:.5}
+.certs{display:flex;flex-wrap:wrap;gap:10px;margin-top:34px}.certs span{font:500 12.5px Inter,sans-serif;letter-spacing:.06em;padding:8px 14px}
+details{padding:22px 0}summary{cursor:pointer;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:20px}summary::after{content:"+";font-size:22px;line-height:1}
+details[open] summary::after{content:"–"}details p{margin-top:12px;opacity:.75;max-width:62ch}
+.contact .twee{align-items:center}.gegevens{display:grid;gap:14px;margin-top:30px;font-size:17px}.gegevens div{display:flex;gap:14px;align-items:center}.gegevens svg{width:20px;height:20px;opacity:.7}
+footer.voet{padding:36px 0;font:400 13.5px Inter,sans-serif;opacity:.7}
+.cg{background:#0f1726;color:#d9e1ec;padding:44px 0 70px;font-family:Inter,sans-serif}.cg h2{font:600 20px Inter,sans-serif;color:#fff;margin-bottom:16px}
+.cg ul{margin:0 0 22px;padding-left:20px;display:grid;gap:6px;font-size:15px}.cg .rij{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;border-top:1px solid #ffffff1f;padding-top:22px}
+body .cg .knop{background:#f2b705;color:#0f1726;border-radius:6px}.cg small{display:block;margin-top:14px;opacity:.55;font-size:12px}
+.mob{display:none}
+/* ---------- STIJL 1: KLASSIEK (editoriaal, luxe) ---------- */
+body.s1{background:var(--ivoor);color:var(--inkt);font-family:Inter,system-ui,sans-serif}
+.s1 h1,.s1 h2,.s1 .titel,.s1 .cijfer b,.s1 .dienst h3,.s1 .stap h3,.s1 summary,.s1 .form h3,.s1 .merk .woord{font-family:var(--serif);font-weight:500}
+.s1 header.top{border-bottom:1px solid var(--lijn)}
+.s1 .merk .mono{width:46px;height:46px;border:1px solid var(--inkt);border-radius:50%;display:grid;place-items:center;font:500 22px var(--serif)}
+.s1 .merk .woord{font-size:24px}.s1 .merk .tegel,.s1 .merk .stip{display:none}
+.s1 .knop{background:var(--inkt);color:var(--ivoor);border-radius:0}.s1 .knop.alt{background:transparent;color:var(--inkt);box-shadow:inset 0 0 0 1px var(--inkt)}
+.s1 .held{padding:96px 0 110px}.s1 .held h1{font-size:clamp(46px,6.2vw,86px)}.s1 .held .ey{font:600 12px Inter,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--acc2);margin-bottom:26px}
+.s1 .lead{opacity:.78}
+.s1 .form{background:#fff;border:1px solid var(--lijn)}.s1 .form input,.s1 .form select,.s1 .form textarea{border:0;border-bottom:1px solid var(--lijn);padding-left:0;border-radius:0}
+.s1 .cijfers{border-top:1px solid var(--lijn);border-bottom:1px solid var(--lijn)}.s1 .cijfer+.cijfer{border-left:1px solid var(--lijn)}.s1 .cijfer b{color:var(--acc2);font-size:40px}
+.s1 .kopje{color:var(--acc2)}.s1 .diensten{border-top:1px solid var(--lijn)}.s1 .dienst{border-bottom:1px solid var(--lijn)}.s1 .dienst:not(:last-child){border-right:1px solid var(--lijn)}.s1 .dienst .ico{color:var(--acc2)}
+.s1 .stap{border-top:1px solid var(--inkt)}.s1 .stap .nr{font-family:var(--serif);font-size:30px;color:var(--acc2)}
+.s1 .waarom{background:#fff}.s1 .lijst li{border-bottom:1px solid var(--lijn)}.s1 .certs span{border:1px solid var(--lijn)}
+.s1 details{border-bottom:1px solid var(--lijn)}.s1 .contact{background:var(--inkt);color:var(--ivoor)}.s1 .contact .form{background:transparent;border-color:#ffffff30}
+.s1 .contact .form input,.s1 .contact .form textarea{border-bottom-color:#ffffff40}.s1 .contact .knop{background:var(--ivoor);color:var(--inkt)}
+/* ---------- STIJL 2: MODERN (donker, krachtig) ---------- */
+body.s2{background:var(--donker);color:#eef2f7;font-family:Inter,system-ui,sans-serif}
+.s2 h1,.s2 h2,.s2 .titel,.s2 .cijfer b,.s2 .dienst h3,.s2 .stap h3,.s2 summary,.s2 .form h3,.s2 .merk .woord{font-family:var(--sans2);font-weight:700}
+.s2 header.top{background:var(--donker);border-bottom:1px solid #ffffff14}
+.s2 .merk .tegel{width:46px;height:46px;border-radius:12px;background:linear-gradient(140deg,var(--acc),var(--acc3));display:grid;place-items:center;color:#fff}.s2 .merk .tegel svg{width:24px;height:24px}
+.s2 .merk .woord{font-size:21px}.s2 .merk .mono,.s2 .merk .stip{display:none}
+.s2 .knop{background:var(--acc);color:#fff;border-radius:10px}.s2 .knop.alt{background:#ffffff12;color:#fff;box-shadow:inset 0 0 0 1px #ffffff2a}
+.s2 .held{padding:110px 0 130px;background:radial-gradient(900px 600px at 85% 10%,var(--glow),transparent 60%),radial-gradient(700px 500px at 0% 100%,#ffffff08,transparent 60%)}
+.s2 .held h1{font-size:clamp(44px,6.4vw,84px)}.s2 .held .ey{display:inline-flex;gap:10px;align-items:center;font:600 13px Inter,sans-serif;color:var(--acc);background:#ffffff0d;border:1px solid #ffffff1a;padding:8px 14px;border-radius:999px;margin-bottom:28px}
+.s2 .lead{color:#b9c4d3}.s2 .form{background:#ffffff0a;border:1px solid #ffffff1c;border-radius:18px;backdrop-filter:blur(8px)}
+.s2 .form input,.s2 .form select,.s2 .form textarea{border:1px solid #ffffff22;border-radius:10px;background:#0000002a}.s2 .form select option{color:#111}
+.s2 .cijfers{gap:14px}.s2 .cijfer{background:#ffffff08;border:1px solid #ffffff14;border-radius:16px}.s2 .cijfer b{color:#fff}
+.s2 .kopje{color:var(--acc)}.s2 .diensten{gap:16px}.s2 .dienst{background:#ffffff07;border:1px solid #ffffff12;border-radius:18px}.s2 .dienst .ico{color:var(--acc)}
+.s2 .stappen{gap:16px}.s2 .stap{padding:28px;background:#ffffff07;border-radius:18px}.s2 .stap .nr{color:var(--acc)}
+.s2 .waarom{background:#ffffff05}.s2 .lijst li{border-bottom:1px solid #ffffff14}.s2 .lijst li::before{background:var(--acc);opacity:1}
+.s2 .certs span{background:#ffffff0d;border-radius:999px}.s2 details{border-bottom:1px solid #ffffff14}
+.s2 .contact .box{background:linear-gradient(140deg,var(--acc),var(--acc3));border-radius:26px;padding:56px}.s2 .contact .form{background:#0000002a}
+.s2 .contact .knop{background:#fff;color:#111}
+/* ---------- STIJL 3: MINIMAL (wit, rustig, groot) ---------- */
+body.s3{background:#fff;color:#111;font-family:var(--sans3),Inter,system-ui,sans-serif}
+.s3 h1,.s3 h2,.s3 .titel,.s3 .cijfer b,.s3 .dienst h3,.s3 .stap h3,.s3 summary,.s3 .form h3,.s3 .merk .woord{font-family:var(--sans3);font-weight:600}
+.s3 header.top .wrap{height:76px}.s3 .merk .woord{font-size:20px;letter-spacing:-.01em}.s3 .merk .stip{width:10px;height:10px;border-radius:50%;background:var(--acc)}.s3 .merk .mono,.s3 .merk .tegel{display:none}
+.s3 .merk small{display:none}.s3 .knop{background:#111;color:#fff;border-radius:999px;padding:14px 26px}.s3 .knop.alt{background:#f2f2f2;color:#111}
+.s3 .held{padding:120px 0 90px;text-align:center}.s3 .held .grid{grid-template-columns:1fr;gap:56px}.s3 .held h1{font-size:clamp(46px,7vw,96px);letter-spacing:-.04em;max-width:16ch;margin:0 auto}
+.s3 .held .ey{font-size:15px;color:var(--acc);margin-bottom:22px}.s3 .lead{margin:26px auto 36px;color:#555}.s3 .acties,.s3 .certs{justify-content:center}
+.s3 .form{max-width:760px;margin:0 auto;width:100%;grid-template-columns:1.2fr 1fr 1fr;align-items:end;padding:10px;background:#f5f5f5;border-radius:22px;text-align:left}
+.s3 .form h3,.s3 .form small{display:none}.s3 .form input,.s3 .form select{border:0;background:#fff;border-radius:14px}.s3 .form .knop{grid-column:1/-1}
+.s3 .form textarea{display:none}
+.s3 .cijfers{border-top:1px solid #eee}.s3 .cijfer{text-align:center}.s3 .cijfer b{font-size:44px;letter-spacing:-.03em}
+.s3 .kopje{color:#888;letter-spacing:.14em}.s3 .diensten{gap:14px}.s3 .dienst{background:#fff;border:1px solid #ececec;border-radius:20px}.s3 .dienst .ico{color:var(--acc)}
+.s3 .stap .nr{color:var(--acc)}.s3 .stap{border-top:2px solid #111}
+.s3 .waarom{background:#f7f7f7}.s3 .lijst li{border-bottom:1px solid #e6e6e6}.s3 .certs span{background:#fff;border:1px solid #e6e6e6;border-radius:999px}
+.s3 details{border-bottom:1px solid #eee}.s3 .contact .box{background:#f5f5f5;border-radius:30px;padding:56px}
+.s3 .contact .form{grid-template-columns:1fr;background:#fff}.s3 .contact .form textarea{display:block;border:0;background:#f5f5f5;border-radius:14px}.s3 .contact .form input{background:#f5f5f5}
+@media(max-width:820px){.held .grid,.twee{grid-template-columns:1fr;gap:40px}.cijfers{grid-template-columns:repeat(2,minmax(0,1fr))}.cijfer{padding:22px 18px}.cijfer b,.s1 .cijfer b,.s3 .cijfer b{font-size:24px}.kies span{display:none}.s1 .cijfer+.cijfer{border-left:0}
+ nav.menu a.l,.cbar .tekst{display:none}nav.menu .knop{display:none}section.blok{padding:76px 0}.s3 .form{grid-template-columns:1fr}
+ .s2 .contact .box,.s3 .contact .box{padding:30px}.s1 .dienst:not(:last-child){border-right:0}
+ .mob{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:45;background:#fff;box-shadow:0 -6px 24px #0000001f;font:600 15px Inter,sans-serif}
+ .mob a{flex:1;text-align:center;padding:16px 6px;color:#111;border-right:1px solid #eee}.mob a:last-child{background:var(--acc);color:#fff}body{padding-bottom:54px}.stempel{bottom:66px}}
+"""
+
+def pagina(c):
+    t = T[c["taal"]]; k = c["kleur"]; n = c["naam"]; kort = c.get("kort", n)
+    tel = c.get("tel", ""); telh = "tel:" + tel.replace(" ", "").replace("(0)", "").replace("-", "")
+    mail = c.get("mail", ""); wa = c.get("wa", ""); tok = token(c["slug"])
+    wm_svg = ("data:image/svg+xml;utf8," + f"<svg xmlns='http://www.w3.org/2000/svg' width='520' height='300'><text x='20' y='170' transform='rotate(-24 260 150)' font-family='Arial' font-size='26' font-weight='700' letter-spacing='6' fill='%23000'>{t['wm']}</text></svg>").replace("#", "%23").replace(" ", "%20")
+    def veld(v):
+        if isinstance(v, list): return "<select aria-label='" + e(v[0]) + "'>" + "".join(f"<option>{e(o)}</option>" for o in v) + "</select>"
+        return f'<input placeholder="{e(v)}" aria-label="{e(v)}">'
+    velden = "".join(veld(v) for v in c["velden"]) + f'<input type="email" placeholder="{t["mail"]}" aria-label="{t["mail"]}" required>'
+    certs = ('<div class="certs">' + "".join(f"<span>{e(x)}</span>" for x in c.get("certs", [])) + "</div>") if c.get("certs") else ""
+    feit = "".join(f'<div class="cijfer"><b>{e(a)}</b><span>{e(b)}</span></div>' for a, b in c["feiten"])
+    dien = "".join(f'<article class="dienst"><div class="ico">{ic(i)}</div><h3>{e(h)}</h3><p>{e(p)}</p></article>' for i, h, p in c["diensten"])
+    stappen = ""
+    if c.get("stappen"):
+        stappen = (f'<section class="blok"><div class="wrap"><div class="kopje">{t["stappen"]}</div><h2 class="titel">{t["st_titel"]}</h2><div class="stappen">'
+                   + "".join(f'<div class="stap"><span class="nr">{i:02d}</span><h3>{e(a)}</h3><p>{e(b)}</p></div>' for i, (a, b) in enumerate(c["stappen"], 1)) + "</div></div></section>")
+    faq = ""
+    if c.get("faq"):
+        faq = (f'<section class="blok"><div class="wrap twee"><div><div class="kopje">{t["faq"]}</div><h2 class="titel">{t["faq"]}</h2></div><div>'
+               + "".join(f"<details><summary>{e(q)}</summary><p>{e(a)}</p></details>" for q, a in c["faq"]) + "</div></div></section>")
+    waar = "".join(f"<li>{e(x)}</li>" for x in c["waarom"])
+    verb = "".join(f"<li>{e(x)}</li>" for x in c["verbeterd"])
+    ld = json.dumps({"@context": "https://schema.org", "@type": "LocalBusiness", "name": c["juridisch"], "address": c["adres"], **({"telephone": tel} if tel else {}), **({"email": mail} if mail else {})}, ensure_ascii=False)
+    pal = (f"--ivoor:#f7f4ee;--inkt:{k['held']};--lijn:#1b1b1b1f;--acc2:{k['acc']};--donker:{k['held']};--acc:{k['acc']};--acc3:{k['bg']};"
+           f"--glow:{k['acc']}55;--serif:'Cormorant Garamond',Georgia,serif;--sans2:'Sora',Inter,sans-serif;--sans3:'Manrope',Inter,sans-serif;--wm:url(\"{wm_svg}\")")
+    s1, s2, s3 = t["stijlen"]
+    return f"""<!DOCTYPE html><html lang="{c['taal']}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{e(n)} – {e(c['titel'])} (concept Collens Group)</title><meta name="robots" content="noindex,nofollow,noarchive"><meta name="generator" content="Collens Group concept {tok}">
+<meta name="copyright" content="Collens Group"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+<style>:root{{{pal}}}{CSS}</style></head><body class="s1" data-cg="{tok}">
+<!-- {tok} · Ontwerp en code © Collens Group (collensgroup.com). Concept, niet vrij te gebruiken. -->
+<div class="wm" aria-hidden="true"></div><div class="stempel" aria-hidden="true">CONCEPT</div>
+<div class="cbar"><div class="wrap"><span class="tekst">{e(t['banner'].format(n=n))} · <a class="zie" href="#verbeterd">{t['zie']}</a></span>
+<div class="kies" role="group" aria-label="{t['stijl']}"><span>{t['stijl']}</span><button data-s="s1" aria-pressed="true">{s1}</button><button data-s="s2" aria-pressed="false">{s2}</button><button data-s="s3" aria-pressed="false">{s3}</button></div></div></div>
+<header class="top"><div class="wrap"><a class="merk" href="#"><span class="mono">{e(c['init'])}</span><span class="tegel">{ic(c.get('logo','zee'),1.6)}</span><span class="stip"></span>
+<span class="naam"><span class="woord">{e(n)}</span><small>{e(c['titel'])}</small></span></a>
+<nav class="menu"><a class="l" href="#diensten">{t['diensten']}</a><a class="l" href="#waarom">{e(t['waarom'].format(n=kort))}</a><a class="l" href="#contact">{t['contact']}</a><a class="knop" href="#contact">{t['offerte']}</a></nav></div></header>
+<section class="held"><div class="wrap grid"><div><div class="ey">{e(c['eyebrow'])}</div><h1>{e(c['h1'])}</h1><p class="lead">{e(c['lead'])}</p>
+<div class="acties"><a class="knop" href="#contact">{t['offerte']}</a>{f'<a class="knop alt" href="{telh}">{t["bel"]} {e(tel)}</a>' if tel else ''}</div>{certs}</div>
+<form class="form" onsubmit="event.preventDefault();this.innerHTML='<h3>{t['bedankt']}</h3>'"><h3>{t['snel']}</h3>{velden}<button class="knop" type="submit">{t['offerte']}</button><small>{t['snel_klein']}</small></form></div></section>
+<div class="wrap"><div class="cijfers">{feit}</div></div>
+<section class="blok" id="diensten"><div class="wrap"><div class="kopje">{t['diensten']}</div><h2 class="titel">{t['dt']}</h2><div class="diensten">{dien}</div></div></section>
+{stappen}
+<section class="blok waarom" id="waarom"><div class="wrap twee"><div><div class="kopje">{e(t['waarom'].format(n=kort))}</div><h2 class="titel">{e(c['waarom_intro'])}</h2></div><ul class="lijst">{waar}</ul></div></section>
+{faq}
+<section class="blok contact" id="contact"><div class="wrap"><div class="box twee"><div><div class="kopje">{t['contact']}</div><h2 class="titel" style="margin-bottom:18px">{t['contact_kop']}</h2><p>{t['contact_tekst']}</p>
+<div class="gegevens">{f'<div>{ic("klok")}<a href="{telh}">{e(tel)}</a></div>' if tel else ''}{f'<div>{ic("doc")}<a href="mailto:{e(mail)}">{e(mail)}</a></div>' if mail else ''}<div>{ic("opslag")}<span>{e(c['adres'])}</span></div></div></div>
+<form class="form" onsubmit="event.preventDefault();this.innerHTML='<h3>{t['bedankt']}</h3>'"><input placeholder="{t['naam']}" aria-label="{t['naam']}" required><input type="email" placeholder="{t['mail']}" aria-label="{t['mail']}" required><textarea placeholder="{t['vraag']}" aria-label="{t['vraag']}"></textarea><button class="knop" type="submit">{t['verstuur']}</button></form></div></div></section>
+<footer class="voet"><div class="wrap">© 2026 {e(c['juridisch'])} · {e(c['adres'])}</div></footer>
+<div class="cg" id="verbeterd"><div class="wrap"><h2>{t['verb_kop']}</h2><ul>{verb}</ul><div class="rij"><span>{e(t['cg'])}</span><a class="knop" href="mailto:info@collensgroup.com?subject={e('Concept ' + n)}">{t['cg_knop']}</a></div><small>{t['rechten']} · {tok}</small></div></div>
+<div class="mob">{f'<a href="{telh}">{t["bel"]}</a>' if tel else ''}{f'<a href="https://wa.me/{wa}">WhatsApp</a>' if wa else ''}<a href="#contact">{t['offerte']}</a></div>
+<script type="application/ld+json">{ld}</script>
+<script>(function(){{var b=document.body,k=document.querySelectorAll('.kies button');function z(s){{b.className=s;k.forEach(function(x){{x.setAttribute('aria-pressed',x.dataset.s===s)}});try{{history.replaceState(null,'','?stijl='+s.slice(1)+location.hash)}}catch(e){{}}}}
+k.forEach(function(x){{x.onclick=function(){{z(x.dataset.s)}}}});var m=location.search.match(/stijl=([123])/);if(m)z('s'+m[1]);}})();</script>
+</body></html>"""
+
+if __name__ == "__main__":
+    reg = {}
+    for c in C:
+        d = os.path.join(OUT, c["slug"]); os.makedirs(d, exist_ok=True)
+        open(os.path.join(d, "index.html"), "w").write(pagina(c))
+        reg[c["slug"]] = {"bedrijf": c["juridisch"], "token": token(c["slug"]), "h1": c["h1"], "lead": c["lead"]}
+    json.dump(reg, open(os.path.join(HERE, "concepten_register.json"), "w"), ensure_ascii=False, indent=1)
+    print("\n".join(f"https://collensgroup.com/concept/{s}/" for s in reg))
