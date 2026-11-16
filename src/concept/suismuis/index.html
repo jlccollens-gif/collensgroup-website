@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Suismuis Home – warm, stijlvol, tijdloos (concept Collens Group)</title>
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="description" content="Concept-homepage voor Suismuis Home, gemaakt door Collens Group.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--creme:#F5F0E8;--zand:#E5D8C8;--taupe:#C6B39E;--mokka:#917965;--espresso:#49382E;--inkt:#3A2D25;
+--serif:"Cormorant Garamond",Georgia,serif;--sans:"Jost",system-ui,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--creme);color:var(--inkt);font-family:var(--sans);font-weight:300;font-size:17px;line-height:1.7;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}a{color:inherit;text-decoration:none}
+.wrap{max-width:1240px;margin:0 auto;padding:0 32px}
+.klein{font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:400}
+h1,h2,h3{font-family:var(--serif);font-weight:400;color:var(--espresso);margin:0;line-height:1.08}
+/* balk + kop */
+.balk{background:var(--taupe);color:var(--espresso);text-align:center;padding:9px 16px;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase}
+header{background:var(--zand);border-bottom:1px solid rgba(73,56,46,.12);position:sticky;top:0;z-index:5}
+.kop{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:92px}
+.kop nav{display:flex;gap:34px;font-size:15px}
+.kop nav a{padding-bottom:3px;border-bottom:1px solid transparent}.kop nav a:hover,.kop nav a[aria-current]{border-color:var(--espresso)}
+.logo{text-align:center;line-height:1}.logo b{display:block;font-family:var(--serif);font-weight:400;font-size:40px;color:var(--espresso);letter-spacing:.01em}
+.logo span{display:block;font-size:11px;letter-spacing:.6em;margin-top:6px;padding-left:.6em;color:var(--mokka)}
+.iconen{display:flex;justify-content:flex-end;gap:22px}.iconen svg{width:22px;height:22px;stroke:var(--espresso);fill:none;stroke-width:1.3}
+.menuknop{display:none;background:none;border:0;padding:6px;cursor:pointer}
+/* held */
+.held{display:grid;grid-template-columns:5fr 7fr;min-height:620px;background:var(--zand)}
+.held-tekst{padding:84px 64px 64px max(32px,calc((100vw - 1240px)/2 + 32px));display:flex;flex-direction:column;justify-content:center}
+.held h1{font-size:clamp(46px,5.6vw,84px);margin:22px 0 24px;letter-spacing:-.01em}
+.held h1 em{font-style:italic;color:var(--mokka)}
+.held p{font-size:19px;max-width:28ch;margin:0 0 38px;color:var(--inkt)}
+.knop{display:inline-flex;align-items:center;gap:14px;background:var(--espresso);color:var(--creme);padding:17px 30px;font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:400;transition:background .2s}
+.knop:hover{background:var(--inkt)}.knop.licht{background:transparent;color:var(--espresso);border:1px solid var(--espresso)}
+.knoppen{display:flex;gap:14px;flex-wrap:wrap}
+.held figure{margin:0;position:relative;overflow:hidden}.held figure img{width:100%;height:100%;object-fit:cover}
+/* categorieën */
+section{padding:96px 0}
+.sectiekop{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:40px}
+.sectiekop h2{font-size:clamp(34px,3.6vw,50px)}
+.sectiekop a{font-size:14px;border-bottom:1px solid var(--espresso);padding-bottom:2px;white-space:nowrap}
+.cats{display:grid;grid-template-columns:repeat(6,1fr);gap:18px}
+.cat{background:var(--zand);display:flex;flex-direction:column}
+.cat img{aspect-ratio:1;object-fit:cover;width:100%;transition:transform .6s}
+.cat .beeld{overflow:hidden}.cat:hover img{transform:scale(1.04)}
+.cat span{padding:16px 10px;text-align:center;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase}
+/* producten */
+.nieuw{background:#FBF8F3}
+.producten{display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.product .beeld{background:var(--zand);aspect-ratio:4/5;overflow:hidden;position:relative}
+.product img{width:100%;height:100%;object-fit:cover}
+.product .label{position:absolute;left:14px;top:14px;background:var(--creme);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;padding:5px 10px}
+.product h3{font-size:24px;margin:18px 0 4px}.product p{margin:0;font-size:15px;color:var(--mokka)}
+.voorbeeld{font-size:13px;color:var(--mokka);margin-top:26px;font-style:italic;font-family:var(--serif);font-size:17px}
+/* verhaal */
+.verhaal{display:grid;grid-template-columns:1fr 1fr;background:var(--zand);padding:0}
+.verhaal img{width:100%;height:100%;object-fit:cover;min-height:460px}
+.verhaal-tekst{padding:80px 72px;display:flex;flex-direction:column;justify-content:center}
+.verhaal h2{font-size:clamp(38px,3.8vw,56px);margin:18px 0 22px}
+.verhaal p{max-width:40ch;margin:0 0 34px}
+/* zekerheden */
+.zeker{padding:44px 0;border-bottom:1px solid rgba(73,56,46,.12)}
+.zeker ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr)}
+.zeker li{display:flex;align-items:center;gap:16px;justify-content:center;font-size:15px;padding:6px 12px;border-left:1px solid rgba(73,56,46,.15)}
+.zeker li:first-child{border-left:0}.zeker svg{width:28px;height:28px;stroke:var(--mokka);fill:none;stroke-width:1.2;flex:none}
+/* nieuwsbrief */
+.brief{display:grid;grid-template-columns:1fr 1fr;background:var(--mokka);color:var(--creme);padding:0}
+.brief>*,.verhaal>*,.held>*{min-width:0}
+.brief img{width:100%;height:100%;object-fit:cover;min-height:320px}
+.brief-tekst{padding:64px 72px;display:flex;flex-direction:column;justify-content:center}
+.brief h2{color:var(--creme);font-size:clamp(32px,3vw,44px);margin:14px 0 12px}
+.brief form{display:flex;margin-top:22px;max-width:460px}
+.brief input{flex:1;min-width:0;border:0;background:var(--creme);padding:16px 18px;font:inherit;font-size:15px;color:var(--inkt)}
+.brief button{border:0;background:var(--espresso);color:var(--creme);padding:0 26px;font:inherit;font-size:12px;letter-spacing:.22em;text-transform:uppercase;cursor:pointer}
+/* voet */
+footer{background:var(--espresso);color:#D9CBBB;padding:72px 0 34px;font-size:15px}
+.voet{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+.voet b{display:block;font-family:var(--serif);font-weight:400;font-size:30px;color:var(--creme)}
+.voet h4{font-family:var(--sans);font-weight:400;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--creme);margin:6px 0 16px}
+.voet ul{list-style:none;padding:0;margin:0}.voet li{margin-bottom:8px}
+.onder{margin-top:52px;padding-top:22px;border-top:1px solid rgba(245,240,232,.14);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:13px;color:#B9A898}
+.concept{position:fixed;right:14px;bottom:14px;z-index:9;background:rgba(73,56,46,.92);color:var(--creme);font-size:12px;padding:8px 14px;letter-spacing:.04em}
+.concept a{text-decoration:underline}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:2px solid var(--mokka);outline-offset:3px}
+@media (max-width:1000px){
+ .kop nav{display:none}.menuknop{display:block}.kop{grid-template-columns:auto 1fr auto;height:76px}.logo b{font-size:32px}
+ .held{grid-template-columns:1fr}.held figure{order:-1;height:360px}.held-tekst{padding:44px 24px 54px}
+ .cats{grid-template-columns:repeat(3,1fr)}.producten{grid-template-columns:repeat(2,1fr);gap:22px 16px}
+ .verhaal,.brief{grid-template-columns:1fr}.verhaal img,.brief img{min-height:280px;max-height:340px}
+ .verhaal-tekst,.brief-tekst{padding:52px 24px}
+ .zeker ul{grid-template-columns:1fr 1fr;gap:18px 0}.zeker li{justify-content:flex-start;border:0}
+ .voet{grid-template-columns:1fr 1fr}
+ section{padding:68px 0}.wrap{padding:0 24px}
+}
+@media (max-width:560px){.cats{grid-template-columns:repeat(2,1fr);gap:12px}.held h1{font-size:46px}.sectiekop{flex-direction:column;align-items:flex-start}.voet{grid-template-columns:1fr}.iconen{gap:14px}.iconen .verberg{display:none}}
+@media (max-width:1000px){.concept{position:static;text-align:center;padding:12px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="balk">Gratis verzending vanaf €75</div>
+<header><div class="wrap kop">
+ <nav aria-label="Hoofdmenu"><a href="#" aria-current="page">Home</a><a href="#nieuw">Shop</a><a href="#verhaal">Over ons</a><a href="#brief">Journal</a></nav>
+ <button class="menuknop" aria-label="Menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#49382E" stroke-width="1.3"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
+ <a class="logo" href="#"><b>Suismuis</b><span>HOME</span></a>
+ <div class="iconen">
+  <a href="#" class="verberg" aria-label="Zoeken"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></a>
+  <a href="#" class="verberg" aria-label="Account"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></a>
+  <a href="#" aria-label="Winkelmand"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 13H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg></a>
+ </div>
+</div></header>
+
+<main>
+<div class="held">
+ <div class="held-tekst">
+  <span class="klein">Live beautiful. Live Suismuis.</span>
+  <h1>Jouw huis,<br><em>onze passie</em></h1>
+  <p>Tijdloze woonaccessoires met een vleugje elegantie. Natuurlijke materialen, zachte tinten.</p>
+  <div class="knoppen"><a class="knop" href="#nieuw">Shop de look <span aria-hidden="true">→</span></a><a class="knop licht" href="#verhaal">Ons verhaal</a></div>
+ </div>
+ <figure><img src="img/woonkamer.jpg" alt="Zachte bank met vaas vol hortensia's en een kaars op een stenen salontafel" width="1200" height="695"></figure>
+</div>
+
+<section><div class="wrap">
+ <div class="sectiekop"><h2>Shop per categorie</h2><a href="#nieuw">Bekijk alles</a></div>
+ <div class="cats">
+  <a class="cat" href="#nieuw"><div class="beeld"><img src="img/decoratie.jpg" alt="Vaas met olijftak" loading="lazy" width="500" height="500"></div><span>Decoratie</span></a>
+  <a class="cat" href="#nieuw"><div class="beeld"><img src="img/kaarsen.jpg" alt="Kandelaars met dinerkaarsen" loading="lazy" width="500" height="500"></div><span>Kaarsen</span></a>
+  <a class="cat" href="#nieuw"><div class="beeld"><img src="img/kussens.jpg" alt="Gestructureerde sierkussens" loading="lazy" width="500" height="500"></div><span>Kussens</span></a>
+  <a class="cat" href="#nieuw"><div class="beeld"><img src="img/verlichting.jpg" alt="Keramische tafellamp met linnen kap" loading="lazy" width="500" height="500"></div><span>Verlichting</span></a>
+  <a class="cat" href="#nieuw"><div class="beeld"><img src="img/plaids.jpg" alt="Gebreide plaid" loading="lazy" width="500" height="500"></div><span>Plaids</span></a>
+  <a class="cat" href="#nieuw"><div class="beeld"><img src="img/accessoires.jpg" alt="Stenen schaal" loading="lazy" width="500" height="500"></div><span>Accessoires</span></a>
+ </div>
+</div></section>
+
+<section class="nieuw" id="nieuw"><div class="wrap">
+ <div class="sectiekop"><h2>Nieuw binnen</h2><a href="#">Alle nieuwe items</a></div>
+ <div class="producten">
+  <a class="product" href="#"><div class="beeld"><span class="label">Nieuw</span><img src="img/decoratie.jpg" alt="" loading="lazy" width="500" height="500"></div><h3>Vaas in zandsteen</h3><p>Prijs volgt</p></a>
+  <a class="product" href="#"><div class="beeld"><img src="img/verlichting.jpg" alt="" loading="lazy" width="500" height="500"></div><h3>Tafellamp met linnen kap</h3><p>Prijs volgt</p></a>
+  <a class="product" href="#"><div class="beeld"><img src="img/plaids.jpg" alt="" loading="lazy" width="500" height="500"></div><h3>Gebreide plaid</h3><p>Prijs volgt</p></a>
+  <a class="product" href="#"><div class="beeld"><img src="img/accessoires.jpg" alt="" loading="lazy" width="500" height="500"></div><h3>Stenen schaal</h3><p>Prijs volgt</p></a>
+ </div>
+ <p class="voorbeeld">Voorbeeldproducten: hier komen jouw eigen producten, foto's en prijzen.</p>
+</div></section>
+
+<section class="verhaal" id="verhaal">
+ <img src="img/slaapkamer.jpg" alt="Slaapkamer met linnen beddengoed, gevlochten hanglamp en olijftak" loading="lazy" width="1000" height="387">
+ <div class="verhaal-tekst">
+  <span class="klein">Het Suismuis-gevoel</span>
+  <h2>Warm. Stijlvol. Tijdloos.</h2>
+  <p>Bij Suismuis Home geloven we in de schoonheid van eenvoud. Onze collectie brengt warmte, stijl en rust in elk huis: linnen, hout, keramiek en zacht licht.</p>
+  <div><a class="knop" href="#">Over Suismuis <span aria-hidden="true">→</span></a></div>
+ </div>
+</section>
+
+<div class="zeker"><div class="wrap"><ul>
+ <li><svg viewBox="0 0 32 32"><path d="M3 9h17v13H3zM20 13h5l4 4v5h-9z"/><circle cx="9" cy="24" r="2.5"/><circle cx="24" cy="24" r="2.5"/></svg>Snelle, zorgvuldige levering</li>
+ <li><svg viewBox="0 0 32 32"><path d="M16 27S4 19.5 4 11.5A6 6 0 0 1 16 9a6 6 0 0 1 12 2.5C28 19.5 16 27 16 27z"/></svg>Met liefde uitgekozen</li>
+ <li><svg viewBox="0 0 32 32"><path d="M6 12a10 10 0 0 1 18-3M26 20a10 10 0 0 1-18 3"/><path d="M24 4v5h-5M8 28v-5h5"/></svg>Eenvoudig retourneren</li>
+ <li><svg viewBox="0 0 32 32"><rect x="7" y="14" width="18" height="13" rx="2"/><path d="M11 14v-4a5 5 0 0 1 10 0v4"/><circle cx="16" cy="20.5" r="1.6"/></svg>Veilig betalen met iDEAL</li>
+</ul></div></div>
+
+<section class="brief" id="brief">
+ <img src="img/tafel.jpg" alt="Stenen tafel met kaars in een schaal" width="1000" height="264">
+ <div class="brief-tekst">
+  <span class="klein">Blijf geïnspireerd</span>
+  <h2>Als eerste de nieuwe collectie zien</h2>
+  <p>Schrijf je in voor de nieuwsbrief en ontvang stylingtips en nieuwe items.</p>
+  <form onsubmit="return false"><label for="mail" class="klein" style="position:absolute;left:-9999px">E-mailadres</label><input id="mail" type="email" placeholder="Je e-mailadres"><button type="submit">Inschrijven</button></form>
+ </div>
+</section>
+</main>
+
+<footer><div class="wrap">
+ <div class="voet">
+  <div><b>Suismuis</b><p>Warme, tijdloze woonaccessoires voor een thuis vol rust.</p></div>
+  <div><h4>Shop</h4><ul><li>Decoratie</li><li>Kaarsen</li><li>Kussens</li><li>Verlichting</li></ul></div>
+  <div><h4>Service</h4><ul><li>Verzenden</li><li>Retourneren</li><li>Veelgestelde vragen</li><li>Contact</li></ul></div>
+  <div><h4>Volg ons</h4><ul><li>Instagram</li><li>Pinterest</li></ul></div>
+ </div>
+ <div class="onder"><span>© 2026 Suismuis Home</span><span>Algemene voorwaarden · Privacy</span></div>
+</div></footer>
+<div class="concept">Concept door <a href="https://collensgroup.com">Collens Group</a></div>
+</body>
+</html>
