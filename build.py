@@ -121,8 +121,8 @@ ORG = {"@type": "ProfessionalService", "@id": "#org", "name": CONFIG["naam"],
 GLOBE = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg>'
 NL_NAAR_EN = {"website-laten-maken.html": "en-website-design.html", "goedkope-website-laten-maken.html": "en-website-design.html", "webshop-laten-maken.html": "en-website-design.html",
               "app-laten-maken-kosten.html": "en-app-development.html", "mvp-app-laten-maken.html": "en-app-development.html",
-              "apps.html": "en-projects.html", "app-lubbyc.html": "en-projects.html", "app-koffer-vol.html": "en-projects.html", "app-eiland-express.html": "en-projects.html", "app-manu-en-khanun.html": "en-projects.html"}
-EN_NAAR_NL = {"en-website-design.html": "website-laten-maken.html", "en-app-development.html": "app-laten-maken-kosten.html", "en-projects.html": "apps.html", "en-lubbyc-privacy.html": "app-lubbyc.html"}
+              "apps.html": "en-projects.html", "app-lubbyc.html": "en-projects.html", "app-koffer-vol.html": "en-projects.html", "app-eiland-express.html": "en-projects.html", "app-manu-en-khanun.html": "en-projects.html", "chatbot-laten-maken.html": "en-ai-chatbot.html", "ai-automatisering.html": "en-ai-chatbot.html"}
+EN_NAAR_NL = {"en-website-design.html": "website-laten-maken.html", "en-app-development.html": "app-laten-maken-kosten.html", "en-projects.html": "apps.html", "en-lubbyc-privacy.html": "app-lubbyc.html", "en-ai-chatbot.html": "chatbot-laten-maken.html"}
 
 FOOT = {
  "nl": {"tag": "Websites, apps, games en AI-automatisering voor ondernemers in Nederland, België en daarbuiten. Vaste prijs vooraf.",
@@ -131,7 +131,7 @@ FOOT = {
                 ("Contact", [("index.html#contact", "Offerte aanvragen"), ("mailto:" + CONFIG["email"], CONFIG["email"])])],
         "copy": "Alle prijzen zijn eindprijzen: we rekenen geen btw."},
  "en": {"tag": "Websites, apps, games and AI automation for businesses worldwide. Fixed price up front.",
-        "kol": [("Services", [("en-website-design.html", "Website design"), ("en-app-development.html", "App development"), ("en.html#pricing", "Pricing")]),
+        "kol": [("Services", [("en-website-design.html", "Website design"), ("en-app-development.html", "App development"), ("en-ai-chatbot.html", "AI chatbot"), ("en.html#pricing", "Pricing")]),
                 ("More", [("en-projects.html", "Our work"), ("en-lubbyc-privacy.html", "LubbyC privacy")]),
                 ("Contact", [("en.html#contact", "Get a quote"), ("mailto:" + CONFIG["email"], CONFIG["email"])])],
         "copy": "Prices in euros."},
@@ -204,7 +204,7 @@ def page(path, title, desc, body, crumbs=None, extra_ld=None, extra_head="", lan
     elif lang == "en":
         head.append('</head><body><a class="skip" href="#inhoud">Skip to content</a>')
         header = f'''<header class="top"><div class="wrap">
-<div class="links"><details class="snel"><summary aria-label="Quick menu"><span></span><span></span><span></span></summary><nav class="snel-paneel" aria-label="Quick menu"><a href="en.html">Home</a><a href="en.html#services">Services</a><a href="en.html#pricing">Pricing</a><a href="en-app-development.html">App development</a><a href="en-website-design.html">Website design</a><a href="en-projects.html">Our work</a></nav></details><a class="merk" href="en.html" aria-label="{CONFIG["naam"]}, home">{LOGO}{CONFIG["naam"]}</a></div>
+<div class="links"><details class="snel"><summary aria-label="Quick menu"><span></span><span></span><span></span></summary><nav class="snel-paneel" aria-label="Quick menu"><a href="en.html">Home</a><a href="en.html#services">Services</a><a href="en.html#pricing">Pricing</a><a href="en-app-development.html">App development</a><a href="en-website-design.html">Website design</a><a href="en-ai-chatbot.html">AI chatbot</a><a href="en-projects.html">Our work</a></nav></details><a class="merk" href="en.html" aria-label="{CONFIG["naam"]}, home">{LOGO}{CONFIG["naam"]}</a></div>
 <nav class="menu" aria-label="Main menu"><a href="en.html#services">Services</a><a href="en.html#pricing">Pricing</a><a href="en-projects.html">Our work</a>{taal_menu}<a class="knop" href="en.html#contact"><span class="lang">Get a quote</span><span class="kort">Quote</span></a></nav>
 </div></header>'''
     else:
@@ -599,7 +599,7 @@ def schrijf_kennis():
     r.append("## Wat we niet doen\nGrote 3D-games en online multiplayer-games. Topposities in Google garanderen. Juridisch of financieel advies.")
     r.append("## Pagina's\nNederlands: index.html (start, met contactformulier op index.html#contact), website-laten-maken.html, goedkope-website-laten-maken.html, webshop-laten-maken.html, website-laten-maken-horeca.html, "
              "app-laten-maken-kosten.html, mvp-app-laten-maken.html, game-laten-maken.html, ai-automatisering.html, chatbot-laten-maken.html, apps.html, artikelen.html, privacy.html.\n"
-             "Engels: en.html (contact op en.html#contact), en-website-design.html, en-app-development.html, en-projects.html. Duits: de.html, Frans: fr.html, Spaans: es.html, Thai: th.html, Birmaans: my.html.")
+             "Engels: en.html (contact op en.html#contact), en-website-design.html, en-app-development.html, en-ai-chatbot.html, en-projects.html. Duits: de.html, Frans: fr.html, Spaans: es.html, Thai: th.html, Birmaans: my.html.")
     tekst = "\n\n".join(r)
     os.makedirs(os.path.join(ROOT, "chatbot"), exist_ok=True)
     with open(os.path.join(ROOT, "chatbot", "kennis.js"), "w", encoding="utf-8") as f:

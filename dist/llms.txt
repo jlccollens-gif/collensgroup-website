@@ -26,6 +26,7 @@
 - [merkgame-laten-maken-kerst.html](https://collensgroup.com/merkgame-laten-maken-kerst)
 - [en-app-development.html](https://collensgroup.com/en-app-development)
 - [en-website-design.html](https://collensgroup.com/en-website-design)
+- [en-ai-chatbot.html](https://collensgroup.com/en-ai-chatbot)
 - [artikelen.html](https://collensgroup.com/artikelen)
 - [apps.html](https://collensgroup.com/apps)
 - [app-lubbyc.html](https://collensgroup.com/app-lubbyc)
