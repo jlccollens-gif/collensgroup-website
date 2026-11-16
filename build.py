@@ -739,6 +739,7 @@ def build():
     for n in ("site.css", "og.png", "_headers", "aceaa1aae33f492c9fc3bb575567f4a2.txt"): shutil.copy(os.path.join(ROOT, "src", n), os.path.join(DIST, n))
     shutil.copytree(os.path.join(ROOT, "src", "img"), os.path.join(DIST, "img"))
     if os.path.isdir(os.path.join(ROOT, "src", "concept")): shutil.copytree(os.path.join(ROOT, "src", "concept"), os.path.join(DIST, "concept"))
+    shutil.copytree(os.path.join(ROOT, "src", "tester"), os.path.join(DIST, "tester"))  # testerpagina + QR (13 talen)
     pages = []
 
     # HOME

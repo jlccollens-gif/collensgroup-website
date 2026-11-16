@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Tester-QR – Collens Group</title>
+<link rel="icon" href="/img/favicon-48.png">
+<style>
+  :root { --ink:#13302B; --cream:#F6F0E6; --gold:#C49A4A; --muted:#5E6B66; --line:#E6DCCB; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--cream); color:var(--ink); font:16px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Noto Sans Thai", "Noto Sans Myanmar", sans-serif; }
+  .wrap { max-width:520px; margin:0 auto; padding:16px 16px 32px; }
+  .top { display:flex; align-items:center; justify-content:space-between; }
+  .top img { height:30px; }
+  .klein { color:var(--muted); font-size:14px; }
+  .talen { display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin:14px 0 18px; }
+  .talen button { font:inherit; font-size:14px; padding:10px 6px; border-radius:12px; border:1.5px solid var(--line); background:#fff; color:var(--ink); cursor:pointer; }
+  .talen button.aan { border-color:var(--ink); background:var(--ink); color:#fff; font-weight:700; }
+  .kaart { background:#fff; border-radius:24px; padding:22px 18px; text-align:center; border:1px solid var(--line); }
+  .kaart h1 { font-family:Georgia, "Times New Roman", serif; font-weight:400; font-size:28px; line-height:1.15; margin:0 0 6px; }
+  .kaart .sub { color:var(--muted); margin:0 0 14px; font-size:15px; }
+  #qr { display:flex; justify-content:center; }
+  #qr img, #qr svg { width:min(78vw, 340px); height:auto; image-rendering:pixelated; }
+  .apps { display:flex; justify-content:center; gap:10px; margin-top:12px; color:var(--muted); font-size:14px; align-items:center; }
+  .apps img { width:26px; height:26px; border-radius:7px; }
+  .acties { display:flex; gap:8px; margin-top:16px; }
+  .acties button, .acties a { flex:1; font:inherit; font-weight:700; text-align:center; text-decoration:none; padding:13px 10px; border-radius:14px; border:1.5px solid var(--ink); background:#fff; color:var(--ink); cursor:pointer; }
+  .acties .vol { background:var(--ink); color:#fff; }
+  .link { word-break:break-all; font-size:12px; color:var(--muted); margin-top:10px; }
+  body.groot .talen, body.groot .top, body.groot .acties, body.groot .uitleg { display:none; }
+  body.groot .kaart { border:none; margin-top:8vh; }
+  body.groot #qr img, body.groot #qr svg { width:min(88vw, 70vh); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><img src="/img/collens-group-logo.png" alt="Collens Group"><span class="klein">Tester-QR</span></div>
+  <p class="klein uitleg" id="kies"></p>
+  <div class="talen" id="talen"></div>
+  <div class="kaart" id="kaart">
+    <h1 id="scan"></h1>
+    <p class="sub" id="sub"></p>
+    <div id="qr"></div>
+    <div class="apps"><img src="/img/lubbyc-icon.png" alt="">LubbyC · <img src="/img/koffervol-icon.png" alt="">Koffer Vol!</div>
+    <div class="link" id="link"></div>
+  </div>
+  <div class="acties">
+    <button class="vol" id="groot">⛶ Groot tonen</button>
+    <a id="download" download="collens-tester-qr.png">⬇ Opslaan</a>
+  </div>
+  <p class="klein uitleg" style="margin-top:14px">Tip: tik op de QR (of "Groot tonen") om hem schermvullend te laten zien. Tik nog eens om terug te gaan.</p>
+</div>
+<script src="qrcode.js"></script>
+<script src="talen.js"></script>
+<script>
+(function () {
+  var T = window.TESTER_TALEN, V = window.TESTER_VOLGORDE;
+  var huidig = 'nl';
+  try { var b = localStorage.getItem('tester-qr-taal'); if (b && T[b]) huidig = b; } catch (e) {}
+  var box = document.getElementById('talen');
+  V.forEach(function (k) {
+    var bt = document.createElement('button'); bt.type = 'button'; bt.dataset.k = k; bt.textContent = T[k].vlag + ' ' + T[k].naam;
+    bt.addEventListener('click', function () { zet(k); }); box.appendChild(bt);
+  });
+  function zet(k) {
+    huidig = k; var t = T[k];
+    try { localStorage.setItem('tester-qr-taal', k); } catch (e) {}
+    box.querySelectorAll('button').forEach(function (b) { b.classList.toggle('aan', b.dataset.k === k); });
+    var url = 'https://collensgroup.com/tester/?l=' + k;
+    var q = qrcode(0, 'M'); q.addData(url); q.make();
+    document.getElementById('qr').innerHTML = q.createSvgTag({ cellSize: 8, margin: 2, scalable: true });
+    var dl = document.getElementById('download');
+    dl.href = q.createDataURL(12, 4); dl.download = 'collens-tester-qr-' + k + '.gif';
+    document.getElementById('scan').textContent = t.scan;
+    document.getElementById('sub').textContent = t.titel;
+    document.getElementById('link').textContent = url;
+    document.getElementById('kies').textContent = T.nl.kies + ' · ' + T.en.kies;
+    document.getElementById('kaart').lang = k;
+  }
+  function groot() { document.body.classList.toggle('groot'); }
+  document.getElementById('groot').addEventListener('click', groot);
+  document.getElementById('qr').addEventListener('click', groot);
+  zet(huidig);
+})();
+</script>
+</body>
+</html>
