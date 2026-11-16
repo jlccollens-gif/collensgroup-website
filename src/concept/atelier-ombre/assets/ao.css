@@ -307,3 +307,29 @@ input[type=radio],input[type=checkbox]{accent-color:var(--grafiet)}
 .betaal input[type=radio]{width:auto!important;min-height:0!important;padding:0!important;flex:none}
 .form input[type=checkbox]{width:auto!important;min-height:0!important;padding:0!important;flex:none;margin-top:5px}
 .form .check{display:flex!important;flex-direction:row!important;gap:10px;align-items:flex-start}
+/* ===== bestellingen: volgpagina + bestelbalie ===== */
+.fout{color:var(--ossenbloed);margin:0;font-size:14px}.fout:empty{display:none}
+.tijdlijn{list-style:none;margin:28px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:0;counter-reset:t}
+.tijdlijn li{position:relative;padding:30px 12px 0 0;border-top:2px solid var(--gips);display:grid;gap:4px;font-size:15px;counter-increment:t}
+.tijdlijn li::before{content:"";position:absolute;left:0;top:-8px;width:14px;height:14px;border-radius:50%;background:var(--kalk);border:2px solid var(--gips)}
+.tijdlijn li.klaar{border-top-color:var(--grafiet)}.tijdlijn li.klaar::before{background:var(--grafiet);border-color:var(--grafiet)}
+.tijdlijn li.nu::before{box-shadow:0 0 0 5px rgba(107,30,35,.18);background:var(--ossenbloed);border-color:var(--ossenbloed)}
+.tijdlijn li:not(.klaar) b{color:var(--steen);font-weight:500}
+.melding-ombre{background:var(--wit);border-left:3px solid var(--ossenbloed);padding:14px 16px}
+.balie-vak{max-width:440px;background:var(--wit);padding:28px}.balie-vak h3{font-size:28px}
+.balie-kop{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-bottom:18px;font-size:15px}
+.balie-kop .link,.balie-knoppen .link{background:none;border:0;border-bottom:1px solid currentColor;padding:0;font:inherit;font-weight:500}
+.balie-order{background:var(--wit);border:1px solid var(--lijn);border-left:3px solid var(--grafiet);margin-bottom:18px}
+.balie-order.st-betaald{border-left-color:var(--ossenbloed)}.balie-order.st-geannuleerd{opacity:.6;border-left-color:var(--steen)}
+.balie-order header{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:16px 22px;border-bottom:1px solid var(--lijn)}
+.balie-order header .tot{margin-left:auto;font-family:var(--display);font-size:22px;font-weight:400}
+.tag{font-size:11.5px;padding:2px 8px;border:1px solid var(--steen);color:var(--steen)}
+.pil{font-size:12.5px;padding:3px 10px;background:var(--grafiet);color:var(--wit)}.st-betaald .pil{background:var(--ossenbloed)}
+.balie-raster{display:grid;grid-template-columns:1fr 1.3fr 1.4fr;gap:28px;padding:20px 22px 22px}
+.balie-raster h4{font-size:13px;font-weight:600;margin:0 0 10px;color:var(--steen)}
+.balie-raster pre{font:inherit;font-size:15px;line-height:1.55;margin:0 0 10px;white-space:pre-wrap}
+.balie-regels{list-style:none;margin:0;padding:0;font-size:14.5px}
+.balie-regels li{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px solid var(--lijn)}.balie-regels li>span:last-child{text-align:right;white-space:nowrap}
+.balie-form{margin:0;gap:10px}.balie-form input,.balie-form select{min-height:40px;padding:6px 10px}
+.balie-knoppen{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.balie-knoppen .knop{min-height:42px;padding:0 18px}
+@media (max-width:1000px){.balie-raster{grid-template-columns:1fr}.tijdlijn{grid-template-columns:1fr;border-left:2px solid var(--gips);margin-left:7px}.tijdlijn li{border-top:0;padding:0 0 22px 24px}.tijdlijn li::before{left:-8px;top:2px}.tijdlijn li.klaar{border-left:2px solid var(--grafiet);margin-left:-2px}}

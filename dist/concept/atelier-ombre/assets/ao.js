@@ -25,22 +25,31 @@
     { id: "drie-objecten", n: "Drie objecten", m: "onbekend", j: "ca. 1985", c: "vondsten", p: 195, mat: "Travertin en steengoed, set van drie", d: "H 9 tot 26 cm", img: "w-stilleven", l: "Vondst", model: "i", kost: 60, lv: 15, t: "Een blok travertin met twee flessen in roze en ivoor. Samen een stilleven, los mooi op een plank." }
   ];
 
-  /* Huis & Beeld: echte producten van ontwerpmerken. p = voorstel verkoopprijs; ref + bron = prijs elders; maker = productpagina bij het merk */
+  /* Huis & Beeld: echte producten van ontwerpmerken. p = verkoopprijs */
   var H = [
-    { id: "beer-mozaiek-klein", n: "Beer zilver mozaïek, klein", merk: "Richmond Interiors", c: "beelden", p: 329, b: 32.5, h: 70, d: "H 70 × B 32,5 × D 25,5 cm", mat: "Polyresin met handgesneden mozaïekglas", kleur: "#B7BBC0", ref: "£ 282 bij Olivia's (VK)", bron: "https://olivias.com/products/richmond-interiors-decorative-bear-small", maker: "https://richmondinteriors.nl/en/producten/decoratief-object-bear-silver-small/", r: "r" },
-    { id: "beer-mozaiek-groot", n: "Beer zilver mozaïek, groot", merk: "Richmond Interiors", c: "beelden", p: 649, b: 46, h: 101, d: "H 101 × B 46 × D 34 cm", mat: "Polyresin met handgesneden mozaïekglas", kleur: "#B7BBC0", ref: "£ 407 in de aanbieding (normaal £ 679) bij Olivia's (VK)", bron: "https://olivias.com/products/richmond-interiors-decorative-bear-large", maker: "https://richmondinteriors.nl/en/producten/decoratief-object-bear-silver-large/", r: "r" },
-    { id: "aap-goud", n: "Aap goud", merk: "Richmond Interiors", c: "beelden", p: 89, b: 21.5, h: 25, d: "H 25 × B 21,5 × D 17 cm", mat: "Polyresin, goud afgewerkt", kleur: "#C9A24A", ref: "£ 71 bij Olivia's (VK)", bron: "https://olivias.com/products/richmond-monkey-gold-ornament", maker: "https://richmondinteriors.nl/en/producten/decoratief-object-monkey-gold/", r: "r" },
-    { id: "beer-berlyn", n: "Beer Berlyn, parelmoerwit", merk: "Richmond Interiors", c: "beelden", p: 39, b: 11, h: 19, d: "H 19 × B 11 × D 9 cm", mat: "Glanzend wit met regenboogglans", kleur: "#EEEBE4", ref: "£ 31 bij Belgica Furniture (VK)", bron: "https://www.belgicafurniture.com/berlyn-decorative-object-white/p55638", maker: "https://richmondinteriors.nl/en/producten/decoratief-object-berlyn-white/", r: "r" },
-    { id: "beer-ave", n: "Beer Ave, wit en goud", merk: "Richmond Interiors", c: "beelden", p: 49, b: 14, h: 29, d: "H 29 × B 14 × D 9 cm", mat: "Polyresin, glanzend wit met gouden accenten", kleur: "#F3F1EC", ref: "$ 155 bij Oroa (VS); £ 41 bij Belgica Furniture (VK)", bron: "https://oroa.com/products/white-bear-decorative-object-richmond-interiors-ave", maker: "", r: "r" },
-    { id: "swirl-messing", n: "Swirl, antiek messing", merk: "Richmond Interiors", c: "beelden", p: 119, b: 27, h: 46, d: "H 46 × B 27 × D 10 cm", mat: "Afwerking antiek messing", kleur: "#A88A52", ref: "vanaf £ 95 bij Olivia's (VK)", bron: "https://olivias.com/products/swirl-decorative-object-antique-brass", maker: "https://richmondinteriors.nl/en/producten/decoratief-object-swirl-brass-antique/", r: "r" },
-    { id: "ptmd-vrouw", n: "Beeld Vrouw, zwart", merk: "PTMD", c: "beelden", p: 69, b: 25, h: 90, d: "H 90 × B 25 × D 27 cm", mat: "Cement, diepzwart", kleur: "#2A2A2C", ref: "€ 64 bij Yellow Webshop", bron: "https://www.yellowwebshop.com/en/go/product/159626762", maker: "", r: "p" },
-    { id: "pt-imagine", n: "Figuur Imagine, zwart", merk: "Present Time", c: "beelden", p: 24.95, b: 12.5, h: 23.5, d: "H 23,5 × B 12,5 cm", mat: "Polyresin", kleur: "#26272A", ref: "€ 20,90 adviesprijs bij Galaxus", bron: "https://www.galaxus.nl/en/s14/product/present-time-imagine-decorative-figurines-and-sculptures-43106319", maker: "", r: "g" },
-    { id: "ptmd-darina", n: "Wandpaneel Darina, grote golf brons", merk: "PTMD", c: "wand", p: 159, b: 120, h: 120, d: "120 × 120 cm", mat: "Wandpaneel met golfmotief, bronskleur", kleur: "#8C6A45", ref: "€ 149 in de aanbieding (normaal € 299) bij Otto (DE)", bron: "https://www.otto.de/dekoration/?marke=ptmd", maker: "", r: "p" },
-    { id: "ptmd-salima", n: "Wandpaneel Salima, gesneden bloem", merk: "PTMD", c: "wand", p: 135, b: 90, h: 90, d: "90 × 90 cm", mat: "Wandpaneel, gesneden bloemmotief", kleur: "#CFC6B6", ref: "€ 129 in de aanbieding (normaal € 219) bij Otto (DE)", bron: "https://www.otto.de/dekoration/?marke=ptmd", maker: "", r: "p" },
-    { id: "canvas-warme-tinten", n: "Canvas Abstracte vormen, warme tinten", merk: "De Wanddecoratie", c: "wand", p: 84.95, b: 80, h: 120, d: "80 × 120 cm", mat: "Canvas op frame van FSC/PEFC-hout, 1,8 cm", kleur: "#C98E5E", ref: "adviesprijs € 89,95 bij bol", bron: "https://www.bol.com/be/nl/p/abstracte-vormen-met-warme-tinten-abstract-wanddecoratie-muurkunst-vormen-abstracte-kunst-muurdecoratie-kinderkamer-decoratie-woonkamer-canvas-80x120-cm/9300000231539889/", maker: "", r: "w" }
+    { id: "beer-mozaiek-klein", n: "Beer zilver mozaïek, klein", merk: "Richmond Interiors", c: "beelden", p: 329, b: 32.5, h: 70, d: "H 70 × B 32,5 × D 25,5 cm", mat: "Polyresin met handgesneden mozaïekglas", kleur: "#B7BBC0", r: "r" },
+    { id: "beer-mozaiek-groot", n: "Beer zilver mozaïek, groot", merk: "Richmond Interiors", c: "beelden", p: 649, b: 46, h: 101, d: "H 101 × B 46 × D 34 cm", mat: "Polyresin met handgesneden mozaïekglas", kleur: "#B7BBC0", r: "r" },
+    { id: "aap-goud", n: "Aap goud", merk: "Richmond Interiors", c: "beelden", p: 89, b: 21.5, h: 25, d: "H 25 × B 21,5 × D 17 cm", mat: "Polyresin, goud afgewerkt", kleur: "#C9A24A", r: "r" },
+    { id: "beer-berlyn", n: "Beer Berlyn, parelmoerwit", merk: "Richmond Interiors", c: "beelden", p: 39, b: 11, h: 19, d: "H 19 × B 11 × D 9 cm", mat: "Glanzend wit met regenboogglans", kleur: "#EEEBE4", r: "r" },
+    { id: "beer-ave", n: "Beer Ave, wit en goud", merk: "Richmond Interiors", c: "beelden", p: 49, b: 14, h: 29, d: "H 29 × B 14 × D 9 cm", mat: "Polyresin, glanzend wit met gouden accenten", kleur: "#F3F1EC", r: "r" },
+    { id: "swirl-messing", n: "Swirl, antiek messing", merk: "Richmond Interiors", c: "beelden", p: 119, b: 27, h: 46, d: "H 46 × B 27 × D 10 cm", mat: "Afwerking antiek messing", kleur: "#A88A52", r: "r" },
+    { id: "ptmd-vrouw", n: "Beeld Vrouw, zwart", merk: "PTMD", c: "beelden", p: 69, b: 25, h: 90, d: "H 90 × B 25 × D 27 cm", mat: "Cement, diepzwart", kleur: "#2A2A2C", r: "p" },
+    { id: "pt-imagine", n: "Figuur Imagine, zwart", merk: "Present Time", c: "beelden", p: 24.95, b: 12.5, h: 23.5, d: "H 23,5 × B 12,5 cm", mat: "Polyresin", kleur: "#26272A", r: "g" },
+    { id: "ptmd-darina", n: "Wandpaneel Darina, grote golf brons", merk: "PTMD", c: "wand", p: 159, b: 120, h: 120, d: "120 × 120 cm", mat: "Wandpaneel met golfmotief, bronskleur", kleur: "#8C6A45", r: "p" },
+    { id: "ptmd-salima", n: "Wandpaneel Salima, gesneden bloem", merk: "PTMD", c: "wand", p: 135, b: 90, h: 90, d: "90 × 90 cm", mat: "Wandpaneel, gesneden bloemmotief", kleur: "#CFC6B6", r: "p" },
+    { id: "canvas-warme-tinten", n: "Canvas Abstracte vormen, warme tinten", merk: "De Wanddecoratie", c: "wand", p: 84.95, b: 80, h: 120, d: "80 × 120 cm", mat: "Canvas op frame van FSC/PEFC-hout, 1,8 cm", kleur: "#C98E5E", r: "w" }
   ];
   H.forEach(function (x) { x.huis = 1; });
   var ROUTE = { p: "Droppery (dropshipping)", r: "Dealeraccount Richmond", g: "Groothandel, navragen", w: "Rechtstreeks, navragen" };
+  var API = "https://eyrfizayagcwaxbxyeuh.supabase.co/functions/v1/ombre-order";
+  function api(data) {
+    return fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok) { var e = new Error(j.fout || "Er ging iets mis. Probeer het opnieuw."); e.code = r.status; throw e; } return j; }); },
+        function () { throw new Error("Geen verbinding. Controleer je internet en probeer het opnieuw."); });
+  }
+  var DATUM = function (t) { try { return new Date(t).toLocaleString("nl-NL", { day: "numeric", month: "long", hour: "2-digit", minute: "2-digit" }); } catch (e) { return ""; } };
+  var VOLG = ["betaald", "besteld", "verzonden", "geleverd"];
+  var VOLGNAAM = { betaald: "Betaald", besteld: "Besteld bij de maker", verzonden: "Verzonden", geleverd: "Geleverd", geannuleerd: "Geannuleerd" };
   var GRATIS = 250, VERZEND = 14.95, BETAAL = 0.29, COMMISSIE = 0.4;
   var MUUR = { b: 2000, h: 2933, cm: 2000 / 184, onder: 1660, midden: 1100 }; /* bank op de foto is ca. 184 cm breed */
   var mb = function (b) { return 'src="img/' + b + '-m.jpg" srcset="img/' + b + '-m.jpg 1080w, img/' + b + '.jpg 1800w" sizes="(max-width:700px) 50vw, 25vw"'; };
@@ -114,7 +123,7 @@
   }
   function huisKaart(x) {
     return '<article class="ding">' + schaal(x) + '<div class="bordje"><span class="wie">' + x.merk + '</span><br><span class="wat">' + esc(x.n) + '</span>' +
-      '<div class="mat">' + esc(x.mat) + "<br>" + x.d + '</div><div class="prijs"><span>' + prijsMooi(x.p) + '</span><a class="concept-bron" href="' + (x.maker || x.bron) + '" target="_blank" rel="noopener">Bron</a></div></div>' +
+      '<div class="mat">' + esc(x.mat) + "<br>" + x.d + '</div><div class="prijs"><span>' + prijsMooi(x.p) + '</span></div></div>' +
       '<button class="koop" type="button" data-koop="' + x.id + '">In winkelmand</button></article>';
   }
 
@@ -350,10 +359,13 @@
       var f = this, fout = $$("[required]", f).filter(function (i) { return i.type === "checkbox" ? !i.checked : (!i.value.trim() || !i.checkValidity()); })[0];
       if (!mand().length) { $("#fout").textContent = "Je winkelmand is leeg. Kies eerst een werk."; return; }
       if (fout) { $("#fout").textContent = "Vul de verplichte velden in (met *)."; fout.focus(); return; }
-      var nr = "AO-" + (1000 + Math.floor(Math.random() * 9000));
-      zetMand([]);
-      $("#afreken").innerHTML = '<div class="tekst" style="padding:0"><div class="stappen"><span>1. Gegevens</span><span>2. Betalen</span><b>3. Bevestiging</b></div><h2>Dank je wel voor je bestelling</h2><p>Je bestelnummer is <b>' + nr + "</b>. Het atelier pakt je werk zorgvuldig in; je ontvangt de track-and-trace en het certificaat per e-mail.</p><p class=\"klein\">Concept: er is niets echt besteld of betaald.</p><a class=\"knop\" href=\"collectie.html\">Verder kijken</a></div>";
-      window.scrollTo(0, 0);
+      var v = function (n) { var el = f.querySelector('[name="' + n + '"]'); return el ? el.value.trim() : ""; };
+      var knop = f.querySelector('button[type=submit]'); knop.disabled = true; knop.textContent = "Bezig met plaatsen…"; $("#fout").textContent = "";
+      api({ actie: "plaats", klant: { naam: v("voornaam") + " " + v("achternaam"), email: v("email"), tel: v("tel"), straat: v("straat"), huisnummer: v("huisnummer"), postcode: v("postcode"), plaats: v("plaats"), land: v("land") },
+        regels: mand().map(function (r) { return { id: r.id, aantal: r.a }; }), betaalmethode: (f.querySelector('[name=betaal]:checked') || {}).value }).then(function (d) {
+        var mijn = lees("bestellingen", []); mijn.unshift({ nr: d.nr, t: d.token }); bewaar("bestellingen", mijn.slice(0, 10));
+        zetMand([]); location.href = "bestelling.html?nr=" + encodeURIComponent(d.nr) + "&t=" + encodeURIComponent(d.token) + "&nieuw=1";
+      }).catch(function (err) { knop.disabled = false; knop.textContent = "Doorgaan naar veilig betalen"; $("#fout").textContent = err.message; });
     });
   }
 
@@ -393,15 +405,96 @@
     });
     reken();
     $("#huis-tabel tbody").innerHTML = H.map(function (x) {
-      return "<tr><td>" + esc(x.n) + '<br><span class="klein">' + x.d + "</span></td><td>" + x.merk + '</td><td><a class="link" href="' + x.bron + '" target="_blank" rel="noopener">' + esc(x.ref) + "</a></td><td>" + prijsMooi(x.p) + "</td><td>" + ROUTE[x.r] + "</td><td>" + (x.maker ? '<a class="link" href="' + x.maker + '" target="_blank" rel="noopener">Productpagina</a>' : '<span class="klein">via bron</span>') + "</td></tr>";
+      return "<tr><td>" + esc(x.n) + '<br><span class="klein">' + x.d + "</span></td><td>" + x.merk + "</td><td>" + prijsMooi(x.p) + "</td><td>" + ROUTE[x.r] + "</td></tr>";
     }).join("");
-    var STAP = ["Betaald", "Doorgestuurd", "Onderweg", "Geleverd"];
-    var orders = [["AO-2481", "rustende-beer", 4, "Eigen voorraad, verzonden met PostNL verzekerd"], ["AO-2479", "terra", 3, "Drukker print en verzendt rechtstreeks"], ["AO-2476", "wit-ii", 2, "Kunstkoerier haalt op bij het atelier van Ines Vaerman"], ["AO-2475", "danser", 1, "Atelier Ruys ontvangt de bestelling"]];
-    $("#orders").innerHTML = orders.map(function (o) {
-      var x = vind(o[1]);
-      return '<div class="order"><b>' + o[0] + "</b><div><i>" + esc(x.n) + "</i> · " + euro(x.p) + '<br><span class="klein">' + o[3] + '</span></div><div><div class="status" aria-label="Status: ' + STAP[o[2] - 1] + '">' + STAP.map(function (s, i) { return '<i class="' + (i < o[2] ? "ja" : "") + '"></i>'; }).join("") + '</div><span class="klein">' + STAP[o[2] - 1] + "</span></div></div>";
-    }).join("");
+    balie();
   }
+
+  /* volgpagina */
+  function tijdlijn(o) {
+    var log = {}; (o.log || []).forEach(function (l) { log[l.status] = l.tijd; });
+    if (o.status === "geannuleerd") return '<p class="melding-ombre">Deze bestelling is geannuleerd. Het bedrag wordt teruggestort.</p>';
+    var hier = VOLG.indexOf(o.status);
+    return '<ol class="tijdlijn">' + VOLG.map(function (st, i) {
+      return '<li class="' + (i <= hier ? "klaar" : "") + (i === hier ? " nu" : "") + '"><b>' + VOLGNAAM[st] + "</b>" + (log[st] ? '<span class="klein">' + DATUM(log[st]) + "</span>" : "") +
+        (st === "verzonden" && o.track_trace && i <= hier ? '<span class="klein">' + esc(o.vervoerder || "Vervoerder") + ": " + esc(o.track_trace) + "</span>" : "") + "</li>";
+    }).join("") + "</ol>";
+  }
+  if (pag === "bestelling") {
+    var nr = url.get("nr"), tk = url.get("t");
+    if (!nr || !tk) { var m0 = lees("bestellingen", [])[0]; if (m0) { nr = m0.nr; tk = m0.t; } }
+    if (!nr) $("#volg").innerHTML = '<p>Er is nog geen bestelling op dit apparaat. Je vindt de volglink ook in je bevestigingsmail.</p><a class="knop" href="collectie.html">Naar de collectie</a>';
+    else api({ actie: "status", nr: nr, token: tk }).then(function (o) {
+      $("#volg").innerHTML = (url.get("nieuw") ? '<h2>Dank je wel voor je bestelling</h2><p>We hebben je bestelling en betaling ontvangen. De maker verzendt hem rechtstreeks naar je toe; zodra hij onderweg is, zie je hier de track-and-trace. Bewaar deze pagina: hij laat altijd de actuele status zien.</p>' : "<h2>Status van je bestelling</h2>") +
+        '<p class="klein">Bestelnummer <b>' + esc(o.nr) + "</b> · geplaatst op " + DATUM(o.created_at) + "</p>" + tijdlijn(o) +
+        '<div class="samenvatting" style="position:static;margin-top:28px">' + o.regels.map(function (r) { return '<div class="rij"><span>' + (r.aantal > 1 ? r.aantal + " × " : "") + "<i>" + esc(r.naam) + "</i>, " + esc(r.maker) + "</span><span>" + euro(r.prijs * r.aantal) + "</span></div>"; }).join("") +
+        '<div class="rij"><span>Verzekerde verzending</span><span>' + (+o.verzending ? euro(+o.verzending) : "Gratis") + '</span></div><div class="rij totaal"><span>Totaal</span><span>' + euro(+o.totaal) + "</span></div></div>" +
+        (o.test ? '<p class="noot">Testbestelling vanuit het concept: er is niet betaald en er wordt niets verzonden.</p>' : "") +
+        '<p style="margin-top:24px"><a class="link" href="service.html#contact">Vraag over je bestelling?</a></p>';
+    }).catch(function (e) { $("#volg").innerHTML = "<p>" + esc(e.message) + '</p><a class="link" href="service.html#contact">Neem contact op</a>'; });
+  }
+
+  /* bestelbalie (beheer) */
+  function balie() {
+    var el = $("#balie"); if (!el) return;
+    var code = url.get("setup"), sessie = lees("sessie", "");
+    if (code) {
+      el.innerHTML = '<form class="form balie-vak" id="setup"><h3>Beheer instellen</h3><p class="klein">Kies je eigen wachtwoord voor de bestelbalie. Alleen jij kent het; het wordt versleuteld opgeslagen.</p><label>Nieuw wachtwoord (minstens 10 tekens)<input type="password" name="pw" autocomplete="new-password" required minlength="10"></label><label>Herhaal wachtwoord<input type="password" name="pw2" autocomplete="new-password" required></label><p class="fout" role="status"></p><button class="knop" type="submit">Wachtwoord instellen</button></form>';
+      $("#setup").addEventListener("submit", function (e) {
+        e.preventDefault(); var f = this, fo = f.querySelector(".fout");
+        if (f.pw.value.length < 10) { fo.textContent = "Kies minstens 10 tekens."; return; }
+        if (f.pw.value !== f.pw2.value) { fo.textContent = "De wachtwoorden zijn niet gelijk."; return; }
+        api({ actie: "setup", code: code, wachtwoord: f.pw.value }).then(function () { history.replaceState(null, "", "beheer.html#bestellingen"); url = new URLSearchParams(""); el.innerHTML = '<p class="bevestig">Je wachtwoord is ingesteld. Log hieronder in.</p>'; setTimeout(balie, 900); }).catch(function (er) { fo.textContent = er.message; });
+      });
+      return;
+    }
+    if (!sessie) {
+      el.innerHTML = '<form class="form balie-vak" id="login"><h3>Inloggen op de bestelbalie</h3><label>Wachtwoord<input type="password" name="pw" autocomplete="current-password" required></label><p class="fout" role="status"></p><button class="knop" type="submit">Inloggen</button></form>';
+      $("#login").addEventListener("submit", function (e) {
+        e.preventDefault(); var f = this, fo = f.querySelector(".fout"); fo.textContent = "";
+        api({ actie: "login", wachtwoord: f.pw.value }).then(function (d) { bewaar("sessie", d.sessie); balie(); }).catch(function (er) { fo.textContent = er.message; });
+      });
+      return;
+    }
+    el.innerHTML = '<p class="leeg">Bestellingen laden…</p>';
+    api({ actie: "lijst", sessie: sessie }).then(function (d) {
+      var o = d.orders, open = o.filter(function (x) { return x.status === "betaald"; }).length;
+      el.innerHTML = '<div class="balie-kop"><span><b>' + o.length + "</b> bestellingen · <b>" + open + '</b> wachten op inkoop</span><span><button class="link" type="button" id="ververs">Vernieuwen</button> · <button class="link" type="button" id="uitlog">Uitloggen</button></span></div>' +
+        (o.length ? o.map(orderKaart).join("") : '<p class="leeg">Nog geen bestellingen.</p>');
+      $("#ververs").addEventListener("click", balie);
+      $("#uitlog").addEventListener("click", function () { bewaar("sessie", ""); balie(); });
+    }).catch(function (er) { if (er.code === 401) { bewaar("sessie", ""); balie(); } else el.innerHTML = '<p class="fout">' + esc(er.message) + "</p>"; });
+  }
+  function orderKaart(o) {
+    var a = o.adres || {}, adres = o.klant_naam + "\n" + a.straat + " " + a.huisnummer + "\n" + a.postcode + " " + a.plaats + "\n" + a.land;
+    var regels = o.regels.map(function (r) {
+      return '<li><span><b>' + (r.aantal > 1 ? r.aantal + " × " : "") + esc(r.naam) + "</b> · " + esc(r.leverancier) + "</span><span>" + euro(r.prijs * r.aantal) +
+        (r.bron ? '<br><a class="link" href="' + esc(r.bron) + '" target="_blank" rel="noopener">Bestel bij verkoper</a>' : '<br><span class="klein">Eigen route</span>') + "</span></li>";
+    }).join("");
+    var vv = ["PostNL", "DHL", "DPD", "GLS", "UPS", "Kunstkoerier", "Anders"];
+    return '<article class="balie-order st-' + o.status + '" data-nr="' + esc(o.nr) + '"><header><b>' + esc(o.nr) + "</b>" + (o.test ? '<span class="tag">Test</span>' : "") + '<span class="pil">' + VOLGNAAM[o.status] + '</span><span class="klein">' + DATUM(o.created_at) + " · " + esc(o.betaalmethode || "") + "</span><b class=\"tot\">" + euro(+o.totaal) + "</b></header>" +
+      '<div class="balie-raster"><div><h4>Afleveradres (adres van de klant)</h4><pre>' + esc(adres) + '</pre><button class="chip" type="button" data-kopieer="' + esc(adres) + '">Kopieer adres</button><p class="klein" style="margin-top:10px">' + esc(o.klant_email) + (o.klant_tel ? " · " + esc(o.klant_tel) : "") + "</p></div>" +
+      "<div><h4>Inkopen</h4><ul class=\"balie-regels\">" + regels + "</ul></div>" +
+      '<div><h4>Verkoper en verzending</h4><form class="form balie-form"><label>Ordernummer bij verkoper<input name="leverancier_ordernr" value="' + esc(o.leverancier_ordernr || "") + '"></label>' +
+      '<div class="twee"><label>Vervoerder<select name="vervoerder"><option value="">Kies</option>' + vv.map(function (x) { return "<option" + (x === o.vervoerder ? " selected" : "") + ">" + x + "</option>"; }).join("") + '</select></label><label>Track-and-trace<input name="track_trace" value="' + esc(o.track_trace || "") + '"></label></div>' +
+      '<label>Notitie<input name="notitie" value="' + esc(o.notitie || "") + '"></label><div class="balie-knoppen">' +
+      (o.status === "betaald" ? '<button class="knop" type="button" data-zet="besteld">Besteld bij verkoper</button>' : "") +
+      (o.status === "besteld" ? '<button class="knop" type="button" data-zet="verzonden">Markeer als verzonden</button>' : "") +
+      (o.status === "verzonden" ? '<button class="knop" type="button" data-zet="geleverd">Markeer als geleverd</button>' : "") +
+      '<button class="knop licht" type="button" data-zet="">Opslaan</button>' + (o.status !== "geannuleerd" && o.status !== "geleverd" ? '<button class="link" type="button" data-zet="geannuleerd">Annuleren</button>' : "") + '</div><p class="fout" role="status"></p></form></div></div></article>';
+  }
+  document.addEventListener("click", function (e) {
+    var k = e.target.closest("[data-kopieer]");
+    if (k) { var t = k.getAttribute("data-kopieer"); (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () { toast("Adres gekopieerd"); }, function () { toast("Kopiëren lukte niet; selecteer het adres handmatig"); }); return; }
+    var z = e.target.closest("[data-zet]"); if (!z) return;
+    var kaart = z.closest(".balie-order"), f = kaart.querySelector("form"), fo = f.querySelector(".fout"), st = z.getAttribute("data-zet");
+    if (st === "verzonden" && !f.track_trace.value.trim()) { fo.textContent = "Vul eerst de track-and-trace in."; f.track_trace.focus(); return; }
+    if (st === "geannuleerd" && !confirm("Deze bestelling annuleren? Vergeet niet het bedrag terug te betalen.")) return;
+    var data = { actie: "update", sessie: lees("sessie", ""), nr: kaart.getAttribute("data-nr"), leverancier_ordernr: f.leverancier_ordernr.value, vervoerder: f.vervoerder.value, track_trace: f.track_trace.value, notitie: f.notitie.value };
+    if (st) data.status = st;
+    z.disabled = true;
+    api(data).then(function () { toast(st ? "Status bijgewerkt: " + VOLGNAAM[st] : "Opgeslagen"); balie(); }).catch(function (er) { z.disabled = false; fo.textContent = er.message; });
+  });
 
   tellers();
 })();

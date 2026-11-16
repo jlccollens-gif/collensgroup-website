@@ -293,22 +293,22 @@ def bouw():
 <div class="wrap"><div class="mand" id="afreken">
  <form class="form" id="bestel" novalidate>
   <div class="stappen"><b>1. Gegevens</b><span>2. Betalen</span><span>3. Bevestiging</span></div>
-  <div class="twee"><label>Voornaam *<input required autocomplete="given-name"></label><label>Achternaam *<input required autocomplete="family-name"></label></div>
-  <div class="twee"><label>E-mailadres *<input type="email" required autocomplete="email"></label><label>Telefoon (voor de kunstkoerier) *<input type="tel" required autocomplete="tel"></label></div>
-  <div class="twee"><label>Postcode *<input required autocomplete="postal-code"></label><label>Huisnummer *<input required></label></div>
-  <div class="twee"><label>Straat *<input required autocomplete="address-line1"></label><label>Plaats *<input required autocomplete="address-level2"></label></div>
-  <label>Land<select autocomplete="country"><option>Nederland</option><option>België</option></select></label>
+  <div class="twee"><label>Voornaam *<input name="voornaam" required autocomplete="given-name"></label><label>Achternaam *<input name="achternaam" required autocomplete="family-name"></label></div>
+  <div class="twee"><label>E-mailadres *<input name="email" type="email" required autocomplete="email"></label><label>Telefoon (voor de bezorger) *<input name="tel" type="tel" required autocomplete="tel"></label></div>
+  <div class="twee"><label>Postcode *<input name="postcode" required autocomplete="postal-code"></label><label>Huisnummer *<input name="huisnummer" required></label></div>
+  <div class="twee"><label>Straat *<input name="straat" required autocomplete="address-line1"></label><label>Plaats *<input name="plaats" required autocomplete="address-level2"></label></div>
+  <label>Land<select name="land" autocomplete="country"><option>Nederland</option><option>België</option></select></label>
   <h2 style="font-size:30px;margin-top:16px">Betaalmethode</h2>
   <div class="betaal" role="radiogroup" aria-label="Betaalmethode">
-   <label><input type="radio" name="betaal" checked><span><b>Creditcard</b><small>Visa, Mastercard, American Express</small></span></label>
-   <label><input type="radio" name="betaal"><span><b>Apple Pay of Google Pay</b><small>Betalen met je telefoon</small></span></label>
-   <label><input type="radio" name="betaal"><span><b>iDEAL</b><small>Via je eigen bank</small></span></label>
+   <label><input type="radio" name="betaal" value="Creditcard" checked><span><b>Creditcard</b><small>Visa, Mastercard, American Express</small></span></label>
+   <label><input type="radio" name="betaal" value="Apple Pay of Google Pay"><span><b>Apple Pay of Google Pay</b><small>Betalen met je telefoon</small></span></label>
+   <label><input type="radio" name="betaal" value="iDEAL"><span><b>iDEAL</b><small>Via je eigen bank</small></span></label>
   </div>
   <p class="veilig"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Je rondt de betaling af op de beveiligde betaalpagina van Stripe, met 3D Secure. Wij zien en bewaren je kaartgegevens nooit.</p>
   <label class="check"><input type="checkbox" required><span>Ik ga akkoord met de <a class="link" href="service.html#voorwaarden">algemene voorwaarden</a> *</span></label>
   <p id="fout" role="status" style="color:var(--ossenbloed);margin:0"></p>
   <button class="knop" type="submit">Doorgaan naar veilig betalen</button>
-  <p class="klein">Concept: er wordt niets echt besteld of betaald.</p>
+  <p class="klein">Concept: dit is een testbestelling. Er wordt niet betaald en er wordt niets verzonden.</p>
  </form>
  <aside class="samenvatting" aria-label="Je bestelling"><h2 style="font-size:30px;margin-bottom:12px">Je bestelling</h2><div id="overzicht"></div></aside>
 </div></div>''')
@@ -328,13 +328,18 @@ def bouw():
   <div class="filters"><span class="aantal-res" id="h-aantal" aria-live="polite"></span><label class="sr" for="h-sorteer">Sorteren</label><select id="h-sorteer"><option value="standaard">Uitgelicht</option><option value="laag">Prijs laag – hoog</option><option value="hoog">Prijs hoog – laag</option><option value="groot">Formaat groot – klein</option></select></div></div>
  <p class="schaaluitleg"><span class="a4" aria-hidden="true"></span>Elk product staat op schaal naast een A4-vel (30 cm), zodat je direct ziet hoe groot het is.</p>
  <div class="dingen" id="h-grid"></div>
- <p class="noot">Echte producten van Richmond Interiors, PTMD, Present Time en De Wanddecoratie. Prijzen zijn een voorstel; de definitieve prijs volgt zodra de inkoopprijs bekend is. Productfoto's van de merken komen erbij na aansluiting als verkooppunt. De bronlinks zijn alleen zichtbaar in dit concept.</p>
+ <p class="noot">Echte producten van Richmond Interiors, PTMD, Present Time en De Wanddecoratie. Prijzen zijn een voorstel; de definitieve prijs volgt zodra de inkoopprijs bekend is. Productfoto's van de merken komen erbij na aansluiting als verkooppunt.</p>
 </div></section>
 <section class="belofte-huis"><div class="wrap"><ul>
  <li><b>Ontwerpmerken uit Nederland</b>Eigen ontwerpen, geen namaak.</li>
  <li><b>Snel in huis</b>Rechtstreeks uit het magazijn van de maker.</li>
  <li><b>14 dagen bedenktijd</b>Retour aanmelden met één knop.</li>
 </ul></div></section>''')
+
+    # ---------- bestelling (volgpagina) ----------
+    pagina("bestelling.html", "Je bestelling | Atelier Ombre (concept)", "bestelling", "",
+           paginakop("Je bestelling", "", ["<span>Bestelling</span>"]) + '''
+<div class="wrap"><div class="tekst" id="volg" aria-live="polite"><p class="leeg">Bestelling laden…</p></div></div>''')
 
     # ---------- beheer ----------
     pagina("beheer.html", "Beheer | Atelier Ombre (concept)", "beheer", "",
@@ -354,20 +359,27 @@ def bouw():
  <p class="noot">Let op bij de echte start: btw-regeling voor kunst (margeregeling), volgrecht bij doorverkoop van werk van levende kunstenaars en verzekering van voorraad. Dit stemmen we af met een boekhouder.</p>
 </div></section>
 <section><div class="wrap">
- <div class="sectiekop"><div><h2>Huis &amp; Beeld: leveranciers</h2><p>Waar elk product vandaan komt, wat het elders kost en hoe we het inkopen. Alleen merken met eigen ontwerpen.</p></div></div>
+ <div class="sectiekop"><div><h2>Huis &amp; Beeld: leveranciers</h2><p>Waar elk product vandaan komt en hoe we het inkopen. Alleen merken met eigen ontwerpen.</p></div></div>
  <div class="modellen">
   <div><h3>PTMD</h3><p>Nederlands merk met eigen ontwerpstudio. Levert via Droppery rechtstreeks aan de klant van de webshop. Droppery begint bij circa $ 46 per maand.</p></div>
   <div><h3>Richmond Interiors</h3><p>Groothandel uit Heerhugowaard met eigen collectie. Verkoopt alleen via dealers: dealeraccount aanvragen en vragen of zij of Droppery rechtstreeks leveren.</p></div>
   <div><h3>Present Time en De Wanddecoratie</h3><p>Present Time: design-objecten, groothandel navragen. De Wanddecoratie: Nederlandse maker van canvas met FSC/PEFC-hout, samenwerking navragen.</p></div>
  </div>
- <div class="tabelwrap" style="margin-top:28px"><table class="marge" id="huis-tabel"><thead><tr><th>Product</th><th>Merk</th><th>Prijs elders (bron)</th><th>Onze prijs</th><th>Inkoop via</th><th>Bij de maker</th></tr></thead><tbody></tbody></table></div>
+ <div class="tabelwrap" style="margin-top:28px"><table class="marge" id="huis-tabel"><thead><tr><th>Product</th><th>Merk</th><th>Onze prijs</th><th>Inkoop via</th></tr></thead><tbody></tbody></table></div>
  <p class="noot">Inkoopprijzen krijg je pas met een account bij de leverancier. Daarom staat de marge hier nog niet; die rekenen we uit zodra de prijslijsten binnen zijn.</p>
 </div></section>
-<section><div class="wrap">
- <div class="sectiekop"><div><h2>Laatste bestellingen</h2><p>Elke bestelling gaat automatisch naar de juiste partij: atelier, drukker of eigen voorraad.</p></div></div>
- <div id="orders"></div>
- <p class="noot">Voorbeeldbestellingen ter illustratie.</p>
-</div></section>''')
+<section id="bestellingen"><div class="wrap">
+ <div class="sectiekop"><div><h2>Bestellingen</h2><p>De bestelbalie: elke bestelling met alles wat je nodig hebt om hem bij de verkoper te plaatsen, met het adres van de klant als afleveradres.</p></div></div>
+ <ol class="stappen-route" style="margin-bottom:40px">
+  <li><b>Klant bestelt</b>Op Atelier Ombre, tegen jouw prijs met marge.</li>
+  <li><b>Klant betaalt aan Ombre</b>Creditcard, Apple Pay, Google Pay of iDEAL via Stripe.</li>
+  <li><b>Ombre bestelt bij de verkoper</b>Met het adres van de klant als afleveradres.</li>
+  <li><b>Klant krijgt bevestiging</b>Met een volglink naar de status van de bestelling.</li>
+  <li><b>Verkoper verzendt</b>Rechtstreeks naar de klant; jij zet de track-and-trace erbij.</li>
+ </ol>
+ <div id="balie" aria-live="polite"></div>
+ <p class="noot">Fase nu: testbestellingen vanuit dit concept. Zodra de KvK er is, koppelen we echte betalingen (Stripe) en bevestigingsmails.</p>
+</div></div></section>''')
 
 
 if __name__ == "__main__":
