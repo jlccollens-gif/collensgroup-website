@@ -30,6 +30,9 @@ for f in sorted(pages):
         if h.startswith(("http","mailto:","tel:")) or h=="#": continue
         path,_,frag=h.partition("#")
         tgt=path or f
+        # schone URL's (zonder .html) zoals Cloudflare Pages ze serveert
+        if os.path.isdir(os.path.join(D,tgt)): tgt=os.path.join(tgt,"index.html")
+        elif not os.path.exists(os.path.join(D,tgt)) and os.path.exists(os.path.join(D,tgt+".html")): tgt=tgt+".html"
         if not os.path.exists(os.path.join(D,tgt)): fouten.append(f"{f}: kapotte link {h}")
         elif frag:
             t=open(os.path.join(D,tgt),encoding="utf-8").read()

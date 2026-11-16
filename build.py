@@ -2,7 +2,7 @@
 """Collens Group website generator.
 Bewerk CONFIG en APPS, run `python3 build.py`, de site staat in ./dist.
 """
-import json, os, shutil, html, datetime
+import json, os, re, shutil, html, datetime
 from talen import TALEN, taal_paginas
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -987,6 +987,7 @@ def build():
     thais_bijeen(DIST)
     chat_inbouwen()
     webp_varianten(DIST)
+    schone_links(DIST)
 
     # robots, sitemap, llms.txt
     with open(os.path.join(DIST, "robots.txt"), "w") as f:
@@ -1000,6 +1001,25 @@ def build():
                 "## Prijzen (geen btw)\n- Websites: one-page €495, bedrijfswebsite €995, webshop €1.950\n- Games: merkgame €1.950, casual game €4.950, 2D-game met levels €9.950\n- AI: automatisering €395, AI-chatbot €995, AI-assistent €1.950\n- Basis / MVP app: vanaf €3.150, 3–5 weken\n- Standaard app: vanaf €6.750, 6–10 weken\n- Maatwerk / Pro app: vanaf €13.050, 10–16+ weken\n- Uurtarief: €67,50\n- Onderhoud: €85,50 of €265,50 per maand\n\n"
                 "## Pagina's\n" + "".join(f"- [{p}]({abs_url(p) or p})\n" for p in pages))
     print("Gebouwd:", ", ".join(pages))
+
+def schone_links(dist):
+    """Interne links zonder .html: Cloudflare Pages stuurt /x.html met een 308 door naar /x.
+    Zo volgt Google geen omleidingen meer ("Page with redirect" in Search Console)."""
+    pat = re.compile(r'href="(?![a-z]+:|//|#)([^"#?]*?)\.html((?:[?#][^"]*)?)"')
+    def vervang(m):
+        pad, rest = m.group(1), m.group(2)
+        if pad == "index" or pad.endswith("/index"):
+            pad = pad[:-5] or "./"
+        return f'href="{pad}{rest}"'
+    for root, _, files in os.walk(dist):
+        for fn in files:
+            if fn.endswith(".html"):
+                p = os.path.join(root, fn)
+                t = open(p, encoding="utf-8").read()
+                n = pat.sub(vervang, t)
+                if n != t:
+                    open(p, "w", encoding="utf-8").write(n)
+
 
 if __name__ == "__main__":
     build()
