@@ -280,6 +280,7 @@ def contact_section():
 <div class="rij2"><label>Bedrijf (optioneel)<input name="bedrijf" autocomplete="organization"></label>
 <label>Wat wil je laten maken?<select name="pakket"><option>Weet ik nog niet</option><option>App</option><option>Website of webshop</option><option>Game</option><option>AI of automatisering</option></select></label></div>
 <label>Je idee<textarea name="idee" required placeholder="Wat moet de app doen, en voor wie?"></textarea></label>
+<p class="hulp-idee" data-chat-blok hidden><button type="button" class="hulp-knop" data-chat-open data-chat-vraag="Kun je me helpen mijn aanvraag goed te omschrijven?"><svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M10 2l1.6 4.4L16 8l-4.4 1.6L10 14l-1.6-4.4L4 8l4.4-1.6z" fill="currentColor"/></svg>Hulp bij het omschrijven? Laat de adviseur meedenken</button></p>
 <div class="fotos-veld"><label for="fotos">Voorbeelden van je smaak (optioneel)</label>
 <p class="fotos-uitleg">Upload tot 6 foto's of screenshots van websites of apps die je mooi vindt, of je logo en huisstijl. Zo weten we welke stijl je zoekt. We gebruiken ze alleen als inspiratie.</p>
 <input id="fotos" name="fotos" type="file" accept="image/jpeg,image/png,image/webp,image/heic" multiple>
@@ -478,6 +479,8 @@ def app_rijen():
 
 # ---------- English (worldwide) ----------
 EN_CONTACT_MAP = [
+    ("Hulp bij het omschrijven? Laat de adviseur meedenken", "Need help describing it? Let the advisor help"),
+    ("Kun je me helpen mijn aanvraag goed te omschrijven?", "Can you help me describe my request well?"),
     ("Vertel over je app-idee", "Tell us about your project"),
     ("Beschrijf kort wat je wilt bouwen. Je krijgt snel een reactie met een paar korte vragen, en daarna een vaste prijs. Alles per mail, gratis en zonder verplichtingen.",
      "Describe what you want to build. You'll get a quick reply with a few short questions, then a fixed price. All by email, free and without obligation."),

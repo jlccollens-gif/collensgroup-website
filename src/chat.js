@@ -119,8 +119,15 @@
       const d = await r.json().catch(() => ({}));
       wacht.remove();
       if (!r.ok || !d.antwoord) throw new Error(d.fout || r.status);
-      berichten.push({ role: "assistant", content: d.antwoord });
-      bel("bot", d.antwoord);
+      let antw = d.antwoord;
+      const m = antw.match(/\[\[AANVRAAG\]\]([\s\S]*?)\[\[\/AANVRAAG\]\]/);
+      if (m) {
+        const vak = document.querySelector('textarea[name="idee"]');
+        if (vak) { vak.value = m[1].trim(); vak.dispatchEvent(new Event("input", { bubbles: true })); }
+        antw = antw.replace(m[0], vak ? m[1].trim() + "\n\n" + (T.ingevuld || "✓ Ingevuld in het formulier.") : m[1].trim());
+      }
+      berichten.push({ role: "assistant", content: antw });
+      bel("bot", antw);
       if (d.doorgestuurd && !klaar) { klaar = true; bel("bot", T.klaar, "ok"); if (window.goatcounter && goatcounter.count) goatcounter.count({ path: "chat-aanvraag", event: true }); }
       bewaar();
     } catch (_) {
@@ -192,7 +199,7 @@
     teken();
 
     document.querySelectorAll("[data-chat-blok]").forEach(el => { el.hidden = false; });
-    document.querySelectorAll("[data-chat-open]").forEach(el => el.addEventListener("click", ev => { ev.preventDefault(); open(); }));
+    document.querySelectorAll("[data-chat-open]").forEach(el => el.addEventListener("click", ev => { ev.preventDefault(); open(); const v = el.getAttribute("data-chat-vraag"); if (v && !bezig) verstuur(v); }));
   }
 
   function open() { paneel.hidden = false; fab.hidden = true; log.scrollTop = log.scrollHeight; veld.focus(); if (window.goatcounter && goatcounter.count) goatcounter.count({ path: "chat-geopend", event: true }); }
