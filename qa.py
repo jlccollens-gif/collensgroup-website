@@ -47,6 +47,9 @@ for f in sorted(pages):
     if m:
         if m.group(0).count('class="taalkeuze"')!=1: fouten.append(f"{f}: taalknop ontbreekt of dubbel")
     if len(set(p.ids))!=len(p.ids): fouten.append(f"{f}: dubbele id's")
+    # Verboden slogan van de eigenaar (16-11): eigendom alleen feitelijk in een FAQ
+    for slogan in ("alles is van jou","helemaal van jou","volledig van jou","own everything","you own it"):
+        if slogan in src.lower(): fouten.append(f"{f}: verboden slogan '{slogan}'")
 for x in waarsch: print("LET OP:",x)
 for x in fouten: print("FOUT:",x)
 print(f"{len(pages)} pagina's gecontroleerd, {len(fouten)} fouten, {len(waarsch)} aandachtspunten")

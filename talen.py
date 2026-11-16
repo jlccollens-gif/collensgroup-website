@@ -3,7 +3,7 @@
 
 TALEN = {
  "de": {
-  "naam": "Deutsch", "trust": ['Festpreis im Voraus', 'Zuerst ein kostenloses Konzept', 'Code und Design gehören Ihnen'], "og": "de_DE", "skip": "Zum Inhalt", "menu": "Schnellmenü", "hoofdmenu": "Hauptmenü",
+  "naam": "Deutsch", "trust": ['Festpreis im Voraus', 'Zuerst ein kostenloses Konzept', 'Schnell online'], "og": "de_DE", "skip": "Zum Inhalt", "menu": "Schnellmenü", "hoofdmenu": "Hauptmenü",
   "title": "Websites, Apps, Games und KI zu fairen Festpreisen | Collens Group",
   "desc": "Websites ab 495 €, Apps ab 3.150 €, Games ab 1.950 € und KI-Automatisierung ab 395 €. Festpreis und kostenloses Konzept.",
   "nav": [("#leistungen", "Leistungen"), ("#preise", "Preise"), ("en-projects.html", "Projekte")],
@@ -13,7 +13,7 @@ TALEN = {
   "cta1": "Kostenloses Angebot", "cta2": "Unsere Leistungen",
   "s_kop": "Was wir bauen", "s_intro": "Alles Digitale aus einer Hand, zu Festpreisen.",
   "diensten": [("Websites", "One-Page-Website", "ab 495 €"), ("Apps", "iPhone und Android", "ab 3.150 €"), ("Games", "Casual-2D-Games", "ab 1.950 €"), ("KI & Automatisierung", "Chatbots und Workflows", "ab 395 €")],
-  "feiten": [("Festpreis", "Sie kennen den Preis, bevor wir starten. Mehraufwand nur mit Ihrer Zustimmung."), ("Alles gehört Ihnen", "Keine Bindung an eine Plattform. Nach der Zahlung gehört der Code Ihnen."), ("Kostenloses Konzept", "Sehen Sie ein klickbares Konzept, bevor Sie entscheiden."), ("Weltweit, online", "Wir arbeiten per E-Mail und Video, auf Englisch oder Niederländisch.")],
+  "feiten": [("Festpreis", "Sie kennen den Preis, bevor wir starten. Mehraufwand nur mit Ihrer Zustimmung."), ("Schnell", "One-Page-Website in 3–5 Tagen, Automatisierung in 2–5 Tagen, Chatbot in 1 Woche."), ("Kostenloses Konzept", "Sehen Sie ein klickbares Konzept, bevor Sie entscheiden."), ("Weltweit, online", "Wir arbeiten per E-Mail und Video, auf Englisch oder Niederländisch.")],
   "p_kop": "Preise", "p_intro": "Startpreise in Euro. Nach einem kurzen Intake per E-Mail erhalten Sie ein Festpreisangebot.", "klaar": "Fertig in",
   "prijzen": [("Websites", [("One-Page-Website", "495 €", "3–5 Tage"), ("Unternehmenswebsite (bis 6 Seiten)", "995 €", "2–3 Wochen"), ("Onlineshop (bis 50 Produkte)", "1.950 €", "3–5 Wochen")]),
               ("Apps (iOS und Android)", [("Basis / MVP-App (bis 5 Screens)", "3.150 €", "3–5 Wochen"), ("Standard-App (Konten, Datenbank, Push)", "6.750 €", "6–10 Wochen"), ("Individuelle App (Zahlungen, Admin, Rollen)", "13.050 €", "10–16+ Wochen")]),
@@ -37,7 +37,7 @@ TALEN = {
   "footer": "Websites, Apps, Games und KI · weltweit",
  },
  "fr": {
-  "naam": "Français", "trust": ["Prix fixe à l'avance", "D'abord un concept gratuit", 'Le code et le design sont à vous'], "og": "fr_FR", "skip": "Aller au contenu", "menu": "Menu rapide", "hoofdmenu": "Menu principal",
+  "naam": "Français", "trust": ["Prix fixe à l'avance", "D'abord un concept gratuit", 'En ligne rapidement'], "og": "fr_FR", "skip": "Aller au contenu", "menu": "Menu rapide", "hoofdmenu": "Menu principal",
   "title": "Sites web, applis, jeux et IA à prix fixes justes | Collens Group",
   "desc": "Sites web dès 495 €, applis dès 3 150 €, jeux dès 1 950 € et automatisation IA dès 395 €. Prix fixe et concept gratuit.",
   "nav": [("#services", "Services"), ("#tarifs", "Tarifs"), ("en-projects.html", "Projets")],
@@ -47,7 +47,7 @@ TALEN = {
   "cta1": "Devis gratuit", "cta2": "Nos services",
   "s_kop": "Ce que nous créons", "s_intro": "Tout le numérique sous un même toit, à prix fixes.",
   "diensten": [("Sites web", "Site d'une page", "dès 495 €"), ("Applis", "iPhone et Android", "dès 3 150 €"), ("Jeux", "Jeux 2D casual", "dès 1 950 €"), ("IA & automatisation", "Chatbots et workflows", "dès 395 €")],
-  "feiten": [("Prix fixe", "Vous connaissez le prix avant que nous commencions. Travail supplémentaire uniquement avec votre accord."), ("Tout vous appartient", "Aucune dépendance à une plateforme. Après paiement, le code est à vous."), ("Concept gratuit", "Découvrez un concept cliquable avant de décider."), ("Partout, en ligne", "Nous travaillons par e-mail et visio, en anglais ou en néerlandais.")],
+  "feiten": [("Prix fixe", "Vous connaissez le prix avant que nous commencions. Travail supplémentaire uniquement avec votre accord."), ("Rapide", "Site d'une page en 3 à 5 jours, automatisation en 2 à 5 jours, chatbot en 1 semaine."), ("Concept gratuit", "Découvrez un concept cliquable avant de décider."), ("Partout, en ligne", "Nous travaillons par e-mail et visio, en anglais ou en néerlandais.")],
   "p_kop": "Tarifs", "p_intro": "Prix de départ en euros. Après un court échange par e-mail, vous recevez un devis à prix fixe.", "klaar": "Prêt en",
   "prijzen": [("Sites web", [("Site d'une page", "495 €", "3–5 jours"), ("Site d'entreprise (jusqu'à 6 pages)", "995 €", "2–3 semaines"), ("Boutique en ligne (jusqu'à 50 produits)", "1 950 €", "3–5 semaines")]),
               ("Applis (iOS et Android)", [("Appli Basique / MVP (jusqu'à 5 écrans)", "3 150 €", "3–5 semaines"), ("Appli Standard (comptes, base de données, notifications)", "6 750 €", "6–10 semaines"), ("Appli sur mesure (paiements, admin, rôles)", "13 050 €", "10–16+ semaines")]),
@@ -71,7 +71,7 @@ TALEN = {
   "footer": "Sites web, applis, jeux et IA · dans le monde entier",
  },
  "es": {
-  "naam": "Español", "trust": ['Precio fijo por adelantado', 'Primero un concepto gratis', 'El código y el diseño son tuyos'], "og": "es_ES", "skip": "Ir al contenido", "menu": "Menú rápido", "hoofdmenu": "Menú principal",
+  "naam": "Español", "trust": ['Precio fijo por adelantado', 'Primero un concepto gratis', 'Online en poco tiempo'], "og": "es_ES", "skip": "Ir al contenido", "menu": "Menú rápido", "hoofdmenu": "Menú principal",
   "title": "Webs, apps, juegos e IA a precios fijos justos | Collens Group",
   "desc": "Webs desde 495 €, apps desde 3.150 €, juegos desde 1.950 € y automatización con IA desde 395 €. Precio fijo y concepto gratis.",
   "nav": [("#servicios", "Servicios"), ("#precios", "Precios"), ("en-projects.html", "Proyectos")],
@@ -81,7 +81,7 @@ TALEN = {
   "cta1": "Presupuesto gratis", "cta2": "Nuestros servicios",
   "s_kop": "Qué creamos", "s_intro": "Todo lo digital bajo un mismo techo, a precios fijos.",
   "diensten": [("Webs", "Web de una página", "desde 495 €"), ("Apps", "iPhone y Android", "desde 3.150 €"), ("Juegos", "Juegos 2D casuales", "desde 1.950 €"), ("IA y automatización", "Chatbots y flujos de trabajo", "desde 395 €")],
-  "feiten": [("Precio fijo", "Conoces el precio antes de empezar. Trabajo extra solo con tu aprobación."), ("Todo es tuyo", "Sin ataduras a ninguna plataforma. Tras el pago, el código es tuyo."), ("Concepto gratis", "Ve un concepto interactivo antes de decidir."), ("En todo el mundo, online", "Trabajamos por correo y videollamada, en inglés o neerlandés.")],
+  "feiten": [("Precio fijo", "Conoces el precio antes de empezar. Trabajo extra solo con tu aprobación."), ("Rápido", "Web de una página en 3–5 días, automatización en 2–5 días, chatbot en 1 semana."), ("Concepto gratis", "Ve un concepto interactivo antes de decidir."), ("En todo el mundo, online", "Trabajamos por correo y videollamada, en inglés o neerlandés.")],
   "p_kop": "Precios", "p_intro": "Precios de partida en euros. Tras una breve conversación por correo recibes un presupuesto cerrado.", "klaar": "Listo en",
   "prijzen": [("Webs", [("Web de una página", "495 €", "3–5 días"), ("Web de empresa (hasta 6 páginas)", "995 €", "2–3 semanas"), ("Tienda online (hasta 50 productos)", "1.950 €", "3–5 semanas")]),
               ("Apps (iOS y Android)", [("App Básica / MVP (hasta 5 pantallas)", "3.150 €", "3–5 semanas"), ("App Estándar (cuentas, base de datos, notificaciones)", "6.750 €", "6–10 semanas"), ("App a medida (pagos, panel de administración, roles)", "13.050 €", "10–16+ semanas")]),
