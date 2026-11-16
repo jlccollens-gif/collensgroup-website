@@ -178,6 +178,8 @@
     });
   });
 
+  (function () { var k = $(".kopbalk"); if (!k) return; var t = function () { k.classList.toggle("gescrold", scrollY > 8); }; addEventListener("scroll", t, { passive: true }); t(); })();
+
   var pag = document.body.dataset.pagina, url = new URLSearchParams(location.search);
 
   if (pag === "home") {
@@ -187,15 +189,32 @@
     }).join("");
     (function () {
       var n = $("#nacht"); if (!n) return;
-      var stil = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches, laatst = -1e9, t0 = performance.now(), zicht = true;
-      var zet = function (x, y) { n.style.setProperty("--x", x + "%"); n.style.setProperty("--y", y + "%"); };
-      n.addEventListener("pointermove", function (e) { var r = n.getBoundingClientRect(); laatst = performance.now(); zet((e.clientX - r.left) / r.width * 100, (e.clientY - r.top) / r.height * 100); n.classList.add("actief"); });
+      var stil = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+      var aanraak = window.matchMedia && matchMedia("(hover: none)").matches;
+      var tx = 62, ty = 42, cx = 62, cy = 42, laatst = -1e9, zicht = true, tour = 0, tourT = 0;
+      var zet = function (x, y) { n.style.setProperty("--x", x.toFixed(2) + "%"); n.style.setProperty("--y", y.toFixed(2) + "%"); };
+      var naar = function (e) { var r = n.getBoundingClientRect(); tx = (e.clientX - r.left) / r.width * 100; ty = (e.clientY - r.top) / r.height * 100; laatst = performance.now(); n.classList.add("actief"); };
+      var punten = function () {
+        var r = n.getBoundingClientRect();
+        return $$(".nw", n).map(function (w) { var b = w.getBoundingClientRect(); return [(b.left + b.width / 2 - r.left) / r.width * 100, (b.top + b.height / 2 - r.top) / r.height * 100]; })
+          .filter(function (p) { return p[0] > 0 && p[0] < 100 && p[1] > 0 && p[1] < 100; });
+      };
+      n.addEventListener("pointermove", function (e) { if (e.pointerType === "mouse" || e.pointerType === "pen") naar(e); });
+      n.addEventListener("pointerdown", function (e) { if (e.pointerType !== "mouse" && !e.target.closest("a,button")) naar(e); });
       if ("IntersectionObserver" in window) new IntersectionObserver(function (es) { zicht = es[0].isIntersecting; }).observe(n);
-      if (stil) { zet(66, 42); return; }
+      if (stil) { var p0 = punten()[0] || [62, 42]; zet(p0[0], p0[1]); return; }
+      zet(cx, cy);
       (function stap(t) {
-        if (zicht && t - laatst > 2500) { var s2 = (t - t0) / 1000; zet(62 + Math.sin(s2 * 0.45) * 24, 42 + Math.sin(s2 * 0.8 + 1) * 20); }
+        if (zicht) {
+          if (t - laatst > (aanraak ? 4500 : 2600)) {
+            var ps = punten();
+            if (ps.length) { if (t - tourT > 2300) { tour = (tour + 1) % ps.length; tourT = t; } tx = ps[tour][0]; ty = ps[tour][1]; }
+          }
+          var k = t - laatst < 400 ? 0.16 : 0.045;
+          cx += (tx - cx) * k; cy += (ty - cy) * k; zet(cx, cy);
+        }
         requestAnimationFrame(stap);
-      })(t0);
+      })(performance.now());
     })();
     $("#nieuw-grid").innerHTML = ["relief-i", "danser", "zomer-in-rood", "rustende-beer"].map(function (id) { return kaart(vind(id)); }).join("");
     $("#advies-grid").innerHTML = ["terra", "kalk", "koraalschaal", "nacht"].map(function (id) { return kaart(vind(id)); }).join("");
