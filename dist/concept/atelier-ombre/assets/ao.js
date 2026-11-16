@@ -1,4 +1,4 @@
-/* Maison Forme – concept-webshop (Collens Group). Werkt volledig in de browser; er wordt niets echt besteld of betaald. */
+/* Atelier Ombre – concept-webshop (Collens Group). Werkt volledig in de browser; er wordt niets echt besteld of betaald. */
 (function () {
   "use strict";
   var CATS = { schilderijen: "Schilderijen", beelden: "Beelden & objecten", vondsten: "Vondsten" };
@@ -36,8 +36,8 @@
   var uniek = function (x) { return x.l === "Unicum" || x.l === "Vondst"; };
 
   var geheugen = {};
-  function lees(k, d) { try { var v = localStorage.getItem("maisonforme-" + k); return v ? JSON.parse(v) : d; } catch (e) { return geheugen[k] || d; } }
-  function bewaar(k, v) { geheugen[k] = v; try { localStorage.setItem("maisonforme-" + k, JSON.stringify(v)); } catch (e) {} }
+  function lees(k, d) { try { var v = localStorage.getItem("atelierombre-" + k); return v ? JSON.parse(v) : d; } catch (e) { return geheugen[k] || d; } }
+  function bewaar(k, v) { geheugen[k] = v; try { localStorage.setItem("atelierombre-" + k, JSON.stringify(v)); } catch (e) {} }
 
   var toastTimer;
   function toast(tekst, actie) {
@@ -164,7 +164,7 @@
       var titel = maker ? MAKERS[maker] : cat ? CATS[cat] : "Alle werken";
       $("#col-titel").textContent = titel; $("#kruimel-cat").textContent = titel;
       $("#col-tekst").textContent = cat ? CAT_TEKST[cat] : "Schilderijen, beelden en vondsten. Filter op wereld, prijs of kunstenaar.";
-      document.title = titel + " | Maison Forme (concept)";
+      document.title = titel + " | Atelier Ombre (concept)";
       var q = []; if (cat) q.push("cat=" + cat); if (band) q.push("prijs=" + band); if (maker) q.push("maker=" + maker);
       try { history.replaceState(null, "", "collectie.html" + (q.length ? "?" + q.join("&") : "")); } catch (e) {}
     };
@@ -195,7 +195,7 @@
   }
   if (pag === "werk") {
     var x = vind(url.get("w")) || W[0], gereserveerd = lees("reserv", []).indexOf(x.id) > -1, bezet = uniek(x) && inMand(x.id);
-    document.title = x.n + " – " + MAKERS[x.m] + " | Maison Forme (concept)";
+    document.title = x.n + " – " + MAKERS[x.m] + " | Atelier Ombre (concept)";
     $("#kruimel-werk").textContent = x.n;
     var podium = x.wand ?
       '<div class="podium" id="podium"><img src="img/' + x.img + '.jpg" alt="' + esc(x.n + " van " + MAKERS[x.m]) + '" width="1400" height="1750"></div>' +
@@ -283,7 +283,7 @@
       var f = this, fout = $$("[required]", f).filter(function (i) { return i.type === "checkbox" ? !i.checked : (!i.value.trim() || !i.checkValidity()); })[0];
       if (!mand().length) { $("#fout").textContent = "Je winkelmand is leeg. Kies eerst een werk."; return; }
       if (fout) { $("#fout").textContent = "Vul de verplichte velden in (met *)."; fout.focus(); return; }
-      var nr = "MF-" + (1000 + Math.floor(Math.random() * 9000));
+      var nr = "AO-" + (1000 + Math.floor(Math.random() * 9000));
       zetMand([]);
       $("#afreken").innerHTML = '<div class="tekst" style="padding:0"><div class="stappen"><span>1. Gegevens</span><span>2. Betalen</span><b>3. Bevestiging</b></div><h2>Dank je wel voor je bestelling</h2><p>Je bestelnummer is <b>' + nr + "</b>. Het atelier pakt je werk zorgvuldig in; je ontvangt de track-and-trace en het certificaat per e-mail.</p><p class=\"klein\">Concept: er is niets echt besteld of betaald.</p><a class=\"knop\" href=\"collectie.html\">Verder kijken</a></div>";
       window.scrollTo(0, 0);
@@ -326,7 +326,7 @@
     });
     reken();
     var STAP = ["Betaald", "Doorgestuurd", "Onderweg", "Geleverd"];
-    var orders = [["MF-2481", "rustende-beer", 4, "Eigen voorraad, verzonden met PostNL verzekerd"], ["MF-2479", "terra", 3, "Drukker print en verzendt rechtstreeks"], ["MF-2476", "wit-ii", 2, "Kunstkoerier haalt op bij het atelier van Ines Vaerman"], ["MF-2475", "danser", 1, "Atelier Ruys ontvangt de bestelling"]];
+    var orders = [["AO-2481", "rustende-beer", 4, "Eigen voorraad, verzonden met PostNL verzekerd"], ["AO-2479", "terra", 3, "Drukker print en verzendt rechtstreeks"], ["AO-2476", "wit-ii", 2, "Kunstkoerier haalt op bij het atelier van Ines Vaerman"], ["AO-2475", "danser", 1, "Atelier Ruys ontvangt de bestelling"]];
     $("#orders").innerHTML = orders.map(function (o) {
       var x = vind(o[1]);
       return '<div class="order"><b>' + o[0] + "</b><div><i>" + esc(x.n) + "</i> · " + euro(x.p) + '<br><span class="klein">' + o[3] + '</span></div><div><div class="status" aria-label="Status: ' + STAP[o[2] - 1] + '">' + STAP.map(function (s, i) { return '<i class="' + (i < o[2] ? "ja" : "") + '"></i>'; }).join("") + '</div><span class="klein">' + STAP[o[2] - 1] + "</span></div></div>";

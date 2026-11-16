@@ -1,7 +1,7 @@
-"""Bouwt de concept-webshop Maison Forme (kunstboutique) in src/concept/maison-forme/."""
+"""Bouwt de concept-webshop Atelier Ombre (kunstboutique) in src/concept/atelier-ombre/."""
 import os
 
-DOEL = os.path.join(os.path.dirname(__file__), "..", "..", "src", "concept", "maison-forme")
+DOEL = os.path.join(os.path.dirname(__file__), "..", "..", "src", "concept", "atelier-ombre")
 CATS = [("schilderijen", "Schilderijen", "w-relief-i", "Originele werken op doek en papier, van verstild wit tot uitgesproken kleur."),
         ("beelden", "Beelden & objecten", "w-danser", "Brons, steen en porselein. Kleine oplages en unica voor kast, sokkel of tafel."),
         ("vondsten", "Vondsten", "w-beer", "Gevonden schatten met een verhaal: studiokeramiek en beelden uit privécollecties.")]
@@ -28,7 +28,7 @@ def kop(actief):
 <header class="kopbalk"><div class="wrap kop">
  <nav aria-label="Hoofdmenu">{links}</nav>
  <button class="ico menuknop" type="button" data-open="lade" aria-label="Menu openen">{SVG["menu"]}</button>
- <a class="logo" href="index.html" aria-label="Maison Forme, naar de homepage">Maison <i>Forme</i></a>
+ <a class="logo" href="index.html" aria-label="Atelier Ombre, naar de homepage">Atelier <i>Ombre</i></a>
  <div class="iconen">
   <button class="ico" type="button" data-open="zoek" aria-label="Zoeken">{SVG["zoek"]}</button>
   <a class="ico" href="favorieten.html" aria-label="Favorieten">{SVG["hart"]}<span class="teller" data-teller="favs"></span></a>
@@ -51,12 +51,12 @@ def voet():
     cats = "".join(f'<li><a href="collectie.html?cat={c}">{n}</a></li>' for c, n, _, _ in CATS)
     return f'''<footer><div class="wrap">
  <div class="voet">
-  <div><span class="logo">Maison <i>Forme</i></span><p style="margin-top:14px;max-width:320px">Abstracte kunst, beelden en gevonden schatten. Zorgvuldig gekozen, eerlijk geprijsd.</p><div class="betaalmerken" aria-label="Betaalmethoden"><span>iDEAL</span><span>Bancontact</span><span>Visa</span><span>Mastercard</span><span>PayPal</span></div></div>
+  <div><span class="logo">Atelier <i>Ombre</i></span><p style="margin-top:14px;max-width:320px">Abstracte kunst, beelden en gevonden schatten. Zorgvuldig gekozen, eerlijk geprijsd.</p><div class="betaalmerken" aria-label="Betaalmethoden"><span>iDEAL</span><span>Bancontact</span><span>Visa</span><span>Mastercard</span><span>PayPal</span></div></div>
   <div><h4>Collectie</h4><ul>{cats}<li><a href="kunstenaars.html">Kunstenaars</a></li></ul></div>
   <div><h4>Service</h4><ul><li><a href="service.html#verzending">Verzending en ophangen</a></li><li><a href="service.html#echtheid">Certificaat van echtheid</a></li><li><a href="service.html#herroepen">Bestelling herroepen</a></li><li><a href="service.html#advies">Kunstadvies</a></li><li><a href="service.html#contact">Contact</a></li></ul></div>
-  <div><h4>Maison Forme</h4><ul><li><a href="over.html">Over ons</a></li><li><a href="over.html#aanmelden">Kunstenaar aanmelden</a></li><li><a href="index.html#brief">Nieuwsbrief</a></li><li><a href="beheer.html">Beheer</a></li></ul></div>
+  <div><h4>Atelier Ombre</h4><ul><li><a href="over.html">Over ons</a></li><li><a href="over.html#aanmelden">Kunstenaar aanmelden</a></li><li><a href="index.html#brief">Nieuwsbrief</a></li><li><a href="beheer.html">Beheer</a></li></ul></div>
  </div>
- <div class="onder"><span>© 2026 Maison Forme</span><span><a href="service.html#voorwaarden">Algemene voorwaarden</a> · <a href="service.html#privacy">Privacy</a></span></div>
+ <div class="onder"><span>© 2026 Atelier Ombre</span><span><a href="service.html#voorwaarden">Algemene voorwaarden</a> · <a href="service.html#privacy">Privacy</a></span></div>
 </div></footer>
 <div class="concept">Concept door <a href="https://collensgroup.com">Collens Group</a> · voorbeeldwerken en -kunstenaars</div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>'''
@@ -69,11 +69,11 @@ def pagina(bestand, titel, sleutel, actief, inhoud, beschrijving="Abstracte schi
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{titel}</title>
 <meta name="robots" content="noindex,nofollow,noarchive"><meta name="description" content="{beschrijving}">
-<meta name="generator" content="Collens Group concept cgc-maisonforme"><meta name="copyright" content="Collens Group">
+<meta name="generator" content="Collens Group concept cgc-atelierombre"><meta name="copyright" content="Collens Group">
 <meta name="theme-color" content="#F2F1ED">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/mf.css">
+<link rel="stylesheet" href="assets/ao.css">
 </head>
 <body data-pagina="{sleutel}">
 {kop(actief)}
@@ -81,7 +81,7 @@ def pagina(bestand, titel, sleutel, actief, inhoud, beschrijving="Abstracte schi
 {inhoud}
 </main>
 {voet()}
-<script src="assets/mf.js" defer></script>
+<script src="assets/ao.js" defer></script>
 </body>
 </html>
 '''
@@ -107,10 +107,10 @@ def bouw():
     werelden = "".join(f'<a class="wereld" href="collectie.html?cat={c}"><div class="beeld"><img src="img/{img}.jpg" alt="" loading="lazy" width="1400" height="1750"></div><h3>{n}</h3><p>{t}</p></a>' for c, n, img, t in CATS)
 
     # ---------- home ----------
-    pagina("index.html", "Maison Forme – abstracte kunst, beelden en vondsten (concept)", "home", "home", f'''
+    pagina("index.html", "Atelier Ombre – abstracte kunst, beelden en vondsten (concept)", "home", "home", f'''
 <div class="held">
  <div class="held-tekst">
-  <h1>Maison<span>Forme</span></h1>
+  <h1>Atelier<span>Ombre</span></h1>
   <div class="held-onder">
    <p>Abstracte schilderijen, beelden en gevonden schatten. Van een eerste aankoop tot een stuk om te verzamelen, elk werk met certificaat.</p>
    <div class="knoppen"><a class="knop" href="collectie.html">Bekijk de collectie</a><a class="knop licht" href="#prijs">Kies op budget</a></div>
@@ -155,7 +155,7 @@ def bouw():
 </section>''')
 
     # ---------- collectie ----------
-    pagina("collectie.html", "Collectie | Maison Forme (concept)", "collectie", "collectie",
+    pagina("collectie.html", "Collectie | Atelier Ombre (concept)", "collectie", "collectie",
            '''<div class="paginakop"><div class="wrap"><nav class="kruimel" aria-label="Kruimelpad"><a href="index.html">Home</a><span>/</span><a href="collectie.html">Collectie</a><span>/</span><span id="kruimel-cat">Alle werken</span></nav>
 <h1 id="col-titel">Alle werken</h1><p id="col-tekst">Schilderijen, beelden en vondsten. Filter op wereld, prijs of kunstenaar.</p></div></div>
 <section style="padding-top:44px"><div class="wrap">
@@ -170,24 +170,24 @@ def bouw():
 </div></section>''' + BELOFTE)
 
     # ---------- werk ----------
-    pagina("werk.html", "Werk | Maison Forme (concept)", "werk", "collectie",
+    pagina("werk.html", "Werk | Atelier Ombre (concept)", "werk", "collectie",
            '''<div class="wrap"><nav class="kruimel" aria-label="Kruimelpad" style="margin-top:28px"><a href="index.html">Home</a><span>/</span><a href="collectie.html">Collectie</a><span>/</span><span id="kruimel-werk"></span></nav><div class="detail" id="detail"></div></div>
 <section style="background:var(--wit)"><div class="wrap"><div class="sectiekop"><h2>Past hier ook bij</h2><a class="link" href="collectie.html">Alle werken</a></div><div class="werken" id="gerelateerd"></div></div></section>''')
 
     # ---------- kunstenaars ----------
     makers = "".join(f'''<article class="maker" id="{s}"><div class="beeld"><img src="img/{img}.jpg" alt="" loading="lazy" width="1400" height="1750"></div>
 <div><h2>{n}</h2><p class="klein">{plaats}</p><p>{bio}</p><p class="klein" data-telling="{s}"></p><a class="link" href="collectie.html?maker={s}">Bekijk de werken</a></div></article>''' for s, n, img, plaats, bio in MAKERS)
-    pagina("kunstenaars.html", "Kunstenaars | Maison Forme (concept)", "kunstenaars", "kunstenaars",
+    pagina("kunstenaars.html", "Kunstenaars | Atelier Ombre (concept)", "kunstenaars", "kunstenaars",
            paginakop("Kunstenaars", "Een kleine kring makers die we persoonlijk kennen. Elk werk komt rechtstreeks uit hun atelier.", ["<span>Kunstenaars</span>"]) +
            f'<section style="padding-top:48px"><div class="wrap"><div class="makers">{makers}</div><p class="noot">Voorbeeldkunstenaars ter illustratie. Bij lancering stellen we de echte kunstenaars voor, met hun eigen tekst en portret.</p></div></section>')
 
     # ---------- over ----------
-    pagina("over.html", "Over | Maison Forme (concept)", "over", "over",
-           paginakop("Over Maison Forme", "Kunst kopen moet even vanzelfsprekend voelen als een goed boek uitkiezen. Zonder drempel, wel met kennis.", ["<span>Over</span>"]) + '''
+    pagina("over.html", "Over | Atelier Ombre (concept)", "over", "over",
+           paginakop("Over Atelier Ombre", "Kunst kopen moet even vanzelfsprekend voelen als een goed boek uitkiezen. Zonder drempel, wel met kennis.", ["<span>Over</span>"]) + '''
 <div class="wrap twee-kol">
  <img src="img/s-galerie.jpg" alt="Lange galeriezaal met open kasten vol keramiek en een groot doek aan de achterwand" loading="lazy" width="2000" height="1333" style="aspect-ratio:3/2">
  <div><h2 style="margin-bottom:18px">Van ontdekking tot verzamelstuk</h2>
-  <p>Maison Forme brengt drie werelden samen: abstracte schilderijen van levende kunstenaars, beelden in kleine oplages en vondsten die we zelf opsporen op veilingen, in ateliers en bij verzamelaars.</p>
+  <p>Atelier Ombre brengt drie werelden samen: abstracte schilderijen van levende kunstenaars, beelden in kleine oplages en vondsten die we zelf opsporen op veilingen, in ateliers en bij verzamelaars.</p>
   <p>We kiezen met een strenge blik en prijzen eerlijk. Bij elk werk vertellen we wie het maakte, waarvan het gemaakt is en waarom we het mooi vinden.</p>
   <p class="noot">Tekst ter illustratie: bij lancering schrijven we het echte verhaal.</p></div>
 </div>
@@ -219,7 +219,7 @@ def bouw():
            ("Kan ik in termijnen betalen?", "Voor werken vanaf € 1.000 kun je in drie termijnen betalen zonder rente. Het werk wordt verzonden na de laatste termijn."),
            ("Leveren jullie ook buiten Nederland en België?", "Binnen de EU leveren we op aanvraag. Neem contact op voor een prijs voor verzekerd transport.")]
     faq_html = "".join(f"<details><summary>{v}</summary><p>{a}</p></details>" for v, a in faq)
-    pagina("service.html", "Service | Maison Forme (concept)", "service", "service",
+    pagina("service.html", "Service | Atelier Ombre (concept)", "service", "service",
            paginakop("Service", "Alles over verzending, echtheid, retourneren en advies.", ["<span>Service</span>"]) + f'''
 <div class="wrap"><div class="tekst">
  <h2 id="verzending">Verzending en ophangen</h2><ul><li>Kleine werken en objecten: verzekerd verzonden binnen 3–5 werkdagen, met track-and-trace.</li><li>Grote doeken en beelden: bezorgd door een kunstkoerier, op afspraak.</li><li>Gratis verzekerde verzending vanaf € 250, daaronder € 14,95.</li><li>Schilderijen worden geleverd met ophangsysteem.</li></ul>
@@ -231,7 +231,7 @@ def bouw():
   <label>Welk werk herroep je? (optioneel)<input></label>
   <button class="knop" type="submit">Bestelling herroepen</button>
  </form>
- <details style="margin-top:22px"><summary>Modelformulier voor herroeping</summary><p>Liever per post of e-mail? Gebruik dan dit modelformulier. Aan: Maison Forme, [adres en e-mailadres volgen bij lancering]. Ik deel u hierbij mede dat ik onze overeenkomst betreffende de verkoop van de volgende goederen herroep: [werk]. Besteld op / ontvangen op: [datum]. Naam en adres: [gegevens]. Datum: [datum].</p></details>
+ <details style="margin-top:22px"><summary>Modelformulier voor herroeping</summary><p>Liever per post of e-mail? Gebruik dan dit modelformulier. Aan: Atelier Ombre, [adres en e-mailadres volgen bij lancering]. Ik deel u hierbij mede dat ik onze overeenkomst betreffende de verkoop van de volgende goederen herroep: [werk]. Besteld op / ontvangen op: [datum]. Naam en adres: [gegevens]. Datum: [datum].</p></details>
  <h2 id="advies">Kunstadvies</h2><p>Stuur een foto van je muur of ruimte, met de breedte erbij. We stellen binnen twee werkdagen een kleine selectie voor, met formaat en lijstadvies. Gratis en vrijblijvend.</p>
  <form class="form" data-bevestig="Dank je wel. Je ontvangt binnen twee werkdagen ons advies." novalidate>
   <div class="twee"><label>Naam *<input required autocomplete="name"></label><label>E-mailadres *<input type="email" required autocomplete="email"></label></div>
@@ -249,11 +249,11 @@ def bouw():
   <button class="knop" type="submit">Verstuur bericht</button>
  </form>
  <h2 id="voorwaarden">Algemene voorwaarden</h2><p>De algemene voorwaarden stellen we bij de lancering op, afgestemd op de Nederlandse regels voor online verkoop, waaronder 14 dagen bedenktijd.</p>
- <h2 id="privacy">Privacy</h2><p>Maison Forme gebruikt je gegevens alleen om je bestelling te verwerken en, als je dat wilt, om je de nieuwsbrief te sturen. De volledige privacyverklaring volgt bij de lancering.</p>
+ <h2 id="privacy">Privacy</h2><p>Atelier Ombre gebruikt je gegevens alleen om je bestelling te verwerken en, als je dat wilt, om je de nieuwsbrief te sturen. De volledige privacyverklaring volgt bij de lancering.</p>
 </div></div>''')
 
     # ---------- winkelmand ----------
-    pagina("winkelmand.html", "Winkelmand | Maison Forme (concept)", "mand", "",
+    pagina("winkelmand.html", "Winkelmand | Atelier Ombre (concept)", "mand", "",
            paginakop("Winkelmand", "", ["<span>Winkelmand</span>"]) + '''
 <div class="wrap"><div class="mand" id="mand">
  <div><div id="mand-regels"></div><a class="link" href="collectie.html" style="display:inline-block;margin-top:22px">Verder kijken</a></div>
@@ -269,7 +269,7 @@ def bouw():
 </div></div>''')
 
     # ---------- afrekenen ----------
-    pagina("afrekenen.html", "Afrekenen | Maison Forme (concept)", "afrekenen", "",
+    pagina("afrekenen.html", "Afrekenen | Atelier Ombre (concept)", "afrekenen", "",
            paginakop("Afrekenen", "", ['<a href="winkelmand.html">Winkelmand</a>', "<span>Afrekenen</span>"]) + '''
 <div class="wrap"><div class="mand" id="afreken">
  <form class="form" id="bestel" novalidate>
@@ -292,18 +292,18 @@ def bouw():
 </div></div>''')
 
     # ---------- favorieten ----------
-    pagina("favorieten.html", "Favorieten | Maison Forme (concept)", "favorieten", "",
+    pagina("favorieten.html", "Favorieten | Atelier Ombre (concept)", "favorieten", "",
            paginakop("Favorieten", "Bewaar werken die je raken en kom later terug.", ["<span>Favorieten</span>"]) + '''
 <section style="padding-top:48px"><div class="wrap"><div id="fav-leeg"><p>Je hebt nog geen favorieten. Tik op het hartje bij een werk om het te bewaren.</p><a class="knop" href="collectie.html">Naar de collectie</a></div>
 <div class="werken" id="fav-grid"></div></div></section>''')
 
     # ---------- beheer ----------
-    pagina("beheer.html", "Beheer | Maison Forme (concept)", "beheer", "",
-           paginakop("Beheer", "Zo werkt Maison Forme achter de schermen: drie inkoopmodellen, één webshop.", ["<span>Beheer</span>"]) + '''
+    pagina("beheer.html", "Beheer | Atelier Ombre (concept)", "beheer", "",
+           paginakop("Beheer", "Zo werkt Atelier Ombre achter de schermen: drie inkoopmodellen, één webshop.", ["<span>Beheer</span>"]) + '''
 <section style="padding-top:48px"><div class="wrap">
  <h2 style="margin-bottom:22px">Drie manieren van inkopen</h2>
  <div class="modellen">
-  <div><h3>Consignatie</h3><p>De kunstenaar levert het werk in commissie. Bij verkoop houdt Maison Forme een commissie in (voorbeeld 40 %), de kunstenaar krijgt de rest. Geen voorraadrisico.</p></div>
+  <div><h3>Consignatie</h3><p>De kunstenaar levert het werk in commissie. Bij verkoop houdt Atelier Ombre een commissie in (voorbeeld 40 %), de kunstenaar krijgt de rest. Geen voorraadrisico.</p></div>
   <div><h3>Print op bestelling</h3><p>Genummerde giclée-prints worden pas gedrukt na een bestelling en rechtstreeks door de drukker verzonden. Jij betaalt alleen druk en verzending.</p></div>
   <div><h3>Eigen inkoop</h3><p>Vondsten koop je zelf in op veilingen en bij verzamelaars. Hogere marge, wel eigen voorraad en opslag.</p></div>
  </div>
@@ -323,4 +323,4 @@ def bouw():
 
 if __name__ == "__main__":
     bouw()
-    print("Maison Forme gebouwd in", os.path.abspath(DOEL))
+    print("Atelier Ombre gebouwd in", os.path.abspath(DOEL))
