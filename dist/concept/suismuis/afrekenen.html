@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Afrekenen | Suismuis Home (concept)</title>
+<meta name="robots" content="noindex,nofollow,noarchive"><meta name="description" content="Warme, tijdloze woonaccessoires: vazen, kaarsen, kussens, verlichting en linnen.">
+<meta name="generator" content="Collens Group concept cgc-suismuis"><meta name="copyright" content="Collens Group">
+<meta name="theme-color" content="#E5D8C8">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/suismuis.css">
+</head>
+<body data-pagina="afrekenen">
+<div class="wm" aria-hidden="true"></div>
+<a class="sr" href="#inhoud">Naar de inhoud</a>
+<div class="balk">Gratis verzending vanaf € 75<span class="balk-extra"> &nbsp;·&nbsp; 14 dagen bedenktijd</span></div>
+<header class="kopbalk"><div class="wrap kop">
+ <nav aria-label="Hoofdmenu"><a href="./">Home</a><a href="shop">Shop</a><a href="over">Over ons</a><a href="journal">Journal</a><a href="klantenservice">Klantenservice</a></nav>
+ <button class="ico menuknop" type="button" data-open="lade" aria-label="Menu openen"><svg viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
+ <a class="logo" href="./" aria-label="Suismuis Home, naar de homepage"><b>Suismuis</b><span>HOME</span></a>
+ <div class="iconen">
+  <button class="ico" type="button" data-open="zoek" aria-label="Zoeken"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></button>
+  <a class="ico verberg" href="account" aria-label="Mijn account"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></a>
+  <a class="ico" href="favorieten" aria-label="Favorieten"><svg viewBox="0 0 24 24"><path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/></svg><span class="teller" data-teller="favs"></span></a>
+  <a class="ico" href="winkelmand" aria-label="Winkelmand"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 13H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="teller" data-teller="mand"></span></a>
+ </div>
+</div></header>
+<div class="lade" id="lade" role="dialog" aria-modal="true" aria-label="Menu"><div class="doek" data-sluit></div><div class="paneel">
+ <button class="sluit" type="button" data-sluit aria-label="Menu sluiten">×</button>
+ <a href="./">Home</a><a href="shop">Shop</a><div class="sub"><a href="shop?cat=decoratie">Decoratie</a><a href="shop?cat=kaarsen">Kaarsen & windlichten</a><a href="shop?cat=kussens">Kussens</a><a href="shop?cat=verlichting">Verlichting</a><a href="shop?cat=textiel">Plaids & textiel</a><a href="shop?cat=accessoires">Accessoires</a></div>
+ <a href="over">Over ons</a><a href="journal">Journal</a><a href="klantenservice">Klantenservice</a><a href="account">Mijn account</a><a href="favorieten">Favorieten</a>
+</div></div>
+<div class="zoek" id="zoek" role="dialog" aria-modal="true" aria-label="Zoeken"><div class="wrap">
+ <div style="display:flex;justify-content:space-between;align-items:center"><span class="klein">Zoeken</span><button class="sluit" type="button" data-sluit aria-label="Zoeken sluiten">×</button></div>
+ <label class="sr" for="zoekveld">Zoek een product</label><input id="zoekveld" type="search" placeholder="Waar ben je naar op zoek?" autocomplete="off">
+ <p class="leeg" id="zoekleeg">Zoek op bijvoorbeeld vaas, kaars, linnen of lamp.</p><div class="resultaten producten" id="zoekres"></div>
+</div></div>
+<main id="inhoud">
+<div class="paginakop"><div class="wrap"><nav class="kruimel" aria-label="Kruimelpad"><a href="./">Home</a><span>/</span><a href="winkelmand">Winkelmand</a><span>/</span><span>Afrekenen</span></nav><h1>Afrekenen</h1></div></div>
+<div class="wrap"><div class="mand" id="afreken">
+ <form class="form" id="bestel" novalidate>
+  <div class="stappen"><b>1. Gegevens</b><span>2. Betalen</span><span>3. Bevestiging</span></div>
+  <div class="twee"><label>Voornaam *<input required autocomplete="given-name"></label><label>Achternaam *<input required autocomplete="family-name"></label></div>
+  <label>E-mailadres *<input type="email" required autocomplete="email"></label>
+  <div class="twee"><label>Postcode *<input required autocomplete="postal-code"></label><label>Huisnummer *<input required></label></div>
+  <div class="twee"><label>Straat *<input required autocomplete="address-line1"></label><label>Plaats *<input required autocomplete="address-level2"></label></div>
+  <label>Land<select autocomplete="country"><option>Nederland</option><option>België</option></select></label>
+  <h2 style="font-size:30px;margin-top:16px">Betaalmethode</h2>
+  <div class="betaal" role="radiogroup" aria-label="Betaalmethode">
+   <label><input type="radio" name="betaal" checked> iDEAL</label><label><input type="radio" name="betaal"> Bancontact</label><label><input type="radio" name="betaal"> Creditcard</label><label><input type="radio" name="betaal"> PayPal</label>
+  </div>
+  <label class="check"><input type="checkbox" required> Ik ga akkoord met de <a class="link" href="klantenservice#voorwaarden">algemene voorwaarden</a> *</label>
+  <p id="fout" role="status" style="color:#8A3B2E;margin:0"></p>
+  <button class="knop" type="submit">Bestelling plaatsen</button>
+  <p style="font-size:13px;color:var(--mokka)">Concept: er wordt niets echt besteld of betaald.</p>
+ </form>
+ <aside class="samenvatting" aria-label="Je bestelling"><h2 style="font-size:30px;margin-bottom:12px">Je bestelling</h2><div id="overzicht"></div></aside>
+</div></div>
+</main>
+<footer><div class="wrap">
+ <div class="voet">
+  <div><b>Suismuis</b><p>Warme, tijdloze woonaccessoires voor een thuis vol rust.</p><div class="betaalmerken" aria-label="Betaalmethoden"><span>iDEAL</span><span>Bancontact</span><span>Visa</span><span>Mastercard</span><span>PayPal</span></div></div>
+  <div><h4>Shop</h4><ul><li><a href="shop?cat=decoratie">Decoratie</a></li><li><a href="shop?cat=kaarsen">Kaarsen & windlichten</a></li><li><a href="shop?cat=kussens">Kussens</a></li><li><a href="shop?cat=verlichting">Verlichting</a></li><li><a href="shop?cat=textiel">Plaids & textiel</a></li><li><a href="shop?cat=accessoires">Accessoires</a></li></ul></div>
+  <div><h4>Klantenservice</h4><ul><li><a href="klantenservice#verzenden">Verzenden</a></li><li><a href="klantenservice#retour">Retourneren</a></li><li><a href="klantenservice#herroepen">Bestelling herroepen</a></li><li><a href="klantenservice#faq">Veelgestelde vragen</a></li><li><a href="klantenservice#contact">Contact</a></li></ul></div>
+  <div><h4>Suismuis</h4><ul><li><a href="over">Over ons</a></li><li><a href="journal">Journal</a></li><li><a href="account">Mijn account</a></li><li><a href="./#brief">Nieuwsbrief</a></li><li><a href="beheer">Beheer (voor Kim)</a></li></ul></div>
+ </div>
+ <div class="onder"><span>© 2026 Suismuis Home</span><span><a href="klantenservice#voorwaarden">Algemene voorwaarden</a> · <a href="klantenservice#privacy">Privacy</a></span></div>
+</div></footer>
+<div class="concept">Concept door <a href="https://collensgroup.com">Collens Group</a></div>
+<script src="assets/suismuis.js" defer></script>
+</body>
+</html>
