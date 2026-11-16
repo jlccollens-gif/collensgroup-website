@@ -1,27 +1,37 @@
 /* Suismuis Home – concept-webshop (Collens Group). Werkt volledig in de browser; er wordt niets echt besteld of betaald. */
 (function () {
   "use strict";
-  var CATS = {
-    decoratie: "Decoratie", kaarsen: "Kaarsen & windlichten", kussens: "Kussens",
-    verlichting: "Verlichting", textiel: "Plaids & textiel", accessoires: "Accessoires"
-  };
+  var TAX = [
+    ["wonen", "Wonen & decoratie", [["schilderijen", "Schilderijen"], ["spiegels", "Spiegels"], ["beeldjes", "Beeldjes & objecten"], ["bloempotten", "Bloempotten"], ["droogbloemen", "Droogbloemen"]]],
+    ["vazen", "Vazen", [["glazen-vazen", "Glazen vazen"], ["stenen-vazen", "Stenen vazen"]]],
+    ["verlichting", "Verlichting & kaarsen", [["lampen", "Lampen"], ["lampenkappen", "Lampenkappen"], ["kaarsen", "Kaarsen & windlichten"]]],
+    ["textiel", "Textiel", [["kussenhoezen", "Kussenhoezen"], ["plaids", "Plaids"], ["vloerkleden", "Vloerkleden"], ["beddengoed", "Beddengoed"]]],
+    ["tafel", "Servies & tafel", [["servies", "Servies"]]],
+    ["meubels", "Meubels", [["bijzettafels", "Bijzettafels"], ["salontafels", "Salontafels"], ["eettafels", "Eettafels"], ["eetkamerstoelen", "Eetkamerstoelen"], ["stoelen", "Stoelen"], ["fauteuils", "Fauteuils"], ["bankjes", "Bankjes"]]]
+  ];
+  var CATS = {}, SUBS = {}, SUBCAT = {};
+  TAX.forEach(function (t) { CATS[t[0]] = t[1]; SUBS[t[0]] = t[2]; t[2].forEach(function (s) { SUBCAT[s[0]] = [t[0], s[1]]; }); });
+  var OUD = { decoratie: "wonen", kaarsen: "verlichting", kussens: "textiel", accessoires: "wonen" };
   var P = [
-    { id: "vaas-olea", ink: 9.5, lv: 2.95, n: "Vaas Olea", c: "decoratie", p: 24.95, img: "p-vaas-olea", l: "Nieuw", m: "Steengoed, mat geglazuurd", d: "H 14 × Ø 7 cm", t: "Een klein, rank vaasje met een zachte, zandkleurige glazuur. Mooi met een enkele droogbloem of als groepje van drie." },
-    { id: "vaas-orbit", ink: 19.9, lv: 3.95, n: "Vaas Orbit", c: "decoratie", p: 49.95, img: "p-vaas-orbit", m: "Keramiek, mat crème", d: "H 25 × B 24 cm", t: "Een sculpturale ringvaas die ook zonder bloemen een statement is. Met een smalle opening voor een paar takjes." },
-    { id: "droogbloemen-champagne", ink: 12.4, lv: 3.95, n: "Droogbloemen Champagne", c: "decoratie", p: 34.95, img: "p-droogbloemen", m: "Gedroogde bloemen en pampas", d: "Lengte ca. 60 cm", t: "Een luchtige bundel in champagne- en zandtinten die maandenlang mooi blijft. Zonder vaas geleverd." },
-    { id: "vazenset-blanc", ink: 28.0, lv: 4.95, n: "Vazenset Blanc", c: "decoratie", p: 69.95, img: "p-vazenset", l: "Set van 3", m: "Keramiek, mat wit", d: "H 12, 22 en 30 cm", t: "Drie vazen in verschillende hoogtes die samen een rustige, gelaagde compositie vormen." },
-    { id: "kandelaar-antique", ink: 31.5, lv: 4.95, n: "Kandelaar Antique", c: "kaarsen", p: 79.00, img: "p-kandelaar", l: "Bestseller", m: "Messing, handgemaakt", d: "H 38 × B 30 cm", t: "Een klassieke driearmige kandelaar met een warme, licht verweerde messing afwerking. Voor dinerkaarsen tot Ø 2,2 cm." },
-    { id: "windlichtjes-clair", ink: 12.9, lv: 3.95, n: "Windlichtjes Clair", c: "kaarsen", p: 34.95, img: "p-windlichtjes", l: "Set van 4", m: "Helder glas", d: "H 7 × Ø 6 cm", t: "Vier kleine windlichtjes voor theelichtjes. Prachtig in een rij op de eettafel of vensterbank." },
-    { id: "geurkaarsen-marmer", ink: 23.0, lv: 4.95, n: "Geurkaarsen op marmer", c: "kaarsen", p: 59.95, img: "p-kaarsen-dienblad", m: "Sojawas, marmeren dienblad", d: "Dienblad 30 × 15 cm", t: "Drie geurkaarsen met een zachte geur van vijg en ceder, geleverd op een marmeren dienblad." },
-    { id: "kussenhoes-linnen", ink: 14.8, lv: 2.95, n: "Kussenhoes Linnen", c: "kussens", p: 39.95, img: "p-kussens-linnen", m: "100 % stonewashed linnen", d: "50 × 50 cm, zonder binnenkussen", t: "Een zachte linnen kussenhoes in warme aardetinten met een verborgen rits. Wasbaar op 30 °C." },
-    { id: "tafellamp-lune", ink: 54.0, lv: 6.95, n: "Tafellamp Lune", c: "verlichting", p: 129.00, img: "p-tafellamp", m: "Metalen voet, linnen kap", d: "H 52 × Ø 35 cm", t: "Een elegante tafellamp met een linnen kap die het licht warm en zacht verspreidt. Fitting E27, lamp niet inbegrepen." },
-    { id: "hanglamp-sol", ink: 58.0, lv: 6.95, n: "Hanglamp Sol", c: "verlichting", p: 149.00, img: "p-hanglamp", m: "Handgevlochten riet", d: "Ø 45 cm", t: "Een gevlochten kap die een mooi schaduwspel op muur en plafond geeft. Inclusief textielsnoer van 1,5 m." },
-    { id: "plaid-cosy", ink: 34.5, lv: 4.95, n: "Plaid Cosy", c: "textiel", p: 89.95, img: "p-plaid-cosy", l: "Nieuw", m: "Wolmix, grof gebreid", d: "130 × 170 cm", t: "Een grof gebreide plaid in warme naturel tinten, heerlijk voor koude avonden op de bank." },
-    { id: "plaid-teddy", ink: 27.9, lv: 4.95, n: "Plaid Teddy", c: "textiel", p: 74.95, img: "p-plaid-teddy", m: "Zachte teddystof", d: "150 × 200 cm", t: "Een royale, wollig zachte plaid in crème die je bank direct een warme uitstraling geeft." },
-    { id: "beddengoed-linnen", ink: 66.0, lv: 5.95, n: "Linnen beddengoed", c: "textiel", p: 159.00, img: "p-beddengoed", m: "100 % stonewashed linnen", d: "Dekbedovertrek 240 × 220 cm + 2 slopen", t: "Zacht gewassen linnen dat met elke wasbeurt mooier wordt. Ademend in de zomer, warm in de winter." },
-    { id: "schaal-terra", ink: 10.9, lv: 2.95, n: "Schaal Terra", c: "accessoires", p: 29.95, img: "p-schaal", m: "Steengoed, handgevormd", d: "Ø 16 × H 8 cm", t: "Een handgevormde schaal met een zachte, organische rand. Voor sieraden, sleutels of gewoon als object." },
-    { id: "objet-pierre", ink: 16.5, lv: 3.95, n: "Objet Pierre", c: "accessoires", p: 44.95, img: "p-objet", m: "Travertin-look steen", d: "10 × 10 × 10 cm", t: "Een ruw gehouwen blok dat rust en textuur geeft aan een kast of salontafel. Mooi naast een vaas." },
-    { id: "kruk-tronc", ink: 52.0, lv: 9.95, n: "Kruk Tronc", c: "accessoires", p: 129.00, img: "p-kruk", m: "Massief walnotenhout", d: "H 60 × Ø 30 cm", t: "Een slanke houten kruk die ook dienstdoet als bijzettafel of plantentafel." }
+    { id: "vaas-olea", ink: 9.5, lv: 2.95, n: "Vaas Olea", c: "vazen", s: "stenen-vazen", p: 24.95, img: "p-vaas-olea", l: "Nieuw", m: "Steengoed, mat geglazuurd", d: "H 14 × Ø 7 cm", t: "Een klein, rank vaasje met een zachte, zandkleurige glazuur. Mooi met een enkele droogbloem of als groepje van drie." },
+    { id: "vaas-orbit", ink: 19.9, lv: 3.95, n: "Vaas Orbit", c: "vazen", s: "stenen-vazen", p: 49.95, img: "p-vaas-orbit", m: "Keramiek, mat crème", d: "H 25 × B 24 cm", t: "Een sculpturale ringvaas die ook zonder bloemen een statement is. Met een smalle opening voor een paar takjes." },
+    { id: "droogbloemen-champagne", ink: 12.4, lv: 3.95, n: "Droogbloemen Champagne", c: "wonen", s: "droogbloemen", p: 34.95, img: "p-droogbloemen", m: "Gedroogde bloemen en pampas", d: "Lengte ca. 60 cm", t: "Een luchtige bundel in champagne- en zandtinten die maandenlang mooi blijft. Zonder vaas geleverd." },
+    { id: "vazenset-blanc", ink: 28.0, lv: 4.95, n: "Vazenset Blanc", c: "vazen", s: "stenen-vazen", p: 69.95, img: "p-vazenset", l: "Set van 3", m: "Keramiek, mat wit", d: "H 12, 22 en 30 cm", t: "Drie vazen in verschillende hoogtes die samen een rustige, gelaagde compositie vormen." },
+    { id: "kandelaar-antique", ink: 31.5, lv: 4.95, n: "Kandelaar Antique", c: "verlichting", s: "kaarsen", p: 79.00, img: "p-kandelaar", l: "Bestseller", m: "Messing, handgemaakt", d: "H 38 × B 30 cm", t: "Een klassieke driearmige kandelaar met een warme, licht verweerde messing afwerking. Voor dinerkaarsen tot Ø 2,2 cm." },
+    { id: "windlichtjes-clair", ink: 12.9, lv: 3.95, n: "Windlichtjes Clair", c: "verlichting", s: "kaarsen", p: 34.95, img: "p-windlichtjes", l: "Set van 4", m: "Helder glas", d: "H 7 × Ø 6 cm", t: "Vier kleine windlichtjes voor theelichtjes. Prachtig in een rij op de eettafel of vensterbank." },
+    { id: "geurkaarsen-marmer", ink: 23.0, lv: 4.95, n: "Geurkaarsen op marmer", c: "verlichting", s: "kaarsen", p: 59.95, img: "p-kaarsen-dienblad", m: "Sojawas, marmeren dienblad", d: "Dienblad 30 × 15 cm", t: "Drie geurkaarsen met een zachte geur van vijg en ceder, geleverd op een marmeren dienblad." },
+    { id: "kussenhoes-linnen", ink: 14.8, lv: 2.95, n: "Kussenhoes Linnen", c: "textiel", s: "kussenhoezen", p: 39.95, img: "p-kussens-linnen", m: "100 % stonewashed linnen", d: "50 × 50 cm, zonder binnenkussen", t: "Een zachte linnen kussenhoes in warme aardetinten met een verborgen rits. Wasbaar op 30 °C." },
+    { id: "tafellamp-lune", ink: 54.0, lv: 6.95, n: "Tafellamp Lune", c: "verlichting", s: "lampen", p: 129.00, img: "p-tafellamp", m: "Metalen voet, linnen kap", d: "H 52 × Ø 35 cm", t: "Een elegante tafellamp met een linnen kap die het licht warm en zacht verspreidt. Fitting E27, lamp niet inbegrepen." },
+    { id: "hanglamp-sol", ink: 58.0, lv: 6.95, n: "Hanglamp Sol", c: "verlichting", s: "lampen", p: 149.00, img: "p-hanglamp", m: "Handgevlochten riet", d: "Ø 45 cm", t: "Een gevlochten kap die een mooi schaduwspel op muur en plafond geeft. Inclusief textielsnoer van 1,5 m." },
+    { id: "plaid-cosy", ink: 34.5, lv: 4.95, n: "Plaid Cosy", c: "textiel", s: "plaids", p: 89.95, img: "p-plaid-cosy", l: "Nieuw", m: "Wolmix, grof gebreid", d: "130 × 170 cm", t: "Een grof gebreide plaid in warme naturel tinten, heerlijk voor koude avonden op de bank." },
+    { id: "plaid-teddy", ink: 27.9, lv: 4.95, n: "Plaid Teddy", c: "textiel", s: "plaids", p: 74.95, img: "p-plaid-teddy", m: "Zachte teddystof", d: "150 × 200 cm", t: "Een royale, wollig zachte plaid in crème die je bank direct een warme uitstraling geeft." },
+    { id: "beddengoed-linnen", ink: 66.0, lv: 5.95, n: "Linnen beddengoed", c: "textiel", s: "beddengoed", p: 159.00, img: "p-beddengoed", m: "100 % stonewashed linnen", d: "Dekbedovertrek 240 × 220 cm + 2 slopen", t: "Zacht gewassen linnen dat met elke wasbeurt mooier wordt. Ademend in de zomer, warm in de winter." },
+    { id: "schaal-terra", ink: 10.9, lv: 2.95, n: "Schaal Terra", c: "tafel", s: "servies", p: 29.95, img: "p-schaal", m: "Steengoed, handgevormd", d: "Ø 16 × H 8 cm", t: "Een handgevormde schaal met een zachte, organische rand. Voor sieraden, sleutels of gewoon als object." },
+    { id: "objet-pierre", ink: 16.5, lv: 3.95, n: "Objet Pierre", c: "wonen", s: "beeldjes", p: 44.95, img: "p-objet", m: "Travertin-look steen", d: "10 × 10 × 10 cm", t: "Een ruw gehouwen blok dat rust en textuur geeft aan een kast of salontafel. Mooi naast een vaas." },
+    { id: "schilderij-duin", ink: 48.0, lv: 9.95, n: "Schilderij Duin", c: "wonen", s: "schilderijen", p: 149.00, img: "p-schilderij-1", l: "Nieuw", m: "Canvas in eiken lijst", d: "60 × 80 cm", t: "Zachte, overlappende vormen in zand, taupe en mokka. Rustig genoeg voor boven de bank, met genoeg diepte om naar te blijven kijken." },
+    { id: "schilderij-horizon", ink: 56.0, lv: 9.95, n: "Schilderij Horizon", c: "wonen", s: "schilderijen", p: 179.00, img: "p-schilderij-2", m: "Canvas in eiken lijst", d: "70 × 90 cm", t: "Brede banen in warme aardetinten met een lichte zon. Een kalm, horizontaal ritme dat elke wand meer ruimte geeft." },
+    { id: "schilderij-boog", ink: 42.0, lv: 9.95, n: "Schilderij Boog", c: "wonen", s: "schilderijen", p: 129.00, img: "p-schilderij-3", l: "Bestseller", m: "Canvas in eiken lijst", d: "50 × 70 cm", t: "Een zachte boog en een ronde vorm in crème en taupe. Mooi in een hal, slaapkamer of als paar naast elkaar." },
+    { id: "kruk-tronc", ink: 52.0, lv: 9.95, n: "Kruk Tronc", c: "meubels", s: "bijzettafels", p: 129.00, img: "p-kruk", m: "Massief walnotenhout", d: "H 60 × Ø 30 cm", t: "Een slanke houten kruk die ook dienstdoet als bijzettafel of plantentafel." }
   ];
   var GRATIS = 75, VERZEND = 5.95, CADEAU = 3.95;
   var euro = function (x) { return "€ " + x.toFixed(2).replace(".", ","); };
@@ -30,6 +40,17 @@
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+
+  /* uitklapmenu onder Shop: hover/focus via CSS, tik en Escape via JS */
+  $$(".mega-wrap").forEach(function (w) {
+    var k = $(".mega-knop", w);
+    var zet = function (open) { w.classList.toggle("open", open); k.setAttribute("aria-expanded", open); };
+    w.addEventListener("mouseenter", function () { zet(true); });
+    w.addEventListener("mouseleave", function () { zet(false); });
+    w.addEventListener("focusin", function () { zet(true); });
+    w.addEventListener("focusout", function (e) { if (!w.contains(e.relatedTarget)) zet(false); });
+    w.addEventListener("keydown", function (e) { if (e.key === "Escape") { zet(false); k.focus(); } });
+  });
 
   /* opslag met vangnet (privémodus) */
   var geheugen = {};
@@ -149,28 +170,36 @@
   }
 
   if (pag === "shop") {
-    var cat = url.get("cat"); if (cat && !CATS[cat]) cat = null;
+    var cat = url.get("cat"), sub = url.get("sub");
+    if (cat && OUD[cat]) cat = OUD[cat];
+    if (sub && SUBCAT[sub]) cat = SUBCAT[sub][0]; else sub = null;
+    if (cat && !CATS[cat]) cat = null;
     var sort = "standaard";
-    var chips = '<button class="chip" type="button" data-cat="" aria-pressed="' + !cat + '">Alles</button>' +
-      Object.keys(CATS).map(function (k) { return '<button class="chip" type="button" data-cat="' + k + '" aria-pressed="' + (cat === k) + '">' + CATS[k] + "</button>"; }).join("");
-    $("#chips").innerHTML = chips;
+    var subnav = $("#subnav");
+    if (cat) {
+      subnav.innerHTML = '<a href="shop.html?cat=' + cat + '"' + (!sub ? ' aria-current="page"' : "") + '>Alles</a>' +
+        SUBS[cat].map(function (x) { return '<a href="shop.html?cat=' + cat + '&amp;sub=' + x[0] + '"' + (sub === x[0] ? ' aria-current="page"' : "") + ">" + x[1] + "</a>"; }).join("");
+    } else {
+      subnav.innerHTML = TAX.map(function (t) { return '<a href="shop.html?cat=' + t[0] + '">' + t[1] + "</a>"; }).join("");
+    }
+    var titel = sub ? SUBCAT[sub][1] : (cat ? CATS[cat] : "Alle producten");
+    var kr = $("#kruimel-cat");
+    if (sub) kr.outerHTML = '<a href="shop.html?cat=' + cat + '">' + CATS[cat] + '</a><span>/</span><span id="kruimel-cat">' + titel + "</span>"; else kr.textContent = titel;
+    $("#shop-titel").textContent = titel;
+    if (cat) $("#shop-intro").textContent = sub ? "Uit de collectie " + CATS[cat].toLowerCase() + ", in warme, natuurlijke tinten." : "Alles uit " + CATS[cat].toLowerCase() + ", in warme, natuurlijke tinten.";
+    document.title = titel + " | Suismuis Home (concept)";
     var teken = function () {
-      var lijst = P.filter(function (p) { return !cat || p.c === cat; });
+      var lijst = P.filter(function (p) { return (!cat || p.c === cat) && (!sub || p.s === sub); });
       if (sort === "laag") lijst.sort(function (a, b) { return a.p - b.p; });
       if (sort === "hoog") lijst.sort(function (a, b) { return b.p - a.p; });
       if (sort === "naam") lijst.sort(function (a, b) { return a.n.localeCompare(b.n); });
       $("#shop-grid").innerHTML = lijst.map(kaart).join("");
-      $("#aantal").textContent = lijst.length + " producten";
-      $("#shop-titel").textContent = cat ? CATS[cat] : "Alle producten";
-      $("#kruimel-cat").textContent = cat ? CATS[cat] : "Alle producten";
-      document.title = (cat ? CATS[cat] : "Shop") + " | Suismuis Home (concept)";
+      $("#aantal").textContent = lijst.length === 1 ? "1 product" : lijst.length + " producten";
+      var leeg = lijst.length === 0;
+      $("#binnenkort").hidden = !leeg; $("#shop-grid").hidden = leeg;
+      $("#sorteer").parentNode.style.visibility = leeg ? "hidden" : "";
+      if (leeg && cat) $("#bk-terug").setAttribute("href", "shop.html?cat=" + cat), $("#bk-terug").textContent = "Bekijk alles in " + CATS[cat].toLowerCase();
     };
-    $("#chips").addEventListener("click", function (e) {
-      var b = e.target.closest("[data-cat]"); if (!b) return;
-      cat = b.getAttribute("data-cat") || null;
-      $$("#chips .chip").forEach(function (x) { x.setAttribute("aria-pressed", x === b); });
-      history.replaceState(null, "", cat ? "?cat=" + cat : location.pathname); teken();
-    });
     $("#sorteer").addEventListener("change", function () { sort = this.value; teken(); });
     teken();
   }
@@ -184,8 +213,8 @@
       '<div class="galerij"><div class="hoofd"><img id="hoofdbeeld" src="img/' + p.img + '.jpg" alt="' + esc(p.n) + '" width="1200" height="1500"></div>' +
       '<div class="duim">' + beelden.map(function (b, i) { return '<button type="button" data-beeld="' + b + '" aria-current="' + (i === 0) + '" aria-label="Toon afbeelding ' + (i + 1) + '"><img src="img/' + b + '.jpg" alt=""></button>'; }).join("") + "</div>" +
       '<p class="noot" style="margin-top:6px">Voorbeeldbeelden; bij lancering komen hier je eigen productfoto’s.</p></div>' +
-      '<div class="pdp-info"><nav class="kruimel" aria-label="Kruimelpad"><a href="index.html">Home</a><span>/</span><a href="shop.html">Shop</a><span>/</span><a href="shop.html?cat=' + p.c + '">' + CATS[p.c] + '</a></nav>' +
-      '<span class="klein">' + CATS[p.c] + '</span><h1>' + esc(p.n) + '</h1><div class="prijs">' + euro(p.p) + '</div>' +
+      '<div class="pdp-info"><nav class="kruimel" aria-label="Kruimelpad"><a href="index.html">Home</a><span>/</span><a href="shop.html">Shop</a><span>/</span><a href="shop.html?cat=' + p.c + '">' + CATS[p.c] + '</a>' + (p.s ? '<span>/</span><a href="shop.html?cat=' + p.c + '&amp;sub=' + p.s + '">' + SUBCAT[p.s][1] + '</a>' : '') + '</nav>' +
+      '<span class="klein">' + (p.s ? SUBCAT[p.s][1] : CATS[p.c]) + '</span><h1>' + esc(p.n) + '</h1><div class="prijs">' + euro(p.p) + '</div>' +
       '<p>' + esc(p.t) + '</p><p class="voorraad">Op voorraad · in 2–4 werkdagen in huis</p>' +
       '<div class="koop"><div class="stapper"><button type="button" data-stap="-1" aria-label="Minder">−</button><input id="aantal-p" type="number" min="1" max="20" value="1" aria-label="Aantal"><button type="button" data-stap="1" aria-label="Meer">+</button></div>' +
       '<button class="knop" type="button" id="koop-p">In winkelmand</button></div>' +

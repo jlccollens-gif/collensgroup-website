@@ -2,8 +2,15 @@
 import os
 
 DOEL = os.path.join(os.path.dirname(__file__), "..", "..", "src", "concept", "suismuis")
-CATS = [("decoratie", "Decoratie", "c-decoratie"), ("kaarsen", "Kaarsen & windlichten", "c-kaarsen"), ("kussens", "Kussens", "c-kussens"),
-        ("verlichting", "Verlichting", "c-verlichting"), ("textiel", "Plaids & textiel", "c-textiel"), ("accessoires", "Accessoires", "c-accessoires")]
+TAX = [
+    ("wonen", "Wonen & decoratie", "p-schilderij-1", [("schilderijen", "Schilderijen"), ("spiegels", "Spiegels"), ("beeldjes", "Beeldjes & objecten"), ("bloempotten", "Bloempotten"), ("droogbloemen", "Droogbloemen")]),
+    ("vazen", "Vazen", "c-decoratie", [("glazen-vazen", "Glazen vazen"), ("stenen-vazen", "Stenen vazen")]),
+    ("verlichting", "Verlichting & kaarsen", "c-verlichting", [("lampen", "Lampen"), ("lampenkappen", "Lampenkappen"), ("kaarsen", "Kaarsen & windlichten")]),
+    ("textiel", "Textiel", "c-textiel", [("kussenhoezen", "Kussenhoezen"), ("plaids", "Plaids"), ("vloerkleden", "Vloerkleden"), ("beddengoed", "Beddengoed")]),
+    ("tafel", "Servies & tafel", "c-accessoires", [("servies", "Servies")]),
+    ("meubels", "Meubels", "p-kruk", [("bijzettafels", "Bijzettafels"), ("salontafels", "Salontafels"), ("eettafels", "Eettafels"), ("eetkamerstoelen", "Eetkamerstoelen"), ("stoelen", "Stoelen"), ("fauteuils", "Fauteuils"), ("bankjes", "Bankjes")]),
+]
+CATS = [(c, n, img) for c, n, img, _ in TAX]
 SVG = {
     "zoek": '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>',
     "account": '<svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg>',
@@ -15,15 +22,23 @@ SVG = {
 
 def kop(actief):
     nav = [("index.html", "Home", "home"), ("shop.html", "Shop", "shop"), ("over.html", "Over ons", "over"), ("journal.html", "Journal", "journal"), ("klantenservice.html", "Klantenservice", "service")]
-    links = "".join(f'<a href="{h}"{" aria-current=\"page\"" if k == actief else ""}>{t}</a>' for h, t, k in nav)
-    lade_cats = "".join(f'<a href="shop.html?cat={c}">{n}</a>' for c, n, _ in CATS)
+    def navlink(h, t, k):
+        cur = ' aria-current="page"' if k == actief else ""
+        if k != "shop":
+            return f'<a href="{h}"{cur}>{t}</a>'
+        kol = "".join(f'<div class="mega-kol"><a class="mega-kop" href="shop.html?cat={c}">{n}</a><ul>' + "".join(f'<li><a href="shop.html?cat={c}&amp;sub={sk}">{sn}</a></li>' for sk, sn in subs) + '</ul></div>' for c, n, _, subs in TAX)
+        return (f'<div class="mega-wrap"><a href="{h}"{cur} class="mega-knop" aria-haspopup="true" aria-expanded="false">{t}</a>'
+                f'<div class="mega" role="region" aria-label="Shop per categorie"><div class="wrap mega-grid">{kol}'
+                f'<a class="mega-alles" href="shop.html">Bekijk alle producten</a></div></div></div>')
+    links = "".join(navlink(h, t, k) for h, t, k in nav)
+    lade_cats = "".join(f'<details><summary>{n}</summary><a href="shop.html?cat={c}">Alles in {n.lower()}</a>' + "".join(f'<a href="shop.html?cat={c}&amp;sub={sk}">{sn}</a>' for sk, sn in subs) + '</details>' for c, n, _, subs in TAX)
     return f'''<div class="wm" aria-hidden="true"></div>
 <a class="sr" href="#inhoud">Naar de inhoud</a>
 <div class="balk">Gratis verzending vanaf € 75<span class="balk-extra"> &nbsp;·&nbsp; 14 dagen bedenktijd</span></div>
 <header class="kopbalk"><div class="wrap kop">
  <nav aria-label="Hoofdmenu">{links}</nav>
  <button class="ico menuknop" type="button" data-open="lade" aria-label="Menu openen">{SVG["menu"]}</button>
- <a class="logo" href="index.html" aria-label="Suismuis Home, naar de homepage"><b>Suismuis</b><span>HOME</span></a>
+ <a class="logo" href="index.html" aria-label="Suismuis Home, naar de homepage"><img src="img/logo-mono.png" alt="" width="64" height="64"><span class="woord"><b>SUISMUIS</b><span>HOME</span></span></a>
  <div class="iconen">
   <button class="ico" type="button" data-open="zoek" aria-label="Zoeken">{SVG["zoek"]}</button>
   <a class="ico verberg" href="account.html" aria-label="Mijn account">{SVG["account"]}</a>
@@ -160,12 +175,15 @@ def bouw():
     # ---------- shop ----------
     pagina("shop.html", "Shop | Suismuis Home (concept)", "shop", "shop",
            f'''<div class="paginakop"><div class="wrap"><nav class="kruimel" aria-label="Kruimelpad"><a href="index.html">Home</a><span>/</span><a href="shop.html">Shop</a><span>/</span><span id="kruimel-cat">Alle producten</span></nav>
-<h1 id="shop-titel">Alle producten</h1><p>Vazen, kaarsen, kussens, verlichting en linnen in warme, natuurlijke tinten.</p></div></div>
+<h1 id="shop-titel">Alle producten</h1><p id="shop-intro">Wonen, vazen, verlichting, textiel, servies en meubels in warme, natuurlijke tinten.</p></div></div>
 <section style="padding-top:44px"><div class="wrap">
- <div class="shopbalk"><div class="chips" id="chips" role="group" aria-label="Filter op categorie"></div>
+ <div class="shopbalk"><nav class="subnav" id="subnav" aria-label="Subcategorieën"></nav>
   <div style="display:flex;gap:16px;align-items:center"><span class="aantal-res" id="aantal" aria-live="polite"></span><label class="sr" for="sorteer">Sorteren</label>
   <select id="sorteer"><option value="standaard">Aanbevolen</option><option value="laag">Prijs laag – hoog</option><option value="hoog">Prijs hoog – laag</option><option value="naam">Naam A – Z</option></select></div></div>
  <div class="producten" id="shop-grid"></div>
+ <div class="binnenkort" id="binnenkort" hidden><h2>Deze collectie wordt nu samengesteld</h2><p>De eerste stukken staan hier binnenkort. Laat je e-mailadres achter, dan hoor je het als eerste.</p>
+  <form data-bevestig="Dank je wel! We laten het je weten zodra deze collectie online staat." novalidate><label for="bk-mail" class="sr">E-mailadres</label><input id="bk-mail" type="email" required placeholder="Je e-mailadres" autocomplete="email"><button type="submit">Houd me op de hoogte</button></form>
+  <a class="link" id="bk-terug" href="shop.html">Bekijk de hele collectie</a></div>
  <p class="noot">Voorbeeldproducten en voorbeeldprijzen: bij lancering komen hier jouw eigen producten, foto's en prijzen.</p>
 </div></section>
 {ZEKER}''')
