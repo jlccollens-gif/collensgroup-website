@@ -9,8 +9,20 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - run: sleep 45
       - run: python3 tools/livecheck/livecheck.py "${{ github.event.before }}" "${{ github.sha }}"
+  # Kwaliteit van elke push (van elke sessie): qa.py + mobiele check op 360 px.
+  kwaliteit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: python3 qa.py
+      - run: npm install --no-save --no-package-lock playwright@1.48.2 && npx playwright install --with-deps chromium
+      - run: node tools/mobiel_check.js
