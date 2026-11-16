@@ -39,7 +39,9 @@
     { id: "ptmd-salima", n: "Wandpaneel Salima, gesneden bloem", merk: "PTMD", c: "wand", p: 135, b: 90, h: 90, d: "90 × 90 cm", mat: "Wandpaneel, gesneden bloemmotief", kleur: "#CFC6B6", r: "p" },
     { id: "canvas-warme-tinten", n: "Canvas Abstracte vormen, warme tinten", merk: "De Wanddecoratie", c: "wand", p: 84.95, b: 80, h: 120, d: "80 × 120 cm", mat: "Canvas op frame van FSC/PEFC-hout, 1,8 cm", kleur: "#C98E5E", r: "w" }
   ];
-  H.forEach(function (x) { x.huis = 1; });
+  var TINT = {"beer-mozaiek-klein": "zilver", "beer-mozaiek-groot": "zilver", "aap-goud": "goud", "beer-berlyn": "wit", "beer-ave": "wit", "swirl-messing": "messing", "ptmd-vrouw": "zwart", "pt-imagine": "zwart", "ptmd-darina": "messing", "ptmd-salima": "naturel", "canvas-warme-tinten": "aarde"};
+  var MERKSLUG = { "PTMD": "ptmd", "Richmond Interiors": "richmond-interiors", "Present Time": "present-time", "De Wanddecoratie": "de-wanddecoratie" };
+  H.forEach(function (x) { x.huis = 1; x.ms = MERKSLUG[x.merk]; x.tint = TINT[x.id]; });
   var ROUTE = { p: "Droppery (dropshipping)", r: "Dealeraccount Richmond", g: "Groothandel, navragen", w: "Rechtstreeks, navragen" };
   var API = "https://eyrfizayagcwaxbxyeuh.supabase.co/functions/v1/ombre-order";
   function api(data) {
@@ -199,46 +201,76 @@
     $("#advies-grid").innerHTML = ["terra", "kalk", "koraalschaal", "nacht"].map(function (id) { return kaart(vind(id)); }).join("");
   }
 
-  /* collectie */
-  if (pag === "collectie") {
-    var cat = CATS[url.get("cat")] ? url.get("cat") : "", band = +(url.get("prijs") || 0), maker = MAKERS[url.get("maker")] ? url.get("maker") : "", sort = "standaard";
-    if (band < 0 || band > 3) band = 0;
-    $("#chips").innerHTML = '<button class="chip" type="button" data-cat="" aria-pressed="' + !cat + '">Alle werken</button>' +
-      Object.keys(CATS).map(function (k) { return '<button class="chip" type="button" data-cat="' + k + '" aria-pressed="' + (cat === k) + '">' + CATS[k] + "</button>"; }).join("");
-    $("#makerfilter").innerHTML = '<option value="">Alle kunstenaars</option>' + Object.keys(MAKERS).map(function (k) { return '<option value="' + k + '">' + MAKERS[k] + "</option>"; }).join("");
-    $("#prijsfilter").value = String(band); $("#makerfilter").value = maker;
-    var inBand = function (x) { return !band || (band === 1 && x.p < 350) || (band === 2 && x.p >= 350 && x.p < 1500) || (band === 3 && x.p >= 1500); };
-    var opp = function (x) { if (x.wand) return x.w * x.h; var n = (x.d.match(/\d+/g) || [0]).map(Number); return n[0] * (n[1] || n[0]); };
+
+  /* ===== overzichten met filters (Galerie, Huis & Beeld, subpagina's) ===== */
+  var getal = function (t) { return (String(t).match(/\d+([.,]\d+)?/g) || ["0"]).map(function (v) { return parseFloat(v.replace(",", ".")); }); };
+  var maatVan = function (x) { return x.huis ? Math.max(x.b, x.h) : x.wand ? Math.max(x.w, x.h) : Math.max.apply(null, getal(x.d)); };
+  var techVan = function (x) {
+    var m = x.mat.toLowerCase();
+    if (/olieverf/.test(m)) return "olie"; if (/giclée|print/.test(m)) return "print"; if (/acryl/.test(m)) return "acryl";
+    if (/gips|kalk|structuur|marmerpoeder/.test(m)) return "relief"; if (/brons/.test(m)) return "brons";
+    if (/porselein|keramiek|steengoed/.test(m)) return "keramiek"; if (/steen|travertin/.test(m)) return "steen"; return "overig";
+  };
+  var FMT = { klein: "Klein (tot 40 cm)", middel: "Middel (40–90 cm)", groot: "Groot (vanaf 90 cm)" };
+  var fmtVan = function (x) { var m = maatVan(x); return m < 40 ? "klein" : m < 90 ? "middel" : "groot"; };
+  var MERKNAAM = {}; Object.keys(MERKSLUG).forEach(function (k) { MERKNAAM[MERKSLUG[k]] = k; });
+  var MAKERSEL = {}; Object.keys(MAKERS).forEach(function (k) { if (k !== "onbekend") MAKERSEL[k] = MAKERS[k]; });
+  var CONF = {
+    W: { items: W, kaart: kaart, filters: [
+      { k: "c", naam: "Wereld", chips: true, opts: CATS, v: function (x) { return x.c; } },
+      { k: "m", naam: "Kunstenaar", opts: MAKERSEL, v: function (x) { return x.m; } },
+      { k: "tech", naam: "Techniek", opts: { acryl: "Acryl", olie: "Olieverf", relief: "Reliëf, gips en kalk", print: "Print op papier", brons: "Brons", keramiek: "Keramiek en porselein", steen: "Steen" }, v: techVan },
+      { k: "ed", naam: "Editie", opts: { Unicum: "Unicum", Oplage: "Oplage", Vondst: "Vondst" }, v: function (x) { return /^Oplage/.test(x.l) ? "Oplage" : x.l; } },
+      { k: "fmt", naam: "Formaat", opts: FMT, v: fmtVan },
+      { k: "prijs", naam: "Prijs", opts: { "1": "Tot € 350", "2": "€ 350 – 1.500", "3": "Vanaf € 1.500" }, v: function (x) { return x.p < 350 ? "1" : x.p < 1500 ? "2" : "3"; } }] },
+    H: { items: H, kaart: huisKaart, filters: [
+      { k: "c", naam: "Soort", chips: true, opts: { beelden: "Beelden", wand: "Wandobjecten" }, v: function (x) { return x.c; } },
+      { k: "merk", naam: "Merk", opts: MERKNAAM, v: function (x) { return x.ms; } },
+      { k: "tint", naam: "Kleur", opts: { zilver: "Zilver", goud: "Goud", messing: "Messing en brons", zwart: "Zwart", wit: "Wit", naturel: "Naturel", aarde: "Aardetinten" }, v: function (x) { return x.tint; } },
+      { k: "fmt", naam: "Formaat", opts: FMT, v: fmtVan },
+      { k: "prijs", naam: "Prijs", opts: { "1": "Tot € 50", "2": "€ 50 – 150", "3": "Vanaf € 150" }, v: function (x) { return x.p < 50 ? "1" : x.p < 150 ? "2" : "3"; } }] }
+  };
+  var OUDE = { cat: "c", maker: "m" };
+  $$(".lijst[data-bron]").forEach(function (L) {
+    var cf = CONF[L.getAttribute("data-bron")], vast = {}; try { vast = JSON.parse(L.getAttribute("data-vast") || "{}"); } catch (e) {}
+    var sel = {}, sort = url.get("sort") || "standaard";
+    cf.filters.forEach(function (f) { var w = url.get(f.k) || url.get(Object.keys(OUDE).filter(function (o) { return OUDE[o] === f.k; })[0] || "-"); if (w && f.opts[w] && !vast[f.k]) sel[f.k] = w; });
+    var basis = cf.items.filter(function (x) { return cf.filters.every(function (f) { return !vast[f.k] || f.v(x) === vast[f.k]; }); });
+    var zicht = cf.filters.filter(function (f) { if (vast[f.k]) return false; var vals = {}; basis.forEach(function (x) { vals[f.v(x)] = 1; }); return Object.keys(f.opts).filter(function (o) { return vals[o]; }).length > 1; });
+    var balk = L.querySelector(".filterbalk"), grid = L.querySelector("[data-grid]"), leeg = L.querySelector(".lijst-leeg"), act = L.querySelector(".actief");
+    var opties = function (f) { var vals = {}; basis.forEach(function (x) { vals[f.v(x)] = 1; }); return Object.keys(f.opts).filter(function (o) { return vals[o]; }); };
+    balk.innerHTML = zicht.map(function (f) {
+      if (f.chips) return '<div class="chips" role="group" aria-label="' + f.naam + '"><button class="chip" type="button" data-f="' + f.k + '" data-w="" aria-pressed="' + !sel[f.k] + '">Alles</button>' + opties(f).map(function (o) { return '<button class="chip" type="button" data-f="' + f.k + '" data-w="' + o + '" aria-pressed="' + (sel[f.k] === o) + '">' + f.opts[o] + "</button>"; }).join("") + "</div>";
+      return '<label class="fveld"><span>' + f.naam + '</span><select data-f="' + f.k + '"><option value="">Alle</option>' + opties(f).map(function (o) { return '<option value="' + o + '"' + (sel[f.k] === o ? " selected" : "") + ">" + f.opts[o] + "</option>"; }).join("") + "</select></label>";
+    }).join("") + '<label class="fveld"><span>Sorteren</span><select data-sort><option value="standaard">Uitgelicht</option><option value="laag">Prijs laag – hoog</option><option value="hoog">Prijs hoog – laag</option><option value="groot">Formaat groot – klein</option></select></label>';
+    balk.querySelector("[data-sort]").value = sort;
+    var kn = document.createElement("button"); kn.type = "button"; kn.className = "filterknop"; kn.setAttribute("aria-expanded", "false");
+    balk.parentNode.insertBefore(kn, balk);
+    kn.addEventListener("click", function () { var o = balk.classList.toggle("open"); kn.setAttribute("aria-expanded", o); });
     var teken = function () {
-      var lijst = W.filter(function (x) { return (!cat || x.c === cat) && inBand(x) && (!maker || x.m === maker); });
-      if (sort === "laag") lijst.sort(function (a, b) { return a.p - b.p; });
-      if (sort === "hoog") lijst.sort(function (a, b) { return b.p - a.p; });
-      if (sort === "groot") lijst.sort(function (a, b) { return opp(b) - opp(a); });
-      $("#col-grid").innerHTML = lijst.map(kaart).join("");
-      $("#col-leeg").hidden = lijst.length > 0;
-      $("#aantal").textContent = lijst.length + (lijst.length === 1 ? " werk" : " werken");
-      var titel = maker ? MAKERS[maker] : cat ? CATS[cat] : "Alle werken";
-      $("#col-titel").textContent = titel; $("#kruimel-cat").textContent = titel;
-      $("#col-tekst").textContent = cat ? CAT_TEKST[cat] : "Schilderijen, beelden en vondsten. Filter op wereld, prijs of kunstenaar.";
-      document.title = titel + " | Atelier Ombre (concept)";
-      var q = []; if (cat) q.push("cat=" + cat); if (band) q.push("prijs=" + band); if (maker) q.push("maker=" + maker);
-      try { history.replaceState(null, "", "collectie.html" + (q.length ? "?" + q.join("&") : "")); } catch (e) {}
+      var l = basis.filter(function (x) { return zicht.every(function (f) { return !sel[f.k] || f.v(x) === sel[f.k]; }); });
+      if (sort === "laag") l.sort(function (a, b) { return a.p - b.p; });
+      if (sort === "hoog") l.sort(function (a, b) { return b.p - a.p; });
+      if (sort === "groot") l.sort(function (a, b) { return maatVan(b) - maatVan(a); });
+      grid.innerHTML = l.map(cf.kaart).join(""); leeg.hidden = l.length > 0;
+      var pills = zicht.filter(function (f) { return sel[f.k]; }).map(function (f) { return '<button class="pill" type="button" data-weg-f="' + f.k + '" aria-label="Filter ' + f.naam + ' verwijderen">' + f.opts[sel[f.k]] + " <span aria-hidden=\"true\">×</span></button>"; });
+      act.innerHTML = '<span class="aantal-res">' + l.length + (l.length === 1 ? (cf === CONF.W ? " werk" : " product") : (cf === CONF.W ? " werken" : " producten")) + "</span>" + pills.join("") + (pills.length > 1 ? '<button class="link" type="button" data-wis>Alles wissen</button>' : "");
+      $$("[data-f]", balk).forEach(function (el) { if (el.tagName === "BUTTON") el.setAttribute("aria-pressed", (sel[el.getAttribute("data-f")] || "") === el.getAttribute("data-w")); else el.value = sel[el.getAttribute("data-f")] || ""; });
+      var nf = zicht.filter(function (f) { return sel[f.k] && !f.chips; }).length; kn.textContent = "Filters en sorteren" + (nf ? " (" + nf + ")" : "");
+      var q = Object.keys(sel).map(function (k) { return k + "=" + encodeURIComponent(sel[k]); }); if (sort !== "standaard") q.push("sort=" + sort);
+      try { history.replaceState(null, "", location.pathname + (q.length ? "?" + q.join("&") : "") + location.hash); } catch (e) {}
     };
+    L.addEventListener("click", function (e) {
+      var c = e.target.closest("button[data-f]"); if (c) { var k = c.getAttribute("data-f"), w = c.getAttribute("data-w"); if (w) sel[k] = w; else delete sel[k]; teken(); return; }
+      var w2 = e.target.closest("[data-weg-f]"); if (w2) { delete sel[w2.getAttribute("data-weg-f")]; teken(); return; }
+      if (e.target.closest("[data-wis]")) { sel = {}; teken(); }
+    });
+    L.addEventListener("change", function (e) {
+      var s2 = e.target.closest("select[data-f]"); if (s2) { if (s2.value) sel[s2.getAttribute("data-f")] = s2.value; else delete sel[s2.getAttribute("data-f")]; teken(); }
+      if (e.target.matches("[data-sort]")) { sort = e.target.value; teken(); }
+    });
     teken();
-    $("#chips").addEventListener("click", function (e) {
-      var b = e.target.closest("[data-cat]"); if (!b) return;
-      cat = b.getAttribute("data-cat");
-      $$("#chips .chip").forEach(function (x) { x.setAttribute("aria-pressed", x === b); });
-      teken();
-    });
-    $("#prijsfilter").addEventListener("change", function () { band = +this.value; teken(); });
-    $("#makerfilter").addEventListener("change", function () { maker = this.value; teken(); });
-    $("#sorteer").addEventListener("change", function () { sort = this.value; teken(); });
-    $("#wis").addEventListener("click", function () {
-      cat = ""; band = 0; maker = ""; $("#prijsfilter").value = "0"; $("#makerfilter").value = "";
-      $$("#chips .chip").forEach(function (x) { x.setAttribute("aria-pressed", x.getAttribute("data-cat") === ""); }); teken();
-    });
-  }
+  });
 
   /* werkpagina */
   function plaatsAanMuur(x, img) {
@@ -260,7 +292,7 @@
       '<div class="lijsten" id="lijsten" hidden><span class="klein">Lijst:</span><button class="chip" type="button" data-lijst="" aria-pressed="true">Zonder</button><button class="chip" type="button" data-lijst="lijst-zwart" aria-pressed="false">Zwart</button><button class="chip" type="button" data-lijst="lijst-eik" aria-pressed="false">Eiken</button></div>'
       : '<div class="podium object"><img src="img/' + x.img + '.jpg" alt="' + esc(x.n + ", " + x.mat.toLowerCase()) + '" width="1400" height="1750"></div>';
     $("#detail").innerHTML = "<div>" + podium + "</div>" +
-      '<div class="info"><p class="wie"><a href="' + (x.m === "onbekend" ? "collectie.html?cat=vondsten" : "kunstenaars.html#" + x.m) + '">' + MAKERS[x.m] + "</a></p><h1>" + esc(x.n) + "</h1>" +
+      '<div class="info"><p class="wie"><a href="' + (x.m === "onbekend" ? "vondsten.html" : "kunstenaar-" + x.m + ".html") + '">' + MAKERS[x.m] + "</a></p><h1>" + esc(x.n) + "</h1>" +
       '<dl class="feiten"><dt>Jaar</dt><dd>' + x.j + "</dd><dt>Techniek</dt><dd>" + esc(x.mat) + "</dd><dt>Afmetingen</dt><dd>" + maat(x) + "</dd><dt>Editie</dt><dd>" + x.l + "</dd><dt>Certificaat</dt><dd>" + (x.c === "vondsten" ? "Beschrijving van herkomst en staat" : "Gesigneerd door de kunstenaar") + "</dd></dl>" +
       '<p class="grootprijs">' + prijsMooi(x.p) + '</p><p class="klein">Inclusief btw' + (x.p >= GRATIS ? ", verzekerde verzending gratis" : "") + (x.p >= 1000 ? ". Of 3 × " + euro(x.p / 3) + " zonder rente" : "") + ".</p>" +
       '<div class="acties"><button class="knop" type="button" data-koop="' + x.id + '"' + (bezet ? " disabled>In je winkelmand" : ">In winkelmand") + '</button><button class="ico" type="button" data-fav="' + x.id + '" aria-pressed="' + (favs().indexOf(x.id) > -1) + '" aria-label="Bewaar als favoriet">' + HART + "</button></div>" +
@@ -293,25 +325,6 @@
     var verwant = W.filter(function (y) { return y.id !== x.id && (y.m === x.m || y.c === x.c); }).concat(W.filter(function (y) { return y.c !== x.c; }));
     var gezien = {}; verwant = verwant.filter(function (y) { if (gezien[y.id] || y.id === x.id) return false; gezien[y.id] = 1; return true; }).slice(0, 4);
     $("#gerelateerd").innerHTML = verwant.map(kaart).join("");
-  }
-
-  /* huis & beeld */
-  if (pag === "huis") {
-    var hcat = "", hsort = "standaard";
-    var hteken = function () {
-      var l = H.filter(function (x) { return !hcat || x.c === hcat; });
-      if (hsort === "laag") l.sort(function (a, b) { return a.p - b.p; });
-      if (hsort === "hoog") l.sort(function (a, b) { return b.p - a.p; });
-      if (hsort === "groot") l.sort(function (a, b) { return b.h * b.b - a.h * a.b; });
-      $("#h-grid").innerHTML = l.map(huisKaart).join("");
-      $("#h-aantal").textContent = l.length + " producten";
-    };
-    hteken();
-    $("#h-chips").addEventListener("click", function (e) {
-      var b = e.target.closest("[data-hcat]"); if (!b) return; hcat = b.getAttribute("data-hcat");
-      $$("#h-chips .chip").forEach(function (y) { y.setAttribute("aria-pressed", y === b); }); hteken();
-    });
-    $("#h-sorteer").addEventListener("change", function () { hsort = this.value; hteken(); });
   }
 
   /* kunstenaars */

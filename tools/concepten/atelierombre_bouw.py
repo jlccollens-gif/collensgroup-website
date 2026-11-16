@@ -18,10 +18,35 @@ SVG = {
 }
 
 
+MERKEN = [("ptmd", "PTMD", "Nederlands woonmerk met een eigen ontwerpstudio, sinds 1992. Ruw, gedurfd en verfijnd: beelden en wandpanelen met karakter."),
+          ("richmond-interiors", "Richmond Interiors", "Collectie uit Heerhugowaard met beelden, vazen en wanddecoratie, vaak met handwerk zoals handgesneden mozaïekglas."),
+          ("present-time", "Present Time", "Ontwerpmerk voor woonaccessoires en design-objecten: speels, grafisch en betaalbaar."),
+          ("de-wanddecoratie", "De Wanddecoratie", "Nederlandse maker van wanddecoratie op canvas, gespannen op frames van FSC- en PEFC-gecertificeerd hout.")]
+SOORTEN = [("schilderijen", "Schilderijen", "W", "schilderijen", "Originele werken op doek en papier, van verstild wit tot uitgesproken kleur.", "w-relief-i"),
+           ("beelden-en-objecten", "Beelden & objecten", "W", "beelden", "Brons, steen en porselein. Kleine oplages en unica voor kast, sokkel of tafel.", "w-danser"),
+           ("vondsten", "Vondsten", "W", "vondsten", "Gevonden schatten met een verhaal: studiokeramiek en beelden uit privécollecties.", "w-beer"),
+           ("huis-beelden", "Design-beelden", "H", "beelden", "Beelden en objecten van Nederlandse ontwerpmerken, direct uit voorraad.", "s-interieur"),
+           ("wandobjecten", "Wandobjecten", "H", "wand", "Wandpanelen en canvas om een muur in één keer karakter te geven.", "s-interieur")]
+
+
+def lijst(bron, vast="", noot=""):
+    kl = "werken" if bron == "W" else "dingen"
+    uitleg = '<p class="schaaluitleg"><span class="a4" aria-hidden="true"></span>Elk product staat op schaal naast een A4-vel (30 cm), zodat je direct ziet hoe groot het is.</p>' if bron == "H" else ""
+    return f'''<section class="lijst-sectie"><div class="wrap">
+ <div class="lijst" data-bron="{bron}" data-vast='{vast}'>
+  <div class="filterbalk" role="search" aria-label="Filters"></div>
+  <div class="actief" aria-live="polite"></div>{uitleg}
+  <div class="{kl}" data-grid></div>
+  <div class="lijst-leeg" hidden><p class="leeg">Geen resultaten met deze filters.</p><button class="knop licht" type="button" data-wis>Filters wissen</button></div>
+ </div>{f'<p class="noot">{noot}</p>' if noot else ""}
+</div></section>'''
+
+
 def kop(actief):
     nav = [("collectie.html", "Galerie", "collectie"), ("huis.html", "Huis &amp; Beeld", "huis"), ("kunstenaars.html", "Kunstenaars", "kunstenaars"), ("over.html", "Over", "over"), ("service.html", "Service", "service")]
     links = "".join(f'<a href="{h}"{" aria-current=\"page\"" if k == actief else ""}>{t}</a>' for h, t, k in nav)
-    lade_cats = "".join(f'<a href="collectie.html?cat={c}">{n}</a>' for c, n, _, _ in CATS)
+    lade_cats = "".join(f'<a href="{sl}.html">{n}</a>' for sl, n, b, *_ in SOORTEN if b == "W")
+    lade_merken = "".join(f'<a href="merk-{sl}.html">{n}</a>' for sl, n, _ in MERKEN)
     return f'''<div class="wm" aria-hidden="true"></div>
 <a class="sr" href="#inhoud">Naar de inhoud</a>
 <div class="balk">Verzekerd verzonden met certificaat van echtheid<span class="balk-extra"> &nbsp;·&nbsp; 14 dagen bedenktijd</span></div>
@@ -37,7 +62,7 @@ def kop(actief):
 </div></header>
 <div class="lade" id="lade" role="dialog" aria-modal="true" aria-label="Menu"><div class="doek" data-sluit></div><div class="paneel">
  <button class="sluit" type="button" data-sluit aria-label="Menu sluiten">×</button>
- <a href="index.html">Home</a><a href="collectie.html">Galerie</a><div class="sub">{lade_cats}</div><a href="huis.html">Huis &amp; Beeld</a>
+ <a href="index.html">Home</a><a href="collectie.html">Galerie</a><div class="sub">{lade_cats}<a href="kunstenaars.html">Kunstenaars</a></div><a href="huis.html">Huis &amp; Beeld</a><div class="sub"><a href="huis-beelden.html">Design-beelden</a><a href="wandobjecten.html">Wandobjecten</a>{lade_merken}</div>
  <a href="kunstenaars.html">Kunstenaars</a><a href="over.html">Over</a><a href="service.html">Service</a><a href="favorieten.html">Favorieten</a>
 </div></div>
 <div class="zoek" id="zoek" role="dialog" aria-modal="true" aria-label="Zoeken"><div class="wrap">
@@ -48,11 +73,11 @@ def kop(actief):
 
 
 def voet():
-    cats = "".join(f'<li><a href="collectie.html?cat={c}">{n}</a></li>' for c, n, _, _ in CATS)
+    cats = "".join(f'<li><a href="{sl}.html">{n}</a></li>' for sl, n, b, *_ in SOORTEN if b == "W")
     return f'''<footer><div class="wrap">
  <div class="voet">
   <div><span class="logo">Atelier <i>Ombre</i></span><p style="margin-top:14px;max-width:320px">Abstracte kunst, beelden en gevonden schatten. Zorgvuldig gekozen, eerlijk geprijsd.</p><div class="betaalmerken" aria-label="Betaalmethoden"><span>Visa</span><span>Mastercard</span><span>Amex</span><span>Apple Pay</span><span>Google Pay</span><span>iDEAL</span></div></div>
-  <div><h4>Collectie</h4><ul>{cats}<li><a href="huis.html">Huis &amp; Beeld</a></li><li><a href="kunstenaars.html">Kunstenaars</a></li></ul></div>
+  <div><h4>Galerie</h4><ul>{cats}<li><a href="kunstenaars.html">Kunstenaars</a></li></ul><h4 style="margin-top:22px">Huis &amp; Beeld</h4><ul><li><a href="huis-beelden.html">Design-beelden</a></li><li><a href="wandobjecten.html">Wandobjecten</a></li><li><a href="huis.html#merken">Merken</a></li></ul></div>
   <div><h4>Service</h4><ul><li><a href="service.html#verzending">Verzending en ophangen</a></li><li><a href="service.html#echtheid">Certificaat van echtheid</a></li><li><a href="service.html#herroepen">Bestelling herroepen</a></li><li><a href="service.html#advies">Kunstadvies</a></li><li><a href="service.html#contact">Contact</a></li></ul></div>
   <div><h4>Atelier Ombre</h4><ul><li><a href="over.html">Over ons</a></li><li><a href="over.html#aanmelden">Kunstenaar aanmelden</a></li><li><a href="index.html#brief">Nieuwsbrief</a></li><li><a href="beheer.html">Beheer</a></li></ul></div>
  </div>
@@ -106,7 +131,8 @@ BELOFTE = '''<div class="belofte"><div class="wrap"><ul>
 
 def bouw():
     os.makedirs(DOEL, exist_ok=True)
-    werelden = "".join(f'<a class="wereld" href="collectie.html?cat={c}"><div class="beeld"><img src="img/{img}.jpg" alt="" loading="lazy" width="1400" height="1750"></div><h3>{n}</h3><p>{t}</p></a>' for c, n, img, t in CATS)
+    SLUG = {"schilderijen": "schilderijen", "beelden": "beelden-en-objecten", "vondsten": "vondsten"}
+    werelden = "".join(f'<a class="wereld" href="{SLUG[c]}.html"><div class="beeld"><img src="img/{img}.jpg" alt="" loading="lazy" width="1400" height="1750"></div><h3>{n}</h3><p>{t}</p></a>' for c, n, img, t in CATS)
 
     # ---------- home ----------
     pagina("index.html", "Atelier Ombre – abstracte kunst, beelden en vondsten (concept)", "home", "home", f'''
@@ -174,19 +200,13 @@ def bouw():
 </section>''')
 
     # ---------- collectie ----------
-    pagina("collectie.html", "Collectie | Atelier Ombre (concept)", "collectie", "collectie",
-           '''<div class="paginakop"><div class="wrap"><nav class="kruimel" aria-label="Kruimelpad"><a href="index.html">Home</a><span>/</span><a href="collectie.html">Collectie</a><span>/</span><span id="kruimel-cat">Alle werken</span></nav>
-<h1 id="col-titel">Alle werken</h1><p id="col-tekst">Schilderijen, beelden en vondsten. Filter op wereld, prijs of kunstenaar.</p></div></div>
-<section style="padding-top:44px"><div class="wrap">
- <div class="shopbalk"><div class="chips" id="chips" role="group" aria-label="Filter op wereld"></div>
-  <div class="filters"><span class="aantal-res" id="aantal" aria-live="polite"></span>
-   <label class="sr" for="prijsfilter">Prijs</label><select id="prijsfilter"><option value="0">Alle prijzen</option><option value="1">Tot € 350</option><option value="2">€ 350 – 1.500</option><option value="3">Vanaf € 1.500</option></select>
-   <label class="sr" for="makerfilter">Kunstenaar</label><select id="makerfilter"><option value="">Alle kunstenaars</option></select>
-   <label class="sr" for="sorteer">Sorteren</label><select id="sorteer"><option value="standaard">Uitgelicht</option><option value="laag">Prijs laag – hoog</option><option value="hoog">Prijs hoog – laag</option><option value="groot">Formaat groot – klein</option></select></div></div>
- <div class="werken" id="col-grid"></div>
- <div id="col-leeg" hidden><p class="leeg">Geen werken met deze combinatie. Probeer een andere prijs of kunstenaar.</p><button class="knop licht" type="button" id="wis">Filters wissen</button></div>
- <p class="noot">Voorbeeldwerken, voorbeeldkunstenaars en voorbeeldprijzen. Bij lancering komen hier de echte werken.</p>
-</div></section>''' + BELOFTE)
+    pagina("collectie.html", "Galerie | Atelier Ombre (concept)", "lijst", "collectie",
+           paginakop("Galerie", "Originele schilderijen, beelden in kleine oplage en vondsten. Filter op kunstenaar, techniek, formaat of prijs.", ["<span>Galerie</span>"]) +
+           lijst("W", "", "Voorbeeldwerken, voorbeeldkunstenaars en voorbeeldprijzen. Bij lancering komen hier de echte werken.") + BELOFTE)
+    for sl, n, bron, c, tekst, img in SOORTEN:
+        ouder = '<a href="collectie.html">Galerie</a>' if bron == "W" else '<a href="huis.html">Huis &amp; Beeld</a>'
+        pagina(f"{sl}.html", f"{n} | Atelier Ombre (concept)", "lijst", "collectie" if bron == "W" else "huis",
+               paginakop(n.replace("&", "&amp;"), tekst, [ouder, f"<span>{n.replace('&', '&amp;')}</span>"]) + lijst(bron, '{"c":"' + c + '"}'))
 
     # ---------- werk ----------
     pagina("werk.html", "Werk | Atelier Ombre (concept)", "werk", "collectie",
@@ -195,7 +215,7 @@ def bouw():
 
     # ---------- kunstenaars ----------
     makers = "".join(f'''<article class="maker" id="{s}"><div class="beeld"><img src="img/{img}.jpg" alt="" loading="lazy" width="1400" height="1750"></div>
-<div><h2>{n}</h2><p class="klein">{plaats}</p><p>{bio}</p><p class="klein" data-telling="{s}"></p><a class="link" href="collectie.html?maker={s}">Bekijk de werken</a></div></article>''' for s, n, img, plaats, bio in MAKERS)
+<div><h2>{n}</h2><p class="klein">{plaats}</p><p>{bio}</p><p class="klein" data-telling="{s}"></p><a class="link" href="kunstenaar-{s}.html">Bekijk de werken</a></div></article>''' for s, n, img, plaats, bio in MAKERS)
     pagina("kunstenaars.html", "Kunstenaars | Atelier Ombre (concept)", "kunstenaars", "kunstenaars",
            paginakop("Kunstenaars", "Een kleine kring makers die we persoonlijk kennen. Elk werk komt rechtstreeks uit hun atelier.", ["<span>Kunstenaars</span>"]) +
            f'<section style="padding-top:48px"><div class="wrap"><div class="makers">{makers}</div><p class="noot">Voorbeeldkunstenaars ter illustratie. Bij lancering stellen we de echte kunstenaars voor, met hun eigen tekst en portret.</p></div></section>')
@@ -320,19 +340,33 @@ def bouw():
 <div class="werken" id="fav-grid"></div></div></section>''')
 
     # ---------- huis & beeld ----------
-    pagina("huis.html", "Huis & Beeld | Atelier Ombre (concept)", "huis", "huis",
+    pagina("huis.html", "Huis & Beeld | Atelier Ombre (concept)", "lijst", "huis",
            paginakop("Huis &amp; Beeld", "Design-beelden en wandobjecten van Nederlandse ontwerpmerken. Goede kwaliteit voor een normale prijs, rechtstreeks uit het magazijn van de maker.", ["<span>Huis &amp; Beeld</span>"]) + '''
-<section style="padding-top:44px"><div class="wrap">
- <div class="shopbalk"><div class="chips" id="h-chips" role="group" aria-label="Filter">
-  <button class="chip" type="button" data-hcat="" aria-pressed="true">Alles</button><button class="chip" type="button" data-hcat="beelden" aria-pressed="false">Beelden</button><button class="chip" type="button" data-hcat="wand" aria-pressed="false">Wandobjecten</button></div>
-  <div class="filters"><span class="aantal-res" id="h-aantal" aria-live="polite"></span><label class="sr" for="h-sorteer">Sorteren</label><select id="h-sorteer"><option value="standaard">Uitgelicht</option><option value="laag">Prijs laag – hoog</option><option value="hoog">Prijs hoog – laag</option><option value="groot">Formaat groot – klein</option></select></div></div>
- <p class="schaaluitleg"><span class="a4" aria-hidden="true"></span>Elk product staat op schaal naast een A4-vel (30 cm), zodat je direct ziet hoe groot het is.</p>
- <div class="dingen" id="h-grid"></div>
- <p class="noot">Echte producten van Richmond Interiors, PTMD, Present Time en De Wanddecoratie. Prijzen zijn een voorstel; de definitieve prijs volgt zodra de inkoopprijs bekend is. Productfoto's van de merken komen erbij na aansluiting als verkooppunt.</p>
+''' + lijst("H", "", "Echte producten van Richmond Interiors, PTMD, Present Time en De Wanddecoratie. Prijzen zijn een voorstel; de definitieve prijs volgt zodra de inkoopprijs bekend is. Productfoto's van de merken komen erbij na aansluiting als verkooppunt.") + '''
+<section id="merken" style="background:var(--wit)"><div class="wrap">
+ <div class="sectiekop"><div><h2>Onze merken</h2><p>Ontwerpmerken met eigen collecties. Geen namaak, altijd het origineel.</p></div></div>
+ <div class="merken">''' + "".join(f'<a class="merk" href="merk-{sl}.html"><b>{n}</b><span>{t}</span><span class="link">Bekijk de collectie</span></a>' for sl, n, t in MERKEN) + '''</div>
 </div></section>
 <section class="belofte-huis"><div class="wrap"><ul>
  <li><b>Ontwerpmerken uit Nederland</b>Eigen ontwerpen, geen namaak.</li>
  <li><b>Snel in huis</b>Rechtstreeks uit het magazijn van de maker.</li>
+ <li><b>14 dagen bedenktijd</b>Retour aanmelden met één knop.</li>
+</ul></div></section>''')
+
+    # ---------- per kunstenaar ----------
+    for sl, n, img, plaats, bio in MAKERS:
+        pagina(f"kunstenaar-{sl}.html", f"{n} | Atelier Ombre (concept)", "lijst", "kunstenaars",
+               f'''<div class="paginakop maker-kop"><div class="wrap"><nav class="kruimel" aria-label="Kruimelpad"><a href="index.html">Home</a><span>/</span><a href="kunstenaars.html">Kunstenaars</a><span>/</span><span>{n}</span></nav>
+<div class="maker-intro"><div class="beeld"><img src="img/{img}-m.jpg" alt="Werk van {n}" width="1080" height="1350"></div><div><h1>{n}</h1><p class="klein">{plaats}</p><p>{bio}</p><p class="klein">Voorbeeldkunstenaar ter illustratie.</p></div></div></div></div>'''
+               + lijst("W", '{"m":"' + sl + '"}'))
+    # ---------- per merk (ook de partnerpagina voor leveranciers) ----------
+    for sl, n, t in MERKEN:
+        pagina(f"merk-{sl}.html", f"{n} | Atelier Ombre (concept)", "lijst", "huis",
+               paginakop(n, t, ['<a href="huis.html">Huis &amp; Beeld</a>', '<a href="huis.html#merken">Merken</a>', f"<span>{n}</span>"]) +
+               lijst("H", '{"merk":"' + sl + '"}', f"Zo presenteert Atelier Ombre de collectie van {n}: op schaal, met heldere maten en materialen. Productfoto's van {n} plaatsen we na akkoord.") + '''
+<section class="belofte-huis"><div class="wrap"><ul>
+ <li><b>Verzonden onder onze naam</b>Met de pakbon van Atelier Ombre, zonder prijzen.</li>
+ <li><b>Rechtstreeks uit het magazijn</b>De maker verzendt naar de klant.</li>
  <li><b>14 dagen bedenktijd</b>Retour aanmelden met één knop.</li>
 </ul></div></section>''')
 

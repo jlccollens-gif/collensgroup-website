@@ -12,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/ao.css">
 </head>
-<body data-pagina="huis">
+<body data-pagina="lijst">
 <div class="wm" aria-hidden="true"></div>
 <a class="sr" href="#inhoud">Naar de inhoud</a>
 <div class="balk">Verzekerd verzonden met certificaat van echtheid<span class="balk-extra"> &nbsp;·&nbsp; 14 dagen bedenktijd</span></div>
@@ -28,7 +28,7 @@
 </div></header>
 <div class="lade" id="lade" role="dialog" aria-modal="true" aria-label="Menu"><div class="doek" data-sluit></div><div class="paneel">
  <button class="sluit" type="button" data-sluit aria-label="Menu sluiten">×</button>
- <a href="./">Home</a><a href="collectie">Galerie</a><div class="sub"><a href="collectie?cat=schilderijen">Schilderijen</a><a href="collectie?cat=beelden">Beelden & objecten</a><a href="collectie?cat=vondsten">Vondsten</a></div><a href="huis">Huis &amp; Beeld</a>
+ <a href="./">Home</a><a href="collectie">Galerie</a><div class="sub"><a href="schilderijen">Schilderijen</a><a href="beelden-en-objecten">Beelden & objecten</a><a href="vondsten">Vondsten</a><a href="kunstenaars">Kunstenaars</a></div><a href="huis">Huis &amp; Beeld</a><div class="sub"><a href="huis-beelden">Design-beelden</a><a href="wandobjecten">Wandobjecten</a><a href="merk-ptmd">PTMD</a><a href="merk-richmond-interiors">Richmond Interiors</a><a href="merk-present-time">Present Time</a><a href="merk-de-wanddecoratie">De Wanddecoratie</a></div>
  <a href="kunstenaars">Kunstenaars</a><a href="over">Over</a><a href="service">Service</a><a href="favorieten">Favorieten</a>
 </div></div>
 <div class="zoek" id="zoek" role="dialog" aria-modal="true" aria-label="Zoeken"><div class="wrap">
@@ -38,13 +38,17 @@
 </div></div>
 <main id="inhoud">
 <div class="paginakop"><div class="wrap"><nav class="kruimel" aria-label="Kruimelpad"><a href="./">Home</a><span>/</span><span>Huis &amp; Beeld</span></nav><h1>Huis &amp; Beeld</h1><p>Design-beelden en wandobjecten van Nederlandse ontwerpmerken. Goede kwaliteit voor een normale prijs, rechtstreeks uit het magazijn van de maker.</p></div></div>
-<section style="padding-top:44px"><div class="wrap">
- <div class="shopbalk"><div class="chips" id="h-chips" role="group" aria-label="Filter">
-  <button class="chip" type="button" data-hcat="" aria-pressed="true">Alles</button><button class="chip" type="button" data-hcat="beelden" aria-pressed="false">Beelden</button><button class="chip" type="button" data-hcat="wand" aria-pressed="false">Wandobjecten</button></div>
-  <div class="filters"><span class="aantal-res" id="h-aantal" aria-live="polite"></span><label class="sr" for="h-sorteer">Sorteren</label><select id="h-sorteer"><option value="standaard">Uitgelicht</option><option value="laag">Prijs laag – hoog</option><option value="hoog">Prijs hoog – laag</option><option value="groot">Formaat groot – klein</option></select></div></div>
- <p class="schaaluitleg"><span class="a4" aria-hidden="true"></span>Elk product staat op schaal naast een A4-vel (30 cm), zodat je direct ziet hoe groot het is.</p>
- <div class="dingen" id="h-grid"></div>
- <p class="noot">Echte producten van Richmond Interiors, PTMD, Present Time en De Wanddecoratie. Prijzen zijn een voorstel; de definitieve prijs volgt zodra de inkoopprijs bekend is. Productfoto's van de merken komen erbij na aansluiting als verkooppunt.</p>
+<section class="lijst-sectie"><div class="wrap">
+ <div class="lijst" data-bron="H" data-vast=''>
+  <div class="filterbalk" role="search" aria-label="Filters"></div>
+  <div class="actief" aria-live="polite"></div><p class="schaaluitleg"><span class="a4" aria-hidden="true"></span>Elk product staat op schaal naast een A4-vel (30 cm), zodat je direct ziet hoe groot het is.</p>
+  <div class="dingen" data-grid></div>
+  <div class="lijst-leeg" hidden><p class="leeg">Geen resultaten met deze filters.</p><button class="knop licht" type="button" data-wis>Filters wissen</button></div>
+ </div><p class="noot">Echte producten van Richmond Interiors, PTMD, Present Time en De Wanddecoratie. Prijzen zijn een voorstel; de definitieve prijs volgt zodra de inkoopprijs bekend is. Productfoto's van de merken komen erbij na aansluiting als verkooppunt.</p>
+</div></section>
+<section id="merken" style="background:var(--wit)"><div class="wrap">
+ <div class="sectiekop"><div><h2>Onze merken</h2><p>Ontwerpmerken met eigen collecties. Geen namaak, altijd het origineel.</p></div></div>
+ <div class="merken"><a class="merk" href="merk-ptmd"><b>PTMD</b><span>Nederlands woonmerk met een eigen ontwerpstudio, sinds 1992. Ruw, gedurfd en verfijnd: beelden en wandpanelen met karakter.</span><span class="link">Bekijk de collectie</span></a><a class="merk" href="merk-richmond-interiors"><b>Richmond Interiors</b><span>Collectie uit Heerhugowaard met beelden, vazen en wanddecoratie, vaak met handwerk zoals handgesneden mozaïekglas.</span><span class="link">Bekijk de collectie</span></a><a class="merk" href="merk-present-time"><b>Present Time</b><span>Ontwerpmerk voor woonaccessoires en design-objecten: speels, grafisch en betaalbaar.</span><span class="link">Bekijk de collectie</span></a><a class="merk" href="merk-de-wanddecoratie"><b>De Wanddecoratie</b><span>Nederlandse maker van wanddecoratie op canvas, gespannen op frames van FSC- en PEFC-gecertificeerd hout.</span><span class="link">Bekijk de collectie</span></a></div>
 </div></section>
 <section class="belofte-huis"><div class="wrap"><ul>
  <li><b>Ontwerpmerken uit Nederland</b>Eigen ontwerpen, geen namaak.</li>
@@ -55,7 +59,7 @@
 <footer><div class="wrap">
  <div class="voet">
   <div><span class="logo">Atelier <i>Ombre</i></span><p style="margin-top:14px;max-width:320px">Abstracte kunst, beelden en gevonden schatten. Zorgvuldig gekozen, eerlijk geprijsd.</p><div class="betaalmerken" aria-label="Betaalmethoden"><span>Visa</span><span>Mastercard</span><span>Amex</span><span>Apple Pay</span><span>Google Pay</span><span>iDEAL</span></div></div>
-  <div><h4>Collectie</h4><ul><li><a href="collectie?cat=schilderijen">Schilderijen</a></li><li><a href="collectie?cat=beelden">Beelden & objecten</a></li><li><a href="collectie?cat=vondsten">Vondsten</a></li><li><a href="huis">Huis &amp; Beeld</a></li><li><a href="kunstenaars">Kunstenaars</a></li></ul></div>
+  <div><h4>Galerie</h4><ul><li><a href="schilderijen">Schilderijen</a></li><li><a href="beelden-en-objecten">Beelden & objecten</a></li><li><a href="vondsten">Vondsten</a></li><li><a href="kunstenaars">Kunstenaars</a></li></ul><h4 style="margin-top:22px">Huis &amp; Beeld</h4><ul><li><a href="huis-beelden">Design-beelden</a></li><li><a href="wandobjecten">Wandobjecten</a></li><li><a href="huis#merken">Merken</a></li></ul></div>
   <div><h4>Service</h4><ul><li><a href="service#verzending">Verzending en ophangen</a></li><li><a href="service#echtheid">Certificaat van echtheid</a></li><li><a href="service#herroepen">Bestelling herroepen</a></li><li><a href="service#advies">Kunstadvies</a></li><li><a href="service#contact">Contact</a></li></ul></div>
   <div><h4>Atelier Ombre</h4><ul><li><a href="over">Over ons</a></li><li><a href="over#aanmelden">Kunstenaar aanmelden</a></li><li><a href="./#brief">Nieuwsbrief</a></li><li><a href="beheer">Beheer</a></li></ul></div>
  </div>
