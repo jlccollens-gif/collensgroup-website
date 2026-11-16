@@ -15,7 +15,7 @@
 <a class="sr" href="#inhoud">Naar de inhoud</a>
 <div class="balk">Verzekerd verzonden met certificaat van echtheid<span class="balk-extra"> &nbsp;·&nbsp; 14 dagen bedenktijd</span></div>
 <header class="kopbalk"><div class="wrap kop">
- <nav aria-label="Hoofdmenu"><a href="collectie">Collectie</a><a href="kunstenaars">Kunstenaars</a><a href="over">Over</a><a href="service">Service</a></nav>
+ <nav aria-label="Hoofdmenu"><a href="collectie">Galerie</a><a href="huis">Huis &amp; Beeld</a><a href="kunstenaars">Kunstenaars</a><a href="over">Over</a><a href="service">Service</a></nav>
  <button class="ico menuknop" type="button" data-open="lade" aria-label="Menu openen"><svg viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
  <a class="logo" href="./" aria-label="Atelier Ombre, naar de homepage">Atelier <i>Ombre</i></a>
  <div class="iconen">
@@ -26,7 +26,7 @@
 </div></header>
 <div class="lade" id="lade" role="dialog" aria-modal="true" aria-label="Menu"><div class="doek" data-sluit></div><div class="paneel">
  <button class="sluit" type="button" data-sluit aria-label="Menu sluiten">×</button>
- <a href="./">Home</a><a href="collectie">Collectie</a><div class="sub"><a href="collectie?cat=schilderijen">Schilderijen</a><a href="collectie?cat=beelden">Beelden & objecten</a><a href="collectie?cat=vondsten">Vondsten</a></div>
+ <a href="./">Home</a><a href="collectie">Galerie</a><div class="sub"><a href="collectie?cat=schilderijen">Schilderijen</a><a href="collectie?cat=beelden">Beelden & objecten</a><a href="collectie?cat=vondsten">Vondsten</a></div><a href="huis">Huis &amp; Beeld</a>
  <a href="kunstenaars">Kunstenaars</a><a href="over">Over</a><a href="service">Service</a><a href="favorieten">Favorieten</a>
 </div></div>
 <div class="zoek" id="zoek" role="dialog" aria-modal="true" aria-label="Zoeken"><div class="wrap">
@@ -36,19 +36,36 @@
 </div></div>
 <main id="inhoud">
 
-<div class="held">
- <div class="held-tekst">
-  <h1>Atelier<span>Ombre</span></h1>
-  <div class="held-onder">
-   <p>Abstracte schilderijen, beelden en gevonden schatten. Van een eerste aankoop tot een stuk om te verzamelen, elk werk met certificaat.</p>
-   <div class="knoppen"><a class="knop" href="collectie">Bekijk de collectie</a><a class="knop licht" href="#prijs">Kies op budget</a></div>
-  </div>
+<section class="nacht" id="nacht" aria-label="Atelier Ombre">
+ <div class="nacht-werken" aria-hidden="true">
+  <img class="nw nw1" src="img/w-beweging.jpg" alt="" width="1600" height="1600" fetchpriority="high">
+  <img class="nw nw2" src="img/w-danser.jpg" alt="" width="1400" height="1750">
+  <img class="nw nw3" src="img/w-relief-i.jpg" alt="" width="1400" height="1750">
+  <img class="nw nw4" src="img/w-kleur.jpg" alt="" width="1600" height="1200">
+  <img class="nw nw5" src="img/w-beer.jpg" alt="" width="1400" height="1750">
  </div>
- <figure><img src="img/s-held.jpg" alt="Galerieruimte met houten sculpturen op de vloer en een doorkijk naar een lichte zaal" width="1600" height="2000" fetchpriority="high">
-  <figcaption><b>Zaal I · Vorm en materiaal</b>Hout, steen en brons in een doorlopende opstelling.</figcaption></figure>
-</div>
+ <div class="nacht-licht" aria-hidden="true"></div>
+ <div class="nacht-tekst wrap">
+  <p class="nacht-boven">Kunst, beelden en vondsten</p>
+  <h1>Atelier<span>Ombre</span></h1>
+  <p class="nacht-onder">Alles begint in de schaduw. Beweeg het licht en ontdek wat er hangt.</p>
+  <div class="knoppen"><a class="knop wit" href="collectie">Naar de galerie</a><a class="knop lijn" href="huis">Huis &amp; Beeld</a></div>
+ </div>
+ <p class="nacht-hint" aria-hidden="true">Beweeg je muis of vinger over de zaal</p>
+</section>
+<section class="strook" aria-label="Uitgelicht in de galerie">
+ <div class="wrap strook-kop"><h2>Uitgelicht</h2><p>Schuif door de zaal</p></div>
+ <div class="strook-baan" id="strook" tabindex="0" aria-label="Uitgelichte werken, horizontaal scrollbaar"></div>
+</section>
 <section><div class="wrap">
- <div class="sectiekop"><div><h2>Drie werelden</h2><p>Van verstilde reliëfs tot beelden en vondsten met een verleden.</p></div><a class="link" href="collectie">Alle werken</a></div>
+ <div class="sectiekop"><div><h2>Twee afdelingen</h2><p>Originele kunst om te verzamelen, en design-beelden om meteen mee te leven.</p></div></div>
+ <div class="afdelingen">
+  <a class="afdeling" href="collectie"><div class="beeld"><img src="img/s-galerie.jpg" alt="Galeriezaal met keramiek en een groot doek" loading="lazy" width="2000" height="1333"></div><div><h3>Galerie</h3><p>Originele schilderijen, beelden in kleine oplage en vondsten. Altijd met certificaat.</p><span class="link">Originelen vanaf € 165</span></div></a>
+  <a class="afdeling" href="huis"><div class="beeld"><img src="img/s-interieur.jpg" alt="Abstracte wandobjecten aan een grijze stucmuur" loading="lazy" width="1400" height="1750"></div><div><h3>Huis &amp; Beeld</h3><p>Design-beelden en wandobjecten van Nederlandse ontwerpmerken, direct uit hun magazijn.</p><span class="link">Vanaf € 24,95</span></div></a>
+ </div>
+</div></section>
+<section><div class="wrap">
+ <div class="sectiekop"><div><h2>De galerie in drie werelden</h2><p>Van verstilde reliëfs tot beelden en vondsten met een verleden.</p></div><a class="link" href="collectie">Naar de galerie</a></div>
  <div class="werelden"><a class="wereld" href="collectie?cat=schilderijen"><div class="beeld"><img src="img/w-relief-i.jpg" alt="" loading="lazy" width="1400" height="1750"></div><h3>Schilderijen</h3><p>Originele werken op doek en papier, van verstild wit tot uitgesproken kleur.</p></a><a class="wereld" href="collectie?cat=beelden"><div class="beeld"><img src="img/w-danser.jpg" alt="" loading="lazy" width="1400" height="1750"></div><h3>Beelden & objecten</h3><p>Brons, steen en porselein. Kleine oplages en unica voor kast, sokkel of tafel.</p></a><a class="wereld" href="collectie?cat=vondsten"><div class="beeld"><img src="img/w-beer.jpg" alt="" loading="lazy" width="1400" height="1750"></div><h3>Vondsten</h3><p>Gevonden schatten met een verhaal: studiokeramiek en beelden uit privécollecties.</p></a></div>
 </div></section>
 <section style="background:var(--wit)"><div class="wrap">
@@ -90,7 +107,7 @@
 <footer><div class="wrap">
  <div class="voet">
   <div><span class="logo">Atelier <i>Ombre</i></span><p style="margin-top:14px;max-width:320px">Abstracte kunst, beelden en gevonden schatten. Zorgvuldig gekozen, eerlijk geprijsd.</p><div class="betaalmerken" aria-label="Betaalmethoden"><span>iDEAL</span><span>Bancontact</span><span>Visa</span><span>Mastercard</span><span>PayPal</span></div></div>
-  <div><h4>Collectie</h4><ul><li><a href="collectie?cat=schilderijen">Schilderijen</a></li><li><a href="collectie?cat=beelden">Beelden & objecten</a></li><li><a href="collectie?cat=vondsten">Vondsten</a></li><li><a href="kunstenaars">Kunstenaars</a></li></ul></div>
+  <div><h4>Collectie</h4><ul><li><a href="collectie?cat=schilderijen">Schilderijen</a></li><li><a href="collectie?cat=beelden">Beelden & objecten</a></li><li><a href="collectie?cat=vondsten">Vondsten</a></li><li><a href="huis">Huis &amp; Beeld</a></li><li><a href="kunstenaars">Kunstenaars</a></li></ul></div>
   <div><h4>Service</h4><ul><li><a href="service#verzending">Verzending en ophangen</a></li><li><a href="service#echtheid">Certificaat van echtheid</a></li><li><a href="service#herroepen">Bestelling herroepen</a></li><li><a href="service#advies">Kunstadvies</a></li><li><a href="service#contact">Contact</a></li></ul></div>
   <div><h4>Atelier Ombre</h4><ul><li><a href="over">Over ons</a></li><li><a href="over#aanmelden">Kunstenaar aanmelden</a></li><li><a href="./#brief">Nieuwsbrief</a></li><li><a href="beheer">Beheer</a></li></ul></div>
  </div>

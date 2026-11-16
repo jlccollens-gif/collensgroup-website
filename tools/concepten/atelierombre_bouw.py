@@ -19,7 +19,7 @@ SVG = {
 
 
 def kop(actief):
-    nav = [("collectie.html", "Collectie", "collectie"), ("kunstenaars.html", "Kunstenaars", "kunstenaars"), ("over.html", "Over", "over"), ("service.html", "Service", "service")]
+    nav = [("collectie.html", "Galerie", "collectie"), ("huis.html", "Huis &amp; Beeld", "huis"), ("kunstenaars.html", "Kunstenaars", "kunstenaars"), ("over.html", "Over", "over"), ("service.html", "Service", "service")]
     links = "".join(f'<a href="{h}"{" aria-current=\"page\"" if k == actief else ""}>{t}</a>' for h, t, k in nav)
     lade_cats = "".join(f'<a href="collectie.html?cat={c}">{n}</a>' for c, n, _, _ in CATS)
     return f'''<div class="wm" aria-hidden="true"></div>
@@ -37,7 +37,7 @@ def kop(actief):
 </div></header>
 <div class="lade" id="lade" role="dialog" aria-modal="true" aria-label="Menu"><div class="doek" data-sluit></div><div class="paneel">
  <button class="sluit" type="button" data-sluit aria-label="Menu sluiten">×</button>
- <a href="index.html">Home</a><a href="collectie.html">Collectie</a><div class="sub">{lade_cats}</div>
+ <a href="index.html">Home</a><a href="collectie.html">Galerie</a><div class="sub">{lade_cats}</div><a href="huis.html">Huis &amp; Beeld</a>
  <a href="kunstenaars.html">Kunstenaars</a><a href="over.html">Over</a><a href="service.html">Service</a><a href="favorieten.html">Favorieten</a>
 </div></div>
 <div class="zoek" id="zoek" role="dialog" aria-modal="true" aria-label="Zoeken"><div class="wrap">
@@ -52,7 +52,7 @@ def voet():
     return f'''<footer><div class="wrap">
  <div class="voet">
   <div><span class="logo">Atelier <i>Ombre</i></span><p style="margin-top:14px;max-width:320px">Abstracte kunst, beelden en gevonden schatten. Zorgvuldig gekozen, eerlijk geprijsd.</p><div class="betaalmerken" aria-label="Betaalmethoden"><span>iDEAL</span><span>Bancontact</span><span>Visa</span><span>Mastercard</span><span>PayPal</span></div></div>
-  <div><h4>Collectie</h4><ul>{cats}<li><a href="kunstenaars.html">Kunstenaars</a></li></ul></div>
+  <div><h4>Collectie</h4><ul>{cats}<li><a href="huis.html">Huis &amp; Beeld</a></li><li><a href="kunstenaars.html">Kunstenaars</a></li></ul></div>
   <div><h4>Service</h4><ul><li><a href="service.html#verzending">Verzending en ophangen</a></li><li><a href="service.html#echtheid">Certificaat van echtheid</a></li><li><a href="service.html#herroepen">Bestelling herroepen</a></li><li><a href="service.html#advies">Kunstadvies</a></li><li><a href="service.html#contact">Contact</a></li></ul></div>
   <div><h4>Atelier Ombre</h4><ul><li><a href="over.html">Over ons</a></li><li><a href="over.html#aanmelden">Kunstenaar aanmelden</a></li><li><a href="index.html#brief">Nieuwsbrief</a></li><li><a href="beheer.html">Beheer</a></li></ul></div>
  </div>
@@ -108,19 +108,36 @@ def bouw():
 
     # ---------- home ----------
     pagina("index.html", "Atelier Ombre – abstracte kunst, beelden en vondsten (concept)", "home", "home", f'''
-<div class="held">
- <div class="held-tekst">
-  <h1>Atelier<span>Ombre</span></h1>
-  <div class="held-onder">
-   <p>Abstracte schilderijen, beelden en gevonden schatten. Van een eerste aankoop tot een stuk om te verzamelen, elk werk met certificaat.</p>
-   <div class="knoppen"><a class="knop" href="collectie.html">Bekijk de collectie</a><a class="knop licht" href="#prijs">Kies op budget</a></div>
-  </div>
+<section class="nacht" id="nacht" aria-label="Atelier Ombre">
+ <div class="nacht-werken" aria-hidden="true">
+  <img class="nw nw1" src="img/w-beweging.jpg" alt="" width="1600" height="1600" fetchpriority="high">
+  <img class="nw nw2" src="img/w-danser.jpg" alt="" width="1400" height="1750">
+  <img class="nw nw3" src="img/w-relief-i.jpg" alt="" width="1400" height="1750">
+  <img class="nw nw4" src="img/w-kleur.jpg" alt="" width="1600" height="1200">
+  <img class="nw nw5" src="img/w-beer.jpg" alt="" width="1400" height="1750">
  </div>
- <figure><img src="img/s-held.jpg" alt="Galerieruimte met houten sculpturen op de vloer en een doorkijk naar een lichte zaal" width="1600" height="2000" fetchpriority="high">
-  <figcaption><b>Zaal I · Vorm en materiaal</b>Hout, steen en brons in een doorlopende opstelling.</figcaption></figure>
-</div>
+ <div class="nacht-licht" aria-hidden="true"></div>
+ <div class="nacht-tekst wrap">
+  <p class="nacht-boven">Kunst, beelden en vondsten</p>
+  <h1>Atelier<span>Ombre</span></h1>
+  <p class="nacht-onder">Alles begint in de schaduw. Beweeg het licht en ontdek wat er hangt.</p>
+  <div class="knoppen"><a class="knop wit" href="collectie.html">Naar de galerie</a><a class="knop lijn" href="huis.html">Huis &amp; Beeld</a></div>
+ </div>
+ <p class="nacht-hint" aria-hidden="true">Beweeg je muis of vinger over de zaal</p>
+</section>
+<section class="strook" aria-label="Uitgelicht in de galerie">
+ <div class="wrap strook-kop"><h2>Uitgelicht</h2><p>Schuif door de zaal</p></div>
+ <div class="strook-baan" id="strook" tabindex="0" aria-label="Uitgelichte werken, horizontaal scrollbaar"></div>
+</section>
 <section><div class="wrap">
- <div class="sectiekop"><div><h2>Drie werelden</h2><p>Van verstilde reliëfs tot beelden en vondsten met een verleden.</p></div><a class="link" href="collectie.html">Alle werken</a></div>
+ <div class="sectiekop"><div><h2>Twee afdelingen</h2><p>Originele kunst om te verzamelen, en design-beelden om meteen mee te leven.</p></div></div>
+ <div class="afdelingen">
+  <a class="afdeling" href="collectie.html"><div class="beeld"><img src="img/s-galerie.jpg" alt="Galeriezaal met keramiek en een groot doek" loading="lazy" width="2000" height="1333"></div><div><h3>Galerie</h3><p>Originele schilderijen, beelden in kleine oplage en vondsten. Altijd met certificaat.</p><span class="link">Originelen vanaf € 165</span></div></a>
+  <a class="afdeling" href="huis.html"><div class="beeld"><img src="img/s-interieur.jpg" alt="Abstracte wandobjecten aan een grijze stucmuur" loading="lazy" width="1400" height="1750"></div><div><h3>Huis &amp; Beeld</h3><p>Design-beelden en wandobjecten van Nederlandse ontwerpmerken, direct uit hun magazijn.</p><span class="link">Vanaf € 24,95</span></div></a>
+ </div>
+</div></section>
+<section><div class="wrap">
+ <div class="sectiekop"><div><h2>De galerie in drie werelden</h2><p>Van verstilde reliëfs tot beelden en vondsten met een verleden.</p></div><a class="link" href="collectie.html">Naar de galerie</a></div>
  <div class="werelden">{werelden}</div>
 </div></section>
 <section style="background:var(--wit)"><div class="wrap">
@@ -297,6 +314,23 @@ def bouw():
 <section style="padding-top:48px"><div class="wrap"><div id="fav-leeg"><p>Je hebt nog geen favorieten. Tik op het hartje bij een werk om het te bewaren.</p><a class="knop" href="collectie.html">Naar de collectie</a></div>
 <div class="werken" id="fav-grid"></div></div></section>''')
 
+    # ---------- huis & beeld ----------
+    pagina("huis.html", "Huis & Beeld | Atelier Ombre (concept)", "huis", "huis",
+           paginakop("Huis &amp; Beeld", "Design-beelden en wandobjecten van Nederlandse ontwerpmerken. Goede kwaliteit voor een normale prijs, rechtstreeks uit het magazijn van de maker.", ["<span>Huis &amp; Beeld</span>"]) + '''
+<section style="padding-top:44px"><div class="wrap">
+ <div class="shopbalk"><div class="chips" id="h-chips" role="group" aria-label="Filter">
+  <button class="chip" type="button" data-hcat="" aria-pressed="true">Alles</button><button class="chip" type="button" data-hcat="beelden" aria-pressed="false">Beelden</button><button class="chip" type="button" data-hcat="wand" aria-pressed="false">Wandobjecten</button></div>
+  <div class="filters"><span class="aantal-res" id="h-aantal" aria-live="polite"></span><label class="sr" for="h-sorteer">Sorteren</label><select id="h-sorteer"><option value="standaard">Uitgelicht</option><option value="laag">Prijs laag – hoog</option><option value="hoog">Prijs hoog – laag</option><option value="groot">Formaat groot – klein</option></select></div></div>
+ <p class="schaaluitleg"><span class="a4" aria-hidden="true"></span>Elk product staat op schaal naast een A4-vel (30 cm), zodat je direct ziet hoe groot het is.</p>
+ <div class="dingen" id="h-grid"></div>
+ <p class="noot">Echte producten van Richmond Interiors, PTMD, Present Time en De Wanddecoratie. Prijzen zijn een voorstel; de definitieve prijs volgt zodra de inkoopprijs bekend is. Productfoto's van de merken komen erbij na aansluiting als verkooppunt. De bronlinks zijn alleen zichtbaar in dit concept.</p>
+</div></section>
+<section class="belofte-huis"><div class="wrap"><ul>
+ <li><b>Ontwerpmerken uit Nederland</b>Eigen ontwerpen, geen namaak.</li>
+ <li><b>Snel in huis</b>Rechtstreeks uit het magazijn van de maker.</li>
+ <li><b>14 dagen bedenktijd</b>Retour aanmelden met één knop.</li>
+</ul></div></section>''')
+
     # ---------- beheer ----------
     pagina("beheer.html", "Beheer | Atelier Ombre (concept)", "beheer", "",
            paginakop("Beheer", "Zo werkt Atelier Ombre achter de schermen: drie inkoopmodellen, één webshop.", ["<span>Beheer</span>"]) + '''
@@ -313,6 +347,16 @@ def bouw():
  <div class="kpi"><div><b id="k-werken"></b><span>Werken in de collectie</span></div><div><b id="k-waarde"></b><span>Totale verkoopwaarde</span></div><div><b id="k-marge"></b><span>Gemiddelde marge</span></div><div><b id="k-risico"></b><span>Eigen voorraad (ingekocht)</span></div></div>
  <div class="tabelwrap"><table class="marge" id="marge-tabel"><thead><tr><th>Werk</th><th>Model</th><th>Kosten</th><th>Verzending</th><th>Verkoopprijs</th><th>Opbrengst</th><th>Marge</th></tr></thead><tbody></tbody></table></div>
  <p class="noot">Let op bij de echte start: btw-regeling voor kunst (margeregeling), volgrecht bij doorverkoop van werk van levende kunstenaars en verzekering van voorraad. Dit stemmen we af met een boekhouder.</p>
+</div></section>
+<section><div class="wrap">
+ <div class="sectiekop"><div><h2>Huis &amp; Beeld: leveranciers</h2><p>Waar elk product vandaan komt, wat het elders kost en hoe we het inkopen. Alleen merken met eigen ontwerpen.</p></div></div>
+ <div class="modellen">
+  <div><h3>PTMD</h3><p>Nederlands merk met eigen ontwerpstudio. Levert via Droppery rechtstreeks aan de klant van de webshop. Droppery begint bij circa $ 46 per maand.</p></div>
+  <div><h3>Richmond Interiors</h3><p>Groothandel uit Heerhugowaard met eigen collectie. Verkoopt alleen via dealers: dealeraccount aanvragen en vragen of zij of Droppery rechtstreeks leveren.</p></div>
+  <div><h3>Present Time en De Wanddecoratie</h3><p>Present Time: design-objecten, groothandel navragen. De Wanddecoratie: Nederlandse maker van canvas met FSC/PEFC-hout, samenwerking navragen.</p></div>
+ </div>
+ <div class="tabelwrap" style="margin-top:28px"><table class="marge" id="huis-tabel"><thead><tr><th>Product</th><th>Merk</th><th>Prijs elders (bron)</th><th>Onze prijs</th><th>Inkoop via</th><th>Bij de maker</th></tr></thead><tbody></tbody></table></div>
+ <p class="noot">Inkoopprijzen krijg je pas met een account bij de leverancier. Daarom staat de marge hier nog niet; die rekenen we uit zodra de prijslijsten binnen zijn.</p>
 </div></section>
 <section><div class="wrap">
  <div class="sectiekop"><div><h2>Laatste bestellingen</h2><p>Elke bestelling gaat automatisch naar de juiste partij: atelier, drukker of eigen voorraad.</p></div></div>

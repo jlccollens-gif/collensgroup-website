@@ -24,6 +24,23 @@
     { id: "torsovaas", n: "Torsovaas", m: "onbekend", j: "ca. 1975", c: "vondsten", p: 285, mat: "Studiokeramiek, geglazuurd steengoed", d: "H 24 × B 15 cm", img: "w-brons", l: "Vondst", model: "i", kost: 85, lv: 15, t: "Een sculpturale vaas met de vorm van een torso. Ongesigneerd, waarschijnlijk Nederlands atelierwerk uit de jaren zeventig." },
     { id: "drie-objecten", n: "Drie objecten", m: "onbekend", j: "ca. 1985", c: "vondsten", p: 195, mat: "Travertin en steengoed, set van drie", d: "H 9 tot 26 cm", img: "w-stilleven", l: "Vondst", model: "i", kost: 60, lv: 15, t: "Een blok travertin met twee flessen in roze en ivoor. Samen een stilleven, los mooi op een plank." }
   ];
+
+  /* Huis & Beeld: echte producten van ontwerpmerken. p = voorstel verkoopprijs; ref + bron = prijs elders; maker = productpagina bij het merk */
+  var H = [
+    { id: "beer-mozaiek-klein", n: "Beer zilver mozaïek, klein", merk: "Richmond Interiors", c: "beelden", p: 329, b: 32.5, h: 70, d: "H 70 × B 32,5 × D 25,5 cm", mat: "Polyresin met handgesneden mozaïekglas", kleur: "#B7BBC0", ref: "£ 282 bij Olivia's (VK)", bron: "https://olivias.com/products/richmond-interiors-decorative-bear-small", maker: "https://richmondinteriors.nl/en/producten/decoratief-object-bear-silver-small/", r: "r" },
+    { id: "beer-mozaiek-groot", n: "Beer zilver mozaïek, groot", merk: "Richmond Interiors", c: "beelden", p: 649, b: 46, h: 101, d: "H 101 × B 46 × D 34 cm", mat: "Polyresin met handgesneden mozaïekglas", kleur: "#B7BBC0", ref: "£ 407 in de aanbieding (normaal £ 679) bij Olivia's (VK)", bron: "https://olivias.com/products/richmond-interiors-decorative-bear-large", maker: "https://richmondinteriors.nl/en/producten/decoratief-object-bear-silver-large/", r: "r" },
+    { id: "aap-goud", n: "Aap goud", merk: "Richmond Interiors", c: "beelden", p: 89, b: 21.5, h: 25, d: "H 25 × B 21,5 × D 17 cm", mat: "Polyresin, goud afgewerkt", kleur: "#C9A24A", ref: "£ 71 bij Olivia's (VK)", bron: "https://olivias.com/products/richmond-monkey-gold-ornament", maker: "https://richmondinteriors.nl/en/producten/decoratief-object-monkey-gold/", r: "r" },
+    { id: "beer-berlyn", n: "Beer Berlyn, parelmoerwit", merk: "Richmond Interiors", c: "beelden", p: 39, b: 11, h: 19, d: "H 19 × B 11 × D 9 cm", mat: "Glanzend wit met regenboogglans", kleur: "#EEEBE4", ref: "£ 31 bij Belgica Furniture (VK)", bron: "https://www.belgicafurniture.com/berlyn-decorative-object-white/p55638", maker: "https://richmondinteriors.nl/en/producten/decoratief-object-berlyn-white/", r: "r" },
+    { id: "beer-ave", n: "Beer Ave, wit en goud", merk: "Richmond Interiors", c: "beelden", p: 49, b: 14, h: 29, d: "H 29 × B 14 × D 9 cm", mat: "Polyresin, glanzend wit met gouden accenten", kleur: "#F3F1EC", ref: "$ 155 bij Oroa (VS); £ 41 bij Belgica Furniture (VK)", bron: "https://oroa.com/products/white-bear-decorative-object-richmond-interiors-ave", maker: "", r: "r" },
+    { id: "swirl-messing", n: "Swirl, antiek messing", merk: "Richmond Interiors", c: "beelden", p: 119, b: 27, h: 46, d: "H 46 × B 27 × D 10 cm", mat: "Afwerking antiek messing", kleur: "#A88A52", ref: "vanaf £ 95 bij Olivia's (VK)", bron: "https://olivias.com/products/swirl-decorative-object-antique-brass", maker: "https://richmondinteriors.nl/en/producten/decoratief-object-swirl-brass-antique/", r: "r" },
+    { id: "ptmd-vrouw", n: "Beeld Vrouw, zwart", merk: "PTMD", c: "beelden", p: 69, b: 25, h: 90, d: "H 90 × B 25 × D 27 cm", mat: "Cement, diepzwart", kleur: "#2A2A2C", ref: "€ 64 bij Yellow Webshop", bron: "https://www.yellowwebshop.com/en/go/product/159626762", maker: "", r: "p" },
+    { id: "pt-imagine", n: "Figuur Imagine, zwart", merk: "Present Time", c: "beelden", p: 24.95, b: 12.5, h: 23.5, d: "H 23,5 × B 12,5 cm", mat: "Polyresin", kleur: "#26272A", ref: "€ 20,90 adviesprijs bij Galaxus", bron: "https://www.galaxus.nl/en/s14/product/present-time-imagine-decorative-figurines-and-sculptures-43106319", maker: "", r: "g" },
+    { id: "ptmd-darina", n: "Wandpaneel Darina, grote golf brons", merk: "PTMD", c: "wand", p: 159, b: 120, h: 120, d: "120 × 120 cm", mat: "Wandpaneel met golfmotief, bronskleur", kleur: "#8C6A45", ref: "€ 149 in de aanbieding (normaal € 299) bij Otto (DE)", bron: "https://www.otto.de/dekoration/?marke=ptmd", maker: "", r: "p" },
+    { id: "ptmd-salima", n: "Wandpaneel Salima, gesneden bloem", merk: "PTMD", c: "wand", p: 135, b: 90, h: 90, d: "90 × 90 cm", mat: "Wandpaneel, gesneden bloemmotief", kleur: "#CFC6B6", ref: "€ 129 in de aanbieding (normaal € 219) bij Otto (DE)", bron: "https://www.otto.de/dekoration/?marke=ptmd", maker: "", r: "p" },
+    { id: "canvas-warme-tinten", n: "Canvas Abstracte vormen, warme tinten", merk: "De Wanddecoratie", c: "wand", p: 84.95, b: 80, h: 120, d: "80 × 120 cm", mat: "Canvas op frame van FSC/PEFC-hout, 1,8 cm", kleur: "#C98E5E", ref: "adviesprijs € 89,95 bij bol", bron: "https://www.bol.com/be/nl/p/abstracte-vormen-met-warme-tinten-abstract-wanddecoratie-muurkunst-vormen-abstracte-kunst-muurdecoratie-kinderkamer-decoratie-woonkamer-canvas-80x120-cm/9300000231539889/", maker: "", r: "w" }
+  ];
+  H.forEach(function (x) { x.huis = 1; });
+  var ROUTE = { p: "Droppery (dropshipping)", r: "Dealeraccount Richmond", g: "Groothandel, navragen", w: "Rechtstreeks, navragen" };
   var GRATIS = 250, VERZEND = 14.95, BETAAL = 0.29, COMMISSIE = 0.4;
   var MUUR = { b: 2000, h: 2933, cm: 2000 / 184, onder: 1660, midden: 1100 }; /* bank op de foto is ca. 184 cm breed */
   var $ = function (s, r) { return (r || document).querySelector(s); };
@@ -31,7 +48,8 @@
   var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
   var euro = function (x) { var r = Math.round(x * 100) / 100, heel = Math.floor(r), cent = Math.round((r - heel) * 100); return "€ " + heel.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + "," + (cent < 10 ? "0" : "") + cent; };
   var prijsKort = function (x) { return "€ " + x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, "."); };
-  var vind = function (id) { for (var i = 0; i < W.length; i++) if (W[i].id === id) return W[i]; return null; };
+  var vind = function (id) { var alle = W.concat(H); for (var i = 0; i < alle.length; i++) if (alle[i].id === id) return alle[i]; return null; };
+  var prijsMooi = function (x) { return x % 1 ? euro(x) : prijsKort(x); };
   var maat = function (x) { return x.wand ? x.w + " × " + x.h + " cm" : x.d; };
   var uniek = function (x) { return x.l === "Unicum" || x.l === "Vondst"; };
 
@@ -87,6 +105,18 @@
       '<button class="koop" type="button" data-koop="' + x.id + '"' + (bezet ? " disabled>In je winkelmand" : ">In winkelmand") + "</button></article>";
   }
 
+  function schaal(x, groot) {
+    var max = x.c === "wand" ? 130 : 110, hv = Math.min(x.h / max * 84, 84), bv = Math.min(x.b / max * 84, 84);
+    return '<div class="schaal' + (groot ? " groot" : "") + '" style="--kleur:' + x.kleur + '"><span class="maatlabel">' + (x.c === "wand" ? x.b + " × " + x.h + " cm" : "H " + String(x.h).replace(".", ",") + " cm") + '</span>' +
+      '<span class="ref" style="height:' + (30 / max * 84) + '%;width:' + (21 / max * 84) + '%" title="A4, 30 cm"></span>' +
+      '<span class="vorm ' + (x.c === "wand" ? "paneel" : "beeld") + '" style="height:' + hv + '%;width:' + bv + '%"></span></div>';
+  }
+  function huisKaart(x) {
+    return '<article class="ding">' + schaal(x) + '<div class="bordje"><span class="wie">' + x.merk + '</span><br><span class="wat">' + esc(x.n) + '</span>' +
+      '<div class="mat">' + esc(x.mat) + "<br>" + x.d + '</div><div class="prijs"><span>' + prijsMooi(x.p) + '</span><a class="concept-bron" href="' + (x.maker || x.bron) + '" target="_blank" rel="noopener">Bron</a></div></div>' +
+      '<button class="koop" type="button" data-koop="' + x.id + '">In winkelmand</button></article>';
+  }
+
   /* klikken */
   document.addEventListener("click", function (e) {
     var k = e.target.closest("[data-koop]"); if (k) { e.preventDefault(); voegToe(k.getAttribute("data-koop")); return; }
@@ -139,6 +169,22 @@
   var pag = document.body.dataset.pagina, url = new URLSearchParams(location.search);
 
   if (pag === "home") {
+    $("#strook").innerHTML = ["beweging", "danser", "wit-ii", "rustende-beer", "zomer-in-rood", "nacht", "koraalschaal", "relief-i"].map(function (id) {
+      var x = vind(id);
+      return '<a class="strook-item' + (x.wand ? "" : " object") + '" href="werk.html?w=' + x.id + '"><div class="lijst"><img src="img/' + x.img + '.jpg" alt="' + esc(x.n + " van " + MAKERS[x.m]) + '" loading="lazy" width="1400" height="1750"></div><p><b>' + esc(x.n) + "</b>" + MAKERS[x.m] + " · " + prijsKort(x.p) + "</p></a>";
+    }).join("");
+    (function () {
+      var n = $("#nacht"); if (!n) return;
+      var stil = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches, laatst = -1e9, t0 = performance.now(), zicht = true;
+      var zet = function (x, y) { n.style.setProperty("--x", x + "%"); n.style.setProperty("--y", y + "%"); };
+      n.addEventListener("pointermove", function (e) { var r = n.getBoundingClientRect(); laatst = performance.now(); zet((e.clientX - r.left) / r.width * 100, (e.clientY - r.top) / r.height * 100); n.classList.add("actief"); });
+      if ("IntersectionObserver" in window) new IntersectionObserver(function (es) { zicht = es[0].isIntersecting; }).observe(n);
+      if (stil) { zet(66, 42); return; }
+      (function stap(t) {
+        if (zicht && t - laatst > 2500) { var s2 = (t - t0) / 1000; zet(62 + Math.sin(s2 * 0.45) * 24, 42 + Math.sin(s2 * 0.8 + 1) * 20); }
+        requestAnimationFrame(stap);
+      })(t0);
+    })();
     $("#nieuw-grid").innerHTML = ["relief-i", "danser", "zomer-in-rood", "rustende-beer"].map(function (id) { return kaart(vind(id)); }).join("");
     $("#advies-grid").innerHTML = ["terra", "kalk", "koraalschaal", "nacht"].map(function (id) { return kaart(vind(id)); }).join("");
   }
@@ -239,6 +285,25 @@
     $("#gerelateerd").innerHTML = verwant.map(kaart).join("");
   }
 
+  /* huis & beeld */
+  if (pag === "huis") {
+    var hcat = "", hsort = "standaard";
+    var hteken = function () {
+      var l = H.filter(function (x) { return !hcat || x.c === hcat; });
+      if (hsort === "laag") l.sort(function (a, b) { return a.p - b.p; });
+      if (hsort === "hoog") l.sort(function (a, b) { return b.p - a.p; });
+      if (hsort === "groot") l.sort(function (a, b) { return b.h * b.b - a.h * a.b; });
+      $("#h-grid").innerHTML = l.map(huisKaart).join("");
+      $("#h-aantal").textContent = l.length + " producten";
+    };
+    hteken();
+    $("#h-chips").addEventListener("click", function (e) {
+      var b = e.target.closest("[data-hcat]"); if (!b) return; hcat = b.getAttribute("data-hcat");
+      $$("#h-chips .chip").forEach(function (y) { y.setAttribute("aria-pressed", y === b); }); hteken();
+    });
+    $("#h-sorteer").addEventListener("change", function () { hsort = this.value; hteken(); });
+  }
+
   /* kunstenaars */
   if (pag === "kunstenaars") {
     $$("[data-telling]").forEach(function (p) {
@@ -256,6 +321,7 @@
     } else {
       doel.innerHTML = m.map(function (r) {
         var x = vind(r.id); if (!x) return "";
+        if (x.huis) return '<div class="regel"><div class="mini mini-huis" style="--kleur:' + x.kleur + '"><span></span></div><div><h3>' + esc(x.n) + '</h3><p class="klein">' + x.merk + " · " + x.d + '</p><p class="klein">Aantal: <button class="weg" type="button" data-mstap="-1" data-id="' + x.id + '" aria-label="Eén minder">−</button> ' + r.a + ' <button class="weg" type="button" data-mstap="1" data-id="' + x.id + '" aria-label="Eén meer">+</button></p><button class="weg" type="button" data-weg="' + x.id + '">Verwijderen</button></div><span class="rprijs">' + euro(x.p * r.a) + "</span></div>";
         return '<div class="regel"><a class="mini" href="werk.html?w=' + x.id + '"><img src="img/' + x.img + '.jpg" alt=""></a><div><h3>' + esc(x.n) + '</h3><p class="klein">' + MAKERS[x.m] + " · " + maat(x) + " · " + x.l + "</p>" +
           (uniek(x) ? "" : '<p class="klein">Aantal: <button class="weg" type="button" data-mstap="-1" data-id="' + x.id + '" aria-label="Eén minder">−</button> ' + r.a + ' <button class="weg" type="button" data-mstap="1" data-id="' + x.id + '" aria-label="Eén meer">+</button></p>') +
           '<button class="weg" type="button" data-weg="' + x.id + '">Verwijderen</button></div><span class="rprijs">' + euro(x.p * r.a) + "</span></div>";
@@ -325,6 +391,9 @@
       if (e.target.id && e.target.id.indexOf("p-") === 0) { prijzen[e.target.id.slice(2)] = Math.max(0, +e.target.value || 0); reken(); }
     });
     reken();
+    $("#huis-tabel tbody").innerHTML = H.map(function (x) {
+      return "<tr><td>" + esc(x.n) + '<br><span class="klein">' + x.d + "</span></td><td>" + x.merk + '</td><td><a class="link" href="' + x.bron + '" target="_blank" rel="noopener">' + esc(x.ref) + "</a></td><td>" + prijsMooi(x.p) + "</td><td>" + ROUTE[x.r] + "</td><td>" + (x.maker ? '<a class="link" href="' + x.maker + '" target="_blank" rel="noopener">Productpagina</a>' : '<span class="klein">via bron</span>') + "</td></tr>";
+    }).join("");
     var STAP = ["Betaald", "Doorgestuurd", "Onderweg", "Geleverd"];
     var orders = [["AO-2481", "rustende-beer", 4, "Eigen voorraad, verzonden met PostNL verzekerd"], ["AO-2479", "terra", 3, "Drukker print en verzendt rechtstreeks"], ["AO-2476", "wit-ii", 2, "Kunstkoerier haalt op bij het atelier van Ines Vaerman"], ["AO-2475", "danser", 1, "Atelier Ruys ontvangt de bestelling"]];
     $("#orders").innerHTML = orders.map(function (o) {
