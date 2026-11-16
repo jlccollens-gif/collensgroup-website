@@ -783,7 +783,75 @@ EXTRA_W3 = {
 }
 SITES_W3 = {"absolve-pest": "https://www.absolvepest.com", "p2-projects": "https://p2construction.co.za"}
 
-C += C_NL1 + C_UK1 + C_NL2 + C_UK2 + C_W1 + C_W2 + C_W3
+C_UK3 = [
+ # Sources: clactonpier.co.uk homepage, /pier-history/, /accessibility/
+ dict(slug="clacton-pier", taal="en", naam="Clacton Pier", kort="Clacton Pier", juridisch="The Clacton Pier Company Ltd", init="C", font="Bricolage Grotesque",
+      kleur=dict(bg="#0b3a5b", ink="#0a2233", acc="#f2b705", licht="#f3f6f8", held="#0b3a5b"),
+      titel="rides, attractions and a day out on Clacton Pier", eyebrow="Clacton-on-Sea, Essex · on the pier since 1871",
+      h1="A full day out, right on the sea.", lead="Rides, arcade, go karts, bowling, adventure golf, sea fishing, Jurassic Pier and the Boardwalk Bar, all on one pier.",
+      feiten=[("Since 1871", "the year the pier opened"), ("Pier of the Year", "National Piers Society, 2020"), ("10 pin bowling", "at The Lanes"), ("From 9.30am", "pier opening time")],
+      diensten=[("tandwiel", "Rides", "Family rides and The Wheel, with a Summer Ride Pass and Annual Pass."), ("auto", "Go karts", "Go karting on the pier."),
+                ("pakket", "Arcade", "A classic seaside arcade."), ("zee", "Sea fishing", "Fishing straight off the pier."),
+                ("klok", "Parties and groups", "Children's parties, schools and groups, and corporate events."), ("druppel", "Food and drink", "The Boardwalk Bar and food outlets across the pier.")],
+      waarom_intro="A Victorian pier with a modern line-up of rides and attractions.",
+      waarom=["Opened in 1871", "Named Pier of the Year by the National Piers Society in 2020", "Soft play, Jurassic Pier, adventure golf, Darts & Shufl and more", "Passes and Big Day Out bands for repeat visits"],
+      tel="01255 421115", mail="info@clactonpier.co.uk", adres="1 North Sea, Clacton-on-Sea, Essex CO15 1QX"),
+ # Sources: coralisland.co.uk homepage
+ dict(slug="coral-island", taal="en", naam="Coral Island Blackpool", kort="Coral Island", juridisch="Leaguenotion (T/A Coral Island)", init="C", font="Sora",
+      kleur=dict(bg="#0e4d64", ink="#0a2a36", acc="#ff6f59", licht="#f2f8f9", held="#0e4d64"),
+      titel="free admission family attraction on Blackpool's Central Promenade", eyebrow="Central Promenade, Blackpool · free admission",
+      h1="Free to enter. Hard to leave.", lead="Arcade games, family rides, ticket games and the prize shop, five places to eat, and an 18+ adult gaming area.",
+      feiten=[("Free entry", "no tickets needed"), ("5 eateries", "under one roof"), ("Kids eat free", "all day, every day"), ("Loyalty app", "stamps on every visit")],
+      diensten=[("tandwiel", "Family rides", "Sky Rider, Pirate Flyer, Camel Derby and the Ghost Train."), ("pakket", "Arcade games", "Seaside favourites and new games."),
+                ("doc", "Tickets and prize shop", "Win tickets and swap them for prizes."), ("druppel", "Food and drink", "Pub grub, bar and grill, fish and chips and a take-away chippy."),
+                ("schild", "Adult gaming (18+)", "Adult Gaming Centre, virtual darts and cash bingo, with safer gambling."), ("klok", "Events", "Seasonal events such as meeting Santa in his grotto.")],
+      waarom_intro="Blackpool's largest free admission attraction, on the Central Promenade.",
+      waarom=["Free admission, no tickets needed to enter", "Kids eat free: one free kids' meal per paid adult meal", "Award-winning traditional fish and chips", "Loyalty app with a free sign-up bonus"],
+      tel="01253 293 133", mail="social@coralislandblackpool.co.uk", adres="Central Promenade, Blackpool FY1 5DW"),
+ # Sources: grandpier.co.uk homepage
+ dict(slug="grand-pier", taal="en", naam="The Grand Pier", kort="Grand Pier", juridisch="The Grand Pier Limited", init="G", font="Fraunces",
+      kleur=dict(bg="#3b1f4a", ink="#21122a", acc="#e9b949", licht="#f6f3f8", held="#3b1f4a"),
+      titel="rides, events and dining on Weston-super-Mare's Grand Pier", eyebrow="Marine Parade, Weston-super-Mare",
+      h1="Rides, shows and sea air.", lead="Hundreds of amusements, rides and attractions: go karting, bumper cars, the ghost train, arcades and soft play, plus events and Tiffanys Restaurant.",
+      feiten=[("Open daily", "from 11am weekdays, 10am weekends"), ("Events", "parties and shows all year"), ("Tiffanys", "restaurant on the pier"), ("£5 parking", "all day, pre-booked online")],
+      diensten=[("auto", "Go karting", "Go karting on the pier."), ("tandwiel", "Rides", "Bumper cars, the ghost train and more."),
+                ("pakket", "Arcades", "Hundreds of amusements."), ("klok", "Events", "Christmas parties, shows and themed nights."),
+                ("druppel", "Tiffanys Restaurant", "Dining on the pier."), ("doc", "Schools and groups", "Visits for schools and groups.")],
+      waarom_intro="One pier for a family day out, a night out or a celebration.",
+      waarom=["Hundreds of amusements, rides and attractions", "Dedicated events team for parties and functions", "Tiffanys Restaurant on the pier", "Pre-book parking for £5 all day"],
+      tel="01934 620 238", mail="info@grandpier.co.uk", adres="Marine Parade, Weston-super-Mare, Somerset BS23 1AL"),
+ # Sources: adventureisland.co.uk homepage, adventureisland.co.uk/?p=4762 (About)
+ dict(slug="adventure-island", taal="en", naam="Adventure Island", kort="Adventure Island", juridisch="Stockvale Ltd (trading as Adventure Island)", init="A", font="Bricolage Grotesque",
+      kleur=dict(bg="#123d2a", ink="#0b2419", acc="#ffcc00", licht="#f2f7f3", held="#123d2a"),
+      titel="free-entry theme park on the Southend seafront", eyebrow="Western Esplanade, Southend-on-Sea · free entry",
+      h1="40+ rides. Free to get in.", lead="Rage, Sea Dragon, Axis, Pharaoh's Fury and more on a seven-acre seafront site, plus Funtopia, Sealife Adventure and Adventure Golf.",
+      feiten=[("40+ rides", "and attractions"), ("Free entry", "pay per ride"), ("7 acres", "on the seafront"), ("40+ years", "run by the Miller family")],
+      diensten=[("tandwiel", "Rides", "Rage, Sea Dragon, American Whip, Pharaoh's Fury and Axis."), ("klok", "Funtopia", "Indoor play, open daily from 11am, 363 days a year."),
+                ("zee", "Sealife Adventure", "Open 10am to 5pm, last admission 4pm."), ("doc", "Adventure Golf", "Adventure golf next to the park."),
+                ("pakket", "Choo-Choo-Ville", "A themed area within the park."), ("schild", "Wonderland", "Another attraction on the Adventure Island site.")],
+      waarom_intro="A family-run park with short queues and free entry.",
+      waarom=["\"The UK's Best Value Theme Park 2026\"", "Managed by the Miller family for well over 40 years", "Queues of no more than about 20 minutes, even at peak", "Multiple awards for facilities and community work"],
+      tel="01702 443400", mail="enquiries@stockvale.co.uk", adres="Sunken Garden, Western Esplanade, Southend-on-Sea, Essex SS1 1EE"),
+]
+EXTRA_UK3 = {
+ "clacton-pier": dict(logo="anker", velden=[["What are you planning?", "Day out", "Children's party", "School or group visit", "Corporate event", "Annual pass"], "Date", "Phone number"],
+   certs=["National Piers Society Pier of the Year 2020"],
+   faq=[("What time does the pier open?", "The pier is open from 9.30am; ride and attraction times vary by day."), ("Can I bring my dog?", "Dogs are allowed in the Boardwalk Bar; guide dogs are welcome anywhere on site."), ("Do you host parties?", "Yes, children's parties, school groups and corporate events.")],
+   verbeterd=["One set of opening hours: the old Access Statement page still says \"10am until 10pm Daily\" while the Accessibility page says 9.30am", "Typos fixed on that page (\"Longtitude\", \"accessility\")", "Today's opening times on the homepage instead of behind a button", "Booking button always visible on mobile", "Business details for Google (structured data)"]),
+ "coral-island": dict(logo="zee", velden=[["What are you planning?", "Family day out", "Meal", "Group visit", "Event", "Other"], "Date", "Phone number"],
+   faq=[("Do I need a ticket to get in?", "No, admission is free; games and rides are paid separately."), ("Do kids eat free?", "Children under 10 get one free kids' meal per paid adult meal at participating restaurants."), ("Is there an age limit for adult gaming?", "Yes, the adult gaming area is 18+ only.")],
+   verbeterd=["Typos fixed: \"Terms and Condtions apply\" and \"test your skills with out great selection of arcade games\"", "Opening times and address visible at the top", "One booking route for Santa's grotto and events", "Click-to-call button always visible on mobile", "Business details for Google (structured data)"]),
+ "grand-pier": dict(logo="anker", velden=[["What are you planning?", "Day out", "Christmas party", "Event tickets", "Wedding or function", "School or group"], "Date", "Phone number"],
+   faq=[("When are you open?", "From 11am on weekdays and 10am at weekends; closing times vary with the weather."), ("Is there parking?", "Yes, £5 all day when pre-booked online."), ("Can I book a party or function?", "Yes, our events team can help: 01934 646 155.")],
+   verbeterd=["Event dates without the doubled year: \"December 2026 2026\" on the homepage", "\"View all events\" on a clean address instead of /stgsitetst/events/", "Opening and ride times in one clear block", "Booking button always visible on mobile", "Business details for Google (structured data)"]),
+ "adventure-island": dict(logo="tandwiel", velden=[["What are you planning?", "Family day out", "Rides", "Group visit", "Funtopia", "Sealife Adventure"], "Date", "Phone number"],
+   certs=["The UK's Best Value Theme Park 2026"],
+   faq=[("Do I have to pay to get in?", "No, entry to the park is free; you pay for rides."), ("How long are the queues?", "You shouldn't have to wait more than about 20 minutes, even in peak season."), ("When is Funtopia open?", "Daily from 11am, 363 days a year; closing times vary.")],
+   verbeterd=["A live reopening date: the homepage countdown still says \"We will be reopening in\" ... \"14th February 2026\"", "Opening times for every attraction in one place", "Ride highlights that work on mobile", "Booking button always visible on mobile", "Business details for Google (structured data)"]),
+}
+SITES_UK3 = {"clacton-pier": "https://www.clactonpier.co.uk", "coral-island": "https://coralisland.co.uk", "grand-pier": "https://www.grandpier.co.uk", "adventure-island": "https://www.adventureisland.co.uk"}
+
+C += C_NL1 + C_UK1 + C_NL2 + C_UK2 + C_W1 + C_W2 + C_W3 + C_UK3
 EXTRA.update(EXTRA_NL1); SITES.update(SITES_NL1)
 EXTRA.update(EXTRA_UK1); SITES.update(SITES_UK1)
 EXTRA.update(EXTRA_NL2); SITES.update(SITES_NL2)
@@ -791,5 +859,6 @@ EXTRA.update(EXTRA_UK2); SITES.update(SITES_UK2)
 EXTRA.update(EXTRA_W1); SITES.update(SITES_W1)
 EXTRA.update(EXTRA_W2); SITES.update(SITES_W2)
 EXTRA.update(EXTRA_W3); SITES.update(SITES_W3)
+EXTRA.update(EXTRA_UK3); SITES.update(SITES_UK3)
 for c in C: c.update(EXTRA[c["slug"]]); c.setdefault("site", SITES.get(c["slug"], ""))
 

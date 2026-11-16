@@ -294,5 +294,37 @@
   "token": "cgc-p2-projects-3a73c7e8",
   "h1": "Built right. Built to last.",
   "lead": "Industrial, commercial and residential construction, as main contractor to architects and civil engineers. Over 25 years of experience."
+ },
+ "clacton-pier": {
+  "bedrijf": "The Clacton Pier Company Ltd",
+  "site": "https://www.clactonpier.co.uk",
+  "mail": "info@clactonpier.co.uk",
+  "token": "cgc-clacton-pier-65e6e963",
+  "h1": "A full day out, right on the sea.",
+  "lead": "Rides, arcade, go karts, bowling, adventure golf, sea fishing, Jurassic Pier and the Boardwalk Bar, all on one pier."
+ },
+ "coral-island": {
+  "bedrijf": "Leaguenotion (T/A Coral Island)",
+  "site": "https://coralisland.co.uk",
+  "mail": "social@coralislandblackpool.co.uk",
+  "token": "cgc-coral-island-060d89c9",
+  "h1": "Free to enter. Hard to leave.",
+  "lead": "Arcade games, family rides, ticket games and the prize shop, five places to eat, and an 18+ adult gaming area."
+ },
+ "grand-pier": {
+  "bedrijf": "The Grand Pier Limited",
+  "site": "https://www.grandpier.co.uk",
+  "mail": "info@grandpier.co.uk",
+  "token": "cgc-grand-pier-45cc573c",
+  "h1": "Rides, shows and sea air.",
+  "lead": "Hundreds of amusements, rides and attractions: go karting, bumper cars, the ghost train, arcades and soft play, plus events and Tiffanys Restaurant."
+ },
+ "adventure-island": {
+  "bedrijf": "Stockvale Ltd (trading as Adventure Island)",
+  "site": "https://www.adventureisland.co.uk",
+  "mail": "enquiries@stockvale.co.uk",
+  "token": "cgc-adventure-island-83b15504",
+  "h1": "40+ rides. Free to get in.",
+  "lead": "Rage, Sea Dragon, Axis, Pharaoh's Fury and more on a seven-acre seafront site, plus Funtopia, Sealife Adventure and Adventure Golf."
  }
 }

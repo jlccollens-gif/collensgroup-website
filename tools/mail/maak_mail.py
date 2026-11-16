@@ -37,7 +37,7 @@ def maak(c):
 <tr><td style="padding:30px 48px 8px"><p style="margin:0 0 14px;font-size:15px;color:{INK}">{groet}</p>
 <table role="presentation" cellpadding="0" cellspacing="0"><tr>
 <td style="padding-right:14px;vertical-align:middle"><img src="cid:att1" width="46" height="46" alt="Collens Group" style="display:block;border:0;border-radius:50%"></td>
-<td style="vertical-align:middle;font-size:14px;line-height:1.5;color:{INK}"><strong style="font-size:15px">Jeffrey Collens</strong><br><span style="color:{MUTED}">Collens Group · websites, apps, games en AI</span><br>
+<td style="vertical-align:middle;font-size:14px;line-height:1.5;color:{INK}"><strong style="font-size:15px">Jeffrey Collens</strong><br><span style="color:{MUTED}">Collens Group · {"websites, apps, games en AI" if nl else "websites, apps, games and AI"}</span><br>
 <a href="https://collensgroup.com" style="color:{INK};text-decoration:none">collensgroup.com</a> <span style="color:{LINE}">|</span> <a href="mailto:info@collensgroup.com" style="color:{INK};text-decoration:none">info@collensgroup.com</a></td></tr></table></td></tr>
 <tr><td style="padding:30px 48px 0"></td></tr>
 <tr><td style="background:{NAVY};padding:16px 48px;font-size:12px;line-height:1.5;color:#9fb0c6">{e(afmeld)}</td></tr>
