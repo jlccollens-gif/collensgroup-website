@@ -47,7 +47,7 @@ def voet():
     cats = "".join(f'<li><a href="shop.html?cat={c}">{n}</a></li>' for c, n, _ in CATS)
     return f'''<footer><div class="wrap">
  <div class="voet">
-  <div><b>Suismuis</b><p>Warme, tijdloze woonaccessoires voor een thuis vol rust.</p><div class="betaalmerken" aria-label="Betaalmethoden"><span>iDEAL</span><span>Bancontact</span><span>Visa</span><span>Mastercard</span><span>PayPal</span></div></div>
+  <div><b>Suismuis</b><p>Warme, tijdloze woonaccessoires voor een thuis vol rust.</p><div class="betaalmerken" aria-label="Betaalmethoden"><span>Visa</span><span>Mastercard</span><span>Amex</span><span>Apple Pay</span><span>Google Pay</span><span>iDEAL</span></div></div>
   <div><h4>Shop</h4><ul>{cats}</ul></div>
   <div><h4>Klantenservice</h4><ul><li><a href="klantenservice.html#verzenden">Verzenden</a></li><li><a href="klantenservice.html#retour">Retourneren</a></li><li><a href="klantenservice.html#herroepen">Bestelling herroepen</a></li><li><a href="klantenservice.html#faq">Veelgestelde vragen</a></li><li><a href="klantenservice.html#contact">Contact</a></li></ul></div>
   <div><h4>Suismuis</h4><ul><li><a href="over.html">Over ons</a></li><li><a href="journal.html">Journal</a></li><li><a href="account.html">Mijn account</a></li><li><a href="index.html#brief">Nieuwsbrief</a></li><li><a href="beheer.html">Beheer (voor Kim)</a></li></ul></div>
@@ -63,6 +63,8 @@ def pagina(bestand, titel, sleutel, actief, inhoud, beschrijving="Warme, tijdloz
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{titel}</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="{titel}"><meta property="og:description" content="{beschrijving}"><meta property="og:image" content="https://collensgroup.com/concept/suismuis/img/og.jpg"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image">
 <meta name="robots" content="noindex,nofollow,noarchive"><meta name="description" content="{beschrijving}">
 <meta name="generator" content="Collens Group concept cgc-suismuis"><meta name="copyright" content="Collens Group">
 <meta name="theme-color" content="#E5D8C8">
@@ -93,7 +95,7 @@ ZEKER = '''<div class="zeker"><div class="wrap"><ul>
  <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 9h17v13H3zM20 13h5l4 4v5h-9z"/><circle cx="9" cy="24" r="2.5"/><circle cx="24" cy="24" r="2.5"/></svg>Gratis verzending vanaf € 75</li>
  <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 27S4 19.5 4 11.5A6 6 0 0 1 16 9a6 6 0 0 1 12 2.5C28 19.5 16 27 16 27z"/></svg>Met liefde uitgekozen</li>
  <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 12a10 10 0 0 1 18-3M26 20a10 10 0 0 1-18 3"/><path d="M24 4v5h-5M8 28v-5h5"/></svg>14 dagen bedenktijd</li>
- <li><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="7" y="14" width="18" height="13" rx="2"/><path d="M11 14v-4a5 5 0 0 1 10 0v4"/><circle cx="16" cy="20.5" r="1.6"/></svg>Veilig betalen met iDEAL</li>
+ <li><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="7" y="14" width="18" height="13" rx="2"/><path d="M11 14v-4a5 5 0 0 1 10 0v4"/><circle cx="16" cy="20.5" r="1.6"/></svg>Veilig betalen met creditcard</li>
 </ul></div></div>'''
 
 ARTIKELEN = [
@@ -188,7 +190,7 @@ def bouw():
   <div class="rij totaal"><span>Totaal</span><span id="tot"></span></div>
   <p style="font-size:13px;color:var(--mokka);margin:6px 0 18px">Prijzen inclusief btw.</p>
   <a class="knop breed" href="afrekenen.html">Veilig afrekenen</a>
-  <p style="font-size:13px;margin:14px 0 0;text-align:center">iDEAL · Bancontact · Visa · Mastercard · PayPal</p>
+  <p style="font-size:13px;margin:14px 0 0;text-align:center">Creditcard · Apple Pay · Google Pay · iDEAL</p>
  </aside>
 </div></div>''')
 
@@ -205,11 +207,14 @@ def bouw():
   <label>Land<select autocomplete="country"><option>Nederland</option><option>België</option></select></label>
   <h2 style="font-size:30px;margin-top:16px">Betaalmethode</h2>
   <div class="betaal" role="radiogroup" aria-label="Betaalmethode">
-   <label><input type="radio" name="betaal" checked> iDEAL</label><label><input type="radio" name="betaal"> Bancontact</label><label><input type="radio" name="betaal"> Creditcard</label><label><input type="radio" name="betaal"> PayPal</label>
+   <label><input type="radio" name="betaal" checked><span><b>Creditcard</b><small>Visa, Mastercard, American Express</small></span></label>
+   <label><input type="radio" name="betaal"><span><b>Apple Pay of Google Pay</b><small>Betalen met je telefoon</small></span></label>
+   <label><input type="radio" name="betaal"><span><b>iDEAL</b><small>Via je eigen bank</small></span></label>
   </div>
-  <label class="check"><input type="checkbox" required> Ik ga akkoord met de <a class="link" href="klantenservice.html#voorwaarden">algemene voorwaarden</a> *</label>
+  <p class="veilig"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Je rondt de betaling af op de beveiligde betaalpagina van Stripe, met 3D Secure. Wij zien en bewaren je kaartgegevens nooit.</p>
+  <label class="check"><input type="checkbox" required><span>Ik ga akkoord met de <a class="link" href="klantenservice.html#voorwaarden">algemene voorwaarden</a> *</span></label>
   <p id="fout" role="status" style="color:#8A3B2E;margin:0"></p>
-  <button class="knop" type="submit">Bestelling plaatsen</button>
+  <button class="knop" type="submit">Doorgaan naar veilig betalen</button>
   <p style="font-size:13px;color:var(--mokka)">Concept: er wordt niets echt besteld of betaald.</p>
  </form>
  <aside class="samenvatting" aria-label="Je bestelling"><h2 style="font-size:30px;margin-bottom:12px">Je bestelling</h2><div id="overzicht"></div></aside>
@@ -246,7 +251,7 @@ def bouw():
            ("Wat kost verzending?", "Verzending kost € 5,95. Vanaf € 75 verzenden we gratis binnen Nederland en België."),
            ("Kan ik mijn bestelling retourneren?", "Ja, je hebt 14 dagen bedenktijd na ontvangst. Gebruik de knop Bestelling herroepen hierboven; je krijgt het aankoopbedrag binnen 14 dagen terug."),
            ("Kan ik een product als cadeau laten inpakken?", "Ja, bij het afrekenen kies je voor cadeauverpakking met een handgeschreven kaartje (+ € 3,95)."),
-           ("Hoe kan ik betalen?", "Met iDEAL, Bancontact, Visa, Mastercard en PayPal. Betalen gaat via een beveiligde verbinding."),
+           ("Hoe kan ik betalen?", "Met creditcard (Visa, Mastercard, American Express), Apple Pay, Google Pay of iDEAL. Je betaalt op de beveiligde betaalpagina van Stripe."),
            ("Zijn de producten handgemaakt?", "Veel stukken zijn van natuurlijke materialen en deels met de hand gemaakt. Kleine verschillen in kleur en structuur maken elk stuk uniek.")]
     faq_html = "".join(f"<details><summary>{v}</summary><p>{a}</p></details>" for v, a in faq)
     pagina("klantenservice.html", "Klantenservice | Suismuis Home (concept)", "service", "service",

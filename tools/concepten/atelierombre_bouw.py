@@ -51,7 +51,7 @@ def voet():
     cats = "".join(f'<li><a href="collectie.html?cat={c}">{n}</a></li>' for c, n, _, _ in CATS)
     return f'''<footer><div class="wrap">
  <div class="voet">
-  <div><span class="logo">Atelier <i>Ombre</i></span><p style="margin-top:14px;max-width:320px">Abstracte kunst, beelden en gevonden schatten. Zorgvuldig gekozen, eerlijk geprijsd.</p><div class="betaalmerken" aria-label="Betaalmethoden"><span>iDEAL</span><span>Bancontact</span><span>Visa</span><span>Mastercard</span><span>PayPal</span></div></div>
+  <div><span class="logo">Atelier <i>Ombre</i></span><p style="margin-top:14px;max-width:320px">Abstracte kunst, beelden en gevonden schatten. Zorgvuldig gekozen, eerlijk geprijsd.</p><div class="betaalmerken" aria-label="Betaalmethoden"><span>Visa</span><span>Mastercard</span><span>Amex</span><span>Apple Pay</span><span>Google Pay</span><span>iDEAL</span></div></div>
   <div><h4>Collectie</h4><ul>{cats}<li><a href="huis.html">Huis &amp; Beeld</a></li><li><a href="kunstenaars.html">Kunstenaars</a></li></ul></div>
   <div><h4>Service</h4><ul><li><a href="service.html#verzending">Verzending en ophangen</a></li><li><a href="service.html#echtheid">Certificaat van echtheid</a></li><li><a href="service.html#herroepen">Bestelling herroepen</a></li><li><a href="service.html#advies">Kunstadvies</a></li><li><a href="service.html#contact">Contact</a></li></ul></div>
   <div><h4>Atelier Ombre</h4><ul><li><a href="over.html">Over ons</a></li><li><a href="over.html#aanmelden">Kunstenaar aanmelden</a></li><li><a href="index.html#brief">Nieuwsbrief</a></li><li><a href="beheer.html">Beheer</a></li></ul></div>
@@ -68,6 +68,8 @@ def pagina(bestand, titel, sleutel, actief, inhoud, beschrijving="Abstracte schi
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{titel}</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="{titel}"><meta property="og:description" content="{beschrijving}"><meta property="og:image" content="https://collensgroup.com/concept/atelier-ombre/img/og.jpg"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image">
 <meta name="robots" content="noindex,nofollow,noarchive"><meta name="description" content="{beschrijving}">
 <meta name="generator" content="Collens Group concept cgc-atelierombre"><meta name="copyright" content="Collens Group">
 <meta name="theme-color" content="#F2F1ED">
@@ -212,7 +214,7 @@ def bouw():
  <h2 style="margin-bottom:32px">Zo werkt het</h2>
  <ol class="stappen-route">
   <li><b>Je kiest een werk</b>Bekijk het eerst op ware grootte aan de muur.</li>
-  <li><b>Je betaalt veilig</b>Met iDEAL, Bancontact, creditcard of PayPal.</li>
+  <li><b>Je betaalt veilig</b>Met creditcard, Apple Pay, Google Pay of iDEAL.</li>
   <li><b>Het atelier pakt in</b>In museumverpakking, met certificaat.</li>
   <li><b>Verzekerd onderweg</b>Met track-and-trace of kunstkoerier.</li>
   <li><b>Aan je muur</b>Met ophangsysteem en 14 dagen bedenktijd.</li>
@@ -281,7 +283,7 @@ def bouw():
   <div class="rij totaal"><span>Totaal</span><span id="tot"></span></div>
   <p class="klein" id="termijn" hidden style="margin:8px 0 0">Of in 3 termijnen zonder rente.</p>
   <a class="knop breed" href="afrekenen.html" style="margin-top:18px">Veilig afrekenen</a>
-  <p class="klein" style="margin:14px 0 0;text-align:center">iDEAL · Bancontact · Visa · Mastercard · PayPal</p>
+  <p class="klein" style="margin:14px 0 0;text-align:center">Creditcard · Apple Pay · Google Pay · iDEAL</p>
  </aside>
 </div></div>''')
 
@@ -298,11 +300,14 @@ def bouw():
   <label>Land<select autocomplete="country"><option>Nederland</option><option>België</option></select></label>
   <h2 style="font-size:30px;margin-top:16px">Betaalmethode</h2>
   <div class="betaal" role="radiogroup" aria-label="Betaalmethode">
-   <label><input type="radio" name="betaal" checked> iDEAL</label><label><input type="radio" name="betaal"> Bancontact</label><label><input type="radio" name="betaal"> Creditcard</label><label><input type="radio" name="betaal"> PayPal</label>
+   <label><input type="radio" name="betaal" checked><span><b>Creditcard</b><small>Visa, Mastercard, American Express</small></span></label>
+   <label><input type="radio" name="betaal"><span><b>Apple Pay of Google Pay</b><small>Betalen met je telefoon</small></span></label>
+   <label><input type="radio" name="betaal"><span><b>iDEAL</b><small>Via je eigen bank</small></span></label>
   </div>
-  <label class="check"><input type="checkbox" required> Ik ga akkoord met de <a class="link" href="service.html#voorwaarden">algemene voorwaarden</a> *</label>
+  <p class="veilig"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Je rondt de betaling af op de beveiligde betaalpagina van Stripe, met 3D Secure. Wij zien en bewaren je kaartgegevens nooit.</p>
+  <label class="check"><input type="checkbox" required><span>Ik ga akkoord met de <a class="link" href="service.html#voorwaarden">algemene voorwaarden</a> *</span></label>
   <p id="fout" role="status" style="color:var(--ossenbloed);margin:0"></p>
-  <button class="knop" type="submit">Bestelling plaatsen</button>
+  <button class="knop" type="submit">Doorgaan naar veilig betalen</button>
   <p class="klein">Concept: er wordt niets echt besteld of betaald.</p>
  </form>
  <aside class="samenvatting" aria-label="Je bestelling"><h2 style="font-size:30px;margin-bottom:12px">Je bestelling</h2><div id="overzicht"></div></aside>

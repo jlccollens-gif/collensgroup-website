@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Afrekenen | Suismuis Home (concept)</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Afrekenen | Suismuis Home (concept)"><meta property="og:description" content="Warme, tijdloze woonaccessoires: vazen, kaarsen, kussens, verlichting en linnen."><meta property="og:image" content="https://collensgroup.com/concept/suismuis/img/og.jpg"><meta property="og:type" content="website"><meta name="twitter:card" content="summary_large_image">
 <meta name="robots" content="noindex,nofollow,noarchive"><meta name="description" content="Warme, tijdloze woonaccessoires: vazen, kaarsen, kussens, verlichting en linnen.">
 <meta name="generator" content="Collens Group concept cgc-suismuis"><meta name="copyright" content="Collens Group">
 <meta name="theme-color" content="#E5D8C8">
@@ -47,11 +49,14 @@
   <label>Land<select autocomplete="country"><option>Nederland</option><option>België</option></select></label>
   <h2 style="font-size:30px;margin-top:16px">Betaalmethode</h2>
   <div class="betaal" role="radiogroup" aria-label="Betaalmethode">
-   <label><input type="radio" name="betaal" checked> iDEAL</label><label><input type="radio" name="betaal"> Bancontact</label><label><input type="radio" name="betaal"> Creditcard</label><label><input type="radio" name="betaal"> PayPal</label>
+   <label><input type="radio" name="betaal" checked><span><b>Creditcard</b><small>Visa, Mastercard, American Express</small></span></label>
+   <label><input type="radio" name="betaal"><span><b>Apple Pay of Google Pay</b><small>Betalen met je telefoon</small></span></label>
+   <label><input type="radio" name="betaal"><span><b>iDEAL</b><small>Via je eigen bank</small></span></label>
   </div>
-  <label class="check"><input type="checkbox" required> Ik ga akkoord met de <a class="link" href="klantenservice.html#voorwaarden">algemene voorwaarden</a> *</label>
+  <p class="veilig"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Je rondt de betaling af op de beveiligde betaalpagina van Stripe, met 3D Secure. Wij zien en bewaren je kaartgegevens nooit.</p>
+  <label class="check"><input type="checkbox" required><span>Ik ga akkoord met de <a class="link" href="klantenservice.html#voorwaarden">algemene voorwaarden</a> *</span></label>
   <p id="fout" role="status" style="color:#8A3B2E;margin:0"></p>
-  <button class="knop" type="submit">Bestelling plaatsen</button>
+  <button class="knop" type="submit">Doorgaan naar veilig betalen</button>
   <p style="font-size:13px;color:var(--mokka)">Concept: er wordt niets echt besteld of betaald.</p>
  </form>
  <aside class="samenvatting" aria-label="Je bestelling"><h2 style="font-size:30px;margin-bottom:12px">Je bestelling</h2><div id="overzicht"></div></aside>
@@ -59,7 +64,7 @@
 </main>
 <footer><div class="wrap">
  <div class="voet">
-  <div><b>Suismuis</b><p>Warme, tijdloze woonaccessoires voor een thuis vol rust.</p><div class="betaalmerken" aria-label="Betaalmethoden"><span>iDEAL</span><span>Bancontact</span><span>Visa</span><span>Mastercard</span><span>PayPal</span></div></div>
+  <div><b>Suismuis</b><p>Warme, tijdloze woonaccessoires voor een thuis vol rust.</p><div class="betaalmerken" aria-label="Betaalmethoden"><span>Visa</span><span>Mastercard</span><span>Amex</span><span>Apple Pay</span><span>Google Pay</span><span>iDEAL</span></div></div>
   <div><h4>Shop</h4><ul><li><a href="shop.html?cat=decoratie">Decoratie</a></li><li><a href="shop.html?cat=kaarsen">Kaarsen & windlichten</a></li><li><a href="shop.html?cat=kussens">Kussens</a></li><li><a href="shop.html?cat=verlichting">Verlichting</a></li><li><a href="shop.html?cat=textiel">Plaids & textiel</a></li><li><a href="shop.html?cat=accessoires">Accessoires</a></li></ul></div>
   <div><h4>Klantenservice</h4><ul><li><a href="klantenservice.html#verzenden">Verzenden</a></li><li><a href="klantenservice.html#retour">Retourneren</a></li><li><a href="klantenservice.html#herroepen">Bestelling herroepen</a></li><li><a href="klantenservice.html#faq">Veelgestelde vragen</a></li><li><a href="klantenservice.html#contact">Contact</a></li></ul></div>
   <div><h4>Suismuis</h4><ul><li><a href="over.html">Over ons</a></li><li><a href="journal.html">Journal</a></li><li><a href="account.html">Mijn account</a></li><li><a href="index.html#brief">Nieuwsbrief</a></li><li><a href="beheer.html">Beheer (voor Kim)</a></li></ul></div>

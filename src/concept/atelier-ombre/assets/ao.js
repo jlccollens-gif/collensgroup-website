@@ -43,6 +43,7 @@
   var ROUTE = { p: "Droppery (dropshipping)", r: "Dealeraccount Richmond", g: "Groothandel, navragen", w: "Rechtstreeks, navragen" };
   var GRATIS = 250, VERZEND = 14.95, BETAAL = 0.29, COMMISSIE = 0.4;
   var MUUR = { b: 2000, h: 2933, cm: 2000 / 184, onder: 1660, midden: 1100 }; /* bank op de foto is ca. 184 cm breed */
+  var mb = function (b) { return 'src="img/' + b + '-m.jpg" srcset="img/' + b + '-m.jpg 1080w, img/' + b + '.jpg 1800w" sizes="(max-width:700px) 50vw, 25vw"'; };
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
@@ -99,16 +100,16 @@
     return '<article class="werk">' +
       (x.l ? '<span class="label' + (x.l === "Unicum" ? " uniek" : "") + '">' + x.l + "</span>" : "") +
       '<button class="hartje" type="button" data-fav="' + x.id + '" aria-pressed="' + fav + '" aria-label="Bewaar ' + esc(x.n) + ' als favoriet">' + HART + "</button>" +
-      '<div class="wand' + (x.wand ? "" : " object") + '"><img src="img/' + x.img + '.jpg" alt="' + esc(x.n + ", " + x.mat.toLowerCase()) + '" loading="lazy" width="1400" height="1750"></div>' +
+      '<div class="wand' + (x.wand ? "" : " object") + '"><img ' + mb(x.img) + ' alt="' + esc(x.n + ", " + x.mat.toLowerCase()) + '" loading="lazy" width="1400" height="1750"></div>' +
       '<div class="bordje"><a class="dekker" href="werk.html?w=' + x.id + '"><span class="wie">' + MAKERS[x.m] + '</span><br><span class="wat">' + esc(x.n) + "</span>, " + x.j + "</a>" +
       '<div class="mat">' + esc(x.mat) + "<br>" + maat(x) + '</div><div class="prijs"><span>' + prijsKort(x.p) + "</span></div></div>" +
       '<button class="koop" type="button" data-koop="' + x.id + '"' + (bezet ? " disabled>In je winkelmand" : ">In winkelmand") + "</button></article>";
   }
 
   function schaal(x, groot) {
-    var max = x.c === "wand" ? 130 : 110, hv = Math.min(x.h / max * 84, 84), bv = Math.min(x.b / max * 84, 84);
-    return '<div class="schaal' + (groot ? " groot" : "") + '" style="--kleur:' + x.kleur + '"><span class="maatlabel">' + (x.c === "wand" ? x.b + " × " + x.h + " cm" : "H " + String(x.h).replace(".", ",") + " cm") + '</span>' +
-      '<span class="ref" style="height:' + (30 / max * 84) + '%;width:' + (21 / max * 84) + '%" title="A4, 30 cm"></span>' +
+    var wand = x.c === "wand", max = wand ? 130 : 110, f = wand ? 62 : 84, hv = Math.min(x.h / max * f, f), bv = Math.min(x.b / max * f, f);
+    return '<div class="schaal' + (groot ? " groot" : "") + (wand ? " is-wand" : "") + '" style="--kleur:' + x.kleur + '"><span class="maatlabel">' + (x.c === "wand" ? x.b + " × " + x.h + " cm" : "H " + String(x.h).replace(".", ",") + " cm") + '</span>' +
+      '<span class="ref" style="height:' + (30 / max * f) + '%;width:' + (21 / max * f) + '%" title="A4, 30 cm"></span>' +
       '<span class="vorm ' + (x.c === "wand" ? "paneel" : "beeld") + '" style="height:' + hv + '%;width:' + bv + '%"></span></div>';
   }
   function huisKaart(x) {
@@ -171,7 +172,7 @@
   if (pag === "home") {
     $("#strook").innerHTML = ["beweging", "danser", "wit-ii", "rustende-beer", "zomer-in-rood", "nacht", "koraalschaal", "relief-i"].map(function (id) {
       var x = vind(id);
-      return '<a class="strook-item' + (x.wand ? "" : " object") + '" href="werk.html?w=' + x.id + '"><div class="lijst"><img src="img/' + x.img + '.jpg" alt="' + esc(x.n + " van " + MAKERS[x.m]) + '" loading="lazy" width="1400" height="1750"></div><p><b>' + esc(x.n) + "</b>" + MAKERS[x.m] + " · " + prijsKort(x.p) + "</p></a>";
+      return '<a class="strook-item' + (x.wand ? "" : " object") + '" href="werk.html?w=' + x.id + '"><div class="lijst"><img ' + mb(x.img) + ' alt="' + esc(x.n + " van " + MAKERS[x.m]) + '" loading="lazy" width="1400" height="1750"></div><p><b>' + esc(x.n) + "</b>" + MAKERS[x.m] + " · " + prijsKort(x.p) + "</p></a>";
     }).join("");
     (function () {
       var n = $("#nacht"); if (!n) return;
@@ -252,7 +253,7 @@
     $("#detail").innerHTML = "<div>" + podium + "</div>" +
       '<div class="info"><p class="wie"><a href="' + (x.m === "onbekend" ? "collectie.html?cat=vondsten" : "kunstenaars.html#" + x.m) + '">' + MAKERS[x.m] + "</a></p><h1>" + esc(x.n) + "</h1>" +
       '<dl class="feiten"><dt>Jaar</dt><dd>' + x.j + "</dd><dt>Techniek</dt><dd>" + esc(x.mat) + "</dd><dt>Afmetingen</dt><dd>" + maat(x) + "</dd><dt>Editie</dt><dd>" + x.l + "</dd><dt>Certificaat</dt><dd>" + (x.c === "vondsten" ? "Beschrijving van herkomst en staat" : "Gesigneerd door de kunstenaar") + "</dd></dl>" +
-      '<p class="grootprijs">' + euro(x.p) + '</p><p class="klein">Inclusief btw' + (x.p >= GRATIS ? ", verzekerde verzending gratis" : "") + (x.p >= 1000 ? ". Of 3 × " + euro(x.p / 3) + " zonder rente" : "") + ".</p>" +
+      '<p class="grootprijs">' + prijsMooi(x.p) + '</p><p class="klein">Inclusief btw' + (x.p >= GRATIS ? ", verzekerde verzending gratis" : "") + (x.p >= 1000 ? ". Of 3 × " + euro(x.p / 3) + " zonder rente" : "") + ".</p>" +
       '<div class="acties"><button class="knop" type="button" data-koop="' + x.id + '"' + (bezet ? " disabled>In je winkelmand" : ">In winkelmand") + '</button><button class="ico" type="button" data-fav="' + x.id + '" aria-pressed="' + (favs().indexOf(x.id) > -1) + '" aria-label="Bewaar als favoriet">' + HART + "</button></div>" +
       (uniek(x) ? '<button class="knop licht breed" type="button" id="reserveer"' + (gereserveerd ? " disabled>Gereserveerd tot overmorgen" : ">48 uur gratis reserveren") + "</button>" : "") +
       '<ul class="zekerheden"><li>Certificaat van echtheid</li><li>' + (x.p >= GRATIS ? "Gratis verzekerd verzonden" : "Verzekerd verzonden voor € 14,95") + (x.lv >= 80 ? ", met kunstkoerier op afspraak" : ", 3–5 werkdagen") + "</li><li>14 dagen bedenktijd</li></ul>" +
@@ -322,7 +323,7 @@
       doel.innerHTML = m.map(function (r) {
         var x = vind(r.id); if (!x) return "";
         if (x.huis) return '<div class="regel"><div class="mini mini-huis" style="--kleur:' + x.kleur + '"><span></span></div><div><h3>' + esc(x.n) + '</h3><p class="klein">' + x.merk + " · " + x.d + '</p><p class="klein">Aantal: <button class="weg" type="button" data-mstap="-1" data-id="' + x.id + '" aria-label="Eén minder">−</button> ' + r.a + ' <button class="weg" type="button" data-mstap="1" data-id="' + x.id + '" aria-label="Eén meer">+</button></p><button class="weg" type="button" data-weg="' + x.id + '">Verwijderen</button></div><span class="rprijs">' + euro(x.p * r.a) + "</span></div>";
-        return '<div class="regel"><a class="mini" href="werk.html?w=' + x.id + '"><img src="img/' + x.img + '.jpg" alt=""></a><div><h3>' + esc(x.n) + '</h3><p class="klein">' + MAKERS[x.m] + " · " + maat(x) + " · " + x.l + "</p>" +
+        return '<div class="regel"><a class="mini" href="werk.html?w=' + x.id + '"><img src="img/' + x.img + '-m.jpg" alt=""></a><div><h3>' + esc(x.n) + '</h3><p class="klein">' + MAKERS[x.m] + " · " + maat(x) + " · " + x.l + "</p>" +
           (uniek(x) ? "" : '<p class="klein">Aantal: <button class="weg" type="button" data-mstap="-1" data-id="' + x.id + '" aria-label="Eén minder">−</button> ' + r.a + ' <button class="weg" type="button" data-mstap="1" data-id="' + x.id + '" aria-label="Eén meer">+</button></p>') +
           '<button class="weg" type="button" data-weg="' + x.id + '">Verwijderen</button></div><span class="rprijs">' + euro(x.p * r.a) + "</span></div>";
       }).join("");

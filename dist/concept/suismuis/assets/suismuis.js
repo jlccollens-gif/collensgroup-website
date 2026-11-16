@@ -26,6 +26,7 @@
   var GRATIS = 75, VERZEND = 5.95, CADEAU = 3.95;
   var euro = function (x) { return "€ " + x.toFixed(2).replace(".", ","); };
   var vind = function (id) { for (var i = 0; i < P.length; i++) if (P[i].id === id) return P[i]; return null; };
+  var mb = function (b) { return 'src="img/' + b + '-m.jpg" srcset="img/' + b + '-m.jpg 1080w, img/' + b + '.jpg 1800w" sizes="(max-width:700px) 50vw, 25vw"'; };
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
@@ -81,7 +82,7 @@
     var fav = favs().indexOf(p.id) > -1;
     return '<article class="product">' +
       '<a class="beeld" href="product.html?p=' + p.id + '">' + (p.l ? '<span class="label">' + esc(p.l) + "</span>" : "") +
-      '<img src="img/' + p.img + '.jpg" alt="' + esc(p.n) + '" loading="lazy" width="1200" height="1500"></a>' +
+      '<img ' + mb(p.img) + ' alt="' + esc(p.n) + '" loading="lazy" width="1200" height="1500"></a>' +
       '<button class="hart" type="button" data-fav="' + p.id + '" aria-pressed="' + fav + '" aria-label="' + esc(p.n) + ' bewaren als favoriet">' + HART + "</button>" +
       '<div class="snel"><button class="knop" type="button" data-koop="' + p.id + '">In winkelmand</button></div>' +
       '<a href="product.html?p=' + p.id + '"><h3>' + esc(p.n) + '</h3><span class="prijs">' + euro(p.p) + "</span></a></article>";
@@ -189,7 +190,7 @@
       '<div class="koop"><div class="stapper"><button type="button" data-stap="-1" aria-label="Minder">−</button><input id="aantal-p" type="number" min="1" max="20" value="1" aria-label="Aantal"><button type="button" data-stap="1" aria-label="Meer">+</button></div>' +
       '<button class="knop" type="button" id="koop-p">In winkelmand</button></div>' +
       '<button class="knop licht breed" type="button" data-fav="' + p.id + '" aria-pressed="' + (favs().indexOf(p.id) > -1) + '">Bewaar als favoriet</button>' +
-      '<ul class="usp"><li>Gratis verzending vanaf € 75</li><li>14 dagen bedenktijd, eenvoudig retourneren</li><li>Veilig betalen met iDEAL, Bancontact of creditcard</li><li>Cadeauverpakking mogelijk bij het afrekenen</li></ul>' +
+      '<ul class="usp"><li>Gratis verzending vanaf € 75</li><li>14 dagen bedenktijd, eenvoudig retourneren</li><li>Veilig betalen met creditcard, Apple Pay of iDEAL</li><li>Cadeauverpakking mogelijk bij het afrekenen</li></ul>' +
       '<details open><summary>Materiaal en afmetingen</summary><p>' + esc(p.m) + "<br>" + esc(p.d) + '</p></details>' +
       '<details><summary>Onderhoud</summary><p>Afnemen met een droge of licht vochtige doek. Natuurlijke materialen kunnen kleine kleurverschillen hebben; dat maakt elk stuk uniek.</p></details>' +
       '<details><summary>Verzenden en retourneren</summary><p>Je bestelling is in 2–4 werkdagen in huis, in Nederland en België. Niet tevreden? Je hebt 14 dagen bedenktijd. Lees meer bij <a class="link" href="klantenservice.html#retour">retourneren</a>.</p></details></div>';
@@ -211,7 +212,7 @@
     }
     doel.innerHTML = m.map(function (r) {
       var p = vind(r.id); if (!p) return "";
-      return '<div class="regel"><a href="product.html?p=' + p.id + '"><img src="img/' + p.img + '.jpg" alt="' + esc(p.n) + '"></a>' +
+      return '<div class="regel"><a href="product.html?p=' + p.id + '"><img src="img/' + p.img + '-m.jpg" alt=""' + esc(p.n) + '"></a>' +
         '<div><a href="product.html?p=' + p.id + '"><h3>' + esc(p.n) + '</h3></a><div style="font-size:14px;color:var(--mokka)">' + euro(p.p) + '</div>' +
         '<div class="stapper"><button type="button" data-mstap="-1" data-id="' + p.id + '" aria-label="Minder">−</button><input value="' + r.a + '" readonly aria-label="Aantal"><button type="button" data-mstap="1" data-id="' + p.id + '" aria-label="Meer">+</button></div>' +
         '<button class="weg" type="button" data-weg="' + p.id + '">Verwijderen</button></div><div class="rprijs">' + euro(p.p * r.a) + "</div></div>";
@@ -254,7 +255,7 @@
         zetMand([]); bewaar("cadeau", false);
         $("#afreken").innerHTML = '<div class="leegmand" style="max-width:640px"><span class="klein">Dank je wel</span><h2 style="font-size:44px;margin:10px 0 16px">Je bestelling is geplaatst</h2>' +
           '<p>Je ontvangt zo een bevestiging per e-mail met je ordernummer en de verwachte bezorgdatum.</p>' +
-          '<div class="melding">Dit is een concept: er is niets echt besteld of betaald. In de echte webshop ga je hier naar de beveiligde betaalpagina van Mollie (iDEAL, Bancontact, creditcard).</div>' +
+          '<div class="melding">Dit is een concept: er is niets echt besteld of betaald. In de echte webshop ga je hier naar de beveiligde betaalpagina van Stripe (creditcard, Apple Pay, Google Pay of iDEAL).</div>' +
           '<a class="knop" href="index.html">Terug naar de homepage</a></div>';
         window.scrollTo(0, 0);
       });
@@ -272,7 +273,7 @@
   if (pag === "beheer") {
     var FEE = 0.29;
     var rij = function (p) {
-      return '<tr data-id="' + p.id + '"><td><img src="img/' + p.img + '.jpg" alt=""><span>' + esc(p.n) + '<small>' + CATS[p.c] + '</small></span></td>' +
+      return '<tr data-id="' + p.id + '"><td><img src="img/' + p.img + '-m.jpg" alt=""><span>' + esc(p.n) + '<small>' + CATS[p.c] + '</small></span></td>' +
         '<td>' + euro(p.ink) + '</td><td>' + euro(p.lv) + '</td>' +
         '<td><input type="number" step="0.05" min="0" value="' + p.p.toFixed(2) + '" aria-label="Verkoopprijs ' + esc(p.n) + '"></td>' +
         '<td class="winst"></td><td class="marge"></td></tr>';
