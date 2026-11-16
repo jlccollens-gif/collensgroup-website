@@ -132,6 +132,11 @@ label{font-weight:700;font-size:15px;color:var(--wit);display:grid;gap:6px}
 input,textarea,select{font:inherit;font-size:16px;padding:12px 14px;border-radius:12px;border:1px solid #3A4A6B;background:#1C2B4D;color:var(--wit)}
 textarea{min-height:130px;resize:vertical}
 .rij2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fotos-veld{display:grid;gap:6px}.fotos-uitleg{margin:0;font-size:14px;color:#AEBBD2}
+.fotos-veld{min-width:0}.fotos-veld input[type=file]{padding:10px;border-style:dashed;cursor:pointer;width:100%;max-width:100%;min-width:0;box-sizing:border-box;font-size:14px}
+.fotos-voorbeeld{display:flex;flex-wrap:wrap;gap:8px}.fotos-voorbeeld figure{position:relative;margin:0;width:72px;height:72px}
+.fotos-voorbeeld img{width:100%;height:100%;object-fit:cover;border-radius:10px;border:1px solid #3A4A6B}
+.fotos-voorbeeld button{position:absolute;top:-6px;right:-6px;width:24px;height:24px;border-radius:50%;border:0;background:var(--signaal,#f2b705);color:#0f1726;font-weight:800;cursor:pointer;line-height:1}
 .melding{background:#1C2B4D;border-left:4px solid var(--signaal);padding:14px 16px;border-radius:8px;font-size:16px;display:none}
 .melding.aan{display:block}
 .melding pre{white-space:pre-wrap;font-family:var(--body);font-size:14px;color:#D7DFEC;margin:10px 0}

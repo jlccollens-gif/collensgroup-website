@@ -280,6 +280,10 @@ def contact_section():
 <div class="rij2"><label>Bedrijf (optioneel)<input name="bedrijf" autocomplete="organization"></label>
 <label>Wat wil je laten maken?<select name="pakket"><option>Weet ik nog niet</option><option>App</option><option>Website of webshop</option><option>Game</option><option>AI of automatisering</option></select></label></div>
 <label>Je idee<textarea name="idee" required placeholder="Wat moet de app doen, en voor wie?"></textarea></label>
+<div class="fotos-veld"><label for="fotos">Voorbeelden van je smaak (optioneel)</label>
+<p class="fotos-uitleg">Upload tot 6 foto's of screenshots van websites of apps die je mooi vindt, of je logo en huisstijl. Zo weten we welke stijl je zoekt. We gebruiken ze alleen als inspiratie.</p>
+<input id="fotos" name="fotos" type="file" accept="image/jpeg,image/png,image/webp,image/heic" multiple>
+<div class="fotos-voorbeeld" id="fotos-voorbeeld" aria-live="polite"></div></div>
 <button class="knop geel" type="submit">Verstuur aanvraag</button>
 <div class="melding" id="melding" role="status" aria-live="polite"></div>
 </form></div></section>
@@ -287,23 +291,64 @@ def contact_section():
 const CONTACT = ''' + json.dumps({"email": CONFIG["email"], "whatsapp": CONFIG["whatsapp"]}) + r''';
 const kanaal = document.getElementById("kanaal");
 if (CONTACT.email) kanaal.textContent = "Liever direct mailen? " + CONTACT.email;
+/* Foto's van de smaak van de klant: verkleinen in de browser, uploaden naar Supabase Storage, aanvraag opslaan. */
+const SB = {url: "https://eyrfizayagcwaxbxyeuh.supabase.co", key: "sb_publishable_OXoe3_8uenkdDoeuCq4G9A_MXOTuWjb", bucket: "website-aanvraag"};
+const fotoInput = document.getElementById("fotos"), fotoVb = document.getElementById("fotos-voorbeeld");
+let fotos = [];
+fotoInput.addEventListener("change", () => {
+  const nieuw = [...fotoInput.files].filter(x => /^image\//.test(x.type) || /\.heic$/i.test(x.name));
+  fotos = fotos.concat(nieuw).slice(0, 6);
+  if (fotos.length + nieuw.length > 6) fotoVb.dataset.melding = "Maximaal 6 foto's.";
+  fotoInput.value = ""; toonFotos();
+});
+function toonFotos() {
+  fotoVb.innerHTML = "";
+  fotos.forEach((x, i) => {
+    const w = document.createElement("figure"), img = document.createElement("img"), b = document.createElement("button");
+    img.src = URL.createObjectURL(x); img.alt = x.name; b.type = "button"; b.textContent = "×"; b.setAttribute("aria-label", "Verwijder foto");
+    b.onclick = () => { fotos.splice(i, 1); toonFotos(); };
+    w.append(img, b); fotoVb.append(w);
+  });
+}
+function verklein(file) {
+  return new Promise((ok, fout) => {
+    const img = new Image(); img.onload = () => {
+      const s = Math.min(1, 1600 / Math.max(img.width, img.height)), c = document.createElement("canvas");
+      c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
+      c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+      c.toBlob(b => b ? ok(b) : fout(new Error("blob")), "image/jpeg", 0.82);
+    }; img.onerror = fout; img.src = URL.createObjectURL(file);
+  });
+}
+async function verstuurOnline(d) {
+  const id = crypto.randomUUID(), paden = [];
+  for (let i = 0; i < fotos.length; i++) {
+    const blob = await verklein(fotos[i]), pad = id + "/" + (i + 1) + ".jpg";
+    const r = await fetch(SB.url + "/storage/v1/object/" + SB.bucket + "/" + pad, {method: "POST", headers: {apikey: SB.key, Authorization: "Bearer " + SB.key, "Content-Type": "image/jpeg", "x-upsert": "false"}, body: blob});
+    if (!r.ok) throw new Error("upload " + r.status);
+    paden.push(SB.url + "/storage/v1/object/public/" + SB.bucket + "/" + pad);
+  }
+  const r = await fetch(SB.url + "/rest/v1/website_aanvragen", {method: "POST", headers: {apikey: SB.key, Authorization: "Bearer " + SB.key, "Content-Type": "application/json", Prefer: "return=minimal"},
+    body: JSON.stringify({id, naam: d.naam, email: d.email, bedrijf: d.bedrijf || null, pakket: d.pakket || null, idee: d.idee, fotos: paden, taal: document.documentElement.lang || null, pagina: location.pathname})});
+  if (!r.ok) throw new Error("opslaan " + r.status);
+}
 document.getElementById("aanvraag").addEventListener("submit", async e => {
   e.preventDefault();
-  const f = e.target, m = document.getElementById("melding");
+  const f = e.target, m = document.getElementById("melding"), knop = f.querySelector('button[type="submit"]');
   const d = Object.fromEntries(new FormData(f));
   m.className = "melding aan"; m.innerHTML = "";
+  if (d["bot-veld"]) return;
   if (!d.naam || !d.email || !d.idee || !f.email.checkValidity()) { m.textContent = "Vul je naam, een geldig e-mailadres en je idee in."; return; }
-  /* Op Netlify: direct versturen. Elders (of bij een fout): terugvallen op mail/kopiëren. */
+  knop.disabled = true; m.textContent = "Je aanvraag wordt verstuurd…";
   try {
-    const r = await fetch("/", {method: "POST", headers: {"Content-Type": "application/x-www-form-urlencoded"}, body: new URLSearchParams(new FormData(f)).toString()});
-    if (r.ok && location.hostname.endsWith(".nl") || r.ok && location.hostname.endsWith("netlify.app")) {
-      m.textContent = "Bedankt " + d.naam + "! Je aanvraag is verstuurd. Je krijgt snel antwoord op " + d.email + ".";
-      f.reset();
-      if (window.goatcounter && goatcounter.count) goatcounter.count({path: "aanvraag-verstuurd", event: true});
-      return;
-    }
-  } catch (_) {}
+    await verstuurOnline(d);
+    m.textContent = "Bedankt " + d.naam + "! Je aanvraag is verstuurd. Je krijgt snel antwoord op " + d.email + ".";
+    f.reset(); fotos = []; toonFotos(); knop.disabled = false;
+    if (window.goatcounter && goatcounter.count) goatcounter.count({path: "aanvraag-verstuurd", event: true});
+    return;
+  } catch (_) { knop.disabled = false; m.textContent = ""; }
   const tekst = `Aanvraag ${d.pakket}\nNaam: ${d.naam}\nE-mail: ${d.email}\nBedrijf: ${d.bedrijf||"-"}\nSoort: ${d.pakket}\n\nIdee:\n${d.idee}`;
+  if (fotos.length) m.append(Object.assign(document.createElement("p"), {textContent: "Stuur je voorbeeldfoto's als bijlage mee in je mail."}));
   const link = (href, txt) => { const a = document.createElement("a"); a.href = href; a.textContent = txt; a.className = "knop geel"; a.style.marginRight = "8px"; return a; };
   m.append("Je aanvraag staat klaar. Kies hoe je hem verstuurt:");
   const rij = document.createElement("p"); rij.style.marginTop = "12px";
@@ -449,6 +494,12 @@ EN_CONTACT_MAP = [
     ("Aanvraag ${d.pakket}\\nNaam: ${d.naam}\\nE-mail: ${d.email}\\nBedrijf: ${d.bedrijf||\"-\"}\\nSoort: ${d.pakket}\\n\\nIdee:\\n${d.idee}",
      "Request ${d.pakket}\\nName: ${d.naam}\\nEmail: ${d.email}\\nCompany: ${d.bedrijf||\"-\"}\\nType: ${d.pakket}\\n\\nIdea:\\n${d.idee}"),
     ('"Aanvraag app – " + d.naam', '"Aanvraag app – " + d.naam + " (EN)"'),
+    ("Voorbeelden van je smaak (optioneel)", "Examples of your style (optional)"),
+    ("Upload tot 6 foto's of screenshots van websites of apps die je mooi vindt, of je logo en huisstijl. Zo weten we welke stijl je zoekt. We gebruiken ze alleen als inspiratie.",
+     "Upload up to 6 photos or screenshots of websites or apps you like, or your logo and brand colours. That shows us the style you're after. We only use them as inspiration."),
+    ('"Maximaal 6 foto\'s."', '"Up to 6 photos."'), ('"Verwijder foto"', '"Remove photo"'),
+    ('"Je aanvraag wordt verstuurd…"', '"Sending your request…"'),
+    ('"Stuur je voorbeeldfoto\'s als bijlage mee in je mail."', '"Please attach your example photos to your email."'),
 ]
 
 def contact_en():
@@ -973,7 +1024,7 @@ def build():
     # PRIVACY
     pages.append(page("privacy.html", "Privacy | Collens Group", "Hoe Collens Group omgaat met je gegevens: wat deze website verzamelt, waarvoor, en welke rechten je hebt.",
         f'''<article class="tekst"><h1>Privacy</h1><p>Laatst bijgewerkt: {datetime.date.today().strftime("%d-%m-%Y")}</p>
-<h2>Wat deze website verzamelt</h2><p>Deze website plaatst geen trackingcookies. {"We tellen bezoeken met GoatCounter, dat geen cookies gebruikt en geen persoonsgegevens opslaat." if CONFIG["goatcounter"] else "We gebruiken geen analytics."} Vul je het aanvraagformulier in, dan zet het formulier je bericht klaar zodat je het zelf naar ons mailt. Onze website wordt gehost door Cloudflare.</p>
+<h2>Wat deze website verzamelt</h2><p>Deze website plaatst geen trackingcookies. {"We tellen bezoeken met GoatCounter, dat geen cookies gebruikt en geen persoonsgegevens opslaat." if CONFIG["goatcounter"] else "We gebruiken geen analytics."} Vul je het aanvraagformulier in, dan slaan we je bericht en eventuele voorbeeldfoto's op bij onze database-leverancier Supabase (servers in Singapore), zodat we je aanvraag kunnen beantwoorden. Foto's staan op een niet te raden webadres; we gebruiken ze alleen als inspiratie voor jouw ontwerp en verwijderen ze als je daarom vraagt. Onze website wordt gehost door Cloudflare.</p>
 <h2>Online adviseur (chat)</h2><p>Gebruik je de chat-adviseur, dan worden je berichten verwerkt door het AI-model Claude van Anthropic om een antwoord te maken. Het gesprek blijft alleen in je eigen browser bewaard tot je het tabblad sluit; wij slaan het niet op. Geef je in de chat je naam en e-mailadres en vraag je ons contact op te nemen, dan sturen we het gesprek als mail naar ons team (via de maildienst Brevo) en gebruiken we het alleen om je te antwoorden. Deel in de chat geen gevoelige gegevens.</p>
 <h2>Als je contact met ons opneemt</h2><p>Stuur je ons een aanvraag, dan gebruiken we je naam, e-mailadres, bedrijfsnaam en je beschrijving alleen om je aanvraag te beantwoorden en, als je klant wordt, om het project uit te voeren. We bewaren deze gegevens niet langer dan nodig en delen ze niet met anderen, behalve als dat nodig is voor het project en je daarmee akkoord gaat.</p>
 <h2>Lettertypes</h2><p>Deze website laadt lettertypes via Google Fonts. Daarbij ziet Google je IP-adres.</p>
