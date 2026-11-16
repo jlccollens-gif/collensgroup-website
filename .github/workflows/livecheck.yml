@@ -1,0 +1,16 @@
+name: livecheck
+on:
+  push:
+    branches: [main]
+    paths: ["dist/**"]
+  workflow_dispatch:
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - run: sleep 45
+      - run: python3 tools/livecheck/livecheck.py "${{ github.event.before }}" "${{ github.sha }}"
