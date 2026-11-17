@@ -19,7 +19,6 @@ SVG = {
 
 
 MERKEN = [("ptmd", "PTMD", "Nederlands woonmerk met een eigen ontwerpstudio, sinds 1992. Ruw, gedurfd en verfijnd: beelden en wandpanelen met karakter."),
-          ("richmond-interiors", "Richmond Interiors", "Collectie uit Heerhugowaard met beelden, vazen en wanddecoratie, vaak met handwerk zoals handgesneden mozaïekglas."),
           ("present-time", "Present Time", "Ontwerpmerk voor woonaccessoires en design-objecten: speels, grafisch en betaalbaar."),
           ("de-wanddecoratie", "De Wanddecoratie", "Nederlandse maker van wanddecoratie op canvas, gespannen op frames van FSC- en PEFC-gecertificeerd hout.")]
 SOORTEN = [("schilderijen", "Schilderijen", "W", "schilderijen", "Originele werken op doek en papier, van verstild wit tot uitgesproken kleur.", "w-relief-i"),
@@ -342,7 +341,7 @@ def bouw():
     # ---------- huis & beeld ----------
     pagina("huis.html", "Huis & Beeld | Atelier Ombre (concept)", "lijst", "huis",
            paginakop("Huis &amp; Beeld", "Design-beelden en wandobjecten van Nederlandse ontwerpmerken. Goede kwaliteit voor een normale prijs, rechtstreeks uit het magazijn van de maker.", ["<span>Huis &amp; Beeld</span>"]) + '''
-''' + lijst("H", "", "Echte producten van Richmond Interiors, PTMD, Present Time en De Wanddecoratie. Prijzen zijn een voorstel; de definitieve prijs volgt zodra de inkoopprijs bekend is. Productfoto's van de merken komen erbij na aansluiting als verkooppunt.") + '''
+''' + lijst("H", "", "Echte producten van PTMD, Present Time en De Wanddecoratie. Prijzen zijn een voorstel; de definitieve prijs volgt zodra de inkoopprijs bekend is. Productfoto's van de merken komen erbij na aansluiting als verkooppunt.") + '''
 <section id="merken" style="background:var(--wit)"><div class="wrap">
  <div class="sectiekop"><div><h2>Onze merken</h2><p>Ontwerpmerken met eigen collecties. Geen namaak, altijd het origineel.</p></div></div>
  <div class="merken">''' + "".join(f'<a class="merk" href="merk-{sl}.html"><b>{n}</b><span>{t}</span><span class="link">Bekijk de collectie</span></a>' for sl, n, t in MERKEN) + '''</div>
@@ -396,7 +395,6 @@ def bouw():
  <div class="sectiekop"><div><h2>Huis &amp; Beeld: leveranciers</h2><p>Waar elk product vandaan komt en hoe we het inkopen. Alleen merken met eigen ontwerpen.</p></div></div>
  <div class="modellen">
   <div><h3>PTMD</h3><p>Nederlands merk met eigen ontwerpstudio. Levert via Droppery rechtstreeks aan de klant van de webshop. Droppery begint bij circa $ 46 per maand.</p></div>
-  <div><h3>Richmond Interiors</h3><p>Groothandel uit Heerhugowaard met eigen collectie. Verkoopt alleen via dealers: dealeraccount aanvragen en vragen of zij of Droppery rechtstreeks leveren.</p></div>
   <div><h3>Present Time en De Wanddecoratie</h3><p>Present Time: design-objecten, groothandel navragen. De Wanddecoratie: Nederlandse maker van canvas met FSC/PEFC-hout, samenwerking navragen.</p></div>
  </div>
  <div class="tabelwrap" style="margin-top:28px"><table class="marge" id="huis-tabel"><thead><tr><th>Product</th><th>Merk</th><th>Onze prijs</th><th>Inkoop via</th></tr></thead><tbody></tbody></table></div>

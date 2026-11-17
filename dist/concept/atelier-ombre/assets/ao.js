@@ -27,22 +27,16 @@
 
   /* Huis & Beeld: echte producten van ontwerpmerken. p = verkoopprijs */
   var H = [
-    { id: "beer-mozaiek-klein", n: "Beer zilver mozaïek, klein", merk: "Richmond Interiors", c: "beelden", p: 329, b: 32.5, h: 70, d: "H 70 × B 32,5 × D 25,5 cm", mat: "Polyresin met handgesneden mozaïekglas", kleur: "#B7BBC0", r: "r" },
-    { id: "beer-mozaiek-groot", n: "Beer zilver mozaïek, groot", merk: "Richmond Interiors", c: "beelden", p: 649, b: 46, h: 101, d: "H 101 × B 46 × D 34 cm", mat: "Polyresin met handgesneden mozaïekglas", kleur: "#B7BBC0", r: "r" },
-    { id: "aap-goud", n: "Aap goud", merk: "Richmond Interiors", c: "beelden", p: 89, b: 21.5, h: 25, d: "H 25 × B 21,5 × D 17 cm", mat: "Polyresin, goud afgewerkt", kleur: "#C9A24A", r: "r" },
-    { id: "beer-berlyn", n: "Beer Berlyn, parelmoerwit", merk: "Richmond Interiors", c: "beelden", p: 39, b: 11, h: 19, d: "H 19 × B 11 × D 9 cm", mat: "Glanzend wit met regenboogglans", kleur: "#EEEBE4", r: "r" },
-    { id: "beer-ave", n: "Beer Ave, wit en goud", merk: "Richmond Interiors", c: "beelden", p: 49, b: 14, h: 29, d: "H 29 × B 14 × D 9 cm", mat: "Polyresin, glanzend wit met gouden accenten", kleur: "#F3F1EC", r: "r" },
-    { id: "swirl-messing", n: "Swirl, antiek messing", merk: "Richmond Interiors", c: "beelden", p: 119, b: 27, h: 46, d: "H 46 × B 27 × D 10 cm", mat: "Afwerking antiek messing", kleur: "#A88A52", r: "r" },
     { id: "ptmd-vrouw", n: "Beeld Vrouw, zwart", merk: "PTMD", c: "beelden", p: 69, b: 25, h: 90, d: "H 90 × B 25 × D 27 cm", mat: "Cement, diepzwart", kleur: "#2A2A2C", r: "p" },
     { id: "pt-imagine", n: "Figuur Imagine, zwart", merk: "Present Time", c: "beelden", p: 24.95, b: 12.5, h: 23.5, d: "H 23,5 × B 12,5 cm", mat: "Polyresin", kleur: "#26272A", r: "g" },
     { id: "ptmd-darina", n: "Wandpaneel Darina, grote golf brons", merk: "PTMD", c: "wand", p: 159, b: 120, h: 120, d: "120 × 120 cm", mat: "Wandpaneel met golfmotief, bronskleur", kleur: "#8C6A45", r: "p" },
     { id: "ptmd-salima", n: "Wandpaneel Salima, gesneden bloem", merk: "PTMD", c: "wand", p: 135, b: 90, h: 90, d: "90 × 90 cm", mat: "Wandpaneel, gesneden bloemmotief", kleur: "#CFC6B6", r: "p" },
     { id: "canvas-warme-tinten", n: "Canvas Abstracte vormen, warme tinten", merk: "De Wanddecoratie", c: "wand", p: 84.95, b: 80, h: 120, d: "80 × 120 cm", mat: "Canvas op frame van FSC/PEFC-hout, 1,8 cm", kleur: "#C98E5E", r: "w" }
   ];
-  var TINT = {"beer-mozaiek-klein": "zilver", "beer-mozaiek-groot": "zilver", "aap-goud": "goud", "beer-berlyn": "wit", "beer-ave": "wit", "swirl-messing": "messing", "ptmd-vrouw": "zwart", "pt-imagine": "zwart", "ptmd-darina": "messing", "ptmd-salima": "naturel", "canvas-warme-tinten": "aarde"};
-  var MERKSLUG = { "PTMD": "ptmd", "Richmond Interiors": "richmond-interiors", "Present Time": "present-time", "De Wanddecoratie": "de-wanddecoratie" };
+  var TINT = {"ptmd-vrouw": "zwart", "pt-imagine": "zwart", "ptmd-darina": "messing", "ptmd-salima": "naturel", "canvas-warme-tinten": "aarde"};
+  var MERKSLUG = { "PTMD": "ptmd", "Present Time": "present-time", "De Wanddecoratie": "de-wanddecoratie" };
   H.forEach(function (x) { x.huis = 1; x.ms = MERKSLUG[x.merk]; x.tint = TINT[x.id]; });
-  var ROUTE = { p: "Droppery (dropshipping)", r: "Dealeraccount Richmond", g: "Groothandel, navragen", w: "Rechtstreeks, navragen" };
+  var ROUTE = { p: "Droppery (dropshipping)", g: "Groothandel, navragen", w: "Rechtstreeks, navragen" };
   var API = "https://eyrfizayagcwaxbxyeuh.supabase.co/functions/v1/ombre-order";
   function api(data) {
     return fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
