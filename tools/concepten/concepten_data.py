@@ -862,3 +862,163 @@ EXTRA.update(EXTRA_W3); SITES.update(SITES_W3)
 EXTRA.update(EXTRA_UK3); SITES.update(SITES_UK3)
 for c in C: c.update(EXTRA[c["slug"]]); c.setdefault("site", SITES.get(c["slug"], ""))
 
+
+# Wachtrij 5 (sales-run 17-11 01:30 BKK): Canada
+C_W5 = [
+ dict(slug="new-canadian-drain", taal="en", naam="New Canadian Drain & Plumbing", kort="New Canadian", juridisch="New Canadian Drain and Plumbing Ltd.", init="N", font="Sora",
+      kleur=dict(bg="#123049", ink="#0b1d2c", acc="#e2483d", licht="#f2f5f8", held="#123049"),
+      titel="drain and plumbing services in Toronto", eyebrow="Toronto · locally owned and operated since 2002",
+      h1="Drains clear. Basements dry.", lead="Emergency plumbing, drain repair, backwater valves, sump pumps, water lines and waterproofing across Toronto. Licensed plumbers with over 20 years of experience.",
+      feiten=[("Since 2002", "locally owned and operated"), ("20+ years", "plumbing and drains"), ("Emergency", "plumbing service"), ("10%", "senior discount")],
+      diensten=[("klok", "Emergency plumbing", "Leaks, burst and frozen pipes, toilets and faucets."), ("goot", "Drain repair and cleaning", "Blocked drains, backups, snaking, relining and replacement."),
+                ("schild", "Backwater valves and sump pumps", "Protect your basement against flooding."), ("weg", "Sewer lines", "Sewer line repair and trenchless replacement."),
+                ("druppel", "Water lines", "Water line installation, replacement and repair."), ("dak", "Waterproofing", "Leaky and wet basement repair.")],
+      waarom_intro="A locally owned Toronto company, in drains and plumbing since 2002.",
+      waarom=["Locally owned and operated since 2002", "Licensed Toronto plumbers", "Video camera inspection before we dig", "Residential and commercial work"],
+      tel="(416) 651-2990", mail="info@newcanadiandrain.com", adres="184 Saint Helens Ave., Toronto, ON M6H 4A1"),
+]
+EXTRA_W5 = {
+ "new-canadian-drain": dict(logo="druppel", velden=[["What do you need?","Emergency plumbing","Blocked drain","Backwater valve or sump pump","Sewer or water line","Wet basement"],"Postal code","Phone number"],
+   certs=["Licensed plumbers","Since 2002"],
+   faq=[("Do you handle emergencies?","Yes, emergency plumbing is one of our core services."),("Can you stop my basement from flooding?","Yes, we install backwater valves and sump pumps and repair leaky basements."),("Do you offer a senior discount?","Yes, seniors get 10% off.")],
+   verbeterd=["A senior discount that works: the \"10% senior discount\" banner on the current site links nowhere","An up-to-date footer instead of \"© 2022\"","Quote form at the top with job type and postal code","Click-to-call button always visible on mobile","Business details for Google (structured data)"]),
+}
+SITES_W5 = {"new-canadian-drain": "https://newcanadiandrain.com"}
+C += C_W5
+EXTRA.update(EXTRA_W5); SITES.update(SITES_W5)
+for c in C_W5: c.update(EXTRA[c["slug"]]); c.setdefault("site", SITES.get(c["slug"], ""))
+
+# Wachtrij 6 (sales-run 17-11 02:30 BKK): Canada (Edmonton, Langley BC). Feiten alleen van eigen site (WebFetch 17-11).
+C_W6 = [
+ dict(slug="roof-smart", taal="en", naam="Roof Smart", kort="Roof Smart", juridisch="Roof Smart Inc.", init="R", font="Sora",
+      kleur=dict(bg="#1f2f3d", ink="#16202a", acc="#d9541e", licht="#f6f5f2", held="#1f2f3d"),
+      titel="roof replacement and roofing services in Edmonton", eyebrow="Edmonton · roofing · licensed and WCB covered",
+      h1="Roofs built for Edmonton.", lead="Asphalt, metal and rubber roofing for homes and businesses, plus gutters, fascia, soffits and exterior LED lighting. A clear, honest quote and installation within two weeks of signing.",
+      feiten=[("10+ years", "workmanship warranty"), ("1–2 days", "most residential installs"), ("4–5", "people per crew"), ("24 h", "inquiry response")],
+      diensten=[("dak", "Asphalt roofing", "Durable shingle roofs for Edmonton homes."), ("schild", "Metal roofing", "Long-lasting metal roof systems."),
+                ("druppel", "Rubber roofing", "Flat and low-slope roofs."), ("goot", "Gutters, fascia and soffits", "Water control and clean rooflines."),
+                ("tandwiel", "Exterior LED lighting", "Permanent exterior lighting."), ("klok", "Aerial roof inspection", "An inspection before every proposal.")],
+      waarom_intro="Most people dread calling a roofer. Roof Smart takes out the contractor talk and the sales pressure.",
+      waarom=["Clear, no-surprise quotes", "Premium materials as standard", "Local Edmonton professionals", "Licensed, insured and WCB covered"],
+      tel="(587) 921-5866", mail="info@roofsmartinc.com", adres="3707 74 Ave NW #201, Edmonton, AB T6B 2T7"),
+ dict(slug="prompt-plumbing", taal="en", naam="Prompt Plumbing", kort="Prompt", juridisch="Prompt Plumbing Ltd.", init="P", font="Bricolage Grotesque",
+      kleur=dict(bg="#0b2f4d", ink="#0e1c2b", acc="#0a7cc2", licht="#f5f8fa", held="#0b2f4d"),
+      titel="plumbing, heating and drain cleaning in Langley, BC", eyebrow="Langley · plumbing and gas · TSBC LGA0211636",
+      h1="Plumbing fixed, promptly.", lead="Repairs and replacements, drain cleaning, hot water tanks, boilers and bathroom renovations for homes and businesses across Langley, Surrey and the Fraser Valley.",
+      feiten=[("10+ years", "working experience"), ("24/7", "emergency service"), ("5.0", "from 223+ Google reviews"), ("Free", "consultations")],
+      diensten=[("druppel", "Plumbing repairs", "Broken pipes, taps, toilets and re-pipes."), ("goot", "Drain cleaning", "Sinks, tubs and high-pressure jetting."),
+                ("opslag", "Hot water tanks", "Electric, gas and tankless."), ("tandwiel", "Heating and gas", "Boiler systems and furnace installs."),
+                ("weg", "Water mains and sewer lines", "Repair and replacement."), ("kraan", "Bathroom renovation", "Complete bathroom remodels.")],
+      waarom_intro="A locally owned and operated Langley business with licensed plumbers and gas fitters.",
+      waarom=["Licensed plumbers and gas fitters", "24/7 emergency service", "Free estimates", "Cost-effective solutions"],
+      tel="604 396 2500", mail="info@promptplumbingltd.ca", adres="8856 204 St #101, Langley Twp, BC V2Y 0H6"),
+]
+EXTRA_W6 = {
+ "roof-smart": dict(logo="dak", velden=[["What do you need?","Roof replacement","Metal roof","Flat or rubber roof","Gutters, fascia or soffits","Exterior LED lighting"],"Postal code","Phone number"],
+   certs=["Licensed in Edmonton","WCB covered"],
+   faq=[("How long does a roof replacement take?","Most residential installs take 1–2 days."),("What warranty do you give?","A workmanship warranty of 10+ years."),("How fast do you respond?","We reply to inquiries within 24 hours.")],
+   verbeterd=["Real text everywhere: the current About page still shows \"Lorem ipsum\" headings and paragraphs","A \"Free Proposal\" button that works (now it links to \"#\")","Real numbers instead of counters showing \"0 +\" and \"0 %\"","Quote form at the top with roof type and postal code","Click-to-call button always visible on mobile"]),
+ "prompt-plumbing": dict(logo="druppel", velden=[["What do you need?","Plumbing repair","Drain cleaning","Hot water tank","Heating or gas","Bathroom renovation"],"Postal code","Phone number"],
+   certs=["TSBC LGA0211636","Licensed gas fitters"],
+   faq=[("Do you handle emergencies?","Yes, we offer 24/7 emergency service."),("Do you give free estimates?","Yes, consultations and estimates are free."),("Which areas do you serve?","Langley, Surrey and the Fraser Valley.")],
+   verbeterd=["A contact form that works: the current form shows raw code \"[caldera_form id=...]\"","Real project photos instead of \"Lorem ipsum\" under \"Our Recent Works\"","Quote form at the top with job type and postal code","Click-to-call button always visible on mobile","Business details for Google (structured data)"]),
+}
+SITES_W6 = {"roof-smart": "https://roofsmartinc.ca", "prompt-plumbing": "https://promptplumbingltd.ca"}
+C += C_W6
+EXTRA.update(EXTRA_W6); SITES.update(SITES_W6)
+for c in C_W6: c.update(EXTRA[c["slug"]]); c.setdefault("site", SITES.get(c["slug"], ""))
+
+# Wachtrij 7 (sales-run 17-11 03:30 BKK): Australië. Feiten alleen van eigen site (WebFetch/curl 17-11); rechtsvorm via eigen site of abr.business.gov.au.
+C_W7 = [
+ dict(slug="garnet-electrical", taal="en", naam="Garnet Electrical", kort="Garnet", juridisch="Garnet Electrical Services Pty Ltd", init="G", font="Sora",
+      kleur=dict(bg="#3b1220", ink="#1f0d13", acc="#c8283f", licht="#f7f3f2", held="#3b1220"),
+      titel="commercial, industrial and event electricians in Melbourne", eyebrow="Tullamarine · Melbourne · commercial, industrial and events",
+      h1="Power for Melbourne's businesses.", lead="Commercial and industrial electrical work, temporary power for events and festivals, facility support and residential jobs, from a Tullamarine team with over 35 years of experience.",
+      feiten=[("35+ years", "powering Melbourne"), ("24/7", "availability"), ("Events", "Showgrounds to festivals"), ("Licensed", "electricians")],
+      diensten=[("opslag", "Commercial electrical", "Offices, retail spaces, warehouses and industrial facilities."), ("klok", "Power2Events", "Temporary power and event site setups."),
+                ("tandwiel", "Facility support", "Fault finding, maintenance and scheduled or on-demand callouts."), ("schild", "Switchboard servicing", "Switchboard upgrades, servicing and emergency lighting."),
+                ("pakket", "Equipment hire", "Electrical equipment from our product catalogue."), ("dak", "Residential electrical", "New home wiring, power points and smoke alarms.")],
+      waarom_intro="From Melbourne Showground to Laneway Festival, event organisers and businesses have relied on Garnet for years.",
+      waarom=["Over 35 years of experience", "Commercial, industrial and event specialists", "Available 24/7", "Full start-to-finish service"],
+      tel="03 8336 1977", mail="info@garnetelectrical.com.au", adres="72 Barrie Road, Tullamarine VIC 3043"),
+ dict(slug="easyfix-electrics", taal="en", naam="Easyfix Electrics", kort="Easyfix", juridisch="Easyfix Electrics Pty Ltd", init="E", font="Bricolage Grotesque",
+      kleur=dict(bg="#0d2a4a", ink="#0c1a2c", acc="#f2a516", licht="#f4f6f9", held="#0d2a4a"),
+      titel="electrical contractors in Sydney's Eastern Suburbs", eyebrow="Matraville · Eastern Suburbs · since 1972",
+      h1="Sydney electricians since 1972.", lead="Strata maintenance, lighting, rewiring, switchboard repairs, phone and network cabling, and smoke alarms across the Eastern Suburbs, with a 24/7 emergency line.",
+      feiten=[("1972", "first registered"), ("24/7", "emergency number"), ("CFSP", "fire safety practitioner"), ("Free", "quotes")],
+      diensten=[("opslag", "Strata maintenance", "Electrical maintenance for strata buildings."), ("klok", "Lighting installation", "New and upgraded lighting."),
+                ("tandwiel", "Electrical rewiring", "Rewiring for homes and businesses."), ("schild", "Switchboard repairs", "Repairs and upgrades."),
+                ("doc", "Telephone and network", "Phone and data cabling."), ("druppel", "Smoke alarms", "Installation and testing.")],
+      waarom_intro="A family business founded in 1972, built on quality and honesty.",
+      waarom=["Incorporated as Easyfix Electrics Pty Ltd in 1974", "24/7 emergency number", "CFSP fire safety practitioner", "Free quotes from Andrew or Edmond"],
+      tel="02 9666 8008", mail="service@easyfixelectrics.com.au", adres="Unit 19/133-137 Beauchamp Road, Matraville NSW 2036"),
+ dict(slug="giraffe-removals", taal="en", naam="Giraffe Removals & Storage", kort="Giraffe", juridisch="Giraffe Furniture Removals & Storage", init="G", font="Fraunces",
+      kleur=dict(bg="#2b2416", ink="#1c170e", acc="#e0a019", licht="#f8f4ea", held="#2b2416"),
+      titel="house, office and interstate removalists in Sydney", eyebrow="Sydney · removals and storage · since 1961",
+      h1="The best move you'll ever make.", lead="House, office, furniture and interstate removals, packing and storage across Sydney, Country NSW and interstate, from a family business that started out in 1961.",
+      feiten=[("50+ years", "of removals"), ("1,784", "satisfied clients"), ("24/7", "relocations"), ("Free", "quotes")],
+      diensten=[("dak", "House removals", "Dependable, thorough home moves."), ("opslag", "Office removals", "Business relocations, done efficiently."),
+                ("weg", "Interstate removals", "From Sydney to other states."), ("pakket", "Packing and unpacking", "Help with the hardest part of a move."),
+                ("kraan", "Furniture removals", "Furniture moved with care."), ("schild", "Storage and insurance", "Flexible storage and contents cover.")],
+      waarom_intro="Started in 1961 by Fred and Noreen Keoghan as a taxi truck service, and run by the family ever since.",
+      waarom=["Over 50 years of moving Sydney", "Homes and offices, local and interstate", "Storage for flexible periods", "Free quotes"],
+      tel="02 9799 2155", mail="info@girafferemovals.com.au", adres="Sydney NSW"),
+]
+EXTRA_W7 = {
+ "garnet-electrical": dict(logo="tandwiel", velden=[["What do you need?","Commercial electrical","Event power","Facility maintenance","Switchboard","Equipment hire","Residential"],"Suburb","Phone number"],
+   certs=["35+ years in Melbourne","Available 24/7"],
+   faq=[("Do you offer emergency electrical services?","Yes, our team is available 24/7."),("Do you power events?","Yes, from Melbourne Showground to festivals like Laneway."),("Can I hire equipment?","Yes, see our product catalogue for electrical equipment hire.")],
+   verbeterd=["Real answers in your FAQ: the service pages now answer every question with \"Lorem ipsum dolor sit amet\"","A \"Book Now\" button and \"Read More\" links that work (now they link to \"#\")","Three different blog posts instead of the same one three times","Quote form at the top with job type and suburb","Click-to-call button always visible on mobile"]),
+ "easyfix-electrics": dict(logo="tandwiel", velden=[["What do you need?","Strata maintenance","Lighting","Rewiring","Switchboard","Phone or network","Smoke alarms"],"Suburb","Phone number"],
+   certs=["Since 1972","CFSP fire safety practitioner"],
+   faq=[("Do you handle emergencies?","Yes, call our 24/7 emergency number."),("Do you work for strata buildings?","Yes, strata maintenance is one of our core services."),("Which areas do you cover?","Sydney's Eastern Suburbs, from Bondi and Randwick to Maroubra and Rose Bay.")],
+   verbeterd=["Real offers on your About page: \"Our Offers\" now shows six blocks of \"Lorem ipsum\" under \"#1 Nam iaculis ut tellus\"","\"47 Years Of Experiance\" fixed, and one clear experience claim","A real heading on the homepage instead of \"Home\"","Quote form at the top with job type and suburb","Click-to-call button always visible on mobile"]),
+ "giraffe-removals": dict(logo="pakket", velden=[["What are you moving?","House","Office","Interstate","Furniture only","Storage"],"Moving from","Moving to"],
+   certs=["Family business since 1961","Sydney and interstate"],
+   faq=[("Do you move interstate?","Yes, from Sydney to other states, and to Country NSW."),("Do you offer storage?","Yes, warehousing and storage for flexible periods."),("Can you pack for me?","Yes, we offer packing and unpacking services.")],
+   verbeterd=["Real text on your service pages: \"How It Works?!\" now says \"Contrary to popular belief, Lorem Ipsum is not simply random text\"","Your own news instead of theme text (\"make sure Boo is the most versatile and unique theme\")","Numbers with a clear label instead of \"85 m\", \"90%\" and \"80%\" on their own","Contact details with your depot address, visible on every page","Quote form at the top with moving from and to"]),
+}
+SITES_W7 = {"garnet-electrical": "https://garnetelectrical.com.au", "easyfix-electrics": "https://easyfixelectrics.com.au", "giraffe-removals": "https://girafferemovals.com.au"}
+C += C_W7
+EXTRA.update(EXTRA_W7); SITES.update(SITES_W7)
+for c in C_W7: c.update(EXTRA[c["slug"]]); c.setdefault("site", SITES.get(c["slug"], ""))
+
+# Wachtrij 8 (sales-run 17-11 07:30 BKK): Australië (Canberra, Perth). Feiten alleen van eigen site (WebFetch 17-11 07:50 BKK).
+C_W8 = [
+ dict(slug="vnt-cleaning", taal="en", naam="VNT Cleaning", kort="VNT", juridisch="VNT Services Pty Ltd", init="V", font="Sora",
+      kleur=dict(bg="#0f3b3a", ink="#0a2423", acc="#3cc2a8", licht="#f1f7f6", held="#0f3b3a"),
+      titel="commercial and industrial cleaners in Canberra", eyebrow="Fyshwick · Canberra · commercial and industrial cleaning",
+      h1="Canberra's cleaners for 24 years.", lead="Government, shopping centre, venue, office, school and gym cleaning, plus windows, carpets and floor strip & seal, from a Fyshwick team that has completed more than 10,000 jobs.",
+      feiten=[("24+ years", "in Canberra"), ("10,000+", "jobs completed"), ("55+", "team members"), ("24/7", "cleaning")],
+      diensten=[("opslag", "Government cleaning", "Cleaning for government buildings and offices."), ("pakket", "Shopping centre cleaning", "Cleaning for centres and retail spaces."),
+                ("klok", "Venue cleaning", "Venues cleaned before and after events."), ("druppel", "Window cleaning", "Clear windows inside and out."),
+                ("schild", "Floor strip & seal", "Hard floors stripped, sealed and restored."), ("doc", "Office cleaning", "Commercial office cleaning, plus carpets, schools and gyms.")],
+      waarom_intro="A Canberra business trusted by commercial and industrial clients for more than two decades.",
+      waarom=["24+ years of experience in Canberra", "More than 10,000 jobs completed", "A team of 55+ cleaners", "Holder of a Secure Local Job Certificate"],
+      tel="02 6162 2527", mail="hello@vntcleaning.com.au", adres="82 Gladstone Street, Fyshwick ACT"),
+ dict(slug="abm-landscaping", taal="en", naam="ABM Landscaping", kort="ABM", juridisch="ABM Landscaping", init="A", font="Bricolage Grotesque",
+      kleur=dict(bg="#24351c", ink="#151f10", acc="#d9a441", licht="#f5f6f1", held="#24351c"),
+      titel="civil, commercial and government landscaping in Perth", eyebrow="High Wycombe · Perth · civil, commercial and government",
+      h1="Landscaping built for Perth.", lead="Earthworks, landscaping, rock pitching, retaining walls, brick paving and erosion control for civil, commercial, government, school and residential projects across Western Australia.",
+      feiten=[("WA-wide", "landscaping"), ("Civil", "and government"), ("Schools", "and residential"), ("Safety", "first")],
+      diensten=[("kraan", "Earthworks", "Site preparation and earthworks."), ("dak", "Landscaping", "Landscaping for civil and commercial sites."),
+                ("schild", "Retaining walls", "Retaining walls, rock pitching and feature stonework."), ("weg", "Brick paving", "Where ABM began: quality brick paving."),
+                ("druppel", "Erosion control", "Erosion control for slopes and sites."), ("tandwiel", "Maintenance", "Landscaping maintenance, bollards and pools.")],
+      waarom_intro="It began as a small Perth brick paving business and grew into a large-scale earthworks and landscaping company.",
+      waarom=["Civil, commercial, government and residential clients", "Estimating for every project", "Committed to safety", "Workforce diversity, including a partnership with Ngalla Maya"],
+      tel="(08) 9274 3235", mail="admin@abmlandscaping.com.au", adres="3 Aurora Entrance, High Wycombe WA 6056"),
+]
+EXTRA_W8 = {
+ "vnt-cleaning": dict(logo="druppel", velden=[["What do you need cleaned?", "Office", "Government building", "Shopping centre", "Venue", "School or gym", "Windows or floors"], "Suburb", "Phone number"],
+   certs=["Secure Local Job Certificate", "24+ years in Canberra"],
+   faq=[("Do you clean outside business hours?", "Yes, we offer 24/7 cleaning."), ("Which sites do you clean?", "Government buildings, shopping centres, venues, offices, schools and gyms."), ("Do you supply cleaning products?", "Yes, we also supply cleaning supplies.")],
+   verbeterd=["Real text on your homepage: \"A wide range of services\" now says \"Lorem ipsum dolor sit amet\"", "Real client reviews instead of \"Lorem ipsum\" quotes from John Carter and Mike Warren", "Your own news: the blog shows sample plumbing posts from 2022 and the title \"Plumbing X - Webflow Ecommerce website template\"", "Quote form at the top with site type and suburb", "Click-to-call button always visible on mobile"]),
+ "abm-landscaping": dict(logo="dak", velden=[["What is the project?", "Civil", "Commercial", "Government", "School", "Residential", "Maintenance"], "Location", "Phone number"],
+   certs=["Civil, commercial and government", "Partner of Ngalla Maya"],
+   faq=[("Which projects do you take on?", "Civil, commercial, government, school, resources and residential work."), ("Do you provide estimates?", "Yes, we estimate every project."), ("Do you maintain landscapes after completion?", "Yes, we offer landscaping maintenance.")],
+   verbeterd=["A working enquiry form: \"Send an enquiry\" now shows the raw code [contact-form-7 id=\"5\" title=\"Contact us\"] instead of a form", "Current year in the footer instead of 2024", "Project photos per service: earthworks, walls, paving", "Phone and email visible at the top of every page", "Click-to-call button always visible on mobile"]),
+}
+SITES_W8 = {"vnt-cleaning": "https://vntcleaning.com.au", "abm-landscaping": "https://abmlandscaping.com.au"}
+C += C_W8
+EXTRA.update(EXTRA_W8); SITES.update(SITES_W8)
+for c in C_W8: c.update(EXTRA[c["slug"]]); c.setdefault("site", SITES.get(c["slug"], ""))

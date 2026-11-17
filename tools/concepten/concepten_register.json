@@ -326,5 +326,69 @@
   "token": "cgc-adventure-island-83b15504",
   "h1": "40+ rides. Free to get in.",
   "lead": "Rage, Sea Dragon, Axis, Pharaoh's Fury and more on a seven-acre seafront site, plus Funtopia, Sealife Adventure and Adventure Golf."
+ },
+ "new-canadian-drain": {
+  "bedrijf": "New Canadian Drain and Plumbing Ltd.",
+  "site": "https://newcanadiandrain.com",
+  "mail": "info@newcanadiandrain.com",
+  "token": "cgc-new-canadian-drain-9a2ecb6b",
+  "h1": "Drains clear. Basements dry.",
+  "lead": "Emergency plumbing, drain repair, backwater valves, sump pumps, water lines and waterproofing across Toronto. Licensed plumbers with over 20 years of experience."
+ },
+ "roof-smart": {
+  "bedrijf": "Roof Smart Inc.",
+  "site": "https://roofsmartinc.ca",
+  "mail": "info@roofsmartinc.com",
+  "token": "cgc-roof-smart-a1a2b3e5",
+  "h1": "Roofs built for Edmonton.",
+  "lead": "Asphalt, metal and rubber roofing for homes and businesses, plus gutters, fascia, soffits and exterior LED lighting. A clear, honest quote and installation within two weeks of signing."
+ },
+ "prompt-plumbing": {
+  "bedrijf": "Prompt Plumbing Ltd.",
+  "site": "https://promptplumbingltd.ca",
+  "mail": "info@promptplumbingltd.ca",
+  "token": "cgc-prompt-plumbing-b8346c22",
+  "h1": "Plumbing fixed, promptly.",
+  "lead": "Repairs and replacements, drain cleaning, hot water tanks, boilers and bathroom renovations for homes and businesses across Langley, Surrey and the Fraser Valley."
+ },
+ "garnet-electrical": {
+  "bedrijf": "Garnet Electrical Services Pty Ltd",
+  "site": "https://garnetelectrical.com.au",
+  "mail": "info@garnetelectrical.com.au",
+  "token": "cgc-garnet-electrical-67bef341",
+  "h1": "Power for Melbourne's businesses.",
+  "lead": "Commercial and industrial electrical work, temporary power for events and festivals, facility support and residential jobs, from a Tullamarine team with over 35 years of experience."
+ },
+ "easyfix-electrics": {
+  "bedrijf": "Easyfix Electrics Pty Ltd",
+  "site": "https://easyfixelectrics.com.au",
+  "mail": "service@easyfixelectrics.com.au",
+  "token": "cgc-easyfix-electrics-337b5fcb",
+  "h1": "Sydney electricians since 1972.",
+  "lead": "Strata maintenance, lighting, rewiring, switchboard repairs, phone and network cabling, and smoke alarms across the Eastern Suburbs, with a 24/7 emergency line."
+ },
+ "giraffe-removals": {
+  "bedrijf": "Giraffe Furniture Removals & Storage",
+  "site": "https://girafferemovals.com.au",
+  "mail": "info@girafferemovals.com.au",
+  "token": "cgc-giraffe-removals-aa9408d0",
+  "h1": "The best move you'll ever make.",
+  "lead": "House, office, furniture and interstate removals, packing and storage across Sydney, Country NSW and interstate, from a family business that started out in 1961."
+ },
+ "vnt-cleaning": {
+  "bedrijf": "VNT Services Pty Ltd",
+  "site": "https://vntcleaning.com.au",
+  "mail": "hello@vntcleaning.com.au",
+  "token": "cgc-vnt-cleaning-73505ddd",
+  "h1": "Canberra's cleaners for 24 years.",
+  "lead": "Government, shopping centre, venue, office, school and gym cleaning, plus windows, carpets and floor strip & seal, from a Fyshwick team that has completed more than 10,000 jobs."
+ },
+ "abm-landscaping": {
+  "bedrijf": "ABM Landscaping",
+  "site": "https://abmlandscaping.com.au",
+  "mail": "admin@abmlandscaping.com.au",
+  "token": "cgc-abm-landscaping-4df16f4e",
+  "h1": "Landscaping built for Perth.",
+  "lead": "Earthworks, landscaping, rock pitching, retaining walls, brick paving and erosion control for civil, commercial, government, school and residential projects across Western Australia."
  }
 }
