@@ -390,5 +390,69 @@
   "token": "cgc-abm-landscaping-4df16f4e",
   "h1": "Landscaping built for Perth.",
   "lead": "Earthworks, landscaping, rock pitching, retaining walls, brick paving and erosion control for civil, commercial, government, school and residential projects across Western Australia."
+ },
+ "reginas-cleaning": {
+  "bedrijf": "Regina's Cleaning Group Pty Ltd",
+  "site": "https://reginascleaning.com.au",
+  "mail": "admin@reginascleaning.com.au",
+  "token": "cgc-reginas-cleaning-5c2f85ca",
+  "h1": "Darwin's specialist cleaners.",
+  "lead": "Commercial, construction, forensic and biohazard, remote and mine-site cleaning, plus floors, windows and 24/7 emergency response, from a family business with more than 25 years of experience."
+ },
+ "noble-painting": {
+  "bedrijf": "Noble Painting Pty Ltd",
+  "site": "https://noblepainting.com.au",
+  "mail": "info@noblepainting.com.au",
+  "token": "cgc-noble-painting-4ac8690a",
+  "h1": "Painting done properly.",
+  "lead": "Interior, exterior and commercial painting, Queenslander restorations, roof painting and repairs, by a QBCC licensed and fully insured team with over 19 years in the trade."
+ },
+ "focus-on-safety": {
+  "bedrijf": "Focus on Safety Pty Ltd",
+  "site": "https://www.focusonsafety.com.au",
+  "mail": "admin@focusonsafety.com.au",
+  "token": "cgc-focus-on-safety-e0cca79f",
+  "h1": "Safety training that works.",
+  "lead": "Working at heights, confined spaces, first aid, forklift and EWP, low voltage rescue and fire safety, delivered locally and Australia-wide for more than 15 years."
+ },
+ "simpco-painting": {
+  "bedrijf": "Simpco Painting, LLC",
+  "site": "https://simpcopainting.com",
+  "mail": "info@simpcopainting.com",
+  "token": "cgc-simpco-painting-39ee97a1",
+  "h1": "Fresh paint, done right.",
+  "lead": "Interior and exterior painting, cabinet refinishing, deck and fence staining, pressure washing and drywall repair for homes and businesses across the Greater Richmond area."
+ },
+ "budget-movers": {
+  "bedrijf": "Budget Movers Inc.",
+  "site": "https://budgetmoversinc.com",
+  "mail": "info@budgetmoversinc.com",
+  "token": "cgc-budget-movers-8a71a5e4",
+  "h1": "Moving day, made easy.",
+  "lead": "Local, apartment, residential and commercial moves with packing and unpacking, for Baltimore, Bel Air, Columbia, Frederick, Ellicott City, Westminster and the towns around them."
+ },
+ "central-air-repair": {
+  "bedrijf": "Central Air Repair, Corp.",
+  "site": "https://www.centralairrepair.com",
+  "mail": "info@centralairrepair.com",
+  "token": "cgc-central-air-repair-e63d7956",
+  "h1": "Cool air, since 1975.",
+  "lead": "A/C repair, maintenance and installation, heating, emergency repairs and indoor air quality for homes and businesses in Miami, from a family-owned company in South Miami."
+ },
+ "quickstart-auto": {
+  "bedrijf": "Quickstart Auto Electrical Ltd",
+  "site": "https://quickstartauto.co.nz",
+  "mail": "admin@quickstartauto.co.nz",
+  "token": "cgc-quickstart-auto-cb9c78eb",
+  "h1": "Auto electrical, sorted.",
+  "lead": "Auto electrical repairs, vehicle air conditioning, European diagnostics and bus and truck electrics for cars, motorbikes, campervans, trucks, buses and farm machinery, from our Upper Hutt workshop."
+ },
+ "city-of-sails-motel": {
+  "bedrijf": "City of Sails Motel",
+  "site": "https://cityofsailsmotel.co.nz",
+  "mail": "info@cityofsailsmotel.co.nz",
+  "token": "cgc-city-of-sails-motel-a43a1211",
+  "h1": "Stay close, sleep well.",
+  "lead": "Studios and apartments with spa baths, kitchenettes and private balconies in Milford, close to North Shore Hospital and Smales Farm."
  }
 }

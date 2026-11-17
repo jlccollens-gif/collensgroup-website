@@ -1022,3 +1022,169 @@ SITES_W8 = {"vnt-cleaning": "https://vntcleaning.com.au", "abm-landscaping": "ht
 C += C_W8
 EXTRA.update(EXTRA_W8); SITES.update(SITES_W8)
 for c in C_W8: c.update(EXTRA[c["slug"]]); c.setdefault("site", SITES.get(c["slug"], ""))
+
+# Wachtrij 9 (sales-run 17-11 10:30 BKK): Australië (Darwin NT).
+# Feiten alleen van eigen site (WebFetch 17-11 10:50 BKK); rechtsvorm via abr.business.gov.au (ABN 99 627 076 733, Pty Ltd sinds 2018).
+C_W9 = [
+ dict(slug="reginas-cleaning", taal="en", naam="Regina's Cleaning Group", kort="Regina's", juridisch="Regina's Cleaning Group Pty Ltd", init="R", font="Manrope",
+      kleur=dict(bg="#1d2f4f", ink="#111c30", acc="#e0a43a", licht="#f4f6f9", held="#1d2f4f"),
+      titel="commercial and specialist cleaning in Darwin", eyebrow="Darwin · Northern Territory · commercial and specialist cleaning",
+      h1="Darwin's specialist cleaners.", lead="Commercial, construction, forensic and biohazard, remote and mine-site cleaning, plus floors, windows and 24/7 emergency response, from a family business with more than 25 years of experience.",
+      feiten=[("25+ years", "experience"), ("24/7", "emergency response"), ("NT-wide", "remote sites"), ("Family", "business")],
+      diensten=[("opslag", "Commercial cleaning", "Medical centres, cafes, restaurants and offices."), ("kraan", "Construction cleaning", "Post-construction cleans, ready for handover."),
+                ("schild", "Forensic & biohazard", "Crime scene, hoarder, sewerage and mould remediation."), ("weg", "Remote & mine-site", "Cleaning crews for remote and mine sites."),
+                ("doc", "Floor cleaning", "Tile and grout, vinyl strip and seal, timber and carpets."), ("klok", "24/7 emergency", "Emergency response, insurance reports on request.")],
+      waarom_intro="A Darwin family business, founded by Regina, cleaning commercial and specialist sites across the Northern Territory.",
+      waarom=["More than 25 years of experience", "Staff with white cards, EWP licences and Working at Heights certification", "Insurance reports available on request", "24/7 emergency response"],
+      tel="08 8945 0285", mail="admin@reginascleaning.com.au", adres="Muirhead NT 0810"),
+]
+EXTRA_W9 = {
+ "reginas-cleaning": dict(logo="druppel", velden=[["What do you need cleaned?", "Commercial site", "Construction handover", "Forensic or biohazard", "Remote or mine site", "Floors or windows", "Emergency"], "Suburb", "Phone number"],
+   certs=["White cards and EWP licences", "Working at Heights certified"],
+   faq=[("Do you respond to emergencies?", "Yes, we offer 24/7 emergency response."), ("Do you work outside Darwin?", "Yes, including remote and mine-site cleaning across the NT."), ("Can you provide insurance reports?", "Yes, insurance reports are available on request.")],
+   verbeterd=["Real contact details in the menu: \"Get in touch\" now shows the template placeholders 555-555-5555 and mymail@mailservice.com", "One clear experience figure instead of both \"over 20\" and \"over 25 years\"", "Quote form at the top with job type and suburb", "Separate pages for forensic, remote and construction work", "Click-to-call button always visible on mobile"]),
+}
+SITES_W9 = {"reginas-cleaning": "https://reginascleaning.com.au"}
+C += C_W9
+EXTRA.update(EXTRA_W9); SITES.update(SITES_W9)
+for c in C_W9: c.update(EXTRA[c["slug"]]); c.setdefault("site", SITES.get(c["slug"], ""))
+
+# Wachtrij 10 (sales-run 17-11 11:30 BKK): Australië (Brisbane QLD + Singleton NSW).
+# Feiten alleen van eigen site (WebFetch 17-11 11:55 BKK); rechtsvorm via abr.business.gov.au: Noble Painting Pty Ltd ABN 98 652 070 445; Focus on Safety Pty Ltd ABN 75 151 700 051.
+C_W10 = [
+ dict(slug="noble-painting", taal="en", naam="Noble Painting", kort="Noble", juridisch="Noble Painting Pty Ltd", init="N", font="Fraunces",
+      kleur=dict(bg="#20313a", ink="#151f25", acc="#c8873a", licht="#f6f3ee", held="#20313a"),
+      titel="painters in Brisbane and the Gold Coast", eyebrow="Brisbane · Gold Coast · South East Queensland",
+      h1="Painting done properly.", lead="Interior, exterior and commercial painting, Queenslander restorations, roof painting and repairs, by a QBCC licensed and fully insured team with over 19 years in the trade.",
+      feiten=[("19+ years", "in the trade"), ("QBCC", "licensed"), ("Fully", "insured"), ("SEQ", "service area")],
+      diensten=[("doc", "Interior painting", "Homes and businesses, finished to your budget."), ("dak", "Exterior painting", "Proper prep and repairs, built for the Queensland climate."),
+                ("opslag", "Commercial painting", "Commercial venues and body corporate work."), ("kraan", "Queenslander restoration", "Restoration and timber rejuvenation."),
+                ("schild", "Roof painting & epoxy floors", "Roofs repainted, floors coated to last."), ("tandwiel", "Maintenance & repairs", "Ceiling holes, cabinet resurfacing and touch-ups.")],
+      waarom_intro="A QBCC licensed, fully insured painting company working for homeowners, businesses and body corporates across South East Queensland.",
+      waarom=["Over 19 years of painting experience", "QBCC licensed and fully insured", "Residential, commercial and body corporate", "Repairs done before the paint goes on"],
+      tel="0426 700 712", mail="info@noblepainting.com.au", adres="Marsden QLD 4132"),
+ dict(slug="focus-on-safety", taal="en", naam="Focus on Safety", kort="Focus on Safety", juridisch="Focus on Safety Pty Ltd", init="F", font="Sora",
+      kleur=dict(bg="#1f2a36", ink="#121a22", acc="#f2a516", licht="#f5f6f7", held="#1f2a36"),
+      titel="safety training in the Hunter Valley and Australia-wide", eyebrow="Singleton · Hunter Valley · RTO 40469",
+      h1="Safety training that works.", lead="Working at heights, confined spaces, first aid, forklift and EWP, low voltage rescue and fire safety, delivered locally and Australia-wide for more than 15 years.",
+      feiten=[("15+ years", "of training"), ("RTO", "40469"), ("On-site", "training"), ("Australia", "wide")],
+      diensten=[("dak", "Working at heights", "Fall risks, equipment and hazard control."), ("opslag", "Confined spaces", "Safe entry and work in tanks, vessels and shafts."),
+                ("schild", "First aid & CPR", "Practical skills for workplace emergencies."), ("auto", "Forklift and EWP", "Operate forklifts and elevated work platforms safely."),
+                ("tandwiel", "Low voltage rescue", "Respond to low voltage incidents and give CPR."), ("klok", "Fire safety & rescue", "Fire safety, emergency response and tower rescue.")],
+      waarom_intro="A registered training organisation in Singleton, specialising in mining and construction, with courses for the general public too.",
+      waarom=["Nationally accredited and non-accredited courses", "Training at your site at no extra charge", "Mobile training simulators", "Work-at-heights consultation, audits and inspections"],
+      tel="02 6571 3333", mail="admin@focusonsafety.com.au", adres="147 Maison Dieu Rd, Singleton NSW 2330"),
+]
+EXTRA_W10 = {
+ "noble-painting": dict(logo="dak", velden=[["What needs painting?", "Interior", "Exterior", "Commercial", "Roof", "Restoration", "Repairs"], "Suburb", "Phone number"],
+   certs=["QBCC licensed", "Fully insured"],
+   faq=[("Do you paint commercial properties?", "Yes, including commercial venues and body corporate work."), ("Which areas do you cover?", "Brisbane, the Gold Coast and South East Queensland."), ("Are you licensed?", "Yes, we are QBCC licensed and fully insured.")],
+   verbeterd=["Real words in the testimonial section: the homepage intro now reads \"Lorem ipsum dolor sit amet\"", "Footer updated (now \"Copyright © 2022\")", "Free quote form at the top with job type and suburb", "Your Google reviews up front", "Click-to-call button always visible on mobile"]),
+ "focus-on-safety": dict(logo="schild", velden=[["Which course?", "Working at heights", "Confined spaces", "First aid & CPR", "Forklift and EWP", "Low voltage rescue", "Other"], "Number of people", "Phone number"],
+   certs=["Registered Training Organisation 40469", "Nationally accredited training"],
+   faq=[("Can you train at our site?", "Yes, we can train at your site at no extra charge."), ("Do you train outside the Hunter Valley?", "Yes, courses can be delivered Australia-wide."), ("Are your courses accredited?", "We offer nationally accredited and non-accredited training.")],
+   verbeterd=["A real description for TRG Hot Works: the homepage card now reads \"I am text block. Click edit button to change this text. Lorem ipsum\"", "Course finder with dates and booking", "Group booking form for employers", "Clear split between accredited and non-accredited courses", "Click-to-call button always visible on mobile"]),
+}
+SITES_W10 = {"noble-painting": "https://noblepainting.com.au", "focus-on-safety": "https://www.focusonsafety.com.au"}
+C += C_W10
+EXTRA.update(EXTRA_W10); SITES.update(SITES_W10)
+for c in C_W10: c.update(EXTRA[c["slug"]]); c.setdefault("site", SITES.get(c["slug"], ""))
+
+# Wachtrij 11 (sales-run 17-11 12:30, hersteld 13:30-run): VS (Richmond VA, Baltimore MD, Miami FL).
+# Feiten alleen van eigen site (WebFetch 17-11 ±15:00 BKK). Simpco noemt "over 100 years experience" -> bewust NIET overgenomen; geen echt straatadres op de site -> stad.
+# Budget Movers: rechtsvorm "Budget Movers Inc." (og:site_name); geen straatadres in tekst -> stad. Central Air Repair: "Central Air Repair, Corp." (footer), adres van eigen site.
+C_W11 = [
+ dict(slug="simpco-painting", taal="en", naam="Simpco Painting", kort="Simpco", juridisch="Simpco Painting, LLC", init="S", font="Fraunces",
+      kleur=dict(bg="#24384a", ink="#17242f", acc="#d1843b", licht="#f6f2ec", held="#24384a"),
+      titel="house and commercial painters in Richmond, Virginia", eyebrow="Richmond · Central Virginia",
+      h1="Fresh paint, done right.", lead="Interior and exterior painting, cabinet refinishing, deck and fence staining, pressure washing and drywall repair for homes and businesses across the Greater Richmond area.",
+      feiten=[("Licensed", "and insured"), ("Free", "estimates"), ("Homes", "and businesses"), ("Financing", "options")],
+      diensten=[("doc", "Interior painting", "Ceilings, walls, trim and doors."), ("dak", "Exterior painting", "Siding, trim, gutters, shutters and doors."),
+                ("opslag", "Cabinet refinishing", "Kitchen cabinets painted and refinished."), ("druppel", "Staining", "Deck, fence and concrete staining."),
+                ("schild", "Pressure washing", "Clean surfaces before the paint goes on."), ("tandwiel", "Drywall & wallpaper", "Drywall repair, wallpaper removal and installation.")],
+      waarom_intro="A locally owned painting company in Richmond, run by Garrett Simpkiss and his crew.",
+      waarom=["Fully licensed and insured", "Residential and commercial painting", "Free, no-cost consultation", "Flexible financing options"],
+      tel="(804) 840-9419", mail="info@simpcopainting.com", adres="Richmond, Virginia"),
+ dict(slug="budget-movers", taal="en", naam="Budget Movers", kort="Budget Movers", juridisch="Budget Movers Inc.", init="B", font="Bricolage Grotesque",
+      kleur=dict(bg="#123c69", ink="#0b2440", acc="#f0b429", licht="#f3f6fa", held="#123c69"),
+      titel="movers in Baltimore and central Maryland", eyebrow="Baltimore · Columbia · Frederick · Westminster",
+      h1="Moving day, made easy.", lead="Local, apartment, residential and commercial moves with packing and unpacking, for Baltimore, Bel Air, Columbia, Frederick, Ellicott City, Westminster and the towns around them.",
+      feiten=[("147", "Google reviews"), ("24/7", "emergency help"), ("Local", "Maryland moves"), ("Packing", "and unpacking")],
+      diensten=[("weg", "Local moving", "Moves across Baltimore and central Maryland."), ("opslag", "Apartment moving", "Apartments and condos, stairs and all."),
+                ("pakket", "Packing & unpacking", "We pack, protect and unpack your things."), ("auto", "Commercial moving", "Office and business relocations."),
+                ("schild", "Furniture transport", "Loading, unloading and careful transport."), ("klok", "Same-day moves", "Same-day and emergency moves when available.")],
+      waarom_intro="A Maryland moving company for homes, apartments and businesses, rated by 147 customers on Google.",
+      waarom=["Local, residential and commercial moves", "Packing and unpacking on request", "Relocation planning and transport coordination", "24/7 emergency help"],
+      tel="410-922-8555", mail="info@budgetmoversinc.com", adres="Baltimore, Maryland"),
+ dict(slug="central-air-repair", taal="en", naam="Central Air Repair", kort="Central Air", juridisch="Central Air Repair, Corp.", init="C", font="Sora",
+      kleur=dict(bg="#0f4c5c", ink="#0a2f38", acc="#e36414", licht="#f1f7f8", held="#0f4c5c"),
+      titel="air conditioning repair and installation in Miami", eyebrow="South Miami · family owned",
+      h1="Cool air, since 1975.", lead="A/C repair, maintenance and installation, heating, emergency repairs and indoor air quality for homes and businesses in Miami, from a family-owned company in South Miami.",
+      feiten=[("Since 1975", "in Miami"), ("Family", "owned"), ("100%", "satisfaction on repairs"), ("Homes", "and businesses")],
+      diensten=[("tandwiel", "A/C repair", "Fast diagnosis and repair of your air conditioning."), ("lucht", "A/C maintenance", "Preventive maintenance plans at fair prices."),
+                ("klok", "Emergency repair", "After hours, on weekends, day or night."), ("opslag", "Installation", "Multi-zoning and ductless split systems."),
+                ("druppel", "Indoor air quality", "Cleaner, healthier air at home or at work."), ("schild", "Heating", "Heating installation and repair.")],
+      waarom_intro="A family-owned and operated business in South Miami, keeping homes and businesses cool since 1975.",
+      waarom=["Family-owned and operated since 1975", "Residential and commercial", "100% satisfaction guarantee on repairs", "Financing available"],
+      tel="(305) 495-6161", mail="info@centralairrepair.com", adres="6763 SW 81st St., Miami, FL 33143"),
+]
+EXTRA_W11 = {
+ "simpco-painting": dict(logo="druppel", velden=[["What needs painting?", "Interior", "Exterior", "Cabinets", "Deck or fence", "Commercial", "Other"], "Zip code", "Phone number"],
+   certs=["Licensed and insured", "Free estimates"],
+   faq=[("Do you paint commercial properties?", "Yes, we paint both homes and commercial properties."), ("Which areas do you cover?", "Richmond, the Greater Richmond area and Central Virginia."), ("Is the estimate free?", "Yes, the consultation and estimate are at no cost.")],
+   verbeterd=["Your real contact details: the panel at the top of every page now shows \"example@example.com\" and four offices at \"123 Example St. Manhattan, NY\"", "Real numbers in the counters (now a placeholder digit string)", "Your Richmond address and service area in one place", "Free estimate form with job type and zip code", "Click-to-call button always visible on mobile"]),
+ "budget-movers": dict(logo="pakket", velden=[["What kind of move?", "Local move", "Apartment", "Residential", "Commercial", "Packing only", "Other"], "Moving date", "Phone number"],
+   certs=["147 Google reviews", "24/7 emergency help"],
+   faq=[("Which areas do you serve?", "Baltimore, Bel Air, Columbia, Frederick, Ellicott City, Westminster and surrounding towns."), ("Can you pack for us?", "Yes, we offer packing and unpacking services."), ("Do you do same-day moves?", "Same-day and emergency moves may be available, just call us.")],
+   verbeterd=["No template heading: under your copyright line a blue bar now reads \"Add Your Heading Text Here\"", "Real figures in the counters (now \"0 +\" happy clients and years)", "Free moving quote form with date and type of move", "Your Google reviews up front", "Click-to-call button always visible on mobile"]),
+ "central-air-repair": dict(logo="lucht", velden=[["What do you need?", "A/C repair", "Maintenance", "New installation", "Heating", "Indoor air quality", "Emergency"], "Zip code", "Phone number"],
+   certs=["Family-owned since 1975", "100% satisfaction guarantee on repairs"],
+   faq=[("Do you come out after hours?", "Yes, also after normal business hours and on weekends."), ("Do you work on commercial systems?", "Yes, we serve residential and commercial customers."), ("Do you offer maintenance plans?", "Yes, affordable preventive maintenance plans.")],
+   verbeterd=["Real customer reviews: \"What Our Client Says\" now shows \"Review buzz\" cards with \"Lorem ipsum dolor sit amet\"", "One clear history line instead of \"Since 1975\", \"nearly 50\" and \"over 45 years\"", "Current offers (the $39 check-up expired in 2021)", "Service request form with zip code", "Click-to-call button always visible on mobile"]),
+}
+SITES_W11 = {"simpco-painting": "https://simpcopainting.com", "budget-movers": "https://budgetmoversinc.com", "central-air-repair": "https://www.centralairrepair.com"}
+C += C_W11
+EXTRA.update(EXTRA_W11); SITES.update(SITES_W11)
+for c in C_W11: c.update(EXTRA[c["slug"]]); c.setdefault("site", SITES.get(c["slug"], ""))
+
+# Wachtrij 12 (sales-run 17-11 13:30): Nieuw-Zeeland (Upper Hutt, Wellington + Milford, Auckland).
+# Feiten alleen van eigen site (Playwright 17-11). Quickstart: "Quickstart Auto Electrical Ltd" staat op eigen site (about + footer); registernummer nog niet geverifieerd.
+# City of Sails Motel: rechtsvorm NIET op eigen site en niet geverifieerd -> juridisch = handelsnaam.
+C_W12 = [
+ dict(slug="quickstart-auto", taal="en", naam="Quickstart Auto Electrical", kort="Quickstart", juridisch="Quickstart Auto Electrical Ltd", init="Q", font="Sora",
+      kleur=dict(bg="#2a2d33", ink="#17191d", acc="#c8202a", licht="#f4f4f5", held="#2a2d33"),
+      titel="auto electrical and air conditioning in Upper Hutt", eyebrow="Upper Hutt · Wellington region · since 2007",
+      h1="Auto electrical, sorted.", lead="Auto electrical repairs, vehicle air conditioning, European diagnostics and bus and truck electrics for cars, motorbikes, campervans, trucks, buses and farm machinery, from our Upper Hutt workshop.",
+      feiten=[("Since 2007", "in business"), ("30+ years", "industry experience"), ("Thermo King", "agent"), ("Mon-Fri", "8am to 5pm")],
+      diensten=[("tandwiel", "Auto electrical", "Repairs and diagnostics for every type of vehicle."), ("lucht", "Air conditioning", "Gas top-ups, servicing and full repairs."),
+                ("auto", "European cars", "Autologic, Launch and Autel diagnostic tools."), ("weg", "Bus and coach", "Electrical maintenance and repairs on buses and trucks."),
+                ("schild", "Batteries", "Batterytown in Upper Hutt, with a big range."), ("doc", "Fleet GPS & CCTV", "Fleet GPS tracking and Streamax bus and taxi cameras.")],
+      waarom_intro="An owner-operated workshop in Upper Hutt: Brad started in the trade in 1996, opened the business in 2007 and the workshop in 2010.",
+      waarom=["Thermo King air conditioning agent for buses, coaches, trucks and trailers", "Latest scan diagnostic equipment for cars through to trucks", "Experienced car audio and alarm installers", "Streamax CCTV dealer for New Zealand"],
+      tel="0800 778 278", mail="admin@quickstartauto.co.nz", adres="75 Whakatiki Street, Upper Hutt 5018"),
+ dict(slug="city-of-sails-motel", taal="en", naam="City of Sails Motel", kort="City of Sails", juridisch="City of Sails Motel", init="C", font="Fraunces",
+      kleur=dict(bg="#1c3557", ink="#11223a", acc="#e0a526", licht="#f6f4ef", held="#1c3557"),
+      titel="motel accommodation in Milford, Auckland", eyebrow="Milford · North Shore · Auckland",
+      h1="Stay close, sleep well.", lead="Studios and apartments with spa baths, kitchenettes and private balconies in Milford, close to North Shore Hospital and Smales Farm.",
+      feiten=[("From $175", "per night"), ("40 m2", "studios"), ("50+", "Sky TV channels"), ("Spa bath", "studios")],
+      diensten=[("schild", "Queen Studio, accessible", "Ground floor, kitchenette and garden access."), ("druppel", "Studio with spa bath", "Spa bath, bar fridge and a private balcony."),
+                ("opslag", "Superior Studio", "Kitchenette, private balcony and shower."), ("doc", "One-bedroom apartment", "An apartment with its own spa bath."),
+                ("klok", "Triple studios", "Room for three, with a spa bath."), ("auto", "Near the hospital", "Handy for North Shore Hospital visits.")],
+      waarom_intro="A North Shore motel for hospital visits, business events at Smales Farm and Auckland trips.",
+      waarom=["Close to North Shore Hospital", "Near Smales Farm for business events", "Accessible ground-floor studio", "Book direct online"],
+      tel="09 486 9170", mail="info@cityofsailsmotel.co.nz", adres="219 Shakespeare Rd, Milford, Auckland 0620"),
+]
+EXTRA_W12 = {
+ "quickstart-auto": dict(logo="tandwiel", velden=[["What do you need?", "Auto electrical", "Air conditioning", "European diagnostics", "Bus or truck", "Battery", "Fleet GPS or CCTV"], "Vehicle make and model", "Phone number"],
+   certs=["Thermo King agent", "Streamax CCTV dealer"],
+   faq=[("Which vehicles do you work on?", "Cars, motorbikes, campervans, trucks, buses, trailers and farm machinery."), ("Do you repair vehicle air conditioning?", "Yes, from gas top-ups to full repairs."), ("When are you open?", "Monday to Friday, 8am to 5pm.")],
+   verbeterd=["A working quote form: \"Get repair quote\" on the homepage and the Contact page both show the raw code [contact-form-7 ...] instead of a form", "One clear team size instead of both \"team of 10\" and \"8 technicians\"", "Current news and footer (now \"© 2019\" and news from 2024)", "Quote form with vehicle and job type", "Click-to-call button always visible on mobile"]),
+ "city-of-sails-motel": dict(logo="schild", velden=[["Which room?", "Queen Studio", "Studio with spa bath", "Superior Studio", "Triple studio", "One-bedroom apartment", "Not sure"], "Arrival date", "Phone number"],
+   certs=["Close to North Shore Hospital", "Near Smales Farm"],
+   faq=[("Do you have an accessible room?", "Yes, our Queen Studio is on the ground floor with disability access."), ("Do rooms have a kitchenette?", "Several studios have a kitchenette, others have tea and coffee facilities."), ("How far is North Shore Hospital?", "We are close by, which makes hospital visits easy.")],
+   verbeterd=["Real words on the Contact page: \"Get in Touch with Our Team\" now reads \"Lorem ipsum dolor sit amet consectetur\"", "A homepage block that now says \"No content is added yet.\"", "Your own privacy policy instead of the standard template", "Room comparison with prices and booking at the top", "Click-to-call button always visible on mobile"]),
+}
+SITES_W12 = {"quickstart-auto": "https://quickstartauto.co.nz", "city-of-sails-motel": "https://cityofsailsmotel.co.nz"}
+C += C_W12
+EXTRA.update(EXTRA_W12); SITES.update(SITES_W12)
+for c in C_W12: c.update(EXTRA[c["slug"]]); c.setdefault("site", SITES.get(c["slug"], ""))
