@@ -651,7 +651,7 @@ def schrijf_kennis():
     r.append("## Veelgestelde vragen\n" + "\n".join(f"- V: {q} A: {a}" for q, a in FAQ))
     r.append("## Eigen projecten (bewijs van ons werk)\n" + "\n".join(f"- {a['naam']} ({a['soort']}, {a['status']}): {a['kort']} Pagina: app-{a['slug']}.html" for a in APPS if a.get("publiceer")))
     r.append("## Wat we niet doen\nGrote 3D-games en online multiplayer-games. Topposities in Google garanderen. Juridisch of financieel advies.")
-    r.append("## Pagina's\nNederlands: index.html (start, met contactformulier op index.html#contact), website-laten-maken.html, goedkope-website-laten-maken.html, webshop-laten-maken.html, website-laten-maken-horeca.html, "
+    r.append("## Pagina's\nNederlands: index.html (start, met contactformulier op index.html#contact), website-laten-maken.html, goedkope-website-laten-maken.html, webshop-laten-maken.html, website-laten-maken-horeca.html, website-laten-maken-kapper.html, "
              "app-laten-maken-kosten.html, mvp-app-laten-maken.html, game-laten-maken.html, ai-automatisering.html, chatbot-laten-maken.html, apps.html, artikelen.html, privacy.html.\n"
              "Engels: en.html (contact op en.html#contact), en-website-design.html, en-app-development.html, en-ai-chatbot.html, en-projects.html. Duits: de.html, Frans: fr.html, Spaans: es.html, Thai: th.html, Birmaans: my.html.")
     tekst = "\n\n".join(r)
