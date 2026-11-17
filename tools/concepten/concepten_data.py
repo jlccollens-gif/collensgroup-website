@@ -1188,3 +1188,162 @@ SITES_W12 = {"quickstart-auto": "https://quickstartauto.co.nz", "city-of-sails-m
 C += C_W12
 EXTRA.update(EXTRA_W12); SITES.update(SITES_W12)
 for c in C_W12: c.update(EXTRA[c["slug"]]); c.setdefault("site", SITES.get(c["slug"], ""))
+
+# Batch W13 - 2026-11-17 - 3 prospects (UK x2, NL/BE x1)
+# Sources: sirelo.co.uk / sirelo.nl removal-company profiles -> company websites -> template-leftover scan
+# Every fact below is taken from the company's own website or Companies House; errors confirmed visible with Playwright (desktop 1366px + mobile 390px).
+# onthedot-removals: every "Get a Quote" button -> /survey-request/ shows raw [gravityform ...] code
+# safepac: footer "call back" link -> /contact-us/call-back/ shows raw [contact-form-7 ...] code
+# stl-logistics: Lorem ipsum on the Road Transport service page + two Lorem ipsum blog posts (5 Nov 2026)
+C_W13 = [
+ dict(slug="onthedot-removals", taal="en", naam="On The Dot Removals", kort="On The Dot", juridisch="Bristol Van Removals Ltd", init="O", font="Bricolage Grotesque",
+      kleur=dict(bg="#1f2a1a", ink="#161a14", acc="#8dc63f", licht="#f4f8ee", held="#1f2a1a"),
+      titel="house and office removals in Bristol", eyebrow="Bristol · UK and Europe · since 2011",
+      h1="Moves, on the dot.", lead="House removals, flat moves, office relocations and packing across Bristol, the UK and into Europe, with reused boxes and biodegradable wrapping.",
+      feiten=[("Since 2011", "removals in Bristol"), ("4.9 / 5", "from 125 ratings"), ("£30,000", "goods in transit cover"), ("Mon-Fri", "9am to 5pm")],
+      diensten=[("opslag", "House removals", "Full house moves across Bristol, the UK and into Europe."),
+                ("weg", "Flat removals", "Flat and apartment moves, planned around access and parking."),
+                ("doc", "Office removals", "Office and commercial relocations with clear planning."),
+                ("schild", "Packing", "Full or partial packing with eco-friendly materials."),
+                ("auto", "Man with a van", "For smaller moves or just a few boxes."),
+                ("druppel", "On-route eco offers", "Half-price rates when you can use an empty van on its way back.")],
+      waarom_intro="A Bristol removal company built on clear communication and a lighter footprint: reused removal boxes, recycled paper, biodegradable bubble wrap, and a free home survey by bike.",
+      waarom=["Removals in Bristol since 2011", "Rated 4.9 out of 5 based on 125 ratings", "Goods in transit cover up to £30,000 and public liability up to £2 million", "Clear quotes with no hidden fees"],
+      tel="0117 287 2127", mail="info@onthedotremovals.co.uk", adres="21 Horley Road, Bristol BS2 9TL"),
+ dict(slug="safepac", taal="en", naam="Safepac Professional Movers", kort="Safepac", juridisch="P. & F. Safepac Co. Limited", init="S", font="Fraunces",
+      kleur=dict(bg="#2e2c38", ink="#1b1a21", acc="#9b7fd4", licht="#f5f3fa", held="#2e2c38"),
+      titel="removals, storage and haulage in Mildenhall, Suffolk", eyebrow="Mildenhall · Suffolk · since 1966",
+      h1="Moving since 1966.", lead="Local, European and international removals, secure storage and container haulage from our own site in Mildenhall, Suffolk.",
+      feiten=[("Since 1966", "removals in Suffolk"), ("2nd generation", "family-run"), ("24-hour", "storage access"), ("UK and Europe", "own container fleet")],
+      diensten=[("opslag", "Domestic removals", "Moves within East Anglia and anywhere across the UK."),
+                ("weg", "European removals", "House moves from Suffolk to destinations across Europe."),
+                ("lucht", "International removals", "Moves across the world, including the USA."),
+                ("schild", "USA military moves", "Specialist removals for the locally based American military."),
+                ("auto", "Containers and haulage", "UK and European container transport with our own fleet."),
+                ("klok", "Storage", "Warehousing in Mildenhall with CCTV, alarms and 24-hour access.")],
+      waarom_intro="A second-generation family business, set up as a specialist removal company for the locally based American military and still run from its own site in Mildenhall.",
+      waarom=["Carrying out removals in Suffolk since 1966", "Own warehousing and own container fleet", "A team of loyal staff who have been with us for many years", "Member of the BAR alternative dispute resolution scheme"],
+      tel="01638 713323", mail="enquiries@safepac.co.uk", adres="Safepac House, Field Road, Mildenhall, Suffolk IP28 7AP"),
+ dict(slug="stl-logistics", taal="nl", naam="STL Logistics", kort="STL", juridisch="STL Logistics BV", init="S", font="Sora",
+      kleur=dict(bg="#1d2228", ink="#14181c", acc="#f05a0f", licht="#f3f4f5", held="#1d2228"),
+      titel="expediteur voor weg-, lucht-, zee- en spoorvervoer", eyebrow="Barendrecht · Antwerpen · sinds 2005",
+      h1="Van hier naar overal.", lead="Expeditie over de weg, door de lucht, over zee, per spoor en per binnenvaart, plus opslag, distributie, verzekering en douane, vanuit Barendrecht en Antwerpen.",
+      feiten=[("Sinds 2005", "expeditiebedrijf"), ("AEO", "gecertificeerd"), ("8 talen", "spreken wij"), ("FENEX / VEA", "voorwaarden")],
+      diensten=[("weg", "Wegtransport", "Betrouwbaar en efficiënt wegtransport door heel Europa."),
+                ("lucht", "Luchtvracht", "Snelle en veilige luchtvracht wereldwijd."),
+                ("druppel", "Zeevracht", "Flexibele en betrouwbare zeevracht, ook als NVOCC."),
+                ("tandwiel", "Spoor en binnenvaart", "Duurzaam spoor- en binnenvaarttransport."),
+                ("opslag", "Opslag en distributie", "Warehousing, distributie en consolidatie."),
+                ("doc", "Douane en verzekering", "Douanefaciliteiten en verzekering van uw lading.")],
+      waarom_intro="Een dynamisch expeditiebedrijf met kantoren in Rotterdam, Amsterdam en Antwerpen en een wereldwijd netwerk van agenten.",
+      waarom=["Expeditie sinds 2005", "AEO-gecertificeerd en werkend onder FENEX- en VEA-voorwaarden", "Persoonlijke service in 8 talen", "Speciale lijn naar Famagusta / Noord-Cyprus"],
+      tel="+31 10 296 1818", mail="sales-rotterdam@stl-logistics.com", adres="Escudostraat 6C, 2991 XV Barendrecht"),
+]
+EXTRA_W13 = {
+ "onthedot-removals": dict(logo="opslag", velden=[["What do you need?", "House removal", "Flat removal", "Office removal", "Packing", "Man with a van"], "Moving from (postcode)", "Moving to (postcode)", "Preferred moving date", "Phone number"],
+   certs=["Goods in transit cover up to £30,000", "Public liability up to £2 million"],
+   faq=[("Where do you operate?", "We are based in Bristol and carry out removals across Bristol and surrounding areas, the wider UK and European destinations."),
+        ("Do you offer packing?", "Yes, full and partial packing with environmentally friendly packing materials."),
+        ("Are moves insured?", "Yes. Goods in transit insurance up to £30,000 and public liability insurance up to £2 million.")],
+   verbeterd=["A working quote form: every \"Get a Quote\" button (and the free home survey link) leads to /survey-request/, which shows the raw code [gravityform id=\"1\" ...] instead of a form",
+              "Quote request in a few short steps: move type, postcodes, date, phone",
+              "Eco approach (reused boxes, half-price return-route vans) shown as a clear selling point",
+              "Reviews and insurance cover visible next to the quote button",
+              "Click-to-call button always visible on mobile"]),
+ "safepac": dict(logo="opslag", velden=[["What do you need?", "UK removal", "European removal", "International removal", "Storage", "Container haulage"], "Moving from", "Moving to", "Phone number"],
+   certs=["BAR dispute resolution scheme", "Limited company since 1966 (no. 00872451)"],
+   faq=[("Do you move abroad?", "Yes. We move people within East Anglia, across the UK, to Europe and further afield, including the USA."),
+        ("Can you store my furniture?", "Yes. We have warehousing at our site in Mildenhall with CCTV, alarms, security systems and 24-hour access."),
+        ("Do you also handle containers?", "Yes. Our UK and European container transport services collect containers with our own fleet.")],
+   verbeterd=["A working call-back form: the \"call back\" link in the footer of every page opens /contact-us/call-back/, which shows the raw code [contact-form-7 id=\"345\" title=\"Call back\"] instead of a phone-number field",
+              "One clear quote form for removals, storage and haulage",
+              "Since 1966 and own warehousing shown prominently on the homepage",
+              "News section brought up to date (latest posts are from 2018)",
+              "Click-to-call button always visible on mobile"]),
+ "stl-logistics": dict(logo="weg", velden=[["Wat wilt u verzenden?", "Wegtransport", "Luchtvracht", "Zeevracht", "Spoor / binnenvaart", "Speciaal transport"], "Van (plaats / land)", "Naar (plaats / land)", "Gewicht of aantal pallets", "Telefoonnummer"],
+   certs=["AEO-gecertificeerd", "FENEX-voorwaarden", "VEA-voorwaarden"],
+   faq=[("Welke vervoerswijzen biedt STL?", "Wegtransport, luchtvracht, zeevracht, spoor, binnenvaart en speciaal transport, plus e-commerce en NVOCC-diensten."),
+        ("Regelen jullie ook douane en opslag?", "Ja. Naast expeditie bieden wij warehousing, distributie, verzekering, douanefaciliteiten en consolidatie."),
+        ("Waar zitten jullie?", "Wij hebben kantoren in Barendrecht (Rotterdam), Amsterdam en Antwerpen, met een wereldwijd netwerk van agenten.")],
+   verbeterd=["Echte tekst in plaats van opvultekst: op de pagina Wegtransport staat onder \"From here to anywhere – we make it happen\" nog Lorem ipsum, en de blogberichten \"Innovation Post 2\" en \"Technology Post 1\" tonen ook Lorem ipsum",
+              "Offerteformulier per vervoerswijze, met herkomst, bestemming en gewicht",
+              "AEO, FENEX en VEA direct zichtbaar als vertrouwenssignaal",
+              "Nederlandse en Belgische vestiging duidelijk naast elkaar",
+              "Bel- en mailknop altijd zichtbaar op mobiel"]),
+}
+SITES_W13 = {"onthedot-removals": "https://www.onthedotremovals.co.uk", "safepac": "https://www.safepacremovals.co.uk", "stl-logistics": "https://www.stl-logistics.com"}
+C += C_W13
+EXTRA.update(EXTRA_W13); SITES.update(SITES_W13)
+for c in C_W13: c.update(EXTRA[c["slug"]]); c.setdefault("site", SITES.get(c["slug"], ""))
+
+# Batch W14 - 2026-11-17 - 1 prospect (Canada, Calgary)
+# Source: subagent runner-up 17-11 02:30 run; facts re-confirmed by the sales run with WebFetch 17-11 17:35 BKK (homepage + /services/).
+# pro-master-roofing: homepage section under "WHO WE ARE" shows 3 template testimonials "John Doe" with "Lorem ipsum dolor sit amet..."; footer © 2021; stats "0 +".
+C_W14 = [
+ dict(slug="pro-master-roofing", taal="en", naam="Pro Master Roofing", kort="Pro Master", juridisch="Pro Master Roofing Ltd", init="P", font="Manrope",
+      kleur=dict(bg="#22262b", ink="#16181b", acc="#d9822b", licht="#f6f4f1", held="#22262b"),
+      titel="roof replacement, repairs and hail damage in Calgary", eyebrow="Calgary · Alberta · BBB A+",
+      h1="Roofs built for Calgary.", lead="Roof replacement, hail damage claims, repairs, new roof construction, attic insulation and condensation solutions for homes in Calgary.",
+      feiten=[("BBB A+", "rating"), ("HomeStars", "verified"), ("Hail damage", "insurance claims handled"), ("R-60", "attic insulation")],
+      diensten=[("dak", "Roof replacement", "Durable, energy-efficient systems, from asphalt shingles to cedar shake."),
+                ("schild", "Hail damage", "We work with your adjuster from first assessment to final installation."),
+                ("tandwiel", "New roof construction", "Roofing systems for new homes, with builders and homeowners."),
+                ("klok", "Roof repairs", "Rapid response for missing shingles, leaks and hail damage."),
+                ("isolatie", "Attic insulation", "Upgrades to current building code, up to R-60."),
+                ("druppel", "Condensation solutions", "Better attic airflow and insulation to reduce ice damming.")],
+      waarom_intro="A Calgary roofing company that handles the whole job, from inspection and insurance paperwork to installation, built for Calgary's hail and freeze-thaw climate.",
+      waarom=["BBB A+ rating and HomeStars verified", "Hail damage claims handled with your insurance adjuster", "Replacement systems backed by strong warranties", "Free, no-obligation estimates"],
+      tel="403.617.6045", mail="office@promasterroofing.ca", adres="3670 63 Ave NE Unit 250, Calgary, AB T3J 0G7"),
+]
+EXTRA_W14 = {
+ "pro-master-roofing": dict(logo="dak", velden=[["What do you need?", "Roof replacement", "Hail damage", "Roof repair", "New roof", "Attic insulation"], "Address or postcode in Calgary", "Insurance claim? (yes / no)", "Phone number"],
+   certs=["BBB A+ rating", "HomeStars verified"],
+   faq=[("Do you help with hail damage insurance claims?", "Yes. We work with your adjuster from the first assessment through to the final installation."),
+        ("Which roofing materials do you install?", "Durable, energy-efficient systems, from asphalt shingles to cedar shake."),
+        ("Can better insulation lower my bills?", "Upgrading attic insulation to current code, ideally R-60, can noticeably reduce heating and electricity costs.")],
+   verbeterd=["Real customer reviews instead of template text: the section under \"WHO WE ARE\" shows three \"John Doe\" cards with \"Lorem ipsum dolor sit amet...\"",
+              "Real numbers instead of \"0 +\" for projects, clients and ratings",
+              "A quote form that asks the right questions: job type, address, insurance claim",
+              "Footer brought up to date (still shows © 2021)",
+              "Click-to-call button always visible on mobile"]),
+}
+SITES_W14 = {"pro-master-roofing": "https://promasterroofing.ca"}
+C += C_W14
+EXTRA.update(EXTRA_W14); SITES.update(SITES_W14)
+for c in C_W14: c.update(EXTRA[c["slug"]]); c.setdefault("site", SITES.get(c["slug"], ""))
+
+# Batch W15 - 2026-11-17 - 1 prospect (USA, Raleigh NC)
+# Source: subagent 18:30 run (reserve); legal form confirmed 19:35 BKK via FMCSA SMS profile USDOT 4140668 = JOHN'S MOVING & STORAGE LLC,
+# 2315-101 Laurelbrook St, Raleigh NC 27604 (matches own site). Fault re-confirmed by the sales run with WebFetch 17-11 19:35 BKK (/about-us/).
+# johns-moving: /about-us/ "Where Our Services Are Available" - 5 city cards (Raleigh, Cary, Garner, Knightdale, Millbrook) all read "Lorem ipsum dolor sitsed dolor eiusmod."
+C_W15 = [
+ dict(slug="johns-moving", taal="en", naam="John's Moving & Storage", kort="John's Moving", juridisch="John's Moving & Storage LLC", init="J", font="Manrope",
+      kleur=dict(bg="#13294b", ink="#0e1c33", acc="#c8102e", licht="#f3f5f9", held="#13294b"),
+      titel="local and long-distance movers in Raleigh, NC", eyebrow="Raleigh · North Carolina · Since 1998",
+      h1="Raleigh movers since 1998.", lead="Local and long-distance moves, packing, secure storage, piano moving and business relocations across Raleigh and the Triangle.",
+      feiten=[("1998", "founded in Raleigh"), ("BBB A+", "rating"), ("USDOT", "4140668"), ("NCUC", "C-2248")],
+      diensten=[("weg", "Local moves", "Home and apartment moves across Raleigh, Cary, Garner and Knightdale."),
+                ("lucht", "Long-distance moves", "Planned moves out of state, from first survey to delivery."),
+                ("pakket", "Packing & unpacking", "Full or partial packing, with complimentary boxes."),
+                ("opslag", "Secure storage", "Short- and long-term storage for homes and businesses."),
+                ("tandwiel", "Business moves", "Office and commercial relocations with minimal downtime."),
+                ("schild", "Piano & white-glove", "Pianos, final-mile and white-glove delivery handled with care.")],
+      waarom_intro="A family-founded Raleigh moving company: started in 1998 by John Kretschmer, now owned by Greg and Heather Federico, with trained, licensed and insured movers.",
+      waarom=["Licensed and insured: USDOT 4140668, MC 1587512, NCUC C-2248", "BBB A+ rating", "Trained movers and complimentary boxes", "Free moving quotes"],
+      tel="(919) 255-1330", mail="info@johnsmoving.com", adres="2315 Laurelbrook Street, Suite 101, Raleigh, NC 27604"),
+]
+EXTRA_W15 = {
+ "johns-moving": dict(logo="weg", velden=[["What are you moving?", "Home", "Apartment", "Office", "Piano", "Storage only"], "Moving from", "Moving to", "Moving date"],
+   certs=["BBB A+ rating", "USDOT 4140668 · NCUC C-2248"],
+   faq=[("Do you move outside North Carolina?", "Yes. Besides local moves across Raleigh and the Triangle, we handle long-distance moves."),
+        ("Can you store my belongings?", "Yes. We offer secure short- and long-term storage."),
+        ("Do you provide boxes?", "Yes, complimentary boxes are available, and we can do the packing for you.")],
+   verbeterd=["Real text for each service area: the five city cards on your About page (Raleigh, Cary, Garner, Knightdale, Millbrook) all read \"Lorem ipsum dolor sitsed dolor eiusmod.\"",
+              "Knightdale and Millbrook link to their own pages instead of the quote form",
+              "A quote form that asks the right questions: what, from, to, date",
+              "Click-to-call button always visible on mobile"]),
+}
+SITES_W15 = {"johns-moving": "https://johnsmoving.com"}
+C += C_W15
+EXTRA.update(EXTRA_W15); SITES.update(SITES_W15)
+for c in C_W15: c.update(EXTRA[c["slug"]]); c.setdefault("site", SITES.get(c["slug"], ""))

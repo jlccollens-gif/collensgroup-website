@@ -454,5 +454,45 @@
   "token": "cgc-city-of-sails-motel-a43a1211",
   "h1": "Stay close, sleep well.",
   "lead": "Studios and apartments with spa baths, kitchenettes and private balconies in Milford, close to North Shore Hospital and Smales Farm."
+ },
+ "onthedot-removals": {
+  "bedrijf": "Bristol Van Removals Ltd",
+  "site": "https://www.onthedotremovals.co.uk",
+  "mail": "info@onthedotremovals.co.uk",
+  "token": "cgc-onthedot-removals-8e1cd7d5",
+  "h1": "Moves, on the dot.",
+  "lead": "House removals, flat moves, office relocations and packing across Bristol, the UK and into Europe, with reused boxes and biodegradable wrapping."
+ },
+ "safepac": {
+  "bedrijf": "P. & F. Safepac Co. Limited",
+  "site": "https://www.safepacremovals.co.uk",
+  "mail": "enquiries@safepac.co.uk",
+  "token": "cgc-safepac-4e316156",
+  "h1": "Moving since 1966.",
+  "lead": "Local, European and international removals, secure storage and container haulage from our own site in Mildenhall, Suffolk."
+ },
+ "stl-logistics": {
+  "bedrijf": "STL Logistics BV",
+  "site": "https://www.stl-logistics.com",
+  "mail": "sales-rotterdam@stl-logistics.com",
+  "token": "cgc-stl-logistics-a7d76db2",
+  "h1": "Van hier naar overal.",
+  "lead": "Expeditie over de weg, door de lucht, over zee, per spoor en per binnenvaart, plus opslag, distributie, verzekering en douane, vanuit Barendrecht en Antwerpen."
+ },
+ "pro-master-roofing": {
+  "bedrijf": "Pro Master Roofing Ltd",
+  "site": "https://promasterroofing.ca",
+  "mail": "office@promasterroofing.ca",
+  "token": "cgc-pro-master-roofing-2a674bab",
+  "h1": "Roofs built for Calgary.",
+  "lead": "Roof replacement, hail damage claims, repairs, new roof construction, attic insulation and condensation solutions for homes in Calgary."
+ },
+ "johns-moving": {
+  "bedrijf": "John's Moving & Storage LLC",
+  "site": "https://johnsmoving.com",
+  "mail": "info@johnsmoving.com",
+  "token": "cgc-johns-moving-f3cc6584",
+  "h1": "Raleigh movers since 1998.",
+  "lead": "Local and long-distance moves, packing, secure storage, piano moving and business relocations across Raleigh and the Triangle."
  }
 }
