@@ -7,6 +7,30 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 exec(open(os.path.join(HERE, "concepten_data.py")).read())
 OUT = os.path.join(HERE, "..", "..", "src", "concept")
 
+
+def _lum(h):
+    h = h.lstrip("#")[:6]
+    r, g, b = (int(h[i:i+2], 16) / 255 for i in (0, 2, 4))
+    f = lambda x: x / 12.92 if x <= 0.03928 else ((x + 0.055) / 1.055) ** 2.4
+    return 0.2126 * f(r) + 0.7152 * f(g) + 0.0722 * f(b)
+
+
+def contrast(a, b):
+    la, lb = sorted((_lum(a), _lum(b)), reverse=True)
+    return (la + 0.05) / (lb + 0.05)
+
+
+def acc_op_donker(acc, bg, doel=4.5):
+    """Accentkleur lichter mengen met wit tot hij leesbaar is op de donkere achtergrond (WCAG AA)."""
+    h = acc.lstrip("#")[:6]
+    r, g, b = (int(h[i:i+2], 16) for i in (0, 2, 4))
+    for stap in range(0, 101, 5):
+        m = stap / 100
+        kl = "#%02x%02x%02x" % tuple(round(x + (255 - x) * m) for x in (r, g, b))
+        if contrast(kl, bg) >= doel:
+            return kl
+    return "#ffffff"
+
 def ic(n, w=1.4):
     return f'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="{w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{ICON[n]}</svg>'
 
@@ -100,12 +124,12 @@ body.s2{background:var(--donker);color:#eef2f7;font-family:Inter,system-ui,sans-
 .s2 .merk .woord{font-size:21px}.s2 .merk .mono,.s2 .merk .stip{display:none}
 .s2 .knop{background:var(--acc);color:#fff;border-radius:10px}.s2 .knop.alt{background:#ffffff12;color:#fff;box-shadow:inset 0 0 0 1px #ffffff2a}
 .s2 .held{padding:110px 0 130px;background:radial-gradient(900px 600px at 85% 10%,var(--glow),transparent 60%),radial-gradient(700px 500px at 0% 100%,#ffffff08,transparent 60%)}
-.s2 .held h1{font-size:clamp(44px,6.4vw,84px)}.s2 .held .ey{display:inline-flex;gap:10px;align-items:center;font:600 13px Inter,sans-serif;color:var(--acc);background:#ffffff0d;border:1px solid #ffffff1a;padding:8px 14px;border-radius:999px;margin-bottom:28px}
+.s2 .held h1{font-size:clamp(44px,6.4vw,84px)}.s2 .held .ey{display:inline-flex;gap:10px;align-items:center;font:600 13px Inter,sans-serif;color:var(--accd);background:#ffffff0d;border:1px solid #ffffff1a;padding:8px 14px;border-radius:999px;margin-bottom:28px}
 .s2 .lead{color:#b9c4d3}.s2 .form{background:#ffffff0a;border:1px solid #ffffff1c;border-radius:18px;backdrop-filter:blur(8px)}
 .s2 .form input,.s2 .form select,.s2 .form textarea{border:1px solid #ffffff22;border-radius:10px;background:#0000002a}.s2 .form select option{color:#111}
 .s2 .cijfers{gap:14px}.s2 .cijfer{background:#ffffff08;border:1px solid #ffffff14;border-radius:16px}.s2 .cijfer b{color:#fff}
-.s2 .kopje{color:var(--acc)}.s2 .diensten{gap:16px}.s2 .dienst{background:#ffffff07;border:1px solid #ffffff12;border-radius:18px}.s2 .dienst .ico{color:var(--acc)}
-.s2 .stappen{gap:16px}.s2 .stap{padding:28px;background:#ffffff07;border-radius:18px}.s2 .stap .nr{color:var(--acc)}
+.s2 .kopje{color:var(--accd)}.s2 .diensten{gap:16px}.s2 .dienst{background:#ffffff07;border:1px solid #ffffff12;border-radius:18px}.s2 .dienst .ico{color:var(--accd)}
+.s2 .stappen{gap:16px}.s2 .stap{padding:28px;background:#ffffff07;border-radius:18px}.s2 .stap .nr{color:var(--accd)}
 .s2 .waarom{background:#ffffff05}.s2 .lijst li{border-bottom:1px solid #ffffff14}.s2 .lijst li::before{background:var(--acc);opacity:1}
 .s2 .certs span{background:#ffffff0d;border-radius:999px}.s2 details{border-bottom:1px solid #ffffff14}
 .s2 .contact .box{background:linear-gradient(140deg,var(--acc),var(--acc3));border-radius:26px;padding:56px}.s2 .contact .form{background:#0000002a}
@@ -190,7 +214,7 @@ def pagina(c):
     waar = "".join(f"<li>{e(x)}</li>" for x in c["waarom"])
     verb = "".join(f"<li>{e(x)}</li>" for x in c["verbeterd"])
     ld = json.dumps({"@context": "https://schema.org", "@type": "LocalBusiness", "name": c["juridisch"], "address": c["adres"], **({"telephone": tel} if tel else {}), **({"email": mail} if mail else {})}, ensure_ascii=False)
-    pal = (f"--ivoor:#f7f4ee;--inkt:{k['held']};--lijn:#1b1b1b1f;--acc2:{k['acc']};--donker:{k['held']};--acc:{k['acc']};--acc3:{k['bg']};"
+    pal = (f"--ivoor:#f7f4ee;--inkt:{k['held']};--lijn:#1b1b1b1f;--acc2:{k['acc']};--donker:{k['held']};--acc:{k['acc']};--acc3:{k['bg']};--accd:{acc_op_donker(k['acc'], k['held'])};"
            f"--glow:{k['acc']}55;--serif:'Cormorant Garamond',Georgia,serif;--sans2:'Sora',Inter,sans-serif;--sans3:'Manrope',Inter,sans-serif;--wm:url(\"{wm_svg}\")")
     s1, s2, s3 = t["stijlen"]
     return f"""<!DOCTYPE html><html lang="{c['taal']}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
