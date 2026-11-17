@@ -219,7 +219,7 @@
       '<div class="koop"><div class="stapper"><button type="button" data-stap="-1" aria-label="Minder">−</button><input id="aantal-p" type="number" min="1" max="20" value="1" aria-label="Aantal"><button type="button" data-stap="1" aria-label="Meer">+</button></div>' +
       '<button class="knop" type="button" id="koop-p">In winkelmand</button></div>' +
       '<button class="knop licht breed" type="button" data-fav="' + p.id + '" aria-pressed="' + (favs().indexOf(p.id) > -1) + '">Bewaar als favoriet</button>' +
-      '<ul class="usp"><li>Gratis verzending vanaf € 75</li><li>14 dagen bedenktijd, eenvoudig retourneren</li><li>Veilig betalen met creditcard, Apple Pay of iDEAL</li><li>Cadeauverpakking mogelijk bij het afrekenen</li></ul>' +
+      '<ul class="usp"><li>Gratis verzending vanaf € 75</li><li>14 dagen bedenktijd, eenvoudig retourneren</li><li>Veilig betalen met PayPal, creditcard of bankoverschrijving</li><li>Cadeauverpakking mogelijk bij het afrekenen</li></ul>' +
       '<details open><summary>Materiaal en afmetingen</summary><p>' + esc(p.m) + "<br>" + esc(p.d) + '</p></details>' +
       '<details><summary>Onderhoud</summary><p>Afnemen met een droge of licht vochtige doek. Natuurlijke materialen kunnen kleine kleurverschillen hebben; dat maakt elk stuk uniek.</p></details>' +
       '<details><summary>Verzenden en retourneren</summary><p>Je bestelling is in 2–4 werkdagen in huis, in Nederland en België. Niet tevreden? Je hebt 14 dagen bedenktijd. Lees meer bij <a class="link" href="klantenservice.html#retour">retourneren</a>.</p></details></div>';
@@ -281,10 +281,12 @@
         e.preventDefault();
         var f = this, fout = $$("[required]", f).filter(function (i) { return !i.value.trim() || !i.checkValidity(); })[0];
         if (fout) { $("#fout").textContent = "Vul alle verplichte velden correct in."; fout.focus(); return; }
+        var bank = (f.querySelector('input[name="betaal"]:checked') || {}).value === "bank", totaal = euro(sub2 + vz2 + cad2);
         zetMand([]); bewaar("cadeau", false);
         $("#afreken").innerHTML = '<div class="leegmand" style="max-width:640px"><span class="klein">Dank je wel</span><h2 style="font-size:44px;margin:10px 0 16px">Je bestelling is geplaatst</h2>' +
-          '<p>Je ontvangt zo een bevestiging per e-mail met je ordernummer en de verwachte bezorgdatum.</p>' +
-          '<div class="melding">Dit is een concept: er is niets echt besteld of betaald. In de echte webshop ga je hier naar de beveiligde betaalpagina van Stripe (creditcard, Apple Pay, Google Pay of iDEAL).</div>' +
+          (bank ? '<p>Maak ' + totaal + ' over naar <b>NL22 BUNQ 2207 4744 53</b> onder vermelding van je ordernummer (staat in de bevestigingsmail). We verzenden zodra je betaling binnen is.</p>'
+                : '<p>Je ontvangt zo een bevestiging per e-mail met je ordernummer en de verwachte bezorgdatum.</p>') +
+          '<div class="melding">Dit is een concept: er is niets echt besteld of betaald. ' + (bank ? 'Maak dus niets over.' : 'In de echte webshop ga je hier naar de beveiligde betaalomgeving van PayPal.') + '</div>' +
           '<a class="knop" href="index.html">Terug naar de homepage</a></div>';
         window.scrollTo(0, 0);
       });

@@ -49,11 +49,11 @@
   <label>Land<select autocomplete="country"><option>Nederland</option><option>België</option></select></label>
   <h2 style="font-size:30px;margin-top:16px">Betaalmethode</h2>
   <div class="betaal" role="radiogroup" aria-label="Betaalmethode">
-   <label><input type="radio" name="betaal" checked><span><b>Creditcard</b><small>Visa, Mastercard, American Express</small></span></label>
-   <label><input type="radio" name="betaal"><span><b>Apple Pay of Google Pay</b><small>Betalen met je telefoon</small></span></label>
-   <label><input type="radio" name="betaal"><span><b>iDEAL</b><small>Via je eigen bank</small></span></label>
+   <label><input type="radio" name="betaal" value="paypal" checked><span><b>PayPal</b><small>Met je PayPal-account</small></span></label>
+   <label><input type="radio" name="betaal" value="kaart"><span><b>Creditcard</b><small>Visa of Mastercard, veilig via PayPal (geen PayPal-account nodig)</small></span></label>
+   <label><input type="radio" name="betaal" value="bank"><span><b>Bankoverschrijving</b><small>Je maakt het bedrag zelf over naar NL22 BUNQ 2207 4744 53; we verzenden zodra het binnen is (meestal 1 werkdag)</small></span></label>
   </div>
-  <p class="veilig"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Je rondt de betaling af op de beveiligde betaalpagina van Stripe, met 3D Secure. Wij zien en bewaren je kaartgegevens nooit.</p>
+  <p class="veilig"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Met PayPal of creditcard betaal je op de beveiligde betaalomgeving van PayPal. Wij zien en bewaren je kaartgegevens nooit.</p>
   <label class="check"><input type="checkbox" required><span>Ik ga akkoord met de <a class="link" href="klantenservice.html#voorwaarden">algemene voorwaarden</a> *</span></label>
   <p id="fout" role="status" style="color:#8A3B2E;margin:0"></p>
   <button class="knop" type="submit">Doorgaan naar veilig betalen</button>
@@ -64,7 +64,7 @@
 </main>
 <footer><div class="wrap">
  <div class="voet">
-  <div><b>Suismuis</b><p>Warme, tijdloze woonaccessoires voor een thuis vol rust.</p><div class="betaalmerken" aria-label="Betaalmethoden"><span>Visa</span><span>Mastercard</span><span>Amex</span><span>Apple Pay</span><span>Google Pay</span><span>iDEAL</span></div></div>
+  <div><b>Suismuis</b><p>Warme, tijdloze woonaccessoires voor een thuis vol rust.</p><div class="betaalmerken" aria-label="Betaalmethoden"><span>PayPal</span><span>Visa</span><span>Mastercard</span><span>Bankoverschrijving</span></div></div>
   <div><h4>Shop</h4><ul><li><a href="shop.html?cat=wonen">Wonen & decoratie</a></li><li><a href="shop.html?cat=vazen">Vazen</a></li><li><a href="shop.html?cat=verlichting">Verlichting & kaarsen</a></li><li><a href="shop.html?cat=textiel">Textiel</a></li><li><a href="shop.html?cat=tafel">Servies & tafel</a></li><li><a href="shop.html?cat=meubels">Meubels</a></li></ul></div>
   <div><h4>Klantenservice</h4><ul><li><a href="klantenservice.html#verzenden">Verzenden</a></li><li><a href="klantenservice.html#retour">Retourneren</a></li><li><a href="klantenservice.html#herroepen">Bestelling herroepen</a></li><li><a href="klantenservice.html#faq">Veelgestelde vragen</a></li><li><a href="klantenservice.html#contact">Contact</a></li></ul></div>
   <div><h4>Suismuis</h4><ul><li><a href="over.html">Over ons</a></li><li><a href="journal.html">Journal</a></li><li><a href="account.html">Mijn account</a></li><li><a href="index.html#brief">Nieuwsbrief</a></li><li><a href="beheer.html">Beheer (voor Kim)</a></li></ul></div>

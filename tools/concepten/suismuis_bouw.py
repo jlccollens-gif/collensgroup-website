@@ -62,7 +62,7 @@ def voet():
     cats = "".join(f'<li><a href="shop.html?cat={c}">{n}</a></li>' for c, n, _ in CATS)
     return f'''<footer><div class="wrap">
  <div class="voet">
-  <div><b>Suismuis</b><p>Warme, tijdloze woonaccessoires voor een thuis vol rust.</p><div class="betaalmerken" aria-label="Betaalmethoden"><span>Visa</span><span>Mastercard</span><span>Amex</span><span>Apple Pay</span><span>Google Pay</span><span>iDEAL</span></div></div>
+  <div><b>Suismuis</b><p>Warme, tijdloze woonaccessoires voor een thuis vol rust.</p><div class="betaalmerken" aria-label="Betaalmethoden"><span>PayPal</span><span>Visa</span><span>Mastercard</span><span>Bankoverschrijving</span></div></div>
   <div><h4>Shop</h4><ul>{cats}</ul></div>
   <div><h4>Klantenservice</h4><ul><li><a href="klantenservice.html#verzenden">Verzenden</a></li><li><a href="klantenservice.html#retour">Retourneren</a></li><li><a href="klantenservice.html#herroepen">Bestelling herroepen</a></li><li><a href="klantenservice.html#faq">Veelgestelde vragen</a></li><li><a href="klantenservice.html#contact">Contact</a></li></ul></div>
   <div><h4>Suismuis</h4><ul><li><a href="over.html">Over ons</a></li><li><a href="journal.html">Journal</a></li><li><a href="account.html">Mijn account</a></li><li><a href="index.html#brief">Nieuwsbrief</a></li><li><a href="beheer.html">Beheer (voor Kim)</a></li></ul></div>
@@ -208,7 +208,7 @@ def bouw():
   <div class="rij totaal"><span>Totaal</span><span id="tot"></span></div>
   <p style="font-size:13px;color:var(--mokka);margin:6px 0 18px">Prijzen inclusief btw.</p>
   <a class="knop breed" href="afrekenen.html">Veilig afrekenen</a>
-  <p style="font-size:13px;margin:14px 0 0;text-align:center">Creditcard · Apple Pay · Google Pay · iDEAL</p>
+  <p style="font-size:13px;margin:14px 0 0;text-align:center">PayPal · Creditcard · Bankoverschrijving</p>
  </aside>
 </div></div>''')
 
@@ -225,11 +225,11 @@ def bouw():
   <label>Land<select autocomplete="country"><option>Nederland</option><option>België</option></select></label>
   <h2 style="font-size:30px;margin-top:16px">Betaalmethode</h2>
   <div class="betaal" role="radiogroup" aria-label="Betaalmethode">
-   <label><input type="radio" name="betaal" checked><span><b>Creditcard</b><small>Visa, Mastercard, American Express</small></span></label>
-   <label><input type="radio" name="betaal"><span><b>Apple Pay of Google Pay</b><small>Betalen met je telefoon</small></span></label>
-   <label><input type="radio" name="betaal"><span><b>iDEAL</b><small>Via je eigen bank</small></span></label>
+   <label><input type="radio" name="betaal" value="paypal" checked><span><b>PayPal</b><small>Met je PayPal-account</small></span></label>
+   <label><input type="radio" name="betaal" value="kaart"><span><b>Creditcard</b><small>Visa of Mastercard, veilig via PayPal (geen PayPal-account nodig)</small></span></label>
+   <label><input type="radio" name="betaal" value="bank"><span><b>Bankoverschrijving</b><small>Je maakt het bedrag zelf over naar NL22 BUNQ 2207 4744 53; we verzenden zodra het binnen is (meestal 1 werkdag)</small></span></label>
   </div>
-  <p class="veilig"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Je rondt de betaling af op de beveiligde betaalpagina van Stripe, met 3D Secure. Wij zien en bewaren je kaartgegevens nooit.</p>
+  <p class="veilig"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Met PayPal of creditcard betaal je op de beveiligde betaalomgeving van PayPal. Wij zien en bewaren je kaartgegevens nooit.</p>
   <label class="check"><input type="checkbox" required><span>Ik ga akkoord met de <a class="link" href="klantenservice.html#voorwaarden">algemene voorwaarden</a> *</span></label>
   <p id="fout" role="status" style="color:#8A3B2E;margin:0"></p>
   <button class="knop" type="submit">Doorgaan naar veilig betalen</button>
@@ -269,7 +269,7 @@ def bouw():
            ("Wat kost verzending?", "Verzending kost € 5,95. Vanaf € 75 verzenden we gratis binnen Nederland en België."),
            ("Kan ik mijn bestelling retourneren?", "Ja, je hebt 14 dagen bedenktijd na ontvangst. Gebruik de knop Bestelling herroepen hierboven; je krijgt het aankoopbedrag binnen 14 dagen terug."),
            ("Kan ik een product als cadeau laten inpakken?", "Ja, bij het afrekenen kies je voor cadeauverpakking met een handgeschreven kaartje (+ € 3,95)."),
-           ("Hoe kan ik betalen?", "Met creditcard (Visa, Mastercard, American Express), Apple Pay, Google Pay of iDEAL. Je betaalt op de beveiligde betaalpagina van Stripe."),
+           ("Hoe kan ik betalen?", "Met PayPal, met creditcard (Visa of Mastercard, via PayPal, ook zonder PayPal-account) of per bankoverschrijving naar NL22 BUNQ 2207 4744 53 onder vermelding van je ordernummer. Bij een overschrijving verzenden we zodra de betaling binnen is."),
            ("Zijn de producten handgemaakt?", "Veel stukken zijn van natuurlijke materialen en deels met de hand gemaakt. Kleine verschillen in kleur en structuur maken elk stuk uniek.")]
     faq_html = "".join(f"<details><summary>{v}</summary><p>{a}</p></details>" for v, a in faq)
     pagina("klantenservice.html", "Klantenservice | Suismuis Home (concept)", "service", "service",
@@ -314,7 +314,7 @@ def bouw():
  <h2 style="font-size:40px;margin-bottom:22px">Van betaling tot levering</h2>
  <ol class="route">
   <li><b>Klant bestelt</b>Op jouw webshop, in jouw stijl.</li>
-  <li><b>Klant betaalt</b>Het geld komt op jouw rekening, via je betaalprovider.</li>
+  <li><b>Klant betaalt</b>Het geld komt direct bij jou: via je zakelijke PayPal (suisterkim@gmail.com) of per overschrijving op je rekening NL22 BUNQ 2207 4744 53.</li>
   <li><b>Automatisch doorgestuurd</b>De bestelling gaat direct naar de leverancier, tegen jouw inkoopprijs.</li>
   <li><b>Leverancier verzendt</b>Rechtstreeks naar je klant, met track-and-trace.</li>
   <li><b>Klant ontvangt</b>Jij houdt het verschil: dat is je marge.</li>
