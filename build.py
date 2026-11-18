@@ -231,13 +231,13 @@ def page(path, title, desc, body, crumbs=None, extra_ld=None, extra_head="", lan
 
 # ---------- inhoud ----------
 FAQ = [
-    ("Wat kost een app laten maken bij Collens Group?", "Een Basis-app begint bij €3.150, een Standaard-app met accounts en database bij €6.750 en een Maatwerk-app bij €13.050, allemaal zonder btw. Na een korte intake per mail krijg je een vaste prijs."),
+    ("Wat kost een app laten maken bij Collens Group?", "Een Basis-app begint bij €3.150, een Standaard-app met accounts en database bij €6.750 en een Maatwerk-app bij €13.050, allemaal eindprijzen, geen btw erbij. Na een korte intake per mail krijg je een vaste prijs."),
     ("Waarom zijn jullie goedkoper dan andere bureaus?", "We bouwen één app voor iPhone en Android tegelijk, met bewezen bouwstenen en veel automatisering. Dat scheelt uren, en die besparing zie je terug in de prijs."),
     ("Ben ik eigenaar van mijn app?", "Ja. Na de laatste betaling is de broncode van jou. De app staat op jouw eigen Apple- en Google-account."),
     ("Wat kost een app na de lancering?", "Apple rekent $99 per jaar, Google $25 eenmalig. Hosting is voor kleine apps vaak €0 tot €25 per maand. Ons onderhoud is optioneel, vanaf €85,50 per maand. Dit staat altijd vooraf in de offerte."),
     ("Hoe lang duurt het bouwen van een app?", "Een Basis-app 3–5 weken, een Standaard-app 6–10 weken en een Maatwerk-app 10–16 weken of langer."),
     ("Hoe betaal ik?", "In drie delen: 40% bij akkoord, 40% bij een goedgekeurde testversie en 20% bij oplevering."),
-    ("Maken jullie ook websites, games en automatiseringen?", "Ja. Websites beginnen bij €495, games bij €1.950 en AI-automatisering bij €395, allemaal zonder btw."),
+    ("Maken jullie ook websites, games en automatiseringen?", "Ja. Websites beginnen bij €495, games bij €1.950 en AI-automatisering bij €395, allemaal eindprijzen, geen btw erbij."),
     ("Werken jullie ook in België?", "Ja, we werken voor klanten in heel Nederland en België, volledig online."),
 ]
 
@@ -249,15 +249,15 @@ def faq_ld(items):
 
 PAKKETTEN = '''<div class="pakketten">
 <article class="pakket"><h3>Basis / MVP</h3><p class="voor">Je idee snel testen met echte gebruikers.</p>
-<div class="prijs">€3.150<small>vanaf, eindprijs zonder btw</small></div>
+<div class="prijs">€3.150<small>vanaf, eindprijs, geen btw erbij</small></div>
 <ul><li>Tot 5 schermen</li><li>Eenvoudige navigatie en content</li><li>Strak basisontwerp</li><li>Publicatieklaar voor iOS of Android</li></ul>
 <p class="duur">Klaar in 3–5 weken</p></article>
 <article class="pakket mid"><h3>Standaard</h3><p class="voor">Een complete app voor je klanten of team.</p>
-<div class="prijs">€6.750<small>vanaf, eindprijs zonder btw</small></div>
+<div class="prijs">€6.750<small>vanaf, eindprijs, geen btw erbij</small></div>
 <ul><li>5 tot 12 schermen</li><li>Accounts en inloggen</li><li>Eigen database en API-koppelingen</li><li>Pushmeldingen</li><li>Live in App Store én Google Play</li></ul>
 <p class="duur">Klaar in 6–10 weken</p></article>
 <article class="pakket"><h3>Maatwerk / Pro</h3><p class="voor">Een volledig digitaal platform.</p>
-<div class="prijs">€13.050<small>vanaf, eindprijs zonder btw</small></div>
+<div class="prijs">€13.050<small>vanaf, eindprijs, geen btw erbij</small></div>
 <ul><li>12+ schermen en complexe flows</li><li>Uitgebreide backend en beheerdashboard</li><li>Betalingen en abonnementen</li><li>Meerdere gebruikersrollen</li><li>Extra beveiliging</li></ul>
 <p class="duur">Klaar in 10–16+ weken</p></article></div>'''
 
@@ -380,11 +380,33 @@ DIENSTEN = [
         ],
         "extra": [("Website-onderhoud", "€29 / maand", "Updates, back-ups, kleine wijzigingen tot 30 min per maand"),
                   ("Extra pagina", "€95", "Per pagina, inclusief SEO-tekst")],
-        "faq": [("Wat kost een website laten maken?", "Bij ons begint een one-page website bij €495, een bedrijfswebsite bij €995 en een webshop bij €1.950, zonder btw."),
+        "faq": [("Wat kost een website laten maken?", "Bij ons begint een one-page website bij €495, een bedrijfswebsite bij €995 en een webshop bij €1.950. Alle prijzen zijn eindprijzen, er komt geen btw bij."),
                 ("Word ik gevonden in Google?", "Elke site bouwen we snel, mobielvriendelijk en met de technische basis die Google verwacht. Een toppositie kan niemand garanderen; wel helpen we je op weg met de juiste zoekwoorden."),
-                ("Wat kost een webshop laten maken?", "Volgens de kostengids van Searchlab (2026) betaal je bij een freelancer meestal €2.000 tot €8.000 en bij een bureau voor het mkb €5.000 tot €15.000. Bij ons begint een webshop bij €1.950 zonder btw, met tot 50 producten ingericht. Platformkosten komen daar los bij en staan vooraf in de offerte."),
-                ("Wat kost een website laten maken in België?", "Volgens de prijsgids van Lunidev (2026) kost een professionele bedrijfswebsite in België €2.000 tot €6.000 en een webshop €4.000 tot €15.000 of meer. Bij ons begint een bedrijfswebsite bij €995 en een webshop bij €1.950, zonder btw."),
-                ("Wat kost een website per maand?", "Hosting kan voor de meeste kleine sites gratis. Een domeinnaam kost rond €5 tot €15 per jaar. Onderhoud is optioneel vanaf €29 per maand.")],
+                ("Wat kost een webshop laten maken?", "Volgens de kostengids van Searchlab (2026) betaal je bij een freelancer meestal €2.000 tot €8.000 en bij een bureau voor het mkb €5.000 tot €15.000. Bij ons begint een webshop bij €1.950 (geen btw erbij), met tot 50 producten ingericht. Platformkosten komen daar los bij en staan vooraf in de offerte."),
+                ("Wat kost een website laten maken in België?", "Volgens de prijsgids van Lunidev (2026) kost een professionele bedrijfswebsite in België €2.000 tot €6.000 en een webshop €4.000 tot €15.000 of meer. Bij ons begint een bedrijfswebsite bij €995 en een webshop bij €1.950. Alle prijzen zijn eindprijzen, er komt geen btw bij."),
+                ("Wat kost een website per maand?", "Hosting kan voor de meeste kleine sites gratis. Een domeinnaam kost rond €5 tot €15 per jaar. Onderhoud is optioneel vanaf €29 per maand."),
+                ("Ben ik eigenaar van de website?", "Ja. De site, het domein en de inhoud staan op jouw naam. Je zit niet vast aan een websitebouwer."),
+                ("Hoe snel is mijn website klaar?", "Een one-page website meestal in 3–5 dagen, een bedrijfswebsite in 2–3 weken en een webshop in 3–5 weken. Hoe snel je teksten en foto's aanlevert, bepaalt mee hoe snel het gaat."),
+                ("Kan ik de website later uitbreiden?", "Ja. Een extra pagina kost €95, inclusief SEO-tekst."),
+                ("Staat de btw erbij?", "Nee. Alle prijzen zijn eindprijzen: er komt geen btw bij.")],
+        "secties": [
+            ("Wat zit er wel en niet in de prijs?",
+             "<div class='scroll'><table class='tabel vergelijk'><tr><th>Onderdeel</th><th>One-page</th><th>Bedrijfswebsite</th></tr>"
+             "<tr><td>Aantal pagina's</td><td>1</td><td>tot 6</td></tr>"
+             "<tr><td>Mobielvriendelijk en snel</td><td>ja</td><td>ja</td></tr>"
+             "<tr><td>Contactformulier</td><td>ja</td><td>ja, plus offerteformulier</td></tr>"
+             "<tr><td>Technische basis voor Google</td><td>ja</td><td>ja, met teksten op zoekwoorden afgestemd</td></tr>"
+             "<tr><td>Klaar in</td><td>3–5 dagen</td><td>2–3 weken</td></tr></table></div>"
+             "<p>Niet in de pakketprijs: een domeinnaam (meestal €5 tot €15 per jaar), een extra pagina (€95) en optioneel onderhoud (vanaf €29 per maand). Hosting kan voor de meeste kleine sites gratis. Dit staat allemaal vooraf in de offerte.</p>"),
+            ("Hoe gaat het?",
+             "<ol><li>Je vertelt per mail wat je doet en wat de site moet bereiken.</li>"
+             "<li>Je krijgt een gratis concept binnen 48 uur, zodat je ziet hoe het eruit kan zien.</li>"
+             "<li>Je krijgt een vaste prijs. Na akkoord bouwen we de site.</li>"
+             "<li>Jij controleert alles, daarna gaat de site live.</li></ol>"),
+            ("Wat we zelf bouwden",
+             "<p>Onze eigen apps en games staan op de <a href='apps.html'>projectenpagina</a>: LubbyC en Koffer Vol! komen binnenkort in Google Play, Eiland Express is in ontwikkeling. "
+             "Een voorbeeld van een complete conceptsite met winkel is <a href='concept/atelier-ombre/index.html'>Atelier Ombre</a>, een kunstwinkel. Dat is een voorbeeld dat wij maakten, geen bestaande winkel.</p>")],
+        "rel": [("webshop-laten-maken.html", "Webshop laten maken"), ("goedkope-website-laten-maken.html", "Goedkope website laten maken"), ("website-laten-maken-horeca.html", "Website voor horeca"), ("website-laten-maken-kapper.html", "Website voor kapsalon"), ("chatbot-laten-maken.html", "AI-chatbot voor je site")],
     },
     {
         "slug": "game-laten-maken", "kort": "Games", "kleur": "#7A3BD1",
@@ -401,16 +423,17 @@ DIENSTEN = [
         ],
         "extra": [("Extra level of spelmodus", "vanaf €395", "Na de eerste versie"),
                   ("Game-onderhoud", "€85,50 / maand", "Updates voor nieuwe iOS- en Android-versies")],
-        "faq": [("Wat kost een game laten maken?", "Een eenvoudige mobiele game begint in Nederland rond €10.000 (Juego Studios, 2026). Bij ons begint een merkgame voor de browser bij €1.950, een casual game bij €4.950 en een 2D-game met levels bij €9.950, zonder btw."),
+        "faq": [("Wat kost een game laten maken?", "Een eenvoudige mobiele game begint in Nederland rond €10.000 (Juego Studios, 2026). Bij ons begint een merkgame voor de browser bij €1.950, een casual game bij €4.950 en een 2D-game met levels bij €9.950. Alle prijzen zijn eindprijzen, er komt geen btw bij."),
                 ("Welke games maken jullie?", "Casual 2D-games: puzzels, quizzen, reactie- en arcadespellen. Grote 3D-games of online multiplayer doen we niet."),
                 ("Kan ik geld verdienen met mijn game?", "Ja, we kunnen advertenties of aankopen in de game inbouwen volgens de regels van Apple en Google."),
                 ("Ben ik eigenaar van de game?", "Ja. Na betaling zijn de code en de game van jou.")],
+        "rel": [("merkgame-laten-maken-kerst.html", "Merkgame voor kerst"), ("apps.html", "Onze eigen games"), ("app-laten-maken-kosten.html", "Wat kost een app?")],
     },
     {
         "slug": "ai-automatisering", "kort": "AI & automatisering", "kleur": "#0E7C86",
-        "titel": "AI-chatbot en automatisering laten maken vanaf €395 | Collens Group",
+        "titel": "AI-chatbot en automatisering vanaf €395 | Collens Group",
         "desc": "Bespaar uren per week: automatisering vanaf €395, AI-chatbot op je eigen kennis vanaf €995, AI-assistent met meerdere koppelingen vanaf €1.950.",
-        "h1": "AI en automatisering", "intro": "Laat terugkerend werk vanzelf gaan: mails, offertes, planning, social media en klantvragen. Met AI-tools die je bestaande apps aan elkaar koppelen.",
+        "h1": "AI-chatbot en automatisering laten maken", "intro": "Laat terugkerend werk vanzelf gaan: mails, offertes, planning, social media en klantvragen. Met AI-tools die je bestaande apps aan elkaar koppelen.",
         "markt": ("Een AI-agent met no-code tools zoals Zapier of Make kost in Nederland eenmalig €2.000 tot €8.000.",
                   "https://searchlab.nl/kosten/wat-kost-een-ai-agent-laten-bouwen", "Searchlab, Wat kost een AI-agent laten bouwen (2026)"),
         "pakketten": [
@@ -420,16 +443,27 @@ DIENSTEN = [
         ],
         "extra": [("Extra workflow", "vanaf €195", "Per extra automatisering"),
                   ("Beheer", "€49 / maand", "Monitoring en kleine aanpassingen")],
-        "faq": [("Wat kost een AI-chatbot laten maken?", "Een AI-chatbot die vragen op je website beantwoordt, getraind op je eigen teksten, begint bij ons bij €995 zonder btw en is in 1 week klaar. De kosten van de AI-dienst zelf hangen af van het gebruik en staan vooraf in de offerte."),
-                ("Wat kost AI-automatisering per maand?", "De tools zelf zijn vaak gratis tot enkele tientjes per maand, afhankelijk van het gebruik. Dat staat altijd vooraf in de offerte."),
-                ("Is mijn data veilig?", "We werken met officiële koppelingen, zonder wachtwoorden te delen, en richten alleen in wat nodig is."),
+        "faq": [("Wat kost een AI-chatbot laten maken?", "Een AI-chatbot die vragen op je website beantwoordt, getraind op je eigen teksten, begint bij ons bij €995 (geen btw erbij) en is in 1 week klaar. De kosten van de AI-dienst zelf hangen af van het gebruik en staan vooraf in de offerte."),
+                ("Wat kost AI-automatisering per maand?", "Daarnaast betaal je het gebruik van de AI-dienst en de tools zelf. Bij de meeste kleine bedrijven is dat een paar euro tot enkele tientjes per maand, afhankelijk van het gebruik. We schatten het vooraf en zetten het in de offerte. Beheer door ons is optioneel vanaf €49 per maand."),
+                ("Is mijn data veilig?", "We werken met officiële koppelingen, vragen nooit om je wachtwoorden en richten alleen in wat nodig is. Jij bepaalt welke informatie een chatbot of workflow gebruikt en kunt dat altijd aanpassen."),
+                ("Hoe snel is het klaar?", "Een automatisering in 2–5 dagen, een AI-chatbot in ongeveer 1 week en een AI-assistent in 2–4 weken."),
                 ("Wat kan ik automatiseren?", "Bijna alles wat steeds hetzelfde gaat: aanvragen verwerken, offertes maken, afspraken plannen, social media inplannen en rapportages.")],
+        "secties": [
+            ("Welk pakket past bij jou?",
+             "<ul><li><strong>Automatisering (vanaf €395):</strong> je krijgt steeds hetzelfde formulier, mailtje of overzicht en wilt dat dit vanzelf gaat.</li>"
+             "<li><strong>AI-chatbot (vanaf €995):</strong> klanten stellen steeds dezelfde vragen over openingstijden, prijzen of levertijden. De chatbot beantwoordt ze op basis van jouw eigen teksten en stuurt twijfelgevallen door naar jou. <a href='chatbot-laten-maken.html'>Lees meer over de AI-chatbot</a>.</li>"
+             "<li><strong>AI-assistent (vanaf €1.950):</strong> meerdere workflows en koppelingen met mail, agenda, documenten en CRM, waarbij jij de eindcontrole houdt.</li></ul>"
+             "<p>Niet zeker? Beschrijf kort wat je elke week opnieuw doet, dan zeggen we eerlijk welk pakket past, of dat je het zonder ons kunt oplossen.</p>"),
+            ("Hoe gaat het?",
+             "<ol><li>Je vertelt per mail welk werk steeds terugkomt.</li><li>Je krijgt een gratis concept en een vaste prijs.</li>"
+             "<li>Na akkoord bouwen we het en testen we het samen met jou.</li><li>Daarna gaat het live.</li></ol>")],
+        "rel": [("chatbot-laten-maken.html", "AI-chatbot laten maken"), ("website-laten-maken.html", "Website laten maken"), ("app-laten-maken-kosten.html", "Wat kost een app?")],
     },
 ]
 
 def dienst_pagina(d):
     kaarten = "".join(f'''<article class="pakket{' mid' if i == 1 else ''}"><h3>{e(n)}</h3>
-<div class="prijs">€{f"{p:,}".replace(",", ".")}<small>vanaf, eindprijs zonder btw</small></div>
+<div class="prijs">€{f"{p:,}".replace(",", ".")}<small>vanaf, eindprijs, geen btw erbij</small></div>
 <ul>{''.join(f'<li>{e(x)}</li>' for x in items)}</ul><p class="duur">Klaar in {e(t)}</p></article>'''
         for i, (n, p, t, items) in enumerate(d["pakketten"]))
     extra = "".join(f'<tr><td>{e(n)}<small>{e(s)}</small></td><td>{e(p)}</td></tr>' for n, p, s in d["extra"])
@@ -442,10 +476,13 @@ def dienst_pagina(d):
 {f'<p><a href="{d["voorbeeld"][1]}">{e(d["voorbeeld"][0])}</a></p>' if d.get("voorbeeld") else ""}
 <h2>Vergeleken met de markt</h2><p>{e(tekst)} <span class="bron">Bron: <a href="{url}" rel="nofollow noopener">{e(bron)}</a>.</span></p>
 <h2>Onze pakketten</h2><div class="pakketten">{kaarten}</div>
+<p style="margin-top:20px"><a class="knop geel" href="index.html#contact">Vraag je gratis concept aan</a></p>
 <h2>Extra</h2><table class="lijst">{extra}</table>
-<p class="noot">Alle prijzen zijn eindprijzen: we rekenen geen btw. Externe kosten (zoals domein, tools of store-accounts) staan vooraf in de offerte.</p>
+<p class="noot">Alle prijzen zijn eindprijzen: er komt geen btw bij. Bij &ldquo;vanaf&rdquo; hoort het pakket zoals hierboven beschreven; wijkt jouw project daarvan af, dan krijg je vooraf een vaste prijs op maat. Externe kosten (zoals domein, tools of store-accounts) staan vooraf in de offerte.</p>
+{"".join(f"<h2>{e(h)}</h2>{x}" for h, x in d.get("secties", []))}
 <h2>Veelgestelde vragen</h2>{faq_html(d["faq"])}
 <p style="margin-top:32px"><a class="knop geel" href="index.html#contact">Vraag een vaste prijs aan</a></p>
+{f'<p class="bron" style="margin-top:22px">Zie ook: ' + " · ".join(f'<a href="{h}">{e(t)}</a>' for h, t in d["rel"]) + '</p>' if d.get("rel") else ""}
 </article>''', crumbs=[("Home", "index.html"), (d["kort"], f'{d["slug"]}.html')],
         extra_ld=[{"@type": "Service", "name": d["h1"], "provider": {"@id": "#org"}, "areaServed": ["NL", "BE"], "offers": offers}, faq_ld(d["faq"])])
 
@@ -856,16 +893,16 @@ def build():
 
     # KOSTEN-GIDS
     kosten_faq = [
-        ("Wat kost een simpele app?", "Bij Nederlandse bureaus en freelancers kost een eenvoudige app of MVP volgens kostengidsen €5.000 tot €25.000. Bij Collens Group begint een Basis-app bij €3.150 zonder btw."),
+        ("Wat kost een simpele app?", "Bij Nederlandse bureaus en freelancers kost een eenvoudige app of MVP volgens kostengidsen €5.000 tot €25.000. Bij Collens Group begint een Basis-app bij €3.150 (geen btw erbij)."),
         ("Wat kost een app per jaar aan onderhoud?", "Dat hangt af van hoeveel er na de lancering nog verandert. Bij ons is onderhoud een vast maandbedrag vanaf €85,50, met monitoring, kritieke fixes en updates voor nieuwe iOS- en Android-versies."),
-        ("Wat kost een MVP-app laten maken?", "Bij Collens Group begint een MVP (Basis-pakket, tot 5 schermen) bij €3.150 zonder btw en is hij klaar in 3–5 weken. Accounts, een database of betalingen vallen onder het Standaard-pakket vanaf €6.750."),
+        ("Wat kost een MVP-app laten maken?", "Bij Collens Group begint een MVP (Basis-pakket, tot 5 schermen) bij €3.150 (geen btw erbij) en is hij klaar in 3–5 weken. Accounts, een database of betalingen vallen onder het Standaard-pakket vanaf €6.750."),
         ("Is een app voor iPhone én Android duurder?", "Bij aparte native apps vaak bijna het dubbele. Wij bouwen met React Native, dus één codebase voor beide."),
     ]
     pages.append(page("app-laten-maken-kosten.html", "Wat kost een app laten maken in 2026? | Collens Group",
         "Wat kost een app laten maken in 2026? Marktprijzen in Nederland, alle bijkomende kosten (Apple, Google, hosting, onderhoud) en onze vaste prijzen vanaf €3.150.",
         f'''<article class="tekst breed">
 <h1>Wat kost een app laten maken in 2026?</h1>
-<p class="lead2">Kort antwoord: bij Nederlandse bureaus en freelancers betaal je voor een eenvoudige app meestal €5.000 tot €25.000. Bij Collens Group begint een Basis-app bij €3.150 en een complete app met accounts en database bij €6.750, zonder btw.</p>
+<p class="lead2">Kort antwoord: bij Nederlandse bureaus en freelancers betaal je voor een eenvoudige app meestal €5.000 tot €25.000. Bij Collens Group begint een Basis-app bij €3.150 en een complete app met accounts en database bij €6.750. Alle prijzen zijn eindprijzen, er komt geen btw bij.</p>
 <p class="bijgewerkt">Bijgewerkt op {datetime.date.today().strftime("%d-%m-%Y")}</p>
 <nav class="toc" aria-label="Inhoud"><a href="#markt">Marktprijzen</a> · <a href="#prijzen">Onze prijzen</a> · <a href="#bijkomend">Bijkomende kosten</a> · <a href="#prijsbepalers">Wat bepaalt de prijs</a> · <a href="#besparen">Besparen</a> · <a href="#faq">Vragen</a></nav>
 
@@ -887,6 +924,7 @@ def build():
 
 <h2 id="prijzen">Onze vaste prijzen</h2>
 {PAKKETTEN}
+<p style="margin-top:20px"><a class="knop geel" href="index.html#contact">Vraag je gratis concept aan</a></p>
 
 <h2 id="bijkomend">Welke kosten komen erbij?</h2>
 <p>Dit zijn de kosten die je naast de bouw rechtstreeks betaalt. Ze staan altijd vooraf in onze offerte.</p>
@@ -916,6 +954,7 @@ def build():
 <h2 id="faq">Veelgestelde vragen over app-kosten</h2>
 {faq_html(kosten_faq)}
 <p style="margin-top:32px"><a class="knop geel" href="index.html#contact">Vraag een vaste prijs aan</a></p>
+<p class="bron" style="margin-top:22px">Zie ook: <a href="mvp-app-laten-maken.html">MVP-app laten maken</a> · <a href="app-laten-maken-horeca.html">App voor horeca</a> · <a href="website-laten-maken.html">Website laten maken</a> · <a href="webshop-laten-maken.html">Webshop laten maken</a> · <a href="chatbot-laten-maken.html">AI-chatbot laten maken</a> · <a href="apps.html">Onze eigen apps en games</a></p>
 </article>''', crumbs=[("Home", "index.html"), ("Kosten", "app-laten-maken-kosten.html")],
         extra_ld=[{"@type": "Article", "headline": "Wat kost een app laten maken in 2026?", "dateModified": VANDAAG, "inLanguage": "nl", "author": {"@id": "#org"}, "publisher": {"@id": "#org"}}, faq_ld(kosten_faq)]))
 
@@ -940,7 +979,7 @@ def build():
 <table class="tabel"><tr><th>Onderdeel</th><th>Inbegrepen</th></tr>
 <tr><td>Schermen</td><td>Tot 5</td></tr><tr><td>Navigatie en content</td><td>Eenvoudig en duidelijk</td></tr>
 <tr><td>Ontwerp</td><td>Strak, met standaard componenten</td></tr><tr><td>Platform</td><td>Publicatieklaar voor iOS of Android</td></tr>
-<tr><td>Prijs</td><td>vanaf €3.150, eindprijs zonder btw</td></tr><tr><td>Doorlooptijd</td><td>3 – 5 weken</td></tr></table>
+<tr><td>Prijs</td><td>vanaf €3.150, eindprijs, geen btw erbij</td></tr><tr><td>Doorlooptijd</td><td>3 – 5 weken</td></tr></table>
 <p>Accounts, een database of betalingen nodig? Dan past het <a href="app-laten-maken-kosten.html">Standaard-pakket vanaf €6.750</a> beter.</p>
 
 <h2>Zo verloopt het</h2>

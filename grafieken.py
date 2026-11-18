@@ -38,7 +38,7 @@ def prijsgrafiek(titel, markt, ons, maxi, bron_tekst, bron_url):
     return (f'<figure class="grafiek"><figcaption class="g-titel">{titel}</figcaption>{rijen}'
             f'<div class="g-as" aria-hidden="true">{ticks}</div>'
             f'<p class="g-bron">Bron marktprijzen: <a href="{bron_url}" rel="nofollow noopener">{bron_tekst}</a>. '
-            f'Onze prijzen zijn eindprijzen zonder btw.</p></figure>')
+            f'Onze prijzen zijn eindprijzen: er komt geen btw bij.</p></figure>')
 
 
 def tijdgrafiek(titel, rijen, maxi, eenheid="weken", noot=""):
