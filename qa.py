@@ -56,6 +56,42 @@ for f in sorted(pages):
         zicht=re.sub(r'<(script|style)[^>]*>.*?</\1>','',src,flags=re.S)
         for nl in ("Vertel wat je wilt laten maken","Vertel over je app-idee","Een paar zinnen zijn genoeg","Verstuur aanvraag","Foto's kiezen","Voorbeelden van je smaak","Weet ik nog niet","Vaste prijs vooraf","Wat wil je laten maken","Bedrijf (optioneel)",">Je idee<"):
             if nl in zicht: fouten.append(f"{f}: Nederlandse tekst op {lm.group(1)}-pagina: '{nl}'")
+# Generiek (19-11): elke zichtbare tekst uit het NL-contactformulier die letterlijk op een anderstalig formulier staat = vergeten vertaling.
+# Vangt ook NIEUWE NL-teksten die in geen enkele vervanglijst staan. Toegestaan: woorden die in die taal hetzelfde zijn en technische waarden.
+from html.parser import HTMLParser as _HP
+class _TX(_HP):
+    def __init__(s): super().__init__(); s.t=set(); s.skip=0
+    def handle_starttag(s,t,a):
+        if t in("script","style"): s.skip+=1
+        for k,v in a:
+            if k in("placeholder","aria-label","title","alt") and v and v.strip(): s.t.add(" ".join(v.split()))
+    def handle_endtag(s,t):
+        if t in("script","style"): s.skip-=1
+    def handle_data(s,d):
+        if not s.skip and d.strip(): s.t.add(" ".join(d.split()))
+def _form_teksten(src):
+    m=re.search(r'<section id="contact".*?</section>',src,re.S)
+    if not m: return None
+    p=_TX(); p.feed(m.group(0)); out=set(p.t)
+    for j in re.findall(r'<script[^>]*>(.*?)</script>',src,re.S):
+        if 'getElementById("aanvraag")' not in j: continue
+        j=re.sub(r'/\*.*?\*/','',j,flags=re.S)
+        for q in ('"',"'","`"):
+            for x in re.findall(q+r'([^'+q+r'\\\n;{}=<>]{6,})'+q,j):
+                if re.search(r'[A-Za-zÀ-ÿ]{3,} [A-Za-zÀ-ÿ]{2,}',x) or x.rstrip().endswith((".",":","…","?")): out.add(x.strip())
+    return out
+_ZELFDE={"App","Apps","Game","Games","Website","Websites","E-mail","Email","Niet invullen","knop geel","mailto:","melding aan","Collens Group"}
+_nl_src=os.path.join(D,"index.html")
+_nl=_form_teksten(open(_nl_src,encoding="utf-8").read()) if os.path.exists(_nl_src) else None
+if not _nl: fouten.append("index.html: NL-contactformulier niet gevonden (formuliercheck kan niet draaien)")
+else:
+    for f in sorted(pages):
+        src=open(os.path.join(D,f),encoding="utf-8").read()
+        lm=re.search(r'<html[^>]*lang="([a-z]+)',src)
+        if not lm or lm.group(1)=="nl": continue
+        t=_form_teksten(src)
+        if t is None: continue
+        for x in sorted((t&_nl)-_ZELFDE): fouten.append(f"{f}: formuliertekst niet vertaald ({lm.group(1)}): '{x[:60]}'")
 for x in waarsch: print("LET OP:",x)
 for x in fouten: print("FOUT:",x)
 print(f"{len(pages)} pagina's gecontroleerd, {len(fouten)} fouten, {len(waarsch)} aandachtspunten")
