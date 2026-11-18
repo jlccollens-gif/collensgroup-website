@@ -2,10 +2,20 @@
 Bron: Cloudflare Web Analytics (GraphQL, dataset rumPageloadEventsAdaptiveGroups).
 Token alleen via omgeving (CF_ANALYTICS_TOKEN, recht Account Analytics: Read).
 Schrijft rapporten/concept-bezoeken.json en .md in de huidige map."""
-import json, os, sys, urllib.request, urllib.error, datetime as dt
+import json, os, re, sys, urllib.request, urllib.error, datetime as dt
 
 ACCOUNT = os.environ.get("CF_ACCOUNT_ID", "5c0e89673825539df27c9e1c99219e8b")
-TOKEN = os.environ.get("CF_ANALYTICS_TOKEN", "").strip()
+def _schoon(ruw):
+    """Haalt de token uit een geplakte waarde (bv. met 'Bearer', aanhalingstekens, regeleinden of een hele curl-regel)."""
+    t = re.sub(r"\s", "", ruw or "")
+    m = re.search(r"cfut_[A-Za-z0-9_\-]+", t)
+    if m:
+        return m.group(0)
+    t = re.sub(r"^.*Bearer", "", t).strip("\"'")
+    return t
+
+
+TOKEN = _schoon(os.environ.get("CF_ANALYTICS_TOKEN", ""))
 DAGEN = int(os.environ.get("DAGEN", "7"))
 
 Q = """query($acc: String!, $since: Time!, $until: Time!) {
