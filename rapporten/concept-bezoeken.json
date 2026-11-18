@@ -1,9 +1,162 @@
 {
- "fout": "Authentication failed (status: 400)",
- "gemaakt": "2026-11-18T04:17:17Z",
- "per_concept": {},
- "token_check": "HTTP 400: {\"success\":false,\"errors\":[{\"code\":6003,\"message\":\"Invalid request headers\",\"error_chain\":[{\"code\":6111,\"message\":\"Invalid format for Authorization header\"}]}],\"messages\":[],\"result\":null}",
- "token_lengte": 149,
- "tot": "2026-11-18T04:17:17Z",
- "van": "2026-11-11T04:17:17Z"
+ "fout": null,
+ "gemaakt": "2026-11-18T04:18:53Z",
+ "per_concept": {
+  "atelier-ombre": {
+   "apparaten": {
+    "desktop": 11,
+    "mobile": 8
+   },
+   "bezoeken": 16,
+   "dagen": {
+    "2026-11-16": 7,
+    "2026-11-17": 12
+   },
+   "landen": {
+    "IE": 4,
+    "NL": 7,
+    "TH": 8
+   },
+   "verwijzers": {
+    "collensgroup.com": 3,
+    "www.google.com": 1
+   },
+   "weergaven": 19
+  },
+  "beurtvaartadres": {
+   "apparaten": {
+    "mobile": 1
+   },
+   "bezoeken": 1,
+   "dagen": {
+    "2026-11-15": 1
+   },
+   "landen": {
+    "TH": 1
+   },
+   "verwijzers": {
+    "www.google.com": 1
+   },
+   "weergaven": 1
+  },
+  "boone": {
+   "apparaten": {
+    "mobile": 23
+   },
+   "bezoeken": 8,
+   "dagen": {
+    "2026-11-15": 23
+   },
+   "landen": {
+    "TH": 23
+   },
+   "verwijzers": {
+    "collensgroup.com": 15,
+    "www.google.com": 8
+   },
+   "weergaven": 23
+  },
+  "boxlines": {
+   "apparaten": {
+    "mobile": 16
+   },
+   "bezoeken": 2,
+   "dagen": {
+    "2026-11-15": 16
+   },
+   "landen": {
+    "TH": 16
+   },
+   "verwijzers": {
+    "collensgroup.com": 14,
+    "www.google.com": 2
+   },
+   "weergaven": 16
+  },
+  "br-dakwerken": {
+   "apparaten": {
+    "mobile": 19
+   },
+   "bezoeken": 7,
+   "dagen": {
+    "2026-11-15": 19
+   },
+   "landen": {
+    "TH": 19
+   },
+   "verwijzers": {
+    "collensgroup.com": 12,
+    "www.google.com": 7
+   },
+   "weergaven": 19
+  },
+  "dutch-freight-services": {
+   "apparaten": {
+    "mobile": 4
+   },
+   "bezoeken": 2,
+   "dagen": {
+    "2026-11-15": 4
+   },
+   "landen": {
+    "TH": 4
+   },
+   "verwijzers": {
+    "collensgroup.com": 2,
+    "www.google.com": 2
+   },
+   "weergaven": 4
+  },
+  "euro-index": {
+   "apparaten": {
+    "desktop": 5
+   },
+   "bezoeken": 5,
+   "dagen": {
+    "2026-11-17": 5
+   },
+   "landen": {
+    "IE": 5
+   },
+   "verwijzers": {},
+   "weergaven": 5
+  },
+  "giraffe-removals": {
+   "apparaten": {
+    "mobile": 4
+   },
+   "bezoeken": 1,
+   "dagen": {
+    "2026-11-17": 4
+   },
+   "landen": {
+    "AU": 4
+   },
+   "verwijzers": {
+    "collensgroup.com": 3,
+    "www.google.com": 1
+   },
+   "weergaven": 4
+  },
+  "suismuis": {
+   "apparaten": {
+    "mobile": 25
+   },
+   "bezoeken": 8,
+   "dagen": {
+    "2026-11-16": 18,
+    "2026-11-18": 7
+   },
+   "landen": {
+    "TH": 25
+   },
+   "verwijzers": {
+    "collensgroup.com": 17,
+    "www.google.com": 4
+   },
+   "weergaven": 25
+  }
+ },
+ "tot": "2026-11-18T04:18:53Z",
+ "van": "2026-11-11T04:18:53Z"
 }
