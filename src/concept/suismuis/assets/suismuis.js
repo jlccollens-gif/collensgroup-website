@@ -33,7 +33,9 @@
     { id: "schilderij-boog", n: "Schilderij Boog", c: "wonen", s: "schilderijen", p: 129.00, img: "p-schilderij-3", m: "Canvas in eiken lijst", d: "50 × 70 cm", t: "Een zachte boog en een ronde vorm in crème en taupe. Mooi in een hal, slaapkamer of als paar naast elkaar." },
     { id: "kruk-tronc", n: "Kruk Tronc", c: "meubels", s: "bijzettafels", p: 129.00, img: "p-kruk", m: "Massief walnotenhout", d: "H 60 × Ø 30 cm", t: "Een slanke houten kruk die ook dienstdoet als bijzettafel of plantentafel." }
   ];
-  P = P.concat(window.SUIS_EXTRA || []);
+  /* Kim 18-11: voorbeeldproducten en de producten van haar schermfoto's eruit */
+  var WEG = [110, 113, 117, 118, 125, 134, 151, 153];
+  P = (window.SUIS_EXTRA || []).filter(function (p) { return WEG.indexOf(p.nr) < 0; });
   var GRATIS = 75, VERZEND = 5.95, CADEAU = 3.95;
   var euro = function (x) { return "€ " + x.toFixed(2).replace(".", ","); };
   var foto = function (p, groot) { if (p.u) return p.u[0]; if (p.f) return "img/" + p.img + ".jpg"; return "img/" + p.img + (groot ? "" : "-m") + ".jpg"; };
@@ -171,7 +173,7 @@
   function vanMat(p, k) { return MAT[k][0].test(((p.m || "") + " " + p.n).toLowerCase()); }
   function telling(n) { return n === 1 ? "1 stuk" : n + " stukken"; }
   if (pag === "home") {
-    $("#nieuw-grid").innerHTML = ["vaas-orbit", "tafellamp-lune", "plaid-cosy", "kandelaar-antique"].map(function (id) { return kaart(vind(id)); }).join("");
+    $("#nieuw-grid").innerHTML = [184, 121, 141, 102].map(function (nr) { return P.filter(function (p) { return p.nr === nr; })[0]; }).filter(Boolean).map(kaart).join("");
   }
 
   if (pag === "shop") {
@@ -338,7 +340,7 @@
     };
     tb.addEventListener("input", reken); reken();
     var stappen = ["Betaald", "Doorgestuurd naar leverancier", "Verzonden", "Bezorgd"];
-    var orders = [["SM-1043", "vazenset-blanc", 3], ["SM-1042", "plaid-cosy", 2], ["SM-1041", "kandelaar-antique", 1], ["SM-1040", "schaal-terra", 0]];
+    var orders = [["SM-1043", 184, 3], ["SM-1042", 141, 2], ["SM-1041", 121, 1], ["SM-1040", 102, 0]].map(function (o) { var q = P.filter(function (p) { return p.nr === o[1]; })[0]; return [o[0], q ? q.id : "", o[2]]; }).filter(function (o) { return o[1]; });
     $("#orders").innerHTML = orders.map(function (o) {
       var p = vind(o[1]);
       return '<div class="order"><div><b>' + o[0] + '</b><span>' + esc(p.n) + ' · ' + euro(p.p) + '</span></div><ol class="statusbalk">' +

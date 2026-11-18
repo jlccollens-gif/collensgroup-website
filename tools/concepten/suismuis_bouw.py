@@ -135,8 +135,9 @@ def bouw():
     stip_html = "".join(f'<button class="stip" type="button" style="left:{x}%;top:{y}%" aria-controls="{i}" aria-expanded="false" aria-label="Bekijk {n}"></button>'
                         f'<a class="stip-kaart" id="{i}" href="product.html?p={pid}" style="left:{x}%;top:{y}%"><img src="img/{img}.jpg" alt=""><span><b>{n}</b>{pr} · Bekijk</span></a>'
                         for i, x, y, pid, img, n, pr in stippen)
-    stip_html = "".join(f'<a class="pil{" links" if x > 70 else ""}" href="product.html?p={pid}" style="left:{x}%;top:{y}%"><i aria-hidden="true"></i><span><b>{n}</b>{pr}</span></a>'
-                        for i, x, y, pid, img, n, pr in stippen)
+    pillen = [(77, 24, "shop.html?cat=wonen", "Wonen & decoratie", "Bekijk"), (82, 62, "shop.html?cat=textiel&sub=plaids", "Plaids", "Bekijk"), (93, 50, "shop.html?cat=textiel&sub=kussenhoezen", "Kussenhoezen", "Bekijk")]
+    stip_html = "".join(f'<a class="pil{" links" if x > 70 else ""}" href="{h}" style="left:{x}%;top:{y}%"><i aria-hidden="true"></i><span><b>{n}</b>{pr}</span></a>'
+                        for x, y, h, n, pr in pillen)
     tak = '<svg class="tak" viewBox="0 0 220 420" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M120 418C116 330 104 250 70 170 52 128 40 80 44 14"/><path d="M98 300c-26-8-46-26-56-52M92 262c22-16 46-22 74-18M80 214c-24-6-40-22-50-44M72 176c18-18 40-28 66-28M60 132c-20-8-32-24-38-44M54 100c14-16 32-24 54-24M48 60c-12-10-18-24-18-38"/></g><g fill="currentColor" opacity=".55"><ellipse cx="40" cy="246" rx="9" ry="4" transform="rotate(-50 40 246)"/><ellipse cx="168" cy="244" rx="9" ry="4" transform="rotate(10 168 244)"/><ellipse cx="28" cy="168" rx="8" ry="4" transform="rotate(-60 28 168)"/><ellipse cx="140" cy="148" rx="8" ry="4"/><ellipse cx="20" cy="88" rx="7" ry="3.5" transform="rotate(-70 20 88)"/><ellipse cx="110" cy="76" rx="7" ry="3.5"/><ellipse cx="30" cy="20" rx="6" ry="3" transform="rotate(-80 30 20)"/></g></svg>'
     pagina("index.html", "Suismuis Home – warm, stijlvol, tijdloos wonen (concept)", "home", "home", f'''
 <div class="voorpagina" id="look">
@@ -159,7 +160,7 @@ def bouw():
  <img src="img/s-verhaal.jpg" alt="Bank met zachte kussens, een houten bijzettafel en een vaas met bloemen" loading="lazy" width="1800" height="1350">
  <div class="verhaal-tekst"><span class="klein">Het Suismuis-gevoel</span><h2>Warm. Stijlvol. Tijdloos.</h2>
   <p>Bij Suismuis Home geloven we in de schoonheid van eenvoud. Onze collectie brengt warmte, stijl en rust in elk huis: linnen, hout, keramiek en zacht licht.</p>
-  <div><a class="knop" href="over.html">Over Suismuis <span aria-hidden="true">→</span></a></div>{tak}</div>
+  <div><a class="knop" href="over.html">Over Suismuis <span aria-hidden="true">→</span></a></div></div>
 </section>
 {ZEKER}
 <section><div class="wrap">
