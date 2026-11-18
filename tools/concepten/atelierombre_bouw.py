@@ -18,9 +18,7 @@ SVG = {
 }
 
 
-MERKEN = [("ptmd", "PTMD", "Nederlands woonmerk met een eigen ontwerpstudio, sinds 1992. Ruw, gedurfd en verfijnd: beelden en wandpanelen met karakter."),
-          ("present-time", "Present Time", "Ontwerpmerk voor woonaccessoires en design-objecten: speels, grafisch en betaalbaar."),
-          ("de-wanddecoratie", "De Wanddecoratie", "Nederlandse maker van wanddecoratie op canvas, gespannen op frames van FSC- en PEFC-gecertificeerd hout.")]
+MERKEN = []  # merken offline tot er schriftelijk akkoord is (besluit eigenaar 18-11)
 SOORTEN = [("schilderijen", "Schilderijen", "W", "schilderijen", "Originele werken op doek en papier, van verstild wit tot uitgesproken kleur.", "w-relief-i"),
            ("beelden-en-objecten", "Beelden & objecten", "W", "beelden", "Brons, steen en porselein. Kleine oplages en unica voor kast, sokkel of tafel.", "w-danser"),
            ("vondsten", "Vondsten", "W", "vondsten", "Gevonden schatten met een verhaal: studiokeramiek en beelden uit privécollecties.", "w-beer"),
@@ -29,6 +27,13 @@ SOORTEN = [("schilderijen", "Schilderijen", "W", "schilderijen", "Originele werk
 
 
 def lijst(bron, vast="", noot=""):
+    if bron == "H":
+        return '''<section class="lijst-sectie"><div class="wrap"><div class="opbouw">
+ <h2>De collectie is in opbouw</h2>
+ <p>We selecteren op dit moment de ontwerpmerken voor Huis &amp; Beeld. Alleen merken die ons officieel als verkooppunt erkennen komen in de winkel, zodat je altijd het origineel koopt.</p>
+ <p>Wil je als eerste weten wanneer de collectie online staat? Laat je e-mailadres achter via de nieuwsbrief onderaan de pagina.</p>
+ <a class="knop" href="collectie.html">Bekijk intussen de Galerie</a>
+</div></div></section>'''
     kl = "werken" if bron == "W" else "dingen"
     uitleg = '<p class="schaaluitleg"><span class="a4" aria-hidden="true"></span>Elk product staat op schaal naast een A4-vel (30 cm), zodat je direct ziet hoe groot het is.</p>' if bron == "H" else ""
     return f'''<section class="lijst-sectie"><div class="wrap">
@@ -341,11 +346,7 @@ def bouw():
     # ---------- huis & beeld ----------
     pagina("huis.html", "Huis & Beeld | Atelier Ombre (concept)", "lijst", "huis",
            paginakop("Huis &amp; Beeld", "Design-beelden en wandobjecten van Nederlandse ontwerpmerken. Goede kwaliteit voor een normale prijs, rechtstreeks uit het magazijn van de maker.", ["<span>Huis &amp; Beeld</span>"]) + '''
-''' + lijst("H", "", "Echte producten van PTMD, Present Time en De Wanddecoratie. Prijzen zijn een voorstel; de definitieve prijs volgt zodra de inkoopprijs bekend is. Productfoto's van de merken komen erbij na aansluiting als verkooppunt.") + '''
-<section id="merken" style="background:var(--wit)"><div class="wrap">
- <div class="sectiekop"><div><h2>Onze merken</h2><p>Ontwerpmerken met eigen collecties. Geen namaak, altijd het origineel.</p></div></div>
- <div class="merken">''' + "".join(f'<a class="merk" href="merk-{sl}.html"><b>{n}</b><span>{t}</span><span class="link">Bekijk de collectie</span></a>' for sl, n, t in MERKEN) + '''</div>
-</div></section>
+''' + lijst("H") + '''
 <section class="belofte-huis"><div class="wrap"><ul>
  <li><b>Ontwerpmerken uit Nederland</b>Eigen ontwerpen, geen namaak.</li>
  <li><b>Snel in huis</b>Rechtstreeks uit het magazijn van de maker.</li>
@@ -394,8 +395,7 @@ def bouw():
 <section><div class="wrap">
  <div class="sectiekop"><div><h2>Huis &amp; Beeld: leveranciers</h2><p>Waar elk product vandaan komt en hoe we het inkopen. Alleen merken met eigen ontwerpen.</p></div></div>
  <div class="modellen">
-  <div><h3>PTMD</h3><p>Nederlands merk met eigen ontwerpstudio. Levert via Droppery rechtstreeks aan de klant van de webshop. Droppery begint bij circa $ 46 per maand.</p></div>
-  <div><h3>Present Time en De Wanddecoratie</h3><p>Present Time: design-objecten, groothandel navragen. De Wanddecoratie: Nederlandse maker van canvas met FSC/PEFC-hout, samenwerking navragen.</p></div>
+  <div><h3>Nog geen merken</h3><p>Merken pas tonen na schriftelijk akkoord van het merk (verkooppunt-erkenning, fotorecht). Aanvragen lopen.</p></div>
  </div>
  <div class="tabelwrap" style="margin-top:28px"><table class="marge" id="huis-tabel"><thead><tr><th>Product</th><th>Merk</th><th>Onze prijs</th><th>Inkoop via</th></tr></thead><tbody></tbody></table></div>
  <p class="noot">Inkoopprijzen krijg je pas met een account bij de leverancier. Daarom staat de marge hier nog niet; die rekenen we uit zodra de prijslijsten binnen zijn.</p>

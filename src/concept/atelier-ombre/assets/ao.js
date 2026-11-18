@@ -26,15 +26,9 @@
   ];
 
   /* Huis & Beeld: echte producten van ontwerpmerken. p = verkoopprijs */
-  var H = [
-    { id: "ptmd-vrouw", n: "Beeld Vrouw, zwart", merk: "PTMD", c: "beelden", p: 69, b: 25, h: 90, d: "H 90 × B 25 × D 27 cm", mat: "Cement, diepzwart", kleur: "#2A2A2C", r: "p" },
-    { id: "pt-imagine", n: "Figuur Imagine, zwart", merk: "Present Time", c: "beelden", p: 24.95, b: 12.5, h: 23.5, d: "H 23,5 × B 12,5 cm", mat: "Polyresin", kleur: "#26272A", r: "g" },
-    { id: "ptmd-darina", n: "Wandpaneel Darina, grote golf brons", merk: "PTMD", c: "wand", p: 159, b: 120, h: 120, d: "120 × 120 cm", mat: "Wandpaneel met golfmotief, bronskleur", kleur: "#8C6A45", r: "p" },
-    { id: "ptmd-salima", n: "Wandpaneel Salima, gesneden bloem", merk: "PTMD", c: "wand", p: 135, b: 90, h: 90, d: "90 × 90 cm", mat: "Wandpaneel, gesneden bloemmotief", kleur: "#CFC6B6", r: "p" },
-    { id: "canvas-warme-tinten", n: "Canvas Abstracte vormen, warme tinten", merk: "De Wanddecoratie", c: "wand", p: 84.95, b: 80, h: 120, d: "80 × 120 cm", mat: "Canvas op frame van FSC/PEFC-hout, 1,8 cm", kleur: "#C98E5E", r: "w" }
-  ];
-  var TINT = {"ptmd-vrouw": "zwart", "pt-imagine": "zwart", "ptmd-darina": "messing", "ptmd-salima": "naturel", "canvas-warme-tinten": "aarde"};
-  var MERKSLUG = { "PTMD": "ptmd", "Present Time": "present-time", "De Wanddecoratie": "de-wanddecoratie" };
+  var H = [];
+  var TINT = {};
+  var MERKSLUG = {};
   H.forEach(function (x) { x.huis = 1; x.ms = MERKSLUG[x.merk]; x.tint = TINT[x.id]; });
   var ROUTE = { p: "Droppery (dropshipping)", g: "Groothandel, navragen", w: "Rechtstreeks, navragen" };
   var API = "https://eyrfizayagcwaxbxyeuh.supabase.co/functions/v1/ombre-order";

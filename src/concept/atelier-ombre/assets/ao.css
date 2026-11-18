@@ -417,3 +417,8 @@ a,button,.knop{transition:color .35s ease,background-color .35s ease,border-colo
 .schaaluitleg .a4{width:9px;height:13px}
 @media (max-width:700px){.fveld select{width:100%}}
 .schaaluitleg .a4{display:none}
+/* Huis & Beeld in opbouw (18-11) */
+.opbouw{max-width:640px;padding:56px 0 72px}
+.opbouw h2{font-family:var(--display);font-weight:400;font-size:clamp(28px,3.4vw,40px);margin:0 0 18px}
+.opbouw p{color:var(--steen);font-size:16.5px;line-height:1.7;margin:0 0 14px}
+.opbouw .knop{margin-top:14px}
