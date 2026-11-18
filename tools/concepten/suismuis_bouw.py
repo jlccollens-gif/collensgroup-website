@@ -252,7 +252,6 @@ def bouw():
  <div><span class="klein">Ons verhaal</span><h2 style="font-size:44px;margin:12px 0 18px">De schoonheid van eenvoud</h2>
   <p>Suismuis Home is ontstaan uit liefde voor interieurs die tot rust brengen. Geen drukte, geen trends die na een seizoen weer verdwijnen, maar stukken die je jarenlang blijft waarderen.</p>
   <p>We kiezen elk product met zorg: natuurlijke materialen zoals linnen, hout, keramiek en steen, in zachte tinten van crème tot espresso. Zo past alles bij elkaar en bouw je stap voor stap een thuis dat helemaal van jou is.</p>
-  <p class="noot">Tekst ter illustratie: bij lancering schrijven we samen jouw eigen verhaal.</p>
   <a class="knop" href="shop.html">Ontdek de collectie</a></div>
 </div>''' + ZEKER)
 
@@ -265,7 +264,7 @@ def bouw():
            paginakop("Journal", "Stylingtips, onderhoud en inspiratie voor een thuis vol rust.", ["<span>Journal</span>"]) + f'<div class="wrap">{stukken}</div>')
 
     # ---------- klantenservice ----------
-    faq = [("Wanneer is mijn bestelling in huis?", "Binnen 2–4 werkdagen, in Nederland en België. Zodra je pakket onderweg is, krijg je een track-and-tracecode per e-mail."),
+    faq = [("Wanneer is mijn bestelling in huis?", "Binnen 8–15 werkdagen, in Nederland en België. Zodra je pakket onderweg is, krijg je een track-and-tracecode per e-mail."),
            ("Wat kost verzending?", "Verzending kost € 5,95. Vanaf € 75 verzenden we gratis binnen Nederland en België."),
            ("Kan ik mijn bestelling retourneren?", "Ja, je hebt 14 dagen bedenktijd na ontvangst. Gebruik de knop Bestelling herroepen hierboven; je krijgt het aankoopbedrag binnen 14 dagen terug."),
            ("Kan ik een product als cadeau laten inpakken?", "Ja, bij het afrekenen kies je voor cadeauverpakking met een handgeschreven kaartje (+ € 3,95)."),
@@ -275,7 +274,7 @@ def bouw():
     pagina("klantenservice.html", "Klantenservice | Suismuis Home (concept)", "service", "service",
            paginakop("Klantenservice", "We helpen je graag. Hier vind je alles over bestellen, verzenden en retourneren.", ["<span>Klantenservice</span>"]) + f'''
 <div class="wrap"><div class="tekst">
- <h2 id="verzenden">Verzenden</h2><ul><li>Je bestelling is binnen 2–4 werkdagen in huis.</li><li>We leveren in Nederland en België.</li><li>Verzendkosten € 5,95, gratis vanaf € 75.</li><li>Je ontvangt een track-and-tracecode per e-mail.</li></ul>
+ <h2 id="verzenden">Verzenden</h2><ul><li>Je bestelling is binnen 8–15 werkdagen in huis.</li><li>We leveren in Nederland en België.</li><li>Verzendkosten € 5,95, gratis vanaf € 75.</li><li>Je ontvangt een track-and-tracecode per e-mail.</li></ul>
  <h2 id="retour">Retourneren</h2><p>Niet helemaal blij? Je hebt 14 dagen bedenktijd na ontvangst. Stuur het product ongebruikt en in de originele verpakking terug. Meld je retour aan met de knop <a class="link" href="#herroepen">Bestelling herroepen</a>; binnen 14 dagen na ontvangst van je retour storten we het bedrag terug.</p>
  <h2 id="herroepen">Bestelling herroepen</h2><p>Je kunt je bestelling binnen 14 dagen na ontvangst zonder opgaaf van reden herroepen. Vul je gegevens in en druk op de knop; je krijgt direct een ontvangstbevestiging per e-mail.</p>
  <form class="form" data-bevestig="Je herroeping is ontvangen. Je krijgt een bevestiging per e-mail met de retourinstructies." novalidate>
@@ -322,7 +321,7 @@ def bouw():
  <p class="noot">De klant ziet alleen Suismuis Home. Jij beheert producten, prijzen en klantcontact; de leverancier doet voorraad en verzending.</p>
 </div></section>
 <section class="nieuw"><div class="wrap">
- <div class="sectiekop"><div><h2>Producten en marge</h2><p>Pas een verkoopprijs aan en zie direct je winst per verkoop. Inkoop- en verzendprijzen zijn voorbeelden.</p></div></div>
+ <div class="sectiekop"><div><h2>Producten en marge</h2><p>Pas een verkoopprijs aan en zie direct je winst per verkoop. Inkoop- en verzendbedragen zijn rekenvoorbeelden, geen echte leveranciersprijzen.</p></div></div>
  <div class="kpi"><div><b id="gem-marge"></b><span>Gemiddelde marge</span></div><div><b>16</b><span>Producten in de shop</span></div><div><b>€ 0,29</b><span>Betaalkosten per bestelling (voorbeeld)</span></div></div>
  <div class="tabelwrap"><table class="marge" id="marge-tabel"><thead><tr><th>Product</th><th>Inkoop</th><th>Verzending leverancier</th><th>Verkoopprijs</th><th>Winst per stuk</th><th>Marge</th></tr></thead><tbody></tbody></table></div>
 </div></section>

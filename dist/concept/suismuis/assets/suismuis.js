@@ -13,25 +13,25 @@
   TAX.forEach(function (t) { CATS[t[0]] = t[1]; SUBS[t[0]] = t[2]; t[2].forEach(function (s) { SUBCAT[s[0]] = [t[0], s[1]]; }); });
   var OUD = { decoratie: "wonen", kaarsen: "verlichting", kussens: "textiel", accessoires: "wonen" };
   var P = [
-    { id: "vaas-olea", ink: 9.5, lv: 2.95, n: "Vaas Olea", c: "vazen", s: "stenen-vazen", p: 24.95, img: "p-vaas-olea", l: "Nieuw", m: "Steengoed, mat geglazuurd", d: "H 14 × Ø 7 cm", t: "Een klein, rank vaasje met een zachte, zandkleurige glazuur. Mooi met een enkele droogbloem of als groepje van drie." },
-    { id: "vaas-orbit", ink: 19.9, lv: 3.95, n: "Vaas Orbit", c: "vazen", s: "stenen-vazen", p: 49.95, img: "p-vaas-orbit", m: "Keramiek, mat crème", d: "H 25 × B 24 cm", t: "Een sculpturale ringvaas die ook zonder bloemen een statement is. Met een smalle opening voor een paar takjes." },
-    { id: "droogbloemen-champagne", ink: 12.4, lv: 3.95, n: "Droogbloemen Champagne", c: "wonen", s: "droogbloemen", p: 34.95, img: "p-droogbloemen", m: "Gedroogde bloemen en pampas", d: "Lengte ca. 60 cm", t: "Een luchtige bundel in champagne- en zandtinten die maandenlang mooi blijft. Zonder vaas geleverd." },
-    { id: "vazenset-blanc", ink: 28.0, lv: 4.95, n: "Vazenset Blanc", c: "vazen", s: "stenen-vazen", p: 69.95, img: "p-vazenset", l: "Set van 3", m: "Keramiek, mat wit", d: "H 12, 22 en 30 cm", t: "Drie vazen in verschillende hoogtes die samen een rustige, gelaagde compositie vormen." },
-    { id: "kandelaar-antique", ink: 31.5, lv: 4.95, n: "Kandelaar Antique", c: "verlichting", s: "kaarsen", p: 79.00, img: "p-kandelaar", l: "Bestseller", m: "Messing, handgemaakt", d: "H 38 × B 30 cm", t: "Een klassieke driearmige kandelaar met een warme, licht verweerde messing afwerking. Voor dinerkaarsen tot Ø 2,2 cm." },
-    { id: "windlichtjes-clair", ink: 12.9, lv: 3.95, n: "Windlichtjes Clair", c: "verlichting", s: "kaarsen", p: 34.95, img: "p-windlichtjes", l: "Set van 4", m: "Helder glas", d: "H 7 × Ø 6 cm", t: "Vier kleine windlichtjes voor theelichtjes. Prachtig in een rij op de eettafel of vensterbank." },
-    { id: "geurkaarsen-marmer", ink: 23.0, lv: 4.95, n: "Geurkaarsen op marmer", c: "verlichting", s: "kaarsen", p: 59.95, img: "p-kaarsen-dienblad", m: "Sojawas, marmeren dienblad", d: "Dienblad 30 × 15 cm", t: "Drie geurkaarsen met een zachte geur van vijg en ceder, geleverd op een marmeren dienblad." },
-    { id: "kussenhoes-linnen", ink: 14.8, lv: 2.95, n: "Kussenhoes Linnen", c: "textiel", s: "kussenhoezen", p: 39.95, img: "p-kussens-linnen", m: "100 % stonewashed linnen", d: "50 × 50 cm, zonder binnenkussen", t: "Een zachte linnen kussenhoes in warme aardetinten met een verborgen rits. Wasbaar op 30 °C." },
-    { id: "tafellamp-lune", ink: 54.0, lv: 6.95, n: "Tafellamp Lune", c: "verlichting", s: "lampen", p: 129.00, img: "p-tafellamp", m: "Metalen voet, linnen kap", d: "H 52 × Ø 35 cm", t: "Een elegante tafellamp met een linnen kap die het licht warm en zacht verspreidt. Fitting E27, lamp niet inbegrepen." },
-    { id: "hanglamp-sol", ink: 58.0, lv: 6.95, n: "Hanglamp Sol", c: "verlichting", s: "lampen", p: 149.00, img: "p-hanglamp", m: "Handgevlochten riet", d: "Ø 45 cm", t: "Een gevlochten kap die een mooi schaduwspel op muur en plafond geeft. Inclusief textielsnoer van 1,5 m." },
-    { id: "plaid-cosy", ink: 34.5, lv: 4.95, n: "Plaid Cosy", c: "textiel", s: "plaids", p: 89.95, img: "p-plaid-cosy", l: "Nieuw", m: "Wolmix, grof gebreid", d: "130 × 170 cm", t: "Een grof gebreide plaid in warme naturel tinten, heerlijk voor koude avonden op de bank." },
-    { id: "plaid-teddy", ink: 27.9, lv: 4.95, n: "Plaid Teddy", c: "textiel", s: "plaids", p: 74.95, img: "p-plaid-teddy", m: "Zachte teddystof", d: "150 × 200 cm", t: "Een royale, wollig zachte plaid in crème die je bank direct een warme uitstraling geeft." },
-    { id: "beddengoed-linnen", ink: 66.0, lv: 5.95, n: "Linnen beddengoed", c: "textiel", s: "beddengoed", p: 159.00, img: "p-beddengoed", m: "100 % stonewashed linnen", d: "Dekbedovertrek 240 × 220 cm + 2 slopen", t: "Zacht gewassen linnen dat met elke wasbeurt mooier wordt. Ademend in de zomer, warm in de winter." },
-    { id: "schaal-terra", ink: 10.9, lv: 2.95, n: "Schaal Terra", c: "tafel", s: "servies", p: 29.95, img: "p-schaal", m: "Steengoed, handgevormd", d: "Ø 16 × H 8 cm", t: "Een handgevormde schaal met een zachte, organische rand. Voor sieraden, sleutels of gewoon als object." },
-    { id: "objet-pierre", ink: 16.5, lv: 3.95, n: "Objet Pierre", c: "wonen", s: "beeldjes", p: 44.95, img: "p-objet", m: "Travertin-look steen", d: "10 × 10 × 10 cm", t: "Een ruw gehouwen blok dat rust en textuur geeft aan een kast of salontafel. Mooi naast een vaas." },
-    { id: "schilderij-duin", ink: 48.0, lv: 9.95, n: "Schilderij Duin", c: "wonen", s: "schilderijen", p: 149.00, img: "p-schilderij-1", l: "Nieuw", m: "Canvas in eiken lijst", d: "60 × 80 cm", t: "Zachte, overlappende vormen in zand, taupe en mokka. Rustig genoeg voor boven de bank, met genoeg diepte om naar te blijven kijken." },
-    { id: "schilderij-horizon", ink: 56.0, lv: 9.95, n: "Schilderij Horizon", c: "wonen", s: "schilderijen", p: 179.00, img: "p-schilderij-2", m: "Canvas in eiken lijst", d: "70 × 90 cm", t: "Brede banen in warme aardetinten met een lichte zon. Een kalm, horizontaal ritme dat elke wand meer ruimte geeft." },
-    { id: "schilderij-boog", ink: 42.0, lv: 9.95, n: "Schilderij Boog", c: "wonen", s: "schilderijen", p: 129.00, img: "p-schilderij-3", l: "Bestseller", m: "Canvas in eiken lijst", d: "50 × 70 cm", t: "Een zachte boog en een ronde vorm in crème en taupe. Mooi in een hal, slaapkamer of als paar naast elkaar." },
-    { id: "kruk-tronc", ink: 52.0, lv: 9.95, n: "Kruk Tronc", c: "meubels", s: "bijzettafels", p: 129.00, img: "p-kruk", m: "Massief walnotenhout", d: "H 60 × Ø 30 cm", t: "Een slanke houten kruk die ook dienstdoet als bijzettafel of plantentafel." }
+    { id: "vaas-olea", n: "Vaas Olea", c: "vazen", s: "stenen-vazen", p: 24.95, img: "p-vaas-olea", l: "Nieuw", m: "Steengoed, mat geglazuurd", d: "H 14 × Ø 7 cm", t: "Een klein, rank vaasje met een zachte, zandkleurige glazuur. Mooi met een enkele droogbloem of als groepje van drie." },
+    { id: "vaas-orbit", n: "Vaas Orbit", c: "vazen", s: "stenen-vazen", p: 49.95, img: "p-vaas-orbit", m: "Keramiek, mat crème", d: "H 25 × B 24 cm", t: "Een sculpturale ringvaas die ook zonder bloemen een statement is. Met een smalle opening voor een paar takjes." },
+    { id: "droogbloemen-champagne", n: "Droogbloemen Champagne", c: "wonen", s: "droogbloemen", p: 34.95, img: "p-droogbloemen", m: "Gedroogde bloemen en pampas", d: "Lengte ca. 60 cm", t: "Een luchtige bundel in champagne- en zandtinten die maandenlang mooi blijft. Zonder vaas geleverd." },
+    { id: "vazenset-blanc", n: "Vazenset Blanc", c: "vazen", s: "stenen-vazen", p: 69.95, img: "p-vazenset", l: "Set van 3", m: "Keramiek, mat wit", d: "H 12, 22 en 30 cm", t: "Drie vazen in verschillende hoogtes die samen een rustige, gelaagde compositie vormen." },
+    { id: "kandelaar-antique", n: "Kandelaar Antique", c: "verlichting", s: "kaarsen", p: 79.00, img: "p-kandelaar", m: "Messing, handgemaakt", d: "H 38 × B 30 cm", t: "Een klassieke driearmige kandelaar met een warme, licht verweerde messing afwerking. Voor dinerkaarsen tot Ø 2,2 cm." },
+    { id: "windlichtjes-clair", n: "Windlichtjes Clair", c: "verlichting", s: "kaarsen", p: 34.95, img: "p-windlichtjes", l: "Set van 4", m: "Helder glas", d: "H 7 × Ø 6 cm", t: "Vier kleine windlichtjes voor theelichtjes. Prachtig in een rij op de eettafel of vensterbank." },
+    { id: "geurkaarsen-marmer", n: "Geurkaarsen op marmer", c: "verlichting", s: "kaarsen", p: 59.95, img: "p-kaarsen-dienblad", m: "Sojawas, marmeren dienblad", d: "Dienblad 30 × 15 cm", t: "Drie geurkaarsen met een zachte geur van vijg en ceder, geleverd op een marmeren dienblad." },
+    { id: "kussenhoes-linnen", n: "Kussenhoes Linnen", c: "textiel", s: "kussenhoezen", p: 39.95, img: "p-kussens-linnen", m: "100 % stonewashed linnen", d: "50 × 50 cm, zonder binnenkussen", t: "Een zachte linnen kussenhoes in warme aardetinten met een verborgen rits. Wasbaar op 30 °C." },
+    { id: "tafellamp-lune", n: "Tafellamp Lune", c: "verlichting", s: "lampen", p: 129.00, img: "p-tafellamp", m: "Metalen voet, linnen kap", d: "H 52 × Ø 35 cm", t: "Een elegante tafellamp met een linnen kap die het licht warm en zacht verspreidt. Fitting E27, lamp niet inbegrepen." },
+    { id: "hanglamp-sol", n: "Hanglamp Sol", c: "verlichting", s: "lampen", p: 149.00, img: "p-hanglamp", m: "Handgevlochten riet", d: "Ø 45 cm", t: "Een gevlochten kap die een mooi schaduwspel op muur en plafond geeft. Inclusief textielsnoer van 1,5 m." },
+    { id: "plaid-cosy", n: "Plaid Cosy", c: "textiel", s: "plaids", p: 89.95, img: "p-plaid-cosy", l: "Nieuw", m: "Wolmix, grof gebreid", d: "130 × 170 cm", t: "Een grof gebreide plaid in warme naturel tinten, heerlijk voor koude avonden op de bank." },
+    { id: "plaid-teddy", n: "Plaid Teddy", c: "textiel", s: "plaids", p: 74.95, img: "p-plaid-teddy", m: "Zachte teddystof", d: "150 × 200 cm", t: "Een royale, wollig zachte plaid in crème die je bank direct een warme uitstraling geeft." },
+    { id: "beddengoed-linnen", n: "Linnen beddengoed", c: "textiel", s: "beddengoed", p: 159.00, img: "p-beddengoed", m: "100 % stonewashed linnen", d: "Dekbedovertrek 240 × 220 cm + 2 slopen", t: "Zacht gewassen linnen dat met elke wasbeurt mooier wordt. Ademend in de zomer, warm in de winter." },
+    { id: "schaal-terra", n: "Schaal Terra", c: "tafel", s: "servies", p: 29.95, img: "p-schaal", m: "Steengoed, handgevormd", d: "Ø 16 × H 8 cm", t: "Een handgevormde schaal met een zachte, organische rand. Voor sieraden, sleutels of gewoon als object." },
+    { id: "objet-pierre", n: "Objet Pierre", c: "wonen", s: "beeldjes", p: 44.95, img: "p-objet", m: "Travertin-look steen", d: "10 × 10 × 10 cm", t: "Een ruw gehouwen blok dat rust en textuur geeft aan een kast of salontafel. Mooi naast een vaas." },
+    { id: "schilderij-duin", n: "Schilderij Duin", c: "wonen", s: "schilderijen", p: 149.00, img: "p-schilderij-1", l: "Nieuw", m: "Canvas in eiken lijst", d: "60 × 80 cm", t: "Zachte, overlappende vormen in zand, taupe en mokka. Rustig genoeg voor boven de bank, met genoeg diepte om naar te blijven kijken." },
+    { id: "schilderij-horizon", n: "Schilderij Horizon", c: "wonen", s: "schilderijen", p: 179.00, img: "p-schilderij-2", m: "Canvas in eiken lijst", d: "70 × 90 cm", t: "Brede banen in warme aardetinten met een lichte zon. Een kalm, horizontaal ritme dat elke wand meer ruimte geeft." },
+    { id: "schilderij-boog", n: "Schilderij Boog", c: "wonen", s: "schilderijen", p: 129.00, img: "p-schilderij-3", m: "Canvas in eiken lijst", d: "50 × 70 cm", t: "Een zachte boog en een ronde vorm in crème en taupe. Mooi in een hal, slaapkamer of als paar naast elkaar." },
+    { id: "kruk-tronc", n: "Kruk Tronc", c: "meubels", s: "bijzettafels", p: 129.00, img: "p-kruk", m: "Massief walnotenhout", d: "H 60 × Ø 30 cm", t: "Een slanke houten kruk die ook dienstdoet als bijzettafel of plantentafel." }
   ];
   P = P.concat(window.SUIS_EXTRA || []);
   var GRATIS = 75, VERZEND = 5.95, CADEAU = 3.95;
@@ -211,11 +211,11 @@
     document.title = p.n + " | Suismuis Home (concept)";
     var extra = P.filter(function (x) { return x.c === p.c && x.id !== p.id; }).concat(P.filter(function (x) { return x.c !== p.c; })).slice(0, 4);
     var beelden = p.u ? p.u.slice(0, 4) : [foto(p, true)].concat(p.f ? [] : extra.slice(0, 2).map(function (x) { return foto(x, true); }));
-    var lever = p.lt ? "Levertijd " + p.lt : "Op voorraad · in 2–4 werkdagen in huis";
+    var lever = p.lt ? "Levertijd " + p.lt : "Levertijd 8–15 werkdagen";
     $("#pdp").innerHTML =
       '<div class="galerij"><div class="hoofd"><img id="hoofdbeeld" src="' + beelden[0] + '" alt=""' + esc(p.n) + '" width="1200" height="1500"></div>' +
       (beelden.length > 1 ? '<div class="duim">' + beelden.map(function (b, i) { return '<button type="button" data-beeld="' + b + '" aria-current="' + (i === 0) + '" aria-label="Toon afbeelding ' + (i + 1) + '"><img src="' + b + '" alt=""></button>'; }).join("") + "</div>" : "") +
-      '<p class="noot" style="margin-top:6px">' + (p.nr ? "Foto’s van de leverancier." : "Voorbeeldbeelden; bij lancering komen hier je eigen productfoto’s.") + '</p></div>' +
+      '<p class="noot" style="margin-top:6px">' + "Voorbeeldbeelden; bij lancering komen hier je eigen productfoto’s." + '</p></div>' +
       '<div class="pdp-info"><nav class="kruimel" aria-label="Kruimelpad"><a href="index.html">Home</a><span>/</span><a href="shop.html">Shop</a><span>/</span><a href="shop.html?cat=' + p.c + '">' + CATS[p.c] + '</a>' + (p.s ? '<span>/</span><a href="shop.html?cat=' + p.c + '&amp;sub=' + p.s + '">' + SUBCAT[p.s][1] + '</a>' : '') + '</nav>' +
       '<span class="klein">' + (p.s ? SUBCAT[p.s][1] : CATS[p.c]) + '</span><h1>' + esc(p.n) + '</h1><div class="prijs">' + euro(p.p) + '</div>' +
       '<p>' + esc(p.t) + '</p><p class="voorraad">' + lever + '</p>' +
@@ -225,7 +225,7 @@
       '<ul class="usp"><li>Gratis verzending vanaf € 75</li><li>14 dagen bedenktijd, eenvoudig retourneren</li><li>Veilig betalen met PayPal, creditcard of bankoverschrijving</li><li>Cadeauverpakking mogelijk bij het afrekenen</li></ul>' +
       '<details open><summary>Materiaal en afmetingen</summary><p>' + esc(p.m) + "<br>" + esc(p.d) + '</p></details>' +
       '<details><summary>Onderhoud</summary><p>Afnemen met een droge of licht vochtige doek. Natuurlijke materialen kunnen kleine kleurverschillen hebben; dat maakt elk stuk uniek.</p></details>' +
-      '<details><summary>Verzenden en retourneren</summary><p>' + (p.lt ? "Levertijd " + p.lt + ", in Nederland en België." : "Je bestelling is in 2–4 werkdagen in huis, in Nederland en België.") + ' Niet tevreden? Je hebt 14 dagen bedenktijd. Lees meer bij <a class="link" href="klantenservice.html#retour">retourneren</a>.</p></details></div>';
+      '<details><summary>Verzenden en retourneren</summary><p>' + (p.lt ? "Levertijd " + p.lt + ", in Nederland en België." : "Je bestelling is in 8–15 werkdagen in huis, in Nederland en België.") + ' Niet tevreden? Je hebt 14 dagen bedenktijd. Lees meer bij <a class="link" href="klantenservice.html#retour">retourneren</a>.</p></details></div>';
     $("#gerelateerd").innerHTML = extra.map(kaart).join("");
     $("#pdp").addEventListener("click", function (e) {
       var b = e.target.closest("[data-beeld]");
@@ -306,13 +306,17 @@
   /* beheer (concept): marge per product en route van betaling naar levering */
   if (pag === "beheer") {
     var FEE = 0.29;
+    /* rekenvoorbeeld: inkoop en verzending zijn aannames (geen echte leveranciersprijzen) */
+    var demo = function (p) { p.ink = Math.round(p.p * 0.4 * 10) / 10; p.lv = p.p > 100 ? 9.95 : p.p > 60 ? 5.95 : p.p > 30 ? 3.95 : 2.95; return p; };
+    P.forEach(demo);
     var rij = function (p) {
       return '<tr data-id="' + p.id + '"><td><img src="' + foto(p) + '" alt=""><span>' + esc(p.n) + '<small>' + CATS[p.c] + '</small></span></td>' +
         '<td>' + euro(p.ink) + '</td><td>' + euro(p.lv) + '</td>' +
         '<td><input type="number" step="0.05" min="0" value="' + p.p.toFixed(2) + '" aria-label="Verkoopprijs ' + esc(p.n) + '"></td>' +
         '<td class="winst"></td><td class="marge"></td></tr>';
     };
-    var tb = $("#marge-tabel tbody"); tb.innerHTML = P.map(rij).join("");
+    var PB = P.slice(0, 16);
+    var tb = $("#marge-tabel tbody"); tb.innerHTML = PB.map(rij).join("");
     var reken = function () {
       var som = 0, n = 0;
       $$("tr[data-id]", tb).forEach(function (tr) {
