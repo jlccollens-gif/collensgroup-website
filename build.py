@@ -127,7 +127,7 @@ EN_NAAR_NL = {"en-website-design.html": "website-laten-maken.html", "en-app-deve
 FOOT = {
  "nl": {"tag": "Websites, apps, games en AI-automatisering voor ondernemers in Nederland, België en daarbuiten. Vaste prijs vooraf.",
         "kol": [("Diensten", [("website-laten-maken.html", "Website laten maken"), ("webshop-laten-maken.html", "Webshop laten maken"), ("app-laten-maken-kosten.html", "App laten maken"), ("game-laten-maken.html", "Game laten maken"), ("ai-automatisering.html", "AI & automatisering"), ("chatbot-laten-maken.html", "AI-chatbot")]),
-                ("Meer", [("prijzen.html", "Prijzen"), ("pakketkiezer.html", "Pakketkiezer"), ("over-ons.html", "Over ons"), ("apps.html", "Onze apps & games"), ("artikelen.html", "Artikelen en gidsen"), ("privacy.html", "Privacy")]),
+                ("Meer", [("prijzen.html", "Prijzen"), ("pakketkiezer.html", "Pakketkiezer"), ("kostencalculator.html", "Kostencalculator"), ("over-ons.html", "Over ons"), ("apps.html", "Onze apps & games"), ("artikelen.html", "Artikelen en gidsen"), ("privacy.html", "Privacy")]),
                 ("Contact", [("index.html#contact", "Offerte aanvragen"), ("mailto:" + CONFIG["email"], CONFIG["email"])] + ([("https://wa.me/" + CONFIG["whatsapp"], "WhatsApp")] if CONFIG["whatsapp"] else []))],
         "copy": "Alle prijzen zijn eindprijzen: we rekenen geen btw."},
  "en": {"tag": "Websites, apps, games and AI automation for businesses worldwide. Fixed price up front.",

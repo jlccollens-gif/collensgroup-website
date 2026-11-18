@@ -84,7 +84,7 @@ def analyseer(doel):
         if not d: geel.append(f"{n}: geen meta description")
         elif not 70<=len(d)<=165: geel.append(f"{n}: meta description {len(d)} tekens (richt 70–160)")
         if not idx and not p.canon: geel.append(f"{n}: geen canonical")
-        if w<300 and not re.search(r"(winkelmand|afrekenen|account|favorieten|404|privacy|voorwaarden|bedankt|pakketkiezer|tester)",n,re.I): geel.append(f"{n}: dun ({w} woorden); commerciële pagina's liefst 600+ met proces, prijs en FAQ")
+        if w<300 and not re.search(r"(winkelmand|afrekenen|account|favorieten|404|privacy|voorwaarden|bedankt|pakketkiezer|kostencalculator|tester)",n,re.I): geel.append(f"{n}: dun ({w} woorden); commerciële pagina's liefst 600+ met proces, prijs en FAQ")
         leeg=[i for i in p.imgs if i.get("alt") is None or (i.get("alt")=="" and int(re.sub(r'\D','0',i.get("width","0")) or 0)>=200)]
         if leeg: geel.append(f"{n}: {len(leeg)} afbeeldingen zonder alt-tekst")
         if idx: blauw.append(f"{n}: staat op noindex (bedoeld? zo ja, niet vindbaar in Google)")

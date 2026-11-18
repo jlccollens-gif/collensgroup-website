@@ -38,6 +38,7 @@
 - [over-ons.html](https://collensgroup.com/over-ons)
 - [bedankt.html](https://collensgroup.com/bedankt)
 - [pakketkiezer.html](https://collensgroup.com/pakketkiezer)
+- [kostencalculator.html](https://collensgroup.com/kostencalculator)
 - [app-of-website.html](https://collensgroup.com/app-of-website)
 - [zelf-website-bouwen-of-laten-maken.html](https://collensgroup.com/zelf-website-bouwen-of-laten-maken)
 - [website-laten-maken-afspraken.html](https://collensgroup.com/website-laten-maken-afspraken)

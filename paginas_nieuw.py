@@ -114,6 +114,32 @@ f.addEventListener("change",e=>{if(e.target.name==="soort")opties();toon()});opt
 </script></article>''',
         crumbs=[("Home", "index.html"), ("Pakketkiezer", "pakketkiezer.html")]))
 
+    # ---------- KOSTENCALCULATOR ----------
+    pages.append(page("kostencalculator.html", "Kostencalculator website en webshop | Collens Group",
+        "Reken zelf uit wat je website of webshop kost: kies het type, extra pagina's en onderhoud. Eindprijzen, geen btw erbij.",
+        '''<article class="tekst breed"><h1>Kostencalculator website en webshop</h1>
+<p class="lead2">Stel je website samen en zie direct wat het kost. Alle bedragen zijn eindprijzen: er komt geen btw bij. Je krijgt altijd eerst een gratis concept en een vaste prijs op maat.</p>
+<form id="calc" class="kiezer" onsubmit="return false">
+<fieldset><legend>1. Wat heb je nodig?</legend>
+<label><input type="radio" name="type" value="495|3–5 dagen|One-page website" checked> One-page website (alles op één pagina)</label>
+<label><input type="radio" name="type" value="995|2–3 weken|Bedrijfswebsite (tot 6 pagina's)"> Bedrijfswebsite (tot 6 pagina's)</label>
+<label><input type="radio" name="type" value="1950|3–5 weken|Webshop (tot 50 producten)"> Webshop (tot 50 producten)</label></fieldset>
+<fieldset><legend>2. Extra pagina's</legend>
+<label>Aantal extra pagina's: <input type="number" id="extra" min="0" max="30" value="0" style="width:80px"> <small>(€95 per pagina)</small></label></fieldset>
+<fieldset><legend>3. Onderhoud</legend>
+<label><input type="radio" name="zorg" value="0" checked> Geen onderhoud, ik regel het zelf</label>
+<label><input type="radio" name="zorg" value="29"> Wij houden de website bij (€29 per maand)</label></fieldset></form>
+<section id="uitkomst" class="kiezer-advies" aria-live="polite"></section>
+<script>
+const c=document.getElementById("calc"),u=document.getElementById("uitkomst"),x=document.getElementById("extra");
+const eur=n=>"€"+n.toLocaleString("nl-NL");
+function reken(){const [p,t,n]=c.type.value.split("|"),ex=Math.max(0,Math.min(30,+x.value||0)),m=+c.zorg.value,tot=+p+ex*95;
+ const idee=encodeURIComponent("Ik heb interesse in: "+n+(ex?" met "+ex+" extra pagina's":"")+(m?" en onderhoud":"")+" (richtprijs "+eur(tot)+"). Mijn wens: ");
+ u.innerHTML=`<h2>Jouw richtprijs</h2><p class="kiezer-prijs">${eur(tot)} <small>eenmalig, eindprijs, geen btw erbij</small></p>${m?`<p>Plus ${eur(m)} per maand voor onderhoud.</p>`:""}<p>${n}${ex?` + ${ex} extra pagina's`:""}. Klaar in ongeveer ${t}.</p><p><a class="knop geel" href="index.html?pakket=Website&idee=${idee}#contact">Vraag je gratis concept aan</a> <a class="knop" href="prijzen.html" style="margin-left:8px">Alle prijzen</a></p><p class="noot">Dit is een richtprijs. Externe kosten zoals een domeinnaam staan altijd apart in je offerte. Niet zeker wat past? Probeer de <a href="pakketkiezer.html">pakketkiezer</a>.</p>`}
+c.addEventListener("input",reken);reken();
+</script></article>''',
+        crumbs=[("Home", "index.html"), ("Kostencalculator", "kostencalculator.html")]))
+
     # ---------- VERGELIJK: APP OF WEBSITE ----------
     faq_aw = [("Wat is goedkoper: een app of een website?", "Een website. Bij ons begint een website bij €495 en een app bij €3.150, allemaal eindprijzen zonder btw erbij."),
               ("Kan een website ook op een telefoon werken?", "Ja. Elke website die wij bouwen is mobielvriendelijk. Bezoekers hoeven niets te installeren."),
