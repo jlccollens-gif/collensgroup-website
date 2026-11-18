@@ -2,7 +2,7 @@
 Bron: Cloudflare Web Analytics (GraphQL, dataset rumPageloadEventsAdaptiveGroups).
 Token alleen via omgeving (CF_ANALYTICS_TOKEN, recht Account Analytics: Read).
 Schrijft rapporten/concept-bezoeken.json en .md in de huidige map."""
-import json, os, sys, urllib.request, datetime as dt
+import json, os, sys, urllib.request, urllib.error, datetime as dt
 
 ACCOUNT = os.environ.get("CF_ACCOUNT_ID", "5c0e89673825539df27c9e1c99219e8b")
 TOKEN = os.environ.get("CF_ANALYTICS_TOKEN", "")
@@ -34,7 +34,15 @@ def main():
                                      headers={"Authorization": "Bearer " + TOKEN, "Content-Type": "application/json"})
         try:
             data = json.load(urllib.request.urlopen(req, timeout=60))
-        except Exception as e:  # netwerk of HTTP-fout
+        except urllib.error.HTTPError as e:
+            tekst = e.read().decode("utf-8", "replace")
+            try:
+                data = json.loads(tekst)
+                if not data.get("errors"):
+                    data = {"errors": [{"message": f"HTTP {e.code}: {tekst[:400]}"}]}
+            except ValueError:
+                data = {"errors": [{"message": f"HTTP {e.code}: {tekst[:400]}"}]}
+        except Exception as e:  # netwerk
             data = {"errors": [{"message": f"{type(e).__name__}: {e}"}]}
         if data.get("errors"):
             uit["fout"] = "; ".join(x.get("message", "?") for x in data["errors"])[:500]
