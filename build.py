@@ -405,7 +405,7 @@ DIENSTEN = [
              "<li>Jij controleert alles, daarna gaat de site live.</li></ol>"),
             ("Wat we zelf bouwden",
              "<p>Onze eigen apps en games staan op de <a href='apps.html'>projectenpagina</a>: LubbyC en Koffer Vol! komen binnenkort in Google Play, Eiland Express is in ontwikkeling. "
-             "Een voorbeeld van een complete conceptsite met winkel is <a href='concept/atelier-ombre/index.html'>Atelier Ombre</a>, een kunstwinkel. Dat is een voorbeeld dat wij maakten, geen bestaande winkel.</p>")],
+             "Wil je zien hoe een complete webshop eruitziet? Vraag het ons, dan laten we een voorbeeld zien.</p>")],
         "rel": [("webshop-laten-maken.html", "Webshop laten maken"), ("goedkope-website-laten-maken.html", "Goedkope website laten maken"), ("website-laten-maken-horeca.html", "Website voor horeca"), ("website-laten-maken-kapper.html", "Website voor kapsalon"), ("chatbot-laten-maken.html", "AI-chatbot voor je site")],
     },
     {
