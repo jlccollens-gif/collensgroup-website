@@ -1,4 +1,4 @@
-// Teksten voor de testerpagina en de QR-pagina, in 13 talen.
+// Teksten voor de testerpagina en de QR-pagina, in 14 talen.
 window.TESTER_TALEN = {
   nl: { naam: 'Nederlands', vlag: '🇳🇱', dir: 'ltr',
     titel: 'Word gratis tester', intro: 'Probeer onze apps als eerste: LubbyC (samen op pad met andere reizigers) en Koffer Vol! (inpakpuzzel). Alleen Android. Het duurt 2 minuten.',
@@ -104,8 +104,16 @@ window.TESTER_TALEN = {
     nog: 'စမ်းသပ်မှု မရသေးဟု ပြနေပါသလား။ နာရီအနည်းငယ်ကြာမှ ထပ်ကြိုးစားပါ။ သင့်အဖွဲ့ဝင်ဖြစ်မှုကို အလိုအလျောက် ထည့်တွက်ပါမည်။',
     dank: 'အက်ပ်ကို ဖုန်းထဲတွင် အနည်းဆုံး ၁၄ ရက် ထားပေးပါ။ ကျေးဇူးတင်ပါသည်။', priv: 'သင့်အီးမေးလ်လိပ်စာကို Collens Group သာ မြင်ရပါသည်။', vraag: 'မေးခွန်းရှိပါသလား။',
     scan: 'စမ်းသပ်သူဖြစ်ရန် စကင်ဖတ်ပါ', kies: 'စမ်းသပ်သူ၏ ဘာသာစကားကို ရွေးပါ' },
+  sl: { naam: 'Slovenščina', vlag: '🇸🇮', dir: 'ltr',
+    titel: 'Postani brezplačen tester', intro: 'Preizkusi naše aplikacije pred vsemi drugimi: LubbyC (druženje z drugimi popotniki) in Koffer Vol! (uganka s pakiranjem). Samo za Android. Traja 2 minuti.',
+    s1t: 'Pridruži se testni skupini', s1: 'Prijavi se s svojim Google računom (istim kot v Google Play) in tapni gumb za pridružitev.', s1k: 'Odpri testno skupino',
+    s2t: 'Postani tester v Google Play', s2: 'Tapni aplikacijo in nato "Postani tester".',
+    s3t: 'Namesti aplikacijo', s3: 'Nato tapni povezavo do Google Play in namesti aplikacijo.',
+    nog: 'Piše, da test še ni na voljo? Poskusi znova čez nekaj ur. Tvoje članstvo se šteje samodejno.',
+    dank: 'Aplikacijo imej na telefonu vsaj 14 dni. Najlepša hvala!', priv: 'Tvoj e-poštni naslov vidi samo Collens Group.', vraag: 'Vprašanja?',
+    scan: 'Skeniraj in postani tester', kies: 'Izberi jezik testerja' },
 };
-window.TESTER_VOLGORDE = ['nl', 'en', 'th', 'my', 'de', 'fr', 'es', 'it', 'pt', 'ru', 'zh', 'ja', 'ko'];
+window.TESTER_VOLGORDE = ['nl', 'en', 'th', 'my', 'de', 'fr', 'es', 'it', 'pt', 'ru', 'zh', 'ja', 'ko', 'sl'];
 window.TESTER_LINKS = {
   groep: 'https://groups.google.com/g/collens-group',
   lubbyc: 'https://play.google.com/apps/testing/com.lubbyc.app',
