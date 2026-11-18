@@ -1,7 +1,9 @@
 {
  "fout": "Authentication failed (status: 400)",
- "gemaakt": "2026-11-18T04:15:28Z",
+ "gemaakt": "2026-11-18T04:17:17Z",
  "per_concept": {},
- "tot": "2026-11-18T04:15:28Z",
- "van": "2026-11-11T04:15:28Z"
+ "token_check": "HTTP 400: {\"success\":false,\"errors\":[{\"code\":6003,\"message\":\"Invalid request headers\",\"error_chain\":[{\"code\":6111,\"message\":\"Invalid format for Authorization header\"}]}],\"messages\":[],\"result\":null}",
+ "token_lengte": 149,
+ "tot": "2026-11-18T04:17:17Z",
+ "van": "2026-11-11T04:17:17Z"
 }
