@@ -512,6 +512,22 @@ def diensten_blok():
         f'<a class="dienst" href="{h}" style="--k:{k}">{icoon(n)}<span class="dienst-naam">{e(n)}</span><span class="dienst-sub">{e(s)}</span><span class="dienst-prijs">{e(p)}</span></a>'
         for n, s, p, h, k in items) + '</div>'
 
+APP_BETEKENIS = {
+    "App": ("Wat dit voor jouw app betekent",
+        "<p>LubbyC is geen demo maar een echte app met accounts, kaart, chat en meerdere talen. Dezelfde bouwstenen gebruiken we voor klanten, dus je betaalt niet voor uitzoekwerk dat al gedaan is.</p>"
+        "<ul class='kenmerken'><li>Eén app voor iPhone én Android, dus niet dubbel betalen.</li><li>Vaste prijs vooraf: een basis-app vanaf €3.150, een standaard-app met accounts en database vanaf €6.750. Er komt geen btw bij.</li><li>Elke week een testversie op je telefoon, zodat je ziet wat je krijgt.</li><li>Eerst een gratis concept binnen 48 uur, voordat je iets beslist.</li></ul>"
+        "<p>Meer over kosten en doorlooptijd lees je in <a href='app-laten-maken-kosten.html'>wat een app kost</a> en bij <a href='mvp-app-laten-maken.html'>een MVP laten maken</a>. Twijfel je tussen een app en een website? Kijk dan bij <a href='app-of-website.html'>app of website</a>.</p>"),
+    "Game": ("Wat dit voor jouw game betekent",
+        "<p>We maken games niet alleen voor onszelf. Een eigen game of een mini-game in jouw huisstijl werkt goed als actie, als beloning voor klanten of als product op zich.</p>"
+        "<ul class='kenmerken'><li>Een game in jouw merk, bijvoorbeeld voor een campagne, vanaf €1.950.</li><li>Een speelbare versie die je op je telefoon kunt proberen voordat je goedkeurt.</li><li>Vaste prijs en vaste planning: je weet vooraf wat het kost en wanneer het klaar is.</li><li>Hulp bij publicatie in Google Play of als webversie.</li></ul>"
+        "<p>Bekijk de mogelijkheden op de pagina <a href='game-laten-maken.html'>game laten maken</a>, of lees hoe een <a href='merkgame-laten-maken-kerst.html'>merkgame</a> werkt.</p>"),
+    "Kinderserie": ("Wat dit voor jouw project betekent",
+        "<p>Manu en Khanun laat zien wat er met AI-animatie mogelijk is voor een klein team. Diezelfde kennis van AI en automatisering zetten we in voor bedrijven die tijd willen besparen.</p>"
+        "<ul class='kenmerken'><li>AI-oplossingen zoals een chatbot op je eigen website, vanaf €995.</li><li>Automatisering van terugkerend werk, vanaf €395.</li><li>Vaste prijs, geen verrassingen achteraf.</li><li>Eerst een gratis kennismaking en een voorstel op maat.</li></ul>"
+        "<p>Lees meer over <a href='chatbot-laten-maken.html'>een chatbot laten maken</a> of over <a href='ai-automatisering.html'>AI en automatisering</a>. Alle prijzen staan op de <a href='prijzen.html'>prijzenpagina</a>.</p>"),
+}
+
+
 def app_rijen():
     rows = ""
     for a in APPS:
@@ -642,6 +658,10 @@ def en_pages(pages):
 <p style="margin-top:14px">What we build for ourselves, we build for you. We test our own way of working first.</p></div>
 {rows}
 <h2 style="margin-top:48px">LubbyC screenshots</h2>{gal}
+<h2 style="margin-top:48px">What this means for your project</h2>
+<p>Everything on this page was designed, built and published by us. That is why we know what an app, game or AI solution really costs and where the pitfalls are. You benefit from that experience.</p>
+<ul class="kenmerken"><li><strong>App:</strong> a basic app from €3,150 and a standard app from €6,750. Fixed price, one build for iPhone and Android. See <a href="en-app-development.html">app development</a>.</li><li><strong>Game:</strong> a branded casual game from €1,950, playable on your phone before you approve it.</li><li><strong>AI and automation:</strong> from €395, including a chatbot trained on your own content from €995. See <a href="en-ai-chatbot.html">AI chatbot</a>.</li><li><strong>Website:</strong> from €495. See <a href="en-website-design.html">website design</a>.</li></ul>
+<p>You always start with a free concept within 48 hours, so you can see what you get before you decide. All prices are in euros and are final.</p>
 <p><a class="knop geel" href="en.html#contact">Build something with us</a></p></div></section>''',
         crumbs=[("Home", "en.html"), ("Our work", "en-projects.html")], lang="en", alt=("apps.html", "en-projects.html")))
 
@@ -1018,7 +1038,12 @@ def build():
         "Wat Collens Group zelf maakt: de reisapp LubbyC, de games Koffer Vol! en Eiland Express en de animatieserie Manu en Khanun.",
         f'''<section><div class="wrap"><div class="intro"><h1 style="font-size:clamp(36px,5vw,56px)">Eigen apps, games en series</h1>
 <p style="margin-top:14px">We maken niet alleen dingen voor klanten, maar ook voor onszelf: een reisapp, twee games en een animatieserie. Zo weten we precies wat werkt, van ontwerp tot store.</p></div>
-{app_rijen()}</div></section>''', crumbs=[("Home", "index.html"), ("Onze apps", "apps.html")]))
+{app_rijen()}
+<h2 style="margin-top:48px">Wat dit voor jouw project betekent</h2>
+<p>Alles wat je hier ziet, hebben we zelf ontworpen, gebouwd en gepubliceerd. Daardoor weten we uit ervaring wat een app, game of AI-oplossing kost en waar de valkuilen zitten. Die ervaring gebruiken we voor klanten.</p>
+<ul class="kenmerken"><li><strong>App:</strong> een basis-app vanaf €3.150 en een standaard-app vanaf €6.750, eindprijs, geen btw erbij. Zie <a href="app-laten-maken-kosten.html">wat een app kost</a>.</li><li><strong>Game:</strong> een game in jouw huisstijl vanaf €1.950. Zie <a href="game-laten-maken.html">game laten maken</a>.</li><li><strong>AI en automatisering:</strong> vanaf €395. Zie <a href="ai-automatisering.html">AI en automatisering</a>.</li><li><strong>Website of webshop:</strong> vanaf €495. Zie <a href="prijzen.html">alle prijzen</a>.</li></ul>
+<p>Je begint altijd met een gratis concept binnen 48 uur, zodat je ziet wat je krijgt voordat je beslist.</p>
+<p><a class="knop geel" href="index.html#contact">Vraag je gratis concept aan</a></p></div></section>''', crumbs=[("Home", "index.html"), ("Onze apps", "apps.html")]))
 
     # APP-PAGINA'S
     for a in APPS:
@@ -1066,6 +1091,7 @@ def build():
 {beelden}
 {f'<div style="max-width:360px;margin:0 0 30px"><video src="{a["video"][0]}" poster="{a["video"][1]}" controls muted playsinline loop preload="none" style="width:100%;border-radius:22px;border:6px solid #0E1830"></video><p class="bron">Proefrit, 10 seconden</p></div>' if a.get("video") else ""}
 {tester}
+<h2 style="margin-top:40px">{APP_BETEKENIS[a["soort"]][0]}</h2>{APP_BETEKENIS[a["soort"]][1]}
 {privacy}
 <p style="margin-top:30px"><a class="knop" href="index.html#contact">{cta}</a></p></div></section>''',
             crumbs=[("Home", "index.html"), ("Onze apps", "apps.html"), (a["naam"], f'app-{a["slug"]}.html')], extra_ld=[app_ld]))
