@@ -1,3 +1,4 @@
+import re
 # Extra talen voor buitenlandse klanten: één volledige startpagina per taal (diensten, prijzen, werkwijze, FAQ, contact).
 # Prijzen in euro, dezelfde als op de NL/EN-site. Alleen feiten die ook op de rest van de site staan.
 
@@ -118,7 +119,7 @@ FOTO_T = {
  "th": ("ตัวอย่างสไตล์ที่คุณชอบ (ไม่บังคับ)", "อัปโหลดรูปภาพหรือภาพหน้าจอของเว็บไซต์หรือแอปที่คุณชอบได้สูงสุด 6 รูป หรือโลโก้และสีของแบรนด์คุณ เพื่อให้เราเข้าใจสไตล์ที่คุณต้องการ เราใช้เป็นแรงบันดาลใจเท่านั้น", "สูงสุด 6 รูป", "ลบรูป", "กำลังส่งคำขอของคุณ…", "กรุณาแนบรูปตัวอย่างไปกับอีเมลของคุณ", 'ต้องการความช่วยเหลือในการอธิบาย? ให้ผู้ช่วยช่วยคิด', 'ช่วยฉันอธิบายคำขอให้ชัดเจนได้ไหม?'),
  "my": ("သင်နှစ်သက်သော ပုံစံနမူနာများ (မဖြစ်မနေ မလိုပါ)", "သင်နှစ်သက်သော ဝဘ်ဆိုက် သို့မဟုတ် အက်ပ်များ၏ ဓာတ်ပုံ သို့မဟုတ် စခရင်ရှော့ ၆ ပုံအထိ၊ သို့မဟုတ် သင့်လိုဂိုနှင့် အမှတ်တံဆိပ်အရောင်များကို တင်ပါ။ သင်လိုချင်သော ပုံစံကို ကျွန်ုပ်တို့ သိရှိနိုင်ရန်ဖြစ်ပြီး စိတ်ကူးရရန်အတွက်သာ အသုံးပြုပါသည်။", "အများဆုံး ၆ ပုံ", "ဓာတ်ပုံဖယ်ရှားရန်", "သင့်တောင်းဆိုချက်ကို ပို့နေသည်…", "နမူနာဓာတ်ပုံများကို သင့်အီးမေးလ်တွင် ပူးတွဲပေးပို့ပါ။", 'ဖော်ပြရာတွင် အကူအညီလိုပါသလား? အကြံပေးကို မေးပါ', 'ကျွန်ုပ်၏ တောင်းဆိုချက်ကို ကောင်းကောင်းဖော်ပြရန် ကူညီပေးနိုင်မလား?'),
 }
-FOTO_NL = ("Voorbeelden van je smaak (optioneel)", "Upload tot 6 foto's of screenshots van websites of apps die je mooi vindt, of je logo en huisstijl. Zo weten we welke stijl je zoekt. We gebruiken ze alleen als inspiratie.", '"Maximaal 6 foto\'s."', '"Verwijder foto"', '"Je aanvraag wordt verstuurd…"', '"Stuur je voorbeeldfoto\'s als bijlage mee in je mail."', 'Hulp bij het omschrijven? Laat de adviseur meedenken', 'Kun je me helpen mijn aanvraag goed te omschrijven?')
+FOTO_NL = ("Voorbeelden van je smaak meesturen (optioneel)", "Upload tot 6 foto's of screenshots van websites of apps die je mooi vindt, of je logo en huisstijl. Zo weten we welke stijl je zoekt. We gebruiken ze alleen als inspiratie.", '"Maximaal 6 foto\'s."', '"Verwijder foto"', '"Je aanvraag wordt verstuurd…"', '"Stuur je voorbeeldfoto\'s als bijlage mee in je mail."', 'Hulp bij het omschrijven? Laat de adviseur meedenken', 'Kun je me helpen mijn aanvraag goed te omschrijven?')
 
 def contact_lang(contact_section, T, code=None):
     c = T["contact"]
@@ -127,7 +128,13 @@ def contact_lang(contact_section, T, code=None):
         for i, (a, b) in enumerate(zip(FOTO_NL, FOTO_T[code])):
             h = h.replace(a, b if (i < 2 or i >= 6) else '"' + b.replace('"', '') + '"')
     nl_opts = ["Weet ik nog niet", "App", "Website of webshop", "Game", "AI of automatisering"]
-    pairs = [("Vertel over je app-idee", c["kop"]),
+    kiezen = {"de": "Fotos auswählen", "fr": "Choisir des photos", "es": "Elegir fotos", "th": "เลือกรูปภาพ", "my": "ဓာတ်ပုံများ ရွေးရန်"}
+    h = re.sub(r'<ul class="vertrouwen-lijst">.*?</ul>', lambda m: '<ul class="vertrouwen-lijst">' + "".join(f"<li>{x}</li>" for x in T["trust"]) + "</ul>", h, flags=re.S)
+    h = h.replace("<option>Website</option><option>Webshop</option>", f"<option>{c['opts'][2]}</option>")
+    pairs = [("Vertel over je app-idee", c["kop"]), ("Vertel wat je wilt laten maken", c["kop"]),
+             ("Een paar zinnen zijn genoeg. Je krijgt binnen 48 uur een reactie met een paar korte vragen, en daarna een gratis concept en een vaste prijs. Alles per mail en zonder verplichtingen.", c["tekst"]),
+             ("Wat wil je laten maken, en voor wie? Bijvoorbeeld: een website voor mijn kapsalon met online afspraken.", c["ph"]),
+             (">Foto's kiezen<", ">" + kiezen.get(code, "Choose photos") + "<"),
              ("Beschrijf kort wat je wilt bouwen. Je krijgt snel een reactie met een paar korte vragen, en daarna een vaste prijs. Alles per mail, gratis en zonder verplichtingen.", c["tekst"]),
              (">Naam<", ">" + c["naam"] + "<"), (">E-mail<", ">" + c["email"] + "<"), ("Bedrijf (optioneel)", c["bedrijf"]),
              ("Wat wil je laten maken?", c["wat"]),

@@ -276,7 +276,7 @@ def contact_section():
     return '''<section id="contact" class="donker" aria-labelledby="contact-kop"><div class="wrap contact">
 <div><h2 id="contact-kop">Vertel wat je wilt laten maken</h2>
 <p>Een paar zinnen zijn genoeg. Je krijgt binnen 48 uur een reactie met een paar korte vragen, en daarna een gratis concept en een vaste prijs. Alles per mail en zonder verplichtingen.</p>
-<ul class="vertrouwen-lijst"><li>Vaste prijs vooraf, eindprijs zonder btw erbij</li><li>Gratis concept voordat je iets betaalt</li><li>Jij blijft eigenaar van wat we maken</li></ul>
+<ul class="vertrouwen-lijst"><li>Vaste prijs vooraf, eindprijs zonder btw erbij</li><li>Gratis concept voordat je iets betaalt</li><li>Snel live, zonder lange trajecten</li></ul>
 <p id="kanaal" style="color:#AEBBD2"></p></div>
 <form id="aanvraag" name="aanvraag" method="POST" data-netlify="true" netlify-honeypot="bot-veld" novalidate>
 <input type="hidden" name="form-name" value="aanvraag"><p hidden><label>Niet invullen<input name="bot-veld"></label></p>
@@ -558,7 +558,16 @@ EN_CONTACT_MAP = [
     ("Aanvraag ${d.pakket}\\nNaam: ${d.naam}\\nE-mail: ${d.email}\\nBedrijf: ${d.bedrijf||\"-\"}\\nSoort: ${d.pakket}\\n\\nIdee:\\n${d.idee}",
      "Request ${d.pakket}\\nName: ${d.naam}\\nEmail: ${d.email}\\nCompany: ${d.bedrijf||\"-\"}\\nType: ${d.pakket}\\n\\nIdea:\\n${d.idee}"),
     ('"Aanvraag app – " + d.naam', '"Aanvraag app – " + d.naam + " (EN)"'),
+    ("Voorbeelden van je smaak meesturen (optioneel)", "Send examples of your style (optional)"),
     ("Voorbeelden van je smaak (optioneel)", "Examples of your style (optional)"),
+    ("Vertel wat je wilt laten maken", "Tell us about your project"),
+    ("Een paar zinnen zijn genoeg. Je krijgt binnen 48 uur een reactie met een paar korte vragen, en daarna een gratis concept en een vaste prijs. Alles per mail en zonder verplichtingen.",
+     "A few sentences are enough. Within 48 hours you get a reply with a few short questions, then a free concept and a fixed price. All by email, without obligation."),
+    ("<li>Vaste prijs vooraf, eindprijs zonder btw erbij</li><li>Gratis concept voordat je iets betaalt</li><li>Snel live, zonder lange trajecten</li>",
+     "<li>Fixed price up front, no VAT added</li><li>Free concept before you pay anything</li><li>Live fast, no long projects</li>"),
+    ("<option>Website</option><option>Webshop</option>", "<option>Website</option><option>Web shop</option>"),
+    ("Wat wil je laten maken, en voor wie? Bijvoorbeeld: een website voor mijn kapsalon met online afspraken.", "What do you need, and for whom? For example: a website for my hair salon with online booking."),
+    (">Foto's kiezen<", ">Choose photos<"),
     ("Upload tot 6 foto's of screenshots van websites of apps die je mooi vindt, of je logo en huisstijl. Zo weten we welke stijl je zoekt. We gebruiken ze alleen als inspiratie.",
      "Upload up to 6 photos or screenshots of websites or apps you like, or your logo and brand colours. That shows us the style you're after. We only use them as inspiration."),
     ('"Maximaal 6 foto\'s."', '"Up to 6 photos."'), ('"Verwijder foto"', '"Remove photo"'),

@@ -48,8 +48,14 @@ for f in sorted(pages):
         if m.group(0).count('class="taalkeuze"')!=1: fouten.append(f"{f}: taalknop ontbreekt of dubbel")
     if len(set(p.ids))!=len(p.ids): fouten.append(f"{f}: dubbele id's")
     # Verboden slogan van de eigenaar (16-11): eigendom alleen feitelijk in een FAQ
-    for slogan in ("alles is van jou","helemaal van jou","volledig van jou","own everything","you own it"):
+    for slogan in ("alles is van jou","helemaal van jou","volledig van jou","own everything","you own it","blijft eigenaar van wat"):
         if slogan in src.lower(): fouten.append(f"{f}: verboden slogan '{slogan}'")
+    # Anderstalige pagina's: geen Nederlandse formulier- of contactteksten (regressie 18-11: nieuwe NL-tekst, vertaling paste niet meer)
+    lm=re.search(r'<html[^>]*lang="([a-z]+)',src)
+    if lm and lm.group(1)!="nl":
+        zicht=re.sub(r'<(script|style)[^>]*>.*?</\1>','',src,flags=re.S)
+        for nl in ("Vertel wat je wilt laten maken","Vertel over je app-idee","Een paar zinnen zijn genoeg","Verstuur aanvraag","Foto's kiezen","Voorbeelden van je smaak","Weet ik nog niet","Vaste prijs vooraf","Wat wil je laten maken","Bedrijf (optioneel)",">Je idee<"):
+            if nl in zicht: fouten.append(f"{f}: Nederlandse tekst op {lm.group(1)}-pagina: '{nl}'")
 for x in waarsch: print("LET OP:",x)
 for x in fouten: print("FOUT:",x)
 print(f"{len(pages)} pagina's gecontroleerd, {len(fouten)} fouten, {len(waarsch)} aandachtspunten")
