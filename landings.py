@@ -127,7 +127,7 @@ LANDINGS = [
   "offers":[("Merkgame",1950),("Casual game",4950)], "rel":[("game-laten-maken.html","Game laten maken"),("apps.html","Onze apps en games"),("chatbot-laten-maken.html","AI-chatbot laten maken")]},
  {"slug":"en-app-development","lang":"en","kort":"App development",
   "titel":"Affordable app development from €3,150 | Collens Group",
-  "desc":"Affordable app development for iPhone and Android at a fixed price: MVP from €3,150 in 3–5 weeks, full app with accounts and database from €6,750. Free concept first.",
+  "desc":"App development for iPhone and Android at a fixed price: MVP from €3,150 in 3–5 weeks, full app from €6,750. Free concept first.",
   "h1":"Affordable app development for iOS and Android",
   "lead":"We build one app for iPhone and Android at the same time, at a fixed price agreed up front. An MVP starts at €3,150 and a complete app with accounts and a database at €6,750.",
   "secties":[
