@@ -131,6 +131,8 @@ def run(c):
     uniek = {}
     for ernst, lijst in (("rood", rood), ("geel", geel), ("blauw", blauw)):
         for t in lijst:
+            if re.search(r"(^|[/ ])(concept|tester)(/|\b)", norm_tekst(t)[:60]) or "btw-tekst tegenstrijdig" in t or "verschillende levertijden" in t:
+                continue  # conceptsites en testerpagina's tellen niet mee in de score van de hoofdsite
             uniek.setdefault(fingerprint(ernst, t), (ernst, norm_tekst(t)))
     n = {e: sum(1 for x in uniek.values() if x[0] == e) for e in ("rood", "geel", "blauw")}
     score = max(0, 100 - 6 * n["rood"] - 1 * n["geel"])
@@ -163,7 +165,7 @@ def run(c):
         p = sitecheck.P(); p.feed(h)
         w = len(re.sub(r"\s+", " ", " ".join(p.txt)).split()); woorden.append(w)
         pad = norm_tekst(u) or "/"
-        if "noindex" in p.m.get("robots", ""): continue
+        if "noindex" in p.m.get("robots", "") or re.search(r"(^|/)(concept|tester)(/|$)", pad): continue
         m(pad, "woorden", w); m(pad, "titel_tekens", len(p.t.strip())); m(pad, "desc_tekens", len(p.m.get("description", "")))
         if w < 300 and not re.search(r"(404|privacy|voorwaarden|tester)", pad): dun += 1
         if len(p.t.strip()) > 60: titels_lang += 1

@@ -129,6 +129,7 @@ def tels(beelden, bijschrift):
 ECHT = {  # echte schermen van eigen werk: (laptop, telefoon, alt, bijschrift)
     ("web", "nl"): ("img/voorbeeld-website.jpg", "img/voorbeeld-website-m.jpg", "Onze eigen website collensgroup.com op laptop en telefoon", "Deze website is door ons gemaakt"),
     ("web", "en"): ("img/voorbeeld-website-en.jpg", "img/voorbeeld-website-m-en.jpg", "Our own website collensgroup.com on laptop and phone", "This website was built by us"),
+    ("chat", "nl"): ("img/voorbeeld-chat.jpg", "img/voorbeeld-chat-m.jpg", "Onze eigen online adviseur op collensgroup.com, op laptop en telefoon", "Onze eigen AI-adviseur, live op collensgroup.com"),
     ("shop", "nl"): ("img/voorbeeld-webshop.jpg", "img/hero-webshop.jpg", "Conceptwebshop Suismuis Home op laptop en telefoon", "Concept: Suismuis Home, een webshop voor woonaccessoires (nog niet gelanceerd)"),
 }
 

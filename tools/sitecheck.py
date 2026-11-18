@@ -91,7 +91,7 @@ def analyseer(doel):
         for m in PLACEHOLDER.finditer(h): rood.append(f"{n}: placeholdertekst zichtbaar: '{m.group(0)[:60]}'"); break
         btw_excl+=len(re.findall(r"excl\.? ?btw|exclusief btw|zonder btw|ex\.? btw",tl)); btw_geen+=len(re.findall(r"geen btw|incl\.? ?btw|inclusief btw",tl))
         lt.update(re.findall(r"\d+\s?[–-]\s?\d+ werkdagen",tl))
-        if re.search(r"winkelmand|afrekenen|in winkelwagen",tl): shop=True
+        if re.search(r"in winkelmand|in winkelwagen|toevoegen aan winkelmand|add to cart",tl): shop=True
         for k,rx in {"contact":r"mailto:|tel:|contactformulier|neem contact","over":r"over ons|over mij|about","voorwaarden":r"algemene voorwaarden","privacy":r"privacy","retour":r"retour|herroep|bedenktijd","kvk":r"kvk","reviews":r"beoordeling|review|ervaringen|testimonial","adres":r"\d{4} ?[a-z]{2}\b|straat \d|\bnl-\d{4}"}.items():
             if re.search(rx,tl+" ".join(p.links).lower()): trust[k]+=1
         if "$" in tekst and p.m.get("og:locale","nl_NL").startswith("nl") and "€" in tekst: blauw.append(f"{n}: dollar- en eurobedragen door elkaar (bedoeld? zet er een eurobedrag bij)")
