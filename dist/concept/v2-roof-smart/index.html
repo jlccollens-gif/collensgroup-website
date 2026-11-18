@@ -31,7 +31,8 @@ nav a{text-decoration:none;color:var(--slate)}nav a:hover{color:var(--copper)}
 .knop.licht:hover{background:var(--ink);color:#fff}
 /* hero */
 .hero{background:var(--white);border-bottom:1px solid var(--line)}
-.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;padding-top:72px;padding-bottom:72px;align-items:center}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;padding-top:72px;padding-bottom:72px;align-items:start}
+.hero .tekst{padding-top:36px}
 .plaats{font-size:14px;color:var(--steel);font-weight:500;margin:0 0 18px}
 .hero h1{font-size:clamp(40px,5.2vw,64px);font-weight:800}
 .hero .lead{font-size:19px;color:var(--slate);max-width:520px;margin:22px 0 30px}
@@ -60,10 +61,10 @@ section{padding:88px 0}
 .kop p{color:var(--slate);font-size:17.5px;margin:14px 0 0}
 /* timeline chart */
 .tijdlijn{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:34px}
-.balk{display:grid;grid-template-columns:1fr 3fr 14fr 2fr;gap:4px;margin:8px 0 14px}
+.balk,.schaal{display:grid;grid-template-columns:2fr 3fr 12fr 3fr;gap:4px;margin:8px 0 14px}
 .balk div{height:46px;border-radius:4px;display:flex;align-items:center;padding:0 12px;color:#fff;font-weight:600;font-size:13.5px;white-space:nowrap;overflow:hidden}
 .b1{background:var(--slate)}.b2{background:#46596b}.b3{background:#c9cfd5;color:var(--ink)!important}.b4{background:var(--copper)}
-.schaal{display:flex;justify-content:space-between;font-size:12.5px;color:var(--steel);border-top:1px solid var(--line);padding-top:8px}
+.schaal{gap:4px;font-size:12.5px;color:var(--steel);border-top:1px solid var(--line);padding-top:8px}
 .stappen{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:30px}
 .stappen h3{font-size:17px;margin-bottom:6px}
 .stappen p{margin:0;font-size:15px;color:var(--slate)}
@@ -82,6 +83,7 @@ section{padding:88px 0}
 .feit span{display:block;margin-top:10px;color:#b9c3cc;font-size:15px}
 .feiten .bron{color:#8f9ba6}
 /* quote */
+.contact .kop p{margin-top:14px}
 .offerte .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px}
 form{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:30px;display:grid;gap:14px}
 label{display:grid;gap:6px;font-weight:600;font-size:14px}
@@ -96,6 +98,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .mobiel-bel{display:none}
 @media (max-width:900px){
  nav{display:none}
+ .hero .tekst{padding-top:0}
  .hero .wrap,.offerte .wrap{grid-template-columns:1fr;gap:36px}
  .stappen,.feiten .grid{grid-template-columns:1fr 1fr}
  .diensten{grid-template-columns:1fr 1fr}
@@ -106,15 +109,14 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
  section{padding:60px 0}
  .diensten,.stappen{grid-template-columns:1fr}
  .twee{grid-template-columns:1fr}
- .balk div{font-size:0;padding:0}
- .balk{height:30px}.balk div{height:30px}
  .tijdlijn{padding:22px}
  .mobiel-bel{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:25;background:var(--white);border-top:1px solid var(--line);padding:10px 14px;gap:10px}
  .mobiel-bel a{flex:1}
- .watermerk{bottom:auto;top:76px;right:10px;font-size:11px;padding:5px 9px}
+ .watermerk{bottom:78px;top:auto;right:10px;font-size:11px;padding:5px 9px;opacity:.9}
  body{padding-bottom:70px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+@media (max-width:640px){.balk{grid-template-columns:1fr;gap:6px}.balk div{white-space:normal;height:auto;min-height:40px;padding:8px 12px}.b2{margin-left:12%}.b3{margin-left:24%}.b4{margin-left:36%}.b3{font-weight:500}.schaal{display:none}}
 </style>
 </head>
 <body>
@@ -127,7 +129,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
 
 <main>
 <section class="hero" style="padding:0"><div class="wrap">
- <div>
+ <div class="tekst">
   <p class="plaats">Edmonton, Alberta · licensed and WCB covered</p>
   <h1>A new roof, without the guesswork.</h1>
   <p class="lead">Asphalt, metal and rubber roofing for Edmonton homes and businesses. Every proposal starts with an aerial inspection, so you get one clear quote and no sales pressure.</p>
@@ -159,7 +161,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
  <div class="kop"><h2>From first call to finished roof</h2><p>Most people dread calling a roofer because they do not know what happens next. This is the whole route, with the times Roof Smart promises.</p></div>
  <div class="tijdlijn" role="img" aria-label="Timeline: reply within 24 hours, aerial inspection and written quote, installation within two weeks of signing, most installs take 1 to 2 days.">
   <div class="balk" aria-hidden="true"><div class="b1">Reply</div><div class="b2">Inspection + quote</div><div class="b3">You decide · install scheduled within 2 weeks of signing</div><div class="b4">Install</div></div>
-  <div class="schaal" aria-hidden="true"><span>Day 0</span><span>Day 1</span><span>Signing</span><span>≤ 14 days</span><span>Done</span></div>
+  <div class="schaal" aria-hidden="true"><span>Day 0</span><span>Day 1</span><span>Signing</span><span>≤ 14 days later</span></div>
   <div class="stappen">
    <div><p class="dag">Within 24 h</p><h3>We call you back</h3><p>A real person replies to every inquiry within a day.</p></div>
    <div><p class="dag">Before any price</p><h3>Aerial inspection</h3><p>The roof is inspected from above, so the quote is based on facts.</p></div>
