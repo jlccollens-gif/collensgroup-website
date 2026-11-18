@@ -47,7 +47,7 @@ APPS = [
     {
         "slug": "lubbyc", "naam": "LubbyC", "soort": "App", "kleur": "#0E4433", "letter": "L", "icoon": "img/lubbyc-icon.png", "publiceer": True, "tester": "com.lubbyc.app", "test_vrij": True,
         "kort": "Ontmoet reizigers in de buurt en plan samen eten, strand of een tour in Thailand.",
-        "titel": "LubbyC – samen reizen in Thailand: ontmoet reizigers in de buurt",
+        "titel": "LubbyC: reis samen in Thailand en ontmoet reizigers",
         "kop": "Alleen op reis, maar niet alleen eten vanavond.",
         "intro": "LubbyC verbindt reizigers die op dezelfde plek zijn en hetzelfde willen doen. Open de kaart, zie wat mensen in de buurt van plan zijn en sluit aan, of maak zelf een plan. We starten in Krabi en Ao Nang, Phuket, Pattaya en Bangkok.",
         "kenmerken": ["Plannen in de buurt op de kaart: eten, strand, dagtrips, tempels", "In een paar tikken zelf een plan maken", "Groepschat zodra je bent geaccepteerd", "Reisgids, weer en plekken in de buurt", "Noodhulp met één tik", "In 12 talen"],
@@ -73,7 +73,7 @@ APPS = [
     {
         "slug": "eiland-express", "naam": "Eiland Express", "soort": "Game", "kleur": "#0F766E", "letter": "E", "icoon": "img/eiland-icon.jpg", "publiceer": True,
         "kort": "Rij je songthaew over een tropisch eiland en breng passagiers heelhuids naar hun halte.",
-        "titel": "Eiland Express – 3D-rijgame met een songthaew op een tropisch eiland",
+        "titel": "Eiland Express – 3D-rijgame door een tropisch eiland",
         "kop": "Rij je songthaew over het eiland.",
         "intro": "Eiland Express is een vrolijke 3D-rijgame. Je bestuurt een songthaew, de open taxi-pick-up uit Thailand, over kronkelende wegen langs het strand en door de heuvels. Pik passagiers op, breng ze heelhuids naar hun halte en verdien munten. Een game van het team achter LubbyC en Koffer Vol! In het Engels heet hij Island Express.",
         "kenmerken": ["3D-rijden over een tropisch eiland", "Passagiers ophalen en afzetten bij haltes", "Munten verdienen en je beste dienst verbeteren", "Kies de kleur van je songthaew"],
@@ -127,8 +127,8 @@ EN_NAAR_NL = {"en-website-design.html": "website-laten-maken.html", "en-app-deve
 FOOT = {
  "nl": {"tag": "Websites, apps, games en AI-automatisering voor ondernemers in Nederland, België en daarbuiten. Vaste prijs vooraf.",
         "kol": [("Diensten", [("website-laten-maken.html", "Website laten maken"), ("webshop-laten-maken.html", "Webshop laten maken"), ("app-laten-maken-kosten.html", "App laten maken"), ("game-laten-maken.html", "Game laten maken"), ("ai-automatisering.html", "AI & automatisering"), ("chatbot-laten-maken.html", "AI-chatbot")]),
-                ("Meer", [("apps.html", "Onze apps & games"), ("mvp-app-laten-maken.html", "MVP-app"), ("goedkope-website-laten-maken.html", "Goedkope website"), ("artikelen.html", "Artikelen en gidsen"), ("privacy.html", "Privacy")]),
-                ("Contact", [("index.html#contact", "Offerte aanvragen"), ("mailto:" + CONFIG["email"], CONFIG["email"])])],
+                ("Meer", [("prijzen.html", "Prijzen"), ("pakketkiezer.html", "Pakketkiezer"), ("over-ons.html", "Over ons"), ("apps.html", "Onze apps & games"), ("artikelen.html", "Artikelen en gidsen"), ("privacy.html", "Privacy")]),
+                ("Contact", [("index.html#contact", "Offerte aanvragen"), ("mailto:" + CONFIG["email"], CONFIG["email"])] + ([("https://wa.me/" + CONFIG["whatsapp"], "WhatsApp")] if CONFIG["whatsapp"] else []))],
         "copy": "Alle prijzen zijn eindprijzen: we rekenen geen btw."},
  "en": {"tag": "Websites, apps, games and AI automation for businesses worldwide. Fixed price up front.",
         "kol": [("Services", [("en-website-design.html", "Website design"), ("en-app-development.html", "App development"), ("en-ai-chatbot.html", "AI chatbot"), ("en.html#pricing", "Pricing")]),
@@ -210,8 +210,8 @@ def page(path, title, desc, body, crumbs=None, extra_ld=None, extra_head="", lan
     else:
         head.append('</head><body><a class="skip" href="#inhoud">Naar de inhoud</a>')
         header = f'''<header class="top"><div class="wrap">
-<div class="links"><details class="snel"><summary aria-label="Snelmenu"><span></span><span></span><span></span></summary><nav class="snel-paneel" aria-label="Snelmenu"><a href="index.html">Home</a><a href="website-laten-maken.html">Website laten maken</a><a href="goedkope-website-laten-maken.html">Goedkope website</a><a href="webshop-laten-maken.html">Webshop laten maken</a><a href="app-laten-maken-kosten.html">Wat kost een app?</a><a href="mvp-app-laten-maken.html">MVP-app</a><a href="game-laten-maken.html">Game laten maken</a><a href="ai-automatisering.html">AI & automatisering</a><a href="chatbot-laten-maken.html">AI-chatbot</a><a href="apps.html">Onze apps & games</a><a href="tester/index.html">Word tester</a><a href="tester/qr.html">Tester-QR</a><a href="artikelen.html">Artikelen en gidsen</a></nav></details><a class="merk" href="index.html" aria-label="{CONFIG["naam"]}, naar de startpagina">{LOGO}{CONFIG["naam"]}</a></div>
-<nav class="menu" aria-label="Hoofdmenu"><a href="website-laten-maken.html">Websites</a><a href="app-laten-maken-kosten.html">Apps</a><a href="game-laten-maken.html">Games</a><a href="ai-automatisering.html">AI</a>{taal_menu}<a class="knop" href="index.html#contact"><span class="lang">Vraag een offerte</span><span class="kort">Offerte</span></a></nav>
+<div class="links"><details class="snel"><summary aria-label="Snelmenu"><span></span><span></span><span></span></summary><nav class="snel-paneel" aria-label="Snelmenu"><a href="index.html">Home</a><a href="website-laten-maken.html">Website laten maken</a><a href="webshop-laten-maken.html">Webshop laten maken</a><a href="app-laten-maken-kosten.html">App laten maken</a><a href="game-laten-maken.html">Game laten maken</a><a href="ai-automatisering.html">AI & automatisering</a><a href="chatbot-laten-maken.html">AI-chatbot</a><a href="prijzen.html">Prijzen</a><a href="pakketkiezer.html">Pakketkiezer</a><a href="apps.html">Onze apps & games</a><a href="over-ons.html">Over ons</a><a href="artikelen.html">Artikelen en gidsen</a></nav></details><a class="merk" href="index.html" aria-label="{CONFIG["naam"]}, naar de startpagina">{LOGO}{CONFIG["naam"]}</a></div>
+<nav class="menu" aria-label="Hoofdmenu"><a href="website-laten-maken.html">Websites</a><a href="app-laten-maken-kosten.html">Apps</a><a href="game-laten-maken.html">Games</a><a href="ai-automatisering.html">AI</a><a href="prijzen.html">Prijzen</a>{taal_menu}<a class="knop" href="index.html#contact"><span class="lang">Vraag een offerte</span><span class="kort">Offerte</span></a></nav>
 </div></header>'''
     bc = ""
     if crumbs and len(crumbs) > 1:
@@ -225,7 +225,11 @@ def page(path, title, desc, body, crumbs=None, extra_ld=None, extra_head="", lan
     kvk = f' · KvK {e(CONFIG["kvk"])}' if CONFIG["kvk"] else ""
     footer = footer_html(lang, kvk)
     header = header.replace(f'<a href="{path}">', f'<a href="{path}" aria-current="page">', 1) if 'class="snel-paneel"' in header else header
-    out = "".join(head) + header + bc + f'<main id="inhoud">{body}</main>' + footer + SNEL_JS + "</body></html>"
+    vast = ""
+    if lang == "nl" and "noindex" not in extra_head:
+        wa = f'<a class="knop" href="https://wa.me/{CONFIG["whatsapp"]}">WhatsApp</a>' if CONFIG["whatsapp"] else ""
+        vast = f'<div class="vastecta" id="vastecta" hidden>{wa}<a class="knop geel" href="index.html#contact">Vraag je gratis concept aan</a></div><script>(()=>{{const b=document.getElementById("vastecta");if(!b)return;const c=document.getElementById("contact");const t=()=>{{const h=c&&c.getBoundingClientRect().top<innerHeight;b.hidden=window.scrollY<400||h}};addEventListener("scroll",t,{{passive:true}});t()}})();</script>'
+    out = "".join(head) + header + bc + f'<main id="inhoud">{body}</main>' + footer + vast + SNEL_JS + "</body></html>"
     with open(os.path.join(DIST, path), "w", encoding="utf-8") as f: f.write(out)
     return path
 
@@ -270,27 +274,31 @@ SERVICE = {"@type": "Service", "serviceType": "App-ontwikkeling", "name": "App l
 
 def contact_section():
     return '''<section id="contact" class="donker" aria-labelledby="contact-kop"><div class="wrap contact">
-<div><h2 id="contact-kop">Vertel over je app-idee</h2>
-<p>Beschrijf kort wat je wilt bouwen. Je krijgt snel een reactie met een paar korte vragen, en daarna een vaste prijs. Alles per mail, gratis en zonder verplichtingen.</p>
+<div><h2 id="contact-kop">Vertel wat je wilt laten maken</h2>
+<p>Een paar zinnen zijn genoeg. Je krijgt binnen 48 uur een reactie met een paar korte vragen, en daarna een gratis concept en een vaste prijs. Alles per mail en zonder verplichtingen.</p>
+<ul class="vertrouwen-lijst"><li>Vaste prijs vooraf, eindprijs zonder btw erbij</li><li>Gratis concept voordat je iets betaalt</li><li>Jij blijft eigenaar van wat we maken</li></ul>
 <p id="kanaal" style="color:#AEBBD2"></p></div>
 <form id="aanvraag" name="aanvraag" method="POST" data-netlify="true" netlify-honeypot="bot-veld" novalidate>
 <input type="hidden" name="form-name" value="aanvraag"><p hidden><label>Niet invullen<input name="bot-veld"></label></p>
 <div class="rij2"><label>Naam<input name="naam" required autocomplete="name"></label>
 <label>E-mail<input name="email" type="email" required autocomplete="email" inputmode="email"></label></div>
 <div class="rij2"><label>Bedrijf (optioneel)<input name="bedrijf" autocomplete="organization"></label>
-<label>Wat wil je laten maken?<select name="pakket"><option>Weet ik nog niet</option><option>App</option><option>Website of webshop</option><option>Game</option><option>AI of automatisering</option></select></label></div>
-<label>Je idee<textarea name="idee" required placeholder="Wat moet de app doen, en voor wie?"></textarea></label>
+<label>Wat wil je laten maken?<select name="pakket"><option>Weet ik nog niet</option><option>Website</option><option>Webshop</option><option>App</option><option>Game</option><option>AI of automatisering</option></select></label></div>
+<label>Je idee<textarea name="idee" required placeholder="Wat wil je laten maken, en voor wie? Bijvoorbeeld: een website voor mijn kapsalon met online afspraken."></textarea></label>
 <p class="hulp-idee" data-chat-blok hidden><button type="button" class="hulp-knop" data-chat-open data-chat-vraag="Kun je me helpen mijn aanvraag goed te omschrijven?"><svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M10 2l1.6 4.4L16 8l-4.4 1.6L10 14l-1.6-4.4L4 8l4.4-1.6z" fill="currentColor"/></svg>Hulp bij het omschrijven? Laat de adviseur meedenken</button></p>
-<div class="fotos-veld"><label for="fotos">Voorbeelden van je smaak (optioneel)</label>
+<details class="fotos-veld"><summary>Voorbeelden van je smaak meesturen (optioneel)</summary>
 <p class="fotos-uitleg">Upload tot 6 foto's of screenshots van websites of apps die je mooi vindt, of je logo en huisstijl. Zo weten we welke stijl je zoekt. We gebruiken ze alleen als inspiratie.</p>
-<input id="fotos" name="fotos" type="file" accept="image/jpeg,image/png,image/webp,image/heic" multiple>
-<div class="fotos-voorbeeld" id="fotos-voorbeeld" aria-live="polite"></div></div>
+<label class="uploadknop" for="fotos">Foto's kiezen</label><input class="verborgen-invoer" id="fotos" name="fotos" type="file" accept="image/jpeg,image/png,image/webp,image/heic" multiple>
+<div class="fotos-voorbeeld" id="fotos-voorbeeld" aria-live="polite"></div></details>
 <button class="knop geel" type="submit">Verstuur aanvraag</button>
 <div class="melding" id="melding" role="status" aria-live="polite"></div>
 </form></div></section>
 <script>
 const CONTACT = ''' + json.dumps({"email": CONFIG["email"], "whatsapp": CONFIG["whatsapp"]}) + r''';
 const kanaal = document.getElementById("kanaal");
+try { const q = new URLSearchParams(location.search), f0 = document.getElementById("aanvraag");
+  if (q.get("pakket")) { const o = [...f0.pakket.options].find(x => x.text === q.get("pakket")); if (o) f0.pakket.value = o.text; }
+  if (q.get("idee")) f0.idee.value = q.get("idee").slice(0, 600); } catch (_) {}
 if (CONTACT.email) kanaal.textContent = "Liever direct mailen? " + CONTACT.email;
 /* Foto's van de smaak van de klant: verkleinen in de browser, uploaden naar Supabase Storage, aanvraag opslaan. */
 const SB = {url: "https://eyrfizayagcwaxbxyeuh.supabase.co", key: "sb_publishable_OXoe3_8uenkdDoeuCq4G9A_MXOTuWjb", bucket: "website-aanvraag"};
@@ -343,9 +351,9 @@ document.getElementById("aanvraag").addEventListener("submit", async e => {
   knop.disabled = true; m.textContent = "Je aanvraag wordt verstuurd…";
   try {
     await verstuurOnline(d);
-    m.textContent = "Bedankt " + d.naam + "! Je aanvraag is verstuurd. Je krijgt snel antwoord op " + d.email + ".";
-    f.reset(); fotos = []; toonFotos(); knop.disabled = false;
     if (window.goatcounter && goatcounter.count) goatcounter.count({path: "aanvraag-verstuurd", event: true});
+    f.reset(); fotos = []; toonFotos();
+    location.href = "bedankt?n=" + encodeURIComponent(d.naam.split(" ")[0]);
     return;
   } catch (_) { knop.disabled = false; m.textContent = ""; }
   const tekst = `Aanvraag ${d.pakket}\nNaam: ${d.naam}\nE-mail: ${d.email}\nBedrijf: ${d.bedrijf||"-"}\nSoort: ${d.pakket}\n\nIdee:\n${d.idee}`;
@@ -578,7 +586,7 @@ def en_pages(pages):
         f'<a class="dienst" href="{h}" style="--k:{k}">{icoon(n)}<span class="dienst-naam">{e(n)}</span><span class="dienst-sub">{e(s)}</span><span class="dienst-prijs">{e(p)}</span></a>'
         for n, s, p, h, k in EN_SERVICES) + '</div>'
     en_offers = [{"@type": "Offer", "name": n, "price": int(p.replace("€", "").replace(",", "")), "priceCurrency": "EUR"} for _, rows in EN_PRICES for n, p, _ in rows]
-    pages.append(page("en.html", "Websites, apps, games and AI at fair fixed prices | " + CONFIG["naam"],
+    pages.append(page("en.html", "Websites, apps, games and AI, fixed prices | " + CONFIG["naam"],
         "We build websites from €495, apps from €3,150, games from €1,950 and AI automation from €395 for clients worldwide. Fixed price and a free concept first.",
         f'''<section class="hero" aria-labelledby="kop"><div class="wrap"><div>
 <h1 id="kop">Your idea.<br>Live in no time.</h1>
@@ -834,13 +842,13 @@ def build():
     pages = []
 
     # HOME
-    pages.append(page("index.html", "App, website of game laten maken onder de marktprijs | Collens Group",
+    pages.append(page("index.html", "Website, app of game laten maken vanaf €495 | Collens Group",
         "Apps vanaf €3.150, websites vanaf €495, games vanaf €1.950 en AI-automatisering vanaf €395. Vaste prijs vooraf, onder het marktgemiddelde.",
         f'''<section class="hero" aria-labelledby="kop"><div class="wrap"><div>
 <h1 id="kop">Jouw idee.<br>Razendsnel live.</h1>
 <p class="lead">Gratis concept binnen 48 uur. Websites vanaf €495, plus apps, games en AI. Vaste prijs.</p>
 <div class="acties"><a class="knop geel" href="#contact">Vraag je gratis concept aan</a><a class="zacht" href="#diensten">Bekijk wat we maken</a></div><ul class="vertrouwen"><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Vaste prijs vooraf</li><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Eerst een gratis concept</li><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Razendsnel live</li></ul></div>
-<div class="etalage"><figure class="tel-links"><img src="img/koffer-spel.jpg" alt="Puzzelgame Koffer Vol!" width="240" height="480"></figure><figure class="tel-midden"><img src="img/lubbyc-kaart.jpg" alt="Reisapp LubbyC" width="240" height="480" fetchpriority="high"></figure><figure class="tel-rechts"><img src="img/eiland-rood.jpg" alt="Rijgame Eiland Express" width="240" height="480"></figure></div></div></section>
+<div class="etalage"><figure class="tel-links"><img src="img/hero-webshop.jpg" alt="Conceptwebshop voor woonaccessoires, een voorbeeld van een webshop van ons" width="240" height="427"></figure><figure class="tel-midden"><img src="img/lubbyc-kaart.jpg" alt="Reisapp LubbyC" width="240" height="480" fetchpriority="high"></figure><figure class="tel-rechts"><img src="img/eiland-rood.jpg" alt="Rijgame Eiland Express" width="240" height="480"></figure></div></div></section>
 
 <section id="diensten" class="wit" aria-labelledby="diensten-kop"><div class="wrap">
 <div class="intro"><h2 id="diensten-kop">Wat we maken</h2><p>Alles digitaal onder één dak, met vaste prijzen onder het marktgemiddelde.</p></div>
@@ -856,27 +864,22 @@ def build():
 <div><h3>Geen verborgen kosten</h3><p>Hosting, store-accounts en andere externe kosten staan vooraf zwart op wit in de offerte.</p></div>
 </div></div></section>
 
-<section id="pakketten" aria-labelledby="prijzen"><div class="wrap">
-<div class="intro"><h2 id="prijzen">App-pakketten</h2><p>Richtprijzen. Dit zijn eindprijzen: we rekenen geen btw. Na een korte intake krijg je een definitieve prijsopgave op maat.</p></div>
-{PAKKETTEN}
-<div class="extra"><div><h3 style="margin-bottom:10px">Losse diensten</h3><table class="lijst">
-<tr><td>Ontwikkeling per uur<small>Uitbreidingen en losse opdrachten</small></td><td>€67,50 / uur</td></tr>
-<tr><td>Schermontwerp (UI/UX)<small>Klikbaar prototype vóór de bouw start</small></td><td>€675 – €1.800</td></tr>
-<tr><td>App Store &amp; Google Play setup<small>Begeleiding en publicatie in beide stores</small></td><td>€315</td></tr>
-<tr><td>Koppeling externe API of betaalprovider<small>Bijv. Mollie, Stripe, boekhouding of CRM</small></td><td>€450 – €1.350</td></tr></table></div>
-<div><h3 style="margin-bottom:10px">Onderhoud per maand</h3><table class="lijst">
-<tr><td>Basis Onderhoud<small>Monitoring, kritieke bugfixes, kleine iOS- en Android-updates</small></td><td>€85,50</td></tr>
-<tr><td>Groei &amp; Support<small>Alles uit Basis, tot 4 uur kleine aanpassingen, voorrang bij storingen</small></td><td>€265,50</td></tr></table>
-<p class="noot">Externe kosten betaal je rechtstreeks: Apple Developer Account $99 per jaar, Google Play $25 eenmalig, en eventuele hosting. Je account, je app.</p></div></div>
-</div></section>
+<section id="prijzen-kort" class="wit" aria-labelledby="prijzen-kort-kop"><div class="wrap">
+<div class="intro"><h2 id="prijzen-kort-kop">Prijzen in het kort</h2><p>Alle prijzen zijn eindprijzen: er komt geen btw bij. Na een korte intake krijg je een definitieve prijsopgave op maat.</p></div>
+<table class="lijst"><tr><td><a href="website-laten-maken.html">Website</a><small>One-page of bedrijfswebsite</small></td><td>vanaf €495</td></tr>
+<tr><td><a href="webshop-laten-maken.html">Webshop</a><small>Tot 50 producten ingericht, iDEAL</small></td><td>vanaf €1.950</td></tr>
+<tr><td><a href="app-laten-maken-kosten.html">App voor iPhone en Android</a><small>Basis, Standaard en Maatwerk</small></td><td>vanaf €3.150</td></tr>
+<tr><td><a href="game-laten-maken.html">Game</a><small>Merkgame, casual game, 2D met levels</small></td><td>vanaf €1.950</td></tr>
+<tr><td><a href="ai-automatisering.html">AI en automatisering</a><small>Automatisering, chatbot, assistent</small></td><td>vanaf €395</td></tr></table>
+<p style="margin-top:20px"><a class="knop" href="prijzen.html">Bekijk alle prijzen en pakketten</a> <a class="knop geel" href="pakketkiezer.html" style="margin-left:8px">Welk pakket past bij mij?</a></p></div></section>
 
 <section id="werkwijze" class="donker" aria-labelledby="stappen-kop"><div class="wrap">
-<div class="intro"><h2 id="stappen-kop">Van idee tot app in de stores</h2><p>Elke stap rond je af met een akkoord. Je ziet de app groeien op je eigen telefoon.</p></div>
-<ol class="stappen"><li><h3>Intake per mail</h3><p>Je beantwoordt een paar korte vragen over je idee, doelgroep en budget. Geen afspraak nodig.</p></li>
-<li><h3>Voorstel</h3><p>Vaste prijs, planning en een overzicht van alle schermen.</p></li>
-<li><h3>Ontwerp</h3><p>Je keurt het ontwerp goed voordat we gaan bouwen.</p></li>
-<li><h3>Bouwen en testen</h3><p>Elke week een testversie op je telefoon.</p></li>
-<li><h3>Live</h3><p>Wij begeleiden de publicatie in de App Store en Google Play.</p></li></ol></div></section>
+<div class="intro"><h2 id="stappen-kop">Zo werkt het</h2><p>Elke stap rond je af met een akkoord. Je ziet je website, app of game groeien voordat het live gaat.</p></div>
+<ol class="stappen"><li><h3>Aanvraag</h3><p>Je vertelt in een paar zinnen wat je wilt. Geen afspraak nodig.</p></li>
+<li><h3>Gratis concept</h3><p>Binnen 48 uur zie je hoe het eruit kan zien, zonder verplichtingen.</p></li>
+<li><h3>Vaste prijs</h3><p>Prijs, planning en wat wel en niet inbegrepen is, vooraf op papier.</p></li>
+<li><h3>Bouwen en testen</h3><p>Je ziet tussentijds testversies en keurt goed voordat we verder gaan.</p></li>
+<li><h3>Live</h3><p>Je website, app of game gaat live, in jouw eigen accounts. Bij apps begeleiden we de publicatie in de stores.</p></li></ol></div></section>
 
 <section id="apps" class="wit" aria-labelledby="apps-kop"><div class="wrap">
 <div class="intro"><h2 id="apps-kop">Eigen apps, games en series</h2><p>Wat we voor onszelf maken, maken we ook voor jou. Zo testen we onze werkwijze eerst op onszelf.</p></div>
@@ -964,7 +967,7 @@ def build():
         ("Hoe snel is een MVP klaar?", "Ons Basis-pakket is in 3–5 weken klaar."),
         ("Kan ik later uitbreiden?", "Ja. Omdat de code van jou is en we standaard bouwstenen gebruiken, bouwen we je MVP later uit tot een Standaard- of Maatwerk-app."),
     ]
-    pages.append(page("mvp-app-laten-maken.html", "MVP app laten maken vanaf €3.150, in 3–5 weken | Collens Group",
+    pages.append(page("mvp-app-laten-maken.html", "MVP-app laten maken vanaf €3.150 | Collens Group",
         "Test je app-idee snel met een MVP. Tot 5 schermen, strak ontwerp, klaar in 3–5 weken vanaf €3.150. Daarna uitbreiden naar een volledige app.",
         f'''<article class="tekst breed">
 <h1>MVP app laten maken</h1>
@@ -993,14 +996,18 @@ def build():
     for d in DIENSTEN: pages.append(dienst_pagina(d))
     from landings import landing_pages, LANDINGS
     landing_pages(page, e, faq_html, faq_ld, pages)
+    from paginas_nieuw import bouw as bouw_nieuw
+    nieuwe_pag, nieuwe_items = bouw_nieuw(page, e, faq_html, faq_ld, DIENSTEN, PAKKETTEN, VANDAAG, CONFIG)
+    pages += nieuwe_pag
 
     # Artikelen & gidsen: overzicht van alle NL-artikelen (nieuwe landingspagina's komen er vanzelf bij)
     items = [("app-laten-maken-kosten.html", "Wat kost een app laten maken?", "Prijzen, doorlooptijd en vaste kosten van een app, met wat de prijs bepaalt en hoe je bespaart."),
              ("mvp-app-laten-maken.html", "MVP-app laten maken", "Test je app-idee eerst met een kleine versie: wat erin zit, wat het kost en hoe het verloopt.")]
     items += [(f'{L["slug"]}.html', L["titel"].split(" | ")[0], L["desc"]) for L in LANDINGS if L["lang"] == "nl"]
+    items += nieuwe_items
     items += [("en-ai-chatbot.html", "AI chatbot for small business (Engels)", "Engelstalige gids: wat een AI-chatbot voor je bedrijf doet, wat hij kost (vanaf €995) en hoe we de antwoorden betrouwbaar houden.")]
     kaarten = "".join(f'<a class="artikel" href="{u}"><h2>{e(t)}</h2><p>{e(d)}</p><span>Lees meer</span></a>' for u, t, d in items)
-    pages.append(page("artikelen.html", "Artikelen en gidsen over websites, apps en AI | Collens Group",
+    pages.append(page("artikelen.html", "Gidsen over websites, apps en AI | Collens Group",
         "Praktische gidsen over wat een website, webshop, app of AI-chatbot kost en hoe je het slim aanpakt. Eerlijke prijzen en heldere uitleg.",
         f'''<article class="tekst breed"><h1>Artikelen en gidsen</h1>
 <p class="lead2">Eerlijke uitleg over wat een website, app of AI-oplossing kost en hoe je het slim aanpakt.</p>

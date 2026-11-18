@@ -4,7 +4,7 @@
 TALEN = {
  "de": {
   "naam": "Deutsch", "trust": ['Festpreis im Voraus', 'Zuerst ein kostenloses Konzept', 'Schnell online'], "og": "de_DE", "skip": "Zum Inhalt", "menu": "Schnellmenü", "hoofdmenu": "Hauptmenü",
-  "title": "Websites, Apps, Games und KI zu fairen Festpreisen | Collens Group",
+  "title": "Websites, Apps, Games & KI zum Festpreis | Collens Group",
   "desc": "Websites ab 495 €, Apps ab 3.150 €, Games ab 1.950 € und KI-Automatisierung ab 395 €. Festpreis und kostenloses Konzept.",
   "nav": [("#leistungen", "Leistungen"), ("#preise", "Preise"), ("en-projects.html", "Projekte")],
   "cta": ("Angebot anfordern", "Angebot"),
@@ -38,7 +38,7 @@ TALEN = {
  },
  "fr": {
   "naam": "Français", "trust": ["Prix fixe à l'avance", "D'abord un concept gratuit", 'En ligne rapidement'], "og": "fr_FR", "skip": "Aller au contenu", "menu": "Menu rapide", "hoofdmenu": "Menu principal",
-  "title": "Sites web, applis, jeux et IA à prix fixes justes | Collens Group",
+  "title": "Sites web, applis, jeux et IA à prix fixe | Collens Group",
   "desc": "Sites web dès 495 €, applis dès 3 150 €, jeux dès 1 950 € et automatisation IA dès 395 €. Prix fixe et concept gratuit.",
   "nav": [("#services", "Services"), ("#tarifs", "Tarifs"), ("en-projects.html", "Projets")],
   "cta": ("Demander un devis", "Devis"),
@@ -72,7 +72,7 @@ TALEN = {
  },
  "es": {
   "naam": "Español", "trust": ['Precio fijo por adelantado', 'Primero un concepto gratis', 'Online en poco tiempo'], "og": "es_ES", "skip": "Ir al contenido", "menu": "Menú rápido", "hoofdmenu": "Menú principal",
-  "title": "Webs, apps, juegos e IA a precios fijos justos | Collens Group",
+  "title": "Webs, apps, juegos e IA a precio fijo | Collens Group",
   "desc": "Webs desde 495 €, apps desde 3.150 €, juegos desde 1.950 € y automatización con IA desde 395 €. Precio fijo y concepto gratis.",
   "nav": [("#servicios", "Servicios"), ("#precios", "Precios"), ("en-projects.html", "Proyectos")],
   "cta": ("Pedir presupuesto", "Contacto"),

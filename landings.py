@@ -39,7 +39,7 @@ LANDINGS = [
          ("Kan ik de site later uitbreiden?","Ja. Extra pagina's kosten €95 per stuk, inclusief SEO-tekst.")],
   "offers":[("One-page website",495),("Bedrijfswebsite",995)], "rel":[("website-laten-maken.html","Alle websitepakketten"),("webshop-laten-maken.html","Webshop laten maken")]},
  {"slug":"chatbot-laten-maken","lang":"nl","kort":"AI-chatbot",
-  "titel":"AI-chatbot laten maken voor je website vanaf €995 | Collens Group",
+  "titel":"AI-chatbot laten maken vanaf €995 | Collens Group",
   "desc":"AI-chatbot laten maken die vragen van klanten beantwoordt op basis van jouw eigen teksten. Vanaf €995, klaar in 1 week, met doorsturen naar jou bij twijfel.",
   "h1":"AI-chatbot laten maken",
   "lead":"Een chatbot op je website die vragen van klanten direct beantwoordt, op basis van jouw eigen teksten en prijzen. Vanaf €995, klaar in 1 week.",
@@ -141,7 +141,7 @@ LANDINGS = [
          ("How long does it take?","A Basic app takes 3–5 weeks, a Standard app 6–10 weeks and a Custom app 10–16 weeks or more.")],
   "offers":[("Basic / MVP app",3150),("Standard app",6750),("Custom / Pro app",13050)], "rel":[("en.html","All services and prices"),("en-website-design.html","Website design")]},
  {"slug":"en-website-design","lang":"en","kort":"Website design",
-  "titel":"Affordable website design from €495 – fixed price | Collens Group",
+  "titel":"Website design from €495, fixed price | Collens Group",
   "desc":"Affordable website design for small businesses: one-page site from €495, business website from €995, web shop from €1,950. Fast and mobile-friendly.",
   "h1":"Affordable website design for small businesses",
   "lead":"Fast, mobile-friendly websites at a fixed price: a one-page site from €495, a business website with up to 6 pages from €995 and a web shop from €1,950.",
@@ -191,3 +191,7 @@ def landing_pages(page, e, faq_html, faq_ld, pages):
 <p class="bron" style="margin-top:22px">{"Related" if en else "Zie ook"}: {rel}</p></article>''',
             crumbs=[home, (L["kort"], f'{L["slug"]}.html')], lang=L["lang"],
             extra_ld=[{"@type": "Service", "name": L["h1"], "provider": {"@id": "#org"}, "areaServed": "Worldwide" if en else ["NL", "BE"], "offers": offers}, faq_ld(L["faq"])]))
+
+
+from landings_nieuw import NIEUW as _NIEUW
+LANDINGS += _NIEUW

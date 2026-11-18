@@ -68,7 +68,8 @@ def laad(doel):
                 except Exception: pass
     return pag, assets
 
-def main(doel):
+def analyseer(doel):
+    """geeft (pag, assets, rood, geel, blauw); main() drukt het rapport af"""
     pag, assets = laad(doel)
     rood, geel, blauw, ok = [], [], [], []
     tekst_alle = ""; titels=collections.Counter(); descs=collections.Counter(); btw_excl=btw_geen=0; lt=set(); shop=False; trust=collections.Counter()
@@ -83,7 +84,7 @@ def main(doel):
         if not d: geel.append(f"{n}: geen meta description")
         elif not 70<=len(d)<=165: geel.append(f"{n}: meta description {len(d)} tekens (richt 70–160)")
         if not idx and not p.canon: geel.append(f"{n}: geen canonical")
-        if w<300 and not re.search(r"(winkelmand|afrekenen|account|favorieten|404|privacy|voorwaarden)",n,re.I): geel.append(f"{n}: dun ({w} woorden); commerciële pagina's liefst 600+ met proces, prijs en FAQ")
+        if w<300 and not re.search(r"(winkelmand|afrekenen|account|favorieten|404|privacy|voorwaarden|bedankt|pakketkiezer|tester)",n,re.I): geel.append(f"{n}: dun ({w} woorden); commerciële pagina's liefst 600+ met proces, prijs en FAQ")
         leeg=[i for i in p.imgs if i.get("alt") is None or (i.get("alt")=="" and int(re.sub(r'\D','0',i.get("width","0")) or 0)>=200)]
         if leeg: geel.append(f"{n}: {len(leeg)} afbeeldingen zonder alt-tekst")
         if idx: blauw.append(f"{n}: staat op noindex (bedoeld? zo ja, niet vindbaar in Google)")
@@ -118,6 +119,10 @@ def main(doel):
             if not trust[k]: geel.append(f"site mist {txt}")
     if not trust["reviews"]: blauw.append("geen reviews/cases zichtbaar: alleen echte tonen, nooit verzinnen of kopen")
     blauw.append("handmatig: eigendom (wie is eigenaar van site/domein?), hosting/domeinkosten, levertijd, wat zit er niet in de prijs, foto's met rechten/licentie, productclaims vs leverancier")
+    return pag, assets, rood, geel, blauw
+
+def main(doel):
+    pag, assets, rood, geel, blauw = analyseer(doel)
     print(f"# Klantensite-blik: {doel}\n{len(pag)} pagina's, {len(assets)} scripts/data\n")
     for kop,lijst in (("🔴 Moet opgelost",rood),("🟡 Verbeteren",geel),("🔵 Handmatig verifiëren",blauw)):
         print(f"## {kop} ({len(lijst)})"); [print("- "+x) for x in lijst[:60]]; print()

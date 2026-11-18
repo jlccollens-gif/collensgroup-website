@@ -470,3 +470,55 @@ summary{font-weight:600}
 .hulp-idee{margin:-4px 0 6px}
 .hulp-knop{display:inline-flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(242,183,5,.55);color:#F7D774;border-radius:10px;padding:9px 14px;font:inherit;font-size:14px;font-weight:500;cursor:pointer;text-align:left}
 .hulp-knop:hover{background:rgba(242,183,5,.1);border-color:var(--signaal)}
+
+/* ---- groeironde 18-11: formulier, mobiele header, vaste CTA, leesbaarheid ---- */
+.vertrouwen-lijst{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:8px;color:#D7DFEC}
+.vertrouwen-lijst li{padding-left:26px;position:relative}
+.vertrouwen-lijst li::before{content:"";position:absolute;left:0;top:.35em;width:16px;height:16px;border-radius:50%;background:var(--signaal) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.3l2.3 2.3 4.6-5' fill='none' stroke='%2314213D' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+details.fotos-veld{border:1px dashed #3A4A6B;border-radius:12px;padding:12px 14px;background:transparent}
+details.fotos-veld summary{cursor:pointer;font-weight:700;color:var(--wit)}
+details.fotos-veld[open] summary{margin-bottom:8px}
+.uploadknop{display:inline-flex;width:max-content;cursor:pointer;background:var(--wit);color:var(--nacht);border-radius:999px;padding:10px 18px;font-weight:700}
+.uploadknop:hover{background:var(--signaal)}
+.verborgen-invoer{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;clip:rect(0 0 0 0)}
+.verborgen-invoer:focus-visible + .fotos-voorbeeld,.fotos-veld:focus-within .uploadknop{outline:3px solid var(--signaal);outline-offset:2px}
+:focus-visible{outline:3px solid #2457D6;outline-offset:3px;border-radius:4px}
+.donker :focus-visible{outline-color:var(--signaal)}
+small,.noot,.bron,.duur,td small{font-size:max(14px,.875rem)}
+.vastecta{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;gap:10px;justify-content:center;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);border-top:1px solid var(--lijn);box-shadow:0 -6px 20px rgba(14,24,48,.08)}
+.vastecta[hidden]{display:none}
+.vastecta .knop{flex:1;text-align:center;justify-content:center;max-width:360px}
+@media (min-width:761px){.vastecta{display:none!important}}
+@media (max-width:760px){.cg-fab{bottom:78px!important}body{padding-bottom:0}}
+@media (max-width:480px){
+  .top .wrap{padding:0 12px}.links{gap:6px}
+  .merk{font-size:17px}
+  .taalkeuze summary span{display:none}.taalkeuze summary::after{display:none}.taalkeuze summary{padding:8px}
+  .top .knop{padding:9px 12px}
+}
+.hero .wrap{align-items:center}
+.hero{padding-top:36px}
+.hero .acties{margin-bottom:36px}
+
+/* pakketkiezer */
+.kiezer{display:grid;gap:18px;margin:24px 0}
+.kiezer fieldset{border:1px solid var(--lijn);border-radius:16px;padding:16px 18px;background:var(--wit)}
+.kiezer legend{font-weight:800;padding:0 8px;color:var(--nacht)}
+.kiezer label{display:flex;gap:10px;align-items:center;padding:8px 4px;color:var(--tekst);font-weight:500;cursor:pointer}
+.kiezer input[type=radio]{width:20px;height:20px;accent-color:var(--blauw);padding:0}
+.kiezer-advies{background:var(--nacht);color:#D7DFEC;border-radius:20px;padding:24px 26px}
+.kiezer-advies h2{color:var(--wit);margin-top:0}
+.kiezer-prijs{font-family:var(--display);font-size:34px;font-weight:800;color:var(--wit);margin:8px 0}
+.kiezer-prijs small{font-size:14px;font-weight:500;color:#AEBBD2;margin-left:6px}
+.kiezer-advies .noot{color:#AEBBD2}
+
+/* echte schermen in de kop van dienstpagina's */
+.illu-scherm{position:relative;padding:0 0 34px}
+.illu-scherm .lap{border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 24px 48px rgba(8,16,40,.18);border:1px solid var(--lijn)}
+.illu-scherm .balk{display:flex;gap:6px;padding:9px 12px;background:var(--lucht)}
+.illu-scherm .balk i{width:9px;height:9px;border-radius:50%;background:#C9D3E1}
+.illu-scherm .lap img{display:block;width:100%;height:auto}
+.illu-scherm .tel{position:absolute;right:-6px;bottom:0;width:24%;border:5px solid #0E1830;border-radius:18px;overflow:hidden;background:#0E1830;box-shadow:0 18px 36px rgba(8,16,40,.28)}
+.illu-scherm .tel img{display:block;width:100%;height:auto}
+@media (max-width:820px){.illu-scherm .tel{right:0}}
+#kanaal{margin-top:18px}

@@ -126,7 +126,22 @@ def tels(beelden, bijschrift):
             f'<figcaption>{bijschrift}</figcaption>')
 
 
+ECHT = {  # echte schermen van eigen werk: (laptop, telefoon, alt, bijschrift)
+    ("web", "nl"): ("img/voorbeeld-website.jpg", "img/voorbeeld-website-m.jpg", "Onze eigen website collensgroup.com op laptop en telefoon", "Deze website is door ons gemaakt"),
+    ("web", "en"): ("img/voorbeeld-website-en.jpg", "img/voorbeeld-website-m-en.jpg", "Our own website collensgroup.com on laptop and phone", "This website was built by us"),
+    ("shop", "nl"): ("img/voorbeeld-webshop.jpg", "img/hero-webshop.jpg", "Conceptwebshop Suismuis Home op laptop en telefoon", "Concept: Suismuis Home, een webshop voor woonaccessoires (nog niet gelanceerd)"),
+}
+
+
+def echt(soort, lang):
+    a, b, alt, bij = ECHT[(soort, lang)]
+    return (f'<div class="illu-scherm"><div class="lap"><div class="balk"><i></i><i></i><i></i></div><img src="{a}" alt="{alt}" width="640" height="400" loading="eager"></div>'
+            f'<div class="tel"><img src="{b}" alt="" width="120" height="213" loading="eager"></div></div><figcaption>{bij}</figcaption>')
+
+
 def illustratie(soort, lang):
+    if (soort, "en" if lang == "en" else "nl") in ECHT:
+        return echt(soort, "en" if lang == "en" else "nl")
     t = TXT["en" if lang == "en" else "nl"]
     if soort == "app":
         return tels([("img/lubbyc-ontdekken.jpg", t["alt_app1"]), ("img/lubbyc-kaart.jpg", t["alt_app2"])], t["bijschrift_app"])
