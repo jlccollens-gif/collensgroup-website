@@ -167,12 +167,18 @@
   var pag = document.body.dataset.pagina;
   var url = new URLSearchParams(location.search);
 
+  var MAT = { linnen: [/linnen/, "Linnen"], keramiek: [/keramiek|steengoed|porselein|aardewerk|terracotta/, "Keramiek"], hout: [/hout|eiken|teak|mango|rotan|riet|jute|bamboe|acacia|walnoot/, "Hout & riet"], glas: [/glas/, "Glas"], metaal: [/messing|metaal|ijzer|staal|brons/, "Messing & metaal"], zacht: [/wol|katoen|teddy|boucl|fluweel/, "Wol & katoen"] };
+  function vanMat(p, k) { return MAT[k][0].test(((p.m || "") + " " + p.n).toLowerCase()); }
+  function telling(n) { return n === 1 ? "1 stuk" : n + " stukken"; }
   if (pag === "home") {
+    $$("[data-mat]").forEach(function (el) { var k = el.dataset.mat; el.textContent = telling(P.filter(function (p) { return vanMat(p, k); }).length); });
+    $$("[data-cat]").forEach(function (el) { var c = el.dataset.cat; var n = P.filter(function (p) { return p.c === c; }).length; el.textContent = n ? telling(n) : "binnenkort"; });
     $("#nieuw-grid").innerHTML = ["vaas-orbit", "tafellamp-lune", "plaid-cosy", "kandelaar-antique"].map(function (id) { return kaart(vind(id)); }).join("");
   }
 
   if (pag === "shop") {
-    var cat = url.get("cat"), sub = url.get("sub");
+    var cat = url.get("cat"), sub = url.get("sub"), mat = url.get("mat");
+    if (mat && !MAT[mat]) mat = null;
     if (cat && OUD[cat]) cat = OUD[cat];
     if (sub && SUBCAT[sub]) cat = SUBCAT[sub][0]; else sub = null;
     if (cat && !CATS[cat]) cat = null;
@@ -184,14 +190,15 @@
     } else {
       subnav.innerHTML = TAX.map(function (t) { return '<a href="shop.html?cat=' + t[0] + '">' + t[1] + "</a>"; }).join("");
     }
-    var titel = sub ? SUBCAT[sub][1] : (cat ? CATS[cat] : "Alle producten");
+    var titel = sub ? SUBCAT[sub][1] : (cat ? CATS[cat] : (mat ? MAT[mat][1] : "Alle producten"));
     var kr = $("#kruimel-cat");
     if (sub) kr.outerHTML = '<a href="shop.html?cat=' + cat + '">' + CATS[cat] + '</a><span>/</span><span id="kruimel-cat">' + titel + "</span>"; else kr.textContent = titel;
     $("#shop-titel").textContent = titel;
+    if (mat && !cat) { $("#shop-intro").textContent = "Alles van " + MAT[mat][1].toLowerCase() + " uit de collectie."; subnav.innerHTML = Object.keys(MAT).map(function (k) { return '<a href="shop.html?mat=' + k + '"' + (k === mat ? ' aria-current="page"' : "") + ">" + MAT[k][1] + "</a>"; }).join(""); }
     if (cat) $("#shop-intro").textContent = sub ? "Uit de collectie " + CATS[cat].toLowerCase() + ", in warme, natuurlijke tinten." : "Alles uit " + CATS[cat].toLowerCase() + ", in warme, natuurlijke tinten.";
     document.title = titel + " | Suismuis Home (concept)";
     var teken = function () {
-      var lijst = P.filter(function (p) { return (!cat || p.c === cat) && (!sub || p.s === sub); });
+      var lijst = P.filter(function (p) { return (!cat || p.c === cat) && (!sub || p.s === sub) && (!mat || vanMat(p, mat)); });
       if (sort === "laag") lijst.sort(function (a, b) { return a.p - b.p; });
       if (sort === "hoog") lijst.sort(function (a, b) { return b.p - a.p; });
       if (sort === "naam") lijst.sort(function (a, b) { return a.n.localeCompare(b.n); });

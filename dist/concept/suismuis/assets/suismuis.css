@@ -280,3 +280,47 @@ header.kopbalk{background:var(--logo-taupe);border-bottom:0}
 @media (max-width:420px){.logo .woord b{font-size:15.5px;letter-spacing:.2em}.logo img{width:38px;height:38px}.binnenkort form{flex-direction:column;gap:8px}.binnenkort button{padding:14px}}
 .logo .woord{margin:0;padding:0;letter-spacing:0;color:var(--logo-creme)}
 .lade .paneel .sub summary{text-transform:none;letter-spacing:.01em;font-size:16px;padding:12px 0 12px 16px;color:var(--inkt)}
+
+/* home v4: de kamer + materiaal (18-11) */
+.kamer{position:relative;margin-bottom:120px}
+.kamer>img{display:block;width:100%;height:min(82vh,780px);object-fit:cover}
+.kamer-tekst{position:absolute;left:max(32px,calc((100vw - 1240px)/2 + 32px));bottom:-90px;width:min(560px,calc(100% - 64px));background:var(--creme);padding:44px 48px 46px;box-shadow:0 24px 60px rgba(58,45,37,.12)}
+.kamer-tekst .tag,.statement .tag{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--mokka);margin:0 0 10px}
+.kamer h1{font-size:clamp(38px,4.2vw,60px);margin:0 0 18px}
+.kamer-tekst p{margin:0 0 28px;max-width:44ch}
+.kamer .knoppen{display:flex;gap:12px;flex-wrap:wrap}
+.pil{position:absolute;display:flex;align-items:center;gap:10px;transform:translate(-11px,-50%);text-decoration:none;z-index:2}
+.pil i{width:22px;height:22px;border-radius:50%;background:var(--wit);box-shadow:0 0 0 6px rgba(251,248,243,.35);flex:none;transition:box-shadow .2s}
+.pil span{background:rgba(251,248,243,.94);padding:8px 14px;font-size:14px;line-height:1.3;color:var(--inkt);white-space:nowrap}
+.pil b{display:block;font-family:var(--serif);font-weight:500;font-size:18px;color:var(--espresso)}
+.pil.links{flex-direction:row-reverse;transform:translate(calc(-100% + 11px),-50%)}
+.pil:hover i,.pil:focus-visible i{box-shadow:0 0 0 10px rgba(251,248,243,.45)}
+.mats{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.mat{position:relative;display:block;aspect-ratio:3/5;overflow:hidden;text-decoration:none;background:var(--zand)}
+.mat img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
+.mat:hover img{transform:scale(1.04)}
+.mat-tekst{position:absolute;left:0;right:0;bottom:0;padding:70px 16px 16px;background:linear-gradient(transparent,rgba(58,45,37,.78));color:var(--wit);display:flex;flex-direction:column;gap:4px}
+.mat-tekst b{font-family:var(--serif);font-weight:400;font-size:27px;line-height:1.05}
+.mat-tekst span{font-size:13.5px;line-height:1.4}
+.mat-tekst .mat-aantal{opacity:.8;font-size:12.5px}
+.ix-wrap{display:grid;grid-template-columns:4fr 8fr;gap:64px}
+.ix-wrap h2{font-size:clamp(38px,4vw,56px);margin-bottom:14px}
+.ix-wrap>div p{margin:0 0 22px;max-width:30ch}
+.ix{list-style:none;margin:0;padding:0;border-top:1px solid var(--espresso)}
+.ix a{position:relative;display:grid;grid-template-columns:1.1fr 1.6fr auto;gap:24px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--lijn);text-decoration:none}
+.ix-naam{font-family:var(--serif);font-size:30px;color:var(--espresso);line-height:1.1}
+.ix-subs{font-size:14.5px;color:var(--mokka)}
+.ix-aantal{font-size:13.5px;color:var(--mokka);white-space:nowrap}
+.ix img{position:absolute;right:90px;top:50%;width:150px;height:150px;object-fit:cover;transform:translateY(-50%) scale(.92);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:2}
+.ix a:hover img{opacity:1;transform:translateY(-50%) scale(1)}
+.ix a:hover .ix-naam{font-style:italic}
+.statement{text-align:center;background:var(--zand)}
+.statement blockquote{font-family:var(--serif);font-size:clamp(32px,3.6vw,52px);line-height:1.2;color:var(--espresso);max-width:22ch;margin:0 auto 28px}
+@media (max-width:980px){.mats{grid-template-columns:repeat(3,1fr)}.ix-wrap{grid-template-columns:1fr;gap:28px}.ix img{display:none}}
+@media (max-width:700px){
+ .kamer{margin-bottom:0}.kamer>img{height:62vh}
+ .kamer-tekst{position:relative;left:0;bottom:0;width:auto;margin:-48px 16px 0;padding:30px 24px 32px}
+ .pil span{display:none}.pil.links{flex-direction:row;transform:translate(-11px,-50%)}
+ .mats{grid-template-columns:1fr 1fr;gap:10px}.mat{aspect-ratio:4/5}.mat-tekst b{font-size:23px}.mat-tekst span:not(.mat-aantal){display:none}
+ .ix a{grid-template-columns:1fr auto;gap:4px 16px}.ix-subs{grid-column:1/-1;grid-row:2}.ix-naam{font-size:25px}
+}
