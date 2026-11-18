@@ -5,7 +5,7 @@ Schrijft rapporten/concept-bezoeken.json en .md in de huidige map."""
 import json, os, sys, urllib.request, urllib.error, datetime as dt
 
 ACCOUNT = os.environ.get("CF_ACCOUNT_ID", "5c0e89673825539df27c9e1c99219e8b")
-TOKEN = os.environ.get("CF_ANALYTICS_TOKEN", "")
+TOKEN = os.environ.get("CF_ANALYTICS_TOKEN", "").strip()
 DAGEN = int(os.environ.get("DAGEN", "7"))
 
 Q = """query($acc: String!, $since: Time!, $until: Time!) {
@@ -45,6 +45,14 @@ def main():
         except Exception as e:  # netwerk
             data = {"errors": [{"message": f"{type(e).__name__}: {e}"}]}
         if data.get("errors"):
+            try:  # diagnose zonder de token te tonen
+                v = json.load(urllib.request.urlopen(urllib.request.Request("https://api.cloudflare.com/client/v4/user/tokens/verify", headers={"Authorization": "Bearer " + TOKEN}), timeout=30))
+                uit["token_check"] = (v.get("result") or {}).get("status") or str(v.get("errors"))[:200]
+            except urllib.error.HTTPError as e:
+                uit["token_check"] = f"HTTP {e.code}: {e.read().decode('utf-8','replace')[:200]}"
+            except Exception as e:
+                uit["token_check"] = type(e).__name__
+            uit["token_lengte"] = len(TOKEN)
             uit["fout"] = "; ".join(x.get("message", "?") for x in data["errors"])[:500]
         else:
             rijen = data["data"]["viewer"]["accounts"][0]["rumPageloadEventsAdaptiveGroups"]
@@ -69,6 +77,8 @@ def main():
     regels = [f"# Concept-bezoeken (laatste {DAGEN} dagen)", f"Gemaakt: {uit['gemaakt']} (UTC)", ""]
     if uit["fout"]:
         regels.append(f"**Fout:** {uit['fout']}")
+        if "token_check" in uit:
+            regels.append(f"Tokencontrole: {uit['token_check']} (lengte {uit.get('token_lengte')})")
     elif not uit["per_concept"]:
         regels.append("Geen bezoeken aan /concept/-pagina's in deze periode.")
     else:
