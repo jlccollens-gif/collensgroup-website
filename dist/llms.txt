@@ -23,6 +23,7 @@
 - [goedkope-website-laten-maken.html](https://collensgroup.com/goedkope-website-laten-maken)
 - [chatbot-laten-maken.html](https://collensgroup.com/chatbot-laten-maken)
 - [website-laten-maken-horeca.html](https://collensgroup.com/website-laten-maken-horeca)
+- [app-laten-maken-horeca.html](https://collensgroup.com/app-laten-maken-horeca)
 - [website-laten-maken-kapper.html](https://collensgroup.com/website-laten-maken-kapper)
 - [merkgame-laten-maken-kerst.html](https://collensgroup.com/merkgame-laten-maken-kerst)
 - [en-app-development.html](https://collensgroup.com/en-app-development)
