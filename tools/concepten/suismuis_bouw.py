@@ -129,61 +129,49 @@ def bouw():
     journal = "".join(f'<a class="artikel" href="journal.html#{s}"><div class="beeld"><img src="img/{img}.jpg" alt="" loading="lazy" width="1500" height="1000"></div><h3>{t}</h3><p>{k}</p><span class="link">Lees verder</span></a>' for s, img, t, k, _ in ARTIKELEN)
 
     # ---------- home ----------
-    stippen = [("s1", 77, 23, "droogbloemen-champagne", "p-droogbloemen", "Droogbloemen Champagne", "€ 34,95"),
+    stippen = [("s1", 77, 24, "droogbloemen-champagne", "p-droogbloemen", "Droogbloemen Champagne", "€ 34,95"),
                ("s2", 82, 62, "plaid-teddy", "p-plaid-teddy", "Plaid Teddy", "€ 74,95"),
                ("s3", 93, 50, "kussenhoes-linnen", "p-kussens-linnen", "Kussenhoes Linnen", "€ 39,95")]
     stip_html = "".join(f'<button class="stip" type="button" style="left:{x}%;top:{y}%" aria-controls="{i}" aria-expanded="false" aria-label="Bekijk {n}"></button>'
                         f'<a class="stip-kaart" id="{i}" href="product.html?p={pid}" style="left:{x}%;top:{y}%"><img src="img/{img}.jpg" alt=""><span><b>{n}</b>{pr} · Bekijk</span></a>'
                         for i, x, y, pid, img, n, pr in stippen)
-    MATS = [("linnen", "Linnen", "p-kussens-linnen", "Kreukt mooi, ademt, wordt zachter bij elke was."),
-            ("keramiek", "Keramiek", "p-vaas-orbit", "Mat geglazuurd, met de hand gevormd."),
-            ("hout", "Hout & riet", "p-kruk", "Warm onder je hand, mooier met de jaren."),
-            ("glas", "Glas", "p-windlichtjes", "Vangt het licht, licht van gewicht."),
-            ("metaal", "Messing & metaal", "p-kandelaar", "Een warme glans tussen de zachte tinten."),
-            ("zacht", "Wol & katoen", "p-plaid-cosy", "Om in weg te kruipen.")]
-    mat_html = "".join(f'<a class="mat" href="shop.html?mat={k}"><img src="img/{img}.jpg" alt="" loading="lazy" width="1200" height="1200"><span class="mat-tekst"><b>{n}</b><span>{t}</span><span class="mat-aantal" data-mat="{k}"></span></span></a>' for k, n, img, t in MATS)
-    index_html = "".join(f'<li><a href="shop.html?cat={c}"><span class="ix-naam">{n}</span><span class="ix-subs">{", ".join(sn for _, sn in subs)}</span><span class="ix-aantal" data-cat="{c}"></span><img src="img/{img}.jpg" alt="" loading="lazy" width="600" height="600"></a></li>' for c, n, img, subs in TAX)
     stip_html = "".join(f'<a class="pil{" links" if x > 70 else ""}" href="product.html?p={pid}" style="left:{x}%;top:{y}%"><i aria-hidden="true"></i><span><b>{n}</b>{pr}</span></a>'
                         for i, x, y, pid, img, n, pr in stippen)
+    tak = '<svg class="tak" viewBox="0 0 220 420" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M120 418C116 330 104 250 70 170 52 128 40 80 44 14"/><path d="M98 300c-26-8-46-26-56-52M92 262c22-16 46-22 74-18M80 214c-24-6-40-22-50-44M72 176c18-18 40-28 66-28M60 132c-20-8-32-24-38-44M54 100c14-16 32-24 54-24M48 60c-12-10-18-24-18-38"/></g><g fill="currentColor" opacity=".55"><ellipse cx="40" cy="246" rx="9" ry="4" transform="rotate(-50 40 246)"/><ellipse cx="168" cy="244" rx="9" ry="4" transform="rotate(10 168 244)"/><ellipse cx="28" cy="168" rx="8" ry="4" transform="rotate(-60 28 168)"/><ellipse cx="140" cy="148" rx="8" ry="4"/><ellipse cx="20" cy="88" rx="7" ry="3.5" transform="rotate(-70 20 88)"/><ellipse cx="110" cy="76" rx="7" ry="3.5"/><ellipse cx="30" cy="20" rx="6" ry="3" transform="rotate(-80 30 20)"/></g></svg>'
     pagina("index.html", "Suismuis Home – warm, stijlvol, tijdloos wonen (concept)", "home", "home", f'''
-<div class="kamer" id="look">
+<div class="voorpagina" id="look">
  <img src="img/s-held.jpg" alt="Rustige woonkamer in warme tinten met pampas, een crèmekleurige bank en zacht daglicht" width="2000" height="1333" fetchpriority="high">
  {stip_html}
- <div class="kamer-tekst">
-  <p class="tag">Live beautiful. Live Suismuis.</p>
-  <h1>Rust in huis, in zachte natuurlijke tinten</h1>
-  <p>Woonaccessoires van linnen, keramiek, hout en glas. Klik in de kamer op wat je ziet, of kies hieronder je materiaal.</p>
-  <div class="knoppen"><a class="knop" href="#materiaal">Shop op materiaal</a><a class="knop licht" href="shop.html">Hele collectie</a></div>
+ <div class="wrap voorpagina-tekst">
+  <span class="klein">Live beautiful. Live Suismuis.</span>
+  <h1>Jouw huis,<br>onze passie</h1>
+  <p>Ontdek tijdloze woonaccessoires met een vleugje elegantie.</p>
+  <div class="knoppen"><a class="knop" href="shop.html">Shop de look <span aria-hidden="true">→</span></a></div>
  </div>
 </div>
-<section id="materiaal"><div class="wrap">
- <div class="sectiekop"><div><h2>Shop op materiaal</h2><p>Bij Suismuis begint een interieur bij wat je voelt. Kies het materiaal, wij laten zien wat erbij hoort.</p></div></div>
- <div class="mats">{mat_html}</div>
-</div></section>
+<section class="cat-band" aria-label="Shop per categorie"><div class="cats">{cat_tegels}</div></section>
 <section class="nieuw"><div class="wrap">
- <div class="sectiekop"><div><h2>Nieuw binnen</h2><p>Zorgvuldig gekozen stukken die je interieur rust en warmte geven.</p></div><a class="link" href="shop.html">Alle producten</a></div>
- <div class="producten" id="nieuw-grid"></div>
+ <div class="sectiekop midden"><h2>Nieuw binnen</h2><p>Zorgvuldig gekozen stukken die je interieur rust en warmte geven.</p></div>
+ <div class="producten studio" id="nieuw-grid"></div>
+ <div class="midden-knop"><a class="knop licht" href="shop.html">Bekijk de hele collectie</a></div>
 </div></section>
-<section><div class="wrap ix-wrap">
- <div><h2>De collectie</h2><p>Zes afdelingen, van een enkel vaasje tot de stoel waarin je leest.</p><a class="link" href="shop.html">Bekijk alles</a></div>
- <ol class="ix">{index_html}</ol>
-</div></section>
-<section class="statement"><div class="wrap">
- <p class="tag">Het Suismuis-gevoel</p>
- <blockquote>Warm. Stijlvol. Tijdloos. Minder spullen, betere spullen, in tinten die met elkaar praten.</blockquote>
- <a class="link" href="over.html">Lees het verhaal van Suismuis</a>
-</div></section>
+<section class="verhaal">
+ <img src="img/s-verhaal.jpg" alt="Bank met zachte kussens, een houten bijzettafel en een vaas met bloemen" loading="lazy" width="1800" height="1350">
+ <div class="verhaal-tekst"><span class="klein">Het Suismuis-gevoel</span><h2>Warm. Stijlvol. Tijdloos.</h2>
+  <p>Bij Suismuis Home geloven we in de schoonheid van eenvoud. Onze collectie brengt warmte, stijl en rust in elk huis: linnen, hout, keramiek en zacht licht.</p>
+  <div><a class="knop" href="over.html">Over Suismuis <span aria-hidden="true">→</span></a></div>{tak}</div>
+</section>
 {ZEKER}
 <section><div class="wrap">
  <div class="sectiekop"><div><h2>Journal</h2><p>Stylingtips en inspiratie voor een thuis vol rust.</p></div><a class="link" href="journal.html">Alle verhalen</a></div>
  <div class="journal-rij">{journal}</div>
 </div></section>
-<section class="brief" id="brief">
- <img src="img/s-brief.jpg" alt="Lichte woonkamer met een lage bank, droogbloemen en een rieten poef" loading="lazy" width="1800" height="1200">
- <div class="brief-tekst"><h2>Als eerste de nieuwe collectie zien</h2>
+<section class="brief-vol" id="brief">
+ <img src="img/s-brief.jpg" alt="" loading="lazy" width="1800" height="1200">
+ <div class="wrap"><div class="brief-tekst"><span class="klein">Blijf geïnspireerd</span><h2>Als eerste de nieuwe collectie zien</h2>
   <p>Schrijf je in voor de nieuwsbrief en ontvang stylingtips en nieuwe items. Afmelden kan altijd.</p>
   <form data-bevestig="Dank je wel! Je inschrijving is ontvangen." novalidate><label for="mail" class="sr">E-mailadres</label><input id="mail" type="email" required placeholder="Je e-mailadres" autocomplete="email"><button type="submit">Inschrijven</button></form>
- </div>
+ </div></div>
 </section>''')
 
     # ---------- shop ----------

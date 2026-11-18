@@ -171,8 +171,6 @@
   function vanMat(p, k) { return MAT[k][0].test(((p.m || "") + " " + p.n).toLowerCase()); }
   function telling(n) { return n === 1 ? "1 stuk" : n + " stukken"; }
   if (pag === "home") {
-    $$("[data-mat]").forEach(function (el) { var k = el.dataset.mat; el.textContent = telling(P.filter(function (p) { return vanMat(p, k); }).length); });
-    $$("[data-cat]").forEach(function (el) { var c = el.dataset.cat; var n = P.filter(function (p) { return p.c === c; }).length; el.textContent = n ? telling(n) : "binnenkort"; });
     $("#nieuw-grid").innerHTML = ["vaas-orbit", "tafellamp-lune", "plaid-cosy", "kandelaar-antique"].map(function (id) { return kaart(vind(id)); }).join("");
   }
 

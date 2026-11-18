@@ -281,46 +281,48 @@ header.kopbalk{background:var(--logo-taupe);border-bottom:0}
 .logo .woord{margin:0;padding:0;letter-spacing:0;color:var(--logo-creme)}
 .lade .paneel .sub summary{text-transform:none;letter-spacing:.01em;font-size:16px;padding:12px 0 12px 16px;color:var(--inkt)}
 
-/* home v4: de kamer + materiaal (18-11) */
-.kamer{position:relative;margin-bottom:120px}
-.kamer>img{display:block;width:100%;height:min(82vh,780px);object-fit:cover}
-.kamer-tekst{position:absolute;left:max(32px,calc((100vw - 1240px)/2 + 32px));bottom:-90px;width:min(560px,calc(100% - 64px));background:var(--creme);padding:44px 48px 46px;box-shadow:0 24px 60px rgba(58,45,37,.12)}
-.kamer-tekst .tag,.statement .tag{font-family:var(--serif);font-style:italic;font-size:20px;color:var(--mokka);margin:0 0 10px}
-.kamer h1{font-size:clamp(38px,4.2vw,60px);margin:0 0 18px}
-.kamer-tekst p{margin:0 0 28px;max-width:44ch}
-.kamer .knoppen{display:flex;gap:12px;flex-wrap:wrap}
+/* home v5 – naar Kims eigen ontwerp (18-11) */
+.voorpagina{position:relative;min-height:min(86vh,800px);display:flex;align-items:center;overflow:hidden;background:var(--espresso)}
+.voorpagina>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:sepia(.22) saturate(1.08) brightness(1.06)}
+.voorpagina:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(58,45,37,.62) 0%,rgba(58,45,37,.38) 38%,rgba(58,45,37,0) 64%);pointer-events:none}
+.voorpagina-tekst{position:relative;z-index:1;width:100%;color:var(--creme);padding-top:60px;padding-bottom:60px}
+.voorpagina .klein{color:var(--zand)}
+.voorpagina h1{color:var(--creme);font-size:clamp(52px,6.4vw,96px);line-height:1.02;margin:22px 0 22px}
+.voorpagina p{font-size:20px;max-width:30ch;margin:0 0 38px;color:#efe6da}
+.voorpagina .knop{background:var(--espresso)}.voorpagina .knop:hover{background:var(--inkt)}
 .pil{position:absolute;display:flex;align-items:center;gap:10px;transform:translate(-11px,-50%);text-decoration:none;z-index:2}
-.pil i{width:22px;height:22px;border-radius:50%;background:var(--wit);box-shadow:0 0 0 6px rgba(251,248,243,.35);flex:none;transition:box-shadow .2s}
-.pil span{background:rgba(251,248,243,.94);padding:8px 14px;font-size:14px;line-height:1.3;color:var(--inkt);white-space:nowrap}
-.pil b{display:block;font-family:var(--serif);font-weight:500;font-size:18px;color:var(--espresso)}
-.pil.links{flex-direction:row-reverse;transform:translate(calc(-100% + 11px),-50%)}
+.pil i{width:20px;height:20px;border-radius:50%;background:var(--wit);box-shadow:0 0 0 6px rgba(251,248,243,.3);flex:none;transition:box-shadow .2s}
+.pil span{background:rgba(251,248,243,.94);padding:8px 14px;font-size:13.5px;line-height:1.3;color:var(--inkt);white-space:nowrap;opacity:0;transform:translateX(-4px);transition:opacity .2s,transform .2s}
+.pil b{display:block;font-family:var(--serif);font-weight:500;font-size:17px;color:var(--espresso)}
+.pil.links{flex-direction:row-reverse;transform:translate(calc(-100% + 10px),-50%)}
+.pil:hover span,.pil:focus-visible span{opacity:1;transform:none}
 .pil:hover i,.pil:focus-visible i{box-shadow:0 0 0 10px rgba(251,248,243,.45)}
-.mats{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
-.mat{position:relative;display:block;aspect-ratio:3/5;overflow:hidden;text-decoration:none;background:var(--zand)}
-.mat img{width:100%;height:100%;object-fit:cover;transition:transform .6s}
-.mat:hover img{transform:scale(1.04)}
-.mat-tekst{position:absolute;left:0;right:0;bottom:0;padding:70px 16px 16px;background:linear-gradient(transparent,rgba(58,45,37,.78));color:var(--wit);display:flex;flex-direction:column;gap:4px}
-.mat-tekst b{font-family:var(--serif);font-weight:400;font-size:27px;line-height:1.05}
-.mat-tekst span{font-size:13.5px;line-height:1.4}
-.mat-tekst .mat-aantal{opacity:.8;font-size:12.5px}
-.ix-wrap{display:grid;grid-template-columns:4fr 8fr;gap:64px}
-.ix-wrap h2{font-size:clamp(38px,4vw,56px);margin-bottom:14px}
-.ix-wrap>div p{margin:0 0 22px;max-width:30ch}
-.ix{list-style:none;margin:0;padding:0;border-top:1px solid var(--espresso)}
-.ix a{position:relative;display:grid;grid-template-columns:1.1fr 1.6fr auto;gap:24px;align-items:baseline;padding:22px 0;border-bottom:1px solid var(--lijn);text-decoration:none}
-.ix-naam{font-family:var(--serif);font-size:30px;color:var(--espresso);line-height:1.1}
-.ix-subs{font-size:14.5px;color:var(--mokka)}
-.ix-aantal{font-size:13.5px;color:var(--mokka);white-space:nowrap}
-.ix img{position:absolute;right:90px;top:50%;width:150px;height:150px;object-fit:cover;transform:translateY(-50%) scale(.92);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:2}
-.ix a:hover img{opacity:1;transform:translateY(-50%) scale(1)}
-.ix a:hover .ix-naam{font-style:italic}
-.statement{text-align:center;background:var(--zand)}
-.statement blockquote{font-family:var(--serif);font-size:clamp(32px,3.6vw,52px);line-height:1.2;color:var(--espresso);max-width:22ch;margin:0 auto 28px}
-@media (max-width:980px){.mats{grid-template-columns:repeat(3,1fr)}.ix-wrap{grid-template-columns:1fr;gap:28px}.ix img{display:none}}
+.cat-band{padding:18px 18px 0;background:var(--creme)}
+.cat-band .cats{gap:18px}
+.cat span:after{content:" →"}
+.sectiekop.midden{display:block;text-align:center;max-width:640px;margin-left:auto;margin-right:auto}
+.sectiekop.midden p{margin-left:auto;margin-right:auto}
+.studio .beeld,.studio .foto{background:#EFE8DE}
+.midden-knop{text-align:center;margin-top:48px}
+.verhaal-tekst{position:relative;overflow:hidden}
+.tak{position:absolute;right:-10px;bottom:-14px;width:170px;color:var(--taupe);pointer-events:none}
+.brief-vol{position:relative;padding:120px 0;color:var(--creme);overflow:hidden}
+.brief-vol>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.brief-vol:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(58,45,37,0) 30%,rgba(73,56,46,.78) 62%)}
+.brief-vol .wrap{position:relative;z-index:1;display:flex;justify-content:flex-end}
+.brief-vol .brief-tekst{max-width:480px;padding:0}
+.brief-vol h2{color:var(--creme);font-size:clamp(32px,3vw,44px);margin:14px 0 12px}
+.brief-vol .klein{color:var(--zand)}
+.brief-vol form{display:flex;margin-top:22px}
+.brief-vol input{flex:1;min-width:0;border:0;background:var(--creme);padding:16px 18px;font:inherit;font-size:15px;color:var(--inkt)}
+.brief-vol button{border:0;background:var(--espresso);color:var(--creme);padding:0 26px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;cursor:pointer}
+@media (max-width:980px){.cat-band .cats{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:700px){
- .kamer{margin-bottom:0}.kamer>img{height:62vh}
- .kamer-tekst{position:relative;left:0;bottom:0;width:auto;margin:-48px 16px 0;padding:30px 24px 32px}
- .pil span{display:none}.pil.links{flex-direction:row;transform:translate(-11px,-50%)}
- .mats{grid-template-columns:1fr 1fr;gap:10px}.mat{aspect-ratio:4/5}.mat-tekst b{font-size:23px}.mat-tekst span:not(.mat-aantal){display:none}
- .ix a{grid-template-columns:1fr auto;gap:4px 16px}.ix-subs{grid-column:1/-1;grid-row:2}.ix-naam{font-size:25px}
+ .voorpagina{min-height:74vh;align-items:flex-end}
+ .voorpagina:after{background:linear-gradient(0deg,rgba(58,45,37,.78) 0%,rgba(58,45,37,.35) 55%,rgba(58,45,37,0) 80%)}
+ .voorpagina h1{font-size:48px}.voorpagina p{font-size:18px}
+ .pil{display:none}
+ .cat-band{padding:12px 12px 0}.cat-band .cats{grid-template-columns:1fr 1fr;gap:10px}
+ .tak{width:110px;opacity:.6}
+ .brief-vol{padding:72px 0}.brief-vol:after{background:rgba(73,56,46,.72)}
 }
