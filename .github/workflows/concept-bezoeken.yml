@@ -1,0 +1,32 @@
+name: concept-bezoeken
+on:
+  schedule:
+    - cron: "17 5 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "tools/analytics/concept_bezoeken.py"
+      - ".github/workflows/concept-bezoeken.yml"
+permissions:
+  contents: write
+concurrency:
+  group: concept-bezoeken
+  cancel-in-progress: false
+jobs:
+  rapport:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Bezoeken ophalen
+        env:
+          CF_ANALYTICS_TOKEN: ${{ secrets.CF_ANALYTICS_TOKEN }}
+        run: python3 tools/analytics/concept_bezoeken.py || echo "::warning::rapport bevat een fout"
+      - name: Rapport opslaan
+        run: |
+          git config user.name "concept-bezoeken"
+          git config user.email "actions@users.noreply.github.com"
+          git add rapporten/concept-bezoeken.json rapporten/concept-bezoeken.md
+          git diff --cached --quiet && exit 0
+          git commit -m "Rapport concept-bezoeken [skip ci]"
+          for i in 1 2 3; do git pull --rebase -q && git push -q && break; sleep 5; done
