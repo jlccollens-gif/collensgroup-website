@@ -1,4 +1,4 @@
-"""Dagelijks overzicht: welke concept-pagina's (/concept/<slug>/) zijn bekeken.
+"""Dagelijks (05:17 UTC) overzicht: welke concept-pagina's (/concept/<slug>/) zijn bekeken.
 Bron: Cloudflare Web Analytics (GraphQL, dataset rumPageloadEventsAdaptiveGroups).
 Token alleen via omgeving (CF_ANALYTICS_TOKEN, recht Account Analytics: Read).
 Schrijft rapporten/concept-bezoeken.json en .md in de huidige map."""
