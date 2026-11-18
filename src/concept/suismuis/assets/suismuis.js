@@ -215,26 +215,30 @@
     var p = vind(url.get("p")) || P[0];
     document.title = p.n + " | Suismuis Home (concept)";
     var extra = P.filter(function (x) { return x.c === p.c && x.id !== p.id; }).concat(P.filter(function (x) { return x.c !== p.c; })).slice(0, 4);
-    var beelden = p.u ? p.u.slice(0, 4) : [foto(p, true)].concat(p.f ? [] : extra.slice(0, 2).map(function (x) { return foto(x, true); }));
+    var beelden = p.u ? p.u.slice() : [foto(p, true)].concat(p.f ? [] : extra.slice(0, 2).map(function (x) { return foto(x, true); }));
     var lever = p.lt ? "Levertijd " + p.lt : "Levertijd 8–15 werkdagen";
     $("#pdp").innerHTML =
       '<div class="galerij"><div class="hoofd"><img id="hoofdbeeld" src="' + beelden[0] + '" alt=""' + esc(p.n) + '" width="1200" height="1500"></div>' +
       (beelden.length > 1 ? '<div class="duim">' + beelden.map(function (b, i) { return '<button type="button" data-beeld="' + b + '" aria-current="' + (i === 0) + '" aria-label="Toon afbeelding ' + (i + 1) + '"><img src="' + b + '" alt=""></button>'; }).join("") + "</div>" : "") +
-      '<p class="noot" style="margin-top:6px">' + "Voorbeeldbeelden; bij lancering komen hier je eigen productfoto’s." + '</p></div>' +
+      (p.ok ? '<p class="noot" style="margin-top:6px">Eerste foto: het werk vrijstaand. Daarna alle foto’s van de maker, ook sfeer- en detailfoto’s.</p>' : '<p class="noot" style="margin-top:6px">' + "Voorbeeldbeelden; bij lancering komen hier je eigen productfoto’s." + '</p>') + '</div>' +
       '<div class="pdp-info"><nav class="kruimel" aria-label="Kruimelpad"><a href="index.html">Home</a><span>/</span><a href="shop.html">Shop</a><span>/</span><a href="shop.html?cat=' + p.c + '">' + CATS[p.c] + '</a>' + (p.s ? '<span>/</span><a href="shop.html?cat=' + p.c + '&amp;sub=' + p.s + '">' + SUBCAT[p.s][1] + '</a>' : '') + '</nav>' +
-      '<span class="klein">' + (p.s ? SUBCAT[p.s][1] : CATS[p.c]) + '</span><h1>' + esc(p.n) + '</h1><div class="prijs">' + euro(p.p) + '</div>' +
+      '<span class="klein">' + (p.s ? SUBCAT[p.s][1] : CATS[p.c]) + '</span><h1>' + esc(p.n) + '</h1><div class="prijs">' + (p.maten && p.maten.length > 1 ? '<span class="vanaf">vanaf</span> ' : '') + euro(p.p) + '</div>' +
+      (p.var && p.var.length > 1 ? '<div class="opties"><p class="optie-kop">Uitvoering: <b id="var-naam">' + esc(p.var[0].n) + '</b></p><div class="stalen">' + p.var.map(function (v, i) { return '<button type="button" class="staal" data-var="' + i + '" aria-pressed="' + (i === 0) + '" aria-label="Uitvoering ' + esc(v.n) + '"><img src="' + v.b + '" alt=""></button>'; }).join("") + '</div></div>' : '') +
+      (p.maten && p.maten.length ? '<div class="opties"><label class="optie-kop" for="maat">Maat (cm)</label><select id="maat">' + p.maten.map(function (m) { return "<option>" + m + " cm</option>"; }).join("") + '</select>' + (p.maten.length > 1 ? '<p class="optie-noot">De prijs geldt voor de kleinste maat; de prijs per maat staat in de echte webshop.</p>' : '') + '</div>' : '') +
       '<p>' + esc(p.t) + '</p><p class="voorraad">' + lever + '</p>' +
       '<div class="koop"><div class="stapper"><button type="button" data-stap="-1" aria-label="Minder">−</button><input id="aantal-p" type="number" min="1" max="20" value="1" aria-label="Aantal"><button type="button" data-stap="1" aria-label="Meer">+</button></div>' +
       '<button class="knop" type="button" id="koop-p">In winkelmand</button></div>' +
       '<button class="knop licht breed" type="button" data-fav="' + p.id + '" aria-pressed="' + (favs().indexOf(p.id) > -1) + '">Bewaar als favoriet</button>' +
       '<ul class="usp"><li>Gratis verzending vanaf € 75</li><li>14 dagen bedenktijd, eenvoudig retourneren</li><li>Veilig betalen met PayPal, creditcard of bankoverschrijving</li><li>Cadeauverpakking mogelijk bij het afrekenen</li></ul>' +
-      '<details open><summary>Materiaal en afmetingen</summary><p>' + esc(p.m) + "<br>" + esc(p.d) + '</p></details>' +
+      '<details open><summary>Materiaal en afmetingen</summary>' + (p.spec ? '<dl class="spec">' + p.spec.map(function (r) { return "<dt>" + esc(r[0]) + "</dt><dd>" + esc(r[1]) + "</dd>"; }).join("") + '</dl><p class="spec-maten">' + esc(p.d) + '</p>' : '<p>' + esc(p.m) + "<br>" + esc(p.d) + '</p>') + '</details>' +
       '<details><summary>Onderhoud</summary><p>Afnemen met een droge of licht vochtige doek. Natuurlijke materialen kunnen kleine kleurverschillen hebben; dat maakt elk stuk uniek.</p></details>' +
       '<details><summary>Verzenden en retourneren</summary><p>' + (p.lt ? "Levertijd " + p.lt + ", in Nederland en België." : "Je bestelling is in 8–15 werkdagen in huis, in Nederland en België.") + ' Niet tevreden? Je hebt 14 dagen bedenktijd. Lees meer bij <a class="link" href="klantenservice.html#retour">retourneren</a>.</p></details></div>';
     $("#gerelateerd").innerHTML = extra.map(kaart).join("");
     $("#pdp").addEventListener("click", function (e) {
       var b = e.target.closest("[data-beeld]");
       if (b) { $("#hoofdbeeld").src = b.getAttribute("data-beeld"); $$("[data-beeld]").forEach(function (x) { x.setAttribute("aria-current", x === b); }); }
+      var v = e.target.closest("[data-var]");
+      if (v) { var vv = p.var[+v.getAttribute("data-var")]; $("#hoofdbeeld").src = vv.b; $("#var-naam").textContent = vv.n; $$("[data-var]").forEach(function (x) { x.setAttribute("aria-pressed", x === v); }); }
       var s = e.target.closest("[data-stap]");
       if (s) { var i = $("#aantal-p"); i.value = Math.max(1, Math.min(20, (+i.value || 1) + (+s.getAttribute("data-stap")))); }
       if (e.target.closest("#koop-p")) voegToe(p.id, Math.max(1, Math.min(20, +$("#aantal-p").value || 1)));
