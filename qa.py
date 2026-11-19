@@ -47,6 +47,8 @@ for f in sorted(pages):
     if m:
         if m.group(0).count('class="taalkeuze"')!=1: fouten.append(f"{f}: taalknop ontbreekt of dubbel")
     if len(set(p.ids))!=len(p.ids): fouten.append(f"{f}: dubbele id's")
+    # Datum-plaatshouders moeten door build.py (datums_vastzetten) ingevuld zijn (19-11)
+    for ph in sorted(set(re.findall(r"@@[A-Z_]+@@", src))): fouten.append(f"{f}: datum-plaatshouder {ph} niet ingevuld")
     # Verboden slogan van de eigenaar (16-11): eigendom alleen feitelijk in een FAQ
     for slogan in ("alles is van jou","helemaal van jou","volledig van jou","own everything","you own it","blijft eigenaar van wat"):
         if slogan in src.lower(): fouten.append(f"{f}: verboden slogan '{slogan}'")
