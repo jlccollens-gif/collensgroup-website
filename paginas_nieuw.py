@@ -7,7 +7,7 @@ NOINDEX = '<meta name="robots" content="noindex, follow">'
 
 def bouw(page, e, faq_html, faq_ld, DIENSTEN, PAKKETTEN, VANDAAG, CONFIG):
     pages, items = [], []
-    art = lambda kop: {"@type": "Article", "headline": kop, "dateModified": VANDAAG, "datePublished": VANDAAG, "inLanguage": "nl", "author": {"@id": "#org"}, "publisher": {"@id": "#org"}}
+    art = lambda kop: {"@type": "Article", "headline": kop, "dateModified": "@@BIJGEWERKT_ISO@@", "datePublished": "@@GEPUBLICEERD_ISO@@", "inLanguage": "nl", "author": {"@id": "#org"}, "publisher": {"@id": "#org"}}
     cta = lambda txt="Vraag je gratis concept aan": f'<p style="margin-top:24px"><a class="knop geel" href="index.html#contact">{txt}</a></p>'
     d = {x["slug"]: x for x in DIENSTEN}
     prijs = lambda p: "€" + f"{p:,}".replace(",", ".")
@@ -149,7 +149,7 @@ c.addEventListener("input",reken);reken();
         "App of website laten maken? Zo kies je: kosten, doorlooptijd en wanneer een app echt nodig is. Website vanaf €495, app vanaf €3.150, eindprijzen.",
         f'''<article class="tekst breed"><h1>App of website: wat past bij jou?</h1>
 <p class="lead2">Kort antwoord: begin met een website, tenzij je gebruikers dagelijks terugkomen, meldingen nodig hebben of functies van de telefoon gebruiken. Dan loont een app.</p>
-<p class="bijgewerkt">Bijgewerkt op {datetime.date.today().strftime("%d-%m-%Y")}</p>
+<p class="bijgewerkt">Bijgewerkt op @@BIJGEWERKT_NL@@</p>
 <h2>De verschillen op een rij</h2>
 <div class="scroll"><table class="tabel vergelijk"><tr><th></th><th>Website</th><th>App</th></tr>
 <tr><td>Kosten bij ons</td><td>vanaf €495</td><td>vanaf €3.150</td></tr>
@@ -175,7 +175,7 @@ c.addEventListener("input",reken);reken();
         "Zelf een website bouwen (Wix, WordPress, Squarespace) of laten maken? Kosten, tijd, eigendom en vindbaarheid vergeleken. Website laten maken vanaf €495.",
         f'''<article class="tekst breed"><h1>Zelf een website bouwen of laten maken?</h1>
 <p class="lead2">Een websitebouwer als Wix, Squarespace of WordPress is een prima keuze als je tijd hebt en zin om het te leren. Laten maken loont als je snel en professioneel online wilt zonder er zelf uren aan kwijt te zijn.</p>
-<p class="bijgewerkt">Bijgewerkt op {datetime.date.today().strftime("%d-%m-%Y")}</p>
+<p class="bijgewerkt">Bijgewerkt op @@BIJGEWERKT_NL@@</p>
 <h2>De afwegingen</h2>
 <div class="scroll"><table class="tabel vergelijk"><tr><th></th><th>Zelf bouwen</th><th>Laten maken</th></tr>
 <tr><td>Startkosten</td><td>Laag, vaak een abonnement per maand</td><td>Eenmalig, bij ons vanaf €495</td></tr>
@@ -199,7 +199,7 @@ c.addEventListener("input",reken);reken();
         "Acht dingen die je vooraf afspreekt als je een website laat maken: prijs, btw, eigendom, levertijd, hosting, onderhoud, teksten en vindbaarheid.",
         f'''<article class="tekst breed"><h1>Website laten maken: 8 afspraken die je vooraf vastlegt</h1>
 <p class="lead2">De meeste teleurstellingen bij een nieuwe website zijn geen kwestie van ontwerp, maar van afspraken die niemand vooraf maakte. Dit zijn de acht dingen waar je naar vraagt voordat je tekent.</p>
-<p class="bijgewerkt">Bijgewerkt op {datetime.date.today().strftime("%d-%m-%Y")}</p>
+<p class="bijgewerkt">Bijgewerkt op @@BIJGEWERKT_NL@@</p>
 <h2>1. Wat kost het, en staat de btw erbij?</h2><p>Vraag om één eindbedrag. Prijzen zonder btw lijken lager dan ze zijn. Bij Collens Group zijn alle prijzen eindprijzen: er komt geen btw bij.</p>
 <h2>2. Wat zit er wel en niet in de prijs?</h2><p>Aantal pagina's, teksten, foto's, formulieren, koppelingen en aanpassingsrondes. Wat niet genoemd wordt, kost meestal extra. Laat het opschrijven.</p>
 <h2>3. Wie is eigenaar van de website en het domein?</h2><p>De site, het domein en de inhoud horen op jouw naam te staan. Zo zit je niet vast aan één partij en kun je later verhuizen.</p>
@@ -221,7 +221,7 @@ c.addEventListener("input",reken);reken();
         "Wat kost een website laten maken in 2026? Marktprijzen voor freelancers en bureaus, bijkomende kosten per jaar en onze vaste prijzen vanaf €495.",
         f'''<article class="tekst breed"><h1>Wat kost een website laten maken in 2026?</h1>
 <p class="lead2">Kort antwoord: een eenvoudige zakelijke website kost bij Nederlandse freelancers meestal €800 tot €3.000 en bij bureaus €2.500 tot €12.000. Bij Collens Group begint een one-page website bij €495 en een bedrijfswebsite bij €995, allemaal eindprijzen.</p>
-<p class="bijgewerkt">Bijgewerkt op {datetime.date.today().strftime("%d-%m-%Y")}</p>
+<p class="bijgewerkt">Bijgewerkt op @@BIJGEWERKT_NL@@</p>
 <h2>Wat kost het op de markt?</h2>
 <div class="scroll"><table class="tabel vergelijk"><tr><th>Soort</th><th>Marktprijs</th><th>Bron</th></tr>
 <tr><td>Eenvoudige zakelijke website, freelancer</td><td>€800 tot €3.000</td><td><a href="https://www.appypie.com/nl/?p=2729541" rel="nofollow noopener">Appy Pie (okt. 2026)</a></td></tr>
@@ -246,7 +246,7 @@ c.addEventListener("input",reken);reken();
         "Wat kost een webshop laten maken? Marktprijzen voor freelancers en bureaus, bijkomende kosten en onze vaste prijs vanaf €1.950. Eindprijzen, geen btw erbij.",
         f'''<article class="tekst breed"><h1>Wat kost een webshop laten maken?</h1>
 <p class="lead2">Kort antwoord: een webshop kost bij een freelancer meestal €2.000 tot €8.000 en bij een bureau voor het mkb €5.000 tot €15.000. Bij Collens Group begint een webshop bij €1.950, een eindprijs zonder btw erbij.</p>
-<p class="bijgewerkt">Bijgewerkt op {datetime.date.today().strftime("%d-%m-%Y")}</p>
+<p class="bijgewerkt">Bijgewerkt op @@BIJGEWERKT_NL@@</p>
 <h2>Marktprijzen</h2><div class="scroll"><table class="tabel vergelijk"><tr><th>Wie bouwt</th><th>Prijs</th></tr><tr><td>Freelancer</td><td>€2.000 tot €8.000</td></tr><tr><td>Bureau, voor het mkb</td><td>€5.000 tot €15.000</td></tr><tr><td>Collens Group</td><td>vanaf €1.950</td></tr></table></div>
 <p class="bron">Bron marktbedragen: <a href="https://searchlab.nl/kosten/wat-kost-een-webshop-laten-maken" rel="nofollow noopener">Searchlab, Wat kost een webshop laten maken (2026)</a>.</p>
 <h2>Wat zit er in onze webshop?</h2><ul><li>Tot 50 producten ingericht</li><li>iDEAL en andere betaalmethoden</li><li>Verzending en btw ingesteld</li><li>Je beheert zelf je producten</li></ul><p>Klaar in 3–5 weken. Bekijk de <a href="webshop-laten-maken.html">webshoppagina</a>, of zie een voorbeeld: <a href="concept/suismuis/index.html">Suismuis Home</a>, een conceptwebshop voor woonaccessoires, nog niet gelanceerd.</p>

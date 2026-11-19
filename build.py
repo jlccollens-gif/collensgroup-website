@@ -935,7 +935,7 @@ def build():
         f'''<article class="tekst breed">
 <h1>Wat kost een app laten maken in 2026?</h1>
 <p class="lead2">Kort antwoord: bij Nederlandse bureaus en freelancers betaal je voor een eenvoudige app meestal €5.000 tot €25.000. Bij Collens Group begint een Basis-app bij €3.150 en een complete app met accounts en database bij €6.750. Alle prijzen zijn eindprijzen, er komt geen btw bij.</p>
-<p class="bijgewerkt">Bijgewerkt op {datetime.date.today().strftime("%d-%m-%Y")}</p>
+<p class="bijgewerkt">Bijgewerkt op @@BIJGEWERKT_NL@@</p>
 <nav class="toc" aria-label="Inhoud"><a href="#markt">Marktprijzen</a> · <a href="#prijzen">Onze prijzen</a> · <a href="#bijkomend">Bijkomende kosten</a> · <a href="#prijsbepalers">Wat bepaalt de prijs</a> · <a href="#besparen">Besparen</a> · <a href="#faq">Vragen</a></nav>
 
 <h2 id="markt">Marktprijzen in Nederland</h2>
@@ -988,7 +988,7 @@ def build():
 <p style="margin-top:32px"><a class="knop geel" href="index.html#contact">Vraag een vaste prijs aan</a></p>
 <p class="bron" style="margin-top:22px">Zie ook: <a href="mvp-app-laten-maken.html">MVP-app laten maken</a> · <a href="app-laten-maken-horeca.html">App voor horeca</a> · <a href="website-laten-maken.html">Website laten maken</a> · <a href="webshop-laten-maken.html">Webshop laten maken</a> · <a href="chatbot-laten-maken.html">AI-chatbot laten maken</a> · <a href="apps.html">Onze eigen apps en games</a></p>
 </article>''', crumbs=[("Home", "index.html"), ("Kosten", "app-laten-maken-kosten.html")],
-        extra_ld=[{"@type": "Article", "headline": "Wat kost een app laten maken in 2026?", "dateModified": VANDAAG, "inLanguage": "nl", "author": {"@id": "#org"}, "publisher": {"@id": "#org"}}, faq_ld(kosten_faq)]))
+        extra_ld=[{"@type": "Article", "headline": "Wat kost een app laten maken in 2026?", "dateModified": "@@BIJGEWERKT_ISO@@", "inLanguage": "nl", "author": {"@id": "#org"}, "publisher": {"@id": "#org"}}, faq_ld(kosten_faq)]))
 
     # MVP
     mvp_faq = [
@@ -1133,6 +1133,7 @@ def build():
     chat_inbouwen()
     webp_varianten(DIST)
     schone_links(DIST)
+    datums = datums_vastzetten(DIST)
 
     # robots, sitemap, llms.txt
     with open(os.path.join(DIST, "robots.txt"), "w") as f:
@@ -1140,12 +1141,49 @@ def build():
     if CONFIG["base_url"]:
         with open(os.path.join(DIST, "sitemap.xml"), "w") as f:
             f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
-                    "".join(f"<url><loc>{abs_url(p)}</loc><lastmod>{VANDAAG}</lastmod></url>\n" for p in pages) + "</urlset>\n")
+                    "".join(f"<url><loc>{abs_url(p)}</loc><lastmod>{datums.get(p, {}).get('bijgewerkt', VANDAAG)}</lastmod></url>\n" for p in pages) + "</urlset>\n")
     with open(os.path.join(DIST, "llms.txt"), "w") as f:
         f.write(f"# {CONFIG['naam']}\n\n> Websites, apps, games en AI-automatisering in Nederland en België, tegen vaste prijzen onder het marktgemiddelde.\n\n"
                 "## Prijzen (geen btw)\n- Websites: one-page €495, bedrijfswebsite €995, webshop €1.950\n- Games: merkgame €1.950, casual game €4.950, 2D-game met levels €9.950\n- AI: automatisering €395, AI-chatbot €995, AI-assistent €1.950\n- Basis / MVP app: vanaf €3.150, 3–5 weken\n- Standaard app: vanaf €6.750, 6–10 weken\n- Maatwerk / Pro app: vanaf €13.050, 10–16+ weken\n- Uurtarief: €67,50\n- Onderhoud: €85,50 of €265,50 per maand\n\n"
                 "## Pagina's\n" + "".join(f"- [{p}]({abs_url(p) or p})\n" for p in pages))
     print("Gebouwd:", ", ".join(pages))
+
+DATUMS_JSON = os.path.join(os.path.dirname(os.path.abspath(__file__)), "datums.json")
+
+def datums_vastzetten(dist):
+    """Eerlijke datums i.p.v. de builddatum (19-11).
+    Pagina's bevatten @@BIJGEWERKT_NL@@ / @@BIJGEWERKT_ISO@@ / @@GEPUBLICEERD_ISO@@.
+    Per pagina bewaart datums.json een hash van de inhoud (met plaatshouders):
+    alleen als de inhoud echt verandert, wordt 'bijgewerkt' vandaag. Nieuwe pagina = beide vandaag.
+    Ook de sitemap gebruikt deze datum (lastmod), dus dist verandert niet meer elke dag vanzelf."""
+    import hashlib
+    try:
+        oud = json.load(open(DATUMS_JSON))
+    except (OSError, ValueError):
+        oud = {}
+    nieuw = {}
+    for fn in sorted(os.listdir(dist)):
+        if not fn.endswith(".html"):
+            continue
+        pad = os.path.join(dist, fn)
+        s = open(pad, encoding="utf-8").read()
+        h = hashlib.sha256(s.encode("utf-8")).hexdigest()[:16]
+        r = dict(oud.get(fn) or {})
+        if not r:
+            r = {"gepubliceerd": VANDAAG, "bijgewerkt": VANDAAG}
+        if r.get("hash") != h:
+            r["hash"], r["bijgewerkt"] = h, VANDAAG
+        nieuw[fn] = r
+        if "@@" in s:
+            j, m, d = r["bijgewerkt"].split("-")
+            s = (s.replace("@@BIJGEWERKT_NL@@", f"{d}-{m}-{j}")
+                  .replace("@@BIJGEWERKT_ISO@@", r["bijgewerkt"])
+                  .replace("@@GEPUBLICEERD_ISO@@", r["gepubliceerd"]))
+            open(pad, "w", encoding="utf-8").write(s)
+    with open(DATUMS_JSON, "w") as f:
+        json.dump(nieuw, f, indent=1, sort_keys=True)
+        f.write("\n")
+    return nieuw
 
 def schone_links(dist):
     """Interne links zonder .html: Cloudflare Pages stuurt /x.html met een 308 door naar /x.
