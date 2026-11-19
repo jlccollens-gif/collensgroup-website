@@ -34,7 +34,7 @@
     { id: "kruk-tronc", n: "Kruk Tronc", c: "meubels", s: "bijzettafels", p: 129.00, img: "p-kruk", m: "Massief walnotenhout", d: "H 60 × Ø 30 cm", t: "Een slanke houten kruk die ook dienstdoet als bijzettafel of plantentafel." }
   ];
   /* Kim 18-11: voorbeeldproducten en de producten van haar schermfoto's eruit */
-  var WEG = [110, 113, 117, 118, 125, 134, 151, 153];
+  var WEG = [110, 113, 117, 118, 125, 134, 151, 153, 155, 157];
   P = (window.SUIS_EXTRA || []).filter(function (p) { return WEG.indexOf(p.nr) < 0; });
   var GRATIS = 75, VERZEND = 5.95, CADEAU = 3.95;
   var euro = function (x) { return "€ " + x.toFixed(2).replace(".", ","); };
