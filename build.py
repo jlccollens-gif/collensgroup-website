@@ -379,8 +379,8 @@ DIENSTEN = [
         "titel": "Website laten maken vanaf €495 | Collens Group",
         "desc": "Website of webshop laten maken onder de marktprijs: one-page vanaf €495, bedrijfswebsite vanaf €995, webshop vanaf €1.950. Snel en vindbaar in Google.",
         "h1": "Website laten maken", "intro": "Snelle, vindbare websites en webshops voor ondernemers. Vaste prijs vooraf, ruim onder wat bureaus vragen.",
-        "markt": ("Een eenvoudige zakelijke website kost bij Nederlandse freelancers meestal €800 tot €3.000 en bij bureaus €2.500 tot €12.000.",
-                  "https://www.appypie.com/nl/?p=2729541", "Appy Pie, Website laten maken: wat het kost (okt. 2026)"),
+        "markt": ("Een eenvoudige website kost volgens Trustoo gemiddeld €500 tot €2.000, een geavanceerde website €2.000 tot €5.000 en een maatwerkwebsite €10.000 of meer.",
+                  "https://trustoo.nl/kosten/webdesign-kosten/", "Trustoo, Wat kost een website laten maken? (aangepast 03-11-2026)"),
         "pakketten": [
             ("One-page", 495, "3–5 dagen", ["1 pagina met alle info", "Contactformulier", "Mobielvriendelijk en snel", "Basis-SEO en Google-koppeling"]),
             ("Bedrijfswebsite", 995, "2–3 weken", ["Tot 6 pagina's", "Teksten op Google afgestemd", "Contact- en offerteformulier", "Snelheid en Core Web Vitals in orde", "Gratis hosting mogelijk"]),
@@ -935,7 +935,7 @@ def build():
         f'''<article class="tekst breed">
 <h1>Wat kost een app laten maken in 2026?</h1>
 <p class="lead2">Kort antwoord: bij Nederlandse bureaus en freelancers betaal je voor een eenvoudige app meestal €5.000 tot €25.000. Bij Collens Group begint een Basis-app bij €3.150 en een complete app met accounts en database bij €6.750. Alle prijzen zijn eindprijzen, er komt geen btw bij.</p>
-<p class="bijgewerkt">Bijgewerkt op @@BIJGEWERKT_NL@@</p>
+<p class="bijgewerkt">Bijgewerkt op @@BIJGEWERKT_NL@@ · Geschreven door Jeffrey Collens, oprichter van Collens Group. Opgesteld met hulp van AI-tools en door Jeffrey gecontroleerd.</p>
 <nav class="toc" aria-label="Inhoud"><a href="#markt">Marktprijzen</a> · <a href="#prijzen">Onze prijzen</a> · <a href="#bijkomend">Bijkomende kosten</a> · <a href="#prijsbepalers">Wat bepaalt de prijs</a> · <a href="#besparen">Besparen</a> · <a href="#faq">Vragen</a></nav>
 
 <h2 id="markt">Marktprijzen in Nederland</h2>
@@ -988,7 +988,7 @@ def build():
 <p style="margin-top:32px"><a class="knop geel" href="index.html#contact">Vraag een vaste prijs aan</a></p>
 <p class="bron" style="margin-top:22px">Zie ook: <a href="mvp-app-laten-maken.html">MVP-app laten maken</a> · <a href="app-laten-maken-horeca.html">App voor horeca</a> · <a href="website-laten-maken.html">Website laten maken</a> · <a href="webshop-laten-maken.html">Webshop laten maken</a> · <a href="chatbot-laten-maken.html">AI-chatbot laten maken</a> · <a href="apps.html">Onze eigen apps en games</a></p>
 </article>''', crumbs=[("Home", "index.html"), ("Kosten", "app-laten-maken-kosten.html")],
-        extra_ld=[{"@type": "Article", "headline": "Wat kost een app laten maken in 2026?", "dateModified": "@@BIJGEWERKT_ISO@@", "inLanguage": "nl", "author": {"@id": "#org"}, "publisher": {"@id": "#org"}}, faq_ld(kosten_faq)]))
+        extra_ld=[{"@type": "Article", "headline": "Wat kost een app laten maken in 2026?", "dateModified": "@@BIJGEWERKT_ISO@@", "inLanguage": "nl", "author": {"@type": "Person", "name": "Jeffrey Collens"}, "publisher": {"@id": "#org"}}, faq_ld(kosten_faq)]))
 
     # MVP
     mvp_faq = [
