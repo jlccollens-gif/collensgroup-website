@@ -1,6 +1,6 @@
 {
  "fout": null,
- "gemaakt": "2026-11-18T13:55:02Z",
+ "gemaakt": "2026-11-19T14:23:55Z",
  "per_concept": {
   "atelier-ombre": {
    "apparaten": {
@@ -141,22 +141,23 @@
   },
   "suismuis": {
    "apparaten": {
-    "desktop": 2,
-    "mobile": 129
+    "desktop": 4,
+    "mobile": 154
    },
-   "bezoeken": 25,
+   "bezoeken": 27,
    "dagen": {
     "2026-11-16": 18,
-    "2026-11-18": 113
+    "2026-11-18": 113,
+    "2026-11-19": 27
    },
    "landen": {
-    "TH": 131
+    "TH": 158
    },
    "verwijzers": {
-    "collensgroup.com": 106,
-    "www.google.com": 19
+    "collensgroup.com": 131,
+    "www.google.com": 21
    },
-   "weergaven": 131
+   "weergaven": 158
   },
   "v2-johns-moving": {
    "apparaten": {
@@ -187,6 +188,6 @@
    "weergaven": 1
   }
  },
- "tot": "2026-11-18T13:55:02Z",
- "van": "2026-11-11T13:55:02Z"
+ "tot": "2026-11-19T14:23:55Z",
+ "van": "2026-11-12T14:23:55Z"
 }
