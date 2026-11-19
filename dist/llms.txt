@@ -25,6 +25,7 @@
 - [website-laten-maken-horeca.html](https://collensgroup.com/website-laten-maken-horeca)
 - [app-laten-maken-horeca.html](https://collensgroup.com/app-laten-maken-horeca)
 - [website-laten-maken-kapper.html](https://collensgroup.com/website-laten-maken-kapper)
+- [website-laten-maken-schoonheidssalon.html](https://collensgroup.com/website-laten-maken-schoonheidssalon)
 - [merkgame-laten-maken-kerst.html](https://collensgroup.com/merkgame-laten-maken-kerst)
 - [en-app-development.html](https://collensgroup.com/en-app-development)
 - [en-website-design.html](https://collensgroup.com/en-website-design)
