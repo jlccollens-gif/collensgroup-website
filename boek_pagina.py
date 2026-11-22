@@ -34,19 +34,19 @@ BOEKEN_HTML = ('<div class="boeken-lijst">'
           "€44,99 · 139 pagina's · PDF en EPUB" + ("" if BOEK3_URL else " · verschijnt binnenkort"), _d3)
  + '</div>')
 
-BINNEN_HTML = ('<div class="boek-binnen">'
- + "".join(f'<figure><img src="img/boek-binnen-deel{n}.jpg" alt="Een paar pagina\'s uit deel {n}: {t}" width="960" height="540" loading="lazy"><figcaption>Deel {n} · {t}</figcaption></figure>'
-           for n, t in [(1, "Claude voor beginners"), (2, "Programmeren met Claude AI"), (3, "Ondernemen met Claude AI")])
- + '</div>')
+_DETAIL = [
+ (1, "Claude voor beginners", "Je begint met AI en wilt het goed leren gebruiken.", "Goede vragen stellen, Projecten, geheugen, koppelingen en veilig werken.", "17 figuren, 40 vragen om te kopiëren, oefeningen", "106 pagina's · PDF en EPUB", "€29,99", GUMROAD),
+ (2, "Programmeren met Claude AI", "Je wilt zelf websites en apps bouwen, zonder ervaring.", "HTML, CSS en JavaScript, een eigen website en app, masterprompts en werkinstructies.", "Echte code, 12 masterprompts, 14 werkinstructies", "92 pagina's · PDF en EPUB", "€39,99", BOEK2_URL or WINKEL),
+ (3, "Ondernemen met Claude AI", "Je onderneemt en wilt meer uit handen geven aan AI.", "Een AI-team met geheugen, grenzen en rapporten voor marketing, verkoop, SEO en administratie.", "12 figuren en grafieken, 30 masterprompts, 20 werkinstructies, 12 sjablonen", "139 pagina's · PDF en EPUB", "€44,99", BOEK3_URL or WINKEL),
+]
 
-VERGELIJK_HTML = ("<div class='scroll'><table><thead><tr><th></th><th>Deel 1</th><th>Deel 2</th><th>Deel 3</th></tr></thead><tbody>"
- "<tr><th>Voor wie</th><td>Je begint met AI</td><td>Je wilt zelf bouwen</td><td>Je wilt je bedrijf ermee runnen</td></tr>"
- "<tr><th>Je leert</th><td>Goede vragen, Projecten, geheugen, koppelingen</td><td>Websites, apps, masterprompts, werkinstructies</td><td>Een AI-team met geheugen, grenzen en rapporten</td></tr>"
- "<tr><th>Extra's</th><td>40 vragen om te kopiëren</td><td>12 masterprompts, 14 werkinstructies</td><td>30 masterprompts, 20 werkinstructies, 12 sjablonen</td></tr>"
- "<tr><th>Omvang</th><td>106 pagina's</td><td>92 pagina's</td><td>139 pagina's</td></tr>"
- "<tr><th>Formaat</th><td>PDF en EPUB</td><td>PDF en EPUB</td><td>PDF en EPUB</td></tr>"
- "<tr><th>Prijs</th><td>€29,99</td><td>€39,99</td><td>€44,99</td></tr>"
- "</tbody></table></div>")
+def _detail(n, titel, wie, leer, extra, omvang, prijs, url):
+    return (f'<article class="boek-detail"><img src="img/boek-binnen-deel{n}.jpg" alt="Omslag en twee binnenpagina\'s van {titel}" width="960" height="600" loading="lazy">'
+            f'<div><p class="boek-deel">Deel {n}</p><h3>{titel}</h3><dl>'
+            f'<dt>Voor wie</dt><dd>{wie}</dd><dt>Je leert</dt><dd>{leer}</dd><dt>Extra</dt><dd>{extra}</dd><dt>Omvang</dt><dd>{omvang}</dd></dl>'
+            f'<p class="knoppen"><a class="knop geel" href="{url}" rel="noopener" target="_blank">Koop voor {prijs}</a>' + ('<a class="knop knop-rand" href="boek-claude-voor-beginners.html">Lees meer</a>' if n == 1 else '') + '</p></div></article>')
+
+DETAIL_HTML = '<div class="boek-details">' + "".join(_detail(*d) for d in _DETAIL) + '</div>'
 
 BOEK_PAGINAS = [
  {"slug": "boeken", "lang": "nl", "kort": "Boeken",
@@ -56,9 +56,7 @@ BOEK_PAGINAS = [
   "lead": "Praktische boeken in gewoon Nederlands, geschreven vanuit de dagelijkse praktijk van Collens Group. Elk deel is los verkrijgbaar en direct te downloaden.",
   "knop": ("Naar de webshop", WINKEL),
   "secties": [
-   ("De boeken", BOEKEN_HTML),
-   ("Kijk in de boeken", "<p>Rustige opmaak, eigen figuren en grafieken, en kaders met oefeningen, praktijkvoorbeelden en afvinklijsten. Zo ziet een paar pagina's eruit:</p>" + BINNEN_HTML),
-   ("Welk deel past bij jou?", VERGELIJK_HTML),
+   ("De boeken: welk deel past bij jou?", "<p>Elk boek heeft een eigen opmaak met figuren, grafieken en kaders met oefeningen en praktijkvoorbeelden. Hieronder per deel de omslag en twee echte binnenpagina's.</p>" + DETAIL_HTML),
    ("Waarom deze reeks?",
     "<p>Alles wat in deze boeken staat, gebruiken we zelf: voor onze eigen website, onze apps en het dagelijkse werk van ons bedrijf. Ook wat misging staat erin, met de regels die het voortaan voorkomen. De boeken bouwen op elkaar voort: deel 1 leert je AI gebruiken, deel 2 leert je ermee bouwen en deel 3 leert je er je bedrijf mee runnen.</p>"),
    ("Hoe koop je een boek?",
