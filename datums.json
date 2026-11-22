@@ -7,7 +7,7 @@
  "ai-automatisering.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-14",
-  "hash": "8f59b2d45d8ad0a9"
+  "hash": "082595a0ea879551"
  },
  "app-eiland-express.html": {
   "bijgewerkt": "2026-11-22",
@@ -22,12 +22,12 @@
  "app-laten-maken-horeca.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-18",
-  "hash": "894cf8d7f3243743"
+  "hash": "4f97d6d712f5b677"
  },
  "app-laten-maken-kosten.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-14",
-  "hash": "a24cfd01ce89e232"
+  "hash": "7dce3677d4ac1322"
  },
  "app-lubbyc.html": {
   "bijgewerkt": "2026-11-22",
@@ -47,7 +47,7 @@
  "apps.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-14",
-  "hash": "161f1dd37b6b44f9"
+  "hash": "4adbb752e7f48601"
  },
  "artikelen.html": {
   "bijgewerkt": "2026-11-22",
@@ -62,42 +62,67 @@
  "chatbot-laten-maken.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-14",
-  "hash": "208e037f6606ba18"
+  "hash": "8891d1cc7a240f4b"
  },
  "de.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-14",
   "hash": "d3c4771f89cce3d9"
  },
+ "en-about.html": {
+  "bijgewerkt": "2026-11-22",
+  "gepubliceerd": "2026-11-22",
+  "hash": "244f22131020c913"
+ },
+ "en-ai-automation.html": {
+  "bijgewerkt": "2026-11-22",
+  "gepubliceerd": "2026-11-22",
+  "hash": "cbbb898cea9ba8fe"
+ },
  "en-ai-chatbot.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-16",
-  "hash": "1efc331b2b1a1105"
+  "hash": "903c59ab541c079f"
  },
  "en-app-development.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-14",
-  "hash": "496c7cc88f473e18"
+  "hash": "1b5492af111114e6"
+ },
+ "en-game-development.html": {
+  "bijgewerkt": "2026-11-22",
+  "gepubliceerd": "2026-11-22",
+  "hash": "cb4f805d3a1215b3"
  },
  "en-lubbyc-privacy.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-14",
-  "hash": "2ab1a85046609551"
+  "hash": "49dc6e8efd428ef2"
+ },
+ "en-pricing.html": {
+  "bijgewerkt": "2026-11-22",
+  "gepubliceerd": "2026-11-22",
+  "hash": "a910f912448abf02"
  },
  "en-projects.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-14",
-  "hash": "c451d08c5a36e92b"
+  "hash": "f6f427ee70a2c1e1"
+ },
+ "en-web-shop.html": {
+  "bijgewerkt": "2026-11-22",
+  "gepubliceerd": "2026-11-22",
+  "hash": "8a0058280082a693"
  },
  "en-website-design.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-14",
-  "hash": "95ef3eb6f130cb0c"
+  "hash": "1ffefbc83283db1a"
  },
  "en.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-14",
-  "hash": "b5b09182d0b9b780"
+  "hash": "6db360a3d91464af"
  },
  "es.html": {
   "bijgewerkt": "2026-11-22",
@@ -112,12 +137,12 @@
  "game-laten-maken.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-14",
-  "hash": "19f67200b8f81829"
+  "hash": "eb3c63ee5eef8877"
  },
  "goedkope-website-laten-maken.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-14",
-  "hash": "b4d4995d3be94c3b"
+  "hash": "08571fd3b69454e2"
  },
  "index.html": {
   "bijgewerkt": "2026-11-22",
@@ -132,7 +157,7 @@
  "merkgame-laten-maken-kerst.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-15",
-  "hash": "1bfbc388d07b19a2"
+  "hash": "3dac46a0ae9362ed"
  },
  "mvp-app-laten-maken.html": {
   "bijgewerkt": "2026-11-22",
@@ -147,7 +172,7 @@
  "over-ons.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-18",
-  "hash": "112a7b89872e697d"
+  "hash": "eeb1c97bfcfce439"
  },
  "pakketkiezer.html": {
   "bijgewerkt": "2026-11-22",
@@ -157,7 +182,7 @@
  "prijzen.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-18",
-  "hash": "e75e9d924f41c61c"
+  "hash": "6c861f94ec29924c"
  },
  "privacy.html": {
   "bijgewerkt": "2026-11-22",
@@ -182,12 +207,12 @@
  "webshop-laten-maken.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-14",
-  "hash": "db3766db91efe63a"
+  "hash": "6670696a12789125"
  },
  "website-laten-maken-aannemer.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-18",
-  "hash": "559eb7feba9dc121"
+  "hash": "e7a31edba2e7dfc6"
  },
  "website-laten-maken-afspraken.html": {
   "bijgewerkt": "2026-11-22",
@@ -197,42 +222,42 @@
  "website-laten-maken-belgie.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-18",
-  "hash": "7514384cc4fb4cb4"
+  "hash": "7703175daf831f25"
  },
  "website-laten-maken-coach-zzp.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-18",
-  "hash": "b07b51bb5e80417c"
+  "hash": "75f1cf30b553fd1d"
  },
  "website-laten-maken-fotograaf.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-18",
-  "hash": "46c0104588bcc34c"
+  "hash": "0a5b61d6b2b43b19"
  },
  "website-laten-maken-horeca.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-14",
-  "hash": "b5116b6d5018bc17"
+  "hash": "bed401ddada462f8"
  },
  "website-laten-maken-kapper.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-17",
-  "hash": "e149f507086188d3"
+  "hash": "ace1a7b421effca7"
  },
  "website-laten-maken-schoonheidssalon.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-19",
-  "hash": "75125ed62279d239"
+  "hash": "ae684e9dba1d1ad3"
  },
  "website-laten-maken-vakantiehuis.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-18",
-  "hash": "c7ce3dad90d18844"
+  "hash": "41f954378328c3bb"
  },
  "website-laten-maken.html": {
   "bijgewerkt": "2026-11-22",
   "gepubliceerd": "2026-11-14",
-  "hash": "ac24d78556f91bdd"
+  "hash": "86079af274f1c1ef"
  },
  "zelf-website-bouwen-of-laten-maken.html": {
   "bijgewerkt": "2026-11-22",

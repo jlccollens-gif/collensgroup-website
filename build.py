@@ -119,10 +119,10 @@ ORG = {"@type": "ProfessionalService", "@id": "#org", "name": CONFIG["naam"],
        "logo": CONFIG["base_url"] + "/img/collens-group-logo.png", "image": CONFIG["base_url"] + "/img/collens-group-logo.png"}
 
 GLOBE = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg>'
-NL_NAAR_EN = {"website-laten-maken.html": "en-website-design.html", "goedkope-website-laten-maken.html": "en-website-design.html", "webshop-laten-maken.html": "en-website-design.html",
+NL_NAAR_EN = {"website-laten-maken.html": "en-website-design.html", "goedkope-website-laten-maken.html": "en-website-design.html", "webshop-laten-maken.html": "en-web-shop.html", "prijzen.html": "en-pricing.html", "over-ons.html": "en-about.html", "game-laten-maken.html": "en-game-development.html", "merkgame-laten-maken-kerst.html": "en-game-development.html",
               "app-laten-maken-kosten.html": "en-app-development.html", "mvp-app-laten-maken.html": "en-app-development.html",
-              "apps.html": "en-projects.html", "app-lubbyc.html": "en-projects.html", "app-koffer-vol.html": "en-projects.html", "app-eiland-express.html": "en-projects.html", "app-manu-en-khanun.html": "en-projects.html", "chatbot-laten-maken.html": "en-ai-chatbot.html", "ai-automatisering.html": "en-ai-chatbot.html"}
-EN_NAAR_NL = {"en-website-design.html": "website-laten-maken.html", "en-app-development.html": "app-laten-maken-kosten.html", "en-projects.html": "apps.html", "en-lubbyc-privacy.html": "app-lubbyc.html", "en-ai-chatbot.html": "chatbot-laten-maken.html"}
+              "apps.html": "en-projects.html", "app-lubbyc.html": "en-projects.html", "app-koffer-vol.html": "en-projects.html", "app-eiland-express.html": "en-projects.html", "app-manu-en-khanun.html": "en-projects.html", "chatbot-laten-maken.html": "en-ai-chatbot.html", "ai-automatisering.html": "en-ai-automation.html"}
+EN_NAAR_NL = {"en-website-design.html": "website-laten-maken.html", "en-app-development.html": "app-laten-maken-kosten.html", "en-projects.html": "apps.html", "en-lubbyc-privacy.html": "app-lubbyc.html", "en-ai-chatbot.html": "chatbot-laten-maken.html", "en-pricing.html": "prijzen.html", "en-about.html": "over-ons.html", "en-web-shop.html": "webshop-laten-maken.html", "en-game-development.html": "game-laten-maken.html", "en-ai-automation.html": "ai-automatisering.html"}
 
 FOOT = {
  "nl": {"tag": "Websites, apps, games en AI-automatisering voor ondernemers in Nederland, België en wereldwijd. Vaste prijs vooraf.",
@@ -131,8 +131,8 @@ FOOT = {
                 ("Contact", [("index.html#contact", "Offerte aanvragen"), ("mailto:" + CONFIG["email"], CONFIG["email"])] + ([("https://wa.me/" + CONFIG["whatsapp"], "WhatsApp")] if CONFIG["whatsapp"] else []))],
         "copy": "Alle prijzen zijn eindprijzen: we rekenen geen btw."},
  "en": {"tag": "Websites, apps, games and AI automation for businesses worldwide. Fixed price up front.",
-        "kol": [("Services", [("en-website-design.html", "Website design"), ("en-app-development.html", "App development"), ("en-ai-chatbot.html", "AI chatbot"), ("en.html#pricing", "Pricing")]),
-                ("More", [("en-projects.html", "Our work"), ("en-lubbyc-privacy.html", "LubbyC privacy")]),
+        "kol": [("Services", [("en-website-design.html", "Website design"), ("en-app-development.html", "App development"), ("en-web-shop.html", "Web shop"), ("en-game-development.html", "Game development"), ("en-ai-automation.html", "AI automation"), ("en-ai-chatbot.html", "AI chatbot"), ("en-pricing.html", "Pricing")]),
+                ("More", [("en-about.html", "About us"), ("en-projects.html", "Our work"), ("en-lubbyc-privacy.html", "LubbyC privacy")]),
                 ("Contact", [("en.html#contact", "Get a quote"), ("mailto:" + CONFIG["email"], CONFIG["email"])])],
         "copy": "Prices in euros."},
 }
@@ -152,6 +152,11 @@ def footer_html(lang, kvk=""):
 SNEL_JS = """<script>(()=>{const t=document.querySelector('[data-terug]');if(t){t.addEventListener('click',e=>{try{if(document.referrer&&new URL(document.referrer).host===location.host&&history.length>1){e.preventDefault();history.back()}}catch(_){}})}document.querySelectorAll('details.snel,details.taalkeuze').forEach(d=>{document.addEventListener('click',e=>{if(d.open&&!d.contains(e.target))d.open=false});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&d.open){d.open=false;d.querySelector('summary').focus()}});d.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>{d.open=false}))})})();</script>"""
 
 def page(path, title, desc, body, crumbs=None, extra_ld=None, extra_head="", lang="nl", alt=None):
+    if alt is None:  # wederzijdse NL/EN-paren automatisch koppelen (hreflang), alleen als beide kanten naar elkaar wijzen
+        if lang == "en" and path in EN_NAAR_NL and NL_NAAR_EN.get(EN_NAAR_NL[path]) == path:
+            alt = (EN_NAAR_NL[path], path)
+        elif lang == "nl" and path in NL_NAAR_EN and EN_NAAR_NL.get(NL_NAAR_EN[path]) == path:
+            alt = (path, NL_NAAR_EN[path])
     url = abs_url(path)
     if lang == "en":
         taal_href = alt[0] if alt else EN_NAAR_NL.get(path, "index.html")
@@ -204,7 +209,7 @@ def page(path, title, desc, body, crumbs=None, extra_ld=None, extra_head="", lan
     elif lang == "en":
         head.append('</head><body><a class="skip" href="#inhoud">Skip to content</a>')
         header = f'''<header class="top"><div class="wrap">
-<div class="links"><details class="snel"><summary aria-label="Quick menu"><span></span><span></span><span></span></summary><nav class="snel-paneel" aria-label="Quick menu"><a href="en.html">Home</a><a href="en.html#services">Services</a><a href="en.html#pricing">Pricing</a><a href="en-app-development.html">App development</a><a href="en-website-design.html">Website design</a><a href="en-ai-chatbot.html">AI chatbot</a><a href="en-projects.html">Our work</a><a href="tester/index.html">Become a tester</a><a href="tester/qr.html">Tester QR</a></nav></details><a class="merk" href="en.html" aria-label="{CONFIG["naam"]}, home">{LOGO}{CONFIG["naam"]}</a></div>
+<div class="links"><details class="snel"><summary aria-label="Quick menu"><span></span><span></span><span></span></summary><nav class="snel-paneel" aria-label="Quick menu"><a href="en.html">Home</a><a href="en.html#services">Services</a><a href="en-pricing.html">Pricing</a><a href="en-website-design.html">Website design</a><a href="en-web-shop.html">Web shop</a><a href="en-app-development.html">App development</a><a href="en-game-development.html">Game development</a><a href="en-ai-automation.html">AI automation</a><a href="en-ai-chatbot.html">AI chatbot</a><a href="en-projects.html">Our work</a><a href="en-about.html">About us</a><a href="tester/index.html">Become a tester</a><a href="tester/qr.html">Tester QR</a></nav></details><a class="merk" href="en.html" aria-label="{CONFIG["naam"]}, home">{LOGO}{CONFIG["naam"]}</a></div>
 <nav class="menu" aria-label="Main menu"><a href="en.html#services">Services</a><a href="en.html#pricing">Pricing</a><a href="en-projects.html">Our work</a>{taal_menu}<a class="knop" href="en.html#contact"><span class="lang">Get a quote</span><span class="kort">Quote</span></a></nav>
 </div></header>'''
     else:
@@ -736,7 +741,7 @@ def schrijf_kennis():
     r.append("## Wat we niet doen\nGrote 3D-games en online multiplayer-games. Topposities in Google garanderen. Juridisch of financieel advies.")
     r.append("## Pagina's\nNederlands: index.html (start, met contactformulier op index.html#contact), website-laten-maken.html, goedkope-website-laten-maken.html, webshop-laten-maken.html, website-laten-maken-horeca.html, website-laten-maken-kapper.html, "
              "app-laten-maken-kosten.html, mvp-app-laten-maken.html, game-laten-maken.html, ai-automatisering.html, chatbot-laten-maken.html, apps.html, artikelen.html, privacy.html.\n"
-             "Engels: en.html (contact op en.html#contact), en-website-design.html, en-app-development.html, en-ai-chatbot.html, en-projects.html. Duits: de.html, Frans: fr.html, Spaans: es.html, Thai: th.html, Birmaans: my.html.")
+             "Engels: en.html (contact op en.html#contact), en-website-design.html, en-app-development.html, en-ai-chatbot.html, en-ai-automation.html, en-web-shop.html, en-game-development.html, en-pricing.html, en-about.html, en-projects.html. Duits: de.html, Frans: fr.html, Spaans: es.html, Thai: th.html, Birmaans: my.html.")
     tekst = "\n\n".join(r)
     os.makedirs(os.path.join(ROOT, "chatbot"), exist_ok=True)
     with open(os.path.join(ROOT, "chatbot", "kennis.js"), "w", encoding="utf-8") as f:

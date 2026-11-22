@@ -166,7 +166,7 @@ LANDINGS = [
   "lead":"Fast, mobile-friendly websites at a fixed price: a one-page site from €495, a business website with up to 6 pages from €995 and a web shop from €1,950.",
   "secties":[
    ("Website packages","<div class='scroll'><table class='tabel vergelijk'><tr><th>Package</th><th>Includes</th><th>From</th></tr><tr><td>One-page</td><td>All key information on one page, contact form, basic SEO, 3–5 days</td><td>€495</td></tr><tr><td>Business website</td><td>Up to 6 pages, SEO copy, quote form, fast loading, 2–3 weeks</td><td>€995</td></tr><tr><td>Web shop</td><td>Up to 50 products set up, payments and shipping, 3–5 weeks</td><td>€1,950</td></tr></table></div>"),
-   ("What it costs per month","<p>Hosting can be free for most small sites. A domain costs about €5 to €15 per year. Maintenance is optional from €29 per month.</p>"),
+   ("What it costs per month","<p>Hosting can be free for most small sites. A domain costs about €10 to €25 per year. Maintenance is optional from €29 per month.</p>"),
    ("How it works","<ol><li>Tell us about your business by email.</li><li>Get a free concept of your homepage.</li><li>Approve the design and the fixed price.</li><li>We build, you test, we launch.</li></ol>")],
   "faq":[("Will my site rank on Google?","We build every site fast, mobile-friendly and with the technical basics Google expects. Nobody can guarantee a top position."),
          ("Do you work worldwide?","Yes, fully online, in English or Dutch. Prices are in euros."),
@@ -209,8 +209,10 @@ def landing_pages(page, e, faq_html, faq_ld, pages):
 <p style="margin-top:28px"><a class="knop geel" href="{cta[1]}">{cta[0]}</a></p>
 <p class="bron" style="margin-top:22px">{"Related" if en else "Zie ook"}: {rel}</p></article>''',
             crumbs=[home, (L["kort"], f'{L["slug"]}.html')], lang=L["lang"],
-            extra_ld=[{"@type": "Service", "name": L["h1"], "provider": {"@id": "#org"}, "areaServed": "Worldwide" if en else ["NL", "BE"], "offers": offers}, faq_ld(L["faq"])]))
+            extra_ld=[{"@type": "Service", "name": L["h1"], "provider": {"@id": "#org"}, "areaServed": "Worldwide", "offers": offers}, faq_ld(L["faq"])]))
 
 
 from landings_nieuw import NIEUW as _NIEUW
 LANDINGS += _NIEUW
+from landings_en import EN_EXTRA as _EN
+LANDINGS += _EN
