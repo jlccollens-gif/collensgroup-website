@@ -174,10 +174,12 @@ def footer():
             f'<div class="slot"><span>© 2026 Collens Group · Alle prijzen zijn eindprijzen: er komt geen btw bij.</span><span><a href="{LIVE}privacy" style="display:inline">Privacy</a></span></div></div></footer>'
             '<div class="watermerk">Concept · Collens Group</div>')
 
+import hashlib
+CSSV = hashlib.md5(open(os.path.join(UIT, 'stijl.css'), 'rb').read()).hexdigest()[:8]
 def pagina(naam, titel, desc, body, actief="", dark=False, script=""):
     doc = (f'<!DOCTYPE html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">'
            f'<meta name="robots" content="noindex, nofollow"><title>{e(titel)}</title><meta name="description" content="{e(desc)}">{FONTS}'
-           f'<link rel="stylesheet" href="stijl.css"><link rel="icon" href="../../img/favicon-48.png"></head><body>'
+           f'<link rel="stylesheet" href="stijl.css?v={CSSV}"><link rel="icon" href="../../img/favicon-48.png"></head><body>'
            f'{header(actief, dark)}<main id="inhoud">{body}</main>{footer()}{script}</body></html>')
     with open(os.path.join(UIT, naam), "w", encoding="utf-8") as f:
         f.write(doc)
