@@ -346,3 +346,44 @@ header.kopbalk{background:var(--logo-taupe);border-bottom:0}
 .spec{display:grid;grid-template-columns:auto 1fr;gap:6px 18px;margin:4px 0 10px;font-size:15px}
 .spec dt{color:var(--mokka)}.spec dd{margin:0}
 .spec-maten{font-size:14px;color:var(--mokka)}
+/* afrekenen met creditcard */
+ol.stappen{list-style:none;padding:0;counter-reset:st}ol.stappen li{counter-increment:st}ol.stappen li::before{content:counter(st) ". "}
+ol.stappen li[aria-current]{color:var(--espresso);border-bottom:1px solid var(--espresso)}
+#gegevens{border:0;margin:0;padding:0;display:grid;gap:14px;min-width:0}
+.fout{color:#8A3B2E;margin:0;font-size:15px;min-height:0}.fout:empty{display:none}
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;opacity:0}
+.kaartbetaal{display:grid;gap:16px;background:var(--wit);border:1px solid var(--lijn);padding:28px}
+.kaart-kop{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}.kaart-kop h2{font-size:30px}
+.kaart-voor{margin:0;color:var(--mokka);font-size:15px}
+.merken{display:flex;gap:8px;align-items:center}
+.merken i{font-style:normal;display:inline-flex;align-items:center;justify-content:center;height:28px;min-width:44px;padding:0 8px;border:1px solid var(--lijn);background:#fff;font:700 12px/1 Arial,sans-serif;letter-spacing:.04em}
+.m-visa{color:#1A1F71;font-style:italic!important;font-size:14px!important}.m-amex{color:#fff!important;background:#2E77BC!important;border-color:#2E77BC!important;font-size:10.5px!important}
+.m-mc b{display:block;width:15px;height:15px;border-radius:50%;background:#EB001B}.m-mc b+b{background:#F79E1B;margin-left:-6px;mix-blend-mode:multiply}
+.kaartvelden{display:grid;gap:4px}.kaartvelden .twee{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.cf{min-height:62px}
+.zeker{list-style:none;padding:0;margin:4px 0 0;display:grid;gap:12px}
+.zeker li{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--mokka);line-height:1.5}
+.zeker b{display:block;color:var(--espresso);font-weight:400}
+.zeker svg{width:22px;height:22px;flex:none;stroke:var(--espresso);fill:none;stroke-width:1.4;margin-top:2px}
+.terug{background:none;border:0;border-bottom:1px solid var(--espresso);padding:0 0 2px;cursor:pointer;justify-self:start;font-family:inherit;color:var(--espresso)}
+.knop:disabled{opacity:.55;cursor:wait}
+.samenvatting .rij small{display:block;color:var(--mokka);font-size:13px}
+.bedankt .samenvatting{position:static;text-align:left;margin:22px 0}
+/* bestelling volgen */
+.orderkaart{background:var(--wit);border:1px solid var(--lijn);padding:28px;margin-bottom:26px;display:grid;gap:14px}.orderkaart h2{font-size:38px}
+.orderkaart .samenvatting{position:static;padding:0}
+/* prijs aanvragen */
+.maatdlg{border:0;padding:30px;max-width:460px;width:calc(100% - 32px);background:var(--creme);color:var(--inkt)}.maatdlg::backdrop{background:rgba(58,45,37,.45)}
+/* bestelbalie */
+.smal{max-width:420px;margin:48px 0 90px}.smal h2{font-size:34px}
+#beheer{padding:40px 0 90px}
+.bh-balk{display:flex;gap:18px;align-items:center;flex-wrap:wrap;margin-bottom:22px}.bh-balk .link{background:none;border:0;border-bottom:1px solid;cursor:pointer;font-family:inherit;margin-left:auto}
+.bh-tabs{display:flex;gap:6px}.bh-tabs button{background:var(--zand);border:0;padding:10px 18px;cursor:pointer;font-family:inherit;font-size:14px;color:var(--espresso)}.bh-tabs button[aria-selected=true]{background:var(--espresso);color:var(--creme)}
+#bh-kpi{grid-template-columns:repeat(4,1fr)}
+.bh-order{background:var(--wit);border:1px solid var(--lijn);margin-bottom:10px}
+.bh-order summary{display:grid;grid-template-columns:150px 170px 1fr 100px 190px;gap:12px;padding:14px 18px;cursor:pointer;align-items:center;font-size:15px}
+.bh-status{font-size:12.5px;padding:5px 10px;background:var(--zand);text-align:center}.s-betaald{background:#E8D9B5}.s-verzonden,.s-geleverd{background:#D8E2D0}.s-geannuleerd,.s-terugbetaald{background:#EBD5CF}
+.bh-grid{display:grid;grid-template-columns:1fr 1fr 1.4fr;gap:26px;padding:6px 18px 22px}.bh-grid h3{font-size:22px;margin-bottom:8px}.bh-grid p{margin:0 0 10px;font-size:15px}
+.bh-bericht{background:var(--wit);border:1px solid var(--lijn);padding:16px 18px;margin-bottom:10px;font-size:15px}.bh-bericht.af{opacity:.55}.bh-bericht p{margin:8px 0}
+.leeg-bh{color:var(--mokka)}
+@media (max-width:900px){.bh-order summary{grid-template-columns:1fr 1fr}.bh-grid{grid-template-columns:1fr}#bh-kpi{grid-template-columns:1fr 1fr}}

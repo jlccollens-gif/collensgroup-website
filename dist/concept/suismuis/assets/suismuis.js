@@ -1,4 +1,4 @@
-/* Suismuis Home – concept-webshop (Collens Group). Werkt volledig in de browser; er wordt niets echt besteld of betaald. */
+/* Suismuis Home – webshop (Collens Group). Bestellen, betalen (creditcard) en beheer via de server-functie "suismuis". */
 (function () {
   "use strict";
   var TAX = [
@@ -43,6 +43,13 @@
   var mb = function (b) { return 'src="img/' + b + '-m.jpg" srcset="img/' + b + '-m.jpg 1080w, img/' + b + '.jpg 1800w" sizes="(max-width:700px) 50vw, 25vw"'; };
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var API = "https://eyrfizayagcwaxbxyeuh.supabase.co/functions/v1/suismuis";
+  function api(data) {
+    return fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok && !j.fout) j.fout = "Er ging iets mis. Probeer het opnieuw."; j._status = r.status; return j; }); })
+      .catch(function () { return { fout: "Geen verbinding. Controleer je internet en probeer het opnieuw." }; });
+  }
+  var basis = function () { return location.origin + location.pathname.replace(/\/[^\/]*$/, ""); };
   var esc = function (s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
 
   /* uitklapmenu onder Shop: hover/focus via CSS, tik en Escape via JS */
@@ -64,10 +71,10 @@
   /* winkelmand */
   function mand() { return lees("mand", []); }
   function zetMand(m) { bewaar("mand", m); tellers(); }
-  function voegToe(id, aantal) {
+  function voegToe(id, aantal, uitvoering) {
     var m = mand(), r = null;
-    for (var i = 0; i < m.length; i++) if (m[i].id === id) r = m[i];
-    if (r) r.a = Math.min(r.a + aantal, 20); else m.push({ id: id, a: aantal });
+    for (var i = 0; i < m.length; i++) if (m[i].id === id && (m[i].u || "") === (uitvoering || "")) r = m[i];
+    if (r) r.a = Math.min(r.a + aantal, 20); else m.push({ id: id, a: aantal, u: uitvoering || "" });
     zetMand(m);
     var p = vind(id);
     toast(esc(p.n) + " is toegevoegd aan je winkelmand", '<a href="winkelmand.html">Bekijk winkelmand</a>');
@@ -154,7 +161,18 @@
       var m = $(".bevestig", f) || f.appendChild(Object.assign(document.createElement("p"), { className: "bevestig" }));
       m.setAttribute("role", "status");
       if (leegVeld) { m.textContent = "Vul alle verplichte velden correct in."; leegVeld.focus(); return; }
-      m.textContent = f.getAttribute("data-bevestig"); f.reset();
+      var soort = f.getAttribute("data-soort");
+      if (!soort) { m.textContent = f.getAttribute("data-bevestig"); f.reset(); return; }
+      var velden = {}, email = "", naam = "", hp = "";
+      $$("input[name],select[name],textarea[name]", f).forEach(function (i) {
+        if (i.name === "email") email = i.value; else if (i.name === "naam") naam = i.value; else if (i.name === "website") hp = i.value; else if (i.value) velden[i.name] = i.value;
+      });
+      var knop = $("button[type=submit]", f); knop.disabled = true; m.textContent = "Bezig met versturen…";
+      api({ actie: "bericht", soort: soort, email: email, naam: naam, velden: velden, website: hp }).then(function (j) {
+        knop.disabled = false;
+        if (j.fout) { m.textContent = j.fout; return; }
+        m.textContent = f.getAttribute("data-bevestig"); f.reset();
+      });
     });
   });
 
@@ -227,16 +245,22 @@
       '<div class="pdp-info"><nav class="kruimel" aria-label="Kruimelpad"><a href="index.html">Home</a><span>/</span><a href="shop.html">Shop</a><span>/</span><a href="shop.html?cat=' + p.c + '">' + CATS[p.c] + '</a>' + (p.s ? '<span>/</span><a href="shop.html?cat=' + p.c + '&amp;sub=' + p.s + '">' + SUBCAT[p.s][1] + '</a>' : '') + '</nav>' +
       '<span class="klein">' + (p.s ? SUBCAT[p.s][1] : CATS[p.c]) + '</span><h1>' + esc(p.n) + '</h1><div class="prijs">' + (p.maten && p.maten.length > 1 ? '<span class="vanaf">vanaf</span> ' : '') + euro(p.p) + '</div>' +
       (p.var && p.var.length > 1 ? '<div class="opties"><p class="optie-kop">Uitvoering: <b id="var-naam">' + esc(p.var[0].n) + '</b></p><div class="stalen">' + p.var.map(function (v, i) { return '<button type="button" class="staal" data-var="' + i + '" aria-pressed="' + (i === 0) + '" aria-label="Uitvoering ' + esc(v.n) + '"><img src="' + v.b + '" alt=""></button>'; }).join("") + '</div></div>' : '') +
-      (p.maten && p.maten.length ? '<div class="opties"><label class="optie-kop" for="maat">Maat (cm)</label><select id="maat">' + p.maten.map(function (m) { return "<option>" + m + " cm</option>"; }).join("") + '</select>' + (p.maten.length > 1 ? '<p class="optie-noot">De prijs geldt voor de kleinste maat; de prijs per maat staat in de echte webshop.</p>' : '') + '</div>' : '') +
+      (p.maten && p.maten.length ? '<div class="opties"><label class="optie-kop" for="maat">Maat (cm)</label><select id="maat">' + p.maten.map(function (m) { return "<option>" + m + " cm</option>"; }).join("") + '</select>' + (p.maten.length > 1 ? '<p class="optie-noot" id="maat-noot">De prijs geldt voor de maat ' + esc(p.maten[0]) + ' cm. Wil je een andere maat? Dan vragen we de prijs voor je op.</p>' : '') + '</div>' : '') +
       '<p>' + esc(p.t) + '</p><p class="voorraad">' + lever + '</p>' +
       '<div class="koop"><div class="stapper"><button type="button" data-stap="-1" aria-label="Minder">−</button><input id="aantal-p" type="number" min="1" max="20" value="1" aria-label="Aantal"><button type="button" data-stap="1" aria-label="Meer">+</button></div>' +
       '<button class="knop" type="button" id="koop-p">In winkelmand</button></div>' +
       '<button class="knop licht breed" type="button" data-fav="' + p.id + '" aria-pressed="' + (favs().indexOf(p.id) > -1) + '">Bewaar als favoriet</button>' +
-      '<ul class="usp"><li>Gratis verzending vanaf € 75</li><li>14 dagen bedenktijd, eenvoudig retourneren</li><li>Veilig betalen met PayPal, creditcard of bankoverschrijving</li><li>Cadeauverpakking mogelijk bij het afrekenen</li></ul>' +
+      '<ul class="usp"><li>Gratis verzending vanaf € 75</li><li>14 dagen bedenktijd, eenvoudig retourneren</li><li>Veilig betalen met creditcard (3D Secure)</li><li>Cadeauverpakking mogelijk bij het afrekenen</li></ul>' +
       '<details open><summary>Materiaal en afmetingen</summary>' + (p.spec ? '<dl class="spec">' + p.spec.map(function (r) { return "<dt>" + esc(r[0]) + "</dt><dd>" + esc(r[1]) + "</dd>"; }).join("") + '</dl><p class="spec-maten">' + esc(p.d) + '</p>' : '<p>' + esc(p.m) + "<br>" + esc(p.d) + '</p>') + '</details>' +
       '<details><summary>Onderhoud</summary><p>Afnemen met een droge of licht vochtige doek. Natuurlijke materialen kunnen kleine kleurverschillen hebben; dat maakt elk stuk uniek.</p></details>' +
       '<details><summary>Verzenden en retourneren</summary><p>' + (p.lt ? "Levertijd " + p.lt + ", in Nederland en België." : "Je bestelling is in 8–15 werkdagen in huis, in Nederland en België.") + ' Niet tevreden? Je hebt 14 dagen bedenktijd. Lees meer bij <a class="link" href="klantenservice.html#retour">retourneren</a>.</p></details></div>';
     $("#gerelateerd").innerHTML = extra.map(kaart).join("");
+    var msel = $("#maat");
+    if (msel && p.maten.length > 1) msel.addEventListener("change", function () {
+      var k = $("#koop-p"), pr = $(".pdp-info .prijs");
+      k.textContent = msel.selectedIndex > 0 ? "Vraag de prijs aan" : "In winkelmand";
+      pr.innerHTML = msel.selectedIndex > 0 ? '<span class="vanaf">prijs op aanvraag</span>' : euro(p.p);
+    });
     $("#pdp").addEventListener("click", function (e) {
       var b = e.target.closest("[data-beeld]");
       if (b) { $("#hoofdbeeld").src = b.getAttribute("data-beeld"); $$("[data-beeld]").forEach(function (x) { x.setAttribute("aria-current", x === b); }); }
@@ -244,7 +268,12 @@
       if (v) { var vv = p.var[+v.getAttribute("data-var")]; $("#hoofdbeeld").src = vv.b; $("#var-naam").textContent = vv.n; $$("[data-var]").forEach(function (x) { x.setAttribute("aria-pressed", x === v); }); }
       var s = e.target.closest("[data-stap]");
       if (s) { var i = $("#aantal-p"); i.value = Math.max(1, Math.min(20, (+i.value || 1) + (+s.getAttribute("data-stap")))); }
-      if (e.target.closest("#koop-p")) voegToe(p.id, Math.max(1, Math.min(20, +$("#aantal-p").value || 1)));
+      if (e.target.closest("#koop-p")) {
+        var ms = $("#maat");
+        if (ms && ms.selectedIndex > 0) { vraagMaat(p, ms.value); return; }
+        var vn = $("#var-naam");
+        voegToe(p.id, Math.max(1, Math.min(20, +$("#aantal-p").value || 1)), p.var && p.var.length > 1 && vn ? vn.textContent : "");
+      }
     });
   }
 
@@ -257,7 +286,7 @@
     doel.innerHTML = m.map(function (r) {
       var p = vind(r.id); if (!p) return "";
       return '<div class="regel"><a href="product.html?p=' + p.id + '"><img src="' + foto(p) + '" alt="' + esc(p.n) + '"></a>' +
-        '<div><a href="product.html?p=' + p.id + '"><h3>' + esc(p.n) + '</h3></a><div style="font-size:14px;color:var(--mokka)">' + euro(p.p) + '</div>' +
+        '<div><a href="product.html?p=' + p.id + '"><h3>' + esc(p.n) + '</h3></a><div style="font-size:14px;color:var(--mokka)">' + euro(p.p) + (p.maten && p.maten.length ? ' · ' + esc(p.maten[0]) + ' cm' : '') + (r.u ? ' · uitvoering ' + esc(r.u) : '') + '</div>' +
         '<div class="stapper"><button type="button" data-mstap="-1" data-id="' + p.id + '" aria-label="Minder">−</button><input value="' + r.a + '" readonly aria-label="Aantal"><button type="button" data-mstap="1" data-id="' + p.id + '" aria-label="Meer">+</button></div>' +
         '<button class="weg" type="button" data-weg="' + p.id + '">Verwijderen</button></div><div class="rprijs">' + euro(p.p * r.a) + "</div></div>";
     }).join("");
@@ -284,28 +313,139 @@
   }
 
   if (pag === "afrekenen") {
-    var m2 = mand();
+    var m2 = mand().filter(function (r) { return vind(r.id); });
     if (!m2.length) { $("#afreken").innerHTML = '<div class="leegmand"><h2 style="font-size:36px;margin-bottom:12px">Je winkelmand is leeg</h2><a class="knop" href="shop.html">Naar de shop</a></div>'; }
     else {
-      var sub2 = subtotaal(), cad2 = lees("cadeau", false) ? CADEAU : 0, vz2 = sub2 >= GRATIS ? 0 : VERZEND;
-      $("#overzicht").innerHTML = m2.map(function (r) { var p = vind(r.id); return '<div class="rij"><span>' + r.a + " × " + esc(p.n) + "</span><span>" + euro(p.p * r.a) + "</span></div>"; }).join("") +
-        '<div class="rij"><span>Verzending</span><span>' + (vz2 ? euro(vz2) : "Gratis") + "</span></div>" +
-        (cad2 ? '<div class="rij"><span>Cadeauverpakking</span><span>' + euro(cad2) + "</span></div>" : "") +
-        '<div class="rij totaal"><span>Totaal</span><span>' + euro(sub2 + vz2 + cad2) + "</span></div>";
-      $("#bestel").addEventListener("submit", function (e) {
-        e.preventDefault();
-        var f = this, fout = $$("[required]", f).filter(function (i) { return !i.value.trim() || !i.checkValidity(); })[0];
-        if (fout) { $("#fout").textContent = "Vul alle verplichte velden correct in."; fout.focus(); return; }
-        var bank = (f.querySelector('input[name="betaal"]:checked') || {}).value === "bank", totaal = euro(sub2 + vz2 + cad2);
-        zetMand([]); bewaar("cadeau", false);
-        $("#afreken").innerHTML = '<div class="leegmand" style="max-width:640px"><span class="klein">Dank je wel</span><h2 style="font-size:44px;margin:10px 0 16px">Je bestelling is geplaatst</h2>' +
-          (bank ? '<p>Maak ' + totaal + ' over naar <b>NL22 BUNQ 2207 4744 53</b> onder vermelding van je ordernummer (staat in de bevestigingsmail). We verzenden zodra je betaling binnen is.</p>'
-                : '<p>Je ontvangt zo een bevestiging per e-mail met je ordernummer en de verwachte bezorgdatum.</p>') +
-          '<div class="melding">Dit is een concept: er is niets echt besteld of betaald. ' + (bank ? 'Maak dus niets over.' : 'In de echte webshop ga je hier naar de beveiligde betaalomgeving van PayPal.') + '</div>' +
-          '<a class="knop" href="index.html">Terug naar de homepage</a></div>';
+      var cad2 = lees("cadeau", false), order = null, cfg = null, kaart = null;
+      var regelsHtml = function (o) {
+        return o.regels.map(function (r) { return '<div class="rij"><span>' + r.aantal + " × " + esc(r.naam) + (r.maat ? '<small>' + esc(r.maat) + '</small>' : '') + (r.uitvoering ? '<small>Uitvoering ' + esc(r.uitvoering) + '</small>' : '') + "</span><span>" + euro(r.prijs * r.aantal) + "</span></div>"; }).join("") +
+          '<div class="rij"><span>Verzending</span><span>' + (o.verzending ? euro(o.verzending) : "Gratis") + "</span></div>" +
+          (o.cadeau ? '<div class="rij"><span>Cadeauverpakking</span><span>' + euro(o.cadeau) + "</span></div>" : "") +
+          '<div class="rij totaal"><span>Totaal</span><span>' + euro(o.totaal) + "</span></div>";
+      };
+      var sub2 = subtotaal(), vz2 = sub2 >= GRATIS ? 0 : VERZEND;
+      $("#overzicht").innerHTML = regelsHtml({ regels: m2.map(function (r) { var p = vind(r.id); return { naam: p.n, aantal: r.a, prijs: p.p, maat: p.maten && p.maten.length ? p.maten[0] + " cm" : "", uitvoering: r.u }; }), verzending: vz2, cadeau: cad2 ? CADEAU : 0, totaal: sub2 + vz2 + (cad2 ? CADEAU : 0) });
+      var stap = function (n) { $$(".stappen li").forEach(function (li) { if (+li.getAttribute("data-stap") === n) li.setAttribute("aria-current", "step"); else li.removeAttribute("aria-current"); }); };
+      var f = $("#bestel"), bf = $("#betaalfout"), bk = $("#betaal");
+      var bezig = function (aan, t) { bk.disabled = aan; bk.textContent = aan ? (t || "Bezig…") : "Betaal " + euro(order.totaal) + " veilig"; };
+      api({ actie: "config" }).then(function (j) { cfg = j || {}; });
+      var bedankt = function (o) {
+        zetMand([]); bewaar("cadeau", false); stap(3);
+        $("#afreken").innerHTML = '<div class="leegmand bedankt" style="max-width:660px"><span class="klein">Dank je wel</span><h2 style="font-size:44px;margin:10px 0 16px">Je betaling is gelukt</h2>' +
+          '<p>Je ordernummer is <b>' + esc(o.nr) + '</b>. Je krijgt zo een bevestiging per e-mail. Zodra je bestelling onderweg is, sturen we je de track-and-tracecode.</p>' +
+          '<div class="samenvatting">' + regelsHtml(o) + '</div>' +
+          '<a class="knop" href="shop.html">Verder winkelen</a></div>';
         window.scrollTo(0, 0);
+      };
+      var laadSdk = function (cb) {
+        if (window.paypal) return cb();
+        var sc = document.createElement("script");
+        sc.src = "https://www.paypal.com/sdk/js?client-id=" + encodeURIComponent(cfg.paypal.clientId) + "&components=card-fields,buttons&currency=EUR&intent=capture&locale=nl_NL&disable-funding=paylater,venmo,sepa,ideal,bancontact,blik,eps,mybank,p24,giropay,sofort";
+        sc.onload = cb; sc.onerror = function () { bf.textContent = "De betaalpagina kon niet worden geladen. Ververs de pagina en probeer het opnieuw."; };
+        document.head.appendChild(sc);
+      };
+      var maak = function () { return api({ actie: "pp_maak", nr: order.nr, token: order.token, methode: "Creditcard" }).then(function (j) { if (j.fout) throw new Error(j.fout); return j.id; }); };
+      var klaar = function (data) {
+        bezig(true, "Betaling controleren…");
+        return api({ actie: "pp_vang", nr: order.nr, token: order.token, id: data.orderID }).then(function (j) {
+          if (j.fout) { bezig(false); bf.textContent = j.fout; return; }
+          bedankt(j.order);
+        });
+      };
+      var fout = function (e) { bezig(false); bf.textContent = (e && e.message && !/^[A-Z_]+$/.test(e.message) && e.message.length < 200 ? e.message : "De betaling is niet gelukt. Controleer je kaartgegevens of probeer een andere kaart."); };
+      var toonKaart = function () {
+        if (!cfg) { setTimeout(toonKaart, 200); return; }
+        if (!cfg.paypal) { $("#kaartvelden").hidden = true; bk.hidden = true; bf.textContent = "Betalen met creditcard wordt op dit moment geactiveerd. Probeer het later nog eens of neem contact met ons op."; return; }
+        laadSdk(function () {
+          var stijl = { input: { "font-size": "16px", "font-family": "Jost, system-ui, sans-serif", color: "#3A2D25", padding: "12px" }, ".invalid": { color: "#8A3B2E" } };
+          kaart = window.paypal.CardFields({ createOrder: maak, onApprove: klaar, onError: fout, style: stijl });
+          if (kaart.isEligible()) {
+            kaart.NameField({ placeholder: "Naam op de kaart" }).render("#cf-naam");
+            kaart.NumberField({ placeholder: "Kaartnummer" }).render("#cf-nummer");
+            kaart.ExpiryField({ placeholder: "MM / JJ" }).render("#cf-datum");
+            kaart.CVVField({ placeholder: "CVC" }).render("#cf-cvv");
+            bezig(false);
+          } else {
+            $("#kaartvelden").hidden = true; bk.hidden = true;
+            window.paypal.Buttons({ fundingSource: window.paypal.FUNDING.CARD, style: { color: "black", label: "pay", shape: "rect" }, createOrder: maak, onApprove: klaar, onError: fout }).render("#kaartknop");
+          }
+        });
+      };
+      bk.addEventListener("click", function () {
+        if (!kaart) return; bf.textContent = ""; bezig(true, "Bezig met betalen…");
+        kaart.getState().then(function (st) {
+          var ok = st && st.fields && Object.keys(st.fields).every(function (k) { return st.fields[k].isValid; });
+          if (!ok) { bezig(false); bf.textContent = "Controleer je kaartgegevens: niet alle velden zijn goed ingevuld."; return; }
+          return kaart.submit().catch(fout);
+        }).catch(fout);
       });
+      f.addEventListener("submit", function (e) {
+        e.preventDefault();
+        var leeg = $$("[required]", f).filter(function (i) { return i.type === "checkbox" ? !i.checked : (!i.value.trim() || !i.checkValidity()); })[0];
+        if (leeg) { $("#fout").textContent = leeg.type === "checkbox" ? "Ga akkoord met de algemene voorwaarden om verder te gaan." : "Vul alle verplichte velden correct in."; leeg.focus(); return; }
+        var v = function (n) { return f.elements[n].value.trim(); }, knop = $("#naar-betalen");
+        knop.disabled = true; knop.textContent = "Bezig…"; $("#fout").textContent = "";
+        api({ actie: "start", site: basis(), akkoord: f.elements.akkoord.checked, cadeau: !!cad2,
+          klant: { naam: v("voornaam") + " " + v("achternaam"), email: v("email"), tel: v("tel"), postcode: v("postcode"), huisnummer: v("huisnummer"), straat: v("straat"), plaats: v("plaats"), land: f.elements.land.value },
+          regels: m2.map(function (r) { var p = vind(r.id); return { id: r.id, a: r.a, uitvoering: r.u || "", maat: p.maten && p.maten.length ? p.maten[0] + " cm" : "" }; })
+        }).then(function (j) {
+          knop.disabled = false; knop.textContent = "Verder naar betalen";
+          if (j.fout) { $("#fout").textContent = j.fout; return; }
+          order = j; $("#overzicht").innerHTML = regelsHtml(j);
+          $("#gegevens").hidden = true; $("#betalen").hidden = false; stap(2);
+          $("#kaart-voor").textContent = "Totaal " + euro(j.totaal) + " · ordernummer " + j.nr;
+          bk.textContent = "Betaal " + euro(j.totaal) + " veilig"; bk.disabled = true;
+          if (!kaart) toonKaart(); else bezig(false);
+          $("#betalen").scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      });
+      $("#wijzig").addEventListener("click", function () { $("#betalen").hidden = true; $("#gegevens").hidden = false; stap(1); });
     }
+  }
+
+  /* bestelling volgen */
+  var STATUS = ["betaald", "besteld", "verzonden", "geleverd"], STATUSNAAM = { betaald: "Betaald", besteld: "In behandeling", verzonden: "Verzonden", geleverd: "Bezorgd" };
+  function toonOrder(o) {
+    var i = STATUS.indexOf(o.status);
+    return '<div class="orderkaart"><span class="klein">Bestelling ' + esc(o.nr) + '</span><h2>' + esc(o.status_tekst) + '</h2>' +
+      (i > -1 ? '<ol class="statusbalk">' + STATUS.map(function (s, k) { return '<li class="' + (k <= i ? "klaar" : "") + '">' + STATUSNAAM[s] + "</li>"; }).join("") + "</ol>" : "") +
+      (o.track_trace ? '<p><b>Track-and-trace:</b> ' + esc(o.vervoerder || "") + ' ' + (/^https?:\/\//.test(o.track_trace) ? '<a class="link" href="' + esc(o.track_trace) + '" rel="noopener" target="_blank">volg je pakket</a>' : esc(o.track_trace)) + '</p>' : "") +
+      '<div class="samenvatting">' + o.regels.map(function (r) { return '<div class="rij"><span>' + r.aantal + " × " + esc(r.naam) + "</span><span>" + euro(r.prijs * r.aantal) + "</span></div>"; }).join("") +
+      '<div class="rij totaal"><span>Totaal</span><span>' + euro(+o.totaal) + "</span></div></div>" +
+      '<p class="noot">Besteld op ' + new Date(o.created_at).toLocaleDateString("nl-NL", { day: "numeric", month: "long", year: "numeric" }) + (o.betaalmethode ? ' · betaald met ' + esc(o.betaalmethode) : '') + '</p></div>';
+  }
+  if (pag === "bestelling") {
+    var vf = $("#volg"), uit = $("#volg-uitslag");
+    if (url.get("nr") && url.get("t")) api({ actie: "status", nr: url.get("nr"), token: url.get("t") }).then(function (j) { if (j.order) { uit.innerHTML = toonOrder(j.order); vf.hidden = true; } });
+    vf.addEventListener("submit", function (e) {
+      e.preventDefault(); var fo = $("#volg-fout");
+      if (!vf.elements.nr.value.trim() || !vf.elements.email.checkValidity() || !vf.elements.email.value) { fo.textContent = "Vul je ordernummer en e-mailadres in."; return; }
+      fo.textContent = "Bezig met zoeken…";
+      api({ actie: "status", nr: vf.elements.nr.value.trim(), email: vf.elements.email.value.trim() }).then(function (j) {
+        if (j.fout) { fo.textContent = j.fout; return; } fo.textContent = ""; uit.innerHTML = toonOrder(j.order);
+      });
+    });
+  }
+
+  /* vraag de prijs voor een andere maat */
+  function vraagMaat(p, maat) {
+    var d = document.createElement("dialog"); d.className = "maatdlg";
+    d.innerHTML = '<form method="dialog" class="form" novalidate><h2 style="font-size:30px">Prijs aanvragen</h2><p>' + esc(p.n) + ', maat <b>' + esc(maat) + '</b>. We mailen je de prijs en levertijd, meestal binnen één werkdag.</p>' +
+      '<label>Naam *<input name="naam" required autocomplete="name"></label><label>E-mailadres *<input name="email" type="email" required autocomplete="email"></label><p class="fout" role="alert"></p>' +
+      '<div style="display:flex;gap:12px;flex-wrap:wrap"><button class="knop" value="ok">Vraag de prijs aan</button><button class="knop licht" value="nee" formnovalidate>Annuleren</button></div></form>';
+    document.body.appendChild(d); d.showModal();
+    var fm = $("form", d);
+    fm.addEventListener("submit", function (e) {
+      if (e.submitter && e.submitter.value === "nee") return;
+      e.preventDefault();
+      if (!fm.elements.naam.value.trim() || !fm.elements.email.value || !fm.elements.email.checkValidity()) { $(".fout", fm).textContent = "Vul je naam en e-mailadres in."; return; }
+      $(".fout", fm).textContent = "Bezig…";
+      api({ actie: "bericht", soort: "maatprijs", naam: fm.elements.naam.value, email: fm.elements.email.value, velden: { Product: p.n + " (nr. " + p.nr + ")", Maat: maat, Link: location.href } }).then(function (j) {
+        if (j.fout) { $(".fout", fm).textContent = j.fout; return; }
+        fm.innerHTML = '<h2 style="font-size:30px">Aanvraag ontvangen</h2><p>Dank je wel. Je krijgt de prijs voor maat ' + esc(maat) + ' per e-mail.</p><button class="knop" value="nee">Sluiten</button>';
+      });
+    });
+    d.addEventListener("close", function () { d.remove(); });
   }
 
   function toonFavorieten() {
@@ -315,39 +455,73 @@
   }
   if (pag === "favorieten") toonFavorieten();
 
-  /* beheer (concept): marge per product en route van betaling naar levering */
+  /* bestelbalie voor Kim */
   if (pag === "beheer") {
-    var FEE = 0.29;
-    /* rekenvoorbeeld: inkoop en verzending zijn aannames (geen echte leveranciersprijzen) */
-    var demo = function (p) { p.ink = Math.round(p.p * 0.4 * 10) / 10; p.lv = p.p > 100 ? 9.95 : p.p > 60 ? 5.95 : p.p > 30 ? 3.95 : 2.95; return p; };
-    P.forEach(demo);
-    var rij = function (p) {
-      return '<tr data-id="' + p.id + '"><td><img src="' + foto(p) + '" alt=""><span>' + esc(p.n) + '<small>' + CATS[p.c] + '</small></span></td>' +
-        '<td>' + euro(p.ink) + '</td><td>' + euro(p.lv) + '</td>' +
-        '<td><input type="number" step="0.05" min="0" value="' + p.p.toFixed(2) + '" aria-label="Verkoopprijs ' + esc(p.n) + '"></td>' +
-        '<td class="winst"></td><td class="marge"></td></tr>';
-    };
-    var PB = P.slice(0, 16);
-    var tb = $("#marge-tabel tbody"); tb.innerHTML = PB.map(rij).join("");
-    var reken = function () {
-      var som = 0, n = 0;
-      $$("tr[data-id]", tb).forEach(function (tr) {
-        var p = vind(tr.getAttribute("data-id")), vk = +$("input", tr).value || 0;
-        var w = vk - p.ink - p.lv - FEE, m = vk ? w / vk * 100 : 0;
-        $(".winst", tr).textContent = euro(w); $(".marge", tr).textContent = Math.round(m) + " %";
-        $(".winst", tr).style.color = w < 0 ? "#8A3B2E" : ""; som += m; n++;
+    var sessie = lees("beheer-sessie", ""), data = null;
+    var toon = function (id) { ["bh-setup", "bh-login", "bh-app"].forEach(function (x) { $("#" + x).hidden = x !== id; }); };
+    var code = url.get("setup");
+    if (code) toon("bh-setup"); else if (sessie) laad(); else toon("bh-login");
+    $("#bh-setup").addEventListener("submit", function (e) {
+      e.preventDefault(); var f = this, fo = $(".fout", f);
+      if (f.elements.pw.value.length < 10) { fo.textContent = "Kies minstens 10 tekens."; return; }
+      if (f.elements.pw.value !== f.elements.pw2.value) { fo.textContent = "De wachtwoorden zijn niet gelijk."; return; }
+      fo.textContent = "Bezig…";
+      api({ actie: "setup", code: code, wachtwoord: f.elements.pw.value }).then(function (j) {
+        if (j.fout) { fo.textContent = j.fout; return; }
+        history.replaceState(null, "", location.pathname); toon("bh-login"); $(".fout", $("#bh-login")).textContent = "Je wachtwoord is opgeslagen. Log nu in.";
       });
-      $("#gem-marge").textContent = Math.round(som / n) + " %";
-    };
-    tb.addEventListener("input", reken); reken();
-    var stappen = ["Betaald", "Doorgestuurd naar leverancier", "Verzonden", "Bezorgd"];
-    var orders = [["SM-1043", 184, 3], ["SM-1042", 141, 2], ["SM-1041", 121, 1], ["SM-1040", 102, 0]].map(function (o) { var q = P.filter(function (p) { return p.nr === o[1]; })[0]; return [o[0], q ? q.id : "", o[2]]; }).filter(function (o) { return o[1]; });
-    $("#orders").innerHTML = orders.map(function (o) {
-      var p = vind(o[1]);
-      return '<div class="order"><div><b>' + o[0] + '</b><span>' + esc(p.n) + ' · ' + euro(p.p) + '</span></div><ol class="statusbalk">' +
-        stappen.map(function (s, i) { return '<li class="' + (i <= o[2] ? "klaar" : "") + '">' + s + "</li>"; }).join("") + "</ol>" +
-        '<div class="ordwinst">Jouw winst <b>' + euro(p.p - p.ink - p.lv - FEE) + "</b></div></div>";
-    }).join("");
+    });
+    $("#bh-login").addEventListener("submit", function (e) {
+      e.preventDefault(); var f = this, fo = $(".fout", f); fo.textContent = "Bezig…";
+      api({ actie: "login", wachtwoord: f.elements.pw.value }).then(function (j) {
+        if (j.fout) { fo.textContent = j.fout; return; }
+        sessie = j.sessie; bewaar("beheer-sessie", sessie); f.reset(); fo.textContent = ""; laad();
+      });
+    });
+    $("#bh-uit").addEventListener("click", function () { api({ actie: "uitloggen", sessie: sessie }); sessie = ""; bewaar("beheer-sessie", ""); toon("bh-login"); });
+    $$(".bh-tabs button").forEach(function (t) { t.addEventListener("click", function () {
+      $$(".bh-tabs button").forEach(function (x) { x.setAttribute("aria-selected", x === t); });
+      $("#bh-orders").hidden = t.getAttribute("data-tab") !== "orders"; $("#bh-berichten").hidden = t.getAttribute("data-tab") !== "berichten";
+    }); });
+    function laad() {
+      api({ actie: "lijst", sessie: sessie }).then(function (j) {
+        if (j.fout) { sessie = ""; bewaar("beheer-sessie", ""); toon("bh-login"); if (j._status !== 401) $(".fout", $("#bh-login")).textContent = j.fout; return; }
+        data = j; toon("bh-app"); teken();
+      });
+    }
+    function teken() {
+      var o = data.orders, echt = o.filter(function (x) { return !x.test; });
+      var omzet = echt.filter(function (x) { return ["betaald", "besteld", "verzonden", "geleverd"].indexOf(x.status) > -1; }).reduce(function (s, x) { return s + (+x.totaal); }, 0);
+      var open = o.filter(function (x) { return x.status === "betaald" || x.status === "besteld"; }).length;
+      $("#bh-pp").textContent = data.paypal === "live" ? "Creditcardbetalingen: live" : data.paypal === "test" ? "Creditcardbetalingen: testmodus" : "Creditcardbetalingen: nog niet gekoppeld";
+      $("#bh-kpi").innerHTML = '<div><b>' + open + '</b><span>Te versturen</span></div><div><b>' + echt.length + '</b><span>Bestellingen</span></div><div><b>' + euro(omzet) + '</b><span>Omzet (betaald)</span></div><div><b>' + data.berichten.filter(function (x) { return !x.afgehandeld; }).length + '</b><span>Open berichten</span></div>';
+      var opties = Object.keys(data.stappen).filter(function (k) { return k !== "open"; });
+      $("#bh-orders").innerHTML = o.length ? o.map(function (x) {
+        return '<details class="bh-order"' + (x.status === "betaald" ? " open" : "") + '><summary><b>' + esc(x.nr) + '</b><span>' + new Date(x.created_at).toLocaleString("nl-NL", { dateStyle: "medium", timeStyle: "short" }) + '</span><span>' + esc(x.klant_naam) + '</span><span>' + euro(+x.totaal) + '</span><span class="bh-status s-' + x.status + '">' + esc(data.stappen[x.status]) + (x.test ? " · test" : "") + '</span></summary>' +
+          '<div class="bh-grid"><div><h3>Producten</h3>' + x.regels.map(function (r) { return '<p>' + r.aantal + ' × ' + esc(r.naam) + (r.nr ? ' <small>(nr. ' + r.nr + ')</small>' : '') + (r.maat ? '<br><small>Maat ' + esc(r.maat) + '</small>' : '') + (r.uitvoering ? '<br><small>Uitvoering ' + esc(r.uitvoering) + '</small>' : '') + '</p>'; }).join("") +
+          '<p><small>Verzending ' + (+x.verzending ? euro(+x.verzending) : "gratis") + (+x.cadeau ? ' · cadeauverpakking' : '') + ' · ' + esc(x.betaalmethode || "") + '</small></p></div>' +
+          '<div><h3>Klant</h3><p>' + esc(x.klant_naam) + '<br>' + esc(x.adres.straat) + ' ' + esc(x.adres.huisnummer) + '<br>' + esc(x.adres.postcode) + ' ' + esc(x.adres.plaats) + '<br>' + esc(x.adres.land) + '</p><p><a class="link" href="mailto:' + esc(x.klant_email) + '?subject=' + encodeURIComponent("Je bestelling " + x.nr) + '">' + esc(x.klant_email) + '</a>' + (x.klant_tel ? '<br>' + esc(x.klant_tel) : '') + '</p></div>' +
+          '<form class="form bh-upd" data-nr="' + esc(x.nr) + '"><h3>Afhandelen</h3><label>Status<select name="status">' + opties.map(function (k) { return '<option value="' + k + '"' + (k === x.status ? " selected" : "") + '>' + esc(data.stappen[k]) + '</option>'; }).join("") + '</select></label>' +
+          '<label>Ordernummer bij leverancier<input name="leverancier_ordernr" value="' + esc(x.leverancier_ordernr || "") + '"></label><div class="twee"><label>Vervoerder<input name="vervoerder" value="' + esc(x.vervoerder || "") + '" placeholder="PostNL"></label><label>Track-and-trace (code of link)<input name="track_trace" value="' + esc(x.track_trace || "") + '"></label></div>' +
+          '<label>Notitie (alleen voor jou)<textarea name="notitie">' + esc(x.notitie || "") + '</textarea></label><label class="check"><input type="checkbox" name="mail_klant" checked><span>Mail de klant bij een nieuwe status</span></label><button class="knop" type="submit">Opslaan</button><p class="bevestig" role="status"></p></form></div></details>';
+      }).join("") : '<p class="leeg-bh">Nog geen bestellingen. Zodra er iemand betaalt, staat de bestelling hier en krijg je een mail.</p>';
+      $("#bh-berichten").innerHTML = data.berichten.length ? data.berichten.map(function (b) {
+        var nm = { contact: "Bericht", herroeping: "Herroeping", nieuwsbrief: "Nieuwsbrief", maatprijs: "Prijsaanvraag maat" }[b.soort];
+        return '<div class="bh-bericht' + (b.afgehandeld ? " af" : "") + '"><div><b>' + nm + '</b> · ' + new Date(b.created_at).toLocaleString("nl-NL", { dateStyle: "medium", timeStyle: "short" }) + '<br>' + esc(b.naam || "") + ' <a class="link" href="mailto:' + esc(b.email) + '">' + esc(b.email) + '</a></div>' +
+          Object.keys(b.velden || {}).map(function (k) { return '<p><small>' + esc(k) + '</small><br>' + esc(b.velden[k]) + '</p>'; }).join("") +
+          '<label class="check"><input type="checkbox" data-af="' + b.id + '"' + (b.afgehandeld ? " checked" : "") + '><span>Afgehandeld</span></label></div>';
+      }).join("") : '<p class="leeg-bh">Nog geen berichten.</p>';
+    }
+    $("#bh-orders").addEventListener("submit", function (e) {
+      var f = e.target.closest(".bh-upd"); if (!f) return; e.preventDefault();
+      var bv = $(".bevestig", f); bv.textContent = "Bezig met opslaan…";
+      api({ actie: "update", sessie: sessie, nr: f.getAttribute("data-nr"), status: f.elements.status.value, leverancier_ordernr: f.elements.leverancier_ordernr.value, vervoerder: f.elements.vervoerder.value, track_trace: f.elements.track_trace.value, notitie: f.elements.notitie.value, mail_klant: f.elements.mail_klant.checked })
+        .then(function (j) { if (j.fout) { bv.textContent = j.fout; return; } bv.textContent = "Opgeslagen."; setTimeout(laad, 600); });
+    });
+    $("#bh-berichten").addEventListener("change", function (e) {
+      var c = e.target.closest("[data-af]"); if (!c) return;
+      api({ actie: "bericht_af", sessie: sessie, id: +c.getAttribute("data-af"), af: c.checked }).then(function () { c.closest(".bh-bericht").classList.toggle("af", c.checked); });
+    });
   }
 
   tellers();

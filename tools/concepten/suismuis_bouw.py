@@ -1,6 +1,27 @@
 """Bouwt de concept-webshop Suismuis Home in src/concept/suismuis/ (alle pagina's delen kop, voet en watermerk)."""
 import os
 
+# Winkelgegevens (wettelijk verplicht op een webshop). ADRES invullen door Kim voor de livegang.
+WINKEL = {"naam": "Suismuis Home", "eigenaar": "Kim Suister", "adres": "", "email": "suisterkim@gmail.com"}
+ADRES = WINKEL["adres"] or "[adres volgt]"
+WINKEL_TXT = f'{WINKEL["naam"]} ({WINKEL["eigenaar"]}), {ADRES}, {WINKEL["email"]}'
+VOORWAARDEN = f'''<p class="noot">Versie 1, november 2026.</p>
+<h3>1. Wie zijn wij</h3><p>Suismuis Home is een webshop van {WINKEL["eigenaar"]}, {ADRES}. E-mail: <a class="link" href="mailto:{WINKEL["email"]}">{WINKEL["email"]}</a>. Deze voorwaarden gelden voor elke bestelling via deze webshop.</p>
+<h3>2. Aanbod en prijzen</h3><p>We beschrijven elk product zo nauwkeurig mogelijk, met foto's, materialen en maten. Kleine verschillen in kleur en structuur zijn bij natuurlijke en handgemaakte materialen mogelijk. Alle prijzen zijn eindprijzen in euro; verzendkosten zie je vóór het afrekenen. Kennelijke vergissingen in prijzen of beschrijvingen binden ons niet.</p>
+<h3>3. De overeenkomst</h3><p>De overeenkomst komt tot stand zodra je betaling is gelukt. Je ontvangt direct een bevestiging per e-mail met je ordernummer. Kunnen we een product toch niet leveren, dan laten we dat zo snel mogelijk weten en betalen we het volledige bedrag binnen 14 dagen terug.</p>
+<h3>4. Betalen</h3><p>Je betaalt vooraf met je creditcard (Visa, Mastercard of American Express) via een beveiligde betaalverwerker met 3D Secure. Wij zien en bewaren je kaartgegevens nooit.</p>
+<h3>5. Levering</h3><p>We leveren in Nederland en België, meestal binnen 8 tot 15 werkdagen. Zodra je pakket onderweg is, krijg je een track-and-tracecode. Is je bestelling na 30 dagen nog niet geleverd, dan mag je de overeenkomst kosteloos ontbinden en betalen we je binnen 14 dagen terug. Het risico van verlies of beschadiging gaat pas op jou over als je het pakket hebt ontvangen.</p>
+<h3>6. Herroepingsrecht (14 dagen bedenktijd)</h3><p>Je mag je aankoop binnen 14 dagen na ontvangst zonder opgaaf van reden herroepen, met de knop <a class="link" href="#herroepen">Bestelling herroepen</a>, met het modelformulier of per e-mail. Daarna heb je opnieuw 14 dagen om het product terug te sturen. Ga zorgvuldig met het product om; je mag het alleen bekijken zoals je dat in een winkel zou doen. De kosten van het terugsturen zijn voor jou. We betalen het aankoopbedrag inclusief de standaard verzendkosten binnen 14 dagen na je herroeping terug, op dezelfde manier als je hebt betaald; we mogen wachten tot we het product terug hebben of je verzendbewijs hebben gezien. Is het product door jouw toedoen beschadigd of gebruikt, dan kunnen we de waardevermindering verrekenen.</p>
+<h3>7. Garantie en klachten</h3><p>Je hebt altijd recht op een product dat doet wat je ervan mag verwachten (wettelijke garantie). Is er iets mis, mail ons dan binnen twee maanden nadat je het gebrek hebt ontdekt, het liefst met een foto. We reageren binnen één werkdag en zoeken samen naar een oplossing: herstel, vervanging of terugbetaling.</p>
+<h3>8. Privacy</h3><p>We gebruiken je gegevens alleen zoals beschreven in onze <a class="link" href="#privacy">privacyverklaring</a>.</p>
+<h3>9. Geschillen</h3><p>Op deze voorwaarden is Nederlands recht van toepassing. Kom je er met ons niet uit, dan kun je je wenden tot de bevoegde rechter. Als consument behoud je de bescherming van de dwingende regels van het land waar je woont.</p>'''
+PRIVACY = f'''<p class="noot">Versie 1, november 2026.</p>
+<p>{WINKEL["eigenaar"]} (Suismuis Home, {ADRES}) is verantwoordelijk voor je gegevens. Vragen of een verzoek? Mail naar <a class="link" href="mailto:{WINKEL["email"]}">{WINKEL["email"]}</a>.</p>
+<h3>Welke gegevens en waarom</h3><ul><li><b>Bestellen:</b> naam, adres, e-mailadres, eventueel telefoonnummer en wat je bestelt, om je bestelling te leveren en je op de hoogte te houden (uitvoering van de overeenkomst).</li><li><b>Betalen:</b> de betaalverwerker verwerkt je kaartgegevens; wij ontvangen alleen of de betaling is gelukt.</li><li><b>Contact en herroeping:</b> wat je ons stuurt, om je vraag te beantwoorden.</li><li><b>Nieuwsbrief:</b> alleen je e-mailadres en alleen als je je aanmeldt (toestemming). Afmelden kan altijd.</li></ul>
+<h3>Wie helpt ons daarbij</h3><p>We werken met zorgvuldig gekozen dienstverleners die je gegevens alleen voor ons verwerken: hosting van de website (Cloudflare), opslag van bestellingen (Supabase), betaalverwerking (PayPal, ook voor creditcards), het versturen van e-mails (Brevo) en de leverancier en vervoerder die je bestelling bezorgen. Een deel van deze partijen zit buiten de EU; zij werken dan met de standaardcontractbepalingen van de Europese Commissie.</p>
+<h3>Hoe lang</h3><p>Bestelgegevens bewaren we 7 jaar, omdat de belastingwet dat verplicht. Berichten bewaren we tot een jaar nadat je vraag is afgehandeld. Je nieuwsbriefaanmelding tot je je afmeldt.</p>
+<h3>Je rechten</h3><p>Je mag je gegevens inzien, laten corrigeren of laten verwijderen, bezwaar maken en je toestemming intrekken. Mail ons; we reageren binnen een maand. Ben je het niet met ons eens, dan kun je een klacht indienen bij de Autoriteit Persoonsgegevens.</p>
+<h3>Cookies</h3><p>We gebruiken geen tracking- of advertentiecookies. Je winkelmand en favorieten bewaren we alleen in je eigen browser.</p>'''
 DOEL = os.path.join(os.path.dirname(__file__), "..", "..", "src", "concept", "suismuis")
 TAX = [
     ("wonen", "Wonen & decoratie", "p-schilderij-1", [("schilderijen", "Schilderijen"), ("spiegels", "Spiegels"), ("beeldjes", "Beeldjes & objecten"), ("bloempotten", "Bloempotten"), ("droogbloemen", "Droogbloemen")]),
@@ -32,7 +53,7 @@ def kop(actief):
                 f'<a class="mega-alles" href="shop.html">Bekijk alle producten</a></div></div></div>')
     links = "".join(navlink(h, t, k) for h, t, k in nav)
     lade_cats = "".join(f'<details><summary>{n}</summary><a href="shop.html?cat={c}">Alles in {n.lower()}</a>' + "".join(f'<a href="shop.html?cat={c}&amp;sub={sk}">{sn}</a>' for sk, sn in subs) + '</details>' for c, n, _, subs in TAX)
-    return f'''<div class="wm" aria-hidden="true"></div>
+    return f'''<div class="wm alleen-concept" aria-hidden="true"></div>
 <a class="sr" href="#inhoud">Naar de inhoud</a>
 <div class="balk">Gratis verzending vanaf € 75<span class="balk-extra"> &nbsp;·&nbsp; 14 dagen bedenktijd</span></div>
 <header class="kopbalk"><div class="wrap kop">
@@ -41,7 +62,7 @@ def kop(actief):
  <a class="logo" href="index.html" aria-label="Suismuis Home, naar de homepage"><img src="img/logo-mono.png" alt="" width="64" height="64"><span class="woord"><b>SUISMUIS</b><span>HOME</span></span></a>
  <div class="iconen">
   <button class="ico" type="button" data-open="zoek" aria-label="Zoeken">{SVG["zoek"]}</button>
-  <a class="ico verberg" href="account.html" aria-label="Mijn account">{SVG["account"]}</a>
+  <a class="ico verberg" href="bestelling.html" aria-label="Bestelling volgen">{SVG["account"]}</a>
   <a class="ico" href="favorieten.html" aria-label="Favorieten">{SVG["hart"]}<span class="teller" data-teller="favs"></span></a>
   <a class="ico" href="winkelmand.html" aria-label="Winkelmand">{SVG["mand"]}<span class="teller" data-teller="mand"></span></a>
  </div>
@@ -49,7 +70,7 @@ def kop(actief):
 <div class="lade" id="lade" role="dialog" aria-modal="true" aria-label="Menu"><div class="doek" data-sluit></div><div class="paneel">
  <button class="sluit" type="button" data-sluit aria-label="Menu sluiten">×</button>
  <a href="index.html">Home</a><a href="shop.html">Shop</a><div class="sub">{lade_cats}</div>
- <a href="over.html">Over ons</a><a href="journal.html">Journal</a><a href="klantenservice.html">Klantenservice</a><a href="account.html">Mijn account</a><a href="favorieten.html">Favorieten</a>
+ <a href="over.html">Over ons</a><a href="journal.html">Journal</a><a href="klantenservice.html">Klantenservice</a><a href="bestelling.html">Bestelling volgen</a><a href="favorieten.html">Favorieten</a>
 </div></div>
 <div class="zoek" id="zoek" role="dialog" aria-modal="true" aria-label="Zoeken"><div class="wrap">
  <div style="display:flex;justify-content:space-between;align-items:center"><span class="klein">Zoeken</span><button class="sluit" type="button" data-sluit aria-label="Zoeken sluiten">×</button></div>
@@ -62,14 +83,14 @@ def voet():
     cats = "".join(f'<li><a href="shop.html?cat={c}">{n}</a></li>' for c, n, _ in CATS)
     return f'''<footer><div class="wrap">
  <div class="voet">
-  <div><b>Suismuis</b><p>Warme, tijdloze woonaccessoires voor een thuis vol rust.</p><div class="betaalmerken" aria-label="Betaalmethoden"><span>PayPal</span><span>Visa</span><span>Mastercard</span><span>Bankoverschrijving</span></div></div>
+  <div><b>Suismuis</b><p>Warme, tijdloze woonaccessoires voor een thuis vol rust.</p><div class="betaalmerken" aria-label="Betaalmethoden"><span>Visa</span><span>Mastercard</span><span>American Express</span><span>3D Secure</span></div></div>
   <div><h4>Shop</h4><ul>{cats}</ul></div>
   <div><h4>Klantenservice</h4><ul><li><a href="klantenservice.html#verzenden">Verzenden</a></li><li><a href="klantenservice.html#retour">Retourneren</a></li><li><a href="klantenservice.html#herroepen">Bestelling herroepen</a></li><li><a href="klantenservice.html#faq">Veelgestelde vragen</a></li><li><a href="klantenservice.html#contact">Contact</a></li></ul></div>
-  <div><h4>Suismuis</h4><ul><li><a href="over.html">Over ons</a></li><li><a href="journal.html">Journal</a></li><li><a href="account.html">Mijn account</a></li><li><a href="index.html#brief">Nieuwsbrief</a></li><li><a href="beheer.html">Beheer (voor Kim)</a></li></ul></div>
+  <div><h4>Suismuis</h4><ul><li><a href="over.html">Over ons</a></li><li><a href="journal.html">Journal</a></li><li><a href="bestelling.html">Bestelling volgen</a></li><li><a href="index.html#brief">Nieuwsbrief</a></li><li class="alleen-concept"><a href="beheer.html">Beheer (voor Kim)</a></li></ul></div>
  </div>
  <div class="onder"><span>© 2026 Suismuis Home</span><span><a href="klantenservice.html#voorwaarden">Algemene voorwaarden</a> · <a href="klantenservice.html#privacy">Privacy</a></span></div>
 </div></footer>
-<div class="concept">Concept door <a href="https://collensgroup.com">Collens Group</a></div>'''
+<div class="concept alleen-concept">Concept door <a href="https://collensgroup.com">Collens Group</a></div>'''
 
 
 def pagina(bestand, titel, sleutel, actief, inhoud, beschrijving="Warme, tijdloze woonaccessoires: vazen, kaarsen, kussens, verlichting en linnen."):
@@ -171,7 +192,7 @@ def bouw():
  <img src="img/s-brief.jpg" alt="" loading="lazy" width="1800" height="1200">
  <div class="wrap"><div class="brief-tekst"><span class="klein">Blijf geïnspireerd</span><h2>Als eerste de nieuwe collectie zien</h2>
   <p>Schrijf je in voor de nieuwsbrief en ontvang stylingtips en nieuwe items. Afmelden kan altijd.</p>
-  <form data-bevestig="Dank je wel! Je inschrijving is ontvangen." novalidate><label for="mail" class="sr">E-mailadres</label><input id="mail" type="email" required placeholder="Je e-mailadres" autocomplete="email"><button type="submit">Inschrijven</button></form>
+  <form data-soort="nieuwsbrief" data-bevestig="Dank je wel! Je inschrijving is ontvangen." novalidate><label for="mail" class="sr">E-mailadres</label><input id="mail" name="email" type="email" required placeholder="Je e-mailadres" autocomplete="email"><button type="submit">Inschrijven</button></form>
  </div></div>
 </section>''')
 
@@ -185,7 +206,7 @@ def bouw():
   <select id="sorteer"><option value="standaard">Aanbevolen</option><option value="laag">Prijs laag – hoog</option><option value="hoog">Prijs hoog – laag</option><option value="naam">Naam A – Z</option></select></div></div>
  <div class="producten" id="shop-grid"></div>
  <div class="binnenkort" id="binnenkort" hidden><h2>Deze collectie wordt nu samengesteld</h2><p>De eerste stukken staan hier binnenkort. Laat je e-mailadres achter, dan hoor je het als eerste.</p>
-  <form data-bevestig="Dank je wel! We laten het je weten zodra deze collectie online staat." novalidate><label for="bk-mail" class="sr">E-mailadres</label><input id="bk-mail" type="email" required placeholder="Je e-mailadres" autocomplete="email"><button type="submit">Houd me op de hoogte</button></form>
+  <form data-soort="nieuwsbrief" data-bevestig="Dank je wel! We laten het je weten zodra deze collectie online staat." novalidate><label for="bk-mail" class="sr">E-mailadres</label><input id="bk-mail" name="email" type="email" required placeholder="Je e-mailadres" autocomplete="email"><button type="submit">Houd me op de hoogte</button></form>
   <a class="link" id="bk-terug" href="shop.html">Bekijk de hele collectie</a></div>
  <p class="noot">Voorbeeldproducten en voorbeeldprijzen: bij lancering komen hier jouw eigen producten, foto's en prijzen.</p>
 </div></section>
@@ -211,7 +232,7 @@ def bouw():
   <div class="rij totaal"><span>Totaal</span><span id="tot"></span></div>
   <p style="font-size:13px;color:var(--mokka);margin:6px 0 18px">Prijzen inclusief btw.</p>
   <a class="knop breed" href="afrekenen.html">Veilig afrekenen</a>
-  <p style="font-size:13px;margin:14px 0 0;text-align:center">PayPal · Creditcard · Bankoverschrijving</p>
+  <p style="font-size:13px;margin:14px 0 0;text-align:center">Veilig betalen met creditcard: Visa, Mastercard en American Express</p>
  </aside>
 </div></div>''')
 
@@ -220,23 +241,34 @@ def bouw():
            paginakop("Afrekenen", "", ['<a href="winkelmand.html">Winkelmand</a>', "<span>Afrekenen</span>"]) + '''
 <div class="wrap"><div class="mand" id="afreken">
  <form class="form" id="bestel" novalidate>
-  <div class="stappen"><b>1. Gegevens</b><span>2. Betalen</span><span>3. Bevestiging</span></div>
-  <div class="twee"><label>Voornaam *<input required autocomplete="given-name"></label><label>Achternaam *<input required autocomplete="family-name"></label></div>
-  <label>E-mailadres *<input type="email" required autocomplete="email"></label>
-  <div class="twee"><label>Postcode *<input required autocomplete="postal-code"></label><label>Huisnummer *<input required></label></div>
-  <div class="twee"><label>Straat *<input required autocomplete="address-line1"></label><label>Plaats *<input required autocomplete="address-level2"></label></div>
-  <label>Land<select autocomplete="country"><option>Nederland</option><option>België</option></select></label>
-  <h2 style="font-size:30px;margin-top:16px">Betaalmethode</h2>
-  <div class="betaal" role="radiogroup" aria-label="Betaalmethode">
-   <label><input type="radio" name="betaal" value="paypal" checked><span><b>PayPal</b><small>Met je PayPal-account</small></span></label>
-   <label><input type="radio" name="betaal" value="kaart"><span><b>Creditcard</b><small>Visa of Mastercard, veilig via PayPal (geen PayPal-account nodig)</small></span></label>
-   <label><input type="radio" name="betaal" value="bank"><span><b>Bankoverschrijving</b><small>Je maakt het bedrag zelf over naar NL22 BUNQ 2207 4744 53; we verzenden zodra het binnen is (meestal 1 werkdag)</small></span></label>
-  </div>
-  <p class="veilig"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Met PayPal of creditcard betaal je op de beveiligde betaalomgeving van PayPal. Wij zien en bewaren je kaartgegevens nooit.</p>
-  <label class="check"><input type="checkbox" required><span>Ik ga akkoord met de <a class="link" href="klantenservice.html#voorwaarden">algemene voorwaarden</a> *</span></label>
-  <p id="fout" role="status" style="color:#8A3B2E;margin:0"></p>
-  <button class="knop" type="submit">Doorgaan naar veilig betalen</button>
-  <p style="font-size:13px;color:var(--mokka)">Concept: er wordt niets echt besteld of betaald.</p>
+  <ol class="stappen" aria-label="Stappen"><li aria-current="step" data-stap="1">Gegevens</li><li data-stap="2">Betalen</li><li data-stap="3">Bevestiging</li></ol>
+  <fieldset id="gegevens">
+  <legend class="sr">Je gegevens</legend>
+  <div class="twee"><label>Voornaam *<input name="voornaam" required autocomplete="given-name"></label><label>Achternaam *<input name="achternaam" required autocomplete="family-name"></label></div>
+  <div class="twee"><label>E-mailadres *<input name="email" type="email" required autocomplete="email"></label><label>Telefoon (optioneel)<input name="tel" type="tel" autocomplete="tel"></label></div>
+  <div class="twee"><label>Postcode *<input name="postcode" required autocomplete="postal-code"></label><label>Huisnummer *<input name="huisnummer" required></label></div>
+  <div class="twee"><label>Straat *<input name="straat" required autocomplete="address-line1"></label><label>Plaats *<input name="plaats" required autocomplete="address-level2"></label></div>
+  <label>Land<select name="land" autocomplete="country-name"><option>Nederland</option><option>België</option></select></label>
+  <label class="check"><input name="akkoord" type="checkbox" required><span>Ik ga akkoord met de <a class="link" href="klantenservice.html#voorwaarden" target="_blank">algemene voorwaarden</a> en heb de <a class="link" href="klantenservice.html#privacy" target="_blank">privacyverklaring</a> gelezen *</span></label>
+  <p id="fout" role="alert" class="fout"></p>
+  <button class="knop" type="submit" id="naar-betalen">Verder naar betalen</button>
+  </fieldset>
+  <section id="betalen" class="kaartbetaal" hidden aria-labelledby="betalen-kop">
+   <div class="kaart-kop"><h2 id="betalen-kop">Betalen met creditcard</h2><span class="merken" aria-label="Wij accepteren Visa, Mastercard en American Express"><i class="m-visa">VISA</i><i class="m-mc"><b></b><b></b></i><i class="m-amex">AMEX</i></span></div>
+   <p class="kaart-voor" id="kaart-voor"></p>
+   <div id="kaartvelden" class="kaartvelden">
+    <div id="cf-naam" class="cf"></div>
+    <div id="cf-nummer" class="cf"></div>
+    <div class="twee"><div id="cf-datum" class="cf"></div><div id="cf-cvv" class="cf"></div></div>
+   </div>
+   <div id="kaartknop"></div>
+   <p id="betaalfout" role="alert" class="fout"></p>
+   <button class="knop breed" type="button" id="betaal">Betaal veilig</button>
+   <ul class="zeker"><li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span><b>Versleutelde betaling met 3D Secure</b>Je kaartgegevens gaan rechtstreeks naar de betaalverwerker. Wij zien en bewaren ze nooit.</span></li>
+   <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 3-6.2"/><path d="M4 4v5h5"/></svg><span><b>14 dagen bedenktijd</b>Niet helemaal blij? Je krijgt je geld terug.</span></li>
+   <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg><span><b>Direct een bevestiging</b>Met je ordernummer en een link om je bestelling te volgen.</span></li></ul>
+   <button type="button" class="link terug" id="wijzig">Gegevens wijzigen</button>
+  </section>
  </form>
  <aside class="samenvatting" aria-label="Je bestelling"><h2 style="font-size:30px;margin-bottom:12px">Je bestelling</h2><div id="overzicht"></div></aside>
 </div></div>''')
@@ -271,7 +303,9 @@ def bouw():
            ("Wat kost verzending?", "Verzending kost € 5,95. Vanaf € 75 verzenden we gratis binnen Nederland en België."),
            ("Kan ik mijn bestelling retourneren?", "Ja, je hebt 14 dagen bedenktijd na ontvangst. Gebruik de knop Bestelling herroepen hierboven; je krijgt het aankoopbedrag binnen 14 dagen terug."),
            ("Kan ik een product als cadeau laten inpakken?", "Ja, bij het afrekenen kies je voor cadeauverpakking met een handgeschreven kaartje (+ € 3,95)."),
-           ("Hoe kan ik betalen?", "Met PayPal, met creditcard (Visa of Mastercard, via PayPal, ook zonder PayPal-account) of per bankoverschrijving naar NL22 BUNQ 2207 4744 53 onder vermelding van je ordernummer. Bij een overschrijving verzenden we zodra de betaling binnen is."),
+           ("Hoe kan ik betalen?", "Met je creditcard: Visa, Mastercard of American Express. Je vult je kaart in op een beveiligde betaalpagina met 3D Secure; je kaartgegevens gaan versleuteld rechtstreeks naar de betaalverwerker en worden nooit door ons gezien of bewaard."),
+           ("Is betalen bij Suismuis Home veilig?", "Ja. De site is volledig versleuteld (https) en betalingen lopen via een erkende betaalverwerker met 3D Secure. Je bank vraagt je meestal om de betaling in je bank-app te bevestigen. Direct na je betaling krijg je een bevestiging met je ordernummer."),
+           ("Kan ik mijn bestelling volgen?", "Ja. In je bevestigingsmail staat een link naar je bestelling. Je kunt ook op <a class='link' href='bestelling.html'>Bestelling volgen</a> je ordernummer en e-mailadres invullen."),
            ("Zijn de producten handgemaakt?", "Veel stukken zijn van natuurlijke materialen en deels met de hand gemaakt. Kleine verschillen in kleur en structuur maken elk stuk uniek.")]
     faq_html = "".join(f"<details><summary>{v}</summary><p>{a}</p></details>" for v, a in faq)
     pagina("klantenservice.html", "Klantenservice | Suismuis Home (concept)", "service", "service",
@@ -280,60 +314,57 @@ def bouw():
  <h2 id="verzenden">Verzenden</h2><ul><li>Je bestelling is binnen 8–15 werkdagen in huis.</li><li>We leveren in Nederland en België.</li><li>Verzendkosten € 5,95, gratis vanaf € 75.</li><li>Je ontvangt een track-and-tracecode per e-mail.</li></ul>
  <h2 id="retour">Retourneren</h2><p>Niet helemaal blij? Je hebt 14 dagen bedenktijd na ontvangst. Stuur het product ongebruikt en in de originele verpakking terug. Meld je retour aan met de knop <a class="link" href="#herroepen">Bestelling herroepen</a>; binnen 14 dagen na ontvangst van je retour storten we het bedrag terug.</p>
  <h2 id="herroepen">Bestelling herroepen</h2><p>Je kunt je bestelling binnen 14 dagen na ontvangst zonder opgaaf van reden herroepen. Vul je gegevens in en druk op de knop; je krijgt direct een ontvangstbevestiging per e-mail.</p>
- <form class="form" data-bevestig="Je herroeping is ontvangen. Je krijgt een bevestiging per e-mail met de retourinstructies." novalidate>
-  <div class="twee"><label>Naam *<input required autocomplete="name"></label><label>E-mailadres *<input type="email" required autocomplete="email"></label></div>
-  <div class="twee"><label>Ordernummer *<input required></label><label>Datum van ontvangst *<input type="date" required></label></div>
-  <label>Welke producten herroep je? (optioneel)<input></label>
+ <form class="form" data-soort="herroeping" data-bevestig="Je herroeping is ontvangen. Je krijgt een bevestiging per e-mail; binnen twee werkdagen sturen we je het retouradres." novalidate>
+  <div class="twee"><label>Naam *<input name="naam" required autocomplete="name"></label><label>E-mailadres *<input name="email" type="email" required autocomplete="email"></label></div>
+  <div class="twee"><label>Ordernummer *<input name="Ordernummer" required></label><label>Datum van ontvangst *<input name="Datum van ontvangst" type="date" required></label></div>
+  <label>Welke producten herroep je? (optioneel)<input name="Producten"></label><input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
   <button class="knop" type="submit">Bestelling herroepen</button>
  </form>
- <details style="margin-top:22px"><summary>Modelformulier voor herroeping</summary><p>Liever per post of e-mail? Gebruik dan dit modelformulier. Aan: Suismuis Home, [adres en e-mailadres volgen bij lancering]. Ik deel u hierbij mede dat ik onze overeenkomst betreffende de verkoop van de volgende goederen herroep: [producten]. Besteld op / ontvangen op: [datum]. Naam en adres: [gegevens]. Datum: [datum].</p></details>
+ <details style="margin-top:22px"><summary>Modelformulier voor herroeping</summary><p>Liever per post of e-mail? Gebruik dan dit modelformulier. Aan: {WINKEL_TXT}. Ik deel u hierbij mede dat ik onze overeenkomst betreffende de verkoop van de volgende goederen herroep: [producten]. Besteld op / ontvangen op: [datum]. Naam en adres: [gegevens]. Datum: [datum].</p></details>
  <h2 id="faq">Veelgestelde vragen</h2>{faq_html}
- <h2 id="contact">Contact</h2><p>Stel je vraag via het formulier. We reageren binnen één werkdag.</p>
- <form class="form" data-bevestig="Dank je wel! We reageren binnen één werkdag." novalidate>
-  <div class="twee"><label>Naam *<input required autocomplete="name"></label><label>E-mailadres *<input type="email" required autocomplete="email"></label></div>
-  <label>Ordernummer (optioneel)<input></label>
-  <label>Onderwerp<select><option>Vraag over een product</option><option>Mijn bestelling</option><option>Retour aanmelden</option><option>Iets anders</option></select></label>
-  <label>Bericht *<textarea required></textarea></label>
+ <h2 id="contact">Contact</h2><p>Stel je vraag via het formulier of mail naar <a class="link" href="mailto:{WINKEL["email"]}">{WINKEL["email"]}</a>. We reageren binnen één werkdag.</p>
+ <form class="form" data-soort="contact" data-bevestig="Dank je wel! We reageren binnen één werkdag." novalidate>
+  <div class="twee"><label>Naam *<input name="naam" required autocomplete="name"></label><label>E-mailadres *<input name="email" type="email" required autocomplete="email"></label></div>
+  <label>Ordernummer (optioneel)<input name="Ordernummer"></label><input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <label>Onderwerp<select name="Onderwerp"><option>Vraag over een product</option><option>Mijn bestelling</option><option>Retour aanmelden</option><option>Iets anders</option></select></label>
+  <label>Bericht *<textarea name="Bericht" required></textarea></label>
   <button class="knop" type="submit">Verstuur bericht</button>
  </form>
- <h2 id="voorwaarden">Algemene voorwaarden</h2><p>De algemene voorwaarden stellen we bij de lancering op, afgestemd op Suismuis Home en de Nederlandse regels voor online verkoop (o.a. 14 dagen bedenktijd).</p>
- <h2 id="privacy">Privacy</h2><p>Suismuis Home gebruikt je gegevens alleen om je bestelling te verwerken en, als je dat wilt, om je de nieuwsbrief te sturen. De volledige privacyverklaring volgt bij de lancering.</p>
+ <h2 id="voorwaarden">Algemene voorwaarden</h2>{VOORWAARDEN}
+ <h2 id="privacy">Privacyverklaring</h2>{PRIVACY}
 </div></div>''')
 
-    # ---------- account ----------
-    pagina("account.html", "Mijn account | Suismuis Home (concept)", "account", "",
-           paginakop("Mijn account", "Bekijk je bestellingen en bewaar je adres voor sneller afrekenen.", ["<span>Mijn account</span>"]) + '''
-<div class="wrap"><div class="tekst" style="max-width:520px">
- <div class="tabs" role="tablist"><button role="tab" aria-selected="true" aria-controls="t-in" type="button">Inloggen</button><button role="tab" aria-selected="false" aria-controls="t-nieuw" type="button">Account aanmaken</button></div>
- <form class="form" id="t-in" role="tabpanel" data-bevestig="Concept: inloggen werkt in de echte webshop." novalidate><label>E-mailadres *<input type="email" required autocomplete="email"></label><label>Wachtwoord *<input type="password" required autocomplete="current-password"></label><button class="knop" type="submit">Inloggen</button><a class="link" href="klantenservice.html#contact" style="justify-self:start">Wachtwoord vergeten?</a></form>
- <form class="form" id="t-nieuw" role="tabpanel" hidden data-bevestig="Concept: account aanmaken werkt in de echte webshop." novalidate><label>Naam *<input required autocomplete="name"></label><label>E-mailadres *<input type="email" required autocomplete="email"></label><label>Wachtwoord *<input type="password" required autocomplete="new-password"></label><button class="knop" type="submit">Account aanmaken</button><p style="font-size:14px;color:var(--mokka)">Je kunt ook bestellen zonder account.</p></form>
-</div></div>''')
+    # ---------- bestelling volgen (ook als account.html, voor oude links) ----------
+    volg = paginakop("Bestelling volgen", "Bekijk de status van je bestelling met je ordernummer en e-mailadres.", ["<span>Bestelling volgen</span>"]) + '''
+<div class="wrap"><div class="tekst" style="max-width:640px">
+ <div id="volg-uitslag" aria-live="polite"></div>
+ <form class="form" id="volg" novalidate>
+  <label>Ordernummer *<input name="nr" required placeholder="Bijvoorbeeld SH261122-AB12" autocomplete="off"></label>
+  <label>E-mailadres *<input name="email" type="email" required autocomplete="email"></label>
+  <p class="fout" role="alert" id="volg-fout"></p>
+  <button class="knop" type="submit">Bekijk mijn bestelling</button>
+  <p class="noot">Je ordernummer staat in de bevestigingsmail. Vragen? <a class="link" href="klantenservice.html#contact">Neem contact op</a>.</p>
+ </form>
+</div></div>'''
+    pagina("bestelling.html", "Bestelling volgen | Suismuis Home (concept)", "bestelling", "", volg)
+    pagina("account.html", "Bestelling volgen | Suismuis Home (concept)", "bestelling", "", volg)
 
-    # ---------- beheer (concept voor Kim) ----------
-    pagina("beheer.html", "Beheer | Suismuis Home (concept)", "beheer", "",
-           paginakop("Jouw beheeromgeving", "Zo werkt je webshop achter de schermen: jij kiest de producten en je marge, de leverancier verzendt.", ["<span>Beheer</span>"]) + '''
-<section style="padding-top:48px"><div class="wrap">
- <h2 style="font-size:40px;margin-bottom:22px">Van betaling tot levering</h2>
- <ol class="route">
-  <li><b>Klant bestelt</b>Op jouw webshop, in jouw stijl.</li>
-  <li><b>Klant betaalt</b>Het geld komt direct bij jou: via je zakelijke PayPal (suisterkim@gmail.com) of per overschrijving op je rekening NL22 BUNQ 2207 4744 53.</li>
-  <li><b>Automatisch doorgestuurd</b>De bestelling gaat direct naar de leverancier, tegen jouw inkoopprijs.</li>
-  <li><b>Leverancier verzendt</b>Rechtstreeks naar je klant, met track-and-trace.</li>
-  <li><b>Klant ontvangt</b>Jij houdt het verschil: dat is je marge.</li>
- </ol>
- <p class="noot">De klant ziet alleen Suismuis Home. Jij beheert producten, prijzen en klantcontact; de leverancier doet voorraad en verzending.</p>
-</div></section>
-<section class="nieuw"><div class="wrap">
- <div class="sectiekop"><div><h2>Producten en marge</h2><p>Pas een verkoopprijs aan en zie direct je winst per verkoop. Inkoop- en verzendbedragen zijn rekenvoorbeelden, geen echte leveranciersprijzen.</p></div></div>
- <div class="kpi"><div><b id="gem-marge"></b><span>Gemiddelde marge</span></div><div><b>16</b><span>Producten in de shop</span></div><div><b>€ 0,29</b><span>Betaalkosten per bestelling (voorbeeld)</span></div></div>
- <div class="tabelwrap"><table class="marge" id="marge-tabel"><thead><tr><th>Product</th><th>Inkoop</th><th>Verzending leverancier</th><th>Verkoopprijs</th><th>Winst per stuk</th><th>Marge</th></tr></thead><tbody></tbody></table></div>
-</div></section>
-<section><div class="wrap">
- <div class="sectiekop"><div><h2>Laatste bestellingen</h2><p>Elke bestelling volgt automatisch deze stappen. Jij hoeft alleen in te grijpen als er iets afwijkt.</p></div></div>
- <div id="orders"></div>
- <p class="noot">Voorbeeldbestellingen ter illustratie.</p>
-</div></section>''')
-
+    # ---------- beheer: bestelbalie voor Kim (inloggen met eigen wachtwoord) ----------
+    pagina("beheer.html", "Bestelbalie | Suismuis Home", "beheer", "",
+           paginakop("Bestelbalie", "Je bestellingen en berichten op één plek.", ["<span>Bestelbalie</span>"]) + '''
+<div class="wrap" id="beheer">
+ <form class="form smal" id="bh-setup" hidden novalidate><h2>Kies je wachtwoord</h2><p>Kies een wachtwoord van minstens 10 tekens. Alleen jij kent het; bewaar het in je wachtwoordkluis.</p>
+  <label>Nieuw wachtwoord *<input name="pw" type="password" required minlength="10" autocomplete="new-password"></label><label>Herhaal wachtwoord *<input name="pw2" type="password" required minlength="10" autocomplete="new-password"></label>
+  <p class="fout" role="alert"></p><button class="knop" type="submit">Wachtwoord opslaan</button></form>
+ <form class="form smal" id="bh-login" hidden novalidate><h2>Inloggen</h2>
+  <label>Wachtwoord *<input name="pw" type="password" required autocomplete="current-password"></label>
+  <p class="fout" role="alert"></p><button class="knop" type="submit">Inloggen</button></form>
+ <div id="bh-app" hidden>
+  <div class="bh-balk"><div class="bh-tabs" role="tablist"><button type="button" role="tab" aria-selected="true" data-tab="orders">Bestellingen</button><button type="button" role="tab" aria-selected="false" data-tab="berichten">Berichten</button></div><span id="bh-pp" class="klein"></span><button type="button" class="link" id="bh-uit">Uitloggen</button></div>
+  <div class="kpi" id="bh-kpi"></div>
+  <div id="bh-orders"></div><div id="bh-berichten" hidden></div>
+ </div>
+</div>''')
 
 if __name__ == "__main__":
     bouw()

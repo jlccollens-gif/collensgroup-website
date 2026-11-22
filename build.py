@@ -886,6 +886,17 @@ def build():
     for n in ("site.css", "og.png", "_headers", "aceaa1aae33f492c9fc3bb575567f4a2.txt"): shutil.copy(os.path.join(ROOT, "src", n), os.path.join(DIST, n))
     shutil.copytree(os.path.join(ROOT, "src", "img"), os.path.join(DIST, "img"))
     if os.path.isdir(os.path.join(ROOT, "src", "concept")): shutil.copytree(os.path.join(ROOT, "src", "concept"), os.path.join(DIST, "concept"))
+    if os.path.isdir(os.path.join(DIST, "concept", "suismuis")):  # prijslijst voor de betaalserver van Suismuis
+        import importlib.util as _iu
+        _sp = _iu.spec_from_file_location("sm_cat", os.path.join(ROOT, "tools", "suismuis_live", "catalogus.py")); _m = _iu.module_from_spec(_sp); _sp.loader.exec_module(_m)
+        _m.maak(os.path.join(DIST, "concept", "suismuis", "assets"))
+        import hashlib as _hl, glob as _gl, re as _re  # versienummers tegen oude bestanden in de browsercache
+        _as = os.path.join(DIST, "concept", "suismuis", "assets")
+        _v = {n: _hl.md5(open(os.path.join(_as, n), "rb").read()).hexdigest()[:8] for n in ("suismuis.css", "suismuis.js", "scouting.js")}
+        for _f in _gl.glob(os.path.join(DIST, "concept", "suismuis", "*.html")):
+            _t = open(_f, encoding="utf-8").read()
+            _t = _re.sub(r'assets/(suismuis\.css|suismuis\.js|scouting\.js)(\?v=[0-9a-z]+)?"', lambda m: f'assets/{m.group(1)}?v={_v[m.group(1)]}"', _t)
+            open(_f, "w", encoding="utf-8").write(_t)
     shutil.copytree(os.path.join(ROOT, "src", "tester"), os.path.join(DIST, "tester"))  # testerpagina + QR (13 talen)
     if os.path.isdir(os.path.join(ROOT, "src", "gr")): shutil.copytree(os.path.join(ROOT, "src", "gr"), os.path.join(DIST, "gr"))  # productbeelden voor Gumroad (CORS)
     pages = []
