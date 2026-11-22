@@ -52,7 +52,7 @@ BOEK_PAGINAS = [
  {"slug": "boeken", "lang": "nl", "kort": "Boeken",
   "titel": "Boeken over Claude AI van Jeffrey Collens | Collens Group",
   "desc": "De reeks Claude AI Compleet van Jeffrey Collens: praktische boeken in gewoon Nederlands over AI gebruiken, bouwen en ondernemen. Los verkrijgbaar via Gumroad.",
-  "h1": "Boeken: de reeks Claude AI Compleet",
+  "h1": "Leer het jezelf: boeken over Claude AI",
   "lead": "Praktische boeken in gewoon Nederlands, geschreven vanuit de dagelijkse praktijk van Collens Group. Elk deel is los verkrijgbaar en direct te downloaden.",
   "knop": ("Naar de webshop", WINKEL),
   "secties": [
