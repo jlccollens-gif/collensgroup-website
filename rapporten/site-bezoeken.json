@@ -1,47 +1,47 @@
 {
- "gemaakt": "2026-11-22T02:46:15Z",
- "van": "2026-10-25T02:46:15Z",
- "tot": "2026-11-22T02:46:15Z",
+ "gemaakt": "2026-11-22T13:18:19Z",
+ "van": "2026-10-25T13:18:19Z",
+ "tot": "2026-11-22T13:18:19Z",
  "dagen_periode": 28,
  "fout": null,
- "rijen": 46,
+ "rijen": 57,
  "per_soort": {
   "site": {
-   "weergaven": 330,
-   "bezoeken": 140
+   "weergaven": 440,
+   "bezoeken": 270
   },
   "concept": {
-   "weergaven": 280,
-   "bezoeken": 60
+   "weergaven": 570,
+   "bezoeken": 100
   },
   "tester": {
-   "weergaven": 10,
-   "bezoeken": 10
+   "weergaven": 30,
+   "bezoeken": 30
   }
  },
  "per_dag": {
   "2026-11-14": {
-   "weergaven": 110,
-   "bezoeken": 60,
+   "weergaven": 130,
+   "bezoeken": 90,
    "zoekmachine": 0
   },
   "2026-11-15": {
    "weergaven": 30,
    "bezoeken": 30,
-   "zoekmachine": 0
+   "zoekmachine": 10
   },
   "2026-11-16": {
-   "weergaven": 50,
-   "bezoeken": 20,
-   "zoekmachine": 0
+   "weergaven": 90,
+   "bezoeken": 50,
+   "zoekmachine": 10
   },
   "2026-11-17": {
-   "weergaven": 30,
+   "weergaven": 10,
    "bezoeken": 10,
    "zoekmachine": 0
   },
   "2026-11-18": {
-   "weergaven": 50,
+   "weergaven": 30,
    "bezoeken": 10,
    "zoekmachine": 0
   },
@@ -51,45 +51,59 @@
    "zoekmachine": 0
   },
   "2026-11-20": {
-   "weergaven": 40,
+   "weergaven": 20,
+   "bezoeken": 0,
+   "zoekmachine": 0
+  },
+  "2026-11-21": {
+   "weergaven": 10,
    "bezoeken": 0,
    "zoekmachine": 0
   },
   "2026-11-22": {
-   "weergaven": 10,
-   "bezoeken": 10,
+   "weergaven": 110,
+   "bezoeken": 80,
    "zoekmachine": 0
   }
  },
  "paginas": {
-  "/": 200,
-  "/website-laten-maken": 30,
+  "/": 250,
   "/artikelen": 30,
-  "/en": 20,
-  "/en-app-development": 10,
-  "/over-ons": 10,
+  "/website-laten-maken": 20,
+  "/live-suismuis/klantenservice.html": 20,
+  "/app-koffer-vol": 10,
+  "/app-laten-maken-kosten": 10,
+  "/mvp-app-laten-maken": 10,
+  "/chatbot-laten-maken": 10,
   "/apps": 10,
+  "/zelf-website-bouwen-of-laten-maken": 10,
+  "/app-lubbyc": 10,
+  "/live-suismuis/beheer.html": 10,
+  "/live-suismuis/afrekenen.html": 10,
+  "/prijzen": 10,
   "/ai-automatisering": 10,
-  "/privacy": 10
+  "/boek-claude-voor-beginners": 10
  },
  "landen": {
-  "US": 70,
-  "TH": 30,
-  "CA": 20,
-  "CN": 10,
+  "US": 130,
+  "TH": 120,
+  "CA": 10,
   "NL": 10
  },
  "apparaten": {
-  "mobile": 80,
-  "desktop": 60
+  "mobile": 160,
+  "desktop": 110
  },
  "bronnen": {
-  "direct/intern": 100,
-  "andere site": 40
+  "direct/intern": 210,
+  "andere site": 40,
+  "zoekmachine": 20
  },
- "zoekmachines": {},
+ "zoekmachines": {
+  "www.google.com": 20
+ },
  "verwijzers": {
-  "m.facebook.com": 30,
-  "www.facebook.com": 10
+  "l.instagram.com": 20,
+  "m.facebook.com": 20
  }
 }

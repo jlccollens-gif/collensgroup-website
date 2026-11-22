@@ -1,6 +1,6 @@
 {
  "fout": null,
- "gemaakt": "2026-11-22T02:46:13Z",
+ "gemaakt": "2026-11-22T13:18:17Z",
  "per_concept": {
   "atelier-ombre": {
    "apparaten": {
@@ -23,73 +23,6 @@
     "www.google.com": 1
    },
    "weergaven": 21
-  },
-  "beurtvaartadres": {
-   "apparaten": {
-    "mobile": 1
-   },
-   "bezoeken": 1,
-   "dagen": {
-    "2026-11-15": 1
-   },
-   "landen": {
-    "TH": 1
-   },
-   "verwijzers": {
-    "www.google.com": 1
-   },
-   "weergaven": 1
-  },
-  "boone": {
-   "apparaten": {
-    "mobile": 23
-   },
-   "bezoeken": 8,
-   "dagen": {
-    "2026-11-15": 23
-   },
-   "landen": {
-    "TH": 23
-   },
-   "verwijzers": {
-    "collensgroup.com": 15,
-    "www.google.com": 8
-   },
-   "weergaven": 23
-  },
-  "boxlines": {
-   "apparaten": {
-    "mobile": 16
-   },
-   "bezoeken": 2,
-   "dagen": {
-    "2026-11-15": 16
-   },
-   "landen": {
-    "TH": 16
-   },
-   "verwijzers": {
-    "collensgroup.com": 14,
-    "www.google.com": 2
-   },
-   "weergaven": 16
-  },
-  "br-dakwerken": {
-   "apparaten": {
-    "mobile": 19
-   },
-   "bezoeken": 7,
-   "dagen": {
-    "2026-11-15": 19
-   },
-   "landen": {
-    "TH": 19
-   },
-   "verwijzers": {
-    "collensgroup.com": 12,
-    "www.google.com": 7
-   },
-   "weergaven": 19
   },
   "collensgroup-v2": {
    "apparaten": {
@@ -124,23 +57,6 @@
     "collensgroup.com": 1
    },
    "weergaven": 2
-  },
-  "dutch-freight-services": {
-   "apparaten": {
-    "mobile": 4
-   },
-   "bezoeken": 2,
-   "dagen": {
-    "2026-11-15": 4
-   },
-   "landen": {
-    "TH": 4
-   },
-   "verwijzers": {
-    "collensgroup.com": 2,
-    "www.google.com": 2
-   },
-   "weergaven": 4
   },
   "euro-index": {
    "apparaten": {
@@ -192,26 +108,26 @@
   },
   "suismuis": {
    "apparaten": {
-    "desktop": 4,
-    "mobile": 262
+    "desktop": 7,
+    "mobile": 370
    },
-   "bezoeken": 37,
+   "bezoeken": 42,
    "dagen": {
     "2026-11-16": 18,
     "2026-11-18": 113,
     "2026-11-19": 27,
     "2026-11-20": 98,
-    "2026-11-22": 10
+    "2026-11-22": 121
    },
    "landen": {
-    "NL": 1,
-    "TH": 265
+    "NL": 8,
+    "TH": 369
    },
    "verwijzers": {
-    "collensgroup.com": 229,
+    "collensgroup.com": 335,
     "www.google.com": 24
    },
-   "weergaven": 266
+   "weergaven": 377
   },
   "v2-johns-moving": {
    "apparaten": {
@@ -242,6 +158,6 @@
    "weergaven": 1
   }
  },
- "tot": "2026-11-22T02:46:13Z",
- "van": "2026-11-15T02:46:13Z"
+ "tot": "2026-11-22T13:18:17Z",
+ "van": "2026-11-15T13:18:17Z"
 }
