@@ -173,7 +173,7 @@ LANDINGS = [
          ("Do you work worldwide?","Yes, fully online, by email and video, in English or Dutch. Prices are the same final prices in euros everywhere, with no VAT added. We write your copy for the way customers in your country search, and the free concept within 48 hours applies wherever you are."),
          ("Can I add pages later?","Yes. Extra pages are €95 each, including SEO copy written for Google. Think of a page per service, a page with projects or a version in another language. A one-page site can also be expanded into a business website later. What is already there stays; you only pay for what is added."),
          ("Am I tied to a website builder?","No. The site, the domain and the content are registered in your name. If you later want to work with someone else, you take everything with you. Texts and photos we create for you can also be used elsewhere, such as on social media.")],
-  "offers":[("One-page website",495),("Business website",995),("Web shop",1950)], "rel":[("en.html","All services and prices"),("en-app-development.html","App development")]},
+  "offers":[("One-page website",495),("Business website",995),("Web shop",1950)], "rel":[("en.html","All services and prices"),("en-app-development.html","App development"),("en-website-roofing-company.html","Websites for roofing companies")]},
  {"slug":"en-ai-chatbot","lang":"en","kort":"AI chatbot",
   "titel":"AI chatbot for small business from €995 | Collens Group",
   "desc":"An AI chatbot for your small business website that answers customer questions from your own content. From €995, live in about 1 week. Free concept in 48 hours.",

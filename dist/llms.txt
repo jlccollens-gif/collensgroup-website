@@ -40,6 +40,7 @@
 - [en-game-development.html](https://collensgroup.com/en-game-development)
 - [en-ai-automation.html](https://collensgroup.com/en-ai-automation)
 - [en-about.html](https://collensgroup.com/en-about)
+- [en-website-roofing-company.html](https://collensgroup.com/en-website-roofing-company)
 - [prijzen.html](https://collensgroup.com/prijzen)
 - [over-ons.html](https://collensgroup.com/over-ons)
 - [pakketkiezer.html](https://collensgroup.com/pakketkiezer)
