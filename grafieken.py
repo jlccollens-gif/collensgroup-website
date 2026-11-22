@@ -80,9 +80,9 @@ APP_BEELD = galerij([("img/lubbyc-ontdekken.jpg", "LubbyC: ontdekken"), ("img/lu
 PLAN = {
     "website-laten-maken": [
         (r"Vergeleken met de markt", "na_p", prijsgrafiek("Website: wat je betaalt",
-            [("bereik", "Bureau", 2500, 12000), ("bereik", "Freelancer", 800, 3000)],
-            [("punt", "Collens Group one-page", 495), ("punt", "Collens Group bedrijfssite", 995)], 12000,
-            "Appy Pie, Website laten maken: wat het kost (okt. 2026)", "https://www.appypie.com/nl/?p=2729541")),
+            [("bereik", "Geavanceerde website", 2000, 5000), ("bereik", "Eenvoudige website", 500, 2000)],
+            [("punt", "Collens Group one-page", 495), ("punt", "Collens Group bedrijfssite", 995)], 5000,
+            "Trustoo, Wat kost een website laten maken? (aangepast 03-11-2026)", "https://trustoo.nl/kosten/webdesign-kosten/")),
         (r"Extra", "voor", tijdgrafiek("Hoe snel ben je live?",
             [("One-page", .6, 1, "3–5 dagen", True), ("Bedrijfswebsite", 2, 3, "2–3 weken", True), ("Webshop", 3, 5, "3–5 weken", True)], 6)),
     ],

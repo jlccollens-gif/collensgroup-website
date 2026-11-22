@@ -114,7 +114,7 @@ def ld(obj): return '<script type="application/ld+json">' + json.dumps(obj, ensu
 
 ORG = {"@type": "ProfessionalService", "@id": "#org", "name": CONFIG["naam"],
        "description": "Websites, apps, games en AI-automatisering tegen vaste prijzen onder het marktgemiddelde.",
-       "areaServed": [{"@type": "Country", "name": "Nederland"}, {"@type": "Country", "name": "België"}],
+       "areaServed": "Worldwide",
        "priceRange": "€395 – €13.050+", "knowsLanguage": ["nl", "en"],
        "logo": CONFIG["base_url"] + "/img/collens-group-logo.png", "image": CONFIG["base_url"] + "/img/collens-group-logo.png"}
 
@@ -125,7 +125,7 @@ NL_NAAR_EN = {"website-laten-maken.html": "en-website-design.html", "goedkope-we
 EN_NAAR_NL = {"en-website-design.html": "website-laten-maken.html", "en-app-development.html": "app-laten-maken-kosten.html", "en-projects.html": "apps.html", "en-lubbyc-privacy.html": "app-lubbyc.html", "en-ai-chatbot.html": "chatbot-laten-maken.html"}
 
 FOOT = {
- "nl": {"tag": "Websites, apps, games en AI-automatisering voor ondernemers in Nederland, België en daarbuiten. Vaste prijs vooraf.",
+ "nl": {"tag": "Websites, apps, games en AI-automatisering voor ondernemers in Nederland, België en wereldwijd. Vaste prijs vooraf.",
         "kol": [("Diensten", [("website-laten-maken.html", "Website laten maken"), ("webshop-laten-maken.html", "Webshop laten maken"), ("app-laten-maken-kosten.html", "App laten maken"), ("game-laten-maken.html", "Game laten maken"), ("ai-automatisering.html", "AI & automatisering"), ("chatbot-laten-maken.html", "AI-chatbot")]),
                 ("Meer", [("prijzen.html", "Prijzen"), ("pakketkiezer.html", "Pakketkiezer"), ("kostencalculator.html", "Kostencalculator"), ("over-ons.html", "Over ons"), ("apps.html", "Onze apps & games"), ("artikelen.html", "Artikelen en gidsen"), ("privacy.html", "Privacy")]),
                 ("Contact", [("index.html#contact", "Offerte aanvragen"), ("mailto:" + CONFIG["email"], CONFIG["email"])] + ([("https://wa.me/" + CONFIG["whatsapp"], "WhatsApp")] if CONFIG["whatsapp"] else []))],
@@ -242,7 +242,7 @@ FAQ = [
     ("Hoe lang duurt het bouwen van een app?", "Een Basis-app 3–5 weken, een Standaard-app 6–10 weken en een Maatwerk-app 10–16 weken of langer."),
     ("Hoe betaal ik?", "In drie delen: 40% bij akkoord, 40% bij een goedgekeurde testversie en 20% bij oplevering."),
     ("Maken jullie ook websites, games en automatiseringen?", "Ja. Websites beginnen bij €495, games bij €1.950 en AI-automatisering bij €395, allemaal eindprijzen, geen btw erbij."),
-    ("Werken jullie ook in België?", "Ja, we werken voor klanten in heel Nederland en België, volledig online."),
+    ("Werken jullie ook in België en buiten Nederland?", "Ja. We werken volledig online, per mail en video, voor klanten in Nederland, België en de rest van de wereld. Dat kan in het Nederlands of het Engels, en de prijzen zijn overal dezelfde eindprijzen in euro."),
 ]
 
 def faq_html(items):
@@ -711,7 +711,7 @@ def schrijf_kennis():
     from landings import LANDINGS
     import re as _re
     r = [f"## Over Collens Group\nCollens Group maakt websites, webshops, apps (iPhone en Android tegelijk, met React Native), casual 2D-games en AI-chatbots en automatiseringen. "
-         "Voor ondernemers in Nederland en België, en in het Engels wereldwijd. Volledig online, per mail en video. Vaste prijs vooraf, onder het marktgemiddelde. "
+         "Voor ondernemers in Nederland, België en wereldwijd (in het Nederlands of Engels). Volledig online, per mail en video. Vaste prijs vooraf, onder het marktgemiddelde. "
          "Alle prijzen zijn eindprijzen: er komt geen btw bij. Contact: " + CONFIG["email"] + ".",
          "## Werkwijze\n1. Intake per mail: een paar korte vragen over idee, doelgroep en budget, geen afspraak nodig.\n2. Gratis concept: een klikbaar concept van 1–3 schermen.\n"
          "3. Voorstel met vaste prijs, planning en precies wat erin zit.\n4. Ontwerp ter goedkeuring.\n5. Bouwen en testen, elke week een testversie.\n6. Live: hulp bij publicatie op het web, in de App Store en Google Play.\n"
@@ -1152,7 +1152,7 @@ def build():
             f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
                     "".join(f"<url><loc>{abs_url(p)}</loc><lastmod>{datums.get(p, {}).get('bijgewerkt', VANDAAG)}</lastmod></url>\n" for p in pages) + "</urlset>\n")
     with open(os.path.join(DIST, "llms.txt"), "w") as f:
-        f.write(f"# {CONFIG['naam']}\n\n> Websites, apps, games en AI-automatisering in Nederland en België, tegen vaste prijzen onder het marktgemiddelde.\n\n"
+        f.write(f"# {CONFIG['naam']}\n\n> Websites, apps, games en AI-automatisering voor ondernemers in Nederland, België en wereldwijd, tegen vaste prijzen onder het marktgemiddelde.\n\n"
                 "## Prijzen (geen btw)\n- Websites: one-page €495, bedrijfswebsite €995, webshop €1.950\n- Games: merkgame €1.950, casual game €4.950, 2D-game met levels €9.950\n- AI: automatisering €395, AI-chatbot €995, AI-assistent €1.950\n- Basis / MVP app: vanaf €3.150, 3–5 weken\n- Standaard app: vanaf €6.750, 6–10 weken\n- Maatwerk / Pro app: vanaf €13.050, 10–16+ weken\n- Uurtarief: €67,50\n- Onderhoud: €85,50 of €265,50 per maand\n\n"
                 "## Pagina's\n" + "".join(f"- [{p}]({abs_url(p) or p})\n" for p in pages))
     print("Gebouwd:", ", ".join(pages))

@@ -39,7 +39,7 @@ def bouw(page, e, faq_html, faq_ld, DIENSTEN, PAKKETTEN, VANDAAG, CONFIG):
 <p class="noot">Bij &ldquo;vanaf&rdquo; hoort het pakket zoals beschreven. Wijkt jouw project daarvan af, dan krijg je vooraf een vaste prijs op maat.</p>
 {cta()}
 <h2>Niet zeker welk pakket past?</h2><p>Beantwoord drie korte vragen in de <a href="pakketkiezer.html">pakketkiezer</a> en zie direct wat bij je past, of vraag het de online adviseur rechtsonder.</p>
-<h2>Waarom zijn onze prijzen lager?</h2><p>We bouwen met moderne tools en veel automatisering en geven dat voordeel door. Een eenvoudige zakelijke website kost bij Nederlandse freelancers volgens Appy Pie meestal €800 tot €3.000 en bij bureaus €2.500 tot €12.000. Voor een eenvoudige app noemen kostengidsen €5.000 tot €25.000 (<a href="https://searchlab.nl/kosten/wat-kost-een-app-laten-maken" rel="nofollow noopener">Searchlab, 2026</a>).</p>
+<h2>Waarom zijn onze prijzen lager?</h2><p>We bouwen met moderne tools en veel automatisering en geven dat voordeel door. Een eenvoudige website kost in Nederland volgens <a href="https://trustoo.nl/kosten/webdesign-kosten/" rel="nofollow noopener">Trustoo</a> gemiddeld €500 tot €2.000 en een geavanceerde website €2.000 tot €5.000. Voor een eenvoudige app noemen kostengidsen €5.000 tot €25.000 (<a href="https://searchlab.nl/kosten/wat-kost-een-app-laten-maken" rel="nofollow noopener">Searchlab, 2026</a>).</p>
 <h2>Veelgestelde vragen over prijzen</h2>{faq_html(faq_p)}{cta("Vraag een vaste prijs aan")}
 <p class="bron" style="margin-top:22px">Zie ook: <a href="website-laten-maken.html">Website laten maken</a> · <a href="app-laten-maken-kosten.html">Wat kost een app?</a> · <a href="game-laten-maken.html">Game laten maken</a> · <a href="ai-automatisering.html">AI en automatisering</a></p></article>''',
         crumbs=[("Home", "index.html"), ("Prijzen", "prijzen.html")], extra_ld=[faq_ld(faq_p)]))
@@ -48,8 +48,10 @@ def bouw(page, e, faq_html, faq_ld, DIENSTEN, PAKKETTEN, VANDAAG, CONFIG):
     pages.append(page("over-ons.html", "Over ons | Collens Group",
         "Collens Group maakt websites, apps, games en AI-oplossingen met een vaste prijs. Bekijk onze werkwijze en wat we zelf bouwden: LubbyC, Koffer Vol! en Eiland Express.",
         f'''<article class="tekst breed"><h1>Over Collens Group</h1>
-<p class="lead2">We maken websites, apps, games en AI-oplossingen voor ondernemers in Nederland en België, met een vaste prijs vooraf en een gratis concept voordat je iets betaalt.</p>
+<p class="lead2">We maken websites, apps, games en AI-oplossingen voor ondernemers in Nederland, België en de rest van de wereld, met een vaste prijs vooraf en een gratis concept voordat je iets betaalt.</p>
 <h2>Wat we doen</h2><p>Collens Group is een klein, onafhankelijk digitaal bedrijf. We bouwen <a href="website-laten-maken.html">websites en webshops</a>, <a href="app-laten-maken-kosten.html">apps voor iPhone en Android</a>, <a href="game-laten-maken.html">games</a> en <a href="ai-automatisering.html">AI-automatisering en chatbots</a>. We werken volledig online, zodat je niet hoeft te reizen en wij onze prijzen laag kunnen houden.</p>
+<h2>Wie zit erachter?</h2><p>Collens Group is opgericht door Jeffrey Collens. Hij bouwt met moderne AI-tools en controleert elk concept, elke tekst en elke oplevering zelf voordat het naar een klant gaat. Je mailt dus rechtstreeks met de maker, niet met een accountmanager.</p>
+<h2>Waar we werken</h2><p>Overal. We werken volledig online, per mail en video, met ondernemers in Nederland en België en daarbuiten, bijvoorbeeld in het Verenigd Koninkrijk, Ierland, de Verenigde Staten, Canada, Australië en Nieuw-Zeeland. Je kunt met ons in het Nederlands of het Engels werken. De prijzen zijn overal dezelfde eindprijzen in euro.</p>
 <h2>Zo werken we</h2><ul>
 <li><strong>Vaste prijs vooraf.</strong> Je weet wat je betaalt voordat we beginnen. Meerwerk doen we alleen na jouw akkoord.</li>
 <li><strong>Eerst een gratis concept.</strong> Binnen 48 uur zie je hoe het eruit kan zien, zonder verplichtingen.</li>
@@ -65,7 +67,7 @@ def bouw(page, e, faq_html, faq_ld, DIENSTEN, PAKKETTEN, VANDAAG, CONFIG):
 <h2>Contact</h2><p>Mail ons op <a href="mailto:{CONFIG["email"]}">{CONFIG["email"]}</a> of gebruik het <a href="index.html#contact">aanvraagformulier</a>. Je krijgt binnen 48 uur een reactie.</p>
 {cta()}</article>''',
         crumbs=[("Home", "index.html"), ("Over ons", "over-ons.html")],
-        extra_ld=[{"@type": "AboutPage", "name": "Over Collens Group", "about": {"@id": "#org"}}]))
+        extra_ld=[{"@type": "AboutPage", "name": "Over Collens Group", "about": {"@id": "#org"}}, {"@type": "Person", "name": "Jeffrey Collens", "jobTitle": "Oprichter", "worksFor": {"@id": "#org"}}]))
 
     # ---------- BEDANKT (niet indexeren) ----------
     pages.append(page("bedankt.html", "Bedankt voor je aanvraag | Collens Group",
@@ -224,8 +226,8 @@ c.addEventListener("input",reken);reken();
 <p class="bijgewerkt">Bijgewerkt op @@BIJGEWERKT_NL@@</p>
 <h2>Wat kost het op de markt?</h2>
 <div class="scroll"><table class="tabel vergelijk"><tr><th>Soort</th><th>Marktprijs</th><th>Bron</th></tr>
-<tr><td>Eenvoudige zakelijke website, freelancer</td><td>€800 tot €3.000</td><td><a href="https://www.appypie.com/nl/?p=2729541" rel="nofollow noopener">Appy Pie (okt. 2026)</a></td></tr>
-<tr><td>Eenvoudige zakelijke website, bureau</td><td>€2.500 tot €12.000</td><td><a href="https://www.appypie.com/nl/?p=2729541" rel="nofollow noopener">Appy Pie (okt. 2026)</a></td></tr>
+<tr><td>Eenvoudige website</td><td>€500 tot €2.000</td><td><a href="https://trustoo.nl/kosten/webdesign-kosten/" rel="nofollow noopener">Trustoo (nov. 2026)</a></td></tr>
+<tr><td>Geavanceerde website</td><td>€2.000 tot €5.000</td><td><a href="https://trustoo.nl/kosten/webdesign-kosten/" rel="nofollow noopener">Trustoo (nov. 2026)</a></td></tr>
 <tr><td>Eenvoudige website, gemiddelde in Nederland</td><td>€500 tot €2.000</td><td><a href="https://trustoo.nl/kosten/webdesign-kosten/" rel="nofollow noopener">Trustoo (nov. 2026)</a></td></tr>
 <tr><td>Bedrijfswebsite in België</td><td>€2.000 tot €6.000</td><td><a href="https://lunidev.com/nl/blog/website-kosten-2026-complete-prijsgids-belgie" rel="nofollow noopener">Lunidev (2026)</a></td></tr></table></div>
 <h2>Onze prijzen</h2><div class="scroll"><table class="tabel vergelijk"><tr><th>Pakket</th><th>Klaar in</th><th>Vanaf</th></tr>
