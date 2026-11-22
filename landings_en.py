@@ -85,7 +85,7 @@ EN_EXTRA = [
 
  {"slug": "en-ai-automation", "lang": "en", "kort": "AI automation",
   "titel": "AI automation for small business from €395 | Collens Group",
-  "desc": "Let repetitive work run by itself: emails, quotes, planning and customer questions. Automation from €395, AI chatbot from €995, AI assistant from €1,950. Fixed price.",
+  "desc": "Let repetitive work run by itself: emails, quotes, planning and customer questions. Automation from €395, AI chatbot from €995, AI assistant from €1,950.",
   "h1": "AI automation for small business",
   "lead": "Let repetitive work run by itself: emails, quotes, planning, social media and customer questions. With AI tools that connect the apps you already use, at a fixed price.",
   "secties": [
