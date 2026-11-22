@@ -6,264 +6,229 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Verbeterconcept homepage – Collens Group</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;600;700&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,500..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--papier:#f3f6f9;--raster:#d6e0ea;--inkt:#14213d;--potlood:#5a6578;--geel:#f2b705;--wit:#fff;--lijn:#9fb3c8}
+:root{--bg:#f6f7f9;--wit:#fff;--inkt:#101a2e;--grijs:#5d6677;--licht:#8a93a3;--lijn:#e3e6eb;--navy:#14213d;--goud:#e0a800}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:"Public Sans",system-ui,sans-serif;color:var(--inkt);background:var(--papier);line-height:1.6;font-size:17px}
-h1,h2,h3,.disp{font-family:"Bricolage Grotesque",sans-serif;font-variation-settings:"wdth" 85;line-height:1.05;letter-spacing:-.01em}
+body{font-family:"Geist",system-ui,sans-serif;font-weight:400;color:var(--inkt);background:var(--bg);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased}
+h1,h2{font-family:"Instrument Serif",Georgia,serif;font-weight:400;letter-spacing:-.01em;line-height:1.02}
 a{color:inherit}
-:focus-visible{outline:3px solid var(--geel);outline-offset:2px}
-.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
-.balk{background:var(--inkt);color:#fff;font-size:14px;text-align:center;padding:8px 16px}
-.balk b{color:var(--geel)}
-header{position:sticky;top:0;z-index:20;background:rgba(243,246,249,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--raster)}
-header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
-.merk{display:flex;align-items:center;gap:10px;font-family:"Bricolage Grotesque";font-weight:700;font-size:20px;text-decoration:none}
-nav a{text-decoration:none;margin-left:22px;font-size:15px;color:var(--potlood)}
-nav a:hover{color:var(--inkt)}
-.knop{display:inline-block;background:var(--geel);color:var(--inkt);font-weight:700;text-decoration:none;padding:13px 22px;border-radius:6px;border:0;font:inherit;font-weight:700;cursor:pointer}
-.knop.donker{background:var(--inkt);color:#fff}
-@media(max-width:820px){nav{display:none}}
-@media(max-width:480px){.merk{font-size:17px;white-space:nowrap}header .knop{padding:9px 14px;font-size:15px}.watermerk{font-size:11px;padding:4px 8px;opacity:.75}}
-
-/* HERO: het tekenvel */
-.vel{background-color:var(--papier);background-image:linear-gradient(var(--raster) 1px,transparent 1px),linear-gradient(90deg,var(--raster) 1px,transparent 1px);background-size:32px 32px;border-bottom:2px solid var(--inkt)}
-.hero{display:grid;grid-template-columns:1fr;gap:40px;padding:72px 0 0}
-.hero h1{font-size:clamp(44px,7.4vw,92px);font-weight:800;max-width:14ch}
-.hero h1 .stip{color:var(--geel);-webkit-text-stroke:2px var(--inkt)}
-.hero p.lead{font-size:20px;max-width:56ch;margin-top:20px;color:var(--potlood)}
-.werkbank{display:grid;grid-template-columns:340px 1fr;gap:0;border:2px solid var(--inkt);background:var(--wit);margin-top:8px}
-@media(max-width:900px){.werkbank{grid-template-columns:1fr}}
-.opdracht{padding:26px;border-right:2px solid var(--inkt)}
-@media(max-width:900px){.opdracht{border-right:0;border-bottom:2px solid var(--inkt)}}
-.opdracht h2{font-size:24px;margin-bottom:6px}
-.opdracht p{font-size:15px;color:var(--potlood);margin-bottom:16px}
-label{display:block;font-size:14px;font-weight:700;margin:14px 0 6px}
-input,select,textarea{width:100%;font:inherit;padding:11px 12px;border:1.5px solid var(--lijn);border-radius:4px;background:var(--papier);color:var(--inkt)}
-.schakel{display:flex;margin-top:20px;border:1.5px solid var(--inkt);border-radius:6px;overflow:hidden}
-.schakel button{flex:1;font:inherit;font-weight:700;padding:10px;border:0;background:var(--wit);cursor:pointer;color:var(--inkt)}
-.schakel button[aria-pressed="true"]{background:var(--inkt);color:#fff}
-.tekening{position:relative;padding:22px;min-height:440px;background-image:linear-gradient(var(--raster) 1px,transparent 1px),linear-gradient(90deg,var(--raster) 1px,transparent 1px);background-size:16px 16px}
-.scherm{border:1.5px solid var(--inkt);background:var(--wit);transition:all .5s}
-.scherm .top{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1.5px dashed var(--lijn)}
-.scherm .logo{font-family:"Bricolage Grotesque";font-weight:700}
-.scherm .menu{display:flex;gap:10px}.scherm .menu i{display:block;width:44px;height:8px;background:var(--raster);border-radius:4px}
-.scherm .held{padding:34px 22px;border-bottom:1.5px dashed var(--lijn);transition:background .5s}
-.scherm .held h3{font-size:clamp(24px,3vw,38px);max-width:16ch}
-.scherm .held p{color:var(--potlood);margin-top:8px;max-width:44ch;font-size:15px}
-.scherm .held .k{display:inline-block;margin-top:16px;padding:9px 16px;border:1.5px dashed var(--inkt);border-radius:4px;font-weight:700;font-size:14px}
-.scherm .blok{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:18px 22px}
-.scherm .blok div{height:70px;border:1.5px dashed var(--lijn);border-radius:4px;display:flex;align-items:flex-end;padding:8px;font-size:12px;color:var(--potlood)}
-/* afgewerkte stand */
-.af .scherm{border-color:transparent;box-shadow:0 18px 40px -18px rgba(20,33,61,.45)}
-.af .scherm .top,.af .scherm .held{border-bottom-style:solid;border-color:transparent}
-.af .scherm .held{background:var(--kleur,#14213d);color:#fff}
-.af .scherm .held p{color:rgba(255,255,255,.82)}
-.af .scherm .held .k{border-style:solid;background:var(--geel);border-color:var(--geel);color:var(--inkt)}
-.af .scherm .blok div{border-style:solid;border-color:transparent;background:var(--zacht,#eef2f7);color:var(--inkt);font-weight:700}
-.af .maat{opacity:0}
-.maat{position:absolute;font-size:12px;color:var(--potlood);transition:opacity .4s;background:var(--wit);padding:0 4px}
-.maat.a{top:6px;left:24px}.maat.b{right:8px;top:120px;writing-mode:vertical-rl}
-.stempel{margin:16px 0 0 auto;width:fit-content;border:2px solid var(--inkt);background:var(--wit);font-size:12px;min-width:240px}
-.stempel div{display:flex;justify-content:space-between;gap:12px;padding:5px 10px;border-bottom:1px solid var(--inkt)}
-.stempel div:last-child{border-bottom:0}
-.stempel b{font-family:"Bricolage Grotesque"}
-@media(max-width:600px){.stempel{min-width:0;width:100%}.scherm .blok{grid-template-columns:1fr 1fr}.scherm .blok div:nth-child(3){display:none}}
-.belofte{display:flex;flex-wrap:wrap;gap:10px 28px;padding:22px 0 28px;font-size:15px;color:var(--potlood)}
-.belofte span::before{content:"";display:inline-block;width:10px;height:10px;background:var(--geel);border:1.5px solid var(--inkt);margin-right:8px;vertical-align:-1px}
-
-section{padding:88px 0}
-section h2{font-size:clamp(34px,4.6vw,56px);font-weight:800;max-width:20ch}
-section .intro{color:var(--potlood);max-width:60ch;margin-top:14px;font-size:18px}
-
-/* bestek: legenda van de tekening */
-.bestek{margin-top:40px;border-top:2px solid var(--inkt)}
-.regel{display:grid;grid-template-columns:1.1fr 2fr .8fr .8fr;gap:16px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--lijn)}
-.regel h3{font-size:24px}
-.regel .spec{color:var(--potlood);font-size:16px}
-.regel .tijd{font-size:15px;color:var(--potlood)}
-.regel .prijs{font-family:"Bricolage Grotesque";font-weight:700;font-size:22px;text-align:right}
-.regel .prijs small{display:block;font-family:"Public Sans";font-weight:400;font-size:12px;color:var(--potlood)}
-@media(max-width:760px){.regel{grid-template-columns:1fr auto}.regel .spec{grid-column:1/-1;order:3}.regel .tijd{display:none}}
-.noot{font-size:14px;color:var(--potlood);margin-top:16px}
-
-/* revisieblok = werkwijze (echte volgorde) */
-.donker{background:var(--inkt);color:#fff}
-.donker .intro{color:#b9c4d4}
-.revisies{margin-top:44px;border:1.5px solid #3b4a6b}
-.rev{display:grid;grid-template-columns:90px 220px 1fr 140px;gap:16px;padding:18px 20px;border-bottom:1px solid #3b4a6b;align-items:baseline}
-.rev:last-child{border-bottom:0}
-.rev .code{font-family:"Bricolage Grotesque";font-weight:800;font-size:26px;color:var(--geel)}
-.rev h3{font-size:22px}
-.rev p{color:#c9d2df}
-.rev .wanneer{text-align:right;color:#b9c4d4;font-size:15px}
-@media(max-width:760px){.rev{grid-template-columns:60px 1fr}.rev p{grid-column:2}.rev .wanneer{grid-column:2;text-align:left}}
-
-/* eigen werk */
-.werk{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:44px}
-@media(max-width:900px){.werk{grid-template-columns:1fr}}
-.werk figure{background:var(--wit);border:1.5px solid var(--inkt)}
-.werk img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;object-position:top;border-bottom:1.5px solid var(--inkt)}
-.werk figcaption{padding:16px 18px}
-.werk figcaption b{font-family:"Bricolage Grotesque";font-size:22px;display:block}
-.werk figcaption span{color:var(--potlood);font-size:15px}
-
-/* wie en waar */
-.duo{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:40px}
-@media(max-width:820px){.duo{grid-template-columns:1fr}}
-.duo h3{font-size:26px;margin-bottom:10px}
-.duo p{color:var(--potlood)}
-.talen{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.talen span{border:1.5px solid var(--inkt);padding:4px 10px;border-radius:4px;font-size:14px}
-
-/* opdrachtformulier */
-.formvel{background:var(--wit);border:2px solid var(--inkt);margin-top:40px;display:grid;grid-template-columns:1fr 1fr}
-@media(max-width:820px){.formvel{grid-template-columns:1fr}}
-.formvel .kop{grid-column:1/-1;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;padding:14px 22px;border-bottom:2px solid var(--inkt);font-size:14px}
-.formvel .kop b{font-family:"Bricolage Grotesque";font-size:18px}
-.formvel .veld{padding:6px 22px 18px}
-.formvel .vol{grid-column:1/-1}
-.formvel .verstuur{grid-column:1/-1;padding:18px 22px;border-top:1px solid var(--lijn);display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.formvel .verstuur small{color:var(--potlood)}
-footer{padding:40px 0;border-top:2px solid var(--inkt);font-size:14px;color:var(--potlood)}
-.watermerk{position:fixed;right:12px;bottom:12px;z-index:30;background:var(--inkt);color:#fff;font-size:12px;padding:6px 10px;border-radius:4px;opacity:.9}
+:focus-visible{outline:2px solid var(--goud);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+.balk{background:var(--navy);color:#cfd6e2;font-size:13px;text-align:center;padding:8px 16px}
+header{position:sticky;top:0;z-index:20;background:rgba(246,247,249,.86);backdrop-filter:saturate(1.4) blur(10px)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:72px}
+.merk{display:flex;align-items:center;gap:10px;font-weight:600;font-size:17px;text-decoration:none;letter-spacing:-.01em;white-space:nowrap}
+nav.hoofd{display:flex;gap:34px;font-size:15px;color:var(--grijs)}
+nav.hoofd a{text-decoration:none}nav.hoofd a:hover{color:var(--inkt)}
+.cta{font-size:15px;font-weight:500;text-decoration:none;padding:10px 18px;border-radius:999px;background:var(--inkt);color:#fff;white-space:nowrap}
+@media(max-width:860px){nav.hoofd{display:none}}
+.hero{padding-top:96px;padding-bottom:40px}
+.hero h1{font-size:clamp(52px,8.2vw,112px);max-width:11.5ch}
+.hero h1 em{font-style:italic;color:var(--navy)}
+.hero .lead{margin-top:28px;max-width:52ch;font-size:19px;color:var(--grijs);font-weight:300}
+.probeer{margin-top:64px;display:grid;grid-template-columns:5fr 7fr;gap:56px;align-items:center}
+@media(max-width:920px){.probeer{grid-template-columns:1fr;gap:36px}}
+.uitleg p{color:var(--grijs);font-size:16px;margin-bottom:22px;max-width:40ch}
+.uitleg .klein{font-size:13px;color:var(--licht);margin-bottom:10px;letter-spacing:.02em}
+.veld{display:flex;align-items:center;background:var(--wit);border-radius:999px;padding:6px 6px 6px 22px;box-shadow:0 1px 2px rgba(16,26,46,.06),0 0 0 1px var(--lijn)}
+.veld input{flex:1;border:0;background:none;font:inherit;font-size:17px;color:var(--inkt);min-width:0;padding:10px 0}
+.veld input:focus{outline:none}
+.veld:focus-within{box-shadow:0 0 0 2px var(--inkt)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.chips button{font:inherit;font-size:14px;padding:8px 14px;border-radius:999px;border:1px solid var(--lijn);background:transparent;color:var(--grijs);cursor:pointer;transition:all .2s}
+.chips button:hover{border-color:var(--licht);color:var(--inkt)}
+.chips button[aria-pressed="true"]{background:var(--inkt);border-color:var(--inkt);color:#fff}
+.browser{background:var(--wit);border-radius:16px;box-shadow:0 1px 1px rgba(16,26,46,.04),0 24px 60px -24px rgba(16,26,46,.28);overflow:hidden}
+.browser .kop{display:flex;align-items:center;gap:7px;padding:12px 16px;border-bottom:1px solid var(--lijn)}
+.browser .kop i{width:9px;height:9px;border-radius:50%;background:var(--lijn)}
+.browser .kop span{margin-left:12px;font-size:12px;color:var(--licht)}
+.site{--k:#7a3e1d;--z:#f7efe7}
+.site .s{display:flex;justify-content:space-between;align-items:center;padding:18px 26px;font-size:13px;color:var(--grijs);gap:12px}
+.site .s b{font-weight:600;color:var(--inkt);font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.site .s em{font-style:normal;display:flex;gap:16px}
+.site .h{margin:0 14px;border-radius:12px;padding:46px 30px 40px;background:var(--k);color:#fff;transition:background .6s ease}
+.site .h h3{font-family:"Instrument Serif",serif;font-weight:400;font-size:clamp(28px,3.4vw,44px);line-height:1.05;max-width:15ch}
+.site .h p{margin-top:12px;font-size:14px;opacity:.82;max-width:42ch}
+.site .h a{display:inline-block;margin-top:22px;background:#fff;color:var(--k);font-size:13px;font-weight:600;padding:10px 16px;border-radius:999px;text-decoration:none;transition:color .6s}
+.site .r{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:14px}
+.site .r div{background:var(--z);border-radius:10px;padding:18px 14px;font-size:13px;font-weight:500;transition:background .6s}
+.site .r div small{display:block;font-weight:400;color:var(--grijs);margin-top:4px}
+.fade{transition:opacity .25s}.fade.uit{opacity:0}
+@media(max-width:560px){.site .s em{display:none}.site .r{grid-template-columns:1fr 1fr}.site .r div:nth-child(3){display:none}}
+.feiten{display:flex;flex-wrap:wrap;gap:12px 40px;margin-top:72px;padding-top:28px;border-top:1px solid var(--lijn);font-size:15px;color:var(--grijs)}
+.feiten b{color:var(--inkt);font-weight:500}
+section{padding:120px 0}
+.tweede{display:grid;grid-template-columns:4fr 7fr;gap:64px}
+@media(max-width:920px){.tweede{grid-template-columns:1fr;gap:28px}section{padding:88px 0}}
+section h2{font-size:clamp(40px,5vw,64px);max-width:12ch}
+section .sub{color:var(--grijs);margin-top:18px;max-width:38ch;font-weight:300}
+.dienst{display:grid;grid-template-columns:1fr auto;gap:6px 24px;padding:26px 0;border-bottom:1px solid var(--lijn)}
+.dienst:first-child{padding-top:6px}
+.dienst h3{font-size:21px;font-weight:500;letter-spacing:-.01em}
+.dienst .p{font-size:17px;text-align:right;white-space:nowrap}
+.dienst .p small{color:var(--licht);font-size:13px;margin-right:6px}
+.dienst p{grid-column:1/-1;color:var(--grijs);font-size:16px;max-width:56ch}
+.noot{margin-top:22px;font-size:14px;color:var(--licht)}
+.navy{background:var(--navy);color:#fff}
+.navy .sub{color:#aeb8c9}
+.stappen{display:grid;grid-template-columns:repeat(5,1fr);gap:28px;margin-top:72px;position:relative}
+.stappen::before{content:"";position:absolute;left:0;right:0;top:21px;height:1px;background:#33415f}
+.stap{position:relative}
+.stap .n{width:43px;height:43px;border-radius:50%;background:var(--navy);border:1px solid #4a5a7d;display:flex;align-items:center;justify-content:center;font-family:"Instrument Serif",serif;font-size:22px;color:#fff;position:relative}
+.stap:nth-child(2) .n{background:var(--goud);border-color:var(--goud);color:var(--navy)}
+.stap h3{margin-top:22px;font-weight:500;font-size:18px}
+.stap p{color:#aeb8c9;font-size:15px;margin-top:6px}
+.stap small{display:block;margin-top:10px;color:var(--goud);font-size:13px}
+@media(max-width:920px){.stappen{grid-template-columns:1fr;gap:30px}.stappen::before{left:21px;right:auto;top:0;bottom:0;width:1px;height:auto}.stap{padding-left:68px}.stap .n{position:absolute;left:0;top:0}.stap h3{margin-top:8px}}
+.werk{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:64px}
+@media(max-width:920px){.werk{grid-template-columns:1fr}}
+.werk figure{background:var(--wit);border-radius:16px;overflow:hidden;box-shadow:0 20px 50px -30px rgba(16,26,46,.35)}
+.werk img{display:block;width:100%;height:400px;object-fit:cover;object-position:top}
+@media(max-width:920px){.werk img{height:340px}}
+.werk figcaption{padding:18px 22px 22px}
+.werk figcaption b{font-weight:500;font-size:18px}
+.werk figcaption span{display:block;color:var(--grijs);font-size:15px;margin-top:2px}
+.maker p{color:var(--grijs);font-size:18px;font-weight:300;max-width:58ch}
+.maker p+p{margin-top:18px}
+.maker .talen{margin-top:26px;font-size:14px;color:var(--licht)}
+.form{background:var(--wit);border-radius:20px;padding:48px;box-shadow:0 1px 2px rgba(16,26,46,.05),0 30px 70px -40px rgba(16,26,46,.3)}
+@media(max-width:600px){.form{padding:28px 22px}}
+.form .rij{display:grid;grid-template-columns:1fr 1fr;gap:28px 32px}
+@media(max-width:700px){.form .rij{grid-template-columns:1fr}}
+.form label{display:block;font-size:13px;color:var(--grijs);margin-bottom:6px}
+.form input,.form select,.form textarea{width:100%;font:inherit;color:var(--inkt);border:0;border-bottom:1px solid var(--lijn);background:transparent;padding:10px 0;border-radius:0;transition:border-color .2s}
+.form input:focus,.form select:focus,.form textarea:focus{outline:none;border-bottom-color:var(--inkt)}
+.form .vol{grid-column:1/-1}
+.form .onder{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:36px}
+.form button{font:inherit;font-weight:500;background:var(--inkt);color:#fff;border:0;border-radius:999px;padding:15px 28px;cursor:pointer}
+.form .onder small{color:var(--licht);font-size:13px;max-width:44ch}
+footer{padding:48px 0 64px;font-size:14px;color:var(--licht)}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;border-top:1px solid var(--lijn);padding-top:28px}
+.watermerk{position:fixed;right:14px;bottom:14px;z-index:30;font-size:11px;color:var(--grijs);background:rgba(255,255,255,.9);padding:5px 10px;border-radius:999px;box-shadow:0 0 0 1px var(--lijn)}
+@media(max-width:480px){.merk{font-size:16px}.cta{padding:9px 14px;font-size:14px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
-<div class="balk"><b>Verbeterconcept</b> voor collensgroup.com, gemaakt volgens de nieuwe werkwijze. Niet live.</div>
+<div class="balk">Verbeterconcept voor collensgroup.com · niet live</div>
 <header><div class="wrap">
- <a class="merk" href="#top"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="8" fill="#14213D"/><rect x="13.5" y="4" width="3" height="5" rx="1" fill="#F2B705"/><rect x="13.5" y="12" width="3" height="5" rx="1" fill="#F2B705"/><rect x="13.5" y="20" width="3" height="6" rx="1" fill="#F2B705"/></svg>Collens Group</a>
- <nav aria-label="Hoofdmenu"><a href="#bestek">Wat we maken</a><a href="#werkwijze">Werkwijze</a><a href="#werk">Eigen werk</a><a href="#wie">Over ons</a></nav>
- <a class="knop donker" href="#opdracht">Gratis concept</a>
+ <a class="merk" href="#top"><svg width="28" height="28" viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="8" fill="#14213D"/><rect x="13.5" y="4" width="3" height="5" rx="1" fill="#F2B705"/><rect x="13.5" y="12" width="3" height="5" rx="1" fill="#F2B705"/><rect x="13.5" y="20" width="3" height="6" rx="1" fill="#F2B705"/></svg>Collens Group</a>
+ <nav class="hoofd" aria-label="Hoofdmenu"><a href="#diensten">Diensten</a><a href="#werkwijze">Werkwijze</a><a href="#werk">Werk</a><a href="#maker">Over ons</a></nav>
+ <a class="cta" href="#opdracht">Gratis concept</a>
 </div></header>
 
 <main id="top">
-<div class="vel"><div class="wrap">
- <div class="hero">
-  <div>
-   <h1>Eerst jouw site op tekening<span class="stip">.</span> Binnen 48 uur<span class="stip">.</span></h1>
-   <p class="lead">Geen sjabloon met jouw naam erop. We ontwerpen vanuit jouw vak, jouw klanten en jouw kleuren, en laten het je zien voordat je iets betaalt. Websites, webshops, apps, games en AI, tegen een vaste eindprijs.</p>
-  </div>
-  <div class="werkbank" aria-label="Probeer het: zo begint jouw concept">
-   <form class="opdracht" onsubmit="return false">
-    <h2>Probeer het zelf</h2>
-    <p>Vul je bedrijf in. Zo begint elk concept bij ons: bij jou, niet bij een sjabloon.</p>
-    <label for="naam">Bedrijfsnaam</label>
-    <input id="naam" value="Bakkerij De Vries" maxlength="32" autocomplete="organization">
-    <label for="vak">Vak</label>
-    <select id="vak">
-     <option value="bakker">Bakker of horeca</option>
-     <option value="bouw">Bouw en installatie</option>
-     <option value="zorg">Zorg, salon of praktijk</option>
-     <option value="winkel">Winkel of webshop</option>
-     <option value="advies">Advies en zakelijke dienst</option>
-    </select>
-    <div class="schakel" role="group" aria-label="Weergave">
-     <button type="button" id="b-tek" aria-pressed="true">Tekening</button>
-     <button type="button" id="b-af" aria-pressed="false">Afgewerkt</button>
-    </div>
-    <p style="margin:18px 0 0;font-size:14px">Dit is een schets. Een echt concept bevat jouw eigen diensten, foto's, kleuren en de manier waarop jouw klanten bij je kopen.</p>
-   </form>
-   <div class="tekening" id="tek">
-    <span class="maat a">1280 px · desktop</span><span class="maat b">mobiel eerst</span>
-    <div class="scherm">
-     <div class="top"><span class="logo" id="s-logo">Bakkerij De Vries</span><span class="menu"><i></i><i></i><i></i></span></div>
-     <div class="held"><h3 id="s-kop">Vers van de plaat, elke ochtend vanaf 7 uur.</h3><p id="s-sub">Bestel vandaag, haal morgen op. Taarten op maat voor elk feest.</p><span class="k" id="s-knop">Bestel voor morgen</span></div>
-     <div class="blok"><div id="s-1">Dagvers assortiment</div><div id="s-2">Taart op maat</div><div id="s-3">Openingstijden</div></div>
-    </div>
-    <div class="stempel" aria-hidden="true">
-     <div><span>Opdracht</span><b id="st-naam">Bakkerij De Vries</b></div>
-     <div><span>Concept</span><b>binnen 48 uur</b></div>
-     <div><span>Prijs</span><b>vast, vooraf</b></div>
-    </div>
+<div class="wrap hero">
+ <h1>Een website die alleen <em>van jou</em> kan zijn.</h1>
+ <p class="lead">Geen sjabloon met jouw naam erop. We ontwerpen vanuit jouw vak, je klanten en je merk, en laten het je binnen 48 uur zien. Pas als je het goed vindt, maken we een prijs.</p>
+ <div class="probeer">
+  <div class="uitleg">
+   <p class="klein">Probeer het</p>
+   <p>Typ je bedrijfsnaam en kies je vak. Zie hoe snel een site van jou wordt.</p>
+   <div class="veld"><input id="naam" value="Bakkerij De Vries" maxlength="30" autocomplete="organization" aria-label="Bedrijfsnaam"></div>
+   <div class="chips" role="group" aria-label="Vak">
+    <button type="button" data-v="bakker" aria-pressed="true">Horeca</button>
+    <button type="button" data-v="bouw" aria-pressed="false">Bouw</button>
+    <button type="button" data-v="zorg" aria-pressed="false">Salon of praktijk</button>
+    <button type="button" data-v="winkel" aria-pressed="false">Winkel</button>
+    <button type="button" data-v="advies" aria-pressed="false">Advies</button>
    </div>
   </div>
-  <div class="belofte"><span>Gratis concept, geen verplichting</span><span>Vaste eindprijs, geen btw erbij</span><span>Jij bent eigenaar</span><span>Online, wereldwijd</span></div>
+  <div class="browser" aria-live="polite">
+   <div class="kop"><i></i><i></i><i></i><span id="url">bakkerijdevries.nl</span></div>
+   <div class="site" id="site">
+    <div class="s"><b id="s-naam">Bakkerij De Vries</b><em id="s-menu"><span>Assortiment</span><span>Bestellen</span><span>Contact</span></em></div>
+    <div class="h"><div class="fade" id="s-tekst"><h3 id="s-kop">Vers van de plaat, elke ochtend vanaf zeven uur.</h3><p id="s-sub">Bestel vandaag, haal morgen op. Taarten op maat voor elk feest.</p><a href="#opdracht" id="s-knop">Bestel voor morgen</a></div></div>
+    <div class="r"><div id="r1">Dagvers<small>brood en gebak</small></div><div id="r2">Op maat<small>taarten voor feesten</small></div><div id="r3">Open<small>ma–za 7–18 uur</small></div></div>
+   </div>
+  </div>
  </div>
-</div></div>
+ <div class="feiten"><span><b>Gratis concept</b> binnen 48 uur</span><span><b>Vaste eindprijs</b>, geen btw erbij</span><span><b>Jij bent eigenaar</b> van alles</span><span><b>Online</b>, wereldwijd</span></div>
+</div>
 
-<section id="bestek"><div class="wrap">
- <h2>Wat we maken, en wat het kost</h2>
- <p class="intro">Alles digitaal onder één dak. De prijs staat vooraf vast; wijkt jouw project af, dan krijg je eerst een vaste prijs op maat.</p>
- <div class="bestek">
-  <div class="regel"><h3>Website</h3><p class="spec">One-page of bedrijfswebsite tot 6 pagina's, teksten op Google afgestemd, snel op elke telefoon.</p><span class="tijd">3 dagen – 3 weken</span><span class="prijs">€495<small>vanaf</small></span></div>
-  <div class="regel"><h3>Webshop</h3><p class="spec">Tot 50 producten ingericht, betalen en verzenden geregeld, je beheert alles zelf.</p><span class="tijd">3–5 weken</span><span class="prijs">€1.950<small>vanaf</small></span></div>
-  <div class="regel"><h3>App</h3><p class="spec">Eén app voor iPhone en Android tegelijk, van MVP tot platform met betalingen.</p><span class="tijd">3–16 weken</span><span class="prijs">€3.150<small>vanaf</small></span></div>
-  <div class="regel"><h3>Game</h3><p class="spec">Merkgame voor acties en beurzen, casual game of 2D-game met levels.</p><span class="tijd">2–12 weken</span><span class="prijs">€1.950<small>vanaf</small></span></div>
-  <div class="regel"><h3>AI &amp; automatisering</h3><p class="spec">Workflows die je apps koppelen, of een chatbot die antwoordt vanuit jouw eigen teksten.</p><span class="tijd">2 dagen – 4 weken</span><span class="prijs">€395<small>vanaf</small></span></div>
+<section id="diensten"><div class="wrap tweede">
+ <div><h2>Wat we maken</h2><p class="sub">Alles digitaal onder één dak, met een prijs die vooraf vaststaat.</p></div>
+ <div>
+  <div class="dienst"><h3>Websites</h3><span class="p"><small>vanaf</small>€495</span><p>Van one-page tot bedrijfswebsite met zes pagina's. Snel, vindbaar in Google en sterk op de telefoon.</p></div>
+  <div class="dienst"><h3>Webshops</h3><span class="p"><small>vanaf</small>€1.950</span><p>Tot vijftig producten ingericht, betalen en verzenden geregeld. Jij beheert alles zelf.</p></div>
+  <div class="dienst"><h3>Apps</h3><span class="p"><small>vanaf</small>€3.150</span><p>Eén app voor iPhone en Android tegelijk, van eerste versie tot platform met betalingen.</p></div>
+  <div class="dienst"><h3>Games</h3><span class="p"><small>vanaf</small>€1.950</span><p>Een merkgame voor je actie of beurs, of een eigen game voor de App Store en Google Play.</p></div>
+  <div class="dienst"><h3>AI en automatisering</h3><span class="p"><small>vanaf</small>€395</span><p>Werk dat vanzelf gaat, en een chatbot die je klanten antwoordt vanuit je eigen teksten.</p></div>
+  <p class="noot">Alle prijzen zijn eindprijzen, er komt geen btw bij. Externe kosten, zoals een domeinnaam of store-account, staan vooraf in de offerte.</p>
  </div>
- <p class="noot">Alle prijzen zijn eindprijzen: er komt geen btw bij. Externe kosten, zoals een domeinnaam (meestal €10 tot €25 per jaar) of store-accounts, staan vooraf in de offerte.</p>
 </div></section>
 
-<section id="werkwijze" class="donker"><div class="wrap">
- <h2>Van aanvraag tot live, in vijf revisies</h2>
- <p class="intro">Elke stap rond je af met een akkoord. Je ziet het groeien voordat het live gaat.</p>
- <div class="revisies">
-  <div class="rev"><span class="code">A</span><h3>Aanvraag</h3><p>Je vertelt in een paar zinnen wie je bent en wat je wilt bereiken. Geen afspraak nodig.</p><span class="wanneer">vandaag</span></div>
-  <div class="rev"><span class="code">B</span><h3>Persoonlijk concept</h3><p>We onderzoeken je bedrijf en ontwerpen een concept dat alleen bij jou past.</p><span class="wanneer">binnen 48 uur</span></div>
-  <div class="rev"><span class="code">C</span><h3>Vaste prijs</h3><p>Prijs, planning en wat er wel en niet in zit, vooraf op papier.</p><span class="wanneer">na je reactie</span></div>
-  <div class="rev"><span class="code">D</span><h3>Bouwen en testen</h3><p>Je krijgt tussentijdse versies en keurt elke stap goed.</p><span class="wanneer">per project</span></div>
-  <div class="rev"><span class="code">E</span><h3>Live</h3><p>Op jouw eigen domein of in jouw eigen App Store- en Google Play-account.</p><span class="wanneer">opgeleverd</span></div>
+<section id="werkwijze" class="navy"><div class="wrap">
+ <h2>Zo werken we</h2>
+ <p class="sub">Je ziet het eerst, je beslist daarna. Elke stap rond je af met een akkoord.</p>
+ <div class="stappen">
+  <div class="stap"><span class="n">1</span><h3>Je aanvraag</h3><p>Een paar zinnen over je bedrijf en wat je wilt bereiken.</p><small>vandaag</small></div>
+  <div class="stap"><span class="n">2</span><h3>Je concept</h3><p>Onderzocht en ontworpen voor jouw bedrijf, niet voor een branche.</p><small>binnen 48 uur</small></div>
+  <div class="stap"><span class="n">3</span><h3>Vaste prijs</h3><p>Wat erin zit, wat het kost en wanneer het klaar is.</p><small>na jouw reactie</small></div>
+  <div class="stap"><span class="n">4</span><h3>Bouwen</h3><p>Tussentijdse versies die je zelf test en goedkeurt.</p><small>per project</small></div>
+  <div class="stap"><span class="n">5</span><h3>Live</h3><p>Op je eigen domein of in je eigen store-account.</p><small>opgeleverd</small></div>
  </div>
 </div></section>
 
 <section id="werk"><div class="wrap">
- <h2>Uit onze eigen werkplaats</h2>
- <p class="intro">Wat we voor onszelf maken, maken we ook voor jou. Echte schermen, geen mock-ups.</p>
+ <h2>Eigen werk</h2>
+ <p class="sub">Wat we voor onszelf maken, maken we ook voor jou. Echte schermen.</p>
  <div class="werk">
-  <figure><img src="../../img/lubbyc-evenementen.jpg" alt="Scherm van de reisapp LubbyC met evenementen in de buurt" loading="lazy"><figcaption><b>LubbyC</b><span>Reisapp: reizigers in de buurt ontmoeten en samen plannen. Binnenkort in Google Play.</span></figcaption></figure>
-  <figure><img src="../../img/koffer-spel.jpg" alt="Spelscherm van de inpakpuzzel Koffer Vol!" loading="lazy"><figcaption><b>Koffer Vol!</b><span>Inpakpuzzel met 100 levels in 10 landen.</span></figcaption></figure>
-  <figure><img src="../../img/eiland-weg.jpg" alt="Een songthaew rijdt over een tropisch eiland in Eiland Express" loading="lazy"><figcaption><b>Eiland Express</b><span>3D-rijgame met een songthaew op een tropisch eiland.</span></figcaption></figure>
+  <figure><img src="../../img/lubbyc-evenementen.jpg" alt="De reisapp LubbyC met evenementen in de buurt" loading="lazy"><figcaption><b>LubbyC</b><span>Reisapp om reizigers in de buurt te ontmoeten en samen te plannen.</span></figcaption></figure>
+     <figure><img src="../../img/eiland-weg.jpg" alt="Een songthaew rijdt over een tropisch eiland in Eiland Express" loading="lazy"><figcaption><b>Eiland Express</b><span>3D-rijgame op een tropisch eiland.</span></figcaption></figure>
+   <figure><img src="../../img/koffer-spel.jpg" alt="Spelscherm van de inpakpuzzel Koffer Vol!" loading="lazy"><figcaption><b>Koffer Vol!</b><span>Inpakpuzzel met honderd levels in tien landen.</span></figcaption></figure>
  </div>
 </div></section>
 
-<section id="wie" style="padding-top:0"><div class="wrap">
- <h2>Je mailt met de maker</h2>
- <div class="duo">
-  <div><h3>Wie zit erachter?</h3><p>Collens Group is opgericht door Jeffrey Collens. Hij bouwt met moderne AI-tools en controleert elk concept, elke tekst en elke oplevering zelf voordat het naar een klant gaat. Geen accountmanager ertussen.</p></div>
-  <div><h3>Waar we werken</h3><p>Overal. Volledig online, per mail en video, met ondernemers in Nederland, België en daarbuiten. Overal dezelfde eindprijzen in euro.</p><div class="talen"><span>Nederlands</span><span>English</span></div></div>
+<section id="maker" style="padding-top:20px"><div class="wrap tweede maker">
+ <div><h2>Je spreekt de maker</h2></div>
+ <div>
+  <p>Collens Group is opgericht door Jeffrey Collens. Hij bouwt met moderne AI-tools en controleert elk concept, elke tekst en elke oplevering zelf voordat het naar een klant gaat. Er zit geen accountmanager tussen.</p>
+  <p>We werken volledig online, per mail en video, met ondernemers in Nederland, België en ver daarbuiten. Overal met dezelfde eindprijzen in euro.</p>
+  <p class="talen">Nederlands · English</p>
  </div>
 </div></section>
 
-<section id="opdracht" style="padding-top:0"><div class="wrap">
- <h2>Geef de opdracht. Het concept is gratis.</h2>
- <form class="formvel" onsubmit="event.preventDefault();this.querySelector('.verstuur small').textContent='Voorbeeld: in de echte site gaat je aanvraag nu naar ons en hoor je binnen 48 uur van ons.'">
-  <div class="kop"><b>Opdrachtformulier</b><span>Reactie binnen 48 uur · geen verplichting</span></div>
-  <div class="veld"><label for="f-naam">Je naam</label><input id="f-naam" autocomplete="name" required></div>
-  <div class="veld"><label for="f-mail">E-mail</label><input id="f-mail" type="email" autocomplete="email" required></div>
-  <div class="veld"><label for="f-bedrijf">Bedrijf en website (als je die hebt)</label><input id="f-bedrijf"></div>
-  <div class="veld"><label for="f-wat">Wat wil je laten maken?</label><select id="f-wat"><option>Website</option><option>Webshop</option><option>App</option><option>Game</option><option>AI &amp; automatisering</option><option>Weet ik nog niet</option></select></div>
-  <div class="veld vol"><label for="f-idee">Wat moet het voor je klanten doen?</label><textarea id="f-idee" rows="4"></textarea></div>
-  <div class="verstuur"><button class="knop" type="submit">Vraag mijn gratis concept aan</button><small>We gebruiken je gegevens alleen om je aanvraag te beantwoorden.</small></div>
+<section id="opdracht" style="padding-top:20px"><div class="wrap">
+ <h2 style="max-width:14ch;margin-bottom:48px">Vraag je gratis concept aan</h2>
+ <form class="form" onsubmit="event.preventDefault();this.querySelector('.onder small').textContent='Dit is een voorbeeld. Op de echte site gaat je aanvraag nu naar ons en hoor je binnen 48 uur van ons.'">
+  <div class="rij">
+   <div><label for="f1">Naam</label><input id="f1" autocomplete="name" required></div>
+   <div><label for="f2">E-mail</label><input id="f2" type="email" autocomplete="email" required></div>
+   <div><label for="f3">Bedrijf en huidige website</label><input id="f3"></div>
+   <div><label for="f4">Wat wil je laten maken?</label><select id="f4"><option>Website</option><option>Webshop</option><option>App</option><option>Game</option><option>AI en automatisering</option><option>Weet ik nog niet</option></select></div>
+   <div class="vol"><label for="f5">Wat moet het voor je klanten doen?</label><textarea id="f5" rows="3"></textarea></div>
+  </div>
+  <div class="onder"><button type="submit">Verstuur aanvraag</button><small>Reactie binnen 48 uur. We gebruiken je gegevens alleen voor je aanvraag.</small></div>
  </form>
 </div></section>
 </main>
-<footer><div class="wrap">Collens Group · websites, apps, games en AI · info@collensgroup.com · Alle prijzen zijn eindprijzen: er komt geen btw bij.</div></footer>
+<footer><div class="wrap"><span>Collens Group · websites, apps, games en AI</span><span>info@collensgroup.com</span></div></footer>
 <div class="watermerk">Concept · Collens Group</div>
 <script>
 (function(){
  var V={
-  bakker:{kop:"Vers van de plaat, elke ochtend vanaf 7 uur.",sub:"Bestel vandaag, haal morgen op. Taarten op maat voor elk feest.",knop:"Bestel voor morgen",b:["Dagvers assortiment","Taart op maat","Openingstijden"],kleur:"#7a3e1d",zacht:"#f6ece3"},
-  bouw:{kop:"Vakwerk dat je ziet, een prijs die vooraf vaststaat.",sub:"Offerte binnen een dag, met foto's van projecten in jouw buurt.",knop:"Vraag een offerte",b:["Projecten","Werkgebied","Spoed? Bel direct"],kleur:"#1f3b57",zacht:"#e8eef4"},
-  zorg:{kop:"Een afspraak maken kost je nu tien seconden.",sub:"Kies je behandeling en een tijd die past. Herinnering per sms.",knop:"Plan een afspraak",b:["Behandelingen","Prijzen","Ons team"],kleur:"#2f5d50",zacht:"#e7f1ed"},
-  winkel:{kop:"Vandaag besteld, morgen in huis.",sub:"Gratis verzending vanaf je eerste bestelling, retour binnen 30 dagen.",knop:"Bekijk de collectie",b:["Nieuw binnen","Bestsellers","Verzenden & retour"],kleur:"#3d2c52",zacht:"#efe9f4"},
-  advies:{kop:"Helder advies, zonder kleine lettertjes.",sub:"Plan een kennismaking van 20 minuten. Je weet daarna precies wat het kost.",knop:"Plan een kennismaking",b:["Diensten","Werkwijze","Kennisbank"],kleur:"#14213d",zacht:"#e9edf3"}
+  bakker:{kop:"Vers van de plaat, elke ochtend vanaf zeven uur.",sub:"Bestel vandaag, haal morgen op. Taarten op maat voor elk feest.",knop:"Bestel voor morgen",menu:["Assortiment","Bestellen","Contact"],r:[["Dagvers","brood en gebak"],["Op maat","taarten voor feesten"],["Open","ma–za 7–18 uur"]],k:"#7a3e1d",z:"#f7efe7"},
+  bouw:{kop:"Vakwerk dat je ziet, een prijs die vooraf vaststaat.",sub:"Offerte binnen een dag, met projecten uit jouw buurt.",knop:"Vraag een offerte",menu:["Projecten","Werkwijze","Contact"],r:[["Projecten","in de regio"],["Werkgebied","postcodecheck"],["Spoed","direct bellen"]],k:"#1e3a52",z:"#eaf0f5"},
+  zorg:{kop:"Een afspraak maken kost je nu tien seconden.",sub:"Kies je behandeling en een tijd die past. Herinnering vooraf.",knop:"Plan een afspraak",menu:["Behandelingen","Prijzen","Team"],r:[["Behandelingen","met prijzen"],["Online plannen","dag en nacht"],["Ons team","maak kennis"]],k:"#2d5a4c",z:"#e8f1ed"},
+  winkel:{kop:"Vandaag besteld, morgen in huis.",sub:"Snel verzonden, makkelijk retour. Ontdek de nieuwe collectie.",knop:"Bekijk de collectie",menu:["Nieuw","Collectie","Service"],r:[["Nieuw binnen","deze week"],["Bestsellers","meest gekocht"],["Service","verzenden en retour"]],k:"#3b2a50",z:"#f0ebf5"},
+  advies:{kop:"Helder advies, zonder kleine lettertjes.",sub:"Plan een kennismaking. Daarna weet je precies wat het kost.",knop:"Plan een kennismaking",menu:["Diensten","Werkwijze","Kennis"],r:[["Diensten","wat we doen"],["Werkwijze","in drie stappen"],["Kennisbank","artikelen"]],k:"#14213d",z:"#ebeef4"}
  };
- var $=function(i){return document.getElementById(i)};
- function zet(){
-  var n=$("naam").value.trim()||"Jouw bedrijf", v=V[$("vak").value];
-  $("s-logo").textContent=n; $("st-naam").textContent=n;
-  $("s-kop").textContent=v.kop; $("s-sub").textContent=v.sub; $("s-knop").textContent=v.knop;
-  ["s-1","s-2","s-3"].forEach(function(id,i){$(id).textContent=v.b[i]});
-  $("tek").style.setProperty("--kleur",v.kleur); $("tek").style.setProperty("--zacht",v.zacht);
- }
- function stand(af){$("tek").classList.toggle("af",af);$("b-af").setAttribute("aria-pressed",af);$("b-tek").setAttribute("aria-pressed",!af)}
- $("naam").addEventListener("input",zet); $("vak").addEventListener("change",zet);
- $("b-tek").addEventListener("click",function(){stand(false)}); $("b-af").addEventListener("click",function(){stand(true)});
- zet();
+ var vak="bakker",$=function(i){return document.getElementById(i)};
+ function slug(n){return (n.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^a-z0-9]+/g,"")||"jouwbedrijf")+".nl"}
+ function naam(){var n=$("naam").value.trim()||"Jouw bedrijf";$("s-naam").textContent=n;$("url").textContent=slug(n)}
+ function zet(){var v=V[vak],t=$("s-tekst");t.classList.add("uit");
+  setTimeout(function(){$("s-kop").textContent=v.kop;$("s-sub").textContent=v.sub;$("s-knop").textContent=v.knop;
+   $("s-menu").innerHTML=v.menu.map(function(m){return"<span>"+m+"</span>"}).join("");
+   ["r1","r2","r3"].forEach(function(id,i){$(id).innerHTML=v.r[i][0]+"<small>"+v.r[i][1]+"</small>"});t.classList.remove("uit")},220);
+  $("site").style.setProperty("--k",v.k);$("site").style.setProperty("--z",v.z)}
+ $("naam").addEventListener("input",naam);
+ document.querySelectorAll(".chips button").forEach(function(b){b.addEventListener("click",function(){
+  document.querySelectorAll(".chips button").forEach(function(x){x.setAttribute("aria-pressed","false")});
+  b.setAttribute("aria-pressed","true");vak=b.dataset.v;zet()})});
+ naam();
 })();
 </script>
 </body>
