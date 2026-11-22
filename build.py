@@ -4,6 +4,7 @@ Bewerk CONFIG en APPS, run `python3 build.py`, de site staat in ./dist.
 """
 import json, os, re, shutil, html, datetime
 from talen import TALEN, taal_paginas
+from boek import boek_rel
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.join(ROOT, "dist")
@@ -508,7 +509,7 @@ def dienst_pagina(d):
 {"".join(f"<h2>{e(h)}</h2>{x}" for h, x in d.get("secties", []))}
 <h2>Veelgestelde vragen</h2>{faq_html(d["faq"])}
 <p style="margin-top:32px"><a class="knop geel" href="index.html#contact">Vraag een vaste prijs aan</a></p>
-{f'<p class="bron" style="margin-top:22px">Zie ook: ' + " · ".join(f'<a href="{h}">{e(t)}</a>' for h, t in d["rel"]) + '</p>' if d.get("rel") else ""}
+{f'<p class="bron" style="margin-top:22px">Zie ook: ' + " · ".join(f'<a href="{h}"{" rel=\"noopener\"" if h.startswith("http") else ""}>{e(t)}</a>' for h, t in d["rel"] + (boek_rel() if d["slug"] == "ai-automatisering" else [])) + '</p>' if d.get("rel") else ""}
 </article>''', crumbs=[("Home", "index.html"), (d["kort"], f'{d["slug"]}.html')],
         extra_ld=[{"@type": "Service", "name": d["h1"], "provider": {"@id": "#org"}, "areaServed": ["NL", "BE"], "offers": offers}, faq_ld(d["faq"])])
 

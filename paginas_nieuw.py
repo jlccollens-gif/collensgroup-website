@@ -1,6 +1,7 @@
 """Nieuwe pagina's (18-11-2026): prijzen, over ons, pakketkiezer, bedankt, vergelijkpagina's en artikelen.
 Alleen feiten die al op de site staan (prijzen, doorlooptijden, werkwijze, eigen apps). Marktbedragen met bron."""
 import datetime
+from boek import boek_alinea, boek_rel
 
 NOINDEX = '<meta name="robots" content="noindex, follow">'
 
@@ -50,7 +51,7 @@ def bouw(page, e, faq_html, faq_ld, DIENSTEN, PAKKETTEN, VANDAAG, CONFIG):
         f'''<article class="tekst breed"><h1>Over Collens Group</h1>
 <p class="lead2">We maken websites, apps, games en AI-oplossingen voor ondernemers in Nederland, België en de rest van de wereld, met een vaste prijs vooraf en een gratis concept voordat je iets betaalt.</p>
 <h2>Wat we doen</h2><p>Collens Group is een klein, onafhankelijk digitaal bedrijf. We bouwen <a href="website-laten-maken.html">websites en webshops</a>, <a href="app-laten-maken-kosten.html">apps voor iPhone en Android</a>, <a href="game-laten-maken.html">games</a> en <a href="ai-automatisering.html">AI-automatisering en chatbots</a>. We werken volledig online, zodat je niet hoeft te reizen en wij onze prijzen laag kunnen houden.</p>
-<h2>Wie zit erachter?</h2><p>Collens Group is opgericht door Jeffrey Collens. Hij bouwt met moderne AI-tools en controleert elk concept, elke tekst en elke oplevering zelf voordat het naar een klant gaat. Je mailt dus rechtstreeks met de maker, niet met een accountmanager.</p>
+<h2>Wie zit erachter?</h2><p>Collens Group is opgericht door Jeffrey Collens. Hij bouwt met moderne AI-tools en controleert elk concept, elke tekst en elke oplevering zelf voordat het naar een klant gaat. Je mailt dus rechtstreeks met de maker, niet met een accountmanager.</p>{boek_alinea()}
 <h2>Waar we werken</h2><p>Overal. We werken volledig online, per mail en video, met ondernemers in Nederland en België en daarbuiten, bijvoorbeeld in het Verenigd Koninkrijk, Ierland, de Verenigde Staten, Canada, Australië en Nieuw-Zeeland. Je kunt met ons in het Nederlands of het Engels werken. De prijzen zijn overal dezelfde eindprijzen in euro.</p>
 <h2>Zo werken we</h2><ul>
 <li><strong>Vaste prijs vooraf.</strong> Je weet wat je betaalt voordat we beginnen. Meerwerk doen we alleen na jouw akkoord.</li>
