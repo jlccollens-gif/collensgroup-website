@@ -8,8 +8,8 @@ from boek import BOEK_URL
 
 GUMROAD = BOEK_URL
 WINKEL = "https://collens3.gumroad.com"
-BOEK2_URL = ""   # zet op https://collens3.gumroad.com/l/programmeren-met-claude-ai zodra deel 2 gepubliceerd is
-BOEK3_URL = ""
+BOEK2_URL = ""   # https://collens3.gumroad.com/l/programmeren-met-claude-ai zodra gepubliceerd
+BOEK3_URL = ""   # https://collens3.gumroad.com/l/ondernemen-met-claude-ai zodra gepubliceerd
 
 
 def _kaart(img, deel, titel, sub, tekst, prijs, knoppen):
@@ -20,7 +20,7 @@ def _kaart(img, deel, titel, sub, tekst, prijs, knoppen):
 
 
 _d2 = ([("Koop op Gumroad", BOEK2_URL, "geel")] if BOEK2_URL else [("Bekijk de webshop", WINKEL, "knop-rand")])
-_d3 = ([("Koop op Gumroad", BOEK3_URL, "geel")] if BOEK3_URL else [("Mail me bij verschijnen", "mailto:info@collensgroup.com?subject=Boek%203%20Ondernemen%20met%20Claude%20AI", "knop-rand")])
+_d3 = ([("Koop op Gumroad", BOEK3_URL, "geel")] if BOEK3_URL else [("Bekijk de webshop", WINKEL, "knop-rand")])
 
 BOEKEN_HTML = ('<div class="boeken-lijst">'
  + _kaart("boek-deel1.jpg", "Deel 1", "Claude voor beginners", "Van je eerste vraag tot je eigen AI-assistent",
@@ -28,11 +28,25 @@ BOEKEN_HTML = ('<div class="boeken-lijst">'
           "€29,99 · PDF en EPUB", [("Lees meer", "boek-claude-voor-beginners.html", "knop-rand"), ("Koop op Gumroad", GUMROAD, "geel")])
  + _kaart("boek-deel2.jpg", "Deel 2", "Programmeren met Claude AI", "Van je eerste regel code tot meester in masterprompts",
           "Leer zelf websites en apps bouwen met AI als partner, en schrijf de instructies waarmee AI voorspelbaar en controleerbaar voor je werkt. Geen ervaring nodig.",
-          "€39,99 · PDF" + ("" if BOEK2_URL else " · verschijnt binnenkort"), _d2)
+          "€39,99 · 92 pagina's · PDF en EPUB" + ("" if BOEK2_URL else " · verschijnt binnenkort"), _d2)
  + _kaart("boek-deel3.jpg", "Deel 3", "Ondernemen met Claude AI", "Bouw je eigen AI-team dat elke dag voor je bedrijf werkt",
-          "Het praktijkboek voor ondernemers: hoe je marketing, klanten, vindbaarheid en administratie laat voorbereiden door AI, terwijl jij goedkeurt en beslist.",
-          "In voorbereiding", _d3)
+          "Het praktijkboek voor ondernemers: hoe je marketing, klanten, vindbaarheid en administratie laat voorbereiden door een klein AI-team, terwijl jij goedkeurt en beslist. Met 30 masterprompts, 20 werkinstructies en 12 sjablonen.",
+          "€44,99 · 139 pagina's · PDF en EPUB" + ("" if BOEK3_URL else " · verschijnt binnenkort"), _d3)
  + '</div>')
+
+BINNEN_HTML = ('<div class="boek-binnen">'
+ + "".join(f'<figure><img src="img/boek-binnen-deel{n}.jpg" alt="Een paar pagina\'s uit deel {n}: {t}" width="960" height="540" loading="lazy"><figcaption>Deel {n} · {t}</figcaption></figure>'
+           for n, t in [(1, "Claude voor beginners"), (2, "Programmeren met Claude AI"), (3, "Ondernemen met Claude AI")])
+ + '</div>')
+
+VERGELIJK_HTML = ("<div class='scroll'><table><thead><tr><th></th><th>Deel 1</th><th>Deel 2</th><th>Deel 3</th></tr></thead><tbody>"
+ "<tr><th>Voor wie</th><td>Je begint met AI</td><td>Je wilt zelf bouwen</td><td>Je wilt je bedrijf ermee runnen</td></tr>"
+ "<tr><th>Je leert</th><td>Goede vragen, Projecten, geheugen, koppelingen</td><td>Websites, apps, masterprompts, werkinstructies</td><td>Een AI-team met geheugen, grenzen en rapporten</td></tr>"
+ "<tr><th>Extra's</th><td>40 vragen om te kopiëren</td><td>12 masterprompts, 14 werkinstructies</td><td>30 masterprompts, 20 werkinstructies, 12 sjablonen</td></tr>"
+ "<tr><th>Omvang</th><td>106 pagina's</td><td>92 pagina's</td><td>139 pagina's</td></tr>"
+ "<tr><th>Formaat</th><td>PDF en EPUB</td><td>PDF en EPUB</td><td>PDF en EPUB</td></tr>"
+ "<tr><th>Prijs</th><td>€29,99</td><td>€39,99</td><td>€44,99</td></tr>"
+ "</tbody></table></div>")
 
 BOEK_PAGINAS = [
  {"slug": "boeken", "lang": "nl", "kort": "Boeken",
@@ -43,15 +57,18 @@ BOEK_PAGINAS = [
   "knop": ("Naar de webshop", WINKEL),
   "secties": [
    ("De boeken", BOEKEN_HTML),
+   ("Kijk in de boeken", "<p>Rustige opmaak, eigen figuren en grafieken, en kaders met oefeningen, praktijkvoorbeelden en afvinklijsten. Zo ziet een paar pagina's eruit:</p>" + BINNEN_HTML),
+   ("Welk deel past bij jou?", VERGELIJK_HTML),
    ("Waarom deze reeks?",
     "<p>Alles wat in deze boeken staat, gebruiken we zelf: voor onze eigen website, onze apps en het dagelijkse werk van ons bedrijf. Ook wat misging staat erin, met de regels die het voortaan voorkomen. De boeken bouwen op elkaar voort: deel 1 leert je AI gebruiken, deel 2 leert je ermee bouwen en deel 3 leert je er je bedrijf mee runnen.</p>"),
    ("Hoe koop je een boek?",
     "<p>Je koopt de boeken via <a href='https://collens3.gumroad.com' rel='noopener' target='_blank'>onze webshop op Gumroad</a>, een bekend platform voor digitale producten. Na het afrekenen download je het boek meteen. In de webshop vind je ook printbare producten, zoals planners en spellen voor het hele gezin.</p>")],
   "faq": [
-   ("Moet ik de boeken op volgorde lezen?", "Nee, elk boek is los te lezen. Ben je nieuw met AI, begin dan bij deel 1. Wil je zelf websites of apps bouwen, dan is deel 2 de volgende stap."),
-   ("In welk formaat krijg ik de boeken?", "Als digitaal bestand: deel 1 als PDF en EPUB, deel 2 als PDF. Je downloadt ze direct na aankoop via Gumroad."),
+   ("Moet ik de boeken op volgorde lezen?", "Nee, elk boek is los te lezen. Ben je nieuw met AI, begin dan bij deel 1. Wil je zelf websites of apps bouwen, dan is deel 2 de volgende stap. Deel 3 is voor ondernemers die Claude al gebruiken en meer uit handen willen geven."),
+   ("Mag ik de masterprompts en sjablonen gebruiken?", "Ja. De masterprompts, werkinstructies en sjablonen uit de boeken mag je vrij gebruiken in je eigen werk en bedrijf. Het boek zelf delen of doorverkopen mag niet."),
+   ("In welk formaat krijg ik de boeken?", "Als digitaal bestand, elk deel als PDF en als EPUB voor e-readers. Je downloadt ze direct na aankoop via Gumroad."),
    ("Zijn de boeken van Anthropic?", "Nee. Het zijn onafhankelijke gidsen van Jeffrey Collens, niet verbonden aan Anthropic, het bedrijf achter Claude.")],
-  "offers": [("Claude voor beginners", 29.99), ("Programmeren met Claude AI", 39.99)],
+  "offers": [("Claude voor beginners", 29.99), ("Programmeren met Claude AI", 39.99), ("Ondernemen met Claude AI", 44.99)],
   "ld": {"@type": "CollectionPage", "name": "Boeken: de reeks Claude AI Compleet", "inLanguage": "nl", "publisher": {"@id": "#org"}},
   "rel": [("boek-claude-voor-beginners.html", "Claude voor beginners"), ("over-ons.html", "Over ons"), ("ai-automatisering.html", "AI en automatisering")]},
 

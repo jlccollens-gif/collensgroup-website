@@ -582,3 +582,6 @@ small,.noot,.bron,.duur,td small{font-size:max(14px,.875rem)}
 .boek-prijs{font-weight:700;color:#14213d;margin:10px 0 4px}
 .boek-kaart .knoppen{margin:6px 0 0}
 @media (max-width:560px){.boek-kaart{grid-template-columns:96px 1fr;gap:14px;padding:14px}.boek-kaart img{width:96px}.boek-kaart .knoppen{display:flex;flex-direction:column;align-items:stretch}}
+.boek-binnen{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));margin-top:12px}
+.boek-binnen figure{margin:0}.boek-binnen img{width:100%;height:auto;border-radius:10px;display:block}
+.boek-binnen figcaption{font-size:.85rem;color:#5a6782;margin-top:6px}
