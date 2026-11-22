@@ -429,11 +429,7 @@ DIENSTEN = [
              "<ol class='stappen-licht'><li>Je vertelt per mail wat je doet en wat de site moet bereiken.</li>"
              "<li>Je krijgt een gratis concept binnen 48 uur, zodat je ziet hoe het eruit kan zien.</li>"
              "<li>Je krijgt een vaste prijs. Na akkoord bouwen we de site.</li>"
-             "<li>Jij controleert alles, daarna gaat de site live.</li></ol>"),
-            ("Recent ontwerpwerk",
-             "<p>Elke site ontwerpen we op maat, in de stijl van het merk. Geen template, maar een eigen uitstraling die past bij wat je verkoopt.</p>"
-             "<div class='werk-grid'><figure class='werk'><img src='img/werk-atelier-ombre.jpg' alt='Webshop-ontwerp voor kunstgalerie Atelier Ombre op laptop en telefoon' width='1200' height='760' loading='lazy'><figcaption><strong>Atelier Ombre</strong><span>Kunstwebshop met galerie en interactieve zaal. Eigen merk van Collens Group.</span></figcaption></figure>"
-             "<figure class='werk'><img src='img/werk-suismuis.jpg' alt='Webshop-ontwerp voor interieurmerk Suismuis Home op laptop en telefoon' width='1200' height='760' loading='lazy'><figcaption><strong>Suismuis Home</strong><span>Interieurwebshop met shop-de-look-foto's, winkelmand en productbeheer. In ontwikkeling.</span></figcaption></figure></div>")],
+             "<li>Jij controleert alles, daarna gaat de site live.</li></ol>")],
         "rel": [("webshop-laten-maken.html", "Webshop laten maken"), ("goedkope-website-laten-maken.html", "Goedkope website laten maken"), ("website-laten-maken-horeca.html", "Website voor horeca"), ("website-laten-maken-kapper.html", "Website voor kapsalon"), ("chatbot-laten-maken.html", "AI-chatbot voor je site")],
     },
     {
@@ -916,14 +912,7 @@ def build():
 <div><h3>Jij blijft eigenaar</h3><p>Site, domein en inhoud staan op jouw naam. Apps komen in je eigen Apple- en Google-account.</p></div>
 </div></div></section>
 
-<section id="werk" class="wit" aria-labelledby="werk-kop"><div class="wrap">
-<div class="intro"><h2 id="werk-kop">Recent ontwerpwerk</h2><p>Elke site ontwerpen we op maat, in de stijl van het merk. Geen template, maar een eigen uitstraling die past bij wat je verkoopt.</p></div>
-<div class="werk-grid">
-<figure class="werk"><picture><img src="img/werk-atelier-ombre.jpg" alt="Webshop-ontwerp voor kunstgalerie Atelier Ombre op laptop en telefoon" width="1200" height="760" loading="lazy"></picture><figcaption><strong>Atelier Ombre</strong><span>Kunstwebshop met galerie en interactieve zaal. Eigen merk van Collens Group.</span></figcaption></figure>
-<figure class="werk"><picture><img src="img/werk-suismuis.jpg" alt="Webshop-ontwerp voor interieurmerk Suismuis Home op laptop en telefoon" width="1200" height="760" loading="lazy"></picture><figcaption><strong>Suismuis Home</strong><span>Interieurwebshop met shop-de-look-foto's en productcatalogus. In ontwikkeling.</span></figcaption></figure>
-</div></div></section>
-
-<section id="prijzen-kort" aria-labelledby="prijzen-kort-kop"><div class="wrap">
+<section id="prijzen-kort" class="wit" aria-labelledby="prijzen-kort-kop"><div class="wrap">
 <div class="intro"><h2 id="prijzen-kort-kop">Prijzen in het kort</h2><p>Alle prijzen zijn eindprijzen: er komt geen btw bij. Na een korte intake krijg je een definitieve prijsopgave op maat.</p></div>
 <table class="lijst"><tr><td><a href="website-laten-maken.html">Website</a><small>One-page of bedrijfswebsite</small></td><td>vanaf €495</td></tr>
 <tr><td><a href="webshop-laten-maken.html">Webshop</a><small>Tot 50 producten ingericht, iDEAL</small></td><td>vanaf €1.950</td></tr>

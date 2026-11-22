@@ -127,10 +127,10 @@ def tels(beelden, bijschrift):
 
 
 ECHT = {  # echte schermen van eigen ontwerpwerk: (laptop, telefoon, alt)
-    ("web", "nl"): ("img/toon-ombre-lap.jpg", "img/toon-suismuis-tel.jpg", "Webshop-ontwerpen van Collens Group: Atelier Ombre op laptop en Suismuis Home op telefoon"),
-    ("web", "en"): ("img/toon-ombre-lap.jpg", "img/toon-suismuis-tel.jpg", "Web shop designs by Collens Group: Atelier Ombre on laptop and Suismuis Home on phone"),
+    ("web", "nl"): ("img/toon-suismuis-lap.jpg", "img/toon-suismuis-tel.jpg", "Webshop-ontwerp van Collens Group voor Suismuis Home op laptop en telefoon"),
+    ("web", "en"): ("img/toon-suismuis-lap.jpg", "img/toon-suismuis-tel.jpg", "Web shop design by Collens Group for Suismuis Home on laptop and phone"),
     ("chat", "nl"): ("img/voorbeeld-chat.jpg", "img/voorbeeld-chat-m.jpg", "Jeff, de AI-adviseur van Collens Group, op laptop en telefoon"),
-    ("shop", "nl"): ("img/voorbeeld-webshop.jpg", "img/toon-ombre-tel.jpg", "Webshop-ontwerpen van Collens Group: Suismuis Home op laptop en Atelier Ombre op telefoon"),
+    ("shop", "nl"): ("img/voorbeeld-webshop.jpg", "img/toon-suismuis-tel.jpg", "Webshop-ontwerp van Collens Group voor Suismuis Home op laptop en telefoon"),
 }
 
 

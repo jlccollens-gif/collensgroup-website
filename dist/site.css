@@ -661,3 +661,11 @@ small,.noot,.bron,.duur,td small{font-size:max(14px,.875rem)}
 .stappen-licht li{counter-increment:st;background:var(--wit);border:1px solid var(--lijn);border-radius:16px;padding:20px 20px 18px;margin:0;line-height:1.5}
 .stappen-licht li::before{content:counter(st);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--geel,#F2B705);color:var(--nacht);font-weight:800;margin-bottom:12px}
 .tekst .werk-grid{margin:18px 0 6px}
+.werk-uit{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:36px;align-items:center;margin-top:10px}
+.werk-uit img{width:100%;height:auto;border-radius:18px;display:block}
+.werk-label{font-size:14px;font-weight:600;color:var(--zacht);margin:0 0 6px}
+.werk-tekst h3{font-family:var(--display);font-size:30px;margin:0 0 10px;color:var(--nacht)}
+.werk-punten{list-style:none;padding:0;margin:16px 0 0}
+.werk-punten li{position:relative;padding:8px 0 8px 28px;border-top:1px solid var(--lijn)}
+.werk-punten li::before{content:"";position:absolute;left:4px;top:15px;width:12px;height:7px;border-left:2px solid var(--blauw);border-bottom:2px solid var(--blauw);transform:rotate(-45deg)}
+@media (max-width:820px){.werk-uit{grid-template-columns:1fr;gap:18px}}
