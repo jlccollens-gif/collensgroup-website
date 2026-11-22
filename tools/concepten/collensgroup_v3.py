@@ -11,66 +11,56 @@ UIT = os.path.join(ROOT, "src", "concept", "collensgroup-v3")
 LIVE = "../../"  # live site, voor artikelen en talen
 e = lambda s: html.escape(s, quote=True)
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-         '<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">')
+         '<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap" rel="stylesheet">')
 LOGO = ('<svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><rect width="30" height="30" rx="8" fill="#14213D"/>'
         '<rect x="13.5" y="4" width="3" height="5" rx="1" fill="#F2B705"/><rect x="13.5" y="12" width="3" height="5" rx="1" fill="#F2B705"/>'
         '<rect x="13.5" y="20" width="3" height="6" rx="1" fill="#F2B705"/></svg>')
 
-# ---------- illustraties (eigen lijnwerk, goud + navy) ----------
-G, N, P = "#d4a017", "#14213d", "#e9edf3"
-ILL = {
- "websites": f'<svg viewBox="0 0 200 120" fill="none" aria-hidden="true"><rect x="8" y="10" width="150" height="100" rx="8" fill="{P}"/><rect x="8" y="10" width="150" height="100" rx="8" stroke="{N}" stroke-width="1.5"/><path d="M8 26h150" stroke="{N}" stroke-width="1.5"/><circle cx="18" cy="18" r="2.2" fill="{N}"/><circle cx="26" cy="18" r="2.2" fill="{N}"/><rect x="20" y="36" width="70" height="8" rx="2" fill="{N}"/><rect x="20" y="50" width="50" height="5" rx="2" fill="#b9c2d0"/><rect x="20" y="64" width="34" height="11" rx="5.5" fill="{G}"/><rect x="100" y="36" width="46" height="40" rx="4" stroke="{N}" stroke-width="1.5"/><path d="M100 70l14-14 10 10 8-6 14 10" stroke="{G}" stroke-width="1.5"/><rect x="150" y="44" width="42" height="70" rx="7" fill="#fff" stroke="{N}" stroke-width="1.5"/><rect x="157" y="54" width="28" height="5" rx="2" fill="{N}"/><rect x="157" y="64" width="20" height="4" rx="2" fill="#b9c2d0"/><rect x="157" y="96" width="28" height="9" rx="4.5" fill="{G}"/></svg>',
- "webshops": f'<svg viewBox="0 0 200 120" fill="none" aria-hidden="true"><rect x="10" y="14" width="120" height="96" rx="8" fill="{P}" stroke="{N}" stroke-width="1.5"/><rect x="22" y="28" width="44" height="44" rx="5" fill="#fff" stroke="{N}" stroke-width="1.5"/><rect x="74" y="28" width="44" height="44" rx="5" fill="#fff" stroke="{N}" stroke-width="1.5"/><path d="M34 58c4-10 16-10 20 0" stroke="{G}" stroke-width="1.5"/><circle cx="96" cy="48" r="9" stroke="{G}" stroke-width="1.5"/><rect x="22" y="80" width="30" height="5" rx="2" fill="{N}"/><rect x="74" y="80" width="30" height="5" rx="2" fill="{N}"/><rect x="22" y="90" width="18" height="4" rx="2" fill="#b9c2d0"/><rect x="74" y="90" width="18" height="4" rx="2" fill="#b9c2d0"/><path d="M142 44h10l8 40h28l6-28h-38" stroke="{N}" stroke-width="1.5" stroke-linejoin="round"/><circle cx="164" cy="94" r="5" stroke="{N}" stroke-width="1.5"/><circle cx="184" cy="94" r="5" stroke="{N}" stroke-width="1.5"/><rect x="160" y="22" width="34" height="22" rx="4" fill="{G}"/><path d="M166 33h22" stroke="#fff" stroke-width="1.5"/></svg>',
- "apps": f'<svg viewBox="0 0 200 120" fill="none" aria-hidden="true"><rect x="40" y="4" width="62" height="112" rx="12" fill="#fff" stroke="{N}" stroke-width="1.5"/><rect x="62" y="10" width="18" height="4" rx="2" fill="{N}"/><rect x="50" y="22" width="42" height="30" rx="6" fill="{N}"/><circle cx="84" cy="34" r="5" fill="{G}"/><rect x="50" y="58" width="42" height="12" rx="4" fill="{P}"/><rect x="50" y="74" width="42" height="12" rx="4" fill="{P}"/><rect x="50" y="94" width="42" height="12" rx="6" fill="{G}"/><rect x="110" y="20" width="62" height="96" rx="12" fill="{P}" stroke="{N}" stroke-width="1.5"/><path d="M122 44h38M122 56h26M122 68h32" stroke="{N}" stroke-width="1.5" stroke-linecap="round"/><circle cx="141" cy="92" r="10" stroke="{G}" stroke-width="1.5"/><path d="M137 92l3 3 6-6" stroke="{G}" stroke-width="1.5"/></svg>',
- "games": f'<svg viewBox="0 0 200 120" fill="none" aria-hidden="true"><rect x="14" y="10" width="172" height="78" rx="10" fill="{N}"/><path d="M14 70c30-14 50 6 80-6s50-22 92-4v18a10 10 0 0 1-10 10H24a10 10 0 0 1-10-10z" fill="#24365e"/><path d="M40 62l18-24 14 16 10-10 22 18" stroke="{G}" stroke-width="1.5" fill="none"/><circle cx="150" cy="34" r="9" fill="{G}"/><rect x="62" y="94" width="76" height="22" rx="11" fill="#fff" stroke="{N}" stroke-width="1.5"/><path d="M80 105h10M85 100v10" stroke="{N}" stroke-width="1.5" stroke-linecap="round"/><circle cx="114" cy="102" r="2.4" fill="{G}"/><circle cx="121" cy="108" r="2.4" fill="{N}"/><rect x="26" y="20" width="40" height="8" rx="4" fill="#33477a"/><rect x="26" y="20" width="26" height="8" rx="4" fill="{G}"/></svg>',
- "ai": f'<svg viewBox="0 0 200 120" fill="none" aria-hidden="true"><path d="M50 60h34M116 60h34M100 44V22M100 76v22" stroke="{N}" stroke-width="1.5" stroke-dasharray="3 4"/><circle cx="100" cy="60" r="18" fill="{N}"/><path d="M92 60l5 5 11-11" stroke="{G}" stroke-width="2"/><rect x="14" y="44" width="36" height="32" rx="8" fill="#fff" stroke="{N}" stroke-width="1.5"/><path d="M22 56h20M22 64h12" stroke="{N}" stroke-width="1.5" stroke-linecap="round"/><rect x="150" y="44" width="36" height="32" rx="8" fill="{P}" stroke="{N}" stroke-width="1.5"/><circle cx="168" cy="60" r="6" stroke="{G}" stroke-width="1.5"/><rect x="82" y="2" width="36" height="20" rx="6" fill="{G}"/><rect x="82" y="98" width="36" height="20" rx="6" fill="#fff" stroke="{N}" stroke-width="1.5"/><path d="M90 108h20" stroke="{N}" stroke-width="1.5"/></svg>',
+# ---------- showcase-scènes: echte schermen in apparaatframes ----------
+IMG = "../../img/"
+SC = {
+ "ombre":  {"bg": "ombre", "br": ("beeld/ombre-d.jpg", "atelier-ombre.com"), "ph": ["beeld/ombre-m.jpg"],
+            "alt": "Atelier Ombre, kunstwebshop op desktop en telefoon"},
+ "suis":   {"bg": "zand", "br": ("beeld/suis-d.jpg", "suismuis.nl"), "ph": ["beeld/suis-m.jpg"],
+            "alt": "Suismuis Home, webshop op desktop en telefoon"},
+ "lubbyc": {"bg": "zee", "ph": [IMG + "lubbyc-kaart.jpg", IMG + "lubbyc-evenementen.jpg", IMG + "lubbyc-noodhulp.jpg"],
+            "alt": "LubbyC reisapp: kaart, evenementen en noodhulp"},
+ "games":  {"bg": "groen", "ph": [IMG + "koffer-spel.jpg", IMG + "eiland-weg.jpg"],
+            "alt": "Koffer Vol! en Eiland Express op de telefoon"},
+ "koffer": {"bg": "groen", "ph": [IMG + "koffer-spel.jpg", IMG + "koffer-gewonnen.jpg"],
+            "alt": "Koffer Vol!: inpakken in Kyoto en level gehaald"},
+ "eiland": {"bg": "lucht", "ph": [IMG + "eiland-weg.jpg", IMG + "eiland-rood.jpg"],
+            "alt": "Eiland Express: rijden over het eiland"},
+ "hero":   {"bg": "hero", "br": ("beeld/ombre-d.jpg", "atelier-ombre.com"), "ph": [IMG + "lubbyc-evenementen.jpg"],
+            "alt": "Een website en een app van Collens Group: Atelier Ombre en LubbyC"},
+ "ai":     {"bg": "nacht", "chat": "beeld/chat.jpg", "alt": "AI-adviseur op de website van Collens Group"},
+ "manu":   {"bg": "nacht", "film": IMG + "manu-lantaarnfeest.jpg", "alt": "Manu en Khanun: het lantaarnfeest"},
 }
+def scene(key, chips=(), cls="", eager=False):
+    c = SC[key]; lz = "" if eager else ' loading="lazy"'; s = ""
+    if "br" in c:
+        s += (f'<div class="sc-br"><div class="bk"><i></i><i></i><i></i><span>{e(c["br"][1])}</span></div>'
+              f'<img src="{c["br"][0]}" alt="{e(c["alt"])}"{lz}></div>')
+        s += f'<div class="sc-ph sc-p1"><img src="{c["ph"][0]}" alt=""{lz}></div>'
+    elif "chat" in c:
+        s += f'<div class="sc-chat"><img src="{c["chat"]}" alt="{e(c["alt"])}"{lz}></div>'
+    elif "film" in c:
+        s += f'<div class="sc-film"><img src="{c["film"]}" alt="{e(c["alt"])}"{lz}></div>'
+    else:
+        n = len(c["ph"])
+        for i, src in enumerate(c["ph"]):
+            alt = e(c["alt"]) if i == 0 else ""
+            s += f'<div class="sc-ph sc-n{n} sc-i{i+1}"><img src="{src}" alt="{alt}"{lz}></div>'
+    for i, (txt, sub, kleur) in enumerate(chips):
+        s += f'<div class="chip ch{i+1}"><i class="{kleur}"></i><span>{e(txt)}<small>{e(sub)}</small></span></div>'
+    return f'<div class="scene bg-{c["bg"]} {cls}">{s}</div>'
 
-# hero: de site die zichzelf tekent en vult
-def hero_svg():
-    d = 0.15
-    def l(tag, delay):
-        return tag.replace("/>", f' class="l" pathLength="1" style="animation-delay:{delay:.2f}s"/>', 1)
-    def v(tag, delay):
-        return tag.replace("/>", f' class="v" style="animation-delay:{delay:.2f}s"/>', 1)
-    s = []
-    # desktop
-    s.append(v('<rect x="20" y="40" width="470" height="320" rx="16" fill="#f5f6f8"/>', 1.25))
-    s.append(l('<rect x="20" y="40" width="470" height="320" rx="16"/>', d))
-    s.append(l('<path d="M20 74h470"/>', d + .25))
-    for i, cx in enumerate((40, 54, 68)):
-        s.append(v(f'<circle cx="{cx}" cy="57" r="4" fill="#cdd4df"/>', 1.3 + i * .05))
-    s.append(v('<rect x="92" y="50" width="180" height="14" rx="7" fill="#e6e9ef"/>', 1.4))
-    s.append(v('<rect x="40" y="94" width="430" height="150" rx="12" fill="#14213d"/>', 1.5))
-    s.append(l('<rect x="40" y="94" width="430" height="150" rx="12"/>', d + .4))
-    s.append(v('<rect x="66" y="124" width="210" height="18" rx="4" fill="#fff"/>', 1.75))
-    s.append(v('<rect x="66" y="150" width="160" height="18" rx="4" fill="#fff"/>', 1.85))
-    s.append(v('<rect x="66" y="180" width="190" height="8" rx="4" fill="#5d6c8c"/>', 1.95))
-    s.append(v('<rect x="66" y="204" width="96" height="24" rx="12" fill="#d4a017"/>', 2.1))
-    s.append(v('<path d="M330 214l40-54 30 32 22-20 34 42z" fill="#24365e"/>', 2.0))
-    s.append(v('<circle cx="420" cy="134" r="14" fill="#d4a017"/>', 2.15))
-    for i, x in enumerate((40, 186, 332)):
-        s.append(v(f'<rect x="{x}" y="262" width="138" height="78" rx="10" fill="#fff"/>', 2.2 + i * .1))
-        s.append(l(f'<rect x="{x}" y="262" width="138" height="78" rx="10"/>', d + .6 + i * .12))
-        s.append(v(f'<rect x="{x+16}" y="282" width="70" height="8" rx="4" fill="#14213d"/>', 2.35 + i * .1))
-        s.append(v(f'<rect x="{x+16}" y="298" width="96" height="6" rx="3" fill="#c3cad6"/>', 2.4 + i * .1))
-        s.append(v(f'<rect x="{x+16}" y="310" width="60" height="6" rx="3" fill="#c3cad6"/>', 2.45 + i * .1))
-    # telefoon
-    s.append(v('<rect x="452" y="150" width="150" height="290" rx="24" fill="#fff"/>', 1.6))
-    s.append(l('<rect x="452" y="150" width="150" height="290" rx="24"/>', d + .3))
-    s.append(v('<rect x="504" y="162" width="46" height="8" rx="4" fill="#14213d"/>', 1.7))
-    s.append(v('<rect x="466" y="184" width="122" height="120" rx="14" fill="#14213d"/>', 1.9))
-    s.append(v('<rect x="480" y="206" width="78" height="10" rx="3" fill="#fff"/>', 2.05))
-    s.append(v('<rect x="480" y="222" width="58" height="10" rx="3" fill="#fff"/>', 2.1))
-    s.append(v('<rect x="480" y="270" width="56" height="18" rx="9" fill="#d4a017"/>', 2.25))
-    for i, y in enumerate((316, 350)):
-        s.append(v(f'<rect x="466" y="{y}" width="122" height="26" rx="8" fill="#eef1f5"/>', 2.35 + i * .1))
-    s.append(v('<rect x="466" y="392" width="122" height="30" rx="15" fill="#d4a017"/>', 2.55))
-    # live-label
-    s.append(v('<rect x="36" y="378" width="150" height="40" rx="20" fill="#0b1322" stroke="#d4a017"/>', 2.8))
-    s.append(v('<circle cx="58" cy="398" r="5" fill="#4ade80"/>', 2.9))
-    s.append(v('<text x="72" y="403" font-family="Geist,sans-serif" font-size="14" fill="#fff">Live binnen 48 u</text>', 2.9))
-    return '<svg class="bouw" viewBox="0 0 620 460" fill="none" role="img" aria-label="Een website en app die zichzelf opbouwen: van lijntekening naar afgewerkt ontwerp">' + "".join(s) + "</svg>"
+DSCENE = {"websites": ("ombre", [("Snel en mobiel", "Core Web Vitals in orde", "gr")]),
+          "webshops": ("suis", [("Bestelling ontvangen", "iDEAL · verzending ingesteld", "go")]),
+          "apps": ("lubbyc", [("iPhone en Android", "één app, twee stores", "gr")]),
+          "games": ("games", [("Level 12 gehaald", "scorebord en sterren", "go")]),
+          "ai": ("ai", [("Vraag beantwoord", "uit jouw eigen teksten", "gr"), ("Twijfelgeval", "doorgestuurd naar jou", "go")])}
+DTHUMB = {"websites": "beeld/ombre-d.jpg", "webshops": "beeld/suis-d.jpg", "apps": IMG + "lubbyc-kaart.jpg", "games": IMG + "koffer-spel.jpg", "ai": "beeld/chat.jpg"}
 
 # ---------- gegevens (van de live site) ----------
 DIENSTEN = [
@@ -161,7 +151,7 @@ eur = lambda p: "€" + f"{p:,}".replace(",", ".")
 
 # ---------- onderdelen ----------
 def header(actief, dark=False):
-    paneel = "".join(f'<a href="{d["slug"]}.html">{ILL[d["slug"]]}<div><b>{e(d["naam"])}</b><span>{e(d["kort"])} · vanaf {eur(d["vanaf"])}</span></div></a>' for d in DIENSTEN)
+    paneel = "".join(f'<a href="{d["slug"]}.html"><img class="th" src="{DTHUMB[d["slug"]]}" alt="" loading="lazy"><div><b>{e(d["naam"])}</b><span>{e(d["kort"])} · vanaf {eur(d["vanaf"])}</span></div></a>' for d in DIENSTEN)
     def m(href, naam):
         return f'<a href="{href}"{" aria-current=\"page\"" if actief == href else ""}>{naam}</a>'
     return (f'<div class="balk"><b>Verbeterconcept</b> voor collensgroup.com · alle pagina\'s klikbaar · niet live</div>'
@@ -233,7 +223,7 @@ WERK = [("LubbyC", "Reisapp · binnenkort in Google Play", "Reizigers in de buur
         ("Koffer Vol!", "Puzzelgame", "Inpakpuzzel met honderd levels in tien landen.", "koffer-spel.jpg", LIVE + "app-koffer-vol"),
         ("Eiland Express", "3D-rijgame · in ontwikkeling", "Met een songthaew over een tropisch eiland.", "eiland-weg.jpg", LIVE + "app-eiland-express"),
         ("Manu en Khanun", "Animatieserie · in productie", "Een Nederlandse jongen en een babyolifant in Noord-Thailand.", "manu-personages.jpg", LIVE + "app-manu-en-khanun")]
-def werkkaarten(items, cls="werk"):
+def _oud_werkkaarten(items, cls="werk"):
     return f'<div class="{cls}">' + "".join(f'<a class="wk" href="{h}"><img src="../../img/{img}" alt="{e(n)}: {e(p)}" loading="lazy"><div><small>{e(s)}</small><b>{e(n)}</b><p>{e(p)}</p></div></a>' for n, s, p, img, h in items) + "</div>"
 
 FORM = ('<form class="form" onsubmit="event.preventDefault();this.querySelector(\'.onder small\').textContent=\'Dit is het concept. Op de echte site gaat je aanvraag nu naar ons en hoor je binnen 48 uur van ons.\'">'
@@ -262,8 +252,8 @@ document.querySelectorAll(".chips button").forEach(function(x){x.setAttribute("a
 # ---------- pagina's ----------
 def home():
     diensten = "".join(
-        f'<a class="dk{" breed" if i < 2 else ""}" href="{d["slug"]}.html"><div class="ill">{ILL[d["slug"]]}</div><h3>{e(d["naam"])}</h3><p>{e(d["kort"])}</p>'
-        f'<div class="pr"><span>vanaf</span><b>{eur(d["vanaf"])}</b></div></a>' for i, d in enumerate(DIENSTEN))
+        f'<a class="dk{" breed" if i < 2 else ""}" href="{d["slug"]}.html">{scene(DSCENE[d["slug"]][0], DSCENE[d["slug"]][1], "klein")}<div class="dk-t"><h3>{e(d["naam"])}</h3><p>{e(d["kort"])}</p>'
+        f'<div class="pr"><span>vanaf</span><b>{eur(d["vanaf"])}</b></div></div></a>' for i, d in enumerate(DIENSTEN))
     alle = {"naam": "Alles op een rij", "max": 25000, "markt": [
         ("Website (markt)", "markt", 500, 2000), ("Website bij ons", "wij", 495, 995),
         ("Webshop, freelancer (markt)", "markt", 2000, 8000), ("Webshop bij ons", "wij", 1950, 1950),
@@ -272,14 +262,14 @@ def home():
         "bron": ("Trustoo (website), Searchlab (webshop, app, AI-agent), 2026", "https://searchlab.nl/kosten/wat-kost-een-app-laten-maken")}
     body = f'''
 <section class="hero"><div class="wrap"><div>
- <h1>Jouw idee.<br><em>Razendsnel</em> live.</h1>
+ <h1>Jouw idee.<br>Razendsnel live.</h1>
  <p class="lead">Websites, webshops, apps, games en AI, persoonlijk ontworpen voor jouw bedrijf. Binnen 48 uur zie je je eigen concept. Pas als je het goed vindt, maken we een vaste prijs.</p>
  <div class="rij"><a class="knop goud" href="contact.html">Vraag je gratis concept aan</a><a class="knop licht" href="werk.html">Bekijk ons werk</a></div>
  <div class="feit"><div><b>48 uur</b>tot je eigen concept</div><div><b>€495</b>websites vanaf, eindprijs</div><div><b>7 talen</b>wereldwijd online</div></div>
-</div><div>{hero_svg()}</div></div></section>
+</div><div class="hero-sc">{scene("hero", [("Nieuwe aanvraag", "vandaag binnen", "go"), ("Concept klaar", "binnen 48 uur", "gr"), ("Live", "op je eigen domein", "gr")], "groot", True)}</div></div></section>
 
 <section><div class="wrap probeer">
- <div><p class="oog">Probeer het zelf</p><h2 style="font-size:clamp(40px,4.8vw,62px)">Zie hoe snel een site van jou wordt.</h2>
+ <div><p class="oog">Probeer het zelf</p><h2 style="font-size:clamp(32px,3.6vw,48px)">Zie hoe snel een site van jou wordt.</h2>
   <p class="zacht" style="margin:20px 0 28px;font-size:18px;max-width:40ch">Typ je bedrijfsnaam en kies je vak. Een echt concept gaat veel verder: jouw diensten, kleuren, foto's en de manier waarop jouw klanten kopen.</p>
   <div class="veld"><input id="naam" value="Bakkerij De Vries" maxlength="30" autocomplete="organization" aria-label="Bedrijfsnaam"></div>
   <div class="chips" role="group" aria-label="Vak"><button type="button" data-v="bakker" aria-pressed="true">Horeca</button><button type="button" data-v="bouw" aria-pressed="false">Bouw</button><button type="button" data-v="zorg" aria-pressed="false">Salon of praktijk</button><button type="button" data-v="winkel" aria-pressed="false">Winkel</button><button type="button" data-v="advies" aria-pressed="false">Advies</button></div>
@@ -298,12 +288,12 @@ def home():
 <section class="dark"><div class="wrap">
  <div class="kop2"><div><p class="oog">Eerlijk vergeleken</p><h2>Wat je bij ons betaalt, naast de markt.</h2></div><p class="zacht">Marktprijzen uit onafhankelijke kostengidsen, onze prijzen als vaste eindprijs. Geen btw erbij, geen verrassingen achteraf.</p></div>
  {grafiek(alle, True)}
- <div style="margin-top:96px"><p class="oog">Werkwijze</p><h2 style="font-size:clamp(40px,5vw,64px);max-width:14ch;margin-bottom:64px">Je ziet het eerst. Je beslist daarna.</h2>{stappen()}</div>
+ <div style="margin-top:96px"><p class="oog">Werkwijze</p><h2 style="font-size:clamp(32px,3.6vw,48px);max-width:14ch;margin-bottom:64px">Je ziet het eerst. Je beslist daarna.</h2>{stappen()}</div>
 </div></section>
 
 <section><div class="wrap">
  <div class="kop2"><div><p class="oog">Eigen werk</p><h2>Wat we voor onszelf maken.</h2></div><p class="zacht">Echte schermen uit onze eigen apps en games. Zo testen we elke werkwijze eerst op onszelf. <a href="werk.html">Bekijk al ons werk →</a></p></div>
- {werkkaarten(WERK[:3])}
+ {werkmini()}
 </div></section>
 
 <section style="padding-top:0"><div class="wrap">
@@ -319,11 +309,11 @@ def dienst(d):
     body = f'''
 <div class="pkop"><div class="wrap"><div><p class="kruimel"><a href="index.html">Home</a> / Diensten / {e(d["naam"])}</p><h1>{e(d["kop"])}</h1><p>{e(d["lead"])}</p>
  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:32px"><a class="knop" href="contact.html">Vraag je gratis concept aan</a><a class="knop licht" href="prijzen.html">Alle prijzen</a></div></div>
- <div class="ill">{ILL[d["slug"]]}</div></div></div>
+ {scene(DSCENE[d["slug"]][0], DSCENE[d["slug"]][1], "kop", True)}</div></div>
 <section><div class="wrap"><div class="kop2"><div><p class="oog">Pakketten</p><h2>Vaste prijs, vooraf.</h2></div><p class="zacht">Bij "vanaf" hoort het pakket zoals beschreven. Wijkt jouw project af, dan krijg je eerst een vaste prijs op maat. Alle prijzen zijn eindprijzen: er komt geen btw bij.</p></div><div class="pakketten">{pk}</div></div></section>
 <section style="padding-top:0"><div class="wrap">{grafiek(d)}</div></section>
-<section class="dark"><div class="wrap"><p class="oog">Zo werken we</p><h2 style="font-size:clamp(40px,5vw,64px);max-width:14ch;margin-bottom:64px">Je ziet het eerst. Je beslist daarna.</h2>{stappen()}</div></section>
-<section><div class="wrap twee"><div><p class="oog">Veelgestelde vragen</p><h2 style="font-size:clamp(38px,4.4vw,56px)">Wat ondernemers ons vragen.</h2></div><div>{faq(d["faq"])}</div></div></section>
+<section class="dark"><div class="wrap"><p class="oog">Zo werken we</p><h2 style="font-size:clamp(32px,3.6vw,48px);max-width:14ch;margin-bottom:64px">Je ziet het eerst. Je beslist daarna.</h2>{stappen()}</div></section>
+<section><div class="wrap twee"><div><p class="oog">Veelgestelde vragen</p><h2 style="font-size:clamp(30px,3.4vw,44px)">Wat ondernemers ons vragen.</h2></div><div>{faq(d["faq"])}</div></div></section>
 <section style="padding-top:0"><div class="wrap"><div class="kop2"><div><p class="oog">Lees verder</p><h2>Gidsen over {e(d["naam"].lower())}.</h2></div><p class="zacht"></p></div>{artikelkaarten(d["artikelen"])}</div></section>
 <section style="padding-top:0"><div class="wrap"><div class="kop2"><div><p class="oog">Meer diensten</p><h2>Ook bij ons.</h2></div><p class="zacht"></p></div><div class="artikelen vier">{andere}</div></div></section>
 {band()}'''
@@ -340,30 +330,78 @@ def prijzen():
                 '<div class="regel"><b>Groei &amp; Support</b><span class="s">Alles uit Basis, tot 4 uur aanpassingen, voorrang bij storingen</span><span class="t">per maand</span><span class="p">€265,50</span></div>'
                 '<div class="regel"><b>Beheer AI</b><span class="s">Monitoring en kleine aanpassingen</span><span class="t">per maand</span><span class="p">€49</span></div>'
                 '<div class="regel"><b>Ontwikkeling per uur</b><span class="s">Uitbreidingen en losse opdrachten</span><span class="t">per uur</span><span class="p">€67,50</span></div></div>')
-    body = f'''<div class="pkop"><div class="wrap"><div><p class="kruimel"><a href="index.html">Home</a> / Prijzen</p><h1>Alle prijzen op één plek.</h1><p>Vaste eindprijzen, geen btw erbij. Je krijgt eerst een gratis concept en daarna een vaste prijs, nooit een open rekening.</p></div><div class="ill">{ILL["websites"]}</div></div></div>
+    body = f'''<div class="pkop"><div class="wrap"><div><p class="kruimel"><a href="index.html">Home</a> / Prijzen</p><h1>Alle prijzen op één plek.</h1><p>Vaste eindprijzen, geen btw erbij. Je krijgt eerst een gratis concept en daarna een vaste prijs, nooit een open rekening.</p></div>{scene("suis", [("Vaste eindprijs", "geen btw erbij", "go")], "kop", True)}</div></div>
 <section><div class="wrap">{groepen}<p class="zacht" style="margin-top:40px;font-size:15px">Externe kosten, zoals een domeinnaam (meestal €10 tot €25 per jaar), platformkosten of store-accounts (Apple $99 per jaar, Google $25 eenmalig), staan vooraf in de offerte. Betalen in drie delen: 40% bij akkoord, 40% bij een goedgekeurde testversie, 20% bij oplevering.</p></div></section>{band()}'''
     pagina("prijzen.html", "Prijzen website, webshop, app, game en AI | Collens Group", "Alle prijzen van Collens Group op één plek: vaste eindprijzen, geen btw erbij.", body, "prijzen.html")
 
+CASES = [
+ {"key": "ombre", "naam": "Atelier Ombre", "soort": "Kunstwebshop", "voor": "Eigen merk", "status": "Concept", "platform": ["Website", "Webshop", "Mobiel"],
+  "tekst": "Een kunstboutique met twee gezichten: een premium galerie voor abstracte schilderijen en beelden, en een betaalbare afdeling voor vondsten. Donker, rustig en volledig gericht op het werk zelf.",
+  "punten": ["Galerie en betaalbare afdeling in één shop", "Kunstenaarspagina's en certificaat van echtheid", "Verlanglijst, zoeken en winkelmand", "Ontworpen voor desktop én telefoon"],
+  "link": ("../atelier-ombre/", "Bekijk het concept"),
+  "chips": [("Galerie", "premium collectie", "go")]},
+ {"key": "suis", "naam": "Suismuis Home", "soort": "Webshop woonaccessoires", "voor": "Klant", "status": "Concept", "platform": ["Webshop", "Mobiel"],
+  "tekst": "Een complete webshop voor woonaccessoires, gebouwd naar het eigen ontwerp van de klant: organic luxury, met rust, warmte en elegantie als uitgangspunt.",
+  "punten": ["Producten per categorie, met filters", "Winkelmand en afrekenen", "Beheer voor producten en voorraad", "Journal en klantenservicepagina's"],
+  "link": ("../suismuis/", "Bekijk het concept"),
+  "chips": [("Bestelling ontvangen", "iDEAL en verzending", "gr")]},
+ {"key": "lubbyc", "naam": "LubbyC", "soort": "Reisapp", "voor": "Eigen app", "status": "Binnenkort in Google Play", "platform": ["Android", "iPhone", "12 talen"],
+  "tekst": "Reizigers die op dezelfde plek zijn en hetzelfde willen doen, vinden elkaar via de kaart. Je ziet wat mensen in de buurt van plan zijn en sluit aan, of maakt zelf een plan.",
+  "punten": ["Plannen in de buurt op de kaart", "Groepschat zodra je bent geaccepteerd", "Feesten en evenementen in het gebied", "Noodhulp met één tik"],
+  "link": (LIVE + "app-lubbyc", "Over LubbyC"),
+  "chips": [("Ik ga", "aangemeld voor een plan", "gr")]},
+ {"key": "koffer", "naam": "Koffer Vol!", "soort": "Puzzelgame", "voor": "Eigen game", "status": "Binnenkort in Google Play", "platform": ["Android", "iPhone", "12 talen"],
+  "tekst": "Een vrolijke inpakpuzzel: pak voor elke reis precies de juiste spullen in en laat alles passen. Honderd levels, verspreid over tien landen.",
+  "punten": ["100 levels in 10 landen", "Sterren, munten en een ansichtkaart per bestemming", "Uitleg bij foute keuzes", "Avatars vrijspelen in de winkel"],
+  "link": (LIVE + "app-koffer-vol", "Over Koffer Vol!"),
+  "chips": [("3 sterren", "level 12, Kyoto", "go")]},
+ {"key": "eiland", "naam": "Eiland Express", "soort": "3D-rijgame", "voor": "Eigen game", "status": "In ontwikkeling", "platform": ["Android", "iPhone"],
+  "tekst": "Rij je songthaew, de open taxi-pick-up uit Thailand, over kronkelende wegen langs het strand en door de heuvels, en breng passagiers heelhuids naar hun halte.",
+  "punten": ["3D-rijden over een tropisch eiland", "Passagiers ophalen en afzetten", "Munten verdienen", "Eigen kleur voor je songthaew"],
+  "link": (LIVE + "app-eiland-express", "Over Eiland Express"),
+  "chips": []},
+ {"key": "manu", "naam": "Manu en Khanun", "soort": "Animatieserie voor kinderen", "voor": "Eigen productie", "status": "In productie", "platform": ["Video", "Nederlands"],
+  "tekst": "Manu verhuist naar een dorp tussen de rijstvelden in Noord-Thailand en ontmoet in het bamboebos Khanun, een babyolifant uit het klooster. Gemaakt met AI-beeld, -stem en -muziek.",
+  "punten": ["Personages en wereld ontworpen", "AI-animatie, -stem en -muziek", "Over vriendschap en een nieuwe cultuur"],
+  "link": (LIVE + "app-manu-en-khanun", "Over de serie"),
+  "chips": []},
+]
+def case(c, i):
+    tags = "".join(f"<li>{e(t)}</li>" for t in c["platform"])
+    punten = "".join(f"<li>{e(x)}</li>" for x in c["punten"])
+    return (f'<article class="case{" om" if i % 2 else ""}"><div class="case-t">'
+            f'<dl class="meta"><div><dt>Voor</dt><dd>{e(c["voor"])}</dd></div><div><dt>Status</dt><dd>{e(c["status"])}</dd></div></dl>'
+            f'<h2>{e(c["naam"])}</h2><p class="soort">{e(c["soort"])}</p><p class="ct">{e(c["tekst"])}</p>'
+            f'<h3>Wat we bouwden</h3><ul class="punten">{punten}</ul><ul class="tags">{tags}</ul>'
+            f'<a class="knop licht" href="{c["link"][0]}">{e(c["link"][1])}</a></div>'
+            f'{scene(c["key"], c["chips"], "case-sc")}</article>')
+
+def werkmini():
+    return '<div class="werk3">' + "".join(
+        f'<a class="wm" href="werk.html">{scene(c["key"], [], "klein")}<div><b>{e(c["naam"])}</b><span>{e(c["soort"])}</span></div></a>'
+        for c in (CASES[0], CASES[2], CASES[3])) + "</div>"
+
 def werk():
-    body = f'''<div class="pkop"><div class="wrap"><div><p class="kruimel"><a href="index.html">Home</a> / Werk</p><h1>Eigen werk.</h1><p>Wat we voor onszelf maken, maken we ook voor jou. Echte schermen uit onze eigen apps, games en series, en een complete webshop als voorbeeld.</p></div><div class="ill">{ILL["apps"]}</div></div></div>
-<section><div class="wrap">{werkkaarten(WERK, "werk vier")}</div></section>
-<section style="padding-top:0"><div class="wrap"><div class="kop2"><div><p class="oog">Voorbeeld webshop</p><h2>Suismuis Home.</h2></div><p class="zacht">Een complete webshop voor woonaccessoires met winkelmand, afrekenen en beheer, gebouwd naar het eigen ontwerp van de klant. Conceptversie, nog niet gelanceerd.</p></div>
-<a class="wk" href="../suismuis/"><img src="../../img/voorbeeld-webshop.jpg" alt="Webshopconcept Suismuis Home" loading="lazy" style="height:520px"><div><small>Webshop · concept</small><b>Suismuis Home</b><p>Organic luxury: rust, warmte en elegantie, met producten per categorie.</p></div></a></div></section>{band()}'''
-    pagina("werk.html", "Eigen werk: apps, games en webshop | Collens Group", "Echte schermen uit de eigen apps en games van Collens Group.", body, "werk.html")
+    inhoud = "".join(f'<li><a href="#{c["key"]}">{e(c["naam"])}</a><span>{e(c["soort"])}</span></li>' for c in CASES)
+    rijen = "".join(case(c, i).replace('<article class="case', f'<article id="{c["key"]}" class="case', 1) for i, c in enumerate(CASES))
+    body = f'''<div class="pkop werkkop"><div class="wrap"><div><p class="kruimel"><a href="index.html">Home</a> / Werk</p><h1>Ons werk.</h1><p>Websites, webshops, apps, games en een animatieserie. Wat we voor onszelf en onze klanten maken, met echte schermen en eerlijk over de status.</p></div>
+<ol class="inhoud">{inhoud}</ol></div></div>
+<section class="cases"><div class="wrap">{rijen}</div></section>{band()}'''
+    pagina("werk.html", "Ons werk: websites, webshops, apps en games | Collens Group", "Projecten van Collens Group met echte schermen: Atelier Ombre, Suismuis Home, LubbyC, Koffer Vol!, Eiland Express en Manu en Khanun.", body, "werk.html")
 
 def artikelen():
     cats = {}
     for s, (c, t, p) in ARTIKELEN.items(): cats.setdefault(c, []).append(s)
     volgorde = ["Kosten", "Keuzehulp", "Per branche", "Diensten", "Eigen werk", "English"]
     blok = "".join(f'<h2 class="groep">{e(c)}</h2>{artikelkaarten(cats[c])}' for c in volgorde if c in cats)
-    body = f'''<div class="pkop"><div class="wrap"><div><p class="kruimel"><a href="index.html">Home</a> / Artikelen</p><h1>Artikelen en gidsen.</h1><p>Eerlijke antwoorden op wat ondernemers ons het vaakst vragen: wat het kost, wat je kiest en wat je vooraf afspreekt. Met bronnen.</p></div><div class="ill">{ILL["ai"]}</div></div></div>
+    body = f'''<div class="pkop"><div class="wrap"><div><p class="kruimel"><a href="index.html">Home</a> / Artikelen</p><h1>Artikelen en gidsen.</h1><p>Eerlijke antwoorden op wat ondernemers ons het vaakst vragen: wat het kost, wat je kiest en wat je vooraf afspreekt. Met bronnen.</p></div>{scene("ombre", [("Met bronnen", "kosten en keuzehulp", "go")], "kop", True)}</div></div>
 <section style="padding-top:40px"><div class="wrap">{blok}</div></section>{band()}'''
     pagina("artikelen.html", "Artikelen en gidsen | Collens Group", "Gidsen over wat een website, webshop, app of chatbot kost en wat je kiest.", body, "artikelen.html")
 
 def over():
-    body = f'''<div class="pkop"><div class="wrap"><div><p class="kruimel"><a href="index.html">Home</a> / Over ons</p><h1>Je spreekt de maker.</h1><p>Collens Group is een klein, onafhankelijk digitaal bedrijf. We maken websites, webshops, apps, games en AI, persoonlijk ontworpen en met een vaste prijs.</p></div><div class="ill">{ILL["websites"]}</div></div></div>
-<section><div class="wrap twee"><div><p class="oog">Wie zit erachter</p><h2 style="font-size:clamp(38px,4.4vw,56px)">Jeffrey Collens, oprichter.</h2></div><div class="tekst"><p>Jeffrey bouwt met moderne AI-tools en controleert elk concept, elke tekst en elke oplevering zelf voordat het naar een klant gaat. Er zit geen accountmanager tussen: je mailt rechtstreeks met de maker.</p><p>Wat we voor onszelf maken, maken we ook voor jou. Daarom bouwen we eigen apps en games, zoals LubbyC, Koffer Vol! en Eiland Express. Zo testen we elke werkwijze eerst op onszelf.</p></div></div></section>
-<section class="dark"><div class="wrap twee"><div><p class="oog">Waar we werken</p><h2 style="font-size:clamp(38px,4.4vw,56px)">Overal.</h2></div><div class="tekst"><p class="zacht">Volledig online, per mail en video, met ondernemers in Nederland, België en ver daarbuiten, bijvoorbeeld in het Verenigd Koninkrijk, Ierland, de Verenigde Staten, Canada, Australië en Nieuw-Zeeland. Je werkt met ons in het Nederlands of het Engels, en de prijzen zijn overal dezelfde eindprijzen in euro.</p></div></div></section>
+    body = f'''<div class="pkop"><div class="wrap"><div><p class="kruimel"><a href="index.html">Home</a> / Over ons</p><h1>Je spreekt de maker.</h1><p>Collens Group is een klein, onafhankelijk digitaal bedrijf. We maken websites, webshops, apps, games en AI, persoonlijk ontworpen en met een vaste prijs.</p></div>{scene("manu", [("Eigen animatieserie", "gemaakt met AI-beeld en -stem", "go")], "kop", True)}</div></div>
+<section><div class="wrap twee"><div><p class="oog">Wie zit erachter</p><h2 style="font-size:clamp(30px,3.4vw,44px)">Jeffrey Collens, oprichter.</h2></div><div class="tekst"><p>Jeffrey bouwt met moderne AI-tools en controleert elk concept, elke tekst en elke oplevering zelf voordat het naar een klant gaat. Er zit geen accountmanager tussen: je mailt rechtstreeks met de maker.</p><p>Wat we voor onszelf maken, maken we ook voor jou. Daarom bouwen we eigen apps en games, zoals LubbyC, Koffer Vol! en Eiland Express. Zo testen we elke werkwijze eerst op onszelf.</p></div></div></section>
+<section class="dark"><div class="wrap twee"><div><p class="oog">Waar we werken</p><h2 style="font-size:clamp(30px,3.4vw,44px)">Overal.</h2></div><div class="tekst"><p class="zacht">Volledig online, per mail en video, met ondernemers in Nederland, België en ver daarbuiten, bijvoorbeeld in het Verenigd Koninkrijk, Ierland, de Verenigde Staten, Canada, Australië en Nieuw-Zeeland. Je werkt met ons in het Nederlands of het Engels, en de prijzen zijn overal dezelfde eindprijzen in euro.</p></div></div></section>
 <section><div class="wrap"><div class="kop2"><div><p class="oog">Zo werken we</p><h2>Onze afspraken met jou.</h2></div><p class="zacht"></p></div>
 <div class="regels"><div class="regel"><b>Vaste prijs vooraf</b><span class="s">Je weet wat je betaalt voordat we beginnen. Meerwerk alleen na jouw akkoord.</span><span class="t"></span><span class="p"></span></div>
 <div class="regel"><b>Eerst een gratis concept</b><span class="s">Binnen 48 uur zie je hoe het eruit kan zien, ontworpen voor jouw bedrijf, zonder verplichtingen.</span><span class="t"></span><span class="p"></span></div>
@@ -373,9 +411,9 @@ def over():
     pagina("over-ons.html", "Over Collens Group | Collens Group", "Collens Group: opgericht door Jeffrey Collens, online en wereldwijd, vaste prijzen.", body, "over-ons.html")
 
 def contact():
-    body = f'''<div class="pkop"><div class="wrap"><div><p class="kruimel"><a href="index.html">Home</a> / Contact</p><h1>Vraag je gratis concept aan.</h1><p>Vertel in een paar zinnen wie je bent en wat je wilt bereiken. Binnen 48 uur krijg je een reactie, en daarna een concept dat alleen bij jou past.</p></div><div class="ill">{ILL["webshops"]}</div></div></div>
+    body = f'''<div class="pkop"><div class="wrap"><div><p class="kruimel"><a href="index.html">Home</a> / Contact</p><h1>Vraag je gratis concept aan.</h1><p>Vertel in een paar zinnen wie je bent en wat je wilt bereiken. Binnen 48 uur krijg je een reactie, en daarna een concept dat alleen bij jou past.</p></div>{scene("ombre", [("Concept klaar", "binnen 48 uur", "go")], "kop", True)}</div></div>
 <section><div class="wrap">{FORM}
-<div class="twee" style="margin-top:96px"><div><p class="oog">Liever mailen?</p><h2 style="font-size:clamp(36px,4vw,52px)">info@collensgroup.com</h2><p class="zacht" style="margin-top:16px">Je krijgt binnen 48 uur antwoord, in het Nederlands of het Engels.</p></div>
+<div class="twee" style="margin-top:96px"><div><p class="oog">Liever mailen?</p><h2 style="font-size:clamp(28px,3vw,40px)">info@collensgroup.com</h2><p class="zacht" style="margin-top:16px">Je krijgt binnen 48 uur antwoord, in het Nederlands of het Engels.</p></div>
 <div>{faq([("Wat kost een concept?", "Niets. Het concept is gratis en zonder verplichtingen."), ("Hoe snel kunnen jullie beginnen?", "Na je akkoord op het concept en de vaste prijs, meestal direct."), ("Werken jullie ook voor bedrijven buiten Nederland?", "Ja. We werken volledig online met ondernemers wereldwijd, in het Nederlands of het Engels."), ("Hoe betaal ik?", "In drie delen: 40% bij akkoord, 40% bij een goedgekeurde testversie en 20% bij oplevering.")])}</div></div></div></section>'''
     pagina("contact.html", "Contact en gratis concept | Collens Group", "Vraag je gratis concept aan. Reactie binnen 48 uur.", body, "contact.html")
 
