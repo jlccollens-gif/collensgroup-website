@@ -664,7 +664,7 @@ def en_pages(pages):
 <section class="wit" aria-labelledby="o-kop"><div class="wrap">
 <div class="intro"><h2 id="o-kop">Our own projects</h2><p>We build for ourselves too: a travel app, two games and an animated series. <a href="en-projects.html">See our work</a>.</p></div></div></section>
 
-<section aria-labelledby="f-kop"><div class="wrap" style="max-width:820px">
+<section aria-labelledby="f-kop"><div class="wrap smal">
 <h2 id="f-kop">Frequently asked questions</h2>{faq_html(EN_FAQ)}</div></section>
 {contact_en()}''', crumbs=[("Home", "en.html")], extra_ld=[faq_ld(EN_FAQ), {"@type": "Service", "name": "Websites, apps, games and AI automation", "provider": {"@id": "#org"}, "areaServed": "Worldwide", "offers": en_offers}],
         lang="en", alt=("index.html", "en.html")))
@@ -918,7 +918,7 @@ def build():
 <tr><td><a href="app-laten-maken-kosten.html">App voor iPhone en Android</a><small>Basis, Standaard en Maatwerk</small></td><td>vanaf €3.150</td></tr>
 <tr><td><a href="game-laten-maken.html">Game</a><small>Merkgame, casual game, 2D met levels</small></td><td>vanaf €1.950</td></tr>
 <tr><td><a href="ai-automatisering.html">AI en automatisering</a><small>Automatisering, chatbot, assistent</small></td><td>vanaf €395</td></tr></table>
-<p style="margin-top:20px"><a class="knop" href="prijzen.html">Bekijk alle prijzen en pakketten</a> <a class="knop geel" href="pakketkiezer.html" style="margin-left:8px">Welk pakket past bij mij?</a></p></div></section>
+<p class="knoppen"><a class="knop geel" href="pakketkiezer.html">Welk pakket past bij mij?</a><a class="knop knop-rand" href="prijzen.html">Bekijk alle prijzen en pakketten</a></p></div></section>
 
 <section id="werkwijze" class="donker" aria-labelledby="stappen-kop"><div class="wrap">
 <div class="intro"><h2 id="stappen-kop">Zo werkt het</h2><p>Elke stap rond je af met een akkoord. Je ziet je website, app of game groeien voordat het live gaat.</p></div>
@@ -932,12 +932,12 @@ def build():
 <div class="intro"><h2 id="apps-kop">Eigen apps, games en series</h2><p>Wat we voor onszelf maken, maken we ook voor jou. Zo testen we onze werkwijze eerst op onszelf.</p></div>
 {app_rijen()}</div></section>
 
-<section aria-labelledby="past-kop"><div class="wrap" style="max-width:820px">
+<section aria-labelledby="past-kop"><div class="wrap">
 <h2 id="past-kop">Past Collens Group bij jou?</h2>
-<h3>Wel als je…</h3><ul><li>een vaste prijs vooraf wilt in plaats van uurtje-factuurtje;</li><li>snel live wilt: een one-page website in 3–5 dagen, een app-MVP in 3–5 weken;</li><li>eerst een gratis concept wilt zien voordat je iets betaalt.</li></ul>
-<h3>Kies liever iets anders als je…</h3><ul><li>een grote 3D-game of online multiplayer zoekt;</li><li>onbeperkt werk voor een vast bedrag verwacht;</li><li>alles op locatie wilt bespreken: wij werken volledig online.</li></ul>
+<div class="past"><div class="past-ja"><h3>Wel als je…</h3><ul><li>een vaste prijs vooraf wilt in plaats van uurtje-factuurtje;</li><li>snel live wilt: een one-page website in 3–5 dagen, een app-MVP in 3–5 weken;</li><li>eerst een gratis concept wilt zien voordat je iets betaalt.</li></ul></div>
+<div class="past-nee"><h3>Kies liever iets anders als je…</h3><ul><li>een grote 3D-game of online multiplayer zoekt;</li><li>onbeperkt werk voor een vast bedrag verwacht;</li><li>alles op locatie wilt bespreken: wij werken volledig online.</li></ul></div></div>
 </div></section>
-<section id="vragen" aria-labelledby="vragen-kop"><div class="wrap" style="max-width:820px">
+<section id="vragen" aria-labelledby="vragen-kop"><div class="wrap smal">
 <h2 id="vragen-kop">Veelgestelde vragen</h2>{faq_html(FAQ)}</div></section>
 {contact_section()}''', crumbs=[("Home", "index.html")], extra_ld=[SERVICE, faq_ld(FAQ)], alt=("index.html", "en.html")))
 

@@ -183,7 +183,7 @@ def taal_paginas(page, e, faq_html, faq_ld, contact_section, pages, icoon=lambda
 <ol class="stappen">{stappen}</ol></div></section>
 <section class="wit" aria-labelledby="o-kop"><div class="wrap">
 <div class="intro"><h2 id="o-kop">{e(T["o_kop"])}</h2><p>{e(T["o_tekst"])} <a href="en-projects.html">{e(T["o_link"])}</a>.</p></div></div></section>
-<section aria-labelledby="f-kop"><div class="wrap" style="max-width:820px">
+<section aria-labelledby="f-kop"><div class="wrap smal">
 <h2 id="f-kop">{e(T["f_kop"])}</h2>{faq_html(T["faq"])}</div></section>
 {contact_lang(contact_section, T, code)}'''
         pages.append(page(f"{code}.html", T["title"], T["desc"], body, crumbs=[("Home", f"{code}.html")],
