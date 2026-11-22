@@ -361,10 +361,10 @@ ol.stappen li[aria-current]{color:var(--espresso);border-bottom:1px solid var(--
 .m-mc b{display:block;width:15px;height:15px;border-radius:50%;background:#EB001B}.m-mc b+b{background:#F79E1B;margin-left:-6px;mix-blend-mode:multiply}
 .kaartvelden{display:grid;gap:4px}.kaartvelden .twee{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .cf{min-height:62px}
-.zeker{list-style:none;padding:0;margin:4px 0 0;display:grid;gap:12px}
-.zeker li{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--mokka);line-height:1.5}
-.zeker b{display:block;color:var(--espresso);font-weight:400}
-.zeker svg{width:22px;height:22px;flex:none;stroke:var(--espresso);fill:none;stroke-width:1.4;margin-top:2px}
+.bz{list-style:none;padding:0;margin:4px 0 0;display:grid;gap:12px}
+.bz li{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--mokka);line-height:1.5}
+.bz b{display:block;color:var(--espresso);font-weight:400}
+.bz svg{width:22px;height:22px;flex:none;stroke:var(--espresso);fill:none;stroke-width:1.4;margin-top:2px}
 .terug{background:none;border:0;border-bottom:1px solid var(--espresso);padding:0 0 2px;cursor:pointer;justify-self:start;font-family:inherit;color:var(--espresso)}
 .knop:disabled{opacity:.55;cursor:wait}
 .samenvatting .rij small{display:block;color:var(--mokka);font-size:13px}
@@ -387,3 +387,4 @@ ol.stappen li[aria-current]{color:var(--espresso);border-bottom:1px solid var(--
 .bh-bericht{background:var(--wit);border:1px solid var(--lijn);padding:16px 18px;margin-bottom:10px;font-size:15px}.bh-bericht.af{opacity:.55}.bh-bericht p{margin:8px 0}
 .leeg-bh{color:var(--mokka)}
 @media (max-width:900px){.bh-order summary{grid-template-columns:1fr 1fr}.bh-grid{grid-template-columns:1fr}#bh-kpi{grid-template-columns:1fr 1fr}}
+[hidden]{display:none!important}
