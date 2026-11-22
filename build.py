@@ -968,14 +968,19 @@ def build():
         ("Wat kost een app per jaar aan onderhoud?", "Dat hangt af van hoeveel er na de lancering nog verandert. Bij ons is onderhoud een vast maandbedrag. Onderhoud Basis kost €85,50 per maand, met monitoring, kritieke fixes en updates voor nieuwe iOS- en Android-versies. Wil je de app blijven verbeteren, dan kies je Groei & Support voor €265,50 per maand, met tot 4 uur aanpassingen en voorrang bij storingen. Daarnaast betaal je zelf het Apple Developer-account ($99 per jaar) en eventueel hosting. Onderhoud is niet verplicht."),
         ("Wat kost een MVP-app laten maken?", "Bij Collens Group begint een MVP (Basis-pakket, tot 5 schermen) bij €3.150 (geen btw erbij) en is hij klaar in 3–5 weken. Accounts, een database of betalingen vallen onder het Standaard-pakket vanaf €6.750."),
         ("Is een app voor iPhone én Android duurder?", "Bij aparte native apps vaak bijna het dubbele, omdat er dan twee apps los van elkaar worden gebouwd en onderhouden. Wij bouwen met React Native: één codebase die op iPhone én Android draait. Daardoor betaal je niet twee keer voor hetzelfde werk en zijn latere aanpassingen ook in één keer voor beide platforms klaar. Wel betaal je voor beide stores een eigen account."),
+        ("Wat kost een app per maand?", "Na de bouw zijn de vaste kosten vaak laag. Apple rekent $99 per jaar (ruim $8 per maand), Google eenmalig $25 en hosting is voor de meeste kleine apps gratis tot $25 per maand. Kies je ons onderhoud, dan komt daar €85,50 per maand bij voor Onderhoud Basis of €265,50 per maand voor Groei & Support. Onderhoud is niet verplicht."),
+        ("Kost het geld om een app in de App Store of Google Play te zetten?", "Ja, maar weinig. Voor de App Store heb je het Apple Developer Program nodig van $99 per jaar. Voor Google Play betaal je eenmalig $25. Het aanmelden en klaarzetten van je app in beide stores doen wij en zit in onze pakketten. Verkoop je digitale producten of abonnementen in de app, dan houden Apple en Google daar 15% of 30% commissie op in."),
+        ("Wat kost een game-app laten maken?", "Een eenvoudige game voor de browser of telefoon begint bij ons bij €1.950. Een uitgebreidere game met meerdere levels, eigen tekeningen en geluid kost meer, afhankelijk van de inhoud. Op de pagina game laten maken staan de pakketten en voorbeelden, waaronder ons eigen spel Eiland Express."),
+        ("Hoe vraag ik een offerte voor een app aan?", "Beschrijf in een paar zinnen wat de app moet doen en voor wie hij is, via het formulier onderaan deze pagina. Binnen 48 uur krijg je een paar korte vragen en daarna een gratis concept met een vaste prijs, uitgesplitst per onderdeel. Je zit nergens aan vast tot je akkoord geeft. Wil je eerst zelf een indicatie, gebruik dan de kostencalculator."),
     ]
     pages.append(page("app-laten-maken-kosten.html", "App laten maken kosten 2026: prijzen vanaf €3.150 | Collens Group",
         "Wat kost een app laten maken in 2026? Marktprijzen in Nederland, alle bijkomende kosten (Apple, Google, hosting, onderhoud) en onze vaste prijzen vanaf €3.150.",
         f'''<article class="tekst breed">
 <h1>Wat kost een app laten maken in 2026?</h1>
-<p class="lead2">Kort antwoord: bij Nederlandse bureaus en freelancers betaal je voor een eenvoudige app meestal €5.000 tot €25.000. Bij Collens Group begint een Basis-app bij €3.150 en een complete app met accounts en database bij €6.750. Alle prijzen zijn eindprijzen, er komt geen btw bij.</p>
+<p class="lead2">Kort antwoord: bij Nederlandse bureaus en freelancers betaal je voor een eenvoudige app meestal €5.000 tot €25.000. Bij Collens Group begint een Basis-app bij €3.150 en een complete app met accounts en database bij €6.750. Alle prijzen zijn eindprijzen, er komt geen btw bij. Hieronder vind je de kosten per functie, een rekenvoorbeeld, de totale kosten over 3 jaar en een checklist om offertes te vergelijken.</p>
 <p class="bijgewerkt">Bijgewerkt op @@BIJGEWERKT_NL@@ · Geschreven door Jeffrey Collens, oprichter van Collens Group. Opgesteld met hulp van AI-tools en door Jeffrey gecontroleerd.</p>
-<nav class="toc" aria-label="Inhoud"><a href="#markt">Marktprijzen</a> · <a href="#prijzen">Onze prijzen</a> · <a href="#bijkomend">Bijkomende kosten</a> · <a href="#prijsbepalers">Wat bepaalt de prijs</a> · <a href="#besparen">Besparen</a> · <a href="#faq">Vragen</a></nav>
+<p><a class="knop geel" href="kostencalculator.html">Bereken direct wat jouw app kost</a></p>
+<nav class="toc" aria-label="Inhoud"><a href="#markt">Marktprijzen</a> · <a href="#prijzen">Onze prijzen</a> · <a href="#bijkomend">Bijkomende kosten</a> · <a href="#prijsbepalers">Wat bepaalt de prijs</a> · <a href="#functies">Kosten per functie</a> · <a href="#rekenvoorbeeld">Rekenvoorbeeld</a> · <a href="#drie-jaar">Kosten over 3 jaar</a> · <a href="#iphone-android">iPhone of Android</a> · <a href="#bedrijfsapp">Bedrijfsapp</a> · <a href="#offerte">Offertes vergelijken</a> · <a href="#besparen">Besparen</a> · <a href="#faq">Vragen</a></nav>
 
 <h2 id="markt">Marktprijzen in Nederland</h2>
 <div class="scroll"><table class="tabel">
@@ -1014,6 +1019,65 @@ def build():
 <li><strong>Betalingen.</strong> Voor digitale abonnementen in een app gelden de betaalregels van Apple en Google.</li>
 <li><strong>Ontwerp.</strong> Standaard componenten zijn sneller dan een volledig eigen ontwerp.</li>
 <li><strong>Eén of twee platforms.</strong> Met React Native bouw je iPhone en Android tegelijk.</li></ul>
+
+<h2 id="functies">Wat kost een functie? Uren en prijs per onderdeel</h2>
+<p>Een offerte is eigenlijk een optelsom van uren. Daarom zie je hieronder per veelgevraagde functie hoeveel bouw- en testtijd die ongeveer kost. Zo kun je zelf narekenen of een offerte redelijk is, ook die van een ander bureau.</p>
+<div class="scroll"><table class="tabel">
+<tr><th>Functie</th><th>Uren (inschatting)</th><th>Prijs bij €67,50 per uur</th></tr>
+<tr><td>Inloggen met e-mail, Apple of Google</td><td>8 – 16</td><td>€540 – €1.080</td></tr>
+<tr><td>Profiel en instellingen</td><td>6 – 12</td><td>€405 – €810</td></tr>
+<tr><td>Pushmeldingen</td><td>4 – 8</td><td>€270 – €540</td></tr>
+<tr><td>Kaart met locaties</td><td>8 – 16</td><td>€540 – €1.080</td></tr>
+<tr><td>Koppeling met een bestaand systeem (API)</td><td>8 – 24</td><td>€540 – €1.620</td></tr>
+<tr><td>Betalingen of abonnementen in de app</td><td>16 – 32</td><td>€1.080 – €2.160</td></tr>
+<tr><td>Chat tussen gebruikers</td><td>24 – 40</td><td>€1.620 – €2.700</td></tr>
+<tr><td>Beheerdashboard voor jezelf</td><td>24 – 48</td><td>€1.620 – €3.240</td></tr>
+<tr><td>Extra taal (per taal)</td><td>2 – 4</td><td>€135 – €270</td></tr></table></div>
+<p class="bron">Inschatting van Collens Group op basis van eigen projecten, zoals onze reisapp <a href="app-lubbyc.html">LubbyC</a>. Bij andere bouwers verschillen de uren per team. Bij een uurtarief van €94, het gemiddelde voor zzp-developers volgens Knab (2026), liggen de bedragen ongeveer 40% hoger.</p>
+
+<h2 id="rekenvoorbeeld">Rekenvoorbeeld: een reserveringsapp voor een salon</h2>
+<p>Stel: een kapsalon wil een app waarin klanten een afspraak maken, een herinnering krijgen en hun eerdere afspraken terugzien. Dan heb je ongeveer dit nodig:</p>
+<ul>
+<li>8 schermen: start, behandelingen, kalender, bevestigen, mijn afspraken, profiel, inloggen, instellingen</li>
+<li>Inloggen en een eigen database met afspraken</li>
+<li>Pushmeldingen als herinnering</li>
+<li>Live in de App Store en Google Play</li></ul>
+<p>Dat past in ons <strong>Standaard-pakket vanaf €6.750</strong>, klaar in 6 tot 10 weken. Wil de salon ook vooraf laten betalen en zelf de agenda beheren in een dashboard, dan komt daar volgens de tabel hierboven ongeveer €2.700 tot €5.400 bij, of je kiest direct Maatwerk vanaf €13.050. Bij een gemiddeld Nederlands bureau valt zo'n app volgens de marktprijzen bovenaan in de klasse €25.000 – €75.000.</p>
+
+<h2 id="drie-jaar">Wat kost een app over 3 jaar?</h2>
+<p>De bouwprijs is maar een deel van het verhaal. Na de lancering betaal je store-accounts, hosting en meestal onderhoud. Bureaus rekenen voor onderhoud vaak 15 tot 20% van de bouwprijs per jaar (Searchlab, 2026). Hieronder zie je wat dat over 3 jaar betekent.</p>
+<div class="scroll"><table class="tabel">
+<tr><th>Over 3 jaar</th><th>Basis-app (Collens)</th><th>Standaard-app (Collens)</th><th>Gemiddelde app (markt)</th></tr>
+<tr><td>Bouw</td><td>€3.150</td><td>€6.750</td><td>€25.000</td></tr>
+<tr><td>Onderhoud</td><td>€3.078 (36 × €85,50)</td><td>€3.078 (36 × €85,50)</td><td>€11.250 – €15.000 (15–20% per jaar)</td></tr>
+<tr><td>Hosting en database</td><td>meestal gratis</td><td>tot $900 (36 × $25)</td><td>afhankelijk van de app</td></tr>
+<tr><td>Apple en Google</td><td>$297 + $25</td><td>$297 + $25</td><td>$297 + $25</td></tr>
+<tr><td><strong>Totaal (zonder dollars)</strong></td><td><strong>€6.228</strong></td><td><strong>€9.828</strong></td><td><strong>€36.250 – €40.000</strong></td></tr></table></div>
+<p class="bron">Onderhoud is bij ons niet verplicht; zonder onderhoud betaal je alleen de bouw, de store-accounts en eventueel hosting. Bedragen in dollars rekenen Apple, Google en Supabase zelf af in je eigen account. Marktbedragen: Searchlab (2026), zie hierboven.</p>
+
+<h2 id="iphone-android">Wat kost een iPhone-app of een Android-app?</h2>
+<p>Voor de bouw maakt het bij ons niet uit: met React Native maken we één app die op iPhone én Android draait. Het verschil zit in de stores en in het testen.</p>
+<div class="scroll"><table class="tabel">
+<tr><th></th><th>iPhone (App Store)</th><th>Android (Google Play)</th></tr>
+<tr><td>Account</td><td>$99 per jaar</td><td>$25 eenmalig</td></tr>
+<tr><td>Controle voor publicatie</td><td>Elke versie wordt door Apple beoordeeld</td><td>Elke versie wordt door Google beoordeeld; nieuwe persoonlijke accounts moeten eerst een gesloten test doen</td></tr>
+<tr><td>Commissie op verkopen in de app</td><td>15% of 30%, afhankelijk van omzet en soort aankoop</td><td>15% of 30%, afhankelijk van omzet en soort aankoop</td></tr></table></div>
+<p class="bron">Bronnen: <a href="https://developer.apple.com/support/enrollment/" rel="nofollow noopener">Apple Developer Program</a>, <a href="https://support.google.com/googleplay/android-developer/answer/6112435" rel="nofollow noopener">Google Play Console</a>, <a href="https://support.google.com/googleplay/android-developer/answer/112622" rel="nofollow noopener">Google Play servicekosten</a>.</p>
+<p>Wil je alleen op één platform beginnen? Dat kan in het Basis-pakket. Later voegen we het andere platform toe zonder de app opnieuw te bouwen.</p>
+
+<h2 id="bedrijfsapp">Wat kost een zakelijke app of bedrijfsapp?</h2>
+<p>Een bedrijfsapp is een app voor je eigen team of je klanten: denk aan werkbonnen invullen, uren registreren, een klantportaal of een spaarkaart. Zulke apps hebben bijna altijd accounts, een database en vaak een koppeling met een systeem dat je al gebruikt. Daarom vallen ze meestal in ons <strong>Standaard-pakket (vanaf €6.750)</strong> of in <strong>Maatwerk (vanaf €13.050)</strong> als er meerdere gebruikersrollen en een beheerdashboard bij komen.</p>
+<p>Een interne app hoeft niet altijd in de openbare stores. Voor een klein team kan een webapp, die je opent in de browser en op je beginscherm zet, goedkoper zijn. In het gratis concept adviseren we welke vorm het best past. Alles over prijzen en voorbeelden lees je op <a href="bedrijfsapp-laten-maken.html">bedrijfsapp laten maken</a>.</p>
+
+<h2 id="offerte">Offertes vergelijken: zo weet je of een prijs klopt</h2>
+<p>Heb je meerdere offertes? Vraag bij elke offerte naar deze punten:</p>
+<ol>
+<li><strong>Uren per onderdeel.</strong> Een totaalbedrag zonder uitsplitsing is niet te vergelijken. Leg de uren naast de tabel hierboven.</li>
+<li><strong>Wat er niet in zit.</strong> Store-accounts, hosting, teksten, ontwerp en het aanmelden in de stores worden vaak apart gerekend.</li>
+<li><strong>Wie de code en de accounts bezit.</strong> Zorg dat de app en de store-accounts op jouw naam staan.</li>
+<li><strong>Onderhoud na de lancering.</strong> Vraag wat updates voor nieuwe iOS- en Android-versies kosten en of onderhoud verplicht is.</li>
+<li><strong>Meerwerk.</strong> Spreek af dat extra werk alleen na jouw akkoord en tegen een vooraf bekend tarief gebeurt.</li></ol>
+<p>Een offerte die veel lager is dan de rest kan kloppen, maar vraag dan naar referenties of een eerder gebouwde app die je zelf kunt downloaden. Onze eigen apps staan op <a href="apps.html">deze pagina</a>.</p>
 
 <h2 id="besparen">Zo bespaar je op je app</h2>
 <ol>
