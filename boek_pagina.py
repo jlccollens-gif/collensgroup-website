@@ -2,14 +2,14 @@
 - boeken.html: overzicht met omslagen, korte omschrijving (bewust weinig inhoud prijsgegeven) en links naar de webshop.
 - boek-claude-voor-beginners.html: deel 1, herziene editie november 2026.
 Feiten deel 1 (Gumroad, bijgewerkt 22-11-2026): €29,99, 106 pagina's, PDF + EPUB, 18 hoofdstukken, 17 figuren, 40 vragen, 7-dagenplan.
-Deel 2 staat als concept op Gumroad; BOEK2_URL blijft leeg tot het gepubliceerd is (dan toont de site de koopknop).
-Deel 3 is in voorbereiding."""
+Deel 2 en 3 zijn gepubliceerd op Gumroad (22-11-2026).
+"""
 from boek import BOEK_URL
 
 GUMROAD = BOEK_URL
 WINKEL = "https://collens3.gumroad.com"
-BOEK2_URL = ""   # https://collens3.gumroad.com/l/programmeren-met-claude-ai zodra gepubliceerd
-BOEK3_URL = ""   # https://collens3.gumroad.com/l/ondernemen-met-claude-ai zodra gepubliceerd
+BOEK2_URL = "https://collens3.gumroad.com/l/programmeren-met-claude-ai"
+BOEK3_URL = "https://collens3.gumroad.com/l/ondernemen-met-claude-ai"
 
 
 def _kaart(img, deel, titel, sub, tekst, prijs, knoppen):
