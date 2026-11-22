@@ -40,7 +40,7 @@ td,th{border:1px solid #E5D8C8;padding:7px 9px;text-align:left;vertical-align:to
 <h2><span>2</span>De database aanmaken</h2>
 <ol><li>Klik links op <b>SQL Editor</b> en daarna op <b>New query</b>.</li>
 <li>Open <code>server/1-database.sql</code> met Kladblok (Windows) of TextEdit (Mac), selecteer alles, kopieer en plak het in Supabase.</li>
-<li>Klik op <b>Run</b>. Je ziet <i>Success</i>.</li></ol>
+<li>Klik op <b>Run</b>. Je ziet <i>Success</i>. Hiermee worden ook de leverancierslinks van al je producten opgeslagen.</li></ol>
 
 <h2><span>3</span>De website aan je database koppelen</h2>
 <ol><li>Open <code>website/assets/instellingen.js</code> met Kladblok of TextEdit.</li>
@@ -51,11 +51,14 @@ td,th{border:1px solid #E5D8C8;padding:7px 9px;text-align:left;vertical-align:to
 <p>Een webshop moet een adres tonen. Open <code>website/klantenservice.html</code> met Kladblok of TextEdit, gebruik <b>Zoeken en vervangen</b>, zoek <code>[adres volgt]</code> en vervang het door je adres (bijvoorbeeld <i>Voorbeeldstraat 1, 1234 AB Plaats</i>). Sla op. Wil je een ander e-mailadres op de site dan <code>suisterkim@gmail.com</code>, vervang dat dan op dezelfde manier in alle <code>.html</code>-bestanden.</p>
 
 <h2><span>5</span>Cloudflare: de website online (gratis)</h2>
+<p>Cloudflare accepteert maximaal 1000 bestanden per keer. Daarom staat de webshop in twee mappen: <code>fotos</code> (een deel van de productfoto's) en <code>website</code> (de rest). Je maakt dus twee projecten, eerst het fotoproject.</p>
 <ol><li>Ga naar <b>dash.cloudflare.com</b> en maak een account aan.</li>
 <li>Klik op <b>Workers &amp; Pages → Create → Pages → Upload assets</b> (slepen en neerzetten).</li>
-<li>Projectnaam: <code>suismuis</code>. Klik op <b>Create project</b>.</li>
-<li>Sleep de map <code>website</code> (de map zelf, niet de bovenliggende map) in het vak en klik op <b>Deploy site</b>.</li>
-<li>Je shop staat nu op <code>https://suismuis.pages.dev</code> (of een vergelijkbaar adres). Open hem even om te kijken.</li></ol>
+<li>Projectnaam: <code>suismuis-fotos</code>. Klik op <b>Create project</b>, sleep de map <code>fotos</code> in het vak en klik op <b>Deploy site</b>.</li>
+<li>Cloudflare toont het adres, bijvoorbeeld <code>https://suismuis-fotos.pages.dev</code>. Open <code>website/assets/instellingen.js</code> opnieuw en vervang <code>https://JOUW-FOTOPROJECT.pages.dev</code> door dat adres. Sla op.</li>
+<li>Ga terug naar <b>Workers &amp; Pages → Create → Pages → Upload assets</b>. Projectnaam: <code>suismuis</code>. Sleep de map <code>website</code> (de map zelf, niet de bovenliggende map) in het vak en klik op <b>Deploy site</b>.</li>
+<li>Je shop staat nu op <code>https://suismuis.pages.dev</code> (of een vergelijkbaar adres). Open een paar producten en kijk of alle foto's zichtbaar zijn.</li></ol>
+<div class="ok">Het fotoproject hoef je daarna nooit meer aan te raken. Nieuwe producten die je in je bestelbalie toevoegt, krijgen hun foto's automatisch in je eigen Supabase.</div>
 
 <h2><span>6</span>Je eigen domein koppelen</h2>
 <ol><li>Open in Cloudflare je project <b>suismuis → Custom domains → Set up a custom domain</b>.</li>
@@ -100,15 +103,37 @@ td,th{border:1px solid #E5D8C8;padding:7px 9px;text-align:left;vertical-align:to
 <li>Betaal jezelf terug in PayPal (<i>Activiteit → de betaling → Terugbetalen</i>) en zet in je bestelbalie de status op <i>Terugbetaald</i>.</li></ol>
 <div class="ok">Werkt de proefbestelling? Dan is je webshop live.</div>
 
-<h2>Zo werk je elke dag</h2>
-<ol><li>Je krijgt een mail bij een nieuwe bestelling (en hij staat in je bestelbalie).</li>
-<li>Bestel het product bij je leverancier en zet het verzendadres van je klant erin. Zet in de bestelbalie de status op <i>In behandeling</i> en vul het ordernummer van de leverancier in.</li>
-<li>Krijg je de track-and-tracecode, vul die in, zet de status op <i>Verzonden</i> en klik op <i>Opslaan</i>. Je klant krijgt automatisch een mail.</li>
-<li>Herroepingen, vragen en prijsaanvragen voor andere maten zie je onder <i>Berichten</i>.</li></ol>
+<h2>Zo werk je elke dag: een bestelling afhandelen</h2>
+<ol><li>Bij een nieuwe bestelling krijg je de mail <i>Nieuwe bestelling SH…</i>. Daarin staat per product een knop <b>Bestel bij leverancier</b>, het afleveradres van je klant (in het Engels, klaar om te kopiëren) en een notitie voor de verkoper.</li>
+<li>Klik op <b>Bestel bij leverancier</b>. Kies dezelfde uitvoering, maat en hetzelfde aantal als je klant.</li>
+<li>Vul bij de leverancier als afleveradres het adres van je <b>klant</b> in (niet je eigen adres). In je bestelbalie staat de knop <i>Kopieer adres voor leverancier</i>.</li>
+<li>Plak bij <i>Note to seller</i> (notitie aan verkoper) de notitie: <i>Kopieer notitie voor verkoper</i>. Daarmee vraag je de verkoper geen bon, prijslijst of reclame mee te sturen. Je klant krijgt dan alleen jouw bevestiging.</li>
+<li>Betaal de leverancier met je eigen kaart of PayPal. Dit doe je altijd zelf.</li>
+<li>Zet in je bestelbalie het ordernummer van de leverancier bij de bestelling, kies status <i>In behandeling</i> en klik op <i>Opslaan</i>.</li>
+<li>Zodra de leverancier verzendt, zie je bij de leverancier een track-and-tracecode. Vul die in, kies status <i>Verzonden</i> en klik op <i>Opslaan</i>. Je klant krijgt automatisch een mail met de code.</li>
+<li>Herroepingen, vragen en prijsaanvragen voor andere maten zie je onder <i>Berichten</i> en in je mail.</li></ol>
+<div class="ok">Wil je dat Claude dit voorbereidt? Lees dan <code>CLAUDE-INSTRUCTIES.md</code>. Claude zet de bestelling bij de leverancier klaar tot aan het betalen; jij controleert en betaalt zelf.</div>
+
+<h2>Zo verdien je</h2>
+<ul><li>Je klant betaalt jouw verkoopprijs (plus eventueel verzendkosten). Dat geld komt binnen op je PayPal-zakelijk-account en daarna op je bank.</li>
+<li>Jij betaalt de leverancier de inkoopprijs. Het verschil min de PayPal-vergoeding is je brutowinst.</li>
+<li>Voorbeeld: verkoopprijs € 59,95, inkoop € 24, PayPal-vergoeding rond € 2. Je houdt dan ongeveer € 34 over, voor belasting en eventuele retouren.</li>
+<li>Vuistregel bij nieuwe producten: verkoopprijs ongeveer 2 tot 2,5 keer de inkoopprijs (inclusief verzending van de leverancier). Bekijk ook wat vergelijkbare winkels vragen.</li>
+<li>Houd per bestelling bij wat je inkocht. Dat heb je nodig voor je administratie en je belastingaangifte.</li></ul>
+
+<h2>Zelf nieuwe producten toevoegen</h2>
+<ol><li>Open je bestelbalie en klik op het tabblad <b>Producten</b>, daarna op <b>Nieuw product toevoegen</b>.</li>
+<li>Vul de naam, je verkoopprijs, de levertijd, categorie en subcategorie, materiaal, afmetingen en een korte omschrijving in. Schrijf in je eigen woorden; kopieer geen teksten van de leverancier.</li>
+<li>Foto's: upload ze vanaf je computer of telefoon, of plak fotolinks (één per regel) en klik op <i>Foto's van deze links toevoegen</i>. De eerste foto is de hoofdfoto. Gebruik alleen foto's zonder logo's, watermerken of Chinese tekst, en het liefst minstens 1080 pixels breed.</li>
+<li>Plak bij <b>Link naar de leverancier</b> de link naar het product bij je leverancier. Die zie alleen jij, in je bestelmail en je bestelbalie.</li>
+<li>Klik op <b>Opslaan</b>. Binnen een paar minuten staat het product in je webshop, in de gekozen categorie. De betaalserver rekent automatisch met jouw prijs.</li>
+<li>Wil je een product tijdelijk uit de winkel halen? Zet <i>Zichtbaar in de winkel</i> uit en sla op.</li>
+<li>Onderaan het tabblad kun je voor alle bestaande producten de leverancierslink aanpassen, bijvoorbeeld als een verkoper stopt.</li></ol>
 
 <h2>Later iets aanpassen</h2>
-<ul><li><b>Prijs of product wijzigen:</b> alle producten en prijzen staan in <code>website/assets/scouting.js</code>. De betaalserver rekent met precies die prijzen. Onderaan staan de verzendkosten (gratis vanaf € 75, € 5,95, cadeauverpakking € 3,95).</li>
-<li><b>Nieuwe versie online zetten:</b> Cloudflare → je project → <b>Create new deployment</b> → sleep de map <code>website</code> er opnieuw in.</li>
+<ul><li><b>Producten die je zelf hebt toegevoegd</b> pas je aan in je bestelbalie (tabblad <i>Producten</i>).</li>
+<li><b>De producten die bij de oplevering al in je winkel stonden</b> staan in <code>website/assets/scouting.js</code>. Wil je daarvan de prijs of tekst wijzigen, vraag het dan aan Claude met dit bestand erbij, en zet daarna een nieuwe versie online. Onderaan dat bestand staan ook de verzendkosten (gratis vanaf € 75, € 5,95, cadeauverpakking € 3,95).</li>
+<li><b>Nieuwe versie online zetten:</b> Cloudflare → je project → <b>Create new deployment</b> → sleep de map <code>website</code> er opnieuw in (het fotoproject blijft gewoon staan).</li>
 <li><b>Andere maten:</b> per product geldt de prijs voor de kleinste maat. Voor andere maten vragen klanten de prijs aan; die krijg je als bericht.</li></ul>
 
 <h2>Goed om te weten</h2>

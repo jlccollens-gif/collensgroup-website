@@ -96,17 +96,46 @@ fn = re.sub(r'env\("SUISMUIS_AFZENDER", "[^"]*"\)', 'env("SUISMUIS_AFZENDER", en
 fn = fn.replace('"https://collensgroup.com/concept/suismuis"', 'env("SUISMUIS_SITE").replace(/\\/$/, "")')
 assert "collens" not in fn.lower(), [l for l in fn.splitlines() if "collens" in l.lower()]
 open(os.path.join(UIT, "server", "2-functie-suismuis.ts"), "w", encoding="utf-8").write(fn)
-shutil.copy(os.path.join(ROOT, "tools", "suismuis_live", "database.sql"), os.path.join(UIT, "server", "1-database.sql"))
+sql = open(os.path.join(ROOT, "tools", "suismuis_live", "database.sql"), encoding="utf-8").read().rstrip() + "\n\n" + open(os.path.join(ROOT, "tools", "suismuis_live", "leveranciers.sql"), encoding="utf-8").read()
+assert "collens" not in sql.lower()
+open(os.path.join(UIT, "server", "1-database.sql"), "w", encoding="utf-8").write(sql)
+ci = open(os.path.join(ROOT, "tools", "suismuis_live", "CLAUDE-INSTRUCTIES.md"), encoding="utf-8").read()
+assert "collens" not in ci.lower()
+open(os.path.join(UIT, "CLAUDE-INSTRUCTIES.md"), "w", encoding="utf-8").write(ci)
 shutil.copy(os.path.join(ROOT, "tools", "suismuis_live", "HANDLEIDING.html"), os.path.join(UIT, "HANDLEIDING.html"))
 
-aantal = sum(len(fs) for _, _, fs in os.walk(WEB))
-print(f"website: {aantal} bestanden ({n} afbeeldingen)")
-assert aantal <= 1000, "te veel bestanden voor slepen-en-neerzetten bij Cloudflare (max 1000)"
+# ---------- productfoto's verdelen over twee Cloudflare-projecten (max 1000 bestanden per keer slepen) ----------
+FOTOS = os.path.join(UIT, "fotos")
+SC = os.path.join(WEB, "img", "sc")
+os.makedirs(os.path.join(FOTOS, "img", "sc"))
+overig = sum(len(fs) for _, _, fs in os.walk(WEB)) - len(os.listdir(SC))
+groepen = {}
+for f in os.listdir(SC):
+    groepen.setdefault(int(re.match(r"\d+", f).group()), []).append(f)
+plaats, naar_b = overig, []
+for nr in sorted(groepen):
+    if plaats + len(groepen[nr]) <= 900: plaats += len(groepen[nr])
+    else:
+        naar_b.append(nr)
+        for f in groepen[nr]: shutil.move(os.path.join(SC, f), os.path.join(FOTOS, "img", "sc", f))
+open(os.path.join(FOTOS, "_headers"), "w").write("/*\n  Cache-Control: public, max-age=604800\n  X-Robots-Tag: noindex\n")
+open(os.path.join(FOTOS, "index.html"), "w").write('<!doctype html><meta charset="utf-8"><title>Suismuis Home</title><meta name="robots" content="noindex"><p>Foto\'s van Suismuis Home.</p>')
+open(os.path.join(WEB, "assets", "scouting.js"), "a", encoding="utf-8").write(
+    "/* De foto's van deze productnummers staan in je tweede Cloudflare-project (adres in instellingen.js). */\n"
+    "(function(){var B=window.SUIS_FOTOS||\"\",N=" + json.dumps(naar_b) + ";if(!B||/JOUW-/.test(B))return;B=B.replace(/\\/?$/,\"/\");"
+    "function f(x){return typeof x===\"string\"&&x.indexOf(\"img/sc/\")===0&&N.indexOf(parseInt(x.slice(7),10))>-1?B+x:x}"
+    "(window.SUIS_EXTRA||[]).forEach(function(p){if(p.u)p.u=p.u.map(f);p.img=f(p.img);(p.var||[]).forEach(function(v){v.b=f(v.b)})})})();\n")
+open(os.path.join(WEB, "assets", "instellingen.js"), "a", encoding="utf-8").write(
+    '/* STAP 5 VAN DE HANDLEIDING: het adres van je fotoproject bij Cloudflare. */\n'
+    'window.SUIS_FOTOS = "https://JOUW-FOTOPROJECT.pages.dev";\n')
+aantal = sum(len(fs) for _, _, fs in os.walk(WEB)); aantal_f = sum(len(fs) for _, _, fs in os.walk(FOTOS))
+print(f"website: {aantal} bestanden, fotos: {aantal_f} bestanden ({len(naar_b)} producten)")
+assert aantal <= 1000 and aantal_f <= 1000, "te veel bestanden voor slepen-en-neerzetten bij Cloudflare (max 1000)"
 
 # ---------- foto's lichter maken (zelfde afmetingen, max 2400 px) ----------
 from PIL import Image
 import io
-for f in glob.glob(os.path.join(WEB, "img", "**", "*.jpg"), recursive=True):
+for f in glob.glob(os.path.join(WEB, "img", "**", "*.jpg"), recursive=True) + glob.glob(os.path.join(UIT, "fotos", "img", "**", "*.jpg"), recursive=True):
     s0 = os.path.getsize(f); im = Image.open(f)
     im = im.convert("RGB") if im.mode != "RGB" else im
     if max(im.size) > 2400: im.thumbnail((2400, 2400))
