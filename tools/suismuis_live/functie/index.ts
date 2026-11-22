@@ -1,6 +1,6 @@
 // Suismuis Home: bestellingen, betalingen (PayPal-omgeving: creditcard en PayPal) en beheer. Gebouwd door Collens Group.
 // Geheimen staan alleen in de Supabase-secrets: SUISMUIS_PAYPAL_CLIENT_ID, SUISMUIS_PAYPAL_SECRET, SUISMUIS_PAYPAL_ENV (live|sandbox),
-// optioneel SUISMUIS_PAYPAL_PAYEE (e-mail ontvanger), BREVO_API_KEY, SUISMUIS_AFZENDER, SUISMUIS_KIM_EMAIL, SUISMUIS_IBAN.
+// SUISMUIS_SITE, SUISMUIS_KIM_EMAIL, SUISMUIS_SETUPCODE; optioneel BREVO_API_KEY, SUISMUIS_AFZENDER.
 import { createClient } from "npm:@supabase/supabase-js@2";
 
 const env = (k: string, d = "") => Deno.env.get(k) || d;
@@ -43,8 +43,18 @@ async function catalogus() {
   if (cache && Date.now() - cache.t < 300e3) return cache.d;
   const r = await fetch(CATALOGUS_URL + "?t=" + Math.floor(Date.now() / 300e3), { headers: { accept: "application/json" } });
   if (!r.ok) { if (cache) return cache.d; throw new Error("catalogus " + r.status); }
-  cache = { t: Date.now(), d: await r.json() };
+  const t = await r.text();
+  cache = { t: Date.now(), d: CATALOGUS_URL.split("?")[0].endsWith(".js") ? vanScouting(t) : JSON.parse(t) };
   return cache.d;
+}
+// leest producten en verzendkosten rechtstreeks uit assets/scouting.js van de eigen website (één bron voor prijzen)
+function vanScouting(t: string) {
+  const lijst = JSON.parse(t.slice(t.indexOf("["), t.lastIndexOf("]") + 1)) as any[];
+  const k = t.match(/SUIS_KOSTEN\s*=\s*(\{[^}]*\})/);
+  const kosten = k ? JSON.parse(k[1]) : { gratis: 75, verzend: 5.95, cadeau: 3.95 };
+  const producten: Record<string, any> = {};
+  for (const p of lijst) producten[p.id] = { n: p.n, p: Math.round(Number(p.p) * 100) / 100, nr: p.nr, maten: (p.maten || []).map((m: string) => m + " cm"), var: (p.var || []).map((v: any) => v.n), lt: p.lt || "" };
+  return { gratis: Number(kosten.gratis), verzend: Number(kosten.verzend), cadeau: Number(kosten.cadeau), producten };
 }
 
 // ---------- PayPal ----------
@@ -132,7 +142,7 @@ async function verwerkPayPal(o: any) {
     g = await pp(`/v2/checkout/orders/${o.paypal_order_id}/capture`, { method: "POST", headers: { "PayPal-Request-Id": "cap-" + o.nr } });
     if (!g.ok) {
       const reden = g.j?.details?.[0]?.issue || "";
-      if (reden === "INSTRUMENT_DECLINED") return { fout: "Je betaling is geweigerd. Kies een andere betaalmethode.", opnieuw: true };
+      if (reden === "INSTRUMENT_DECLINED") return { fout: "Je betaling is geweigerd door je bank. Controleer je kaartgegevens of probeer een andere kaart.", opnieuw: true };
       if (reden !== "ORDER_ALREADY_CAPTURED") return { fout: "De betaling kon niet worden afgerond. Er is niets afgeschreven." };
       g = await pp(`/v2/checkout/orders/${o.paypal_order_id}`);
     }
@@ -208,7 +218,7 @@ Deno.serve(async (req) => {
   }
 
   if (actie === "pp_maak") {
-    if (!ppAan()) return antwoord({ fout: "Online betalen is nog niet actief. Kies bankoverschrijving." }, 503);
+    if (!ppAan()) return antwoord({ fout: "Betalen met creditcard is nog niet actief. Probeer het later opnieuw." }, 503);
     const o = await orderMetToken(b.nr, b.token); if (!o) return antwoord({ fout: "Bestelling niet gevonden." }, 404);
     if (o.status !== "open") return antwoord({ fout: "Deze bestelling is al afgerond." }, 409);
     const items = (o.regels as any[]).map((r) => ({ name: (r.naam + (r.maat ? " (" + r.maat + ")" : "")).slice(0, 127), quantity: String(r.aantal), unit_amount: { currency_code: "EUR", value: bedrag(r.prijs) }, category: "PHYSICAL_GOODS", sku: String(r.nr || r.id).slice(0, 127) }));
@@ -221,8 +231,8 @@ Deno.serve(async (req) => {
     const terug = (o.site || "https://collensgroup.com/concept/suismuis") + "/afrekenen.html?nr=" + encodeURIComponent(o.nr);
     const r = await pp("/v2/checkout/orders", { method: "POST", headers: { "PayPal-Request-Id": "maak-" + o.nr + "-" + willekeurig(3) }, body: JSON.stringify({ intent: "CAPTURE", purchase_units: [pu],
       application_context: { brand_name: "Suismuis Home", locale: "nl-NL", shipping_preference: "SET_PROVIDED_ADDRESS", user_action: "PAY_NOW", return_url: terug, cancel_url: terug } }) });
-    if (!r.ok) { console.log("pp_maak", r.status, JSON.stringify(r.j).slice(0, 600)); return antwoord({ fout: "Betalen via PayPal lukt nu even niet. Probeer het opnieuw of kies bankoverschrijving." }, 502); }
-    await sb.from("suismuis_orders").update({ paypal_order_id: r.j.id, betaalmethode: tekst(b.methode, 30) || "PayPal" }).eq("nr", o.nr);
+    if (!r.ok) { console.log("pp_maak", r.status, JSON.stringify(r.j).slice(0, 600)); return antwoord({ fout: "Betalen lukt nu even niet. Probeer het over een paar minuten opnieuw." }, 502); }
+    await sb.from("suismuis_orders").update({ paypal_order_id: r.j.id, betaalmethode: tekst(b.methode, 30) || "Creditcard" }).eq("nr", o.nr);
     return antwoord({ id: r.j.id });
   }
 
@@ -275,7 +285,10 @@ Deno.serve(async (req) => {
     const pw = typeof b.wachtwoord === "string" ? b.wachtwoord : "";
     if (pw.length < 10) return antwoord({ fout: "Kies een wachtwoord van minstens 10 tekens." }, 400);
     const { data } = await sb.from("suismuis_beheer").select("*").eq("id", 1).maybeSingle();
-    if (!data?.setup_token_hash || !data.setup_verloopt || new Date(data.setup_verloopt) < new Date() || !gelijk(data.setup_token_hash, await sha(tekst(b.code, 80)))) return antwoord({ fout: "Deze link is verlopen of al gebruikt." }, 403);
+    const code = tekst(b.code, 80), eigenCode = env("SUISMUIS_SETUPCODE");
+    const viaCode = !data?.wachtwoord_hash && eigenCode.length >= 12 && gelijk(eigenCode, code); // eerste keer: zelfgekozen code uit de Supabase-secrets
+    const viaLink = !!data?.setup_token_hash && !!data.setup_verloopt && new Date(data.setup_verloopt) > new Date() && gelijk(data.setup_token_hash, await sha(code));
+    if (!viaCode && !viaLink) return antwoord({ fout: "Deze link is verlopen of al gebruikt." }, 403);
     const salt = willekeurig(12);
     await sb.from("suismuis_beheer").update({ wachtwoord_hash: salt + ":" + await pbkdf2(pw, salt), setup_token_hash: null, setup_verloopt: null }).eq("id", 1);
     await sb.from("suismuis_sessies").delete().neq("token_hash", "");
@@ -284,7 +297,7 @@ Deno.serve(async (req) => {
   if (actie === "login") {
     const { data } = await sb.from("suismuis_beheer").select("wachtwoord_hash").eq("id", 1).maybeSingle();
     await new Promise((r) => setTimeout(r, 500));
-    if (!data?.wachtwoord_hash) return antwoord({ fout: "Je beheeromgeving is nog niet ingesteld. Gebruik de link uit de mail." }, 403);
+    if (!data?.wachtwoord_hash) return antwoord({ fout: "Je bestelbalie is nog niet ingesteld. Gebruik eerst je instellink." }, 403);
     const [salt, h] = data.wachtwoord_hash.split(":");
     if (!gelijk(h, await pbkdf2(typeof b.wachtwoord === "string" ? b.wachtwoord : "", salt))) return antwoord({ fout: "Onjuist wachtwoord." }, 403);
     const sessie = willekeurig(24);

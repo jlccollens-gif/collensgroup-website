@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="nl"><head><meta charset="utf-8"><title>Je webshop online zetten – Suismuis Home</title>
+<style>
+@page{size:A4;margin:18mm 17mm}
+body{font-family:Georgia,serif;color:#3A2D25;line-height:1.6;font-size:11.5pt;max-width:760px;margin:0 auto;padding:24px}
+h1{font-weight:400;font-size:28pt;margin:0 0 4px;color:#49382E}
+.sub{color:#917965;margin:0 0 22px;font-size:12pt}
+h2{font-weight:400;font-size:17pt;color:#49382E;margin:26px 0 8px;padding-top:12px;border-top:1px solid #E5D8C8;page-break-after:avoid}
+h2 span{display:inline-block;width:30px;height:30px;line-height:30px;text-align:center;border-radius:50%;background:#49382E;color:#F5F0E8;font-size:12pt;margin-right:10px;font-family:Arial,sans-serif}
+p,li{font-family:Arial,Helvetica,sans-serif;font-size:10.5pt}
+ol,ul{padding-left:22px}li{margin:4px 0}
+code,.v{font-family:Consolas,Menlo,monospace;background:#F3EEE7;padding:1px 6px;border-radius:3px;font-size:10pt}
+.let{background:#FBF3E4;border-left:4px solid #C6A15B;padding:10px 14px;margin:12px 0}
+.ok{background:#EEF3EA;border-left:4px solid #7C9A6E;padding:10px 14px;margin:12px 0}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-family:Arial,sans-serif;font-size:10pt}
+td,th{border:1px solid #E5D8C8;padding:7px 9px;text-align:left;vertical-align:top}th{background:#F3EEE7;font-weight:600}
+.lijst{columns:2;font-family:Arial,sans-serif;font-size:10.5pt}
+</style></head><body>
+<h1>Je webshop online zetten</h1>
+<p class="sub">Suismuis Home · alles staat op je eigen accounts, je hebt niemand anders nodig</p>
+
+<p>In deze map zit je complete webshop: de website, de database en de betaalserver. Je zet alles op je eigen gratis accounts. Reken op ongeveer een uur. Doe de stappen in deze volgorde.</p>
+
+<div class="let"><b>Belangrijk:</b> wachtwoorden en geheime sleutels (zoals het PayPal-<i>Secret</i>) deel je met niemand en zet je nooit in een mail. Bewaar ze in je wachtwoordkluis.</div>
+
+<p><b>Wat zit er in de map</b></p>
+<ul><li><code>website</code>: de webshop zelf (pagina's, foto's, producten).</li>
+<li><code>server/1-database.sql</code>: maakt je database aan.</li>
+<li><code>server/2-functie-suismuis.ts</code>: de betaalserver (bestellingen, creditcardbetalingen, je bestelbalie).</li></ul>
+
+<p><b>Wat je nodig hebt</b></p>
+<div class="lijst"><ul><li>Je e-mailadres</li><li>Je domeinnaam (bijvoorbeeld bij TransIP of Strato)</li><li>Je zakelijke PayPal-account</li><li>Een computer (geen telefoon)</li></ul></div>
+
+<h2><span>1</span>Supabase: je database (gratis)</h2>
+<ol><li>Ga naar <b>supabase.com</b> en maak een account aan.</li>
+<li>Klik op <b>New project</b>. Naam: <code>suismuis</code>. Kies bij <i>Region</i> een regio in Europa (bijvoorbeeld Frankfurt). Kies een databasewachtwoord en bewaar het.</li>
+<li>Wacht tot het project klaar is (1–2 minuten).</li>
+<li>Ga naar <b>Project Settings → General</b> en kopieer de <b>Project ID</b> (een code van ongeveer 20 letters). Die heb je zo nodig.</li></ol>
+
+<h2><span>2</span>De database aanmaken</h2>
+<ol><li>Klik links op <b>SQL Editor</b> en daarna op <b>New query</b>.</li>
+<li>Open <code>server/1-database.sql</code> met Kladblok (Windows) of TextEdit (Mac), selecteer alles, kopieer en plak het in Supabase.</li>
+<li>Klik op <b>Run</b>. Je ziet <i>Success</i>.</li></ol>
+
+<h2><span>3</span>De website aan je database koppelen</h2>
+<ol><li>Open <code>website/assets/instellingen.js</code> met Kladblok of TextEdit.</li>
+<li>Vervang <code>JOUW-PROJECT</code> door je Project ID uit stap 1. Laat de rest precies staan. Voorbeeld:<br><code>window.SUIS_API = "https://abcdefghijklmnop.supabase.co/functions/v1/suismuis";</code></li>
+<li>Sla het bestand op (als gewone tekst, dezelfde naam).</li></ol>
+
+<h2><span>4</span>Je adres op de site zetten (wettelijk verplicht)</h2>
+<p>Een webshop moet een adres tonen. Open <code>website/klantenservice.html</code> met Kladblok of TextEdit, gebruik <b>Zoeken en vervangen</b>, zoek <code>[adres volgt]</code> en vervang het door je adres (bijvoorbeeld <i>Voorbeeldstraat 1, 1234 AB Plaats</i>). Sla op. Wil je een ander e-mailadres op de site dan <code>suisterkim@gmail.com</code>, vervang dat dan op dezelfde manier in alle <code>.html</code>-bestanden.</p>
+
+<h2><span>5</span>Cloudflare: de website online (gratis)</h2>
+<ol><li>Ga naar <b>dash.cloudflare.com</b> en maak een account aan.</li>
+<li>Klik op <b>Workers &amp; Pages → Create → Pages → Upload assets</b> (slepen en neerzetten).</li>
+<li>Projectnaam: <code>suismuis</code>. Klik op <b>Create project</b>.</li>
+<li>Sleep de map <code>website</code> (de map zelf, niet de bovenliggende map) in het vak en klik op <b>Deploy site</b>.</li>
+<li>Je shop staat nu op <code>https://suismuis.pages.dev</code> (of een vergelijkbaar adres). Open hem even om te kijken.</li></ol>
+
+<h2><span>6</span>Je eigen domein koppelen</h2>
+<ol><li>Open in Cloudflare je project <b>suismuis → Custom domains → Set up a custom domain</b>.</li>
+<li>Vul je domein in (bijvoorbeeld <code>suismuis.nl</code>) en volg de stappen. Cloudflare laat precies zien welke instelling je bij je domeinregistrar moet aanpassen. De makkelijkste weg is je domein aan Cloudflare toevoegen (Cloudflare geeft je twee <i>nameservers</i> die je bij je registrar invult).</li>
+<li>Voeg daarna ook <code>www.</code> + je domein toe op dezelfde manier.</li>
+<li>Het kan een paar uur duren voordat je domein overal werkt. Het slotje (https) komt vanzelf.</li></ol>
+
+<h2><span>7</span>PayPal: creditcardbetalingen ontvangen</h2>
+<p>Klanten betalen met hun creditcard op je eigen site. PayPal verwerkt de betaling op de achtergrond; je klanten hoeven geen PayPal te hebben en het geld komt op je eigen zakelijke PayPal-rekening, die je naar je bank laat overboeken.</p>
+<ol><li>Ga naar <b>developer.paypal.com</b> en log in met je zakelijke PayPal-account.</li>
+<li>Ga naar <b>Apps &amp; Credentials</b> en zet bovenaan de schakelaar op <b>Live</b>.</li>
+<li>Klik op <b>Create App</b>, naam <code>Suismuis webshop</code>, type <i>Merchant</i>.</li>
+<li>Kopieer de <b>Client ID</b> en de <b>Secret</b> (geheim houden).</li>
+<li>Zet bij de functies van de app <b>Advanced Credit and Debit Card Payments</b> aan als die optie er staat. Staat hij er (nog) niet, geen probleem: je shop toont dan automatisch een kaartknop.</li>
+<li>Scrol in de app naar <b>Webhooks → Add Webhook</b>. URL: <code>https://JOUW-PROJECT.supabase.co/functions/v1/suismuis?bron=paypal</code> (met je Project ID). Vink aan: <i>Checkout order approved</i> en <i>Payment capture completed</i>. Opslaan.</li></ol>
+
+<h2><span>8</span>De betaalserver installeren</h2>
+<ol><li>Ga in Supabase naar <b>Edge Functions → Deploy a new function → Via Editor</b>.</li>
+<li>Naam: precies <code>suismuis</code> (kleine letters).</li>
+<li>Haal de voorbeeldcode weg, plak de inhoud van <code>server/2-functie-suismuis.ts</code> en klik op <b>Deploy</b>.</li>
+<li>Open de functie, ga naar <b>Details</b> en zet <b>Verify JWT</b> (of <i>Enforce JWT verification</i>) <b>uit</b>. Opslaan. Dit is nodig, want je klanten loggen niet in; de functie beveiligt zichzelf.</li></ol>
+
+<h2><span>9</span>De instellingen van je betaalserver</h2>
+<p>Ga in Supabase naar <b>Edge Functions → Secrets</b> en voeg deze toe (naam links precies zo overnemen):</p>
+<table><tr><th>Naam</th><th>Waarde</th></tr>
+<tr><td><code>SUISMUIS_SITE</code></td><td>Het adres van je shop met https, zonder / aan het eind. Bijvoorbeeld <code>https://suismuis.nl</code>. (Werkt je domein nog niet, gebruik dan eerst het pages.dev-adres en pas het later aan.)</td></tr>
+<tr><td><code>SUISMUIS_KIM_EMAIL</code></td><td>Het e-mailadres waarop je nieuwe bestellingen en berichten wilt ontvangen.</td></tr>
+<tr><td><code>SUISMUIS_PAYPAL_CLIENT_ID</code></td><td>De Client ID uit stap 7.</td></tr>
+<tr><td><code>SUISMUIS_PAYPAL_SECRET</code></td><td>De Secret uit stap 7.</td></tr>
+<tr><td><code>SUISMUIS_PAYPAL_ENV</code></td><td><code>live</code></td></tr>
+<tr><td><code>SUISMUIS_SETUPCODE</code></td><td>Een zelfbedachte code van minstens 12 tekens. Die gebruik je één keer in stap 10.</td></tr></table>
+<p><b>Optioneel, aanbevolen:</b> bevestigingsmails in je eigen huisstijl. PayPal stuurt je klant en jou altijd al een betaalbewijs. Wil je daarnaast eigen mails (orderbevestiging, “je pakket is onderweg”), maak dan een gratis account bij <b>brevo.com</b>, voeg je e-mailadres toe als afzender en maak een API-sleutel. Voeg toe: <code>BREVO_API_KEY</code> (de sleutel) en <code>SUISMUIS_AFZENDER</code> (je geverifieerde e-mailadres).</p>
+
+<h2><span>10</span>Je bestelbalie instellen</h2>
+<ol><li>Ga naar <code>https://jouwdomein.nl/beheer.html?setup=JOUWCODE</code> (met je code uit stap 9).</li>
+<li>Kies een wachtwoord van minstens 10 tekens en bewaar het.</li>
+<li>Daarna log je altijd in via <code>https://jouwdomein.nl/beheer.html</code>. Zet die pagina in je bladwijzers; er staat geen link naar op de site.</li></ol>
+
+<h2><span>11</span>Proefbestelling</h2>
+<ol><li>Bestel een goedkoop product in je eigen shop en betaal met je eigen creditcard.</li>
+<li>Controleer: je ziet de bevestiging, de bestelling staat in je bestelbalie en de betaling staat in PayPal.</li>
+<li>Betaal jezelf terug in PayPal (<i>Activiteit → de betaling → Terugbetalen</i>) en zet in je bestelbalie de status op <i>Terugbetaald</i>.</li></ol>
+<div class="ok">Werkt de proefbestelling? Dan is je webshop live.</div>
+
+<h2>Zo werk je elke dag</h2>
+<ol><li>Je krijgt een mail bij een nieuwe bestelling (en hij staat in je bestelbalie).</li>
+<li>Bestel het product bij je leverancier en zet het verzendadres van je klant erin. Zet in de bestelbalie de status op <i>In behandeling</i> en vul het ordernummer van de leverancier in.</li>
+<li>Krijg je de track-and-tracecode, vul die in, zet de status op <i>Verzonden</i> en klik op <i>Opslaan</i>. Je klant krijgt automatisch een mail.</li>
+<li>Herroepingen, vragen en prijsaanvragen voor andere maten zie je onder <i>Berichten</i>.</li></ol>
+
+<h2>Later iets aanpassen</h2>
+<ul><li><b>Prijs of product wijzigen:</b> alle producten en prijzen staan in <code>website/assets/scouting.js</code>. De betaalserver rekent met precies die prijzen. Onderaan staan de verzendkosten (gratis vanaf € 75, € 5,95, cadeauverpakking € 3,95).</li>
+<li><b>Nieuwe versie online zetten:</b> Cloudflare → je project → <b>Create new deployment</b> → sleep de map <code>website</code> er opnieuw in.</li>
+<li><b>Andere maten:</b> per product geldt de prijs voor de kleinste maat. Voor andere maten vragen klanten de prijs aan; die krijg je als bericht.</li></ul>
+
+<h2>Goed om te weten</h2>
+<ul><li><b>Kosten:</b> Supabase, Cloudflare en Brevo zijn gratis voor een webshop van deze omvang. PayPal rekent per betaling een kleine vergoeding; kijk voor de actuele tarieven op paypal.com/nl/webapps/mpp/merchant-fees. Je domein betaal je bij je registrar.</li>
+<li><b>Supabase pauzeert</b> gratis projecten na een week zonder enige activiteit. Zolang er bezoekers of bestellingen zijn gebeurt dat niet; krijg je toch een mail van Supabase, klik dan op <i>Restore</i>.</li>
+<li><b>KvK:</b> verkoop je regelmatig met winst, dan moet je je inschrijven bij de KvK. Dat is jouw eigen verantwoordelijkheid.</li>
+<li><b>Leveranciers buiten de EU:</b> houd rekening met douane- en afhandelingskosten en een eerlijke levertijd op de site.</li>
+<li><b>Je gegevens:</b> alle bestellingen staan in je eigen Supabase-database; je kunt ze daar ook exporteren (Table Editor → Export).</li></ul>
+</body></html>
