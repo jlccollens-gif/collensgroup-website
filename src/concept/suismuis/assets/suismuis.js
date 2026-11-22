@@ -34,7 +34,7 @@
     { id: "kruk-tronc", n: "Kruk Tronc", c: "meubels", s: "bijzettafels", p: 129.00, img: "p-kruk", m: "Massief walnotenhout", d: "H 60 × Ø 30 cm", t: "Een slanke houten kruk die ook dienstdoet als bijzettafel of plantentafel." }
   ];
   /* Kim 18-11: voorbeeldproducten en de producten van haar schermfoto's eruit */
-  var WEG = [110, 113, 117, 118, 125, 134, 151, 153, 155, 157];
+  var WEG = [110, 113, 117, 118, 125, 134, 149, 151, 153, 155, 157]; /* 149: Kim 22-11 */
   P = (window.SUIS_EXTRA || []).filter(function (p) { return WEG.indexOf(p.nr) < 0; });
   var GRATIS = 75, VERZEND = 5.95, CADEAU = 3.95;
   var euro = function (x) { return "€ " + x.toFixed(2).replace(".", ","); };
@@ -199,6 +199,7 @@
     document.title = titel + " | Suismuis Home (concept)";
     var teken = function () {
       var lijst = P.filter(function (p) { return (!cat || p.c === cat) && (!sub || p.s === sub) && (!mat || vanMat(p, mat)); });
+      if (sort === "standaard") lijst.sort(function (a, b) { return (a.s === b.s ? 0 : (a.s < b.s ? -1 : 1)) || ((a.o || 0) - (b.o || 0)); });
       if (sort === "laag") lijst.sort(function (a, b) { return a.p - b.p; });
       if (sort === "hoog") lijst.sort(function (a, b) { return b.p - a.p; });
       if (sort === "naam") lijst.sort(function (a, b) { return a.n.localeCompare(b.n); });
