@@ -28,7 +28,7 @@ def bouw(page, e, faq_html, faq_ld, DIENSTEN, PAKKETTEN, VANDAAG, CONFIG):
                  '<tr><td>Onderhoud Groei &amp; Support<small>Alles uit Basis, tot 4 uur aanpassingen, voorrang bij storingen</small></td><td>Apps</td><td></td><td>€265,50 per maand</td></tr>')
     faq_p = [("Staat de btw erbij?", "Nee. Alle prijzen zijn eindprijzen: er komt geen btw bij."),
              ("Wat betekent 'vanaf'?", "Bij 'vanaf' hoort het pakket zoals beschreven. Wijkt jouw project daarvan af, dan krijg je vooraf een vaste prijs op maat. Meerwerk doen we alleen na jouw akkoord."),
-             ("Welke kosten komen er buiten jullie prijs bij?", "Externe kosten betaal je rechtstreeks aan de partij: een domeinnaam (meestal €5 tot €15 per jaar), Apple Developer Account ($99 per jaar), Google Play ($25 eenmalig) en eventuele hosting. Ze staan vooraf in de offerte."),
+             ("Welke kosten komen er buiten jullie prijs bij?", "Externe kosten betaal je rechtstreeks aan de partij: een domeinnaam (meestal €10 tot €25 per jaar), Apple Developer Account ($99 per jaar), Google Play ($25 eenmalig) en eventuele hosting. Ze staan vooraf in de offerte."),
              ("Hoe betaal ik?", "Bij apps in drie delen: 40% bij akkoord, 40% bij een goedgekeurde testversie en 20% bij oplevering. De betaling voor andere diensten staat vooraf in je offerte."),
              ("Is er echt een gratis concept?", "Ja. Je krijgt binnen 48 uur een gratis concept, zonder verplichtingen.")]
     pages.append(page("prijzen.html", "Prijzen: website, app, game en AI laten maken | Collens Group",
@@ -204,7 +204,7 @@ c.addEventListener("input",reken);reken();
 <h2>2. Wat zit er wel en niet in de prijs?</h2><p>Aantal pagina's, teksten, foto's, formulieren, koppelingen en aanpassingsrondes. Wat niet genoemd wordt, kost meestal extra. Laat het opschrijven.</p>
 <h2>3. Wie is eigenaar van de website en het domein?</h2><p>De site, het domein en de inhoud horen op jouw naam te staan. Zo zit je niet vast aan één partij en kun je later verhuizen.</p>
 <h2>4. Hoe lang duurt het?</h2><p>Vraag naar een datum, en wat jij moet aanleveren om die te halen. Bij ons is een one-page website meestal in 3–5 dagen klaar, een bedrijfswebsite in 2–3 weken en een webshop in 3–5 weken, afhankelijk van hoe snel teksten en foto's binnenkomen.</p>
-<h2>5. Wat kost het na oplevering?</h2><p>Een domeinnaam kost meestal €5 tot €15 per jaar. Hosting kan voor kleine sites gratis zijn. Onderhoud is optioneel, bij ons vanaf €29 per maand. Vraag altijd naar de jaarlijkse kosten.</p>
+<h2>5. Wat kost het na oplevering?</h2><p>Een domeinnaam kost meestal €10 tot €25 per jaar. Hosting kan voor kleine sites gratis zijn. Onderhoud is optioneel, bij ons vanaf €29 per maand. Vraag altijd naar de jaarlijkse kosten.</p>
 <h2>6. Wie levert teksten en foto's?</h2><p>Meestal levert de ondernemer de kern en maakt de bouwer er goede websiteteksten van. Spreek af wie wat doet, en dat je alleen foto's gebruikt waarvoor je de rechten hebt.</p>
 <h2>7. Wordt de site goed gevonden?</h2><p>Een goede bouwer levert een snelle, mobielvriendelijke site met de technische basis die Google verwacht. Een toppositie kan niemand garanderen. Wees wantrouwig bij beloftes daarover.</p>
 <h2>8. Wat gebeurt er als je niet tevreden bent?</h2><p>Vraag naar aanpassingsrondes en naar wat er gebeurt als het resultaat niet bevalt. Bij ons zie je eerst een gratis concept, zodat je geen risico loopt voordat je kiest.</p>
@@ -215,7 +215,7 @@ c.addEventListener("input",reken);reken();
 
     # ---------- ARTIKEL: WAT KOST EEN WEBSITE ----------
     faq_k = [("Wat kost een website laten maken gemiddeld?", "Volgens Trustoo kost een eenvoudige website in Nederland gemiddeld €500 tot €2.000. Bij ons begint een one-page website bij €495 en een bedrijfswebsite bij €995, eindprijzen zonder btw erbij."),
-             ("Wat kost een website per jaar?", "Naast de bouw betaal je een domeinnaam (meestal €5 tot €15 per jaar). Hosting kan voor kleine sites gratis. Onderhoud is optioneel, bij ons vanaf €29 per maand."),
+             ("Wat kost een website per jaar?", "Naast de bouw betaal je een domeinnaam (meestal €10 tot €25 per jaar). Hosting kan voor kleine sites gratis. Onderhoud is optioneel, bij ons vanaf €29 per maand."),
              ("Wat kost een website in België?", "Volgens Lunidev (2026) kost een professionele bedrijfswebsite in België €2.000 tot €6.000. Lees meer op onze pagina over een website laten maken in België.")]
     pages.append(page("wat-kost-een-website.html", "Wat kost een website laten maken in 2026? | Collens Group",
         "Wat kost een website laten maken in 2026? Marktprijzen voor freelancers en bureaus, bijkomende kosten per jaar en onze vaste prijzen vanaf €495.",
@@ -231,7 +231,7 @@ c.addEventListener("input",reken);reken();
 <h2>Onze prijzen</h2><div class="scroll"><table class="tabel vergelijk"><tr><th>Pakket</th><th>Klaar in</th><th>Vanaf</th></tr>
 <tr><td>One-page website</td><td>3–5 dagen</td><td>€495</td></tr><tr><td>Bedrijfswebsite (tot 6 pagina's)</td><td>2–3 weken</td><td>€995</td></tr><tr><td>Webshop (tot 50 producten)</td><td>3–5 weken</td><td>€1.950</td></tr></table></div>
 <p>Alle prijzen zijn eindprijzen: er komt geen btw bij. Bekijk <a href="prijzen.html">alle prijzen</a>.</p>
-<h2>Welke kosten komen er na de bouw?</h2><ul><li><strong>Domeinnaam:</strong> meestal €5 tot €15 per jaar.</li><li><strong>Hosting:</strong> voor de meeste kleine sites gratis.</li><li><strong>Onderhoud (optioneel):</strong> bij ons vanaf €29 per maand, inclusief kleine wijzigingen tot 30 minuten.</li><li><strong>Extra pagina:</strong> €95, inclusief SEO-tekst.</li></ul>
+<h2>Welke kosten komen er na de bouw?</h2><ul><li><strong>Domeinnaam:</strong> meestal €10 tot €25 per jaar.</li><li><strong>Hosting:</strong> voor de meeste kleine sites gratis.</li><li><strong>Onderhoud (optioneel):</strong> bij ons vanaf €29 per maand, inclusief kleine wijzigingen tot 30 minuten.</li><li><strong>Extra pagina:</strong> €95, inclusief SEO-tekst.</li></ul>
 <h2>Wat bepaalt de prijs?</h2><ul><li>Het aantal pagina's en de functies, zoals formulieren of een webshop.</li><li>Of je teksten en foto's zelf aanlevert.</li><li>Koppelingen, bijvoorbeeld met een agenda of betaalprovider.</li><li>Meertaligheid.</li></ul>
 <p>Lees ook <a href="website-laten-maken-afspraken.html">8 afspraken die je vooraf vastlegt</a> en <a href="zelf-website-bouwen-of-laten-maken.html">zelf bouwen of laten maken</a>.</p>
 <h2>Veelgestelde vragen</h2>{faq_html(faq_k)}{cta("Vraag een vaste prijs aan")}</article>''',
@@ -250,7 +250,7 @@ c.addEventListener("input",reken);reken();
 <h2>Marktprijzen</h2><div class="scroll"><table class="tabel vergelijk"><tr><th>Wie bouwt</th><th>Prijs</th></tr><tr><td>Freelancer</td><td>€2.000 tot €8.000</td></tr><tr><td>Bureau, voor het mkb</td><td>€5.000 tot €15.000</td></tr><tr><td>Collens Group</td><td>vanaf €1.950</td></tr></table></div>
 <p class="bron">Bron marktbedragen: <a href="https://searchlab.nl/kosten/wat-kost-een-webshop-laten-maken" rel="nofollow noopener">Searchlab, Wat kost een webshop laten maken (2026)</a>.</p>
 <h2>Wat zit er in onze webshop?</h2><ul><li>Tot 50 producten ingericht</li><li>iDEAL en andere betaalmethoden</li><li>Verzending en btw ingesteld</li><li>Je beheert zelf je producten</li></ul><p>Klaar in 3–5 weken. Bekijk de <a href="webshop-laten-maken.html">webshoppagina</a>, of zie een voorbeeld: <a href="concept/suismuis/index.html">Suismuis Home</a>, een conceptwebshop voor woonaccessoires, nog niet gelanceerd.</p>
-<h2>Welke kosten komen erbij?</h2><ul><li><strong>Domeinnaam:</strong> meestal €5 tot €15 per jaar.</li><li><strong>Betaalprovider:</strong> een kleine vergoeding per transactie; die staat vooraf in de offerte.</li><li><strong>Onderhoud (optioneel):</strong> vanaf €29 per maand.</li></ul>
+<h2>Welke kosten komen erbij?</h2><ul><li><strong>Domeinnaam:</strong> meestal €10 tot €25 per jaar.</li><li><strong>Betaalprovider:</strong> een kleine vergoeding per transactie; die staat vooraf in de offerte.</li><li><strong>Onderhoud (optioneel):</strong> vanaf €29 per maand.</li></ul>
 <h2>Waar let je op?</h2><p>Zorg dat je webshop de wettelijke basis heeft: algemene voorwaarden, privacyverklaring, retour- en herroepingsinformatie en duidelijke contactgegevens. Laat bij twijfel je boekhouder of een jurist meekijken; dit is praktische informatie, geen juridisch advies.</p>
 <p>Lees ook <a href="prijzen.html">alle prijzen</a> en <a href="website-laten-maken-afspraken.html">8 afspraken die je vooraf vastlegt</a>.</p>
 <h2>Veelgestelde vragen</h2>{faq_html(faq_w)}{cta("Vraag een vaste prijs aan")}</article>''',

@@ -392,7 +392,7 @@ DIENSTEN = [
                 ("Word ik gevonden in Google?", "Elke site bouwen we snel, mobielvriendelijk en met de technische basis die Google verwacht. Een toppositie kan niemand garanderen; wel helpen we je op weg met de juiste zoekwoorden."),
                 ("Wat kost een webshop laten maken?", "Volgens de kostengids van Searchlab (2026) betaal je bij een freelancer meestal €2.000 tot €8.000 en bij een bureau voor het mkb €5.000 tot €15.000. Bij ons begint een webshop bij €1.950 (geen btw erbij), met tot 50 producten ingericht. Platformkosten komen daar los bij en staan vooraf in de offerte."),
                 ("Wat kost een website laten maken in België?", "Volgens de prijsgids van Lunidev (2026) kost een professionele bedrijfswebsite in België €2.000 tot €6.000 en een webshop €4.000 tot €15.000 of meer. Bij ons begint een bedrijfswebsite bij €995 en een webshop bij €1.950. Alle prijzen zijn eindprijzen, er komt geen btw bij."),
-                ("Wat kost een website per maand?", "Hosting kan voor de meeste kleine sites gratis. Een domeinnaam kost rond €5 tot €15 per jaar. Onderhoud is optioneel vanaf €29 per maand."),
+                ("Wat kost een website per maand?", "Hosting kan voor de meeste kleine sites gratis. Een domeinnaam kost meestal rond €10 tot €25 per jaar. Onderhoud is optioneel vanaf €29 per maand."),
                 ("Ben ik eigenaar van de website?", "Ja. De site, het domein en de inhoud staan op jouw naam. Je zit niet vast aan een websitebouwer."),
                 ("Hoe snel is mijn website klaar?", "Een one-page website meestal in 3–5 dagen, een bedrijfswebsite in 2–3 weken en een webshop in 3–5 weken. Hoe snel je teksten en foto's aanlevert, bepaalt mee hoe snel het gaat."),
                 ("Kan ik de website later uitbreiden?", "Ja. Een extra pagina kost €95, inclusief SEO-tekst."),
@@ -405,7 +405,16 @@ DIENSTEN = [
              "<tr><td>Contactformulier</td><td>ja</td><td>ja, plus offerteformulier</td></tr>"
              "<tr><td>Technische basis voor Google</td><td>ja</td><td>ja, met teksten op zoekwoorden afgestemd</td></tr>"
              "<tr><td>Klaar in</td><td>3–5 dagen</td><td>2–3 weken</td></tr></table></div>"
-             "<p>Niet in de pakketprijs: een domeinnaam (meestal €5 tot €15 per jaar), een extra pagina (€95) en optioneel onderhoud (vanaf €29 per maand). Hosting kan voor de meeste kleine sites gratis. Dit staat allemaal vooraf in de offerte.</p>"),
+             "<p>Niet in de pakketprijs: een domeinnaam (meestal €10 tot €25 per jaar), een extra pagina (€95) en optioneel onderhoud (vanaf €29 per maand). Hosting kan voor de meeste kleine sites gratis. Dit staat allemaal vooraf in de offerte.</p>"),
+            ("Wat kost je website over 3 jaar?",
+             "<p>Een eerlijke totaalprijs, voorbeeld voor een bedrijfswebsite tot 6 pagina's:</p>"
+             "<div class='scroll'><table class='tabel'><tr><th>Post</th><th>Bedrag</th></tr>"
+             "<tr><td>Bedrijfswebsite tot 6 pagina's (eenmalig)</td><td>€995</td></tr>"
+             "<tr><td>Hosting voor een kleine site</td><td>€0 (gratis hosting mogelijk)</td></tr>"
+             "<tr><td>Domeinnaam, 3 jaar (eigen kosten, op jouw naam)</td><td>± €30 – €75</td></tr>"
+             "<tr><td>Onderhoud (optioneel), 36 × €29</td><td>€1.044</td></tr>"
+             "<tr><td><b>Totaal over 3 jaar</b></td><td><b>± €1.025 – €1.070 zonder onderhoud, ± €2.069 – €2.114 met onderhoud</b></td></tr></table></div>"
+             "<p>Ter vergelijking: bij een websitebouwer betaal je elke maand zolang de site bestaat, en de site is niet van jou. Bij ons betaal je de bouw één keer en ben je eigenaar.</p>"),
             ("Hoe gaat het?",
              "<ol><li>Je vertelt per mail wat je doet en wat de site moet bereiken.</li>"
              "<li>Je krijgt een gratis concept binnen 48 uur, zodat je ziet hoe het eruit kan zien.</li>"
