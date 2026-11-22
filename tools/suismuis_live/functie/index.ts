@@ -44,9 +44,24 @@ async function catalogus() {
   const r = await fetch(CATALOGUS_URL + "?t=" + Math.floor(Date.now() / 300e3), { headers: { accept: "application/json" } });
   if (!r.ok) { if (cache) return cache.d; throw new Error("catalogus " + r.status); }
   const t = await r.text();
-  cache = { t: Date.now(), d: CATALOGUS_URL.split("?")[0].endsWith(".js") ? vanScouting(t) : JSON.parse(t) };
-  return cache.d;
+  const d = CATALOGUS_URL.split("?")[0].endsWith(".js") ? vanScouting(t) : JSON.parse(t);
+  // producten die Kim zelf in haar bestelbalie heeft toegevoegd
+  const { data: eigen } = await sb.from("suismuis_producten").select("nr,data").eq("actief", true);
+  for (const r of eigen || []) { const p = r.data || {}; if (p.id) d.producten[p.id] = { n: p.n, p: rond(Number(p.p)), nr: r.nr, maten: (p.maten || []).map((m: string) => m + " cm"), var: (p.var || []).map((v: any) => v.n), lt: p.lt || "" }; }
+  cache = { t: Date.now(), d };
+  return d;
 }
+// leverancierslinks: alleen zichtbaar voor Kim (bestelbalie en haar bestelmail)
+async function leveranciers(nrs: number[]) {
+  const m: Record<number, string> = {};
+  if (!nrs.length) return m;
+  const { data: a } = await sb.from("suismuis_leveranciers").select("nr,url").in("nr", nrs);
+  for (const r of a || []) m[r.nr] = r.url;
+  const { data: b } = await sb.from("suismuis_producten").select("nr,leverancier").in("nr", nrs);
+  for (const r of b || []) if (r.leverancier) m[r.nr] = r.leverancier;
+  return m;
+}
+const NOTITIE = "Dropshipping order - please do not include invoice, price list or promotional material. Thank you!";
 // leest producten en verzendkosten rechtstreeks uit assets/scouting.js van de eigen website (één bron voor prijzen)
 function vanScouting(t: string) {
   const lijst = JSON.parse(t.slice(t.indexOf("["), t.lastIndexOf("]") + 1)) as any[];
@@ -110,9 +125,16 @@ async function mailsBijBestelling(o: any, token: string) {
     tabel(o) + `<p><b>Bezorgadres</b><br>${adresHtml(o)}</p>` + knop(link, "Bekijk je bestelling") +
     `<p style="font-size:13px;color:#7A6553">Je hebt 14 dagen bedenktijd na ontvangst. Vragen? Beantwoord gewoon deze mail.</p>`);
   await logMail(o.nr, "klant-bevestiging", await mail(o.klant_email, `Je bestelling ${o.nr} bij Suismuis Home`, klant));
+  const lev = await leveranciers((o.regels as any[]).map((r) => Number(r.nr)).filter(Boolean));
+  const opdracht = (o.regels as any[]).map((r, i) => `<tr><td style="padding:8px 0;border-bottom:1px solid #EFE7DC">${i + 1}. ${r.aantal} × ${esc(r.naam)}${r.uitvoering ? `<br><small>Uitvoering: ${esc(r.uitvoering)}</small>` : ""}${r.maat ? `<br><small>Maat: ${esc(r.maat)}</small>` : ""}</td><td style="padding:8px 0;border-bottom:1px solid #EFE7DC;text-align:right">${lev[r.nr] ? `<a href="${esc(lev[r.nr])}">Bestel bij leverancier</a>` : "<small>Geen leverancierslink</small>"}</td></tr>`).join("");
+  const adresTekst = `${o.klant_naam}\n${o.adres.straat} ${o.adres.huisnummer}\n${o.adres.postcode} ${o.adres.plaats}\n${o.adres.land === "België" ? "Belgium" : "Netherlands"}${o.klant_tel ? "\nTel: " + o.klant_tel : ""}`;
   const kim = omlijst("Nieuwe bestelling " + esc(o.nr),
     `<p><b>${bank ? "Wacht op overschrijving" : "Betaald via " + esc(o.betaalmethode)}</b> · ${euro(Number(o.totaal))}</p>` + tabel(o) +
     `<p><b>Klant</b><br>${adresHtml(o)}<br>${esc(o.klant_email)}${o.klant_tel ? "<br>" + esc(o.klant_tel) : ""}</p>` +
+    `<h2 style="font-family:Georgia,serif;font-weight:400;font-size:20px;margin:22px 0 6px">Bestelopdracht voor de leverancier</h2><table style="width:100%;border-collapse:collapse">${opdracht}</table>` +
+    `<p><b>Afleveradres (kopieer bij de leverancier)</b></p><pre style="background:#F3EEE7;padding:12px;font-size:14px;white-space:pre-wrap">${esc(adresTekst)}</pre>` +
+    `<p><b>Notitie aan de verkoper</b></p><pre style="background:#F3EEE7;padding:12px;font-size:14px;white-space:pre-wrap">${esc(NOTITIE)}</pre>` +
+    `<p style="font-size:13px;color:#7A6553">Na het bestellen: zet het ordernummer van de leverancier en later de track-and-trace in je bestelbalie. De klant krijgt dan automatisch een mail.</p>` +
     knop(`${o.site || "https://collensgroup.com/concept/suismuis"}/beheer.html`, "Open je bestelbalie"));
   await logMail(o.nr, "kim-melding", await mail(KIM, `Nieuwe bestelling ${o.nr} (${euro(Number(o.totaal))})`, kim, o.klant_email));
 }
@@ -186,6 +208,10 @@ Deno.serve(async (req) => {
   let b: any; try { b = await req.json(); } catch { return antwoord({ fout: "Ongeldige aanvraag" }, 400); }
   const actie = b?.actie;
 
+  if (actie === "producten") {
+    const { data } = await sb.from("suismuis_producten").select("data").eq("actief", true).order("nr");
+    return antwoord({ producten: (data || []).map((r) => r.data) });
+  }
   if (actie === "config") return antwoord({ paypal: ppAan() ? { clientId: PP_ID, live: PP_LIVE } : null, iban: IBAN });
 
   if (actie === "start") {
@@ -305,13 +331,74 @@ Deno.serve(async (req) => {
     await sb.from("suismuis_sessies").insert({ token_hash: await sha(sessie), verloopt: new Date(Date.now() + 30 * 864e5).toISOString() });
     return antwoord({ sessie });
   }
-  if (["lijst", "update", "bericht_af", "uitloggen"].includes(actie)) {
+  if (["lijst", "update", "bericht_af", "uitloggen", "producten_beheer", "product_opslaan", "product_foto", "product_actief", "leverancier"].includes(actie)) {
     if (!(await sessieOk(b.sessie))) return antwoord({ fout: "Log opnieuw in." }, 401);
     if (actie === "uitloggen") { await sb.from("suismuis_sessies").delete().eq("token_hash", await sha(b.sessie)); return antwoord({ ok: true }); }
     if (actie === "lijst") {
       const { data: orders } = await sb.from("suismuis_orders").select("nr,created_at,status,test,klant_naam,klant_email,klant_tel,adres,regels,subtotaal,verzending,cadeau,totaal,betaalmethode,paypal_capture_id,betaald_op,leverancier_ordernr,vervoerder,track_trace,notitie,log,mails").neq("status", "open").order("created_at", { ascending: false }).limit(200);
       const { data: berichten } = await sb.from("suismuis_berichten").select("*").order("created_at", { ascending: false }).limit(200);
-      return antwoord({ orders: orders ?? [], berichten: berichten ?? [], stappen: STAPPEN, paypal: ppAan() ? (PP_LIVE ? "live" : "test") : "uit" });
+      const nrs = [...new Set((orders ?? []).flatMap((o: any) => (o.regels || []).map((r: any) => Number(r.nr)).filter(Boolean)))];
+      return antwoord({ orders: orders ?? [], berichten: berichten ?? [], stappen: STAPPEN, paypal: ppAan() ? (PP_LIVE ? "live" : "test") : "uit", leveranciers: await leveranciers(nrs as number[]), notitie: NOTITIE });
+    }
+    if (actie === "producten_beheer") {
+      const { data } = await sb.from("suismuis_producten").select("nr,data,leverancier,actief,created_at").order("nr", { ascending: false });
+      const { data: lv } = await sb.from("suismuis_leveranciers").select("nr,url").order("nr");
+      return antwoord({ producten: data ?? [], leveranciers: lv ?? [] });
+    }
+    if (actie === "leverancier") {
+      const n = Math.floor(Number(b.nr)), u = tekst(b.url, 500);
+      if (!(n > 0) || (u && !/^https:\/\//.test(u))) return antwoord({ fout: "Vul een productnummer en een link die met https:// begint in." }, 400);
+      if (u) await sb.from("suismuis_leveranciers").upsert({ nr: n, url: u }); else await sb.from("suismuis_leveranciers").delete().eq("nr", n);
+      return antwoord({ ok: true });
+    }
+    if (actie === "product_actief") {
+      await sb.from("suismuis_producten").update({ actief: !!b.actief }).eq("nr", Math.floor(Number(b.nr))); cache = null;
+      return antwoord({ ok: true });
+    }
+    if (actie === "product_foto") {
+      let soort = "", bytes: Uint8Array;
+      if (typeof b.url === "string") {
+        // foto via een link (bijv. van de leverancier): de server haalt hem op en bewaart een eigen kopie
+        const u = tekst(b.url, 800);
+        if (!/^https:\/\/[^\s]+$/.test(u)) return antwoord({ fout: "Plak een fotolink die met https:// begint." }, 400);
+        const r = await fetch(u, { headers: { "user-agent": "Mozilla/5.0", accept: "image/*" }, redirect: "follow" }).catch(() => null);
+        const ct = r?.headers.get("content-type") || "", mt = ct.match(/image\/(jpeg|jpg|png|webp)/);
+        if (!r || !r.ok || !mt) return antwoord({ fout: "Deze link is geen foto (JPG, PNG of WebP) of is niet bereikbaar." }, 400);
+        bytes = new Uint8Array(await r.arrayBuffer()); soort = mt[1] === "jpg" ? "jpeg" : mt[1];
+      } else {
+        const m = typeof b.data === "string" ? b.data.match(/^data:image\/(jpeg|png|webp);base64,([A-Za-z0-9+\/=]+)$/) : null;
+        if (!m) return antwoord({ fout: "Kies een JPG-, PNG- of WebP-foto." }, 400);
+        bytes = Uint8Array.from(atob(m[2]), (c) => c.charCodeAt(0)); soort = m[1];
+      }
+      if (bytes.length > 8e6) return antwoord({ fout: "Deze foto is te groot (maximaal 8 MB)." }, 400);
+      const pad = `p/${Date.now()}-${willekeurig(4)}.${soort === "jpeg" ? "jpg" : soort}`;
+      const { error } = await sb.storage.from("producten").upload(pad, bytes, { contentType: "image/" + soort, upsert: false });
+      if (error) return antwoord({ fout: "Uploaden mislukt: " + error.message }, 500);
+      return antwoord({ url: sb.storage.from("producten").getPublicUrl(pad).data.publicUrl });
+    }
+    if (actie === "product_opslaan") {
+      const x = b.product || {};
+      const n = tekst(x.n, 120), prijs = rond(Number(String(x.p).replace(",", ".")));
+      const cats: Record<string, string[]> = { wonen: ["schilderijen", "spiegels", "beeldjes", "bloempotten", "droogbloemen"], vazen: ["glazen-vazen", "stenen-vazen", "rotan-vazen"], verlichting: ["lampen", "lampenkappen", "kaarsen"], textiel: ["kussenhoezen", "plaids", "vloerkleden", "beddengoed", "gordijnen", "vloerkussens"], tafel: ["servies", "schalen", "tafellinnen"], meubels: ["bijzettafels", "salontafels", "eettafels", "eetkamerstoelen", "stoelen", "fauteuils", "bankjes", "krukken", "kasten"] };
+      const c = tekst(x.c, 30), s2 = tekst(x.s, 30);
+      const fotos = (Array.isArray(x.u) ? x.u : []).map((u: unknown) => tekst(u, 400)).filter((u: string) => /^https:\/\//.test(u)).slice(0, 20);
+      const lev = tekst(b.leverancier, 500);
+      if (!n || !(prijs > 0) || !cats[c] || !cats[c].includes(s2) || !fotos.length) return antwoord({ fout: "Vul naam, prijs, categorie en minstens één foto in." }, 400);
+      if (lev && !/^https:\/\//.test(lev)) return antwoord({ fout: "De leverancierslink moet met https:// beginnen." }, 400);
+      let nr = Math.floor(Number(x.nr));
+      if (!(nr >= 1000)) { const { data: hoogste } = await sb.from("suismuis_producten").select("nr").order("nr", { ascending: false }).limit(1); nr = Math.max(1000, (hoogste?.[0]?.nr ?? 999) + 1); }
+      const slug = n.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40);
+      const maten = (Array.isArray(x.maten) ? x.maten : String(x.maten || "").split(",")).map((m: unknown) => tekst(m, 30).replace(/\s*cm$/i, "")).filter(Boolean).slice(0, 12);
+      const vars = (Array.isArray(x.var) ? x.var : []).map((v: any) => ({ n: tekst(v?.n, 40), b: tekst(v?.b, 400) })).filter((v: any) => v.n && /^https:\/\//.test(v.b)).slice(0, 12);
+      const m = tekst(x.m, 300), d = tekst(x.d, 300);
+      const data: any = { id: `k${nr}-${slug}`, nr, n, c, s: s2, p: prijs, m, d, t: tekst(x.t, 600), lt: tekst(x.lt, 40) || "8–15 werkdagen", u: fotos, f: 1, ok: 1, o: 90,
+        spec: [["Materiaal", m.replace(/\.$/, "")], ["Afmetingen", d.replace(/\.$/, "")]].filter((r) => r[1]) };
+      if (maten.length) data.maten = maten;
+      if (vars.length > 1) data.var = vars;
+      const { error } = await sb.from("suismuis_producten").upsert({ nr, data, leverancier: lev || null, actief: x.actief !== false });
+      if (error) return antwoord({ fout: "Opslaan mislukt: " + error.message }, 500);
+      cache = null;
+      return antwoord({ ok: true, nr, id: data.id });
     }
     if (actie === "bericht_af") { await sb.from("suismuis_berichten").update({ afgehandeld: !!b.af }).eq("id", Number(b.id)); return antwoord({ ok: true }); }
     const nr = tekst(b.nr, 24);

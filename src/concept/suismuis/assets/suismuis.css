@@ -388,3 +388,13 @@ ol.stappen li[aria-current]{color:var(--espresso);border-bottom:1px solid var(--
 .leeg-bh{color:var(--mokka)}
 @media (max-width:900px){.bh-order summary{grid-template-columns:1fr 1fr}.bh-grid{grid-template-columns:1fr}#bh-kpi{grid-template-columns:1fr 1fr}}
 [hidden]{display:none!important}
+.bh-lev{display:inline-block;margin-top:6px;background:var(--espresso);color:var(--creme);padding:6px 12px;font-size:13.5px;text-decoration:none}
+.bh-kopie{background:var(--zand);border:0;padding:7px 12px;font-family:inherit;font-size:13px;cursor:pointer;margin:0 4px 6px 0;color:var(--espresso)}
+#bh-producten h3{font-size:22px;margin:26px 0 10px}
+.bh-pform{background:var(--wit);border:1px solid var(--lijn);padding:20px 22px;margin-bottom:20px;max-width:760px}
+.bh-fotos{display:flex;flex-wrap:wrap;gap:10px;margin:8px 0}.bh-fotos figure{margin:0;width:110px;position:relative;font-size:12px;text-align:center}.bh-fotos img{width:110px;height:110px;object-fit:cover;display:block;border:1px solid var(--lijn)}
+.bh-fotos button{background:var(--zand);border:0;cursor:pointer;font-family:inherit;font-size:12px;padding:3px 6px;margin-top:4px}.bh-fotos [data-fweg]{position:absolute;top:4px;right:4px;margin:0;background:#fff;width:24px;height:24px;padding:0;font-size:16px;line-height:1}
+.bh-upload input{display:block;margin-top:6px}
+.bh-prod{display:grid;grid-template-columns:64px 1fr auto;gap:14px;align-items:center;background:var(--wit);border:1px solid var(--lijn);padding:10px 14px;margin-bottom:8px}.bh-prod img{width:64px;height:64px;object-fit:cover}
+.bh-levrij{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1.5fr) auto 90px;gap:10px;align-items:center;padding:7px 0;border-bottom:1px solid var(--lijn);font-size:14px}.bh-levrij input{padding:7px 9px;border:1px solid var(--lijn);font-family:inherit;font-size:13px;min-width:0}.bh-levrij button{background:var(--zand);border:0;padding:7px 12px;cursor:pointer;font-family:inherit}
+@media (max-width:700px){.bh-levrij{grid-template-columns:1fr}.bh-prod{grid-template-columns:52px 1fr}}

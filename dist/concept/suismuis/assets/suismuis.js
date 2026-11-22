@@ -1,5 +1,6 @@
 /* Suismuis Home – webshop (Collens Group). Bestellen, betalen (creditcard) en beheer via de server-functie "suismuis". */
-(function () {
+  var API = "https://eyrfizayagcwaxbxyeuh.supabase.co/functions/v1/suismuis";
+function suisStart() {
   "use strict";
   var TAX = [
     ["wonen", "Wonen & decoratie", [["schilderijen", "Schilderijen"], ["spiegels", "Spiegels"], ["beeldjes", "Beeldjes & objecten"], ["bloempotten", "Bloempotten"], ["droogbloemen", "Droogbloemen"]]],
@@ -43,7 +44,6 @@
   var mb = function (b) { return 'src="img/' + b + '-m.jpg" srcset="img/' + b + '-m.jpg 1080w, img/' + b + '.jpg 1800w" sizes="(max-width:700px) 50vw, 25vw"'; };
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
-  var API = "https://eyrfizayagcwaxbxyeuh.supabase.co/functions/v1/suismuis";
   function api(data) {
     return fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(data) })
       .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { if (!r.ok && !j.fout) j.fout = "Er ging iets mis. Probeer het opnieuw."; j._status = r.status; return j; }); })
@@ -481,7 +481,7 @@
     $("#bh-uit").addEventListener("click", function () { api({ actie: "uitloggen", sessie: sessie }); sessie = ""; bewaar("beheer-sessie", ""); toon("bh-login"); });
     $$(".bh-tabs button").forEach(function (t) { t.addEventListener("click", function () {
       $$(".bh-tabs button").forEach(function (x) { x.setAttribute("aria-selected", x === t); });
-      $("#bh-orders").hidden = t.getAttribute("data-tab") !== "orders"; $("#bh-berichten").hidden = t.getAttribute("data-tab") !== "berichten";
+      var tb = t.getAttribute("data-tab"); $("#bh-orders").hidden = tb !== "orders"; $("#bh-berichten").hidden = tb !== "berichten"; $("#bh-producten").hidden = tb !== "producten"; $("#bh-kpi").hidden = tb === "producten"; if (tb === "producten") laadProducten();
     }); });
     function laad() {
       api({ actie: "lijst", sessie: sessie }).then(function (j) {
@@ -498,9 +498,9 @@
       var opties = Object.keys(data.stappen).filter(function (k) { return k !== "open"; });
       $("#bh-orders").innerHTML = o.length ? o.map(function (x) {
         return '<details class="bh-order"' + (x.status === "betaald" ? " open" : "") + '><summary><b>' + esc(x.nr) + '</b><span>' + new Date(x.created_at).toLocaleString("nl-NL", { dateStyle: "medium", timeStyle: "short" }) + '</span><span>' + esc(x.klant_naam) + '</span><span>' + euro(+x.totaal) + '</span><span class="bh-status s-' + x.status + '">' + esc(data.stappen[x.status]) + (x.test ? " · test" : "") + '</span></summary>' +
-          '<div class="bh-grid"><div><h3>Producten</h3>' + x.regels.map(function (r) { return '<p>' + r.aantal + ' × ' + esc(r.naam) + (r.nr ? ' <small>(nr. ' + r.nr + ')</small>' : '') + (r.maat ? '<br><small>Maat ' + esc(r.maat) + '</small>' : '') + (r.uitvoering ? '<br><small>Uitvoering ' + esc(r.uitvoering) + '</small>' : '') + '</p>'; }).join("") +
+          '<div class="bh-grid"><div><h3>Producten</h3>' + x.regels.map(function (r) { var lv = (data.leveranciers || {})[r.nr]; return '<p>' + r.aantal + ' × ' + esc(r.naam) + (r.nr ? ' <small>(nr. ' + r.nr + ')</small>' : '') + (r.maat ? '<br><small>Maat ' + esc(r.maat) + '</small>' : '') + (r.uitvoering ? '<br><small>Uitvoering ' + esc(r.uitvoering) + '</small>' : '') + (lv ? '<br><a class="bh-lev" href="' + esc(lv) + '" target="_blank" rel="noopener">Bestel bij leverancier ↗</a>' : '<br><small>Nog geen leverancierslink (voeg toe onder Producten)</small>') + '</p>'; }).join("") +
           '<p><small>Verzending ' + (+x.verzending ? euro(+x.verzending) : "gratis") + (+x.cadeau ? ' · cadeauverpakking' : '') + ' · ' + esc(x.betaalmethode || "") + '</small></p></div>' +
-          '<div><h3>Klant</h3><p>' + esc(x.klant_naam) + '<br>' + esc(x.adres.straat) + ' ' + esc(x.adres.huisnummer) + '<br>' + esc(x.adres.postcode) + ' ' + esc(x.adres.plaats) + '<br>' + esc(x.adres.land) + '</p><p><a class="link" href="mailto:' + esc(x.klant_email) + '?subject=' + encodeURIComponent("Je bestelling " + x.nr) + '">' + esc(x.klant_email) + '</a>' + (x.klant_tel ? '<br>' + esc(x.klant_tel) : '') + '</p></div>' +
+          '<div><h3>Klant</h3><p>' + esc(x.klant_naam) + '<br>' + esc(x.adres.straat) + ' ' + esc(x.adres.huisnummer) + '<br>' + esc(x.adres.postcode) + ' ' + esc(x.adres.plaats) + '<br>' + esc(x.adres.land) + '</p><p><a class="link" href="mailto:' + esc(x.klant_email) + '?subject=' + encodeURIComponent("Je bestelling " + x.nr) + '">' + esc(x.klant_email) + '</a>' + (x.klant_tel ? '<br>' + esc(x.klant_tel) : '') + '</p><p><button type="button" class="bh-kopie" data-kopie="' + esc(x.klant_naam + "\n" + x.adres.straat + " " + x.adres.huisnummer + "\n" + x.adres.postcode + " " + x.adres.plaats + "\n" + (x.adres.land === "België" ? "Belgium" : "Netherlands") + (x.klant_tel ? "\nTel: " + x.klant_tel : "")) + '">Kopieer adres voor leverancier</button> <button type="button" class="bh-kopie" data-kopie="' + esc(data.notitie || "") + '">Kopieer notitie voor verkoper</button></p></div>' +
           '<form class="form bh-upd" data-nr="' + esc(x.nr) + '"><h3>Afhandelen</h3><label>Status<select name="status">' + opties.map(function (k) { return '<option value="' + k + '"' + (k === x.status ? " selected" : "") + '>' + esc(data.stappen[k]) + '</option>'; }).join("") + '</select></label>' +
           '<label>Ordernummer bij leverancier<input name="leverancier_ordernr" value="' + esc(x.leverancier_ordernr || "") + '"></label><div class="twee"><label>Vervoerder<input name="vervoerder" value="' + esc(x.vervoerder || "") + '" placeholder="PostNL"></label><label>Track-and-trace (code of link)<input name="track_trace" value="' + esc(x.track_trace || "") + '"></label></div>' +
           '<label>Notitie (alleen voor jou)<textarea name="notitie">' + esc(x.notitie || "") + '</textarea></label><label class="check"><input type="checkbox" name="mail_klant" checked><span>Mail de klant bij een nieuwe status</span></label><button class="knop" type="submit">Opslaan</button><p class="bevestig" role="status"></p></form></div></details>';
@@ -518,6 +518,91 @@
       api({ actie: "update", sessie: sessie, nr: f.getAttribute("data-nr"), status: f.elements.status.value, leverancier_ordernr: f.elements.leverancier_ordernr.value, vervoerder: f.elements.vervoerder.value, track_trace: f.elements.track_trace.value, notitie: f.elements.notitie.value, mail_klant: f.elements.mail_klant.checked })
         .then(function (j) { if (j.fout) { bv.textContent = j.fout; return; } bv.textContent = "Opgeslagen."; setTimeout(laad, 600); });
     });
+    document.addEventListener("click", function (e) {
+      var k = e.target.closest(".bh-kopie"); if (!k) return;
+      var t = k.getAttribute("data-kopie"), oud = k.textContent;
+      (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(function () { k.textContent = "Gekopieerd ✓"; }, function () { window.prompt("Kopieer deze tekst:", t); }).then(function () { setTimeout(function () { k.textContent = oud; }, 1600); });
+    });
+    var pdata = null, fotos = [];
+    var SUBS = { wonen: [["schilderijen", "Schilderijen"], ["spiegels", "Spiegels"], ["beeldjes", "Beeldjes & objecten"], ["bloempotten", "Bloempotten"], ["droogbloemen", "Droogbloemen"]], vazen: [["glazen-vazen", "Glazen vazen"], ["stenen-vazen", "Stenen vazen"], ["rotan-vazen", "Rotan vazen"]], verlichting: [["lampen", "Lampen"], ["lampenkappen", "Lampenkappen"], ["kaarsen", "Kaarsen & windlichten"]], textiel: [["kussenhoezen", "Kussenhoezen"], ["plaids", "Plaids"], ["vloerkleden", "Vloerkleden"], ["beddengoed", "Beddengoed"], ["gordijnen", "Gordijnen & vitrage"], ["vloerkussens", "Vloerkussens"]], tafel: [["servies", "Servies"], ["schalen", "Schalen & dienbladen"], ["tafellinnen", "Servetten & placemats"]], meubels: [["bijzettafels", "Bijzettafels"], ["salontafels", "Salontafels"], ["eettafels", "Eettafels"], ["eetkamerstoelen", "Eetkamerstoelen"], ["stoelen", "Stoelen"], ["fauteuils", "Fauteuils"], ["bankjes", "Bankjes"], ["krukken", "Barkrukken"], ["kasten", "Kasten & nachtkastjes"]] };
+    var CATN = { wonen: "Wonen & decoratie", vazen: "Vazen", verlichting: "Verlichting & kaarsen", textiel: "Textiel", tafel: "Servies & tafel", meubels: "Meubels" };
+    function laadProducten() {
+      $("#bh-producten").innerHTML = '<p class="leeg-bh">Bezig met laden…</p>';
+      api({ actie: "producten_beheer", sessie: sessie }).then(function (j) { if (j.fout) { $("#bh-producten").innerHTML = '<p class="fout">' + esc(j.fout) + '</p>'; return; } pdata = j; tekenProducten(); });
+    }
+    function prodForm(p, lev) {
+      p = p || {}; fotos = (p.u || []).slice();
+      var cat = p.c || "wonen";
+      return '<form class="form bh-pform" novalidate><h3>' + (p.nr ? "Product " + p.nr + " bewerken" : "Nieuw product toevoegen") + '</h3><input type="hidden" name="nr" value="' + (p.nr || "") + '">' +
+        '<label>Naam<input name="n" required maxlength="120" value="' + esc(p.n || "") + '"></label>' +
+        '<div class="twee"><label>Prijs (€, incl. btw)<input name="p" required inputmode="decimal" value="' + (p.p ? String(p.p).replace(".", ",") : "") + '"></label><label>Levertijd<input name="lt" value="' + esc(p.lt || "8–15 werkdagen") + '"></label></div>' +
+        '<div class="twee"><label>Categorie<select name="c">' + Object.keys(CATN).map(function (k) { return '<option value="' + k + '"' + (k === cat ? " selected" : "") + '>' + CATN[k] + '</option>'; }).join("") + '</select></label><label>Subcategorie<select name="s">' + SUBS[cat].map(function (x) { return '<option value="' + x[0] + '"' + (x[0] === p.s ? " selected" : "") + '>' + x[1] + '</option>'; }).join("") + '</select></label></div>' +
+        '<label>Materiaal<input name="m" maxlength="300" value="' + esc(p.m || "") + '" placeholder="Bijv. Handgemaakt keramiek."></label>' +
+        '<label>Afmetingen<input name="d" maxlength="300" value="' + esc(p.d || "") + '" placeholder="Bijv. Ca. 20 × 30 cm (Ø × h)."></label>' +
+        '<label>Maten om uit te kiezen (optioneel, gescheiden door komma’s; de eerste maat hoort bij de prijs)<input name="maten" value="' + esc((p.maten || []).join(", ")) + '" placeholder="Bijv. 40 × 60, 50 × 80"></label>' +
+        '<label>Korte omschrijving<textarea name="t" maxlength="600">' + esc(p.t || "") + '</textarea></label>' +
+        '<label>Link naar de leverancier (alleen voor jou zichtbaar)<input name="lev" value="' + esc(lev || "") + '" placeholder="https://www.aliexpress.com/item/…"></label>' +
+        '<div class="bh-fotos"></div><label class="bh-upload">Foto’s toevoegen vanaf je computer of telefoon (de eerste foto is de hoofdfoto)<input type="file" name="foto" accept="image/jpeg,image/png,image/webp" multiple></label>' +
+        '<label>Of plak fotolinks (één per regel), bijvoorbeeld van de leverancier<textarea name="fotolinks" rows="3" placeholder="https://…jpg"></textarea></label><p><button type="button" class="bh-kopie" data-flinks>Foto’s van deze links toevoegen</button></p>' +
+        '<label class="check"><input type="checkbox" name="actief"' + (p.nr && pdata && pdata.producten.some(function (r) { return r.nr === p.nr && !r.actief; }) ? "" : " checked") + '><span>Zichtbaar in de winkel</span></label>' +
+        '<button class="knop" type="submit">Opslaan</button> <button class="link" type="button" data-pannuleer>Annuleren</button><p class="bevestig" role="status"></p></form>';
+    }
+    function tekenFotos(f) {
+      $(".bh-fotos", f).innerHTML = fotos.map(function (u, i) { return '<figure><img src="' + esc(u) + '" alt=""><button type="button" data-fweg="' + i + '" aria-label="Foto verwijderen">×</button>' + (i ? '<button type="button" data-feerst="' + i + '">Hoofdfoto</button>' : '<small>Hoofdfoto</small>') + '</figure>'; }).join("");
+    }
+    function tekenProducten() {
+      var eigen = pdata.producten, lv = {}; (pdata.leveranciers || []).forEach(function (r) { lv[r.nr] = r.url; });
+      var vast = P.filter(function (p) { return p.nr && p.nr < 1000; }).sort(function (a, b) { return a.nr - b.nr; });
+      $("#bh-producten").innerHTML = '<p><button class="knop" type="button" data-pnieuw>Nieuw product toevoegen</button></p><div id="bh-pedit"></div>' +
+        '<h3>Jouw toegevoegde producten</h3>' + (eigen.length ? eigen.map(function (r) { var p = r.data; return '<div class="bh-prod"><img src="' + esc((p.u || [])[0] || "") + '" alt=""><div><b>' + esc(p.n) + '</b><br><small>nr. ' + r.nr + ' · ' + euro(+p.p) + ' · ' + (r.actief ? "zichtbaar" : "verborgen") + (r.leverancier ? ' · <a class="link" href="' + esc(r.leverancier) + '" target="_blank" rel="noopener">leverancier ↗</a>' : ' · geen leverancierslink') + '</small></div><button type="button" class="link" data-pbewerk="' + r.nr + '">Bewerken</button></div>'; }).join("") : '<p class="leeg-bh">Nog geen eigen producten. Voeg er hierboven een toe.</p>') +
+        '<h3>Leverancierslinks van de bestaande producten</h3><p><small>Klopt een link niet meer of wil je een andere leverancier? Pas hem hier aan; hij verschijnt dan bij nieuwe bestellingen.</small></p>' +
+        vast.map(function (p) { return '<form class="bh-levrij" data-nr="' + p.nr + '"><span><b>' + p.nr + '</b> ' + esc(p.n) + '</span><input name="url" value="' + esc(lv[p.nr] || "") + '" placeholder="https://…" aria-label="Leverancierslink voor ' + esc(p.n) + '"><button type="submit">Opslaan</button><small role="status"></small></form>'; }).join("");
+    }
+    $("#bh-producten").addEventListener("click", function (e) {
+      var t = e.target;
+      if (t.closest("[data-pnieuw]")) { $("#bh-pedit").innerHTML = prodForm(null, ""); tekenFotos($(".bh-pform")); $("#bh-pedit").scrollIntoView({ behavior: "smooth" }); }
+      var b = t.closest("[data-pbewerk]"); if (b) { var r = pdata.producten.filter(function (x) { return x.nr === +b.getAttribute("data-pbewerk"); })[0]; $("#bh-pedit").innerHTML = prodForm(r.data, r.leverancier || ""); tekenFotos($(".bh-pform")); $("#bh-pedit").scrollIntoView({ behavior: "smooth" }); }
+      if (t.closest("[data-pannuleer]")) $("#bh-pedit").innerHTML = "";
+      if (t.closest("[data-flinks]")) {
+        var pf = $(".bh-pform"), bv0 = $(".bevestig", pf), links = pf.elements.fotolinks.value.split(/\s+/).filter(function (x) { return /^https:\/\//.test(x); });
+        var stap = function () { var u = links.shift(); if (!u) { bv0.textContent = "Foto’s staan klaar. Vergeet niet op te slaan."; pf.elements.fotolinks.value = ""; return; } bv0.textContent = "Foto ophalen… (" + (links.length + 1) + " te gaan)"; api({ actie: "product_foto", sessie: sessie, url: u }).then(function (j) { if (j.fout) bv0.textContent = j.fout; else { fotos.push(j.url); tekenFotos(pf); } stap(); }); };
+        stap();
+      }
+      var w = t.closest("[data-fweg]"); if (w) { fotos.splice(+w.getAttribute("data-fweg"), 1); tekenFotos($(".bh-pform")); }
+      var h = t.closest("[data-feerst]"); if (h) { var i = +h.getAttribute("data-feerst"); fotos.unshift(fotos.splice(i, 1)[0]); tekenFotos($(".bh-pform")); }
+    });
+    $("#bh-producten").addEventListener("change", function (e) {
+      var f = e.target.closest(".bh-pform"); if (!f) return;
+      if (e.target.name === "c") f.elements.s.innerHTML = SUBS[e.target.value].map(function (x) { return '<option value="' + x[0] + '">' + x[1] + '</option>'; }).join("");
+      if (e.target.name === "foto") {
+        var bv = $(".bevestig", f), lijst = Array.prototype.slice.call(e.target.files); e.target.value = "";
+        var volgende = function () {
+          var file = lijst.shift(); if (!file) { bv.textContent = "Foto’s staan klaar. Vergeet niet op te slaan."; return; }
+          bv.textContent = "Foto uploaden… (" + (lijst.length + 1) + " te gaan)";
+          verklein(file, function (data) { api({ actie: "product_foto", sessie: sessie, data: data }).then(function (j) { if (j.fout) { bv.textContent = j.fout; return; } fotos.push(j.url); tekenFotos(f); volgende(); }); });
+        };
+        volgende();
+      }
+    });
+    function verklein(file, klaar) {
+      var img = new Image(), rd = new FileReader();
+      rd.onload = function () { img.onload = function () { var m = 2000, s = Math.min(1, m / Math.max(img.width, img.height)), c = document.createElement("canvas"); c.width = Math.round(img.width * s); c.height = Math.round(img.height * s); c.getContext("2d").drawImage(img, 0, 0, c.width, c.height); klaar(c.toDataURL("image/jpeg", 0.88)); }; img.src = rd.result; };
+      rd.readAsDataURL(file);
+    }
+    $("#bh-producten").addEventListener("submit", function (e) {
+      var f = e.target.closest(".bh-pform"), r = e.target.closest(".bh-levrij"); e.preventDefault();
+      if (r) { var st = $("small", r); st.textContent = "…"; api({ actie: "leverancier", sessie: sessie, nr: +r.getAttribute("data-nr"), url: r.elements.url.value.trim() }).then(function (j) { st.textContent = j.fout || "Opgeslagen"; }); return; }
+      if (!f) return;
+      var el = f.elements, bv = $(".bevestig", f);
+      var prod = { nr: +el.nr.value || 0, n: el.n.value, p: el.p.value, lt: el.lt.value, c: el.c.value, s: el.s.value, m: el.m.value, d: el.d.value, maten: el.maten.value, t: el.t.value, u: fotos, actief: el.actief.checked };
+      bv.textContent = "Bezig met opslaan…";
+      api({ actie: "product_opslaan", sessie: sessie, product: prod, leverancier: el.lev.value.trim() }).then(function (j) {
+        if (j.fout) { bv.textContent = j.fout; return; }
+        try { sessionStorage.removeItem("suis-eigen"); } catch (x) {}
+        bv.textContent = "Opgeslagen. Het product staat binnen een paar minuten in je winkel.";
+        setTimeout(laadProducten, 900);
+      });
+    });
     $("#bh-berichten").addEventListener("change", function (e) {
       var c = e.target.closest("[data-af]"); if (!c) return;
       api({ actie: "bericht_af", sessie: sessie, id: +c.getAttribute("data-af"), af: c.checked }).then(function () { c.closest(".bh-bericht").classList.toggle("af", c.checked); });
@@ -525,4 +610,21 @@
   }
 
   tellers();
+}
+/* eigen producten van Kim (toegevoegd via de bestelbalie) eerst ophalen, dan de winkel tonen */
+(function () {
+  var klaar = false, voeg = function (lijst) {
+    var x = window.SUIS_EXTRA = window.SUIS_EXTRA || [], ids = {};
+    x.forEach(function (p) { ids[p.id] = 1; });
+    (lijst || []).forEach(function (p) { if (p && p.id && !ids[p.id]) { x.push(p); ids[p.id] = 1; } });
+  };
+  var start = function () { if (klaar) return; klaar = true; suisStart(); };
+  var cache = null; try { cache = JSON.parse(sessionStorage.getItem("suis-eigen") || "null"); } catch (e) {}
+  if (cache && Date.now() - cache.t < 300000) { voeg(cache.p); start(); return; }
+  if (!API) { start(); return; }
+  setTimeout(start, 2500);
+  fetch(API, { method: "POST", headers: { "Content-Type": "application/json" }, body: '{"actie":"producten"}' })
+    .then(function (r) { return r.json(); })
+    .then(function (j) { var l = j.producten || []; try { sessionStorage.setItem("suis-eigen", JSON.stringify({ t: Date.now(), p: l })); } catch (e) {} if (!klaar) voeg(l); start(); })
+    .catch(start);
 })();

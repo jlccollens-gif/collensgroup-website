@@ -35,3 +35,13 @@ alter table public.suismuis_orders enable row level security;
 alter table public.suismuis_berichten enable row level security;
 alter table public.suismuis_beheer enable row level security;
 alter table public.suismuis_sessies enable row level security;
+-- Producten die Kim zelf toevoegt (via haar bestelbalie) en de leverancierslinks per product.
+create table if not exists public.suismuis_producten (
+  nr int primary key, data jsonb not null, leverancier text, actief boolean not null default true,
+  created_at timestamptz not null default now()
+);
+create table if not exists public.suismuis_leveranciers (nr int primary key, url text not null);
+alter table public.suismuis_producten enable row level security;
+alter table public.suismuis_leveranciers enable row level security;
+-- Openbare map voor productfoto's (alleen de server-functie mag uploaden):
+insert into storage.buckets (id, name, public) values ('producten', 'producten', true) on conflict (id) do nothing;
