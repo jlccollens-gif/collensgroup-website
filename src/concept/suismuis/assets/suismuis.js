@@ -3,11 +3,11 @@
   "use strict";
   var TAX = [
     ["wonen", "Wonen & decoratie", [["schilderijen", "Schilderijen"], ["spiegels", "Spiegels"], ["beeldjes", "Beeldjes & objecten"], ["bloempotten", "Bloempotten"], ["droogbloemen", "Droogbloemen"]]],
-    ["vazen", "Vazen", [["glazen-vazen", "Glazen vazen"], ["stenen-vazen", "Stenen vazen"]]],
+    ["vazen", "Vazen", [["glazen-vazen", "Glazen vazen"], ["stenen-vazen", "Stenen vazen"], ["rotan-vazen", "Rotan vazen"]]],
     ["verlichting", "Verlichting & kaarsen", [["lampen", "Lampen"], ["lampenkappen", "Lampenkappen"], ["kaarsen", "Kaarsen & windlichten"]]],
-    ["textiel", "Textiel", [["kussenhoezen", "Kussenhoezen"], ["plaids", "Plaids"], ["vloerkleden", "Vloerkleden"], ["beddengoed", "Beddengoed"]]],
-    ["tafel", "Servies & tafel", [["servies", "Servies"]]],
-    ["meubels", "Meubels", [["bijzettafels", "Bijzettafels"], ["salontafels", "Salontafels"], ["eettafels", "Eettafels"], ["eetkamerstoelen", "Eetkamerstoelen"], ["stoelen", "Stoelen"], ["fauteuils", "Fauteuils"], ["bankjes", "Bankjes"]]]
+    ["textiel", "Textiel", [["kussenhoezen", "Kussenhoezen"], ["plaids", "Plaids"], ["vloerkleden", "Vloerkleden"], ["beddengoed", "Beddengoed"], ["gordijnen", "Gordijnen & vitrage"], ["vloerkussens", "Vloerkussens"]]],
+    ["tafel", "Servies & tafel", [["servies", "Servies"], ["schalen", "Schalen & dienbladen"], ["tafellinnen", "Servetten & placemats"]]],
+    ["meubels", "Meubels", [["bijzettafels", "Bijzettafels"], ["salontafels", "Salontafels"], ["eettafels", "Eettafels"], ["eetkamerstoelen", "Eetkamerstoelen"], ["stoelen", "Stoelen"], ["fauteuils", "Fauteuils"], ["bankjes", "Bankjes"], ["krukken", "Barkrukken"], ["kasten", "Kasten & nachtkastjes"]]]
   ];
   var CATS = {}, SUBS = {}, SUBCAT = {};
   TAX.forEach(function (t) { CATS[t[0]] = t[1]; SUBS[t[0]] = t[2]; t[2].forEach(function (s) { SUBCAT[s[0]] = [t[0], s[1]]; }); });

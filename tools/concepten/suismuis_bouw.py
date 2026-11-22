@@ -25,11 +25,11 @@ PRIVACY = f'''<p class="noot">Versie 1, november 2026.</p>
 DOEL = os.path.join(os.path.dirname(__file__), "..", "..", "src", "concept", "suismuis")
 TAX = [
     ("wonen", "Wonen & decoratie", "p-schilderij-1", [("schilderijen", "Schilderijen"), ("spiegels", "Spiegels"), ("beeldjes", "Beeldjes & objecten"), ("bloempotten", "Bloempotten"), ("droogbloemen", "Droogbloemen")]),
-    ("vazen", "Vazen", "c-decoratie", [("glazen-vazen", "Glazen vazen"), ("stenen-vazen", "Stenen vazen")]),
+    ("vazen", "Vazen", "c-decoratie", [("glazen-vazen", "Glazen vazen"), ("stenen-vazen", "Stenen vazen"), ("rotan-vazen", "Rotan vazen")]),
     ("verlichting", "Verlichting & kaarsen", "c-verlichting", [("lampen", "Lampen"), ("lampenkappen", "Lampenkappen"), ("kaarsen", "Kaarsen & windlichten")]),
-    ("textiel", "Textiel", "c-textiel", [("kussenhoezen", "Kussenhoezen"), ("plaids", "Plaids"), ("vloerkleden", "Vloerkleden"), ("beddengoed", "Beddengoed")]),
-    ("tafel", "Servies & tafel", "c-accessoires", [("servies", "Servies")]),
-    ("meubels", "Meubels", "p-kruk", [("bijzettafels", "Bijzettafels"), ("salontafels", "Salontafels"), ("eettafels", "Eettafels"), ("eetkamerstoelen", "Eetkamerstoelen"), ("stoelen", "Stoelen"), ("fauteuils", "Fauteuils"), ("bankjes", "Bankjes")]),
+    ("textiel", "Textiel", "c-textiel", [("kussenhoezen", "Kussenhoezen"), ("plaids", "Plaids"), ("vloerkleden", "Vloerkleden"), ("beddengoed", "Beddengoed"), ("gordijnen", "Gordijnen & vitrage"), ("vloerkussens", "Vloerkussens")]),
+    ("tafel", "Servies & tafel", "c-accessoires", [("servies", "Servies"), ("schalen", "Schalen & dienbladen"), ("tafellinnen", "Servetten & placemats")]),
+    ("meubels", "Meubels", "p-kruk", [("bijzettafels", "Bijzettafels"), ("salontafels", "Salontafels"), ("eettafels", "Eettafels"), ("eetkamerstoelen", "Eetkamerstoelen"), ("stoelen", "Stoelen"), ("fauteuils", "Fauteuils"), ("bankjes", "Bankjes"), ("krukken", "Barkrukken"), ("kasten", "Kasten & nachtkastjes")]),
 ]
 CATS = [(c, n, img) for c, n, img, _ in TAX]
 SVG = {
