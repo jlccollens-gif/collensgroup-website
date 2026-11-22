@@ -425,14 +425,15 @@ DIENSTEN = [
              "<tr><td>Onderhoud (optioneel), 36 × €29</td><td>€1.044</td></tr>"
              "<tr><td><b>Totaal over 3 jaar</b></td><td><b>± €1.025 – €1.070 zonder onderhoud, ± €2.069 – €2.114 met onderhoud</b></td></tr></table></div>"
              "<p>Ter vergelijking: bij een websitebouwer betaal je elke maand zolang de site bestaat, en de site is niet van jou. Bij ons betaal je de bouw één keer en ben je eigenaar.</p>"),
-            ("Hoe gaat het?",
-             "<ol><li>Je vertelt per mail wat je doet en wat de site moet bereiken.</li>"
+            ("Zo werkt het",
+             "<ol class='stappen-licht'><li>Je vertelt per mail wat je doet en wat de site moet bereiken.</li>"
              "<li>Je krijgt een gratis concept binnen 48 uur, zodat je ziet hoe het eruit kan zien.</li>"
              "<li>Je krijgt een vaste prijs. Na akkoord bouwen we de site.</li>"
              "<li>Jij controleert alles, daarna gaat de site live.</li></ol>"),
-            ("Wat we zelf bouwden",
-             "<p>Onze eigen apps en games staan op de <a href='apps.html'>projectenpagina</a>: LubbyC en Koffer Vol! komen binnenkort in Google Play, Eiland Express is in ontwikkeling. "
-             "Een voorbeeld van een complete webshop met winkelmand, afrekenen en beheer is <a href='concept/suismuis/index.html'>Suismuis Home</a>, een webshop voor woonaccessoires. Dit is de conceptversie en de shop is nog niet gelanceerd.</p>")],
+            ("Recent ontwerpwerk",
+             "<p>Elke site ontwerpen we op maat, in de stijl van het merk. Geen template, maar een eigen uitstraling die past bij wat je verkoopt.</p>"
+             "<div class='werk-grid'><figure class='werk'><img src='img/werk-atelier-ombre.jpg' alt='Webshop-ontwerp voor kunstgalerie Atelier Ombre op laptop en telefoon' width='1200' height='760' loading='lazy'><figcaption><strong>Atelier Ombre</strong><span>Kunstwebshop met galerie en interactieve zaal. Eigen merk van Collens Group.</span></figcaption></figure>"
+             "<figure class='werk'><img src='img/werk-suismuis.jpg' alt='Webshop-ontwerp voor interieurmerk Suismuis Home op laptop en telefoon' width='1200' height='760' loading='lazy'><figcaption><strong>Suismuis Home</strong><span>Interieurwebshop met shop-de-look-foto's, winkelmand en productbeheer. In ontwikkeling.</span></figcaption></figure></div>")],
         "rel": [("webshop-laten-maken.html", "Webshop laten maken"), ("goedkope-website-laten-maken.html", "Goedkope website laten maken"), ("website-laten-maken-horeca.html", "Website voor horeca"), ("website-laten-maken-kapper.html", "Website voor kapsalon"), ("chatbot-laten-maken.html", "AI-chatbot voor je site")],
     },
     {
@@ -481,8 +482,8 @@ DIENSTEN = [
              "<li><strong>AI-chatbot (vanaf €995):</strong> klanten stellen steeds dezelfde vragen over openingstijden, prijzen of levertijden. De chatbot beantwoordt ze op basis van jouw eigen teksten en stuurt twijfelgevallen door naar jou. <a href='chatbot-laten-maken.html'>Lees meer over de AI-chatbot</a>.</li>"
              "<li><strong>AI-assistent (vanaf €1.950):</strong> meerdere workflows en koppelingen met mail, agenda, documenten en CRM, waarbij jij de eindcontrole houdt.</li></ul>"
              "<p>Niet zeker? Beschrijf kort wat je elke week opnieuw doet, dan zeggen we eerlijk welk pakket past, of dat je het zonder ons kunt oplossen.</p>"),
-            ("Hoe gaat het?",
-             "<ol><li>Je vertelt per mail welk werk steeds terugkomt.</li><li>Je krijgt een gratis concept en een vaste prijs.</li>"
+            ("Zo werkt het",
+             "<ol class='stappen-licht'><li>Je vertelt per mail welk werk steeds terugkomt.</li><li>Je krijgt een gratis concept en een vaste prijs.</li>"
              "<li>Na akkoord bouwen we het en testen we het samen met jou.</li><li>Daarna gaat het live.</li></ol>")],
         "rel": [("chatbot-laten-maken.html", "AI-chatbot laten maken"), ("website-laten-maken.html", "Website laten maken"), ("app-laten-maken-kosten.html", "Wat kost een app?")],
     },
@@ -504,7 +505,7 @@ def dienst_pagina(d):
 <h2>Vergeleken met de markt</h2><p>{e(tekst)} <span class="bron">Bron: <a href="{url}" rel="nofollow noopener">{e(bron)}</a>.</span></p>
 <h2>Onze pakketten</h2><div class="pakketten">{kaarten}</div>
 <p style="margin-top:20px"><a class="knop geel" href="index.html#contact">Vraag je gratis concept aan</a></p>
-<h2>Extra</h2><table class="lijst">{extra}</table>
+<h2>Extra&rsquo;s en onderhoud</h2><table class="lijst">{extra}</table>
 <p class="noot">Alle prijzen zijn eindprijzen: er komt geen btw bij. Bij &ldquo;vanaf&rdquo; hoort het pakket zoals hierboven beschreven; wijkt jouw project daarvan af, dan krijg je vooraf een vaste prijs op maat. Externe kosten (zoals domein, tools of store-accounts) staan vooraf in de offerte.</p>
 {"".join(f"<h2>{e(h)}</h2>{x}" for h, x in d.get("secties", []))}
 <h2>Veelgestelde vragen</h2>{faq_html(d["faq"])}

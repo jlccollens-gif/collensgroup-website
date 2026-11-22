@@ -83,7 +83,7 @@ PLAN = {
             [("bereik", "Geavanceerde website", 2000, 5000), ("bereik", "Eenvoudige website", 500, 2000)],
             [("punt", "Collens Group one-page", 495), ("punt", "Collens Group bedrijfssite", 995)], 5000,
             "Trustoo, Wat kost een website laten maken? (aangepast 03-11-2026)", "https://trustoo.nl/kosten/webdesign-kosten/")),
-        (r"Extra", "voor", tijdgrafiek("Hoe snel ben je live?",
+        (r"Extra&rsquo;s en onderhoud", "voor", tijdgrafiek("Hoe snel ben je live?",
             [("One-page", .6, 1, "3–5 dagen", True), ("Bedrijfswebsite", 2, 3, "2–3 weken", True), ("Webshop", 3, 5, "3–5 weken", True)], 6)),
     ],
     "webshop-laten-maken": [
@@ -96,7 +96,7 @@ PLAN = {
             [("vanaf", "Markt, eenvoudige game", 10000)],
             [("punt", "Collens Group casual game", 4950), ("punt", "Collens Group 2D met levels", 9950)], 16000,
             "Juego Studios, Cost of Game Development in the Netherlands (2026)", "https://www.juegostudio.com/blog/cost-of-game-development-netherlands")),
-        (r"Extra", "voor", tijdgrafiek("Hoe snel is je game klaar?",
+        (r"Extra&rsquo;s en onderhoud", "voor", tijdgrafiek("Hoe snel is je game klaar?",
             [("Merkgame", 2, 3, "2–3 weken", True), ("Casual game", 4, 6, "4–6 weken", True), ("2D-game met levels", 8, 12, "8–12 weken", True)], 12)
             + '<h2>Zo zien onze eigen games eruit</h2>' + GAME_BEELD),
     ],
@@ -104,7 +104,7 @@ PLAN = {
         (r"Vergeleken met de markt", "na_p", prijsgrafiek("AI-oplossing: wat je betaalt",
             [("bereik", "AI-agent (markt)", 2000, 8000)],
             [("punt", "Collens Group automatisering", 395), ("punt", "Collens Group AI-chatbot", 995), ("punt", "Collens Group AI-assistent", 1950)], 8000, *SL_AI)),
-        (r"Extra", "voor", tijdgrafiek("Hoe snel werkt het?",
+        (r"Extra&rsquo;s en onderhoud", "voor", tijdgrafiek("Hoe snel werkt het?",
             [("Automatisering", .4, 1, "2–5 dagen", True), ("AI-chatbot", .8, 1.2, "1 week", True), ("AI-assistent", 2, 4, "2–4 weken", True)], 4)),
     ],
     "chatbot-laten-maken": [
