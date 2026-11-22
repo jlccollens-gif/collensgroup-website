@@ -50,7 +50,7 @@ APPS = [
         "titel": "LubbyC: reis samen in Thailand en ontmoet reizigers",
         "kop": "Alleen op reis, maar niet alleen eten vanavond.",
         "intro": "LubbyC verbindt reizigers die op dezelfde plek zijn en hetzelfde willen doen. Open de kaart, zie wat mensen in de buurt van plan zijn en sluit aan, of maak zelf een plan. We starten in Krabi en Ao Nang, Phuket, Pattaya en Bangkok.",
-        "kenmerken": ["Plannen in de buurt op de kaart: eten, strand, dagtrips, tempels", "In een paar tikken zelf een plan maken", "Groepschat zodra je bent geaccepteerd", "Reisgids, weer en plekken in de buurt", "Noodhulp met één tik", "In 12 talen"],
+        "kenmerken": ["Plannen in de buurt op de kaart: eten, strand, dagtrips, tempels", "In een paar tikken zelf een plan maken", "Groepschat zodra je bent geaccepteerd", "Reisgids, weer en plekken in de buurt", "Noodhulp met één tik", "In 13 talen"],
         "beelden": [("img/lubbyc-kaart.jpg", "Kaart met plannen in de buurt"), ("img/lubbyc-evenementen.jpg", "Feesten en evenementen"), ("img/lubbyc-ontdekken.jpg", "Ontdekken"), ("img/lubbyc-noodhulp.jpg", "Noodhulp")],
         "status": "Binnenkort in Google Play",
         "categorie": "TravelApplication", "schema": "MobileApplication",
@@ -670,7 +670,7 @@ def en_pages(pages):
         lang="en", alt=("index.html", "en.html")))
 
     en_apps = [
-        ("LubbyC", "App · Coming soon on Google Play", "Meet travelers nearby. Plan dinners, beaches and trips together in Thailand. Available in 12 languages.", "img/lubbyc-icon.png", "#0E4433", "L"),
+        ("LubbyC", "App · Coming soon on Google Play", "Meet travelers nearby. Plan dinners, beaches and trips together in Thailand. Available in 13 languages.", "img/lubbyc-icon.png", "#0E4433", "L"),
         ("Koffer Vol!", "Game · Coming soon on Google Play", "Pack the right things for every trip. A clever, cheerful packing puzzle with 100 levels in 10 countries.", "img/koffervol-icon.png", "#C2410C", "🧳"),
         ("Island Express", "Game · In development", "Drive your songthaew around a tropical island and take passengers safely to their stop. A cheerful 3D driving game.", "img/eiland-icon.jpg", "#0F766E", "E"),
         ("Manu en Khanun", "Animated kids' series · In production", "A Dutch boy and a baby elephant in northern Thailand. A series about friendship and a new culture, made with AI animation.", "img/manu-icon.jpg", "#B45309", "M"),
