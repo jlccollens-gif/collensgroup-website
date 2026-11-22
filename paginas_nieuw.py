@@ -31,7 +31,7 @@ def bouw(page, e, faq_html, faq_ld, DIENSTEN, PAKKETTEN, VANDAAG, CONFIG):
              ("Welke kosten komen er buiten jullie prijs bij?", "Externe kosten betaal je rechtstreeks aan de partij: een domeinnaam (meestal €10 tot €25 per jaar), Apple Developer Account ($99 per jaar), Google Play ($25 eenmalig) en eventuele hosting. Ze staan vooraf in de offerte."),
              ("Hoe betaal ik?", "Bij apps in drie delen: 40% bij akkoord, 40% bij een goedgekeurde testversie en 20% bij oplevering. De betaling voor andere diensten staat vooraf in je offerte."),
              ("Is er echt een gratis concept?", "Ja. Je krijgt binnen 48 uur een gratis concept, zonder verplichtingen.")]
-    pages.append(page("prijzen.html", "Prijzen: website, app, game en AI laten maken | Collens Group",
+    pages.append(page("prijzen.html", "Prijzen website, app, game en AI | Collens Group",
         "Alle prijzen op een rij: website vanaf €495, webshop vanaf €1.950, app vanaf €3.150, game vanaf €1.950 en AI vanaf €395. Eindprijzen, geen btw erbij.",
         f'''<article class="tekst breed"><h1>Prijzen: website, app, game en AI laten maken</h1>
 <p class="lead2">Alle prijzen op één plek. Het zijn eindprijzen: er komt geen btw bij. Je krijgt vooraf een vaste prijs en binnen 48 uur een gratis concept.</p>
@@ -45,8 +45,8 @@ def bouw(page, e, faq_html, faq_ld, DIENSTEN, PAKKETTEN, VANDAAG, CONFIG):
         crumbs=[("Home", "index.html"), ("Prijzen", "prijzen.html")], extra_ld=[faq_ld(faq_p)]))
 
     # ---------- OVER ONS ----------
-    pages.append(page("over-ons.html", "Over ons | Collens Group",
-        "Collens Group maakt websites, apps, games en AI-oplossingen met een vaste prijs. Bekijk onze werkwijze en wat we zelf bouwden: LubbyC, Koffer Vol! en Eiland Express.",
+    pages.append(page("over-ons.html", "Over ons: werkwijze en eigen projecten | Collens Group",
+        "Collens Group maakt websites, apps, games en AI met een vaste prijs. Bekijk onze werkwijze en eigen projecten: LubbyC, Koffer Vol! en Eiland Express.",
         f'''<article class="tekst breed"><h1>Over Collens Group</h1>
 <p class="lead2">We maken websites, apps, games en AI-oplossingen voor ondernemers in Nederland, België en de rest van de wereld, met een vaste prijs vooraf en een gratis concept voordat je iets betaalt.</p>
 <h2>Wat we doen</h2><p>Collens Group is een klein, onafhankelijk digitaal bedrijf. We bouwen <a href="website-laten-maken.html">websites en webshops</a>, <a href="app-laten-maken-kosten.html">apps voor iPhone en Android</a>, <a href="game-laten-maken.html">games</a> en <a href="ai-automatisering.html">AI-automatisering en chatbots</a>. We werken volledig online, zodat je niet hoeft te reizen en wij onze prijzen laag kunnen houden.</p>

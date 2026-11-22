@@ -45,7 +45,7 @@ NIEUW = [
   "fotograaf of trouwfotograaf",
   {}, [("Kan ik zelf foto's wisselen?", "Kleine wijzigingen, zoals een nieuwe serie, laat je door ons doen via het onderhoud (vanaf €29 per maand, kleine wijzigingen tot 30 minuten per maand). Een extra pagina kost €95.")]),
  _maak("website-laten-maken-aannemer", "Website aannemer",
-  "Website voor aannemer en installateur vanaf €495 | Collens Group",
+  "Website aannemer of installateur vanaf €495 | Collens Group",
   "Website laten maken voor aannemers, installateurs en klusbedrijven: offerteformulier, werkgebied en projecten. Vaste prijs vanaf €495, gratis concept in 48 uur.",
   "Website laten maken voor aannemers, installateurs en klusbedrijven",
   "Een duidelijke website voor je bouw-, klus- of installatiebedrijf waarop klanten in je werkgebied meteen zien wat je doet en hoe ze een offerte aanvragen. Vanaf €495, geen btw erbij, met een gratis concept binnen 48 uur.",

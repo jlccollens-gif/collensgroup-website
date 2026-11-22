@@ -1150,7 +1150,7 @@ def build():
     if CONFIG["base_url"]:
         with open(os.path.join(DIST, "sitemap.xml"), "w") as f:
             f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
-                    "".join(f"<url><loc>{abs_url(p)}</loc><lastmod>{datums.get(p, {}).get('bijgewerkt', VANDAAG)}</lastmod></url>\n" for p in pages) + "</urlset>\n")
+                    "".join(f"<url><loc>{abs_url(p)}</loc><lastmod>{datums.get(p, {}).get('bijgewerkt', VANDAAG)}</lastmod></url>\n" for p in pages if "noindex" not in open(os.path.join(DIST, p), encoding="utf-8").read(6000)) + "</urlset>\n")
     with open(os.path.join(DIST, "llms.txt"), "w") as f:
         f.write(f"# {CONFIG['naam']}\n\n> Websites, apps, games en AI-automatisering voor ondernemers in Nederland, België en wereldwijd, tegen vaste prijzen onder het marktgemiddelde.\n\n"
                 "## Prijzen (geen btw)\n- Websites: one-page €495, bedrijfswebsite €995, webshop €1.950\n- Games: merkgame €1.950, casual game €4.950, 2D-game met levels €9.950\n- AI: automatisering €395, AI-chatbot €995, AI-assistent €1.950\n- Basis / MVP app: vanaf €3.150, 3–5 weken\n- Standaard app: vanaf €6.750, 6–10 weken\n- Maatwerk / Pro app: vanaf €13.050, 10–16+ weken\n- Uurtarief: €67,50\n- Onderhoud: €85,50 of €265,50 per maand\n\n"
@@ -1197,12 +1197,12 @@ def datums_vastzetten(dist):
 def schone_links(dist):
     """Interne links zonder .html: Cloudflare Pages stuurt /x.html met een 308 door naar /x.
     Zo volgt Google geen omleidingen meer ("Page with redirect" in Search Console)."""
-    pat = re.compile(r'href="(?![a-z]+:|//|#)([^"#?]*?)\.html((?:[?#][^"]*)?)"')
+    pat = re.compile(r'href=(["\'])(?![a-z]+:|//|#)([^"\'#?]*?)\.html((?:[?#][^"\']*)?)\1')
     def vervang(m):
-        pad, rest = m.group(1), m.group(2)
+        q, pad, rest = m.group(1), m.group(2), m.group(3)
         if pad == "index" or pad.endswith("/index"):
             pad = pad[:-5] or "./"
-        return f'href="{pad}{rest}"'
+        return f'href={q}{pad}{rest}{q}'
     for root, _, files in os.walk(dist):
         for fn in files:
             if fn.endswith(".html"):

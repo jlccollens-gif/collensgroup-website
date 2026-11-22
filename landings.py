@@ -54,7 +54,7 @@ LANDINGS = [
   "offers":[("AI-chatbot",995)], "rel":[("ai-automatisering.html","AI en automatisering"),("website-laten-maken.html","Website laten maken")]},
  {"slug":"website-laten-maken-horeca","lang":"nl","kort":"Website horeca",
   "titel":"Website laten maken voor horeca vanaf €495 | Collens Group",
-  "desc":"Website laten maken voor je restaurant, café of lunchroom: menukaart, openingstijden, reserveren en route op je telefoon. Vaste prijs vanaf €495, klaar in 1–3 weken.",
+  "desc":"Website voor je restaurant, café of lunchroom: menukaart, openingstijden, reserveren en route op je telefoon. Vaste prijs vanaf €495, klaar in 1–3 weken.",
   "h1":"Website laten maken voor horeca",
   "lead":"Een snelle website voor je restaurant, café, bar of lunchroom, waarop gasten in een paar seconden je menukaart, openingstijden en reserveerknop vinden. Vanaf €495 (geen btw erbij), met een vaste prijs vooraf.",
   "secties":[
@@ -72,7 +72,7 @@ LANDINGS = [
   "offers":[("One-page website horeca",495),("Bedrijfswebsite horeca",995)], "rel":[("website-laten-maken.html","Alle websitepakketten"),("goedkope-website-laten-maken.html","Goedkope website laten maken"),("chatbot-laten-maken.html","AI-chatbot laten maken")]},
  {"slug":"app-laten-maken-horeca","lang":"nl","kort":"App horeca",
   "titel":"App laten maken voor horeca vanaf €3.150 | Collens Group",
-  "desc":"Eigen app voor je restaurant, café of lunchroom: spaarkaart, vooraf bestellen, reserveren en pushberichten. Vaste prijs vanaf €3.150, gratis concept binnen 48 uur.",
+  "desc":"Eigen app voor je restaurant, café of lunchroom: spaarkaart, vooraf bestellen, reserveren en pushberichten. Vaste prijs vanaf €3.150, gratis concept in 48 uur.",
   "h1":"App laten maken voor horeca",
   "lead":"Een eigen app voor je restaurant, café, lunchroom of afhaalzaak: met een digitale spaarkaart, vooraf bestellen of een pushbericht als je een actie hebt. Vanaf €3.150 (geen btw erbij), met een vaste prijs vooraf en een gratis concept binnen 48 uur.",
   "secties":[
@@ -109,7 +109,7 @@ LANDINGS = [
   "offers":[("One-page website kapper",495),("Bedrijfswebsite kapper",995)], "rel":[("website-laten-maken.html","Alle websitepakketten"),("goedkope-website-laten-maken.html","Goedkope website laten maken"),("website-laten-maken-horeca.html","Website voor horeca"),("chatbot-laten-maken.html","AI-chatbot laten maken")]},
  {"slug":"website-laten-maken-schoonheidssalon","lang":"nl","kort":"Website schoonheidssalon",
   "titel":"Website schoonheidssalon of nagelstudio vanaf €495",
-  "desc":"Website laten maken voor je schoonheidssalon, nagelstudio of lash- en browstudio: behandelingen met prijs, online boeken, cadeaubon. Vanaf €495, gratis concept in 48 uur.",
+  "desc":"Website laten maken voor je schoonheidssalon of nagelstudio: behandelingen met prijs, online boeken, cadeaubon. Vanaf €495, gratis concept in 48 uur.",
   "h1":"Website laten maken voor je schoonheidssalon of nagelstudio",
   "lead":"Een rustige, snelle website voor je schoonheidssalon, nagelstudio of lash- en browstudio, waarop klanten meteen zien welke behandelingen je doet, wat ze kosten en wanneer ze terechtkunnen. Vanaf €495 (geen btw erbij), met een vaste prijs vooraf en een gratis concept binnen 48 uur.",
   "secties":[
@@ -175,7 +175,7 @@ LANDINGS = [
   "offers":[("One-page website",495),("Business website",995),("Web shop",1950)], "rel":[("en.html","All services and prices"),("en-app-development.html","App development")]},
  {"slug":"en-ai-chatbot","lang":"en","kort":"AI chatbot",
   "titel":"AI chatbot for small business from €995 | Collens Group",
-  "desc":"An AI chatbot for your small business website that answers customer questions from your own content. From €995, live in about 1 week. Free concept within 48 hours.",
+  "desc":"An AI chatbot for your small business website that answers customer questions from your own content. From €995, live in about 1 week. Free concept in 48 hours.",
   "h1":"AI chatbot for small business",
   "lead":"A small business AI chatbot answers the questions you get every day, using only your own website, prices and policies, and passes anything it is unsure about to you. From €995, live in about 1 week.",
   "secties":[
