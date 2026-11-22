@@ -51,7 +51,8 @@ def bouw(page, e, faq_html, faq_ld, DIENSTEN, PAKKETTEN, VANDAAG, CONFIG):
     pages.append(page("prijzen.html", "Prijzen website, app, game en AI | Collens Group",
         "Alle prijzen op een rij: website vanaf €495, webshop vanaf €1.950, app vanaf €3.150, game vanaf €1.950 en AI vanaf €395. Eindprijzen, geen btw erbij.",
         f'''<article class="tekst breed"><h1>Prijzen: website, app, game en AI laten maken</h1>
-<p class="lead2">Alle prijzen op één plek. Het zijn eindprijzen: er komt geen btw bij. Je krijgt vooraf een vaste prijs en binnen 48 uur een gratis concept.</p>
+<p class="lead2">Weet vooraf precies wat je betaalt. Alle prijzen zijn eindprijzen, er komt geen btw bij.</p>
+<ul class="zeker"><li><strong>Eerst gratis concept</strong>Binnen 48 uur zie je hoe het eruitziet</li><li><strong>Vaste prijs</strong>Meerwerk alleen na jouw akkoord</li><li><strong>Betalen in delen</strong>Bij apps 40 / 40 / 20%, nooit alles vooraf</li><li><strong>Jij bent eigenaar</strong>Site, domein en inhoud op jouw naam</li></ul>
 {snel}{secties}
 <p class="noot">Bij &ldquo;vanaf&rdquo; hoort het pakket zoals beschreven. Wijkt jouw project daarvan af, dan krijg je vooraf een vaste prijs op maat.</p>
 <div class="info-duo">
