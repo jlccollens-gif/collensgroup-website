@@ -126,18 +126,18 @@ def tels(beelden, bijschrift):
             f'<figcaption>{bijschrift}</figcaption>')
 
 
-ECHT = {  # echte schermen van eigen werk: (laptop, telefoon, alt, bijschrift)
-    ("web", "nl"): ("img/voorbeeld-website.jpg", "img/voorbeeld-website-m.jpg", "Onze eigen website collensgroup.com op laptop en telefoon", "Deze website is door ons gemaakt"),
-    ("web", "en"): ("img/voorbeeld-website-en.jpg", "img/voorbeeld-website-m-en.jpg", "Our own website collensgroup.com on laptop and phone", "This website was built by us"),
-    ("chat", "nl"): ("img/voorbeeld-chat.jpg", "img/voorbeeld-chat-m.jpg", "Onze eigen online adviseur op collensgroup.com, op laptop en telefoon", "Onze eigen AI-adviseur, live op collensgroup.com"),
-    ("shop", "nl"): ("img/voorbeeld-webshop.jpg", "img/hero-webshop.jpg", "Conceptwebshop Suismuis Home op laptop en telefoon", "Concept: Suismuis Home, een webshop voor woonaccessoires (nog niet gelanceerd)"),
+ECHT = {  # echte schermen van eigen ontwerpwerk: (laptop, telefoon, alt)
+    ("web", "nl"): ("img/toon-ombre-lap.jpg", "img/toon-suismuis-tel.jpg", "Webshop-ontwerpen van Collens Group: Atelier Ombre op laptop en Suismuis Home op telefoon"),
+    ("web", "en"): ("img/toon-ombre-lap.jpg", "img/toon-suismuis-tel.jpg", "Web shop designs by Collens Group: Atelier Ombre on laptop and Suismuis Home on phone"),
+    ("chat", "nl"): ("img/voorbeeld-chat.jpg", "img/voorbeeld-chat-m.jpg", "Jeff, de AI-adviseur van Collens Group, op laptop en telefoon"),
+    ("shop", "nl"): ("img/voorbeeld-webshop.jpg", "img/toon-ombre-tel.jpg", "Webshop-ontwerpen van Collens Group: Suismuis Home op laptop en Atelier Ombre op telefoon"),
 }
 
 
 def echt(soort, lang):
-    a, b, alt, bij = ECHT[(soort, lang)]
+    a, b, alt = ECHT[(soort, lang)]
     return (f'<div class="illu-scherm"><div class="lap"><div class="balk"><i></i><i></i><i></i></div><img src="{a}" alt="{alt}" width="640" height="400" loading="eager"></div>'
-            f'<div class="tel"><img src="{b}" alt="" width="120" height="213" loading="eager"></div></div><figcaption>{bij}</figcaption>')
+            f'<div class="tel"><img src="{b}" alt="" width="120" height="213" loading="eager"></div></div>')
 
 
 def illustratie(soort, lang):

@@ -54,9 +54,16 @@ def bouw(page, e, faq_html, faq_ld, DIENSTEN, PAKKETTEN, VANDAAG, CONFIG):
 <p class="lead2">Alle prijzen op één plek. Het zijn eindprijzen: er komt geen btw bij. Je krijgt vooraf een vaste prijs en binnen 48 uur een gratis concept.</p>
 {snel}{secties}
 <p class="noot">Bij &ldquo;vanaf&rdquo; hoort het pakket zoals beschreven. Wijkt jouw project daarvan af, dan krijg je vooraf een vaste prijs op maat.</p>
-{cta()}
-<h2>Niet zeker welk pakket past?</h2><p>Beantwoord drie korte vragen in de <a href="pakketkiezer.html">pakketkiezer</a> en zie direct wat bij je past, of vraag het de online adviseur rechtsonder.</p>
-<h2>Waarom zijn onze prijzen lager?</h2><p>We bouwen met moderne tools en veel automatisering en geven dat voordeel door. Een eenvoudige website kost in Nederland volgens <a href="https://trustoo.nl/kosten/webdesign-kosten/" rel="nofollow noopener">Trustoo</a> gemiddeld €500 tot €2.000 en een geavanceerde website €2.000 tot €5.000. Voor een eenvoudige app noemen kostengidsen €5.000 tot €25.000 (<a href="https://searchlab.nl/kosten/wat-kost-een-app-laten-maken" rel="nofollow noopener">Searchlab, 2026</a>).</p>
+<div class="info-duo">
+<div class="info-kaart"><h2>Twijfel je welk pakket past?</h2><p>Beantwoord drie korte vragen en zie direct welk pakket bij jouw plannen en budget hoort. Liever even sparren? Stel je vraag aan Jeff, onze AI-adviseur. Hij kent alle pakketten en prijzen en is dag en nacht bereikbaar.</p>
+<p class="knoppen"><a class="knop geel" href="pakketkiezer.html">Start de pakketkiezer</a><a class="knop knop-rand" href="index.html#contact" data-chat-open>Vraag het Jeff</a></p></div>
+<div class="info-kaart donker"><h2>Waarom zijn we goedkoper?</h2><p>We bouwen met moderne tools en veel automatisering. Dat scheelt uren, en dat voordeel geven we aan jou door.</p>
+<table class="vgl"><tr><th></th><th>Markt (NL)</th><th>Bij ons</th></tr>
+<tr><td>Eenvoudige website</td><td>€500 – €2.000</td><td>vanaf €495</td></tr>
+<tr><td>Uitgebreide website</td><td>€2.000 – €5.000</td><td>vanaf €995</td></tr>
+<tr><td>Eenvoudige app</td><td>€5.000 – €25.000</td><td>vanaf €3.150</td></tr></table>
+<p class="bron">Bronnen: <a href="https://trustoo.nl/kosten/webdesign-kosten/" rel="nofollow noopener">Trustoo</a>, <a href="https://searchlab.nl/kosten/wat-kost-een-app-laten-maken" rel="nofollow noopener">Searchlab (2026)</a>.</p></div>
+</div>
 <h2>Veelgestelde vragen over prijzen</h2>{faq_html(faq_p)}{cta("Vraag een vaste prijs aan")}
 <p class="bron" style="margin-top:22px">Zie ook: <a href="website-laten-maken.html">Website laten maken</a> · <a href="app-laten-maken-kosten.html">Wat kost een app?</a> · <a href="game-laten-maken.html">Game laten maken</a> · <a href="ai-automatisering.html">AI en automatisering</a></p></article>''',
         crumbs=[("Home", "index.html"), ("Prijzen", "prijzen.html")], extra_ld=[faq_ld(faq_p)]))

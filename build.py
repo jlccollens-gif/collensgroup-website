@@ -295,7 +295,7 @@ def contact_section():
 <div class="rij2"><label>Bedrijf (optioneel)<input name="bedrijf" autocomplete="organization"></label>
 <label>Wat wil je laten maken?<select name="pakket"><option>Weet ik nog niet</option><option>Website</option><option>Webshop</option><option>App</option><option>Game</option><option>AI of automatisering</option></select></label></div>
 <label>Je idee<textarea name="idee" required placeholder="Wat wil je laten maken, en voor wie? Bijvoorbeeld: een website voor mijn kapsalon met online afspraken."></textarea></label>
-<p class="hulp-idee" data-chat-blok hidden><button type="button" class="hulp-knop" data-chat-open data-chat-vraag="Kun je me helpen mijn aanvraag goed te omschrijven?"><svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M10 2l1.6 4.4L16 8l-4.4 1.6L10 14l-1.6-4.4L4 8l4.4-1.6z" fill="currentColor"/></svg>Hulp bij het omschrijven? Laat de adviseur meedenken</button></p>
+<p class="hulp-idee" data-chat-blok hidden><button type="button" class="hulp-knop" data-chat-open data-chat-vraag="Kun je me helpen mijn aanvraag goed te omschrijven?"><svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><path d="M10 2l1.6 4.4L16 8l-4.4 1.6L10 14l-1.6-4.4L4 8l4.4-1.6z" fill="currentColor"/></svg>Hulp bij het omschrijven? Laat Jeff meedenken</button></p>
 <details class="fotos-veld"><summary>Voorbeelden van je smaak meesturen (optioneel)</summary>
 <p class="fotos-uitleg">Upload tot 6 foto's of screenshots van websites of apps die je mooi vindt, of je logo en huisstijl. Zo weten we welke stijl je zoekt. We gebruiken ze alleen als inspiratie.</p>
 <label class="uploadknop" for="fotos">Foto's kiezen</label><input class="verborgen-invoer" id="fotos" name="fotos" type="file" accept="image/jpeg,image/png,image/webp,image/heic" multiple>
@@ -525,8 +525,9 @@ def icoon(naam):
     return f'<span class="dienst-ico">{ICONEN[k]}</span>'
 
 def diensten_blok():
-    items = [("Apps", "iPhone en Android", "vanaf €3.150", "app-laten-maken-kosten.html", "#14213D")] + \
-            [(d["kort"], d["pakketten"][0][0] + " en meer", f'vanaf €{d["pakketten"][0][1]:,}'.replace(",", "."), f'{d["slug"]}.html', d["kleur"]) for d in DIENSTEN]
+    SUB = {"Websites": "Bedrijfssites en webshops", "Games": "Merkgames en casual games", "AI & automatisering": "Chatbots en slimme workflows"}
+    rest = [(d["kort"], SUB.get(d["kort"], d["pakketten"][0][0]), f'vanaf €{d["pakketten"][0][1]:,}'.replace(",", "."), f'{d["slug"]}.html', d["kleur"]) for d in DIENSTEN]
+    items = rest[:1] + [("Apps", "Voor iPhone en Android", "vanaf €3.150", "app-laten-maken-kosten.html", "#14213D")] + rest[1:]
     return '<div class="diensten">' + "".join(
         f'<a class="dienst" href="{h}" style="--k:{k}">{icoon(n)}<span class="dienst-naam">{e(n)}</span><span class="dienst-sub">{e(s)}</span><span class="dienst-prijs">{e(p)}</span></a>'
         for n, s, p, h, k in items) + '</div>'
@@ -559,7 +560,7 @@ def app_rijen():
 
 # ---------- English (worldwide) ----------
 EN_CONTACT_MAP = [
-    ("Hulp bij het omschrijven? Laat de adviseur meedenken", "Need help describing it? Let the advisor help"),
+    ("Hulp bij het omschrijven? Laat Jeff meedenken", "Need help describing it? Let the advisor help"),
     ("Kun je me helpen mijn aanvraag goed te omschrijven?", "Can you help me describe my request well?"),
     ("Vertel over je app-idee", "Tell us about your project"),
     ("Beschrijf kort wat je wilt bouwen. Je krijgt snel een reactie met een paar korte vragen, en daarna een vaste prijs. Alles per mail, gratis en zonder verplichtingen.",
@@ -753,7 +754,7 @@ def schrijf_kennis():
         f.write("// Automatisch gemaakt door build.py (schrijf_kennis). Niet met de hand bewerken.\nexport const KENNIS = " + json.dumps(tekst, ensure_ascii=False) + ";\n")
 
 CHAT_BLOK = {
-    "nl": ("Weet je nog niet precies wat je nodig hebt?", "Geen probleem, daar is onze online adviseur voor. Vertel wat je wilt bereiken; hij stelt een paar vragen, denkt met je mee en adviseert welke oplossing en welk pakket bij je passen. Dag en nacht, gratis en zonder verplichtingen.", "Vraag het onze adviseur", "24/7 online · antwoord binnen seconden"),
+    "nl": ("Weet je nog niet precies wat je nodig hebt?", "Geen probleem, daar is Jeff voor, onze AI-adviseur. Vertel wat je wilt bereiken; hij stelt een paar vragen, denkt met je mee en adviseert welke oplossing en welk pakket bij je passen. Dag en nacht, gratis en zonder verplichtingen.", "Vraag het Jeff", "AI-adviseur · 24/7 online · antwoord binnen seconden"),
     "en": ("Not sure exactly what you need?", "No problem, that's what our online advisor is for. Tell it what you want to achieve; it asks a few questions, thinks along with you and recommends the solution and package that fit. Day and night, free and without obligation.", "Ask our advisor", "Online 24/7 · answers in seconds"),
     "de": ("Sie wissen noch nicht genau, was Sie brauchen?", "Kein Problem, dafür gibt es unseren Online-Berater. Erzählen Sie, was Sie erreichen möchten; er stellt ein paar Fragen, denkt mit und empfiehlt die passende Lösung und das passende Paket. Rund um die Uhr, kostenlos und unverbindlich.", "Fragen Sie unseren Berater", "24/7 online · Antwort in Sekunden"),
     "fr": ("Vous ne savez pas encore exactement ce qu'il vous faut ?", "Pas de souci, c'est le rôle de notre conseiller en ligne. Dites-lui ce que vous voulez accomplir ; il pose quelques questions, réfléchit avec vous et recommande la solution et la formule adaptées. Jour et nuit, gratuit et sans engagement.", "Demandez à notre conseiller", "En ligne 24h/24 · réponse en quelques secondes"),
@@ -762,7 +763,7 @@ CHAT_BLOK = {
     "my": ("ဘာလိုအပ်သလဲ မသေချာသေးဘူးလား။", "ပြဿနာမရှိပါ၊ ကျွန်ုပ်တို့၏ အွန်လိုင်းအကြံပေးက ကူညီပါမည်။ သင်ရရှိလိုသည်ကို ပြောပြပါ၊ မေးခွန်းအနည်းငယ်မေးပြီး အတူစဉ်းစားကာ သင့်တော်သော ဖြေရှင်းချက်နှင့် ပက်ကေ့ချ်ကို အကြံပြုပါမည်။ နေ့ရောညပါ၊ အခမဲ့ဖြစ်ပြီး တာဝန်ဝတ္တရား မရှိပါ။", "အကြံပေးကို မေးရန်", "24/7 အွန်လိုင်း · စက္ကန့်ပိုင်းအတွင်း ဖြေကြားသည်"),
 }
 CHAT_CONTACT = {
-    "nl": ("Weet je nog niet precies wat je nodig hebt? Onze online adviseur denkt met je mee.", "Vraag het de adviseur"),
+    "nl": ("Weet je nog niet precies wat je nodig hebt? Jeff, onze AI-adviseur, denkt met je mee.", "Vraag het Jeff"),
     "en": ("Not sure exactly what you need? Our online advisor will help you choose.", "Ask the advisor"),
     "de": ("Sie wissen noch nicht genau, was Sie brauchen? Unser Online-Berater hilft Ihnen.", "Berater fragen"),
     "fr": ("Vous ne savez pas encore ce qu'il vous faut ? Notre conseiller en ligne vous aide.", "Demander au conseiller"),
@@ -859,7 +860,9 @@ def webp_varianten(dist):
         if ext.lower() not in (".jpg", ".jpeg", ".png"):
             continue
         im = Image.open(pad)
-        if ext.lower() == ".png":
+        if ext.lower() == ".png" and os.path.basename(naam).startswith("boek-visual"):
+            im.save(naam + ".webp", "WEBP", quality=84, method=6)
+        elif ext.lower() == ".png":
             im.save(naam + ".webp", "WEBP", lossless=True, method=6)
         else:
             im.save(naam + ".webp", "WEBP", quality=80, method=6)
@@ -894,25 +897,32 @@ def build():
         "Apps vanaf €3.150, websites vanaf €495, games vanaf €1.950 en AI-automatisering vanaf €395. Vaste prijs vooraf, onder het marktgemiddelde.",
         f'''<section class="hero" aria-labelledby="kop"><div class="wrap"><div>
 <h1 id="kop">Jouw idee.<br>Razendsnel live.</h1>
-<p class="lead">Gratis concept binnen 48 uur. Websites vanaf €495, plus apps, games en AI. Vaste prijs.</p>
-<div class="acties"><a class="knop geel" href="#contact">Vraag je gratis concept aan</a><a class="zacht" href="#diensten">Bekijk wat we maken</a></div><ul class="vertrouwen"><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Vaste prijs vooraf</li><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Eerst een gratis concept</li><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Razendsnel live</li></ul></div>
+<p class="lead">Professionele websites, webshops en apps voor ondernemers. Gratis concept binnen 48 uur, daarna een vaste prijs.</p>
+<div class="acties"><a class="knop geel" href="#contact">Vraag je gratis concept aan</a><a class="zacht" href="#diensten">Bekijk wat we maken</a></div><ul class="vertrouwen"><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Vaste prijs vooraf</li><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Eerst een gratis concept</li><li><svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="#E3EBFA"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="#2457D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Jij blijft eigenaar</li></ul></div>
 <div class="etalage"><figure class="tel-links"><img src="img/hero-webshop.jpg" alt="Conceptwebshop voor woonaccessoires, een voorbeeld van een webshop van ons" width="240" height="427"></figure><figure class="tel-midden"><img src="img/lubbyc-kaart.jpg" alt="Reisapp LubbyC" width="240" height="480" fetchpriority="high"></figure><figure class="tel-rechts"><img src="img/eiland-rood.jpg" alt="Rijgame Eiland Express" width="240" height="480"></figure></div></div></section>
 
 <section id="diensten" class="wit" aria-labelledby="diensten-kop"><div class="wrap">
-<div class="intro"><h2 id="diensten-kop">Wat we maken</h2><p>Alles digitaal onder één dak, met vaste prijzen onder het marktgemiddelde.</p></div>
+<div class="intro"><h2 id="diensten-kop">Wat we maken</h2><p>Eén partij voor je hele digitale aanwezigheid: van website tot app, met vaste prijzen onder het marktgemiddelde.</p></div>
 {diensten_blok()}</div></section>
 
 <section aria-labelledby="waarom"><div class="wrap">
-<div class="intro"><h2 id="waarom">Een app laten maken hoeft geen €25.000 te kosten</h2>
-<p>Nederlandse kostengidsen noemen voor een eenvoudige app €5.000 tot €25.000. Wij bouwen sneller met moderne tools en automatisering, en geven dat voordeel door. <a href="app-laten-maken-kosten.html">Lees wat een app kost</a>.</p></div>
+<div class="intro"><h2 id="waarom">Vakwerk, zonder bureauprijzen</h2>
+<p>Een eenvoudige website kost bij een bureau in Nederland gemiddeld €500 tot €2.000, een app al snel €5.000 tot €25.000. Wij werken met moderne tools en veel automatisering en geven dat voordeel aan jou door. Op kwaliteit leveren we niet in. <a href="prijzen.html">Bekijk alle prijzen</a>.</p></div>
 <div class="feiten">
-<div><h3>Vaste prijs vooraf</h3><p>Je weet wat je betaalt voordat we beginnen. Meerwerk alleen na jouw akkoord.</p></div>
-<div><h3>Razendsnel</h3><p>One-page site in 3–5 dagen, automatisering in 2–5 dagen, chatbot in 1 week.</p></div>
-<div><h3>Eén app, twee stores</h3><p>Gebouwd met React Native, de techniek achter veel grote apps, voor iPhone en Android.</p></div>
-<div><h3>Geen verborgen kosten</h3><p>Hosting, store-accounts en andere externe kosten staan vooraf zwart op wit in de offerte.</p></div>
+<div><h3>Gebouwd om gevonden te worden</h3><p>Snelle laadtijd, nette code en technische SEO, zoals metadata en structured data, zitten standaard in elke site.</p></div>
+<div><h3>Eerst ontworpen voor mobiel</h3><p>Elke pagina ontwerpen en testen we eerst op de telefoon, want daar kijken de meeste bezoekers.</p></div>
+<div><h3>Vaste prijs, geen verrassingen</h3><p>Prijs, planning en externe kosten staan vooraf zwart op wit. Meerwerk alleen na jouw akkoord.</p></div>
+<div><h3>Jij blijft eigenaar</h3><p>Site, domein en inhoud staan op jouw naam. Apps komen in je eigen Apple- en Google-account.</p></div>
 </div></div></section>
 
-<section id="prijzen-kort" class="wit" aria-labelledby="prijzen-kort-kop"><div class="wrap">
+<section id="werk" class="wit" aria-labelledby="werk-kop"><div class="wrap">
+<div class="intro"><h2 id="werk-kop">Recent ontwerpwerk</h2><p>Elke site ontwerpen we op maat, in de stijl van het merk. Geen template, maar een eigen uitstraling die past bij wat je verkoopt.</p></div>
+<div class="werk-grid">
+<figure class="werk"><picture><img src="img/werk-atelier-ombre.jpg" alt="Webshop-ontwerp voor kunstgalerie Atelier Ombre op laptop en telefoon" width="1200" height="760" loading="lazy"></picture><figcaption><strong>Atelier Ombre</strong><span>Kunstwebshop met galerie en interactieve zaal. Eigen merk van Collens Group.</span></figcaption></figure>
+<figure class="werk"><picture><img src="img/werk-suismuis.jpg" alt="Webshop-ontwerp voor interieurmerk Suismuis Home op laptop en telefoon" width="1200" height="760" loading="lazy"></picture><figcaption><strong>Suismuis Home</strong><span>Interieurwebshop met shop-de-look-foto's en productcatalogus. In ontwikkeling.</span></figcaption></figure>
+</div></div></section>
+
+<section id="prijzen-kort" aria-labelledby="prijzen-kort-kop"><div class="wrap">
 <div class="intro"><h2 id="prijzen-kort-kop">Prijzen in het kort</h2><p>Alle prijzen zijn eindprijzen: er komt geen btw bij. Na een korte intake krijg je een definitieve prijsopgave op maat.</p></div>
 <table class="lijst"><tr><td><a href="website-laten-maken.html">Website</a><small>One-page of bedrijfswebsite</small></td><td>vanaf €495</td></tr>
 <tr><td><a href="webshop-laten-maken.html">Webshop</a><small>Tot 50 producten ingericht, iDEAL</small></td><td>vanaf €1.950</td></tr>

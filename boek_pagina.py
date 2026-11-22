@@ -35,16 +35,32 @@ BOEKEN_HTML = ('<div class="boeken-lijst">'
  + '</div>')
 
 _DETAIL = [
- (1, "Claude voor beginners", "Je begint met AI en wilt het goed leren gebruiken.", "Goede vragen stellen, Projecten, geheugen, koppelingen en veilig werken.", "17 figuren, 40 vragen om te kopiëren, oefeningen", "106 pagina's · PDF en EPUB", "€29,99", GUMROAD),
- (2, "Programmeren met Claude AI", "Je wilt zelf websites en apps bouwen, zonder ervaring.", "HTML, CSS en JavaScript, een eigen website en app, masterprompts en werkinstructies.", "Echte code, 12 masterprompts, 14 werkinstructies", "92 pagina's · PDF en EPUB", "€39,99", BOEK2_URL or WINKEL),
- (3, "Ondernemen met Claude AI", "Je onderneemt en wilt meer uit handen geven aan AI.", "Een AI-team met geheugen, grenzen en rapporten voor marketing, verkoop, SEO en administratie.", "12 figuren en grafieken, 30 masterprompts, 20 werkinstructies, 12 sjablonen", "139 pagina's · PDF en EPUB", "€44,99", BOEK3_URL or WINKEL),
+ (1, "Claude voor beginners", "Werk slimmer met AI. Vanaf vandaag.",
+  "Voor wie net begint. In gewoon Nederlands leer je stap voor stap hoe je Claude inzet in je werk, tot je een assistent hebt die jouw bedrijf kent.",
+  ["Goede vragen stellen met één eenvoudige formule", "Een eigen assistent die je bedrijf, prijzen en toon kent", "Mail en agenda veilig koppelen"],
+  ["106 pagina's", "17 figuren", "40 vragen om te kopiëren"], "€29,99", GUMROAD),
+ (2, "Programmeren met Claude AI", "Bouw je eigen website of app. Ook zonder ervaring.",
+  "Voor wie zelf wil bouwen. Je leert de basis van HTML, CSS en JavaScript en laat Claude het zware werk doen, terwijl jij begrijpt wat er gebeurt.",
+  ["Je eigen website, stap voor stap gebouwd", "Een eigen app maken met Claude als partner", "Masterprompts waarmee AI voorspelbaar werkt"],
+  ["92 pagina's", "12 masterprompts", "14 werkinstructies"], "€39,99", BOEK2_URL or WINKEL),
+ (3, "Ondernemen met Claude AI", "Laat AI het werk doen. Jij houdt de regie.",
+  "Voor ondernemers die Claude al gebruiken. Bouw een klein AI-team dat marketing, klanten, vindbaarheid en administratie voorbereidt, terwijl jij goedkeurt en beslist.",
+  ["Een AI-team met geheugen, grenzen en dagrapporten", "Marketing, verkoop en SEO laten voorbereiden", "Heldere regels: wat AI zelf mag en wat nooit"],
+  ["139 pagina's", "30 masterprompts", "20 werkinstructies", "12 sjablonen"], "€44,99", BOEK3_URL or WINKEL),
 ]
 
-def _detail(n, titel, wie, leer, extra, omvang, prijs, url):
-    return (f'<article class="boek-detail"><img src="img/boek-binnen-deel{n}.jpg" alt="Omslag en twee binnenpagina\'s van {titel}" width="960" height="600" loading="lazy">'
-            f'<div><p class="boek-deel">Deel {n}</p><h3>{titel}</h3><dl>'
-            f'<dt>Voor wie</dt><dd>{wie}</dd><dt>Je leert</dt><dd>{leer}</dd><dt>Extra</dt><dd>{extra}</dd><dt>Omvang</dt><dd>{omvang}</dd></dl>'
-            f'<p class="knoppen"><a class="knop geel" href="{url}" rel="noopener" target="_blank">Koop voor {prijs}</a>' + ('<a class="knop knop-rand" href="boek-claude-voor-beginners.html">Lees meer</a>' if n == 1 else '') + '</p></div></article>')
+_VINK = '<svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor" opacity=".18"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+
+def _detail(n, titel, kop, pitch, punten, stats, prijs, url):
+    li = "".join(f"<li>{_VINK}<span>{p}</span></li>" for p in punten)
+    st = "".join(f"<li>{x}</li>" for x in stats)
+    meer = '<a class="knop boek-knop-rand" href="boek-claude-voor-beginners.html">Lees meer over deel 1</a>' if n == 1 else ''
+    return (f'<article class="boek-paneel boek-p{n}" id="deel-{n}"><div class="boek-tekst">'
+            f'<p class="boek-deel">Deel {n} · {titel}</p><h3>{kop}</h3><p class="boek-pitch">{pitch}</p>'
+            f'<ul class="boek-punten">{li}</ul><ul class="boek-stats">{st}</ul>'
+            f'<div class="boek-koop"><div class="boek-prijs">{prijs}<small>PDF + EPUB · direct downloaden</small></div>'
+            f'<p class="knoppen"><a class="knop geel" href="{url}" rel="noopener" target="_blank">Koop deel {n}</a>{meer}</p></div></div>'
+            f'<div class="boek-beeld"><img src="img/boek-visual-deel{n}.png" alt="Omslag en binnenpagina\'s van {titel}" width="960" height="840" loading="lazy"></div></article>')
 
 DETAIL_HTML = '<div class="boek-details">' + "".join(_detail(*d) for d in _DETAIL) + '</div>'
 
@@ -56,7 +72,7 @@ BOEK_PAGINAS = [
   "lead": "Praktische boeken in gewoon Nederlands, geschreven vanuit de dagelijkse praktijk van Collens Group. Elk deel is los verkrijgbaar en direct te downloaden.",
   "knop": ("Naar de webshop", WINKEL),
   "secties": [
-   ("De boeken: welk deel past bij jou?", "<p>Elk boek heeft een eigen opmaak met figuren, grafieken en kaders met oefeningen en praktijkvoorbeelden. Hieronder per deel de omslag en twee echte binnenpagina's.</p>" + DETAIL_HTML),
+   ("De boeken: welk deel past bij jou?", "<p>Drie boeken, drie stappen. Begin waar jij nu staat en koop alleen wat je nodig hebt. Elk deel staat vol figuren, praktijkvoorbeelden en opdrachten die je direct kunt toepassen.</p>" + DETAIL_HTML),
    ("Waarom deze reeks?",
     "<p>Alles wat in deze boeken staat, gebruiken we zelf: voor onze eigen website, onze apps en het dagelijkse werk van ons bedrijf. Ook wat misging staat erin, met de regels die het voortaan voorkomen. De boeken bouwen op elkaar voort: deel 1 leert je AI gebruiken, deel 2 leert je ermee bouwen en deel 3 leert je er je bedrijf mee runnen.</p>"),
    ("Hoe koop je een boek?",

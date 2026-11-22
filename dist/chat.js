@@ -2,10 +2,10 @@
 (() => {
   const TAAL = (document.documentElement.lang || "nl").slice(0, 2);
   const T = {
-    nl: { spreek: "Spreek je vraag in", stop: "Stop en verstuur", luistert: "Luistert… tik op ■ om te versturen", nietgehoord: "Ik verstond het niet. Probeer het nog eens of typ je vraag.", knop: "Vraag de AI-adviseur", kort: "Advies", titel: "Online adviseur", sub: "Collens Group · 24/7 online", sluit: "Sluiten", plek: "Typ je vraag…", stuur: "Versturen",
+    nl: { spreek: "Spreek je vraag in", stop: "Stop en verstuur", luistert: "Luistert… tik op ■ om te versturen", nietgehoord: "Ik verstond het niet. Probeer het nog eens of typ je vraag.", knop: "Vraag het Jeff, onze AI-adviseur", kort: "Jeff", titel: "Jeff · AI-adviseur", sub: "Collens Group · 24/7 online", sluit: "Sluiten", plek: "Typ je vraag…", stuur: "Versturen",
           hallo: "Hoi! Ik help je graag kiezen. Weet je nog niet precies wat je nodig hebt? Vertel wat je wilt bereiken, dan denk ik met je mee en adviseer ik welke oplossing en welk pakket passen.",
-          snel: ["Ik weet nog niet wat ik nodig heb", "Wat kost een website?", "Ik heb een idee voor een app"], denkt: "Adviseur typt…", fout: "Sorry, dat lukte even niet. Probeer het nog eens, of mail naar info@collensgroup.com.",
-          noot: "Je praat met een AI-adviseur (Claude). Deel geen gevoelige gegevens.", privacy: "Privacy", opnieuw: "Nieuw gesprek", klaar: "Doorgestuurd: we mailen je zo snel mogelijk." },
+          snel: ["Ik weet nog niet wat ik nodig heb", "Wat kost een website?", "Ik heb een idee voor een app"], denkt: "Jeff typt…", fout: "Sorry, dat lukte even niet. Probeer het nog eens, of mail naar info@collensgroup.com.",
+          noot: "Jeff is een AI-adviseur (Claude), geen mens. Deel geen gevoelige gegevens.", privacy: "Privacy", opnieuw: "Nieuw gesprek", klaar: "Doorgestuurd: we mailen je zo snel mogelijk." },
     en: { spreek: "Speak your question", stop: "Stop and send", luistert: "Listening… tap ■ to send", nietgehoord: "I didn't catch that. Please try again or type your question.", knop: "Not sure? Ask our advisor", kort: "Advice", titel: "Online advisor", sub: "Collens Group · online 24/7", sluit: "Close", plek: "Type your question…", stuur: "Send",
           hallo: "Hi! I'm happy to help you choose. Not sure exactly what you need? Tell me what you want to achieve and I'll think along and recommend the solution and package that fit.",
           snel: ["I'm not sure what I need", "How much is a website?", "I have an idea for an app"], denkt: "Advisor is typing…", fout: "Sorry, something went wrong. Please try again, or email info@collensgroup.com.",
@@ -89,7 +89,7 @@
   const bewaar = () => { try { sessionStorage.setItem(SLEUTEL, JSON.stringify({ b: berichten.slice(-40), k: klaar })); } catch (_) {} };
 
   const EXTRA = {
-    nl: { wie: "Adviseur · Collens Group", online: "Online · meestal direct antwoord", snel2: ["Gratis concept aanvragen", "Ik wil een medewerker spreken"], mail: "Mail ons" },
+    nl: { wie: "Jeff · AI-adviseur van Collens Group", online: "Online · meestal direct antwoord", snel2: ["Gratis concept aanvragen", "Ik wil een medewerker spreken"], mail: "Mail ons" },
     en: { wie: "Advisor · Collens Group", online: "Online · usually replies instantly", snel2: ["Request a free concept", "I'd like to talk to a person"], mail: "Email us" },
     de: { wie: "Berater · Collens Group", online: "Online · antwortet meist sofort", snel2: ["Kostenloses Konzept anfragen", "Ich möchte mit einem Menschen sprechen"], mail: "E-Mail" },
     fr: { wie: "Conseiller · Collens Group", online: "En ligne · répond généralement tout de suite", snel2: ["Demander un concept gratuit", "Je voudrais parler à une personne"], mail: "E-mail" },
