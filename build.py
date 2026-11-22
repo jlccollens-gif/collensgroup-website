@@ -110,13 +110,17 @@ def abs_url(path):
     clean = "" if path == "index.html" else (path[:-5] if path.endswith(".html") else path)
     return f'{CONFIG["base_url"]}/{clean}' if CONFIG["base_url"] else ""
 
-def ld(obj): return '<script type="application/ld+json">' + json.dumps(obj, ensure_ascii=False) + '</script>'
+def ld(obj):
+    # één vaste, absolute @id voor de organisatie op alle pagina's (beter herkenbaar als entiteit voor Google en AI-zoekmachines)
+    js = json.dumps(obj, ensure_ascii=False).replace('"#org"', json.dumps(CONFIG["base_url"] + "/#org"))
+    return '<script type="application/ld+json">' + js + '</script>'
 
 ORG = {"@type": "ProfessionalService", "@id": "#org", "name": CONFIG["naam"],
        "description": "Websites, apps, games en AI-automatisering tegen vaste prijzen onder het marktgemiddelde.",
        "areaServed": "Worldwide",
        "priceRange": "€395 – €13.050+", "knowsLanguage": ["nl", "en"],
-       "logo": CONFIG["base_url"] + "/img/collens-group-logo.png", "image": CONFIG["base_url"] + "/img/collens-group-logo.png"}
+       "logo": CONFIG["base_url"] + "/img/collens-group-logo.png", "image": CONFIG["base_url"] + "/img/collens-group-logo.png",
+       "email": json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "contact.json")))["email"]}
 
 GLOBE = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg>'
 NL_NAAR_EN = {"website-laten-maken.html": "en-website-design.html", "goedkope-website-laten-maken.html": "en-website-design.html", "webshop-laten-maken.html": "en-web-shop.html", "prijzen.html": "en-pricing.html", "over-ons.html": "en-about.html", "game-laten-maken.html": "en-game-development.html", "merkgame-laten-maken-kerst.html": "en-game-development.html",
@@ -1152,6 +1156,11 @@ def build():
     # robots, sitemap, llms.txt
     with open(os.path.join(DIST, "robots.txt"), "w") as f:
         f.write("User-agent: *\nAllow: /\n" + (f"Sitemap: {CONFIG['base_url']}/sitemap.xml\n" if CONFIG["base_url"] else ""))
+    # noindex-pagina's (bv. bedankt) horen niet in sitemap en llms.txt
+    def _noindex(pg):
+        try: return re.search(r'name="robots"[^>]*noindex', open(os.path.join(DIST, pg), encoding="utf-8").read(40000)) is not None
+        except OSError: return False
+    pages = [pg for pg in pages if not _noindex(pg)]
     if CONFIG["base_url"]:
         with open(os.path.join(DIST, "sitemap.xml"), "w") as f:
             f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
@@ -1181,12 +1190,17 @@ def datums_vastzetten(dist):
             continue
         pad = os.path.join(dist, fn)
         s = open(pad, encoding="utf-8").read()
-        h = hashlib.sha256(s.encode("utf-8")).hexdigest()[:16]
+        # alleen zichtbare tekst telt (head, scripts en structured data niet): technische SEO-wijzigingen zijn geen inhoudelijke update
+        zicht = re.sub(r"<script[\s\S]*?</script>|<style[\s\S]*?</style>", " ", s.split("<body", 1)[-1])
+        zicht = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", zicht)).strip()
+        h = hashlib.sha256(zicht.encode("utf-8")).hexdigest()[:16]
         r = dict(oud.get(fn) or {})
         if not r:
             r = {"gepubliceerd": VANDAAG, "bijgewerkt": VANDAAG}
-        if r.get("hash") != h:
-            r["hash"], r["bijgewerkt"] = h, VANDAAG
+        if "hash2" not in r:          # overstap naar tekst-hash: datum laten staan
+            r.pop("hash", None); r["hash2"] = h
+        if r["hash2"] != h:
+            r["hash2"], r["bijgewerkt"] = h, VANDAAG
         nieuw[fn] = r
         if "@@" in s:
             j, m, d = r["bijgewerkt"].split("-")

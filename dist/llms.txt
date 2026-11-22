@@ -42,7 +42,6 @@
 - [en-about.html](https://collensgroup.com/en-about)
 - [prijzen.html](https://collensgroup.com/prijzen)
 - [over-ons.html](https://collensgroup.com/over-ons)
-- [bedankt.html](https://collensgroup.com/bedankt)
 - [pakketkiezer.html](https://collensgroup.com/pakketkiezer)
 - [kostencalculator.html](https://collensgroup.com/kostencalculator)
 - [app-of-website.html](https://collensgroup.com/app-of-website)

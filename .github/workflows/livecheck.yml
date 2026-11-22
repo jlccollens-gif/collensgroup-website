@@ -14,6 +14,8 @@ jobs:
           fetch-depth: 0
       - run: sleep 45
       - run: python3 tools/livecheck/livecheck.py "${{ github.event.before }}" "${{ github.sha }}"
+      - name: IndexNow (Bing e.a.) gewijzigde pagina's melden
+        run: python3 tools/seo/indexnow.py "${{ github.event.before }}" "${{ github.sha }}"
   # Kwaliteit van elke push (van elke sessie): qa.py + mobiele check op 360 px.
   kwaliteit:
     runs-on: ubuntu-latest
