@@ -1,0 +1,95 @@
+{
+ "gemaakt": "2026-11-22T02:46:15Z",
+ "van": "2026-10-25T02:46:15Z",
+ "tot": "2026-11-22T02:46:15Z",
+ "dagen_periode": 28,
+ "fout": null,
+ "rijen": 46,
+ "per_soort": {
+  "site": {
+   "weergaven": 330,
+   "bezoeken": 140
+  },
+  "concept": {
+   "weergaven": 280,
+   "bezoeken": 60
+  },
+  "tester": {
+   "weergaven": 10,
+   "bezoeken": 10
+  }
+ },
+ "per_dag": {
+  "2026-11-14": {
+   "weergaven": 110,
+   "bezoeken": 60,
+   "zoekmachine": 0
+  },
+  "2026-11-15": {
+   "weergaven": 30,
+   "bezoeken": 30,
+   "zoekmachine": 0
+  },
+  "2026-11-16": {
+   "weergaven": 50,
+   "bezoeken": 20,
+   "zoekmachine": 0
+  },
+  "2026-11-17": {
+   "weergaven": 30,
+   "bezoeken": 10,
+   "zoekmachine": 0
+  },
+  "2026-11-18": {
+   "weergaven": 50,
+   "bezoeken": 10,
+   "zoekmachine": 0
+  },
+  "2026-11-19": {
+   "weergaven": 10,
+   "bezoeken": 0,
+   "zoekmachine": 0
+  },
+  "2026-11-20": {
+   "weergaven": 40,
+   "bezoeken": 0,
+   "zoekmachine": 0
+  },
+  "2026-11-22": {
+   "weergaven": 10,
+   "bezoeken": 10,
+   "zoekmachine": 0
+  }
+ },
+ "paginas": {
+  "/": 200,
+  "/website-laten-maken": 30,
+  "/artikelen": 30,
+  "/en": 20,
+  "/en-app-development": 10,
+  "/over-ons": 10,
+  "/apps": 10,
+  "/ai-automatisering": 10,
+  "/privacy": 10
+ },
+ "landen": {
+  "US": 70,
+  "TH": 30,
+  "CA": 20,
+  "CN": 10,
+  "NL": 10
+ },
+ "apparaten": {
+  "mobile": 80,
+  "desktop": 60
+ },
+ "bronnen": {
+  "direct/intern": 100,
+  "andere site": 40
+ },
+ "zoekmachines": {},
+ "verwijzers": {
+  "m.facebook.com": 30,
+  "www.facebook.com": 10
+ }
+}
