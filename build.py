@@ -1055,12 +1055,25 @@ def build():
     items += [(f'{L["slug"]}.html', L["titel"].split(" | ")[0], L["desc"]) for L in LANDINGS if L["lang"] == "nl"]
     items += nieuwe_items
     items += [("en-ai-chatbot.html", "AI chatbot for small business (Engels)", "Engelstalige gids: wat een AI-chatbot voor je bedrijf doet, wat hij kost (vanaf €995) en hoe we de antwoorden betrouwbaar houden.")]
-    kaarten = "".join(f'<a class="artikel" href="{u}"><h2>{e(t)}</h2><p>{e(d)}</p><span>Lees meer</span></a>' for u, t, d in items)
+    def _cat(u):
+        if u.startswith(("boek", "boeken")): return "Boeken"
+        if "game" in u: return "Games"
+        if "chatbot" in u or "ai-" in u or u.startswith("ai"): return "AI en automatisering"
+        if u.startswith(("app", "mvp")): return "Apps"
+        return "Websites en webshops"
+    _ICO = {"Websites en webshops": "Websites", "Apps": "Apps", "Games": "Games", "AI en automatisering": "AI", "Boeken": "Websites"}
+    _KL = {"Websites en webshops": "#2457D6", "Apps": "#14213D", "Games": "#7A3BD1", "AI en automatisering": "#0E7C86", "Boeken": "#E8590C"}
+    _volg = ["Websites en webshops", "Apps", "AI en automatisering", "Games", "Boeken"]
+    groepen = {c: [] for c in _volg}
+    for u, t, d in items: groepen[_cat(u)].append((u, t, d))
+    kaarten = "".join(f'<section class="art-groep"><h2>{c}</h2><div class="artikelen">' + "".join(
+        f'<a class="artikel" href="{u}" style="--k:{_KL[c]}">{icoon(_ICO[c])}<h3>{e(t)}</h3><p>{e(d)}</p><span class="lees">Lees het artikel</span></a>' for u, t, d in groepen[c]) + '</div></section>'
+        for c in _volg if groepen[c])
     pages.append(page("artikelen.html", "Gidsen over websites, apps en AI | Collens Group",
         "Praktische gidsen over wat een website, webshop, app of AI-chatbot kost en hoe je het slim aanpakt. Eerlijke prijzen en heldere uitleg.",
         f'''<article class="tekst breed"><h1>Artikelen en gidsen</h1>
 <p class="lead2">Eerlijke uitleg over wat een website, app of AI-oplossing kost en hoe je het slim aanpakt.</p>
-<div class="artikelen">{kaarten}</div></article>''', crumbs=[("Home", "index.html"), ("Artikelen", "artikelen.html")]))
+{kaarten}</article>''', crumbs=[("Home", "index.html"), ("Artikelen", "artikelen.html")]))
 
     # APPS-OVERZICHT
     pages.append(page("apps.html", "Eigen apps, games en series | Collens Group",

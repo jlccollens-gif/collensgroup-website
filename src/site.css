@@ -719,3 +719,27 @@ small,.noot,.bron,.duur,td small{font-size:max(14px,.875rem)}
 .boek-dlg .boek-stats{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0 0 20px}
 .boek-dlg .boek-stats li{background:rgba(255,255,255,.7);border-radius:999px;padding:6px 12px;font-size:14px;font-weight:600}
 @media (max-width:700px){.dlg-kop{grid-template-columns:1fr}.dlg-kop img{width:120px}.boek-dlg .boek-koop .knop{width:100%;text-align:center}}
+/* ===== Ontwerpronde 22-11: lijsten, kaarten, artikelen ===== */
+.tekst ul:not([class]){list-style:none;padding:0;margin:16px 0 22px;display:grid;gap:10px}
+.tekst ul:not([class])>li{position:relative;padding:12px 16px 12px 46px;background:var(--wit);border:1px solid var(--lijn);border-radius:14px;line-height:1.5;margin:0}
+.tekst ul:not([class])>li::before{content:"";position:absolute;left:16px;top:16px;width:20px;height:20px;border-radius:50%;background:#E3EBFA url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M6 10.3l2.6 2.6L14.2 7.4' fill='none' stroke='%232457D6' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/20px no-repeat}
+.tekst ol:not([class]){padding-left:0;list-style:none;counter-reset:ol;display:grid;gap:10px;margin:16px 0 22px}
+.tekst ol:not([class])>li{counter-increment:ol;position:relative;padding:12px 16px 12px 52px;background:var(--wit);border:1px solid var(--lijn);border-radius:14px;margin:0}
+.tekst ol:not([class])>li::before{content:counter(ol);position:absolute;left:14px;top:11px;width:26px;height:26px;border-radius:50%;background:var(--geel,#F2B705);color:var(--nacht);font-weight:800;font-size:14px;display:grid;place-items:center}
+.kaart-lijst{list-style:none;padding:0;margin:18px 0 8px;display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.kaart-lijst>li{background:var(--wit);border:1px solid var(--lijn);border-radius:16px;padding:20px;line-height:1.5;margin:0}
+.kaart-lijst>li strong{display:block;font-family:var(--display);font-size:18px;color:var(--nacht);margin-bottom:6px}
+.art-groep{margin-top:44px}
+.tekst .art-groep h2{margin:0 0 4px}
+.art-groep .artikelen{margin-top:16px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}
+.tekst .artikel h3{font-size:19px;margin:6px 0 0;line-height:1.25}
+.artikel .dienst-ico{width:40px;height:40px}
+.artikel .lees{margin-top:auto;font-weight:700;font-size:15px;color:var(--blauw)}
+.artikel .lees::after{content:" →"}
+.artikel:hover{border-color:var(--blauw);transform:translateY(-2px)}
+.art-groep:first-of-type{margin-top:26px}
+.kaart-lijst{grid-template-columns:repeat(auto-fit,minmax(180px,1fr))}
+.artikel .dienst-ico{margin-bottom:4px}
+section.art-groep{padding:0;background:none}
+.artikel{justify-content:flex-start}
+.artikel span.dienst-ico{margin-top:0;font-size:inherit}
