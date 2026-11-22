@@ -94,6 +94,22 @@ else:
         t=_form_teksten(src)
         if t is None: continue
         for x in sorted((t&_nl)-_ZELFDE): fouten.append(f"{f}: formuliertekst niet vertaald ({lm.group(1)}): '{x[:60]}'")
+# hreflang (Google: elke pagina noemt zichzelf, en beide kanten moeten naar elkaar wijzen, anders negeert Google de tags)
+_BASE="https://collensgroup.com"
+def _u2f(u): return ((u[len(_BASE):].strip("/") or "index")+".html") if u.startswith(_BASE) else None
+_hl={}
+for f in sorted(pages):
+    src=open(os.path.join(D,f),encoding="utf-8").read()
+    c=re.search(r'<link rel="canonical" href="([^"]+)"',src)
+    _hl[f]=(dict(re.findall(r'<link rel="alternate" hreflang="([^"]+)" href="([^"]+)"',src)),c.group(1) if c else None)
+for f,(alts,can) in _hl.items():
+    if not alts: continue
+    if can not in alts.values(): fouten.append(f"{f}: hreflang noemt de pagina zelf niet")
+    for lang,u in alts.items():
+        if lang=="x-default": continue
+        g=_u2f(u)
+        if g not in _hl: fouten.append(f"{f}: hreflang {lang} -> {u} bestaat niet"); continue
+        if can not in _hl[g][0].values(): fouten.append(f"{f}: hreflang {lang} -> {g} wijst niet terug")
 for x in waarsch: print("LET OP:",x)
 for x in fouten: print("FOUT:",x)
 print(f"{len(pages)} pagina's gecontroleerd, {len(fouten)} fouten, {len(waarsch)} aandachtspunten")

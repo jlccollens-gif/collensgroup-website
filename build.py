@@ -702,7 +702,7 @@ def en_pages(pages):
 <h2>Storage and deletion</h2><p>Data is encrypted in transit. You can delete your account and data in the app or by emailing <a href="mailto:collens-inc@outlook.com">collens-inc@outlook.com</a>.</p>
 <h2>Age</h2><p>LubbyC is for adults only (18+).</p>
 <h2>Your rights</h2><p>You can request access, correction or deletion via the email address above, and you can file a complaint with your data protection authority (in the Netherlands: the Autoriteit Persoonsgegevens).</p></article>''',
-        crumbs=[("Home", "en.html"), ("LubbyC privacy", "en-lubbyc-privacy.html")], lang="en", alt=("app-lubbyc.html", "en-lubbyc-privacy.html")))
+        crumbs=[("Home", "en.html"), ("LubbyC privacy", "en-lubbyc-privacy.html")], lang="en"))
 
 APP_PAKKETTEN = [
     ("Basis / MVP app", 3150, "3–5 weken", "Je idee snel testen met echte gebruikers. Tot 5 schermen, eenvoudige navigatie en content, strak basisontwerp, publicatieklaar voor iOS of Android. Geen accounts, database of betalingen."),
