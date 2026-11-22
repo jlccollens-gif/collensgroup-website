@@ -33,30 +33,49 @@
 .cg-fab{position:fixed;right:18px;bottom:18px;z-index:50;display:flex;align-items:center;gap:10px;background:#14213D;color:#fff;border:0;border-radius:999px;padding:12px 18px 12px 14px;font:700 16px/1.2 "Atkinson Hyperlegible",system-ui,sans-serif;box-shadow:0 10px 30px rgba(14,24,48,.28);cursor:pointer}
 .cg-fab:hover{background:#2457D6}.cg-fab .cg-stip{width:9px;height:9px;border-radius:50%;background:#22C55E;box-shadow:0 0 0 3px rgba(34,197,94,.25)}
 .cg-fab .cg-kort{display:none}@media (max-width:520px){.cg-fab .cg-lang{display:none}.cg-fab .cg-kort{display:inline}}
-.cg-paneel{position:fixed;right:18px;bottom:18px;z-index:60;width:min(400px,calc(100vw - 24px));height:min(620px,calc(100vh - 36px));display:flex;flex-direction:column;background:#fff;border-radius:22px;box-shadow:0 24px 60px rgba(14,24,48,.32);overflow:hidden;font-family:"Atkinson Hyperlegible",system-ui,sans-serif}
+.cg-paneel{position:fixed;right:18px;bottom:18px;z-index:60;width:min(410px,calc(100vw - 24px));height:min(640px,calc(100vh - 36px));display:flex;flex-direction:column;background:#F4F1EA;border-radius:24px;box-shadow:0 30px 70px -10px rgba(14,24,48,.45),0 0 0 1px rgba(14,24,48,.06);overflow:hidden;font-family:"Atkinson Hyperlegible",system-ui,sans-serif;animation:cgin .22s ease-out}
+@keyframes cgin{from{opacity:0;transform:translateY(12px) scale(.98)}}
 @media (max-width:520px){.cg-paneel{right:0;bottom:0;width:100vw;height:100dvh;border-radius:0}}
-.cg-kop{display:flex;align-items:center;gap:12px;background:#14213D;color:#fff;padding:14px 14px 14px 18px}
-.cg-kop img{width:34px;height:34px;border-radius:50%;background:#fff}.cg-kop b{display:block;font-size:17px}.cg-kop small{color:#AEBBD2;font-size:13px}
-.cg-kop .cg-acties{margin-left:auto;display:flex;gap:4px}.cg-kop button{white-space:nowrap;background:transparent;border:0;color:#fff;cursor:pointer;border-radius:10px;padding:6px 10px;font:inherit;font-size:20px;line-height:1}
+.cg-kop{display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,#1B2C52 0%,#14213D 100%);color:#fff;padding:16px 12px 16px 18px}
+.cg-av{position:relative;flex:none}.cg-av img{width:42px;height:42px;border-radius:14px;background:#fff;padding:5px;box-sizing:border-box;display:block}
+.cg-av i{position:absolute;right:-2px;bottom:-2px;width:12px;height:12px;border-radius:50%;background:#22C55E;border:2px solid #14213D}
+.cg-kop b{display:block;font-size:17px;letter-spacing:-.01em}.cg-kop small{color:#C9D3E6;font-size:13px}
+.cg-kop .cg-acties{margin-left:auto;display:flex;gap:2px}.cg-kop button{display:grid;place-items:center;width:38px;height:38px;background:transparent;border:0;color:#fff;cursor:pointer;border-radius:12px;padding:0}
 .cg-kop button:hover{background:rgba(255,255,255,.12)}
-.cg-log{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:#F3F6FA}
-.cg-b{max-width:86%;padding:10px 14px;border-radius:16px;font-size:16px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}
-.cg-b.bot{background:#fff;color:#22304D;border:1px solid #E1E7F0;border-bottom-left-radius:6px;align-self:flex-start}
-.cg-b.jij{background:#2457D6;color:#fff;border-bottom-right-radius:6px;align-self:flex-end}
+.cg-log{flex:1;overflow-y:auto;padding:18px 16px 12px;display:flex;flex-direction:column;gap:10px;background:#F4F1EA}
+.cg-b{max-width:86%;padding:11px 14px;border-radius:18px;font-size:15.5px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}
+.cg-b.bot{background:#fff;color:#22304D;border-top-left-radius:6px;align-self:flex-start;box-shadow:0 1px 2px rgba(14,24,48,.06)}
+.cg-wie{display:block;font-size:12px;font-weight:800;color:#B07F00;margin-bottom:3px;white-space:normal}
+.cg-b.jij{background:#14213D;color:#fff;border-top-right-radius:6px;align-self:flex-end}
 .cg-b a{color:#2457D6;font-weight:700}.cg-b ul{margin:4px 0;padding-left:20px;white-space:normal}
-.cg-b.denkt{color:#5A6782;font-style:italic}.cg-b.ok{background:#E8F7EE;border-color:#BFE6CD;color:#14532D}
-.cg-snel{display:flex;flex-wrap:wrap;gap:8px}.cg-snel button{background:#fff;border:1.5px solid #2457D6;color:#2457D6;border-radius:999px;padding:7px 12px;font:600 14px "Atkinson Hyperlegible",system-ui,sans-serif;cursor:pointer}
-.cg-snel button:hover{background:#2457D6;color:#fff}
-.cg-form{display:flex;gap:8px;padding:12px;border-top:1px solid #E1E7F0;background:#fff}
-.cg-form textarea{flex:1;resize:none;border:1.5px solid #C9D3E1!important;border-radius:14px;padding:10px 12px;font:16px/1.4 "Atkinson Hyperlegible",system-ui,sans-serif;height:46px;min-height:46px!important;max-height:120px;margin:0!important;background:#fff!important;color:#22304D!important;width:auto!important;box-sizing:border-box}
-.cg-form textarea::placeholder{color:#7A869E}
-.cg-form textarea:focus{outline:none;border-color:#2457D6}
-.cg-form button{align-self:flex-end;height:46px;background:#F2B705;color:#14213D;border:0;border-radius:14px;padding:0 16px;font-weight:700;cursor:pointer}
-.cg-form button:disabled{opacity:.5;cursor:default}
-.cg-form .cg-mic{width:46px;padding:0;background:#fff;border:1.5px solid #C9D3E1;color:#14213D;font-size:20px}.cg-form .cg-mic[hidden]{display:none}
+.cg-b.denkt{color:#5A6782;padding:13px 16px}.cg-b.ok{background:#E8F7EE;color:#14532D}
+.cg-typ{display:inline-flex;gap:5px;align-items:center;height:12px}.cg-typ i{width:7px;height:7px;border-radius:50%;background:#9AA6BA;animation:cgtyp 1.2s infinite ease-in-out}
+.cg-typ i:nth-child(2){animation-delay:.15s}.cg-typ i:nth-child(3){animation-delay:.3s}
+@keyframes cgtyp{0%,60%,100%{transform:none;opacity:.5}30%{transform:translateY(-4px);opacity:1}}
+.cg-snel{display:flex;flex-wrap:wrap;gap:8px;margin-top:2px}
+.cg-snel button{background:#fff;border:1.5px solid #D9D2C3;color:#14213D;border-radius:14px;padding:9px 13px;font:700 14px/1.25 "Atkinson Hyperlegible",system-ui,sans-serif;cursor:pointer;text-align:left;transition:border-color .15s,background .15s}
+.cg-snel button.zacht{background:#FCEFC4;border-color:#FCEFC4;color:#5C4300}
+.cg-snel button:hover{border-color:#F2B705}.cg-snel button.zacht:hover{background:#F9E3A0;border-color:#F9E3A0}
+.cg-kaarten{display:flex;flex-direction:column;gap:6px;align-self:flex-start;width:86%;margin-top:-2px}
+.cg-kaart{display:flex;align-items:center;gap:11px;background:#fff;border:1px solid #E6E0D2;border-radius:14px;padding:9px 12px 9px 9px;color:#14213D;text-decoration:none;font-weight:700;font-size:14.5px;transition:border-color .15s,transform .15s}
+.cg-kaart:hover{border-color:#F2B705;transform:translateX(2px)}
+.cg-ico{flex:none;width:34px;height:34px;border-radius:10px;background:#14213D;color:#F2B705;display:grid;place-items:center}
+.cg-kt{flex:1;line-height:1.3}.cg-kaart>svg{flex:none;color:#B07F00}
+.cg-form{display:flex;gap:8px;align-items:flex-end;padding:10px 12px;border-top:1px solid #E6E0D2;background:#F4F1EA}
+.cg-form textarea{flex:1;resize:none;border:1.5px solid #E1DACB!important;border-radius:16px;padding:12px 14px;font:16px/1.35 "Atkinson Hyperlegible",system-ui,sans-serif;height:48px;min-height:48px!important;max-height:120px;margin:0!important;background:#fff!important;color:#22304D!important;width:auto!important;box-sizing:border-box}
+.cg-form textarea::placeholder{color:#8A8475}
+.cg-form textarea:focus{outline:none;border-color:#14213D!important}
+.cg-form button{flex:none;width:48px;height:48px;border-radius:50%;border:0;padding:0;display:grid;place-items:center;cursor:pointer}
+.cg-form .cg-stuur{background:#14213D;color:#F2B705}.cg-form .cg-stuur:hover{background:#22345E}
+.cg-form button:disabled{opacity:.45;cursor:default}
+.cg-form .cg-mic{background:#fff;border:1.5px solid #E1DACB;color:#14213D;font-size:19px}.cg-form .cg-mic[hidden]{display:none}
 .cg-form .cg-mic.aan{background:#C2410C;border-color:#C2410C;color:#fff;animation:cgpuls 1.2s ease-in-out infinite}
-@keyframes cgpuls{50%{box-shadow:0 0 0 6px rgba(194,65,12,.25)}}@media (prefers-reduced-motion:reduce){.cg-form .cg-mic.aan{animation:none}}
-.cg-noot{margin:0;padding:0 14px 10px;background:#fff;color:#5A6782;font-size:12px}.cg-noot a{color:#5A6782}
+@keyframes cgpuls{50%{box-shadow:0 0 0 6px rgba(194,65,12,.25)}}
+@media (prefers-reduced-motion:reduce){.cg-form .cg-mic.aan,.cg-typ i,.cg-paneel{animation:none}}
+.cg-voet{display:flex;justify-content:center;flex-wrap:wrap;gap:4px 20px;padding:2px 14px 4px;background:#F4F1EA}
+.cg-voet a,.cg-voet button{background:none;border:0;padding:4px 0;font:700 13px "Atkinson Hyperlegible",system-ui,sans-serif;color:#14213D;text-decoration:none;cursor:pointer}
+.cg-voet a:hover,.cg-voet button:hover{text-decoration:underline}
+.cg-noot{margin:0;padding:0 16px 12px;background:#F4F1EA;color:#7A7466;font-size:11.5px;text-align:center}
 .chat-blok{background:#14213D;color:#fff;padding:44px 0}.chat-blok h2{color:#fff;font-size:clamp(26px,3.2vw,36px)}
 .chat-blok-in{display:grid;grid-template-columns:auto 1fr auto;gap:24px;align-items:center}
 .chat-blok-ico{width:58px;height:58px;border-radius:18px;background:#F2B705;color:#14213D;display:grid;place-items:center}.chat-blok-ico svg{width:30px;height:30px}
@@ -69,6 +88,20 @@
   try { const s = JSON.parse(sessionStorage.getItem(SLEUTEL) || "null"); if (s && Array.isArray(s.b)) { berichten = s.b; klaar = !!s.k; } } catch (_) {}
   const bewaar = () => { try { sessionStorage.setItem(SLEUTEL, JSON.stringify({ b: berichten.slice(-40), k: klaar })); } catch (_) {} };
 
+  const EXTRA = {
+    nl: { wie: "Adviseur · Collens Group", online: "Online · meestal direct antwoord", snel2: ["Gratis concept aanvragen", "Ik wil een medewerker spreken"], mail: "Mail ons" },
+    en: { wie: "Advisor · Collens Group", online: "Online · usually replies instantly", snel2: ["Request a free concept", "I'd like to talk to a person"], mail: "Email us" },
+    de: { wie: "Berater · Collens Group", online: "Online · antwortet meist sofort", snel2: ["Kostenloses Konzept anfragen", "Ich möchte mit einem Menschen sprechen"], mail: "E-Mail" },
+    fr: { wie: "Conseiller · Collens Group", online: "En ligne · répond généralement tout de suite", snel2: ["Demander un concept gratuit", "Je voudrais parler à une personne"], mail: "E-mail" },
+    es: { wie: "Asesor · Collens Group", online: "En línea · suele responder al instante", snel2: ["Pedir un concepto gratis", "Quiero hablar con una persona"], mail: "Correo" }
+  }[TAAL] || { wie: T.titel, online: T.sub, snel2: [], mail: "info@collensgroup.com" };
+  const PIJL = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  const ICO = { site: '<path d="M3 5h18v14H3z"/><path d="M3 9h18"/>', shop: '<path d="M5 8h14l-1 12H6z"/><path d="M9 8a3 3 0 0 1 6 0"/>', app: '<rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/>', game: '<rect x="2.5" y="7" width="19" height="11" rx="5"/><path d="M7 12.5h4M9 10.5v4M15.5 12h.01M17.5 14h.01"/>', ai: '<path d="M12 3l1.8 4.6L18.5 9l-4.7 1.8L12 15.5l-1.8-4.7L5.5 9l4.7-1.4z"/><path d="M18 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z"/>', prijs: '<path d="M3 12l9-9h8v8l-9 9z"/><path d="M15.5 8.5h.01"/>', mail: '<path d="M3 6h18v12H3z"/><path d="M3 7l9 6 9-6"/>', pagina: '<path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5"/>' };
+  function icoon(href) {
+    const h = href.toLowerCase();
+    const k = h.startsWith("mailto") ? "mail" : /contact/.test(h) ? "mail" : /webshop|web-shop/.test(h) ? "shop" : /game/.test(h) ? "game" : /chatbot|(^|[\/-])ai[-.]|automati/.test(h) ? "ai" : /(^|[\/-])apps?[-.]|mvp|development/.test(h) ? "app" : /prij|pricing|kosten|calculator|pakket/.test(h) ? "prijs" : /website|design/.test(h) ? "site" : "pagina";
+    return '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + ICO[k] + "</svg>";
+  }
   const esc = s => s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   function opmaak(t) {
     let h = esc(t);
@@ -87,13 +120,35 @@
   function bel(rol, tekst, extra) {
     const d = document.createElement("div");
     d.className = "cg-b " + rol + (extra ? " " + extra : "");
-    if (rol === "bot") d.innerHTML = opmaak(tekst); else d.textContent = tekst;
-    log.appendChild(d); log.scrollTop = log.scrollHeight; return d;
+    if (rol === "bot") {
+      if (extra === "denkt" && !tekst) d.innerHTML = '<span class="cg-typ" aria-label="' + esc(T.denkt) + '"><i></i><i></i><i></i></span>';
+      else d.innerHTML = (extra === "denkt" ? "" : '<span class="cg-wie">' + esc(EXTRA.wie) + "</span>") + opmaak(tekst);
+    } else d.textContent = tekst;
+    log.appendChild(d);
+    if (rol === "bot" && !extra) kaarten(d);
+    log.scrollTop = log.scrollHeight; return d;
+  }
+  // Links in een antwoord ook als tikbare kaarten tonen, zoals de suggesties van LubbyC
+  function kaarten(d) {
+    const gezien = new Set(), lijst = [];
+    d.querySelectorAll("a[href]").forEach(a => {
+      const h = a.getAttribute("href");
+      if (gezien.has(h) || lijst.length >= 3) return; gezien.add(h); lijst.push([h, a.textContent]);
+    });
+    if (!lijst.length) return;
+    const w = document.createElement("div"); w.className = "cg-kaarten";
+    lijst.forEach(([h, t]) => {
+      const a = document.createElement("a"); a.className = "cg-kaart"; a.href = h;
+      a.innerHTML = '<span class="cg-ico">' + icoon(h) + '</span><span class="cg-kt">' + esc(t.charAt(0).toUpperCase() + t.slice(1)) + "</span>" + PIJL;
+      w.appendChild(a);
+    });
+    log.appendChild(w);
   }
 
   function snelknoppen() {
     const w = document.createElement("div"); w.className = "cg-snel";
-    T.snel.forEach(s => { const b = document.createElement("button"); b.type = "button"; b.textContent = s; b.onclick = () => { w.remove(); verstuur(s); }; w.appendChild(b); });
+    T.snel.forEach(s => { const b = document.createElement("button"); b.type = "button"; b.className = "zacht"; b.textContent = s; b.onclick = () => { w.remove(); verstuur(s); }; w.appendChild(b); });
+    EXTRA.snel2.forEach(s => { const b = document.createElement("button"); b.type = "button"; b.textContent = s; b.onclick = () => { w.remove(); verstuur(s); }; w.appendChild(b); });
     log.appendChild(w);
   }
 
@@ -112,7 +167,7 @@
     log.querySelectorAll(".cg-snel").forEach(x => x.remove());
     berichten.push({ role: "user", content: tekst.slice(0, 2000) }); bewaar();
     bel("jij", tekst);
-    const wacht = bel("bot", T.denkt, "denkt");
+    const wacht = bel("bot", "", "denkt");
     try {
       const r = await fetch("/api/chat", { method: "POST", headers: { "content-type": "application/json" },
         body: JSON.stringify({ berichten, taal: TAAL, pagina: location.pathname }) });
@@ -149,16 +204,16 @@
       stukken = []; rec = new MediaRecorder(stroom, type ? { mimeType: type } : undefined);
       rec.ondataavailable = e => { if (e.data && e.data.size) stukken.push(e.data); };
       rec.onstop = verwerk;
-      rec.start(); mic.classList.add("aan"); mic.textContent = "■"; mic.setAttribute("aria-label", T.stop); mic.title = T.stop;
+      rec.start(); mic.classList.add("aan"); mic.innerHTML = "■"; mic.setAttribute("aria-label", T.stop); mic.title = T.stop;
       bord = bel("bot", T.luistert, "denkt");
       timer = setTimeout(stop, 60000);
     }
     function stop() { clearTimeout(timer); if (rec && rec.state !== "inactive") rec.stop(); if (stroom) stroom.getTracks().forEach(t => t.stop()); }
     async function verwerk() {
-      mic.classList.remove("aan"); mic.textContent = "🎙"; mic.setAttribute("aria-label", T.spreek); mic.title = T.spreek;
+      mic.classList.remove("aan"); mic.innerHTML = '<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>'; mic.setAttribute("aria-label", T.spreek); mic.title = T.spreek;
       const blob = new Blob(stukken, { type: (rec && rec.mimeType) || type || "audio/webm" });
       if (blob.size < 2000) { if (bord) bord.remove(); return; }
-      if (bord) bord.textContent = T.denkt;
+      if (bord) bord.innerHTML = '<span class="cg-typ"><i></i><i></i><i></i></span>';
       mic.disabled = true;
       try {
         const r = await fetch("/api/spraak", { method: "POST", headers: { "content-type": blob.type.split(";")[0] }, body: blob });
@@ -182,16 +237,18 @@
     paneel = document.createElement("div");
     paneel.className = "cg-paneel"; paneel.hidden = true;
     paneel.setAttribute("role", "dialog"); paneel.setAttribute("aria-label", T.titel);
-    paneel.innerHTML = `<div class="cg-kop"><img src="img/logo-icon-96.png" alt=""><div><b>${esc(T.titel)}</b><small>${esc(T.sub)}</small></div>
-<div class="cg-acties"><button type="button" data-nieuw title="${esc(T.opnieuw)}" aria-label="${esc(T.opnieuw)}">↺</button><button type="button" data-sluit aria-label="${esc(T.sluit)}">✕</button></div></div>
+    paneel.innerHTML = `<div class="cg-kop"><span class="cg-av"><img src="/img/logo-icon-96.png" alt=""><i aria-hidden="true"></i></span><div><b>${esc(T.titel)}</b><small>${esc(EXTRA.online)}</small></div>
+<div class="cg-acties"><button type="button" data-nieuw title="${esc(T.opnieuw)}" aria-label="${esc(T.opnieuw)}"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.4-5.7L4 8.5"/><path d="M4 3.5v5h5"/></svg></button><button type="button" data-sluit aria-label="${esc(T.sluit)}"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></div>
 <div class="cg-log" role="log" aria-live="polite"></div>
-<form class="cg-form"><button type="button" class="cg-mic" hidden aria-label="${esc(T.spreek)}" title="${esc(T.spreek)}">🎙</button><textarea rows="1" maxlength="2000" aria-label="${esc(T.plek)}" placeholder="${esc(T.plek)}"></textarea><button type="submit">${esc(T.stuur)}</button></form>
-<p class="cg-noot">${esc(T.noot)} <a href="${TAAL === "nl" ? "privacy.html" : "privacy.html"}">${esc(T.privacy)}</a></p>`;
+<form class="cg-form"><button type="button" class="cg-mic" hidden aria-label="${esc(T.spreek)}" title="${esc(T.spreek)}"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button><textarea rows="1" maxlength="2000" aria-label="${esc(T.plek)}" placeholder="${esc(T.plek)}"></textarea><button type="submit" class="cg-stuur" aria-label="${esc(T.stuur)}" title="${esc(T.stuur)}">${PIJL}</button></form>
+<div class="cg-voet"><button type="button" data-nieuw2>${esc(T.opnieuw)}</button><a href="mailto:info@collensgroup.com">${esc(EXTRA.mail)}</a><a href="/privacy.html">${esc(T.privacy)}</a></div>
+<p class="cg-noot">${esc(T.noot)}</p>`;
     document.body.appendChild(paneel);
     log = paneel.querySelector(".cg-log"); veld = paneel.querySelector("textarea"); knop = paneel.querySelector(".cg-form button[type=submit]");
     spraak(paneel.querySelector(".cg-mic"));
     paneel.querySelector("[data-sluit]").onclick = sluit;
-    paneel.querySelector("[data-nieuw]").onclick = () => { berichten = []; klaar = false; bewaar(); teken(); veld.focus(); };
+    const nieuw = () => { berichten = []; klaar = false; bewaar(); teken(); veld.focus(); };
+    paneel.querySelector("[data-nieuw]").onclick = nieuw; paneel.querySelector("[data-nieuw2]").onclick = nieuw;
     paneel.querySelector("form").onsubmit = ev => { ev.preventDefault(); const t = veld.value; veld.value = ""; veld.style.height = ""; verstuur(t); };
     veld.addEventListener("keydown", ev => { if (ev.key === "Enter" && !ev.shiftKey) { ev.preventDefault(); paneel.querySelector("form").requestSubmit(); } });
     veld.addEventListener("input", () => { veld.style.height = "auto"; veld.style.height = Math.min(veld.scrollHeight, 120) + "px"; });
