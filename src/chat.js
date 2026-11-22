@@ -2,7 +2,7 @@
 (() => {
   const TAAL = (document.documentElement.lang || "nl").slice(0, 2);
   const T = {
-    nl: { spreek: "Spreek je vraag in", stop: "Stop en verstuur", luistert: "Luistert… tik op ■ om te versturen", nietgehoord: "Ik verstond het niet. Probeer het nog eens of typ je vraag.", knop: "Twijfel je? Vraag de adviseur", kort: "Advies", titel: "Online adviseur", sub: "Collens Group · 24/7 online", sluit: "Sluiten", plek: "Typ je vraag…", stuur: "Versturen",
+    nl: { spreek: "Spreek je vraag in", stop: "Stop en verstuur", luistert: "Luistert… tik op ■ om te versturen", nietgehoord: "Ik verstond het niet. Probeer het nog eens of typ je vraag.", knop: "Vraag de AI-adviseur", kort: "Advies", titel: "Online adviseur", sub: "Collens Group · 24/7 online", sluit: "Sluiten", plek: "Typ je vraag…", stuur: "Versturen",
           hallo: "Hoi! Ik help je graag kiezen. Weet je nog niet precies wat je nodig hebt? Vertel wat je wilt bereiken, dan denk ik met je mee en adviseer ik welke oplossing en welk pakket passen.",
           snel: ["Ik weet nog niet wat ik nodig heb", "Wat kost een website?", "Ik heb een idee voor een app"], denkt: "Adviseur typt…", fout: "Sorry, dat lukte even niet. Probeer het nog eens, of mail naar info@collensgroup.com.",
           noot: "Je praat met een AI-adviseur (Claude). Deel geen gevoelige gegevens.", privacy: "Privacy", opnieuw: "Nieuw gesprek", klaar: "Doorgestuurd: we mailen je zo snel mogelijk." },
@@ -32,7 +32,7 @@
 .cg-fab[hidden],.cg-paneel[hidden],.chat-blok[hidden]{display:none!important}
 .cg-fab{position:fixed;right:18px;bottom:18px;z-index:50;display:flex;align-items:center;gap:10px;background:#14213D;color:#fff;border:0;border-radius:999px;padding:12px 18px 12px 14px;font:700 16px/1.2 "Atkinson Hyperlegible",system-ui,sans-serif;box-shadow:0 10px 30px rgba(14,24,48,.28);cursor:pointer}
 .cg-fab:hover{background:#2457D6}.cg-fab .cg-stip{width:9px;height:9px;border-radius:50%;background:#22C55E;box-shadow:0 0 0 3px rgba(34,197,94,.25)}
-.cg-fab .cg-kort{display:none}@media (max-width:520px){.cg-fab .cg-lang{display:none}.cg-fab .cg-kort{display:inline}}
+.cg-fab .cg-ico{display:none;width:24px;height:24px}.cg-fab{transition:padding .25s,background .2s}.cg-fab.cg-mini{width:56px;height:56px;padding:0;justify-content:center}@media (max-width:520px){.cg-fab.cg-mini{width:46px;height:46px}}.cg-fab.cg-mini .cg-lang,.cg-fab.cg-mini .cg-kort,.cg-fab.cg-mini .cg-stip{display:none!important}.cg-fab.cg-mini .cg-ico{display:block}.cg-fab.cg-mini:hover::after,.cg-fab.cg-mini:focus-visible::after{content:attr(aria-label);position:absolute;right:66px;white-space:nowrap;background:#14213D;color:#fff;padding:8px 12px;border-radius:8px;font-size:14px}.cg-fab .cg-kort{display:none}@media (max-width:520px){.cg-fab .cg-lang{display:none}.cg-fab .cg-kort{display:inline}}
 .cg-paneel{position:fixed;right:18px;bottom:18px;z-index:60;width:min(410px,calc(100vw - 24px));height:min(640px,calc(100vh - 36px));display:flex;flex-direction:column;background:#F4F1EA;border-radius:24px;box-shadow:0 30px 70px -10px rgba(14,24,48,.45),0 0 0 1px rgba(14,24,48,.06);overflow:hidden;font-family:"Atkinson Hyperlegible",system-ui,sans-serif;animation:cgin .22s ease-out}
 @keyframes cgin{from{opacity:0;transform:translateY(12px) scale(.98)}}
 @media (max-width:520px){.cg-paneel{right:0;bottom:0;width:100vw;height:100dvh;border-radius:0}}
@@ -230,7 +230,10 @@
     const st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
     fab = document.createElement("button");
     fab.type = "button"; fab.className = "cg-fab"; fab.setAttribute("aria-haspopup", "dialog");
-    fab.innerHTML = `<span class="cg-stip" aria-hidden="true"></span><span class="cg-lang">${esc(T.knop)}</span><span class="cg-kort">${esc(T.kort)}</span>`;
+    fab.innerHTML = `<span class="cg-stip" aria-hidden="true"></span><span class="cg-lang">${esc(T.knop)}</span><span class="cg-kort">${esc(T.kort)}</span><svg class="cg-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>`;
+    fab.setAttribute("aria-label", T.knop);
+    const klein = () => fab.classList.toggle("cg-mini", window.scrollY > 240);
+    window.addEventListener("scroll", klein, { passive: true }); klein();
     fab.onclick = open;
     document.body.appendChild(fab);
 

@@ -43,7 +43,7 @@ NIEUW = [
   "Foto's, rechten en eigendom",
   "<p>Op je site staan alleen foto's waarvoor jij de rechten hebt. Bij foto's van klanten vraag je vooraf toestemming; wij helpen je met een korte tekst daarvoor. Je levert de foto's aan of wijst aan welke uit je bestaande portfolio horen; wij zorgen dat ze goed worden verkleind en geplaatst.</p><p>De site, het domein en de inhoud staan op jouw naam. Wil je later andere foto's tonen, dan kun je dat als kleine wijziging bij ons laten doen (onderhoud vanaf €29 per maand, inclusief kleine wijzigingen tot 30 minuten).</p>",
   "fotograaf of trouwfotograaf",
-  {}, [("Kan ik zelf foto's wisselen?", "Kleine wijzigingen, zoals een nieuwe serie, laat je door ons doen via het onderhoud (vanaf €29 per maand, kleine wijzigingen tot 30 minuten per maand). Een extra pagina kost €95.")]),
+  {}, [("Kan ik zelf foto's wisselen?", "Dat kan op twee manieren. Wil je het zelf doen, dan richten we de site zo in dat je foto's eenvoudig kunt toevoegen of vervangen. Wil je er geen omkijken naar hebben, dan doen wij het voor je via het onderhoud: vanaf €29 per maand, met kleine wijzigingen tot 30 minuten per maand, zoals een nieuwe serie in je portfolio. Wil je er een nieuwe pagina bij, bijvoorbeeld voor bruiloften, dan kost dat €95 per pagina.")]),
  _maak("website-laten-maken-aannemer", "Website aannemer",
   "Website aannemer of installateur vanaf €495 | Collens Group",
   "Website laten maken voor aannemers, installateurs en klusbedrijven: offerteformulier, werkgebied en projecten. Vaste prijs vanaf €495, gratis concept in 48 uur.",
@@ -67,7 +67,7 @@ NIEUW = [
   "Een afspraak plannen zonder gedoe",
   "<p>De drempel om contact op te nemen moet laag zijn. Meestal plaatsen we op je site een knop naar jouw eigen agenda-tool of een eenvoudig contactformulier; welke koppeling mogelijk is hangt af van het systeem dat je al gebruikt en dat zoeken we uit vóór de offerte. Heb je nog niets, dan werkt een formulier dat naar je mail gaat prima om mee te beginnen.</p><p>Echte ervaringen zijn waardevol, maar we plaatsen alleen reviews die je werkelijk van klanten hebt gekregen en mogen tonen. We verzinnen of kopen nooit reviews.</p>",
   "coach, trainer of adviseur",
-  {}, [("Moet ik zelf teksten schrijven?", "Jij levert de kern aan: wat je doet, voor wie en je werkwijze. Wij zetten het om in heldere websiteteksten die Google ook kan lezen, en jij keurt ze goed.")]),
+  {}, [("Moet ik zelf teksten schrijven?", "Nee, dat hoeft niet. Jij vertelt ons de kern: wat je doet, voor wie je het doet en hoe je werkt. Een paar zinnen per onderwerp is genoeg. Wij maken daar heldere websiteteksten van die je bezoekers aanspreken en die Google goed kan lezen. Jij leest alles na en keurt het goed voordat de site live gaat, zodat het klinkt zoals jij praat.")]),
  _maak("website-laten-maken-vakantiehuis", "Website vakantiehuis",
   "Website voor vakantiehuis en B&B vanaf €495 | Collens Group",
   "Website laten maken voor je vakantiehuis, B&B of campingstek: foto's, beschikbaarheid en aanvragen rechtstreeks. Vanaf €495, gratis concept binnen 48 uur.",
@@ -79,7 +79,7 @@ NIEUW = [
   "Rechtstreekse aanvragen en je boekingskalender",
   "<p>Veel verhuurders gebruiken al een boekingskalender of een platform. Dat hoef je niet te vervangen. We kunnen een link of widget van je bestaande systeem op je site plaatsen, of een aanvraagformulier dat in je mail aankomt. Welke koppeling kan, hangt af van je systeem; dat zoeken we uit vóór de offerte. Heb je gasten uit meerdere landen, dan bespreken we in de offerte welke taalversies zinvol zijn en wat die kosten.</p>",
   "vakantiehuis, B&B of vakantiewoning",
-  {}, [("Kan ik mijn boekingskalender koppelen?", "Vaak wel: een link of widget van je bestaande kalender of platform kan op de site. Welke koppeling mogelijk is hangt af van je systeem en dat zoeken we vooraf uit.")]),
+  {}, [("Kan ik mijn boekingskalender koppelen?", "Vaak wel. De meeste boekingssystemen en verhuurplatforms bieden een widget of link waarmee gasten op je eigen site beschikbaarheid zien en direct kunnen boeken. Die plaatsen we op je site, in jouw stijl. Welke koppeling mogelijk is, hangt af van het systeem dat je gebruikt. Dat zoeken we vooraf voor je uit, zodat je in de offerte precies ziet wat er kan en wat het kost.")]),
 ]
 
 # Belgiepagina (nl-BE)

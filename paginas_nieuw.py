@@ -14,19 +14,35 @@ def bouw(page, e, faq_html, faq_ld, DIENSTEN, PAKKETTEN, VANDAAG, CONFIG):
     prijs = lambda p: "€" + f"{p:,}".replace(",", ".")
 
     # ---------- PRIJZEN ----------
-    rijen = ""
-    for slug in ("website-laten-maken", "game-laten-maken", "ai-automatisering"):
-        x = d[slug]
-        for n, p, t, it in x["pakketten"]:
-            rijen += f'<tr><td><a href="{slug}.html">{e(n)}</a><small>{e(" · ".join(it[:3]))}</small></td><td>{e(x["kort"])}</td><td>{e(t)}</td><td>vanaf {prijs(p)}</td></tr>'
-        for n, p, s in x["extra"]:
-            rijen += f'<tr><td>{e(n)}<small>{e(s)}</small></td><td>{e(x["kort"])}</td><td></td><td>{e(p)}</td></tr>'
-    app_rijen = ('<tr><td><a href="app-laten-maken-kosten.html">Basis / MVP-app</a><small>Tot 5 schermen, publicatieklaar voor iOS of Android</small></td><td>Apps</td><td>3–5 weken</td><td>vanaf €3.150</td></tr>'
-                 '<tr><td><a href="app-laten-maken-kosten.html">Standaard-app</a><small>5 tot 12 schermen, accounts, database, pushmeldingen</small></td><td>Apps</td><td>6–10 weken</td><td>vanaf €6.750</td></tr>'
-                 '<tr><td><a href="app-laten-maken-kosten.html">Maatwerk / Pro-app</a><small>12+ schermen, backend, betalingen, rollen</small></td><td>Apps</td><td>10–16+ weken</td><td>vanaf €13.050</td></tr>'
-                 '<tr><td>Ontwikkeling per uur<small>Uitbreidingen en losse opdrachten</small></td><td>Apps</td><td></td><td>€67,50 per uur</td></tr>'
-                 '<tr><td>Onderhoud Basis<small>Monitoring, kritieke bugfixes, kleine updates</small></td><td>Apps</td><td></td><td>€85,50 per maand</td></tr>'
-                 '<tr><td>Onderhoud Groei &amp; Support<small>Alles uit Basis, tot 4 uur aanpassingen, voorrang bij storingen</small></td><td>Apps</td><td></td><td>€265,50 per maand</td></tr>')
+    def kaart(n, p, t, it, href, mid=False):
+        lis = "".join(f"<li>{e(x)}</li>" for x in it)
+        return (f'<article class="pakket{" mid" if mid else ""}"><h3>{e(n)}</h3>'
+                f'<div class="prijs">{p}<small>vanaf, eindprijs, geen btw erbij</small></div>'
+                f'<ul>{lis}</ul><p class="duur">Klaar in {e(t)}</p>'
+                f'<a class="knop{" geel" if mid else " knop-rand"}" href="{href}">Bekijk wat je krijgt</a></article>')
+    def extras(lijst):
+        return '<dl class="prijs-extra">' + "".join(f'<div><dt>{e(n)}<span>{e(s)}</span></dt><dd>{e(p)}</dd></div>' for n, p, s in lijst) + '</dl>'
+    groepen = []
+    titels = {"website-laten-maken": ("websites", "Websites en webshops", "Van een one-page tot een complete webshop met iDEAL."),
+              "game-laten-maken": ("games", "Games", "Een game in jouw huisstijl, voor de browser of de app stores."),
+              "ai-automatisering": ("ai", "AI en automatisering", "Minder handwerk: koppelingen, chatbots en slimme assistenten.")}
+    for slug in ("website-laten-maken", "app", "game-laten-maken", "ai-automatisering"):
+        if slug == "app":
+            href = "app-laten-maken-kosten.html"
+            kaarten = (kaart("Basis / MVP-app", "€3.150", "3–5 weken", ["Tot 5 schermen", "Strak basisontwerp", "Publicatieklaar voor iOS of Android"], href)
+                       + kaart("Standaard-app", "€6.750", "6–10 weken", ["5 tot 12 schermen", "Accounts, database en pushmeldingen", "Live in App Store én Google Play"], href, True)
+                       + kaart("Maatwerk / Pro-app", "€13.050", "10–16+ weken", ["12+ schermen en beheerdashboard", "Betalingen en abonnementen", "Meerdere gebruikersrollen"], href))
+            ex = [("Ontwikkeling per uur", "€67,50 per uur", "Uitbreidingen en losse opdrachten"),
+                  ("Onderhoud Basis", "€85,50 per maand", "Monitoring, kritieke bugfixes en updates voor nieuwe iOS- en Android-versies"),
+                  ("Onderhoud Groei & Support", "€265,50 per maand", "Alles uit Basis, plus tot 4 uur aanpassingen per maand en voorrang bij storingen")]
+            groepen.append(("apps", "Apps voor iPhone en Android", "Van een eerste versie om je idee te testen tot een compleet platform.", kaarten, ex, href))
+            continue
+        x = d[slug]; anker, kop, sub = titels[slug]
+        kaarten = "".join(kaart(n, prijs(p), t, it[:3], f"{slug}.html", i == 1) for i, (n, p, t, it) in enumerate(x["pakketten"]))
+        groepen.append((anker, kop, sub, kaarten, x["extra"], f"{slug}.html"))
+    snel = '<nav class="prijs-nav" aria-label="Spring naar">' + "".join(f'<a href="#{g[0]}">{e(g[1])}</a>' for g in groepen) + '<a href="boeken.html">Boeken</a></nav>'
+    secties = "".join(f'<div class="prijs-groep" id="{g[0]}"><h2>{e(g[1])}</h2><p class="prijs-sub">{e(g[2])}</p>'
+                      f'<div class="pakketten">{g[3]}</div><h3 class="extra-kop">Extra&rsquo;s en onderhoud</h3>{extras(g[4])}</div>' for g in groepen)
     faq_p = [("Staat de btw erbij?", "Nee. Alle prijzen op onze site zijn eindprijzen: er komt geen btw bij. Wat je in de offerte ziet, is wat je betaalt voor ons werk. Externe kosten, zoals een domeinnaam of de kosten van een betaalprovider, betaal je rechtstreeks aan die partij. Die staan vooraf in de offerte, zodat je niet voor verrassingen komt te staan."),
              ("Wat betekent 'vanaf'?", "Bij 'vanaf' hoort het pakket zoals het op de pagina beschreven staat, met het aantal pagina's, schermen of producten dat erbij hoort. Past jouw project daarin, dan is dat je prijs. Wijkt het af, bijvoorbeeld omdat je een extra koppeling of meer pagina's wilt, dan krijg je vooraf een vaste prijs op maat. Meerwerk doen we alleen na jouw akkoord, dus je wordt nooit achteraf verrast."),
              ("Welke kosten komen er buiten jullie prijs bij?", "Externe kosten betaal je rechtstreeks aan de partij: een domeinnaam (meestal €10 tot €25 per jaar), Apple Developer Account ($99 per jaar), Google Play ($25 eenmalig) en eventuele hosting. Ze staan vooraf in de offerte."),
@@ -36,7 +52,7 @@ def bouw(page, e, faq_html, faq_ld, DIENSTEN, PAKKETTEN, VANDAAG, CONFIG):
         "Alle prijzen op een rij: website vanaf €495, webshop vanaf €1.950, app vanaf €3.150, game vanaf €1.950 en AI vanaf €395. Eindprijzen, geen btw erbij.",
         f'''<article class="tekst breed"><h1>Prijzen: website, app, game en AI laten maken</h1>
 <p class="lead2">Alle prijzen op één plek. Het zijn eindprijzen: er komt geen btw bij. Je krijgt vooraf een vaste prijs en binnen 48 uur een gratis concept.</p>
-<div class="scroll"><table class="tabel vergelijk"><tr><th>Pakket</th><th>Soort</th><th>Klaar in</th><th>Prijs</th></tr>{rijen}{app_rijen}</table></div>
+{snel}{secties}
 <p class="noot">Bij &ldquo;vanaf&rdquo; hoort het pakket zoals beschreven. Wijkt jouw project daarvan af, dan krijg je vooraf een vaste prijs op maat.</p>
 {cta()}
 <h2>Niet zeker welk pakket past?</h2><p>Beantwoord drie korte vragen in de <a href="pakketkiezer.html">pakketkiezer</a> en zie direct wat bij je past, of vraag het de online adviseur rechtsonder.</p>
@@ -170,7 +186,7 @@ c.addEventListener("input",reken);reken();
     items.append(("app-of-website.html", "App of website: wat past bij jou?", "Kosten, doorlooptijd en wanneer een app echt nodig is, naast elkaar gezet."))
 
     # ---------- VERGELIJK: WIX OF LATEN MAKEN ----------
-    faq_wx = [("Is een zelfbouw-website goedkoper?", "Aan de start vaak wel, zeker als je je tijd niet meetelt. Reken ook de maandelijkse abonnementskosten van de bouwer mee en hoeveel uren je zelf kwijt bent aan ontwerp, teksten en techniek."),
+    faq_wx = [("Is een zelfbouw-website goedkoper?", "Aan de start vaak wel, zeker als je je eigen tijd niet meetelt. Maar reken verder dan de eerste maand. Bij een websitebouwer betaal je elke maand een abonnement, zolang je site online staat. Daarnaast ben je zelf uren kwijt aan ontwerp, teksten, foto's en techniek, en aan leren hoe de bouwer werkt. Tel die kosten op over twee of drie jaar en vergelijk dat met een vaste prijs voor een site die van jou is."),
               ("Kan ik mijn site later meenemen naar een andere partij?", "Dat hangt af van de bouwer. Bij sommige websitebouwers en bureaus staat de site of het domein op hun naam en kun je niet zomaar vertrekken. Controleer dat dus vooraf. Bij ons staan site, domein en inhoud op jouw naam, en krijg je bij vertrek alles mee. Je zit niet vast aan ons onderhoud."),
               ("Wat kost een website laten maken bij Collens Group?", "Een one-page website begint bij €495, een bedrijfswebsite met maximaal 6 pagina's bij €995 en een webshop bij €1.950, allemaal eindprijzen zonder btw erbij. Daarna betaal je alleen een domeinnaam (meestal €10 tot €25 per jaar) en eventueel onderhoud vanaf €29 per maand. Je krijgt eerst een gratis concept en pas daarna een vaste prijs."),
               ("Kan ik beginnen met zelf bouwen en later laten maken?", "Ja, dat kan. Bewaar je teksten, foto's en logo goed, dan hoef je ze later niet opnieuw te maken. Let wel op dat je je domeinnaam op je eigen naam registreert, zodat je hem kunt meenemen. Stap je over, dan zetten we je bestaande inhoud over en verbeteren we de teksten voor Google, zodat je niet opnieuw begint.")]
@@ -196,7 +212,7 @@ c.addEventListener("input",reken);reken();
     items.append(("zelf-website-bouwen-of-laten-maken.html", "Zelf een website bouwen of laten maken?", "Wix, Squarespace of WordPress tegenover laten maken: kosten, tijd, eigendom en vindbaarheid."))
 
     # ---------- ARTIKEL: 8 AFSPRAKEN ----------
-    faq_af = [("Wat moet er in een offerte voor een website staan?", "De prijs en of daar btw bij komt, wat wel en niet inbegrepen is, de levertijd, wie eigenaar is van site en domein, en de kosten na oplevering zoals hosting en onderhoud."),
+    faq_af = [("Wat moet er in een offerte voor een website staan?", "Minimaal vijf dingen. De prijs, en of daar btw bij komt. Wat wel en niet inbegrepen is, zoals het aantal pagina's, teksten en correctierondes. De levertijd. Wie eigenaar wordt van de site, het domein en de inhoud. En de kosten na oplevering, zoals hosting, domein en onderhoud. Staat een van deze punten er niet in, vraag het dan na voordat je tekent. Zo voorkom je dat je achteraf voor verrassingen komt te staan."),
               ("Moet ik een voorschot betalen?", "Dat is gebruikelijk bij grotere opdrachten, maar spreek vooraf af wanneer je betaalt en wat je op dat moment gezien hebt. Betaal nooit alles vooraf. Bij ons zie je eerst een gratis concept en betaal je pas na akkoord op een vaste prijs. Bij apps betaal je in drie delen: 40% bij akkoord, 40% bij een goedgekeurde testversie en 20% bij oplevering.")]
     pages.append(page("website-laten-maken-afspraken.html", "Website laten maken: 8 afspraken vooraf | Collens Group",
         "Acht dingen die je vooraf afspreekt als je een website laat maken: prijs, btw, eigendom, levertijd, hosting, onderhoud, teksten en vindbaarheid.",
