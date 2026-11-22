@@ -245,12 +245,12 @@ def page(path, title, desc, body, crumbs=None, extra_ld=None, extra_head="", lan
 # ---------- inhoud ----------
 FAQ = [
     ("Wat kost een app laten maken bij Collens Group?", "Een Basis-app begint bij €3.150, een Standaard-app met accounts en database bij €6.750 en een Maatwerk-app bij €13.050, allemaal eindprijzen, geen btw erbij. Na een korte intake per mail krijg je een vaste prijs."),
-    ("Waarom zijn jullie goedkoper dan andere bureaus?", "We bouwen één app voor iPhone en Android tegelijk, met bewezen bouwstenen en veel automatisering. Dat scheelt uren, en die besparing zie je terug in de prijs."),
-    ("Ben ik eigenaar van mijn app?", "Ja. Na de laatste betaling is de broncode van jou. De app staat op jouw eigen Apple- en Google-account."),
+    ("Waarom zijn jullie goedkoper dan andere bureaus?", "We bouwen één app voor iPhone en Android tegelijk, met bewezen bouwstenen en veel automatisering. Dat scheelt uren, en die besparing zie je terug in de prijs. Er zit ook geen accountmanager of grote organisatie tussen: je mailt rechtstreeks met de maker. De kwaliteit bewaken we zelf: elk concept, elke tekst en elke oplevering wordt gecontroleerd voordat je hem krijgt."),
+    ("Ben ik eigenaar van mijn app?", "Ja. Na de laatste betaling is de broncode van jou. De app staat op jouw eigen Apple- en Google-account, dus de app, de reviews en de gebruikers blijven altijd bij jou. Wil je later met een andere ontwikkelaar verder, dan kan dat zonder opnieuw te beginnen. Je zit nergens aan vast, ook niet aan ons onderhoud."),
     ("Wat kost een app na de lancering?", "Apple rekent $99 per jaar, Google $25 eenmalig. Hosting is voor kleine apps vaak €0 tot €25 per maand. Ons onderhoud is optioneel, vanaf €85,50 per maand. Dit staat altijd vooraf in de offerte."),
-    ("Hoe lang duurt het bouwen van een app?", "Een Basis-app 3–5 weken, een Standaard-app 6–10 weken en een Maatwerk-app 10–16 weken of langer."),
-    ("Hoe betaal ik?", "In drie delen: 40% bij akkoord, 40% bij een goedgekeurde testversie en 20% bij oplevering."),
-    ("Maken jullie ook websites, games en automatiseringen?", "Ja. Websites beginnen bij €495, games bij €1.950 en AI-automatisering bij €395, allemaal eindprijzen, geen btw erbij."),
+    ("Hoe lang duurt het bouwen van een app?", "Een Basis-app duurt 3 tot 5 weken, een Standaard-app 6 tot 10 weken en een Maatwerk-app 10 tot 16 weken of langer. Daarna moet de app nog door de controle van Apple en Google, wat meestal een paar dagen duurt. Je krijgt vooraf een planning en tijdens het bouwen tussentijdse testversies, zodat je ziet hoe het vordert en op tijd kunt bijsturen."),
+    ("Hoe betaal ik?", "Bij apps in drie delen: 40% bij akkoord op de offerte, 40% als je een testversie hebt goedgekeurd en 20% bij oplevering. Zo betaal je nooit alles vooraf en zie je steeds eerst resultaat. Bij kleinere opdrachten, zoals een website of automatisering, staat de betaling vooraf in de offerte. Alle prijzen zijn eindprijzen: er komt geen btw bij."),
+    ("Maken jullie ook websites, games en automatiseringen?", "Ja. Websites beginnen bij €495, webshops bij €1.950, games bij €1.950 en AI-automatisering bij €395, allemaal eindprijzen zonder btw erbij. Alles komt uit één hand, dus je website, app en automatiseringen sluiten op elkaar aan en je hebt één aanspreekpunt. Op de pagina van elke dienst zie je wat er in de pakketten zit en hoe lang het duurt."),
     ("Werken jullie ook in België en buiten Nederland?", "Ja. We werken volledig online, per mail en video, voor klanten in Nederland, België en de rest van de wereld. Dat kan in het Nederlands of het Engels, en de prijzen zijn overal dezelfde eindprijzen in euro."),
 ]
 
@@ -397,15 +397,15 @@ DIENSTEN = [
         ],
         "extra": [("Website-onderhoud", "€29 / maand", "Updates, back-ups, kleine wijzigingen tot 30 min per maand"),
                   ("Extra pagina", "€95", "Per pagina, inclusief SEO-tekst")],
-        "faq": [("Wat kost een website laten maken?", "Bij ons begint een one-page website bij €495, een bedrijfswebsite bij €995 en een webshop bij €1.950. Alle prijzen zijn eindprijzen, er komt geen btw bij."),
-                ("Word ik gevonden in Google?", "Elke site bouwen we snel, mobielvriendelijk en met de technische basis die Google verwacht. Een toppositie kan niemand garanderen; wel helpen we je op weg met de juiste zoekwoorden."),
+        "faq": [("Wat kost een website laten maken?", "Bij ons begint een one-page website bij €495, een bedrijfswebsite met maximaal 6 pagina's bij €995 en een webshop bij €1.950. Alle prijzen zijn eindprijzen, er komt geen btw bij. Ter vergelijking: volgens Trustoo kost een eenvoudige website in Nederland gemiddeld €500 tot €2.000. Je krijgt eerst een gratis concept en daarna een vaste prijs, dus je weet vooraf precies wat je betaalt."),
+                ("Word ik gevonden in Google?", "Elke site bouwen we snel, mobielvriendelijk en met de technische basis die Google verwacht: duidelijke paginatitels, goede koppen, een sitemap en een koppeling met Google Search Console. We schrijven de teksten rond de zoekwoorden die jouw klanten echt gebruiken. Een toppositie kan niemand garanderen, want dat hangt ook af van je concurrentie en je reviews, maar je begint met een site die Google goed kan lezen."),
                 ("Wat kost een webshop laten maken?", "Volgens de kostengids van Searchlab (2026) betaal je bij een freelancer meestal €2.000 tot €8.000 en bij een bureau voor het mkb €5.000 tot €15.000. Bij ons begint een webshop bij €1.950 (geen btw erbij), met tot 50 producten ingericht. Platformkosten komen daar los bij en staan vooraf in de offerte."),
                 ("Wat kost een website laten maken in België?", "Volgens de prijsgids van Lunidev (2026) kost een professionele bedrijfswebsite in België €2.000 tot €6.000 en een webshop €4.000 tot €15.000 of meer. Bij ons begint een bedrijfswebsite bij €995 en een webshop bij €1.950. Alle prijzen zijn eindprijzen, er komt geen btw bij."),
-                ("Wat kost een website per maand?", "Hosting kan voor de meeste kleine sites gratis. Een domeinnaam kost meestal rond €10 tot €25 per jaar. Onderhoud is optioneel vanaf €29 per maand."),
-                ("Ben ik eigenaar van de website?", "Ja. De site, het domein en de inhoud staan op jouw naam. Je zit niet vast aan een websitebouwer."),
-                ("Hoe snel is mijn website klaar?", "Een one-page website meestal in 3–5 dagen, een bedrijfswebsite in 2–3 weken en een webshop in 3–5 weken. Hoe snel je teksten en foto's aanlevert, bepaalt mee hoe snel het gaat."),
-                ("Kan ik de website later uitbreiden?", "Ja. Een extra pagina kost €95, inclusief SEO-tekst."),
-                ("Staat de btw erbij?", "Nee. Alle prijzen zijn eindprijzen: er komt geen btw bij.")],
+                ("Wat kost een website per maand?", "Hosting kan voor de meeste kleine sites gratis. Een domeinnaam kost meestal €10 tot €25 per jaar, die betaal je rechtstreeks aan de registrar. Onderhoud is optioneel vanaf €29 per maand: daarvoor houden wij de site up-to-date, maken we back-ups en voeren we kleine wijzigingen tot 30 minuten per maand voor je door. Zonder onderhoud betaal je dus alleen je domeinnaam."),
+                ("Ben ik eigenaar van de website?", "Ja. De site, het domein en de inhoud staan op jouw naam. Je zit niet vast aan een websitebouwer of aan ons: wil je later met een andere partij verder, dan neem je alles mee. Teksten en foto's die we voor je maken of plaatsen, mag je ook elders gebruiken, bijvoorbeeld op social media of in een brochure."),
+                ("Hoe snel is mijn website klaar?", "Een one-page website is meestal binnen 3 tot 5 dagen klaar en een bedrijfswebsite binnen 2 tot 3 weken. Je krijgt eerst een gratis concept, daarna een vaste prijs en een planning. Hoe snel je teksten, foto's en feedback aanlevert, bepaalt mee hoe snel de site live staat. Heb je nog geen teksten, dan schrijven we die op basis van een korte intake."),
+                ("Kan ik de website later uitbreiden?", "Ja. Een extra pagina kost €95 per stuk, inclusief een SEO-tekst die op Google is afgestemd. Denk aan een pagina per dienst, een Engelstalige versie of een pagina met projecten. Begin je met een one-page website, dan kunnen we die later ook uitbouwen tot een bedrijfswebsite. Wat er al staat, blijft staan; je betaalt alleen voor wat erbij komt."),
+                ("Staat de btw erbij?", "Nee. Alle prijzen op onze site zijn eindprijzen: er komt geen btw bij. Wat je in de offerte ziet, is wat je betaalt voor ons werk. Externe kosten, zoals een domeinnaam of de kosten van een betaalprovider, betaal je rechtstreeks aan die partij. Die staan vooraf in de offerte, zodat je niet voor verrassingen komt te staan.")],
         "secties": [
             ("Wat zit er wel en niet in de prijs?",
              "<div class='scroll'><table class='tabel vergelijk'><tr><th>Onderdeel</th><th>One-page</th><th>Bedrijfswebsite</th></tr>"
@@ -450,9 +450,9 @@ DIENSTEN = [
         "extra": [("Extra level of spelmodus", "vanaf €395", "Na de eerste versie"),
                   ("Game-onderhoud", "€85,50 / maand", "Updates voor nieuwe iOS- en Android-versies")],
         "faq": [("Wat kost een game laten maken?", "Een eenvoudige mobiele game begint in Nederland rond €10.000 (Juego Studios, 2026). Bij ons begint een merkgame voor de browser bij €1.950, een casual game bij €4.950 en een 2D-game met levels bij €9.950. Alle prijzen zijn eindprijzen, er komt geen btw bij."),
-                ("Welke games maken jullie?", "Casual 2D-games: puzzels, quizzen, reactie- en arcadespellen. Grote 3D-games of online multiplayer doen we niet."),
-                ("Kan ik geld verdienen met mijn game?", "Ja, we kunnen advertenties of aankopen in de game inbouwen volgens de regels van Apple en Google."),
-                ("Ben ik eigenaar van de game?", "Ja. Na betaling zijn de code en de game van jou.")],
+                ("Welke games maken jullie?", "Casual 2D-games: puzzels, quizzen, reactie- en arcadespellen. Dat kan een merkgame zijn die in de browser draait, bijvoorbeeld voor een actie of beurs, een casual game voor iPhone en Android, of een 2D-game met meerdere levels en eigen personages. Ons eigen voorbeeld is de puzzelgame Koffer Vol!. Grote 3D-games of online multiplayer doen we niet; daar zijn gespecialiseerde studio's beter voor."),
+                ("Kan ik geld verdienen met mijn game?", "Ja. We kunnen advertenties of aankopen in de game inbouwen, zoals extra levels, munten of het uitzetten van reclame. Dat doen we volgens de regels van Apple en Google, die een deel van de opbrengst van aankopen in de app inhouden. Wat goed werkt, hangt af van je spelers en je doel. In het concept laten we zien hoe het verdienmodel in de game past, zonder dat het spelplezier eronder lijdt."),
+                ("Ben ik eigenaar van de game?", "Ja. Na de laatste betaling zijn de code, de vormgeving en de game zelf van jou. Komt de game in de App Store of Google Play, dan publiceren we hem op jouw eigen ontwikkelaarsaccounts, zodat de spelers, reviews en opbrengsten altijd bij jou blijven. Wil je later met een andere partij verder, dan kan dat zonder dat je opnieuw hoeft te beginnen.")],
         "rel": [("merkgame-laten-maken-kerst.html", "Merkgame voor kerst"), ("apps.html", "Onze eigen games"), ("app-laten-maken-kosten.html", "Wat kost een app?")],
     },
     {
@@ -472,8 +472,8 @@ DIENSTEN = [
         "faq": [("Wat kost een AI-chatbot laten maken?", "Een AI-chatbot die vragen op je website beantwoordt, getraind op je eigen teksten, begint bij ons bij €995 (geen btw erbij) en is in 1 week klaar. De kosten van de AI-dienst zelf hangen af van het gebruik en staan vooraf in de offerte."),
                 ("Wat kost AI-automatisering per maand?", "Daarnaast betaal je het gebruik van de AI-dienst en de tools zelf. Bij de meeste kleine bedrijven is dat een paar euro tot enkele tientjes per maand, afhankelijk van het gebruik. We schatten het vooraf en zetten het in de offerte. Beheer door ons is optioneel vanaf €49 per maand."),
                 ("Is mijn data veilig?", "We werken met officiële koppelingen, vragen nooit om je wachtwoorden en richten alleen in wat nodig is. Jij bepaalt welke informatie een chatbot of workflow gebruikt en kunt dat altijd aanpassen."),
-                ("Hoe snel is het klaar?", "Een automatisering in 2–5 dagen, een AI-chatbot in ongeveer 1 week en een AI-assistent in 2–4 weken."),
-                ("Wat kan ik automatiseren?", "Bijna alles wat steeds hetzelfde gaat: aanvragen verwerken, offertes maken, afspraken plannen, social media inplannen en rapportages.")],
+                ("Hoe snel is het klaar?", "Een losse automatisering staat meestal binnen 2 tot 5 dagen, een AI-chatbot in ongeveer 1 week en een AI-assistent met meerdere koppelingen in 2 tot 4 weken. De klok begint te lopen na de intake, als we weten welke apps je gebruikt en hoe je werk nu verloopt. Voordat iets live gaat, testen we het met echte voorbeelden uit jouw bedrijf en laten we je zien wat er gebeurt."),
+                ("Wat kan ik automatiseren?", "Bijna alles wat steeds op dezelfde manier gaat. Denk aan aanvragen van je website automatisch in je CRM of spreadsheet zetten, offertes klaarzetten op basis van een formulier, afspraken inplannen en herinneringen sturen, social media vooruit inplannen of elke week een rapportage laten maken. Twijfel je of iets kan? Beschrijf in je aanvraag wat je nu met de hand doet, dan zeggen we eerlijk of het de moeite waard is om te automatiseren.")],
         "secties": [
             ("Welk pakket past bij jou?",
              "<ul><li><strong>Automatisering (vanaf €395):</strong> je krijgt steeds hetzelfde formulier, mailtje of overzicht en wilt dat dit vanzelf gaat.</li>"
@@ -612,12 +612,12 @@ EN_PRICES = [
     ("AI & automation", [("Automation (1 workflow)", "€395", "2–5 days"), ("AI chatbot trained on your content", "€995", "1 week"), ("AI assistant (multiple workflows)", "€1,950", "2–4 weeks")]),
 ]
 EN_FAQ = [
-    ("Do you work with clients outside the Netherlands?", "Yes. We work fully online with clients worldwide, in English or Dutch. Prices are in euros."),
+    ("Do you work with clients outside the Netherlands?", "Yes. We work fully online, by email and video, with clients worldwide, in English or Dutch. Prices are the same final prices in euros everywhere, with no VAT added. Time zones are rarely a problem: most of the work is done in writing, and calls are planned at a time that suits you."),
     ("Why are your prices lower than most agencies?", "We build one app for iPhone and Android at once, reuse proven building blocks and automate a lot of the work. That saves hours, and you see the savings in the price."),
-    ("Do I own the result?", "Yes. After the final payment the code, design and content are yours. Apps are published on your own Apple and Google accounts."),
-    ("How do I pay?", "In three parts: 40% at the start, 40% when you approve the test version and 20% on delivery."),
+    ("Do I own the result?", "Yes. After the final payment the code, design and content are yours. Apps are published on your own Apple and Google accounts, and websites and domains are registered in your name. If you later want to work with someone else, you take everything with you."),
+    ("How do I pay?", "For apps, in three parts: 40% when you approve the quote, 40% when you approve the test version and 20% on delivery. That way you never pay everything up front and always see results first. For smaller jobs, such as a website or automation, the payment terms are stated in the quote. All prices are final prices in euros."),
     ("What does it cost after launch?", "Apple charges $99 per year and Google $25 once. Hosting for small projects is often free to $25 per month. Maintenance is optional. All of this is listed in your quote."),
-    ("Can I see something before I pay?", "Yes. After a short intake by email we make a free clickable concept of 1–3 screens, so you can see we can really build it."),
+    ("Can I see something before I pay?", "Yes. You get a free concept within 48 hours, designed specifically for your business, with no obligation. Only if you like it do we make a fixed price. If it is not for you, you have paid nothing and are not committed to anything."),
 ]
 
 def en_pages(pages):
@@ -943,10 +943,10 @@ def build():
 
     # KOSTEN-GIDS
     kosten_faq = [
-        ("Wat kost een simpele app?", "Bij Nederlandse bureaus en freelancers kost een eenvoudige app of MVP volgens kostengidsen €5.000 tot €25.000. Bij Collens Group begint een Basis-app bij €3.150 (geen btw erbij)."),
+        ("Wat kost een simpele app?", "Bij Nederlandse bureaus en freelancers kost een eenvoudige app of MVP volgens kostengidsen €5.000 tot €25.000. Bij Collens Group begint een Basis-app met maximaal 5 schermen bij €3.150, een eindprijs zonder btw erbij, en is hij in 3 tot 5 weken klaar. Daarnaast betaal je de store-accounts zelf: Apple rekent $99 per jaar en Google eenmalig $25. Je krijgt eerst een gratis concept, daarna een vaste prijs."),
         ("Wat kost een app per jaar aan onderhoud?", "Dat hangt af van hoeveel er na de lancering nog verandert. Bij ons is onderhoud een vast maandbedrag vanaf €85,50, met monitoring, kritieke fixes en updates voor nieuwe iOS- en Android-versies."),
         ("Wat kost een MVP-app laten maken?", "Bij Collens Group begint een MVP (Basis-pakket, tot 5 schermen) bij €3.150 (geen btw erbij) en is hij klaar in 3–5 weken. Accounts, een database of betalingen vallen onder het Standaard-pakket vanaf €6.750."),
-        ("Is een app voor iPhone én Android duurder?", "Bij aparte native apps vaak bijna het dubbele. Wij bouwen met React Native, dus één codebase voor beide."),
+        ("Is een app voor iPhone én Android duurder?", "Bij aparte native apps vaak bijna het dubbele, omdat er dan twee apps los van elkaar worden gebouwd en onderhouden. Wij bouwen met React Native: één codebase die op iPhone én Android draait. Daardoor betaal je niet twee keer voor hetzelfde werk en zijn latere aanpassingen ook in één keer voor beide platforms klaar. Wel betaal je voor beide stores een eigen account."),
     ]
     pages.append(page("app-laten-maken-kosten.html", "Wat kost een app laten maken in 2026? | Collens Group",
         "Wat kost een app laten maken in 2026? Marktprijzen in Nederland, alle bijkomende kosten (Apple, Google, hosting, onderhoud) en onze vaste prijzen vanaf €3.150.",
@@ -1010,9 +1010,9 @@ def build():
 
     # MVP
     mvp_faq = [
-        ("Wat is een MVP-app?", "Een Minimum Viable Product is de kleinste versie van je app waarmee echte gebruikers je idee kunnen testen."),
-        ("Hoe snel is een MVP klaar?", "Ons Basis-pakket is in 3–5 weken klaar."),
-        ("Kan ik later uitbreiden?", "Ja. Omdat de code van jou is en we standaard bouwstenen gebruiken, bouwen we je MVP later uit tot een Standaard- of Maatwerk-app."),
+        ("Wat is een MVP-app?", "Een Minimum Viable Product is de kleinste versie van je app waarmee echte gebruikers je idee kunnen testen. Je bouwt alleen de functies die nodig zijn om te zien of mensen de app willen gebruiken, en laat de rest voorlopig weg. Zo weet je snel en voor een vaste, lage prijs of je idee aanslaat, voordat je investeert in accounts, betalingen of een beheerdashboard."),
+        ("Hoe snel is een MVP klaar?", "Ons Basis-pakket, met maximaal 5 schermen, is in 3 tot 5 weken klaar. Je krijgt eerst een gratis concept, daarna een vaste prijs en een planning. Tijdens het bouwen krijg je tussentijdse testversies die je zelf op je telefoon probeert. Hoe snel je feedback geeft en teksten en beelden aanlevert, bepaalt mee hoe snel de app in de store staat."),
+        ("Kan ik later uitbreiden?", "Ja. Omdat de code van jou is en we standaard bouwstenen gebruiken, bouwen we je MVP later uit tot een Standaard- of Maatwerk-app, met bijvoorbeeld accounts, een database, pushmeldingen of betalingen. Je begint dus niet opnieuw: wat er al staat, blijft staan. Voor een uitbreiding krijg je eerst een vaste prijs, zodat je vooraf weet wat het kost."),
     ]
     pages.append(page("mvp-app-laten-maken.html", "MVP-app laten maken vanaf €3.150 | Collens Group",
         "Test je app-idee snel met een MVP. Tot 5 schermen, strak ontwerp, klaar in 3–5 weken vanaf €3.150. Daarna uitbreiden naar een volledige app.",

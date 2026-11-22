@@ -26,11 +26,11 @@ def bouw(page, e, faq_html, faq_ld, DIENSTEN, PAKKETTEN, VANDAAG, CONFIG):
                  '<tr><td>Ontwikkeling per uur<small>Uitbreidingen en losse opdrachten</small></td><td>Apps</td><td></td><td>€67,50 per uur</td></tr>'
                  '<tr><td>Onderhoud Basis<small>Monitoring, kritieke bugfixes, kleine updates</small></td><td>Apps</td><td></td><td>€85,50 per maand</td></tr>'
                  '<tr><td>Onderhoud Groei &amp; Support<small>Alles uit Basis, tot 4 uur aanpassingen, voorrang bij storingen</small></td><td>Apps</td><td></td><td>€265,50 per maand</td></tr>')
-    faq_p = [("Staat de btw erbij?", "Nee. Alle prijzen zijn eindprijzen: er komt geen btw bij."),
-             ("Wat betekent 'vanaf'?", "Bij 'vanaf' hoort het pakket zoals beschreven. Wijkt jouw project daarvan af, dan krijg je vooraf een vaste prijs op maat. Meerwerk doen we alleen na jouw akkoord."),
+    faq_p = [("Staat de btw erbij?", "Nee. Alle prijzen op onze site zijn eindprijzen: er komt geen btw bij. Wat je in de offerte ziet, is wat je betaalt voor ons werk. Externe kosten, zoals een domeinnaam of de kosten van een betaalprovider, betaal je rechtstreeks aan die partij. Die staan vooraf in de offerte, zodat je niet voor verrassingen komt te staan."),
+             ("Wat betekent 'vanaf'?", "Bij 'vanaf' hoort het pakket zoals het op de pagina beschreven staat, met het aantal pagina's, schermen of producten dat erbij hoort. Past jouw project daarin, dan is dat je prijs. Wijkt het af, bijvoorbeeld omdat je een extra koppeling of meer pagina's wilt, dan krijg je vooraf een vaste prijs op maat. Meerwerk doen we alleen na jouw akkoord, dus je wordt nooit achteraf verrast."),
              ("Welke kosten komen er buiten jullie prijs bij?", "Externe kosten betaal je rechtstreeks aan de partij: een domeinnaam (meestal €10 tot €25 per jaar), Apple Developer Account ($99 per jaar), Google Play ($25 eenmalig) en eventuele hosting. Ze staan vooraf in de offerte."),
-             ("Hoe betaal ik?", "Bij apps in drie delen: 40% bij akkoord, 40% bij een goedgekeurde testversie en 20% bij oplevering. De betaling voor andere diensten staat vooraf in je offerte."),
-             ("Is er echt een gratis concept?", "Ja. Je krijgt binnen 48 uur een gratis concept, zonder verplichtingen.")]
+             ("Hoe betaal ik?", "Bij apps in drie delen: 40% bij akkoord op de offerte, 40% als je een testversie hebt goedgekeurd en 20% bij oplevering. Zo betaal je nooit alles vooraf en zie je steeds eerst resultaat. Bij kleinere opdrachten, zoals een website of automatisering, staat de betaling vooraf in de offerte. Alle prijzen zijn eindprijzen: er komt geen btw bij."),
+             ("Is er echt een gratis concept?", "Ja. Binnen 48 uur krijg je een gratis concept dat speciaal voor jouw bedrijf is ontworpen, zonder verplichtingen. Zo zie je eerst hoe het eruit kan zien en of het bij je past. Pas als je het concept goed vindt, maken we een vaste prijs. Vind je het niets, dan heb je niets betaald en zit je nergens aan vast.")]
     pages.append(page("prijzen.html", "Prijzen website, app, game en AI | Collens Group",
         "Alle prijzen op een rij: website vanaf €495, webshop vanaf €1.950, app vanaf €3.150, game vanaf €1.950 en AI vanaf €395. Eindprijzen, geen btw erbij.",
         f'''<article class="tekst breed"><h1>Prijzen: website, app, game en AI laten maken</h1>
@@ -143,10 +143,10 @@ c.addEventListener("input",reken);reken();
         crumbs=[("Home", "index.html"), ("Kostencalculator", "kostencalculator.html")]))
 
     # ---------- VERGELIJK: APP OF WEBSITE ----------
-    faq_aw = [("Wat is goedkoper: een app of een website?", "Een website. Bij ons begint een website bij €495 en een app bij €3.150, allemaal eindprijzen zonder btw erbij."),
-              ("Kan een website ook op een telefoon werken?", "Ja. Elke website die wij bouwen is mobielvriendelijk. Bezoekers hoeven niets te installeren."),
-              ("Wanneer heb ik toch een app nodig?", "Als gebruikers dagelijks terugkomen, een account nodig hebben, meldingen moeten krijgen of functies van de telefoon gebruiken, zoals de camera of locatie."),
-              ("Kan ik eerst met een website beginnen?", "Ja. Veel ondernemers testen hun idee eerst met een website of een kleine app (MVP) en breiden later uit.")]
+    faq_aw = [("Wat is goedkoper: een app of een website?", "Een website. Bij ons begint een website bij €495 en een app bij €3.150, allemaal eindprijzen zonder btw erbij. Een website heeft ook lagere vaste kosten: geen store-accounts, en hosting kan voor kleine sites gratis. Een app is pas de investering waard als gebruikers vaak terugkomen, een account nodig hebben of meldingen moeten krijgen. Twijfel je? Dan adviseren we je eerlijk welke van de twee bij je doel past."),
+              ("Kan een website ook op een telefoon werken?", "Ja. Elke website die wij bouwen is mobielvriendelijk en ontwerpen we eerst voor de telefoon, omdat de meeste bezoekers daar binnenkomen. Bezoekers hoeven niets te installeren: ze openen gewoon een link. Je kunt een website zelfs als icoon op het beginscherm laten zetten. Alleen voor pushmeldingen, offline gebruik of functies als de camera is een echte app meestal beter."),
+              ("Wanneer heb ik toch een app nodig?", "Als gebruikers dagelijks of wekelijks terugkomen, een eigen account nodig hebben, pushmeldingen moeten krijgen of functies van de telefoon gebruiken, zoals de camera of locatie. Denk aan een spaarkaart, vooraf bestellen of een platform waar mensen elkaar ontmoeten, zoals onze eigen reisapp LubbyC. Gaat het vooral om informatie geven en gevonden worden in Google, dan is een website meestal slimmer en goedkoper."),
+              ("Kan ik eerst met een website beginnen?", "Ja, en vaak is dat verstandig. Veel ondernemers testen hun idee eerst met een website of een kleine app (MVP) en breiden later uit als blijkt dat er vraag naar is. Teksten, foto's en huisstijl die je voor de website laat maken, gebruiken we later gewoon opnieuw voor de app. Zo betaal je pas voor een grotere stap als je zeker weet dat die zich terugverdient.")]
     pages.append(page("app-of-website.html", "App of website: wat past bij jou? | Collens Group",
         "App of website laten maken? Zo kies je: kosten, doorlooptijd en wanneer een app echt nodig is. Website vanaf €495, app vanaf €3.150, eindprijzen.",
         f'''<article class="tekst breed"><h1>App of website: wat past bij jou?</h1>
@@ -170,9 +170,9 @@ c.addEventListener("input",reken);reken();
 
     # ---------- VERGELIJK: WIX OF LATEN MAKEN ----------
     faq_wx = [("Is een zelfbouw-website goedkoper?", "Aan de start vaak wel, zeker als je je tijd niet meetelt. Reken ook de maandelijkse abonnementskosten van de bouwer mee en hoeveel uren je zelf kwijt bent aan ontwerp, teksten en techniek."),
-              ("Kan ik mijn site later meenemen naar een andere partij?", "Dat hangt af van de bouwer. Controleer vooraf of je je site en domein kunt meenemen. Bij ons staan site, domein en inhoud op jouw naam."),
-              ("Wat kost een website laten maken bij Collens Group?", "Een one-page website begint bij €495, een bedrijfswebsite bij €995 en een webshop bij €1.950, allemaal eindprijzen zonder btw erbij."),
-              ("Kan ik beginnen met zelf bouwen en later laten maken?", "Ja, dat kan. Houd je teksten en foto's bij, dan hoef je ze later niet opnieuw te maken.")]
+              ("Kan ik mijn site later meenemen naar een andere partij?", "Dat hangt af van de bouwer. Bij sommige websitebouwers en bureaus staat de site of het domein op hun naam en kun je niet zomaar vertrekken. Controleer dat dus vooraf. Bij ons staan site, domein en inhoud op jouw naam, en krijg je bij vertrek alles mee. Je zit niet vast aan ons onderhoud."),
+              ("Wat kost een website laten maken bij Collens Group?", "Een one-page website begint bij €495, een bedrijfswebsite met maximaal 6 pagina's bij €995 en een webshop bij €1.950, allemaal eindprijzen zonder btw erbij. Daarna betaal je alleen een domeinnaam (meestal €10 tot €25 per jaar) en eventueel onderhoud vanaf €29 per maand. Je krijgt eerst een gratis concept en pas daarna een vaste prijs."),
+              ("Kan ik beginnen met zelf bouwen en later laten maken?", "Ja, dat kan. Bewaar je teksten, foto's en logo goed, dan hoef je ze later niet opnieuw te maken. Let wel op dat je je domeinnaam op je eigen naam registreert, zodat je hem kunt meenemen. Stap je over, dan zetten we je bestaande inhoud over en verbeteren we de teksten voor Google, zodat je niet opnieuw begint.")]
     pages.append(page("zelf-website-bouwen-of-laten-maken.html", "Zelf een website bouwen of laten maken? | Collens Group",
         "Zelf een website bouwen (Wix, WordPress, Squarespace) of laten maken? Kosten, tijd, eigendom en vindbaarheid vergeleken. Website laten maken vanaf €495.",
         f'''<article class="tekst breed"><h1>Zelf een website bouwen of laten maken?</h1>
@@ -196,7 +196,7 @@ c.addEventListener("input",reken);reken();
 
     # ---------- ARTIKEL: 8 AFSPRAKEN ----------
     faq_af = [("Wat moet er in een offerte voor een website staan?", "De prijs en of daar btw bij komt, wat wel en niet inbegrepen is, de levertijd, wie eigenaar is van site en domein, en de kosten na oplevering zoals hosting en onderhoud."),
-              ("Moet ik een voorschot betalen?", "Dat is gebruikelijk bij grotere opdrachten, maar spreek vooraf af wanneer je betaalt en wat je dan gezien hebt. Bij ons zie je eerst een gratis concept.")]
+              ("Moet ik een voorschot betalen?", "Dat is gebruikelijk bij grotere opdrachten, maar spreek vooraf af wanneer je betaalt en wat je op dat moment gezien hebt. Betaal nooit alles vooraf. Bij ons zie je eerst een gratis concept en betaal je pas na akkoord op een vaste prijs. Bij apps betaal je in drie delen: 40% bij akkoord, 40% bij een goedgekeurde testversie en 20% bij oplevering.")]
     pages.append(page("website-laten-maken-afspraken.html", "Website laten maken: 8 afspraken vooraf | Collens Group",
         "Acht dingen die je vooraf afspreekt als je een website laat maken: prijs, btw, eigendom, levertijd, hosting, onderhoud, teksten en vindbaarheid.",
         f'''<article class="tekst breed"><h1>Website laten maken: 8 afspraken die je vooraf vastlegt</h1>
@@ -216,9 +216,9 @@ c.addEventListener("input",reken);reken();
     items.append(("website-laten-maken-afspraken.html", "Website laten maken: 8 afspraken vooraf", "Prijs, btw, eigendom, levertijd, hosting, onderhoud, teksten en vindbaarheid: waar je vooraf naar vraagt."))
 
     # ---------- ARTIKEL: WAT KOST EEN WEBSITE ----------
-    faq_k = [("Wat kost een website laten maken gemiddeld?", "Volgens Trustoo kost een eenvoudige website in Nederland gemiddeld €500 tot €2.000. Bij ons begint een one-page website bij €495 en een bedrijfswebsite bij €995, eindprijzen zonder btw erbij."),
-             ("Wat kost een website per jaar?", "Naast de bouw betaal je een domeinnaam (meestal €10 tot €25 per jaar). Hosting kan voor kleine sites gratis. Onderhoud is optioneel, bij ons vanaf €29 per maand."),
-             ("Wat kost een website in België?", "Volgens Lunidev (2026) kost een professionele bedrijfswebsite in België €2.000 tot €6.000. Lees meer op onze pagina over een website laten maken in België.")]
+    faq_k = [("Wat kost een website laten maken gemiddeld?", "Volgens Trustoo kost een eenvoudige website in Nederland gemiddeld €500 tot €2.000, en een uitgebreidere site al snel €2.000 tot €5.000. Het verschil zit vooral in het aantal pagina's, maatwerk in het ontwerp en wie de teksten schrijft. Bij ons begint een one-page website bij €495 en een bedrijfswebsite bij €995, eindprijzen zonder btw erbij, inclusief teksten die op Google zijn afgestemd."),
+             ("Wat kost een website per jaar?", "Naast de bouw betaal je een domeinnaam, meestal €10 tot €25 per jaar. Hosting kan voor kleine sites gratis. Onderhoud is optioneel, bij ons vanaf €29 per maand, inclusief updates, back-ups en kleine wijzigingen tot 30 minuten per maand. Zonder onderhoud ben je dus vaak minder dan €25 per jaar kwijt, met onderhoud ongeveer €350 per jaar plus je domeinnaam."),
+             ("Wat kost een website in België?", "Volgens Lunidev (2026) kost een professionele bedrijfswebsite in België €2.000 tot €6.000. Bij ons gelden voor Belgische bedrijven dezelfde prijzen als in Nederland: een one-page website vanaf €495 en een bedrijfswebsite vanaf €995, als eindprijs. We werken volledig online, dus afstand speelt geen rol. Lees meer op onze pagina over een website laten maken in België.")]
     pages.append(page("wat-kost-een-website.html", "Wat kost een website laten maken in 2026? | Collens Group",
         "Wat kost een website laten maken in 2026? Marktprijzen voor freelancers en bureaus, bijkomende kosten per jaar en onze vaste prijzen vanaf €495.",
         f'''<article class="tekst breed"><h1>Wat kost een website laten maken in 2026?</h1>
@@ -242,8 +242,8 @@ c.addEventListener("input",reken);reken();
 
     # ---------- ARTIKEL: WAT KOST EEN WEBSHOP ----------
     faq_w = [("Wat kost een webshop laten maken?", "Volgens Searchlab (2026) betaal je bij een freelancer meestal €2.000 tot €8.000 en bij een bureau voor het mkb €5.000 tot €15.000. Bij ons begint een webshop bij €1.950 (geen btw erbij), met tot 50 producten ingericht."),
-             ("Welke kosten komen er bij een webshop bij?", "Denk aan een domeinnaam, de kosten van je betaalprovider per transactie en eventuele abonnementskosten van het platform. Die staan vooraf in de offerte."),
-             ("Kan ik zelf producten toevoegen?", "Ja. Je beheert zelf je producten.")]
+             ("Welke kosten komen er bij een webshop bij?", "Denk aan een domeinnaam (meestal €10 tot €25 per jaar), de kosten van je betaalprovider per transactie en eventuele abonnementskosten van het webshopplatform. Die betaal je rechtstreeks aan die partijen en staan vooraf in de offerte. Onderhoud door ons is optioneel, vanaf €29 per maand, voor updates, back-ups en kleine wijzigingen."),
+             ("Kan ik zelf producten toevoegen?", "Ja. Je beheert zelf je producten, prijzen, foto's en voorraad in een overzichtelijk beheer, zonder technische kennis. Bij de oplevering laten we zien hoe het werkt. De eerste 50 producten richten we bij het webshoppakket al voor je in, zodat je meteen kunt verkopen. Liever niet zelf? Dan kan het ook via ons onderhoud.")]
     pages.append(page("wat-kost-een-webshop.html", "Wat kost een webshop laten maken? | Collens Group",
         "Wat kost een webshop laten maken? Marktprijzen voor freelancers en bureaus, bijkomende kosten en onze vaste prijs vanaf €1.950. Eindprijzen, geen btw erbij.",
         f'''<article class="tekst breed"><h1>Wat kost een webshop laten maken?</h1>
