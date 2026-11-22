@@ -690,3 +690,32 @@ small,.noot,.bron,.duur,td small{font-size:max(14px,.875rem)}
 .bundel-prijs span{background:#E7F7EE;color:#12805C;font-weight:700;font-size:14px;padding:4px 10px;border-radius:999px}
 .bundel .knop{align-self:flex-start;margin-top:auto}
 @media (max-width:760px){.bundels{grid-template-columns:1fr}.bundel .knop{align-self:stretch;text-align:center}}
+/* boek inhoud-dialoog */
+.boek-beeld{display:block;position:relative;cursor:zoom-in;border-radius:20px}
+.beeld-hint{position:absolute;left:50%;bottom:8%;transform:translateX(-50%);background:rgba(20,33,61,.88);color:#fff;font-weight:700;font-size:14px;padding:9px 16px;border-radius:999px;opacity:0;transition:opacity .2s;white-space:nowrap;pointer-events:none}
+.boek-beeld:hover .beeld-hint,.boek-beeld:focus-visible .beeld-hint{opacity:1}
+@media (hover:none){.beeld-hint{opacity:1}}
+.boek-dlg{border:0;padding:0;border-radius:26px;width:min(960px,94vw);max-height:92vh;box-shadow:0 30px 80px rgba(10,20,40,.35)}
+.boek-dlg::backdrop{background:rgba(10,20,40,.55);backdrop-filter:blur(3px)}
+.dlg-in{padding:34px 36px 36px;position:relative}
+.dlg-x{position:absolute;right:16px;top:14px;width:42px;height:42px;border-radius:50%;border:0;background:rgba(255,255,255,.85);font-size:26px;line-height:1;cursor:pointer;color:#14213D}
+.dlg-kop{display:grid;grid-template-columns:200px 1fr;gap:28px;align-items:start}
+.dlg-kop img{width:100%;height:auto;border-radius:8px;box-shadow:0 18px 40px rgba(10,20,40,.3)}
+.boek-dlg h3{font-family:var(--display);font-size:30px;margin:10px 0 10px;line-height:1.1}
+.dlg-kop p{line-height:1.6;margin:0 0 14px}
+.dlg-sub{font-family:var(--display);font-size:20px;margin:30px 0 14px}
+.inh-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.inh-deel{background:rgba(255,255,255,.72);border-radius:16px;padding:16px 18px}
+.inh-deel h4{font-size:15px;margin:0 0 8px}
+.inh-deel ol{list-style:none;padding:0;margin:0}
+.inh-deel li{display:flex;gap:10px;padding:5px 0;font-size:15px;line-height:1.4;border-top:1px solid rgba(0,0,0,.06)}
+.inh-deel li span{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;background:rgba(0,0,0,.08)}
+.inkijk{display:flex;gap:16px;flex-wrap:wrap}
+.inkijk img{height:300px;width:auto;border-radius:6px;box-shadow:0 14px 34px rgba(10,20,40,.2);background:#fff}
+@media (max-width:700px){.dlg-in{padding:26px 18px 24px}.dlg-kop{grid-template-columns:110px 1fr;gap:16px}.boek-dlg h3{font-size:22px}.dlg-kop>div>p:first-of-type+h3+p{font-size:15px}.inkijk img{height:220px}.dlg-kop .boek-koop{grid-column:1/-1}}
+.boek-dlg .boek-deel{display:inline-block;color:#fff;padding:6px 12px;border-radius:999px;font-size:13px;font-weight:700;letter-spacing:.08em;margin:0}
+.boek-dlg.boek-p1 .boek-deel{background:#E8590C}.boek-dlg.boek-p2 .boek-deel{background:#2457D6}.boek-dlg.boek-p3 .boek-deel{background:#12805C}
+.boek-dlg .boek-prijs{font-family:var(--display);font-size:32px;font-weight:800;line-height:1;margin:0}
+.boek-dlg .boek-stats{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:0 0 20px}
+.boek-dlg .boek-stats li{background:rgba(255,255,255,.7);border-radius:999px;padding:6px 12px;font-size:14px;font-weight:600}
+@media (max-width:700px){.dlg-kop{grid-template-columns:1fr}.dlg-kop img{width:120px}.boek-dlg .boek-koop .knop{width:100%;text-align:center}}

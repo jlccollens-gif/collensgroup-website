@@ -49,18 +49,62 @@ _DETAIL = [
   ["139 pagina's", "30 masterprompts", "20 werkinstructies", "12 sjablonen"], "€44,99", BOEK3_URL or WINKEL),
 ]
 
+
+_INHOUD = {
+ 1: ("Claude voor beginners is de gids die je wilde hebben toen je voor het eerst een AI-chat opende. Je loopt de reis mee met Sanne, eigenaar van een kleine kapsalon, en ziet stap voor stap hoe AI van een handig hulpje uitgroeit tot een assistent die haar bedrijf kent. Geen vakjargon, wel concrete voorbeelden, oefeningen en een afvinklijst per hoofdstuk.",
+     [("Deel 1 · De basis", ["Wat Claude is, en wat niet", "Aan de slag in tien minuten", "Goed vragen stellen", "Dagelijks werk: tien vragen die tijd besparen"]),
+      ("Deel 2 · Je eigen assistent", ["Projecten en vaste instructies", "Geheugen: Claude onthoudt wat belangrijk is", "Bestanden en kant-en-klare documenten", "Onderzoek en bronnen"]),
+      ("Deel 3 · Verder gaan", ["Koppelingen en toestemmingen", "Langere taken, browser en computer", "Automatisering en geplande taken", "MCP en API's in gewone taal", "Skills, plugins en agents", "Claude steeds beter maken", "Zelfstandig laten werken, met grenzen"]),
+      ("Deel 4 · Verdienen en veilig", ["Onderzoek, ondernemen en inkomsten", "Veiligheid, privacy en oplichting", "Van gebruiker naar maker"])]),
+ 2: ("Programmeren met Claude AI laat je zelf bouwen, ook als je nog nooit een regel code schreef. Je leert genoeg van HTML, CSS, JavaScript en Python om te begrijpen wat er gebeurt, en laat Claude het zware werk doen. Je bouwt een echte website en een app, en leert daarna de masterprompts en werkinstructies schrijven waarmee AI voorspelbaar en controleerbaar voor je werkt.",
+     [("De basis", ["Wat programmeren is en wat AI eraan verandert", "Je werkplek klaarzetten", "De basis: HTML, CSS en JavaScript", "Python voor beginners", "Claude als programmeerpartner"]),
+      ("Bouwen", ["Project 1: je eigen website bouwen en online zetten", "Project 2: een app voor iPhone en Android", "Data, database en API's", "Testen, fouten zoeken en versiebeheer", "Veilig werken en publiceren"]),
+      ("Meesterniveau", ["Masterprompts leren bouwen: de anatomie", "Masterprompts testen, meten en verbeteren", "Werkinstructies leren bouwen", "AI zelfstandig laten bouwen, met controle"])]),
+ 3: ("Ondernemen met Claude AI is het praktijkboek voor ondernemers die meer willen dan losse prompts. Je bouwt een klein AI-team met geheugen, duidelijke grenzen en dagrapporten. Het team bereidt marketing, verkoop, vindbaarheid en administratie voor; jij keurt goed en beslist. Inclusief 30 masterprompts, 20 werkinstructies en 12 sjablonen die je direct kunt gebruiken.",
+     [("Deel 1 · Het fundament", ["Waarom een AI-team en geen losse prompts", "Het organigram van je AI-team", "Het bedrijfsgeheugen", "Grenzen, bevoegdheden en goedkeuring"]),
+      ("Deel 2 · Marketing en merk", ["Je merk en positionering scherp", "De contentmachine die menselijk klinkt", "Social media met een vaste planning", "Beeld, video en ontwerp", "Eerlijke marketing die toch overtuigt"]),
+      ("Deel 3 · Klanten en verkoop", ["Leads die bestaan", "Persoonlijke voorstellen die wél gelezen worden", "Koude mail met fatsoen", "Offertes en opvolging", "Klantenservice die altijd antwoordt"]),
+      ("Deel 4 · Vindbaarheid en eigen producten", ["SEO met een AI-team", "Gevonden worden door AI-zoekmachines", "Digitale producten die verkopen", "Je webshop draaiend houden"]),
+      ("Deel 5 · Operatie en geld", ["Mail en administratie op orde", "Geplande taken: je team werkt ook als jij slaapt", "Dagrapport en weekrapport", "Wat kost het en wat levert het op"]),
+      ("Deel 6 · Groeien", ["Je werkwijzen als dienst voor anderen", "Het 90-dagenplan"])]),
+}
+
+def _dialoog(n, titel, prijs, url, stats):
+    besch, delen = _INHOUD[n]
+    k = 0; blokken = ""
+    for d, hs in delen:
+        li = ""
+        for h in hs:
+            if h.startswith("…"):
+                li += f"<li class='meer'>{h}</li>"
+            else:
+                k += 1; li += f"<li><span>{k}</span>{h}</li>"
+        blokken += f"<div class='inh-deel'><h4>{d}</h4><ol>{li}</ol></div>"
+    st = "".join(f"<li>{x}</li>" for x in stats)
+    return (f'<dialog class="boek-dlg boek-p{n}" id="inhoud-{n}" aria-labelledby="dlg-t{n}"><div class="dlg-in">'
+            f'<button class="dlg-x" type="button" aria-label="Sluiten" data-sluit>×</button>'
+            f'<div class="dlg-kop"><img src="img/omslag-{n}.jpg" alt="Omslag van {titel}" width="400" height="600" loading="lazy">'
+            f'<div><p class="boek-deel">Deel {n}</p><h3 id="dlg-t{n}">{titel}</h3><p>{besch}</p><ul class="boek-stats">{st}</ul>'
+            f'<div class="boek-koop"><div class="boek-prijs">{prijs}<small>PDF + EPUB · direct downloaden</small></div><p class="knoppen"><a class="knop geel" href="{url}" rel="noopener" target="_blank">Koop deel {n}</a></p></div></div></div>'
+            f'<h4 class="dlg-sub">Wat er in staat</h4><div class="inh-grid">{blokken}</div>'
+            f'<h4 class="dlg-sub">Een kijkje binnen</h4><div class="inkijk"><img src="img/inkijk-{n}a.jpg" alt="Binnenpagina uit {titel}" width="347" height="520" loading="lazy"><img src="img/inkijk-{n}b.jpg" alt="Tweede binnenpagina uit {titel}" width="347" height="520" loading="lazy"></div>'
+            f'</div></dialog>')
+
+_DLG_JS = ("<script>document.addEventListener('click',function(e){var o=e.target.closest('[data-open]');if(o){e.preventDefault();var d=document.getElementById(o.getAttribute('data-open'));if(d&&d.showModal){d.showModal();}return;}"
+           "var s=e.target.closest('[data-sluit]');if(s){s.closest('dialog').close();return;}if(e.target.tagName==='DIALOG'){e.target.close();}});</script>")
+
 _VINK = '<svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true"><circle cx="10" cy="10" r="10" fill="currentColor" opacity=".18"/><path d="M6 10.3l2.6 2.6L14.2 7.4" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 
 def _detail(n, titel, kop, pitch, punten, stats, prijs, url):
     li = "".join(f"<li>{_VINK}<span>{p}</span></li>" for p in punten)
     st = "".join(f"<li>{x}</li>" for x in stats)
-    meer = '<a class="knop boek-knop-rand" href="boek-claude-voor-beginners.html">Lees meer over deel 1</a>' if n == 1 else ''
+    meer = f'<a class="knop boek-knop-rand" href="#inhoud-{n}" data-open="inhoud-{n}">Bekijk de inhoud</a>'
     return (f'<article class="boek-paneel boek-p{n}" id="deel-{n}"><div class="boek-tekst">'
             f'<p class="boek-deel">Deel {n} · {titel}</p><h3>{kop}</h3><p class="boek-pitch">{pitch}</p>'
             f'<ul class="boek-punten">{li}</ul><ul class="boek-stats">{st}</ul>'
             f'<div class="boek-koop"><div class="boek-prijs">{prijs}<small>PDF + EPUB · direct downloaden</small></div>'
             f'<p class="knoppen"><a class="knop geel" href="{url}" rel="noopener" target="_blank">Koop deel {n}</a>{meer}</p></div></div>'
-            f'<div class="boek-beeld"><img src="img/boek-visual-deel{n}.png" alt="Omslag en binnenpagina\'s van {titel}" width="960" height="900" loading="lazy"></div></article>')
+            f'<a class="boek-beeld" href="#inhoud-{n}" data-open="inhoud-{n}" aria-label="Bekijk de inhoud van {titel}"><img src="img/boek-visual-deel{n}.png" alt="Omslag en binnenpagina\'s van {titel}" width="960" height="900" loading="lazy"><span class="beeld-hint">Bekijk de inhoud</span></a></article>' + _dialoog(n, titel, prijs, url, stats))
 
 
 _BUNDELS = [
@@ -76,7 +120,7 @@ def _bundel(slug, naam, txt, prijs, oud, bespaar, url, top):
 
 BUNDEL_HTML = '<div class="bundels">' + "".join(_bundel(*b) for b in _BUNDELS) + '</div>'
 
-DETAIL_HTML = '<div class="boek-details">' + "".join(_detail(*d) for d in _DETAIL) + '</div>'
+DETAIL_HTML = '<div class="boek-details">' + "".join(_detail(*d) for d in _DETAIL) + '</div>' + _DLG_JS
 
 BOEK_PAGINAS = [
  {"slug": "boeken", "lang": "nl", "kort": "Boeken",
