@@ -60,7 +60,21 @@ def _detail(n, titel, kop, pitch, punten, stats, prijs, url):
             f'<ul class="boek-punten">{li}</ul><ul class="boek-stats">{st}</ul>'
             f'<div class="boek-koop"><div class="boek-prijs">{prijs}<small>PDF + EPUB · direct downloaden</small></div>'
             f'<p class="knoppen"><a class="knop geel" href="{url}" rel="noopener" target="_blank">Koop deel {n}</a>{meer}</p></div></div>'
-            f'<div class="boek-beeld"><img src="img/boek-visual-deel{n}.png" alt="Omslag en binnenpagina\'s van {titel}" width="960" height="840" loading="lazy"></div></article>')
+            f'<div class="boek-beeld"><img src="img/boek-visual-deel{n}.png" alt="Omslag en binnenpagina\'s van {titel}" width="960" height="900" loading="lazy"></div></article>')
+
+
+_BUNDELS = [
+ ("claude-compleet", "Claude AI Compleet", "Alle 3 delen: beginnen, bouwen en ondernemen met AI. De beste deal als je het hele pad wilt lopen.", "€84,95", "€114,97", "Bespaar €30", "https://collens3.gumroad.com/l/claude-ai-compleet", True),
+ ("ai-starter", "AI Starter", "Claude voor beginners plus 100 slimme AI-vragen voor zzp'ers. Direct aan de slag in je eigen werk.", "€32,95", "€39,94", "Bespaar €6,99", "https://collens3.gumroad.com/l/ai-starter", False),
+]
+
+def _bundel(slug, naam, txt, prijs, oud, bespaar, url, top):
+    return (f'<article class="bundel{" bundel-top" if top else ""}"><img src="img/bundel-{slug}.jpg" alt="Bundel {naam}" width="960" height="540" loading="lazy">'
+            f'<div class="bundel-tekst">{"<p class=\'bundel-tag\'>Meest gekozen</p>" if False else ""}<h3>{naam}</h3><p>{txt}</p>'
+            f'<div class="bundel-prijs"><strong>{prijs}</strong><s>{oud}</s><span>{bespaar}</span></div>'
+            f'<a class="knop geel" href="{url}" rel="noopener" target="_blank">Koop de bundel</a></div></article>')
+
+BUNDEL_HTML = '<div class="bundels">' + "".join(_bundel(*b) for b in _BUNDELS) + '</div>'
 
 DETAIL_HTML = '<div class="boek-details">' + "".join(_detail(*d) for d in _DETAIL) + '</div>'
 
@@ -73,6 +87,7 @@ BOEK_PAGINAS = [
   "knop": ("Naar de webshop", WINKEL),
   "secties": [
    ("De boeken: welk deel past bij jou?", "<p>Drie boeken, drie stappen. Begin waar jij nu staat en koop alleen wat je nodig hebt. Elk deel staat vol figuren, praktijkvoorbeelden en opdrachten die je direct kunt toepassen.</p>" + DETAIL_HTML),
+   ("Voordeliger in een bundel", "<p>Wil je meer dan één deel? Met een bundel betaal je minder dan los. Je krijgt dezelfde bestanden, als PDF en EPUB, direct na aankoop.</p>" + BUNDEL_HTML),
    ("Waarom deze reeks?",
     "<p>Alles wat in deze boeken staat, gebruiken we zelf: voor onze eigen website, onze apps en het dagelijkse werk van ons bedrijf. Ook wat misging staat erin, met de regels die het voortaan voorkomen. De boeken bouwen op elkaar voort: deel 1 leert je AI gebruiken, deel 2 leert je ermee bouwen en deel 3 leert je er je bedrijf mee runnen.</p>"),
    ("Hoe koop je een boek?",

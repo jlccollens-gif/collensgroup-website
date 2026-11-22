@@ -887,6 +887,7 @@ def build():
     shutil.copytree(os.path.join(ROOT, "src", "img"), os.path.join(DIST, "img"))
     if os.path.isdir(os.path.join(ROOT, "src", "concept")): shutil.copytree(os.path.join(ROOT, "src", "concept"), os.path.join(DIST, "concept"))
     shutil.copytree(os.path.join(ROOT, "src", "tester"), os.path.join(DIST, "tester"))  # testerpagina + QR (13 talen)
+    if os.path.isdir(os.path.join(ROOT, "src", "gr")): shutil.copytree(os.path.join(ROOT, "src", "gr"), os.path.join(DIST, "gr"))  # productbeelden voor Gumroad (CORS)
     pages = []
 
     # HOME

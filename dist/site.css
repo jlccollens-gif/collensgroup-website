@@ -669,3 +669,24 @@ small,.noot,.bron,.duur,td small{font-size:max(14px,.875rem)}
 .werk-punten li{position:relative;padding:8px 0 8px 28px;border-top:1px solid var(--lijn)}
 .werk-punten li::before{content:"";position:absolute;left:4px;top:15px;width:12px;height:7px;border-left:2px solid var(--blauw);border-bottom:2px solid var(--blauw);transform:rotate(-45deg)}
 @media (max-width:820px){.werk-uit{grid-template-columns:1fr;gap:18px}}
+/* lichte boekpanelen v3 */
+.boek-p1{background:linear-gradient(140deg,#FFF6D6 0%,#FFE07A 100%);color:#1B2440}
+.boek-p2{background:linear-gradient(140deg,#EAF6FF 0%,#B3E0FF 100%);color:#0B2160}
+.boek-p3{background:linear-gradient(140deg,#EBFBF2 0%,#B2EBCD 100%);color:#0D3A2C}
+.boek-p1 .boek-punten svg{color:#E8590C}.boek-p2 .boek-punten svg{color:#2457D6}.boek-p3 .boek-punten svg{color:#12805C}
+.boek-paneel .boek-stats li{background:rgba(255,255,255,.7);border-color:rgba(0,0,0,.06)}
+.boek-paneel .boek-deel{display:inline-block;color:#fff;opacity:1;padding:6px 12px;border-radius:999px;letter-spacing:.04em}
+.boek-p1 .boek-deel{background:#E8590C}.boek-p2 .boek-deel{background:#2457D6}.boek-p3 .boek-deel{background:#12805C}
+/* bundels */
+.bundels{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:16px}
+.bundel{background:var(--wit);border:1px solid var(--lijn);border-radius:22px;overflow:hidden;display:flex;flex-direction:column}
+.bundel img{width:100%;height:auto;display:block}
+.bundel-tekst{padding:22px 24px 24px;display:flex;flex-direction:column;gap:10px;flex:1}
+.tekst .bundel h3{margin:0;font-size:24px}
+.bundel-tekst p{margin:0;color:var(--zacht)}
+.bundel-prijs{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:6px 0 8px}
+.bundel-prijs strong{font-family:var(--display);font-size:32px;color:var(--nacht)}
+.bundel-prijs s{color:var(--zacht)}
+.bundel-prijs span{background:#E7F7EE;color:#12805C;font-weight:700;font-size:14px;padding:4px 10px;border-radius:999px}
+.bundel .knop{align-self:flex-start;margin-top:auto}
+@media (max-width:760px){.bundels{grid-template-columns:1fr}.bundel .knop{align-self:stretch;text-align:center}}
