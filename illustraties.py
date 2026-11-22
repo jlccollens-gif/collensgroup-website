@@ -160,7 +160,7 @@ KAART = {
     "app-laten-maken-kosten": ("app", "nl"), "mvp-app-laten-maken": ("app", "nl"), "en-app-development": ("app", "en"),
     **{f"website-laten-maken-{b}": ("web", "nl") for b in ("kapper", "horeca", "schoonheidssalon", "fotograaf", "aannemer", "coach-zzp", "vakantiehuis", "belgie", "afspraken")},
     "wat-kost-een-website": ("web", "nl"), "zelf-website-bouwen-of-laten-maken": ("web", "nl"), "wat-kost-een-webshop": ("shop", "nl"),
-    "app-laten-maken-horeca": ("app", "nl"), "app-of-website": ("app", "nl"), "merkgame-laten-maken-kerst": ("game", "nl"),
+    "app-laten-maken-horeca": ("app", "nl"), "bedrijfsapp-laten-maken": ("app", "nl"), "app-of-website": ("app", "nl"), "merkgame-laten-maken-kerst": ("game", "nl"),
 }
 
 PATROON = re.compile(r'(<h1>.*?</h1>)\s*(<p class="lead2">.*?</p>)', re.S)

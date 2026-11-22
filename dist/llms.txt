@@ -35,6 +35,7 @@
 - [website-laten-maken-coach-zzp.html](https://collensgroup.com/website-laten-maken-coach-zzp)
 - [website-laten-maken-vakantiehuis.html](https://collensgroup.com/website-laten-maken-vakantiehuis)
 - [website-laten-maken-belgie.html](https://collensgroup.com/website-laten-maken-belgie)
+- [bedrijfsapp-laten-maken.html](https://collensgroup.com/bedrijfsapp-laten-maken)
 - [en-pricing.html](https://collensgroup.com/en-pricing)
 - [en-web-shop.html](https://collensgroup.com/en-web-shop)
 - [en-game-development.html](https://collensgroup.com/en-game-development)

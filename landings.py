@@ -54,9 +54,9 @@ LANDINGS = [
          ("Hoe snel staat de chatbot op mijn site?","Meestal binnen 1 week na de intake. In die week verzamelen we je informatie, richten we de chatbot in en testen we hem met echte vragen van jouw klanten. Daarna plaatsen we hem op je site met een klein stukje code, dat werkt op de meeste websitebouwers en maatwerksites. Jij ziet en test de chatbot voordat bezoekers hem te zien krijgen.")],
   "offers":[("AI-chatbot",995)], "rel":[("ai-automatisering.html","AI en automatisering"),("website-laten-maken.html","Website laten maken")]},
  {"slug":"website-laten-maken-horeca","lang":"nl","kort":"Website horeca",
-  "titel":"Website laten maken voor horeca vanaf €495 | Collens Group",
+  "titel":"Horeca website laten maken vanaf €495 | Collens Group",
   "desc":"Website voor je restaurant, café of lunchroom: menukaart, openingstijden, reserveren en route op je telefoon. Vaste prijs vanaf €495, klaar in 1–3 weken.",
-  "h1":"Website laten maken voor horeca",
+  "h1":"Horeca website laten maken voor je restaurant, café of lunchroom",
   "lead":"Een snelle website voor je restaurant, café, bar of lunchroom, waarop gasten in een paar seconden je menukaart, openingstijden en reserveerknop vinden. Vanaf €495 (geen btw erbij), met een vaste prijs vooraf.",
   "secties":[
    ("Wat zoeken gasten op de website van een horecazaak?","<p>De meeste gasten bekijken je website op hun telefoon, vaak vlak voordat ze kiezen waar ze gaan eten of drinken. Ze willen dan maar een paar dingen weten: wat staat er op de kaart, wat kost het, ben je nu open, kan ik reserveren en hoe kom ik er. Een horecawebsite werkt het best als die vragen direct beantwoord worden, zonder lange teksten, zonder pdf-menukaart die je moet inzoomen en zonder trage laadtijden.</p><ul><li><strong>Menukaart als echte tekst</strong> in plaats van een foto of pdf, zodat hij leesbaar is op elke telefoon en Google hem kan lezen</li><li><strong>Openingstijden en adres</strong> bovenaan, met een knop voor de route</li><li><strong>Reserveren of bellen</strong> met één tik</li><li><strong>Sfeerfoto's</strong> van je zaak en gerechten, licht gemaakt zodat ze snel laden</li></ul>"),

@@ -922,6 +922,14 @@ def build():
 <tr><td><a href="ai-automatisering.html">AI en automatisering</a><small>Automatisering, chatbot, assistent</small></td><td>vanaf €395</td></tr></table>
 <p class="knoppen"><a class="knop geel" href="pakketkiezer.html">Welk pakket past bij mij?</a><a class="knop knop-rand" href="prijzen.html">Bekijk alle prijzen en pakketten</a></p></div></section>
 
+<section id="gidsen" aria-labelledby="gidsen-kop"><div class="wrap">
+<div class="intro"><h2 id="gidsen-kop">Veelgezochte vragen, eerlijk beantwoord</h2><p>Praktische gidsen met echte prijzen, zodat je weet waar je aan toe bent voordat je contact opneemt.</p></div>
+<div class="gids-rij"><a href="app-laten-maken-kosten.html"><strong>Wat kost een app laten maken?</strong><span>Marktprijzen, bijkomende kosten en onze vaste prijzen</span></a>
+<a href="website-laten-maken-horeca.html"><strong>Horeca website laten maken</strong><span>Voor je restaurant, café of lunchroom</span></a>
+<a href="goedkope-website-laten-maken.html"><strong>Goedkope website laten maken</strong><span>Vanaf €495, zonder dat het goedkoop oogt</span></a>
+<a href="bedrijfsapp-laten-maken.html"><strong>Bedrijfsapp laten maken</strong><span>Een zakelijke app voor je klanten of team</span></a></div>
+<p style="margin-top:18px"><a href="artikelen.html">Bekijk alle gidsen</a></p></div></section>
+
 <section id="werkwijze" class="donker" aria-labelledby="stappen-kop"><div class="wrap">
 <div class="intro"><h2 id="stappen-kop">Zo werkt het</h2><p>Elke stap rond je af met een akkoord. Je ziet je website, app of game groeien voordat het live gaat.</p></div>
 <ol class="stappen"><li><h3>Aanvraag</h3><p>Je vertelt in een paar zinnen wat je wilt. Geen afspraak nodig.</p></li>
@@ -950,7 +958,7 @@ def build():
         ("Wat kost een MVP-app laten maken?", "Bij Collens Group begint een MVP (Basis-pakket, tot 5 schermen) bij €3.150 (geen btw erbij) en is hij klaar in 3–5 weken. Accounts, een database of betalingen vallen onder het Standaard-pakket vanaf €6.750."),
         ("Is een app voor iPhone én Android duurder?", "Bij aparte native apps vaak bijna het dubbele, omdat er dan twee apps los van elkaar worden gebouwd en onderhouden. Wij bouwen met React Native: één codebase die op iPhone én Android draait. Daardoor betaal je niet twee keer voor hetzelfde werk en zijn latere aanpassingen ook in één keer voor beide platforms klaar. Wel betaal je voor beide stores een eigen account."),
     ]
-    pages.append(page("app-laten-maken-kosten.html", "Wat kost een app laten maken in 2026? | Collens Group",
+    pages.append(page("app-laten-maken-kosten.html", "App laten maken kosten 2026: prijzen vanaf €3.150 | Collens Group",
         "Wat kost een app laten maken in 2026? Marktprijzen in Nederland, alle bijkomende kosten (Apple, Google, hosting, onderhoud) en onze vaste prijzen vanaf €3.150.",
         f'''<article class="tekst breed">
 <h1>Wat kost een app laten maken in 2026?</h1>
