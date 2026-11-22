@@ -1,13 +1,14 @@
-"""Beginnersgids Claude AI van Jeffrey (akkoord 22-11-2026: subtiele vermelding op Over ons en de AI-pagina's).
-Zet hier de verkooplink (Gumroad). Leeg = niets tonen op de site."""
-BOEK_URL = ""
-BOEK_TITEL = "Claude AI Beginnersgids"
+"""Boek van Jeffrey (akkoord 22-11-2026: boekpagina + subtiele vermelding op Over ons en de AI-pagina's).
+Deel 1 staat op Gumroad (winkel collens3). Leeg BOEK_URL = niets tonen op de site."""
+BOEK_URL = "https://collens3.gumroad.com/l/claude-voor-beginners"
+BOEK_TITEL = "Claude voor beginners"
+BOEK_PAGINA = "boek-claude-voor-beginners.html"
 
 def boek_alinea():
     if not BOEK_URL:
         return ""
-    return (f'<p>Jeffrey schreef ook de <a href="{BOEK_URL}" rel="noopener" target="_blank">{BOEK_TITEL}</a>: '
-            'een praktische werkgids voor ondernemers die AI voor zich willen laten werken, zonder technische kennis.</p>')
+    return (f'<p>Jeffrey schreef ook het boek <a href="{BOEK_PAGINA}">{BOEK_TITEL}</a>: '
+            'een praktische gids in gewoon Nederlands, van je eerste vraag aan Claude tot je eigen AI-assistent, zonder technische kennis.</p>')
 
 def boek_rel():
-    return [(BOEK_URL, f"{BOEK_TITEL} (boek van Jeffrey)")] if BOEK_URL else []
+    return [(BOEK_PAGINA, f"Boek: {BOEK_TITEL}")] if BOEK_URL else []

@@ -196,10 +196,10 @@ LANDINGS = [
 def landing_pages(page, e, faq_html, faq_ld, pages):
     for L in LANDINGS:
         en = L["lang"] == "en"
-        mid = ("Get a free quote", "en.html#contact") if en else ("Vraag je gratis concept aan", "index.html#contact")
+        mid = L.get("knop") or (("Get a free quote", "en.html#contact") if en else ("Vraag je gratis concept aan", "index.html#contact"))
         body = "".join(f"<h2>{e(h)}</h2>{html}" + (f'<p style="margin-top:18px"><a class="knop geel" href="{mid[1]}">{mid[0]}</a></p>' if i == 1 and len(L["secties"]) > 3 else "") for i, (h, html) in enumerate(L["secties"]))
         rel = " · ".join(f'<a href="{h}">{e(t)}</a>' for h, t in L["rel"] + (boek_rel() if L["slug"] == "chatbot-laten-maken" else []))
-        cta = ("Get a free quote", "en.html#contact") if en else ("Vraag een vaste prijs aan", "index.html#contact")
+        cta = L.get("knop") or (("Get a free quote", "en.html#contact") if en else ("Vraag een vaste prijs aan", "index.html#contact"))
         offers = [{"@type": "Offer", "name": n, "price": p, "priceCurrency": "EUR"} for n, p in L["offers"]]
         home = ("Home", "en.html") if en else ("Home", "index.html")
         pages.append(page(f'{L["slug"]}.html', L["titel"], L["desc"],
@@ -210,10 +210,12 @@ def landing_pages(page, e, faq_html, faq_ld, pages):
 <p style="margin-top:28px"><a class="knop geel" href="{cta[1]}">{cta[0]}</a></p>
 <p class="bron" style="margin-top:22px">{"Related" if en else "Zie ook"}: {rel}</p></article>''',
             crumbs=[home, (L["kort"], f'{L["slug"]}.html')], lang=L["lang"],
-            extra_ld=[{"@type": "Service", "name": L["h1"], "provider": {"@id": "#org"}, "areaServed": "Worldwide", "offers": offers}, faq_ld(L["faq"])]))
+            extra_ld=[L.get("ld") or {"@type": "Service", "name": L["h1"], "provider": {"@id": "#org"}, "areaServed": "Worldwide", "offers": offers}, faq_ld(L["faq"])]))
 
 
 from landings_nieuw import NIEUW as _NIEUW
 LANDINGS += _NIEUW
 from landings_en import EN_EXTRA as _EN
 LANDINGS += _EN
+from boek_pagina import BOEK_PAGINAS as _BOEK
+LANDINGS += _BOEK
