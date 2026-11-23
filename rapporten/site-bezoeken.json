@@ -1,47 +1,47 @@
 {
- "gemaakt": "2026-11-22T13:18:19Z",
- "van": "2026-10-25T13:18:19Z",
- "tot": "2026-11-22T13:18:19Z",
+ "gemaakt": "2026-11-23T01:13:23Z",
+ "van": "2026-10-26T01:13:23Z",
+ "tot": "2026-11-23T01:13:23Z",
  "dagen_periode": 28,
  "fout": null,
  "rijen": 57,
  "per_soort": {
   "site": {
-   "weergaven": 440,
-   "bezoeken": 270
+   "weergaven": 400,
+   "bezoeken": 170
   },
   "concept": {
-   "weergaven": 570,
-   "bezoeken": 100
+   "weergaven": 420,
+   "bezoeken": 60
   },
   "tester": {
-   "weergaven": 30,
-   "bezoeken": 30
+   "weergaven": 10,
+   "bezoeken": 10
   }
  },
  "per_dag": {
   "2026-11-14": {
-   "weergaven": 130,
-   "bezoeken": 90,
+   "weergaven": 110,
+   "bezoeken": 60,
    "zoekmachine": 0
   },
   "2026-11-15": {
    "weergaven": 30,
    "bezoeken": 30,
-   "zoekmachine": 10
+   "zoekmachine": 0
   },
   "2026-11-16": {
-   "weergaven": 90,
-   "bezoeken": 50,
-   "zoekmachine": 10
+   "weergaven": 50,
+   "bezoeken": 20,
+   "zoekmachine": 0
   },
   "2026-11-17": {
-   "weergaven": 10,
+   "weergaven": 30,
    "bezoeken": 10,
    "zoekmachine": 0
   },
   "2026-11-18": {
-   "weergaven": 30,
+   "weergaven": 50,
    "bezoeken": 10,
    "zoekmachine": 0
   },
@@ -51,59 +51,48 @@
    "zoekmachine": 0
   },
   "2026-11-20": {
-   "weergaven": 20,
-   "bezoeken": 0,
-   "zoekmachine": 0
-  },
-  "2026-11-21": {
-   "weergaven": 10,
+   "weergaven": 40,
    "bezoeken": 0,
    "zoekmachine": 0
   },
   "2026-11-22": {
-   "weergaven": 110,
-   "bezoeken": 80,
+   "weergaven": 80,
+   "bezoeken": 40,
    "zoekmachine": 0
   }
  },
  "paginas": {
-  "/": 250,
+  "/": 220,
   "/artikelen": 30,
-  "/website-laten-maken": 20,
-  "/live-suismuis/klantenservice.html": 20,
-  "/app-koffer-vol": 10,
-  "/app-laten-maken-kosten": 10,
-  "/mvp-app-laten-maken": 10,
-  "/chatbot-laten-maken": 10,
-  "/apps": 10,
-  "/zelf-website-bouwen-of-laten-maken": 10,
-  "/app-lubbyc": 10,
-  "/live-suismuis/beheer.html": 10,
-  "/live-suismuis/afrekenen.html": 10,
-  "/prijzen": 10,
+  "/website-laten-maken": 30,
+  "/en": 20,
+  "/over-ons": 20,
+  "/boeken": 20,
+  "/en-app-development": 10,
   "/ai-automatisering": 10,
-  "/boek-claude-voor-beginners": 10
+  "/apps": 10,
+  "/privacy": 10,
+  "/game-laten-maken": 10,
+  "/en-website-roofing-company": 10
  },
  "landen": {
-  "US": 130,
-  "TH": 120,
-  "CA": 10,
+  "US": 90,
+  "TH": 40,
+  "CA": 20,
+  "CN": 10,
   "NL": 10
  },
  "apparaten": {
-  "mobile": 160,
-  "desktop": 110
+  "mobile": 90,
+  "desktop": 80
  },
  "bronnen": {
-  "direct/intern": 210,
-  "andere site": 40,
-  "zoekmachine": 20
+  "direct/intern": 130,
+  "andere site": 40
  },
- "zoekmachines": {
-  "www.google.com": 20
- },
+ "zoekmachines": {},
  "verwijzers": {
-  "l.instagram.com": 20,
-  "m.facebook.com": 20
+  "m.facebook.com": 30,
+  "www.facebook.com": 10
  }
 }
