@@ -45,3 +45,7 @@ alter table public.suismuis_producten enable row level security;
 alter table public.suismuis_leveranciers enable row level security;
 -- Openbare map voor productfoto's (alleen de server-functie mag uploaden):
 insert into storage.buckets (id, name, public) values ('producten', 'producten', true) on conflict (id) do nothing;
+
+-- voorraad (23-11): handmatig door Kim of automatisch (vidaXL)
+create table if not exists public.suismuis_voorraad (nr int primary key, status text not null check (status in ('op_voorraad','uitverkocht')), bron text not null default 'handmatig' check (bron in ('handmatig','auto')), gecontroleerd timestamptz not null default now());
+alter table public.suismuis_voorraad enable row level security;

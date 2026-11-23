@@ -71,7 +71,19 @@ function suisStart() {
   /* winkelmand */
   function mand() { return lees("mand", []); }
   function zetMand(m) { bewaar("mand", m); tellers(); }
+  /* voorraad: producten die bij de leverancier op zijn (Kim zet ze in haar bestelbalie of de dagelijkse controle doet het) */
+  var UIT = lees("uit", []);
+  var isUit = function (id) { var p = vind(id); return !!p && UIT.indexOf(Number(p.nr)) > -1; };
+  function markeerUit() {
+    $$("[data-koop]").forEach(function (b) { if (isUit(b.getAttribute("data-koop")) && !b.disabled) { b.disabled = true; b.textContent = "Tijdelijk uitverkocht"; } });
+    var k = $("#koop-p"), id = new URLSearchParams(location.search).get("p");
+    if (k && id && isUit(id) && !k.disabled) { k.disabled = true; k.textContent = "Tijdelijk uitverkocht"; var v = $(".pdp-info .voorraad"); if (v) v.textContent = "Dit product is tijdelijk uitverkocht."; }
+  }
+  if (typeof MutationObserver !== "undefined") { var mt = 0; new MutationObserver(function () { clearTimeout(mt); mt = setTimeout(markeerUit, 50); }).observe(document.documentElement, { childList: true, subtree: true }); }
+  api({ actie: "voorraad" }).then(function (j) { if (j && Array.isArray(j.uitverkocht)) { UIT = j.uitverkocht.map(Number); bewaar("uit", UIT); } markeerUit(); });
+
   function voegToe(id, aantal, uitvoering) {
+    if (isUit(id)) { toast("Dit product is tijdelijk uitverkocht.", ""); return; }
     var m = mand(), r = null;
     for (var i = 0; i < m.length; i++) if (m[i].id === id && (m[i].u || "") === (uitvoering || "")) r = m[i];
     if (r) r.a = Math.min(r.a + aantal, 20); else m.push({ id: id, a: aantal, u: uitvoering || "" });
@@ -250,7 +262,7 @@ function suisStart() {
       '<div class="koop"><div class="stapper"><button type="button" data-stap="-1" aria-label="Minder">−</button><input id="aantal-p" type="number" min="1" max="20" value="1" aria-label="Aantal"><button type="button" data-stap="1" aria-label="Meer">+</button></div>' +
       '<button class="knop" type="button" id="koop-p">In winkelmand</button></div>' +
       '<button class="knop licht breed" type="button" data-fav="' + p.id + '" aria-pressed="' + (favs().indexOf(p.id) > -1) + '">Bewaar als favoriet</button>' +
-      '<ul class="usp"><li>Gratis verzending vanaf € 75</li><li>14 dagen bedenktijd, eenvoudig retourneren</li><li>Veilig betalen met creditcard (3D Secure)</li><li>Cadeauverpakking mogelijk bij het afrekenen</li></ul>' +
+      '<ul class="usp"><li>Gratis verzending vanaf € 75</li><li>14 dagen bedenktijd, eenvoudig retourneren</li><li>Veilig betalen met PayPal, creditcard of overschrijving</li><li>Cadeauverpakking mogelijk bij het afrekenen</li></ul>' +
       '<details open><summary>Materiaal en afmetingen</summary>' + (p.spec ? '<dl class="spec">' + p.spec.map(function (r) { return "<dt>" + esc(r[0]) + "</dt><dd>" + esc(r[1]) + "</dd>"; }).join("") + '</dl><p class="spec-maten">' + esc(p.d) + '</p>' : '<p>' + esc(p.m) + "<br>" + esc(p.d) + '</p>') + '</details>' +
       '<details><summary>Onderhoud</summary><p>Afnemen met een droge of licht vochtige doek. Natuurlijke materialen kunnen kleine kleurverschillen hebben; dat maakt elk stuk uniek.</p></details>' +
       '<details><summary>Verzenden en retourneren</summary><p>' + (p.lt ? "Levertijd " + p.lt + ", in Nederland en België." : "Je bestelling is in 8–15 werkdagen in huis, in Nederland en België.") + ' Niet tevreden? Je hebt 14 dagen bedenktijd. Lees meer bij <a class="link" href="klantenservice.html#retour">retourneren</a>.</p></details></div>';
@@ -547,7 +559,8 @@ function suisStart() {
     var CATN = { wonen: "Wonen & decoratie", vazen: "Vazen", verlichting: "Verlichting & kaarsen", textiel: "Textiel", tafel: "Servies & tafel", meubels: "Meubels" };
     function laadProducten() {
       $("#bh-producten").innerHTML = '<p class="leeg-bh">Bezig met laden…</p>';
-      api({ actie: "producten_beheer", sessie: sessie }).then(function (j) { if (j.fout) { $("#bh-producten").innerHTML = '<p class="fout">' + esc(j.fout) + '</p>'; return; } pdata = j; tekenProducten(); });
+      api({ actie: "producten_beheer", sessie: sessie }).then(function (j) { if (j.fout) { $("#bh-producten").innerHTML = '<p class="fout">' + esc(j.fout) + '</p>'; return; } pdata = j;
+        api({ actie: "voorraad_lijst", sessie: sessie }).then(function (v) { pdata.voorraad = {}; (v.voorraad || []).forEach(function (r) { pdata.voorraad[r.nr] = r; }); tekenProducten(); }); });
     }
     function prodForm(p, lev) {
       p = p || {}; fotos = (p.u || []).slice();
@@ -574,8 +587,8 @@ function suisStart() {
       var vast = P.filter(function (p) { return p.nr && p.nr < 1000; }).sort(function (a, b) { return a.nr - b.nr; });
       $("#bh-producten").innerHTML = '<p><button class="knop" type="button" data-pnieuw>Nieuw product toevoegen</button></p><div id="bh-pedit"></div>' +
         '<h3>Jouw toegevoegde producten</h3>' + (eigen.length ? eigen.map(function (r) { var p = r.data; return '<div class="bh-prod"><img src="' + esc((p.u || [])[0] || "") + '" alt=""><div><b>' + esc(p.n) + '</b><br><small>nr. ' + r.nr + ' · ' + euro(+p.p) + ' · ' + (r.actief ? "zichtbaar" : "verborgen") + (r.leverancier ? ' · <a class="link" href="' + esc(r.leverancier) + '" target="_blank" rel="noopener">leverancier ↗</a>' : ' · geen leverancierslink') + '</small></div><button type="button" class="link" data-pbewerk="' + r.nr + '">Bewerken</button></div>'; }).join("") : '<p class="leeg-bh">Nog geen eigen producten. Voeg er hierboven een toe.</p>') +
-        '<h3>Leverancierslinks van de bestaande producten</h3><p><small>Klopt een link niet meer of wil je een andere leverancier? Pas hem hier aan; hij verschijnt dan bij nieuwe bestellingen.</small></p>' +
-        vast.map(function (p) { return '<form class="bh-levrij" data-nr="' + p.nr + '"><span><b>' + p.nr + '</b> ' + esc(p.n) + '</span><input name="url" value="' + esc(lv[p.nr] || "") + '" placeholder="https://…" aria-label="Leverancierslink voor ' + esc(p.n) + '"><button type="submit">Opslaan</button><small role="status"></small></form>'; }).join("");
+        '<h3>Leverancierslinks en voorraad van de bestaande producten</h3><p><small>Klopt een link niet meer of wil je een andere leverancier? Pas hem hier aan; hij verschijnt dan bij nieuwe bestellingen. Is een product bij de leverancier op, zet de voorraad dan op <b>Uitverkocht</b>: in de winkel staat dan "Tijdelijk uitverkocht" en niemand kan het nog bestellen. vidaXL-producten worden elke dag automatisch gecontroleerd; AliExpress-producten zet je zelf.</small></p>' +
+        vast.map(function (p) { var vr = (pdata.voorraad || {})[+p.nr], w = !vr || vr.bron === "auto" ? "auto" : vr.status; var tag = vr ? (vr.status === "uitverkocht" ? "uitverkocht" : "op voorraad") + (vr.bron === "auto" ? " (automatisch gecontroleerd)" : "") : ""; return '<form class="bh-levrij" data-nr="' + p.nr + '"><span><b>' + p.nr + '</b> ' + esc(p.n) + (tag ? ' <small>· ' + tag + '</small>' : '') + '</span><input name="url" value="' + esc(lv[p.nr] || "") + '" placeholder="https://…" aria-label="Leverancierslink voor ' + esc(p.n) + '"><select data-vr aria-label="Voorraad van ' + esc(p.n) + '"><option value="auto"' + (w === "auto" ? " selected" : "") + '>Voorraad: automatisch</option><option value="op_voorraad"' + (w === "op_voorraad" ? " selected" : "") + '>Op voorraad</option><option value="uitverkocht"' + (w === "uitverkocht" ? " selected" : "") + '>Uitverkocht</option></select><button type="submit">Opslaan</button><small role="status"></small></form>'; }).join("");
     }
     $("#bh-producten").addEventListener("click", function (e) {
       var t = e.target;
@@ -591,6 +604,7 @@ function suisStart() {
       var h = t.closest("[data-feerst]"); if (h) { var i = +h.getAttribute("data-feerst"); fotos.unshift(fotos.splice(i, 1)[0]); tekenFotos($(".bh-pform")); }
     });
     $("#bh-producten").addEventListener("change", function (e) {
+      if (e.target.matches("[data-vr]")) { var rij = e.target.closest(".bh-levrij"), st2 = $("small[role=status]", rij); st2.textContent = "…"; api({ actie: "voorraad_zet", sessie: sessie, nr: +rij.getAttribute("data-nr"), status: e.target.value }).then(function (j) { st2.textContent = j.fout || (e.target.value === "uitverkocht" ? "Staat nu als uitverkocht in de winkel" : "Opgeslagen"); }); return; }
       var f = e.target.closest(".bh-pform"); if (!f) return;
       if (e.target.name === "c") f.elements.s.innerHTML = SUBS[e.target.value].map(function (x) { return '<option value="' + x[0] + '">' + x[1] + '</option>'; }).join("");
       if (e.target.name === "foto") {

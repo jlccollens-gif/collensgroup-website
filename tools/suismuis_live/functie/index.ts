@@ -188,6 +188,37 @@ async function sessieOk(token: unknown) {
   return !!data && new Date(data.verloopt) > new Date();
 }
 
+// ---------- voorraad ----------
+// status per productnummer: handmatig door Kim (gaat altijd voor) of automatisch via de leverancierspagina (alleen vidaXL; AliExpress blokkeert automatische controles)
+async function uitverkocht(): Promise<number[]> {
+  const { data } = await sb.from("suismuis_voorraad").select("nr").eq("status", "uitverkocht");
+  return (data || []).map((r: any) => Number(r.nr));
+}
+async function controleerVoorraad() {
+  const { data: lv } = await sb.from("suismuis_leveranciers").select("nr,url");
+  const { data: hand } = await sb.from("suismuis_voorraad").select("nr").eq("bron", "handmatig");
+  const zelf = new Set((hand || []).map((r: any) => Number(r.nr)));
+  const uit: Record<string, number> = { gecontroleerd: 0, uitverkocht: 0, overgeslagen: 0 };
+  for (const r of lv || []) {
+    if (zelf.has(Number(r.nr))) continue;
+    if (!/^https:\/\/(www\.)?vidaxl\.(nl|be|com)\//.test(r.url)) { uit.overgeslagen++; continue; }
+    let status = "onbekend";
+    try {
+      const res = await fetch(r.url, { headers: { "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130.0 Safari/537.36", "accept-language": "nl-NL" }, redirect: "follow" });
+      if (res.status === 404 || res.status === 410) status = "uitverkocht";
+      else if (res.ok) {
+        const t = await res.text();
+        const m = t.match(/"availability"\s*:\s*"https?:\/\/schema\.org\/(\w+)"/);
+        if (m) status = /InStock|LimitedAvailability|PreOrder|BackOrder/.test(m[1]) ? "op_voorraad" : "uitverkocht";
+      }
+    } catch { /* blijft onbekend */ }
+    if (status === "onbekend") continue;
+    uit.gecontroleerd++; if (status === "uitverkocht") uit.uitverkocht++;
+    await sb.from("suismuis_voorraad").upsert({ nr: r.nr, status, bron: "auto", gecontroleerd: new Date().toISOString() });
+  }
+  return uit;
+}
+
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return antwoord({});
   const url = new URL(req.url);
@@ -205,6 +236,13 @@ Deno.serve(async (req) => {
     return antwoord({ ok: true });
   }
 
+  // dagelijkse voorraadcontrole (pg_cron), beveiligd met de eigen code SUISMUIS_CRONCODE
+  if (url.searchParams.get("bron") === "voorraad") {
+    const code = env("SUISMUIS_CRONCODE");
+    if (code.length < 16 || !gelijk(code, req.headers.get("x-code") || "")) return antwoord({ fout: "Geen toegang" }, 403);
+    return antwoord(await controleerVoorraad());
+  }
+
   let b: any; try { b = await req.json(); } catch { return antwoord({ fout: "Ongeldige aanvraag" }, 400); }
   const actie = b?.actie;
 
@@ -212,6 +250,7 @@ Deno.serve(async (req) => {
     const { data } = await sb.from("suismuis_producten").select("data").eq("actief", true).order("nr");
     return antwoord({ producten: (data || []).map((r) => r.data) });
   }
+  if (actie === "voorraad") return antwoord({ uitverkocht: await uitverkocht() });
   if (actie === "config") return antwoord({ paypal: ppAan() ? { clientId: PP_ID, live: PP_LIVE } : null, iban: IBAN });
 
   if (actie === "start") {
@@ -222,8 +261,11 @@ Deno.serve(async (req) => {
     if (!b.akkoord) return antwoord({ fout: "Ga akkoord met de algemene voorwaarden om te bestellen." }, 400);
     if (!Array.isArray(b.regels) || !b.regels.length || b.regels.length > 30) return antwoord({ fout: "Je winkelmand is leeg." }, 400);
     let cat; try { cat = await catalogus(); } catch { return antwoord({ fout: "De webshop is even niet bereikbaar. Probeer het over een paar minuten opnieuw." }, 503); }
+    const weg = new Set(await uitverkocht());
     const regels = [];
     for (const r of b.regels) {
+      const y = cat.producten[r?.id];
+      if (y && weg.has(Number(y.nr))) return antwoord({ fout: `${y.n} is helaas uitverkocht. Haal het uit je winkelmand om verder te gaan.` }, 409);
       const x = cat.producten[r?.id]; if (!x) return antwoord({ fout: "Een product in je winkelmand is niet meer beschikbaar. Verwijder het en probeer opnieuw." }, 400);
       const maat = x.maten.length ? x.maten[0] : "";
       if (r.maat && r.maat !== maat) return antwoord({ fout: `Voor ${x.n} in maat ${tekst(r.maat, 30)} vragen we de prijs voor je op. Kies de kleinste maat of vraag de prijs aan op de productpagina.` }, 400);
@@ -331,7 +373,7 @@ Deno.serve(async (req) => {
     await sb.from("suismuis_sessies").insert({ token_hash: await sha(sessie), verloopt: new Date(Date.now() + 30 * 864e5).toISOString() });
     return antwoord({ sessie });
   }
-  if (["lijst", "update", "bericht_af", "uitloggen", "producten_beheer", "product_opslaan", "product_foto", "product_actief", "leverancier"].includes(actie)) {
+  if (["lijst", "update", "bericht_af", "uitloggen", "producten_beheer", "product_opslaan", "product_foto", "product_actief", "leverancier", "voorraad_zet", "voorraad_lijst"].includes(actie)) {
     if (!(await sessieOk(b.sessie))) return antwoord({ fout: "Log opnieuw in." }, 401);
     if (actie === "uitloggen") { await sb.from("suismuis_sessies").delete().eq("token_hash", await sha(b.sessie)); return antwoord({ ok: true }); }
     if (actie === "lijst") {
@@ -349,6 +391,17 @@ Deno.serve(async (req) => {
       const n = Math.floor(Number(b.nr)), u = tekst(b.url, 500);
       if (!(n > 0) || (u && !/^https:\/\//.test(u))) return antwoord({ fout: "Vul een productnummer en een link die met https:// begint in." }, 400);
       if (u) await sb.from("suismuis_leveranciers").upsert({ nr: n, url: u }); else await sb.from("suismuis_leveranciers").delete().eq("nr", n);
+      return antwoord({ ok: true });
+    }
+    if (actie === "voorraad_lijst") {
+      const { data } = await sb.from("suismuis_voorraad").select("nr,status,bron,gecontroleerd").order("nr");
+      return antwoord({ voorraad: data ?? [] });
+    }
+    if (actie === "voorraad_zet") {
+      const n = Math.floor(Number(b.nr));
+      if (!(n > 0)) return antwoord({ fout: "Vul een productnummer in." }, 400);
+      if (b.status === "auto") await sb.from("suismuis_voorraad").delete().eq("nr", n);
+      else await sb.from("suismuis_voorraad").upsert({ nr: n, status: b.status === "uitverkocht" ? "uitverkocht" : "op_voorraad", bron: "handmatig", gecontroleerd: new Date().toISOString() });
       return antwoord({ ok: true });
     }
     if (actie === "product_actief") {
