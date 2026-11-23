@@ -1,28 +1,26 @@
 {
  "fout": null,
- "gemaakt": "2026-11-23T01:13:21Z",
+ "gemaakt": "2026-11-23T15:55:33Z",
  "per_concept": {
   "atelier-ombre": {
    "apparaten": {
     "desktop": 12,
-    "mobile": 9
+    "mobile": 2
    },
-   "bezoeken": 17,
+   "bezoeken": 13,
    "dagen": {
-    "2026-11-16": 7,
     "2026-11-17": 12,
     "2026-11-18": 2
    },
    "landen": {
     "IE": 5,
     "NL": 7,
-    "TH": 9
+    "TH": 2
    },
    "verwijzers": {
-    "collensgroup.com": 4,
-    "www.google.com": 1
+    "collensgroup.com": 1
    },
-   "weergaven": 21
+   "weergaven": 14
   },
   "collensgroup-v2": {
    "apparaten": {
@@ -108,26 +106,28 @@
   },
   "suismuis": {
    "apparaten": {
-    "desktop": 7,
-    "mobile": 380
+    "desktop": 97,
+    "mobile": 370
    },
-   "bezoeken": 42,
+   "bezoeken": 128,
    "dagen": {
-    "2026-11-16": 18,
+    "2026-11-16": 1,
     "2026-11-18": 113,
     "2026-11-19": 27,
     "2026-11-20": 98,
-    "2026-11-22": 131
+    "2026-11-22": 131,
+    "2026-11-23": 97
    },
    "landen": {
     "NL": 8,
-    "TH": 379
+    "TH": 368,
+    "US": 91
    },
    "verwijzers": {
-    "collensgroup.com": 345,
-    "www.google.com": 24
+    "collensgroup.com": 339,
+    "www.google.com": 22
    },
-   "weergaven": 387
+   "weergaven": 467
   },
   "v2-johns-moving": {
    "apparaten": {
@@ -145,19 +145,22 @@
   },
   "v2-roof-smart": {
    "apparaten": {
-    "desktop": 1
+    "desktop": 1,
+    "mobile": 1
    },
-   "bezoeken": 1,
+   "bezoeken": 2,
    "dagen": {
-    "2026-11-18": 1
+    "2026-11-18": 1,
+    "2026-11-23": 1
    },
    "landen": {
-    "TH": 1
+    "TH": 1,
+    "US": 1
    },
    "verwijzers": {},
-   "weergaven": 1
+   "weergaven": 2
   }
  },
- "tot": "2026-11-23T01:13:21Z",
- "van": "2026-11-16T01:13:21Z"
+ "tot": "2026-11-23T15:55:33Z",
+ "van": "2026-11-16T15:55:33Z"
 }
