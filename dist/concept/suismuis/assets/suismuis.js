@@ -340,10 +340,11 @@ function suisStart() {
       var laadSdk = function (cb) {
         if (window.paypal) return cb();
         var sc = document.createElement("script");
-        sc.src = "https://www.paypal.com/sdk/js?client-id=" + encodeURIComponent(cfg.paypal.clientId) + "&components=card-fields,buttons&currency=EUR&intent=capture&locale=nl_NL&disable-funding=paylater,venmo,sepa,ideal,bancontact,blik,eps,mybank,p24,giropay,sofort";
+        sc.src = "https://www.paypal.com/sdk/js?client-id=" + encodeURIComponent(cfg.paypal.clientId) + "&components=card-fields,buttons&currency=EUR&intent=capture&locale=nl_NL&disable-funding=paylater,venmo,sepa,blik,eps,mybank,p24,giropay,sofort";
         sc.onload = cb; sc.onerror = function () { bf.textContent = "De betaalpagina kon niet worden geladen. Ververs de pagina en probeer het opnieuw."; };
         document.head.appendChild(sc);
       };
+      var maakVoor = function (m) { return function () { return api({ actie: "pp_maak", nr: order.nr, token: order.token, methode: m }).then(function (j) { if (j.fout) throw new Error(j.fout); return j.id; }); }; };
       var maak = function () { return api({ actie: "pp_maak", nr: order.nr, token: order.token, methode: "Creditcard" }).then(function (j) { if (j.fout) throw new Error(j.fout); return j.id; }); };
       var klaar = function (data) {
         bezig(true, "Betaling controleren…");
@@ -355,8 +356,14 @@ function suisStart() {
       var fout = function (e) { bezig(false); bf.textContent = (e && e.message && !/^[A-Z_]+$/.test(e.message) && e.message.length < 200 ? e.message : "De betaling is niet gelukt. Controleer je kaartgegevens of probeer een andere kaart."); };
       var toonKaart = function () {
         if (!cfg) { setTimeout(toonKaart, 200); return; }
-        if (!cfg.paypal) { $("#kaartvelden").hidden = true; bk.hidden = true; bf.textContent = "Betalen met creditcard wordt op dit moment geactiveerd. Probeer het later nog eens of neem contact met ons op."; return; }
+        if (!cfg.paypal) { $("#kaartvelden").hidden = true; bk.hidden = true; $("#kaart-voor").textContent += " · betalen met PayPal, iDEAL en creditcard wordt binnenkort geactiveerd"; return; }
         laadSdk(function () {
+          [["PAYPAL", "PayPal", "gold"], ["IDEAL", "iDEAL", "white"], ["BANCONTACT", "Bancontact", "white"]].forEach(function (x) {
+            var fs = window.paypal.FUNDING[x[0]]; if (!fs) return;
+            var vak = document.createElement("div"); vak.className = "pp-knop"; $("#pp-knoppen").appendChild(vak);
+            var b = window.paypal.Buttons({ fundingSource: fs, style: { shape: "rect", height: 45, color: x[2] === "gold" ? "gold" : undefined, label: "pay" }, createOrder: maakVoor(x[1]), onApprove: klaar, onError: fout });
+            if (b.isEligible()) { b.render(vak); $("#kaart-kop").hidden = false; } else vak.remove();
+          });
           var stijl = { input: { "font-size": "16px", "font-family": "Jost, system-ui, sans-serif", color: "#3A2D25", padding: "12px" }, ".invalid": { color: "#8A3B2E" } };
           kaart = window.paypal.CardFields({ createOrder: maak, onApprove: klaar, onError: fout, style: stijl });
           if (kaart.isEligible()) {
@@ -371,6 +378,18 @@ function suisStart() {
           }
         });
       };
+      $("#bank").addEventListener("click", function () {
+        if (!order) return; var kb = $("#bank"); kb.disabled = true; kb.textContent = "Bezig…"; bf.textContent = "";
+        api({ actie: "bank", nr: order.nr, token: order.token }).then(function (j) {
+          kb.disabled = false; kb.textContent = "Betaal per bankoverschrijving";
+          if (j.fout || !j.order) { bf.textContent = j.fout || "Dat lukte niet. Probeer het opnieuw."; return; }
+          var o = j.order; zetMand([]); bewaar("cadeau", false); stap(3);
+          $("#afreken").innerHTML = '<div class="leegmand bedankt" style="max-width:660px"><span class="klein">Dank je wel</span><h2 style="font-size:44px;margin:10px 0 16px">Je bestelling staat klaar</h2>' +
+            '<p>Maak <b>' + euro(o.totaal) + '</b> over naar <b>' + esc(o.iban || "") + '</b> t.n.v. Suismuis Home, onder vermelding van <b>' + esc(o.nr) + '</b>. Je krijgt deze gegevens ook per e-mail. Zodra je betaling binnen is, gaan we voor je aan de slag.</p>' +
+            '<div class="samenvatting">' + regelsHtml(o) + '</div><a class="knop" href="shop.html">Verder winkelen</a></div>';
+          window.scrollTo(0, 0);
+        });
+      });
       bk.addEventListener("click", function () {
         if (!kaart) return; bf.textContent = ""; bezig(true, "Bezig met betalen…");
         kaart.getState().then(function (st) {

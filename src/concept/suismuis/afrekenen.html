@@ -54,8 +54,10 @@
   <button class="knop" type="submit" id="naar-betalen">Verder naar betalen</button>
   </fieldset>
   <section id="betalen" class="kaartbetaal" hidden aria-labelledby="betalen-kop">
-   <div class="kaart-kop"><h2 id="betalen-kop">Betalen met creditcard</h2><span class="merken" aria-label="Wij accepteren Visa, Mastercard en American Express"><i class="m-visa">VISA</i><i class="m-mc"><b></b><b></b></i><i class="m-amex">AMEX</i></span></div>
+   <div class="kaart-kop"><h2 id="betalen-kop">Kies hoe je betaalt</h2><span class="merken" aria-label="Wij accepteren Visa, Mastercard en American Express"><i class="m-visa">VISA</i><i class="m-mc"><b></b><b></b></i><i class="m-amex">AMEX</i></span></div>
    <p class="kaart-voor" id="kaart-voor"></p>
+   <div id="pp-knoppen" class="pp-knoppen"></div>
+   <p class="betaal-of" id="kaart-kop" hidden>Of betaal met je creditcard</p>
    <div id="kaartvelden" class="kaartvelden">
     <div id="cf-naam" class="cf"></div>
     <div id="cf-nummer" class="cf"></div>
@@ -64,6 +66,7 @@
    <div id="kaartknop"></div>
    <p id="betaalfout" role="alert" class="fout"></p>
    <button class="knop breed" type="button" id="betaal">Betaal veilig</button>
+   <div class="bank-keus"><p class="betaal-of">Liever zelf overmaken?</p><button class="knop licht breed" type="button" id="bank">Betaal per bankoverschrijving</button><p class="klein-tekst">Je krijgt het rekeningnummer en je ordernummer direct te zien en per e-mail. We gaan aan de slag zodra je betaling binnen is.</p></div>
    <ul class="bz"><li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span><b>Versleutelde betaling met 3D Secure</b>Je kaartgegevens gaan rechtstreeks naar de betaalverwerker. Wij zien en bewaren ze nooit.</span></li>
    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 3-6.2"/><path d="M4 4v5h5"/></svg><span><b>14 dagen bedenktijd</b>Niet helemaal blij? Je krijgt je geld terug.</span></li>
    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg><span><b>Direct een bevestiging</b>Met je ordernummer en een link om je bestelling te volgen.</span></li></ul>
