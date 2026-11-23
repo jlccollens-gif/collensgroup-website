@@ -238,7 +238,9 @@ Deno.serve(async (req) => {
 
   // dagelijkse voorraadcontrole (pg_cron), beveiligd met de eigen code SUISMUIS_CRONCODE
   if (url.searchParams.get("bron") === "voorraad") {
-    const code = env("SUISMUIS_CRONCODE");
+    // de code staat alleen in de database (suismuis_beheer.croncode) en wordt door pg_cron zelf meegestuurd
+    const { data: bh } = await sb.from("suismuis_beheer").select("croncode").eq("id", 1).maybeSingle();
+    const code = String(bh?.croncode || "");
     if (code.length < 16 || !gelijk(code, req.headers.get("x-code") || "")) return antwoord({ fout: "Geen toegang" }, 403);
     return antwoord(await controleerVoorraad());
   }

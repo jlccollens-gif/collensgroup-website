@@ -91,13 +91,12 @@ td,th{border:1px solid #E5D8C8;padding:7px 9px;text-align:left;vertical-align:to
 <tr><td><code>SUISMUIS_PAYPAL_SECRET</code></td><td>De Secret uit stap 7.</td></tr>
 <tr><td><code>SUISMUIS_PAYPAL_ENV</code></td><td><code>live</code></td></tr>
 <tr><td><code>SUISMUIS_SETUPCODE</code></td><td>Een zelfbedachte code van minstens 12 tekens. Die gebruik je één keer in stap 10.</td></tr>
-<tr><td><code>SUISMUIS_IBAN</code></td><td>Je eigen rekeningnummer, voor klanten die per overschrijving betalen (bijv. <code>NL00 BANK 0000 0000 00</code>).</td></tr>
-<tr><td><code>SUISMUIS_CRONCODE</code></td><td>Nog een zelfbedachte code van minstens 16 tekens, voor de dagelijkse voorraadcontrole (stap 9b).</td></tr></table>
+<tr><td><code>SUISMUIS_IBAN</code></td><td>Je eigen rekeningnummer, voor klanten die per overschrijving betalen (bijv. <code>NL00 BANK 0000 0000 00</code>).</td></tr></table>
 <h3>9b. Dagelijkse voorraadcontrole aanzetten</h3>
-<p>Ga in Supabase naar <b>SQL Editor</b>, plak dit, vervang <code>JOUW-PROJECT</code> en <code>JOUW-CRONCODE</code> en klik op <b>Run</b>. Elke ochtend controleert je shop dan of de vidaXL-producten nog leverbaar zijn. Producten van AliExpress zet je zelf op <i>Uitverkocht</i> in je bestelbalie (tab Producten), want AliExpress blokkeert automatische controles.</p>
+<p>Ga in Supabase naar <b>SQL Editor</b>, plak dit, vervang <code>JOUW-PROJECT</code> en klik op <b>Run</b>. Elke ochtend controleert je shop dan of de vidaXL-producten nog leverbaar zijn. Producten van AliExpress zet je zelf op <i>Uitverkocht</i> in je bestelbalie (tab Producten), want AliExpress blokkeert automatische controles.</p>
 <pre>create extension if not exists pg_cron;
 create extension if not exists pg_net;
-select cron.schedule('suismuis-voorraad', '17 5 * * *', $$select net.http_post(url:='https://JOUW-PROJECT.supabase.co/functions/v1/suismuis?bron=voorraad', headers:='{"x-code":"JOUW-CRONCODE"}'::jsonb, body:='{}'::jsonb)$$);</pre>
+select cron.schedule('suismuis-voorraad', '17 5 * * *', $$select net.http_post(url:='https://JOUW-PROJECT.supabase.co/functions/v1/suismuis?bron=voorraad', headers:=jsonb_build_object('x-code', (select croncode from public.suismuis_beheer where id = 1)), body:='{}'::jsonb)$$);</pre>
 <p><b>Optioneel, aanbevolen:</b> bevestigingsmails in je eigen huisstijl. PayPal stuurt je klant en jou altijd al een betaalbewijs. Wil je daarnaast eigen mails (orderbevestiging, “je pakket is onderweg”), maak dan een gratis account bij <b>brevo.com</b>, voeg je e-mailadres toe als afzender en maak een API-sleutel. Voeg toe: <code>BREVO_API_KEY</code> (de sleutel) en <code>SUISMUIS_AFZENDER</code> (je geverifieerde e-mailadres).</p>
 
 <h2><span>10</span>Je bestelbalie instellen</h2>

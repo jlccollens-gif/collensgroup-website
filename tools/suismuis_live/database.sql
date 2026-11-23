@@ -49,3 +49,5 @@ insert into storage.buckets (id, name, public) values ('producten', 'producten',
 -- voorraad (23-11): handmatig door Kim of automatisch (vidaXL)
 create table if not exists public.suismuis_voorraad (nr int primary key, status text not null check (status in ('op_voorraad','uitverkocht')), bron text not null default 'handmatig' check (bron in ('handmatig','auto')), gecontroleerd timestamptz not null default now());
 alter table public.suismuis_voorraad enable row level security;
+alter table public.suismuis_beheer add column if not exists croncode text default encode(gen_random_bytes(24), 'hex');
+update public.suismuis_beheer set croncode = encode(gen_random_bytes(24), 'hex') where croncode is null;
