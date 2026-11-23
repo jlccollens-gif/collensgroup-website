@@ -27,7 +27,7 @@ Zoek in Gmail naar ongelezen mails met het onderwerp `Nieuwe bestelling`. Voor e
 1. **Controleer de betaling.** Staat er *Betaald via Creditcard* of *Betaald via PayPal*, ga dan door. Staat er *Wacht op overschrijving*, wacht dan tot Kim in de bestelbalie de status op *Betaald* heeft gezet.
 2. **Open de leverancierslink.** In de mail staat per product een link *Bestel bij leverancier*. Open die in Chrome.
 3. **Kies precies wat de klant koos:** dezelfde uitvoering (kleur of model), dezelfde maat en hetzelfde aantal. Twijfel je welke uitvoering bij de leverancier hoort, stop dan en vraag het aan Kim.
-4. **Controleer de prijs bij de leverancier.** Is de inkoopprijs plus verzending hoger dan wat de klant betaalde, of is het product uitverkocht, stop dan en meld het aan Kim.
+4. **Controleer de prijs bij de leverancier.** Is de inkoopprijs plus verzending hoger dan wat de klant betaalde, of is het product uitverkocht, stop dan en meld het aan Kim. Is het uitverkocht, stel Kim dan voor het product in de bestelbalie (tab Producten) op *Uitverkocht* te zetten, zodat niemand het nog kan bestellen.
 5. **Vul het afleveradres van de klant in**, niet het adres van Kim. Het adres staat in de mail onder *Afleveradres (kopieer bij de leverancier)*, al in het Engels.
 6. **Plak bij "Note to seller" (notitie aan verkoper):**
    `Dropshipping order - please do not include invoice, price list or promotional material. Thank you!`
@@ -100,3 +100,6 @@ Sluit elke ronde af met een kort lijstje:
 - **Verzonden vandaag:** bestellingen met track-and-trace (de klant is gemaild).
 - **Wacht op Kim:** vragen, concepten om te versturen, problemen (uitverkocht, prijs gestegen, vertraging).
 - **Winst:** per afgehandelde bestelling de verkoopprijs min de inkoopprijs, als schatting.
+
+## Voorraad bijhouden
+Kim kan je vragen: "Kijk of mijn producten nog leverbaar zijn." Open dan in Chrome de leverancierslinks uit de bestelbalie (tab Producten) één voor één. Is een product weg of uitverkocht, zet het dan in de bestelbalie op *Uitverkocht* en meld welke je hebt aangepast. Staat het weer op voorraad, zet het terug op *Voorraad: automatisch*. vidaXL-producten controleert de shop elke ochtend zelf.

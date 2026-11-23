@@ -29,7 +29,7 @@ td,th{border:1px solid #E5D8C8;padding:7px 9px;text-align:left;vertical-align:to
 <li><code>server/2-functie-suismuis.ts</code>: de betaalserver (bestellingen, creditcardbetalingen, je bestelbalie).</li></ul>
 
 <p><b>Wat je nodig hebt</b></p>
-<div class="lijst"><ul><li>Je e-mailadres</li><li>Je domeinnaam (bijvoorbeeld bij TransIP of Strato)</li><li>Je zakelijke PayPal-account</li><li>Een computer (geen telefoon)</li></ul></div>
+<div class="lijst"><ul><li>Je e-mailadres</li><li>Je domeinnaam <code>suismuishome.com</code> (gekocht bij Namecheap)</li><li>Je zakelijke PayPal-account</li><li>Een computer (geen telefoon)</li></ul></div>
 
 <h2><span>1</span>Supabase: je database (gratis)</h2>
 <ol><li>Ga naar <b>supabase.com</b> en maak een account aan.</li>
@@ -62,12 +62,13 @@ td,th{border:1px solid #E5D8C8;padding:7px 9px;text-align:left;vertical-align:to
 
 <h2><span>6</span>Je eigen domein koppelen</h2>
 <ol><li>Open in Cloudflare je project <b>suismuis → Custom domains → Set up a custom domain</b>.</li>
-<li>Vul je domein in (bijvoorbeeld <code>suismuis.nl</code>) en volg de stappen. Cloudflare laat precies zien welke instelling je bij je domeinregistrar moet aanpassen. De makkelijkste weg is je domein aan Cloudflare toevoegen (Cloudflare geeft je twee <i>nameservers</i> die je bij je registrar invult).</li>
+<li>Vul <code>suismuishome.com</code> in en volg de stappen. Cloudflare vraagt je het domein toe te voegen en geeft je twee <i>nameservers</i> (twee adressen die eindigen op <code>ns.cloudflare.com</code>).</li>
+<li>Log in bij <b>Namecheap → Domain List → suismuishome.com → Manage</b>. Kies bij <b>Nameservers</b> de optie <b>Custom DNS</b>, vul de twee nameservers van Cloudflare in en klik op het groene vinkje.</li>
 <li>Voeg daarna ook <code>www.</code> + je domein toe op dezelfde manier.</li>
 <li>Het kan een paar uur duren voordat je domein overal werkt. Het slotje (https) komt vanzelf.</li></ol>
 
-<h2><span>7</span>PayPal: creditcardbetalingen ontvangen</h2>
-<p>Klanten betalen met hun creditcard op je eigen site. PayPal verwerkt de betaling op de achtergrond; je klanten hoeven geen PayPal te hebben en het geld komt op je eigen zakelijke PayPal-rekening, die je naar je bank laat overboeken.</p>
+<h2><span>7</span>PayPal: betalingen ontvangen (zonder KvK)</h2>
+<p>Een zakelijke PayPal-rekening open je gratis op je eigen naam, ook zonder KvK. Je klanten betalen dan op je site met <b>PayPal, creditcard</b> en, als PayPal dat voor je rekening aanzet, <b>iDEAL en Bancontact</b>. Je shop toont automatisch alleen de knoppen die werken. Daarnaast kan je klant altijd <b>per bankoverschrijving</b> betalen. Het geld komt op je PayPal-rekening, die je naar je bank laat overboeken.</p>
 <ol><li>Ga naar <b>developer.paypal.com</b> en log in met je zakelijke PayPal-account.</li>
 <li>Ga naar <b>Apps &amp; Credentials</b> en zet bovenaan de schakelaar op <b>Live</b>.</li>
 <li>Klik op <b>Create App</b>, naam <code>Suismuis webshop</code>, type <i>Merchant</i>.</li>
@@ -84,18 +85,25 @@ td,th{border:1px solid #E5D8C8;padding:7px 9px;text-align:left;vertical-align:to
 <h2><span>9</span>De instellingen van je betaalserver</h2>
 <p>Ga in Supabase naar <b>Edge Functions → Secrets</b> en voeg deze toe (naam links precies zo overnemen):</p>
 <table><tr><th>Naam</th><th>Waarde</th></tr>
-<tr><td><code>SUISMUIS_SITE</code></td><td>Het adres van je shop met https, zonder / aan het eind. Bijvoorbeeld <code>https://suismuis.nl</code>. (Werkt je domein nog niet, gebruik dan eerst het pages.dev-adres en pas het later aan.)</td></tr>
+<tr><td><code>SUISMUIS_SITE</code></td><td>Het adres van je shop met https, zonder / aan het eind. Bijvoorbeeld <code>https://suismuishome.com</code>. (Werkt je domein nog niet, gebruik dan eerst het pages.dev-adres en pas het later aan.)</td></tr>
 <tr><td><code>SUISMUIS_KIM_EMAIL</code></td><td>Het e-mailadres waarop je nieuwe bestellingen en berichten wilt ontvangen.</td></tr>
 <tr><td><code>SUISMUIS_PAYPAL_CLIENT_ID</code></td><td>De Client ID uit stap 7.</td></tr>
 <tr><td><code>SUISMUIS_PAYPAL_SECRET</code></td><td>De Secret uit stap 7.</td></tr>
 <tr><td><code>SUISMUIS_PAYPAL_ENV</code></td><td><code>live</code></td></tr>
-<tr><td><code>SUISMUIS_SETUPCODE</code></td><td>Een zelfbedachte code van minstens 12 tekens. Die gebruik je één keer in stap 10.</td></tr></table>
+<tr><td><code>SUISMUIS_SETUPCODE</code></td><td>Een zelfbedachte code van minstens 12 tekens. Die gebruik je één keer in stap 10.</td></tr>
+<tr><td><code>SUISMUIS_IBAN</code></td><td>Je eigen rekeningnummer, voor klanten die per overschrijving betalen (bijv. <code>NL00 BANK 0000 0000 00</code>).</td></tr>
+<tr><td><code>SUISMUIS_CRONCODE</code></td><td>Nog een zelfbedachte code van minstens 16 tekens, voor de dagelijkse voorraadcontrole (stap 9b).</td></tr></table>
+<h3>9b. Dagelijkse voorraadcontrole aanzetten</h3>
+<p>Ga in Supabase naar <b>SQL Editor</b>, plak dit, vervang <code>JOUW-PROJECT</code> en <code>JOUW-CRONCODE</code> en klik op <b>Run</b>. Elke ochtend controleert je shop dan of de vidaXL-producten nog leverbaar zijn. Producten van AliExpress zet je zelf op <i>Uitverkocht</i> in je bestelbalie (tab Producten), want AliExpress blokkeert automatische controles.</p>
+<pre>create extension if not exists pg_cron;
+create extension if not exists pg_net;
+select cron.schedule('suismuis-voorraad', '17 5 * * *', $$select net.http_post(url:='https://JOUW-PROJECT.supabase.co/functions/v1/suismuis?bron=voorraad', headers:='{"x-code":"JOUW-CRONCODE"}'::jsonb, body:='{}'::jsonb)$$);</pre>
 <p><b>Optioneel, aanbevolen:</b> bevestigingsmails in je eigen huisstijl. PayPal stuurt je klant en jou altijd al een betaalbewijs. Wil je daarnaast eigen mails (orderbevestiging, “je pakket is onderweg”), maak dan een gratis account bij <b>brevo.com</b>, voeg je e-mailadres toe als afzender en maak een API-sleutel. Voeg toe: <code>BREVO_API_KEY</code> (de sleutel) en <code>SUISMUIS_AFZENDER</code> (je geverifieerde e-mailadres).</p>
 
 <h2><span>10</span>Je bestelbalie instellen</h2>
-<ol><li>Ga naar <code>https://jouwdomein.nl/beheer.html?setup=JOUWCODE</code> (met je code uit stap 9).</li>
+<ol><li>Ga naar <code>https://suismuishome.com/beheer.html?setup=JOUWCODE</code> (met je code uit stap 9).</li>
 <li>Kies een wachtwoord van minstens 10 tekens en bewaar het.</li>
-<li>Daarna log je altijd in via <code>https://jouwdomein.nl/beheer.html</code>. Zet die pagina in je bladwijzers; er staat geen link naar op de site.</li></ol>
+<li>Daarna log je altijd in via <code>https://suismuishome.com/beheer.html</code>. Zet die pagina in je bladwijzers; er staat geen link naar op de site.</li></ol>
 
 <h2><span>11</span>Proefbestelling</h2>
 <ol><li>Bestel een goedkoop product in je eigen shop en betaal met je eigen creditcard.</li>
