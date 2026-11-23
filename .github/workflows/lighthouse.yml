@@ -1,0 +1,48 @@
+# Lighthouse-meting van de live site (alleen rapporteren, blokkeert niets).
+# Draait elke maandag 02:41 UTC (09:41 Bangkok) en handmatig. Scores staan in de log ("LH ...")
+# en in de job-samenvatting; volledige rapporten als artifact (niet publiek).
+# Geplaatst 23-11-2026 met akkoord eigenaar.
+name: lighthouse
+on:
+  schedule:
+    - cron: "41 2 * * 1"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  meten:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - id: lh
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            https://collensgroup.com/
+            https://collensgroup.com/en
+            https://collensgroup.com/website-laten-maken
+            https://collensgroup.com/app-laten-maken-kosten
+            https://collensgroup.com/prijzen
+            https://collensgroup.com/concept/v2-roof-smart/
+            https://collensgroup.com/concept/suismuis/
+          uploadArtifacts: true
+          temporaryPublicStorage: false
+      - name: Scores
+        env:
+          MANIFEST: ${{ steps.lh.outputs.manifest }}
+        run: |
+          python3 - <<'EOF'
+          import json, os
+          m = json.loads(os.environ["MANIFEST"] or "[]")
+          regels = ["| Pagina | Prestatie | Toegankelijk | Best practices | SEO |", "|---|---|---|---|---|"]
+          for r in m:
+              if not r.get("isRepresentativeRun", True):
+                  continue
+              s = r.get("summary", {})
+              f = lambda k: str(round(100 * (s.get(k) or 0)))
+              print(f"LH {r['url']}: perf {f('performance')} a11y {f('accessibility')} bp {f('best-practices')} seo {f('seo')}")
+              regels.append(f"| {r['url']} | {f('performance')} | {f('accessibility')} | {f('best-practices')} | {f('seo')} |")
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as fh:
+              fh.write("\n".join(regels) + "\n")
+          EOF
