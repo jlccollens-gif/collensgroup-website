@@ -973,8 +973,8 @@ def build():
         ("Wat kost een game-app laten maken?", "Een eenvoudige game voor de browser of telefoon begint bij ons bij €1.950. Een uitgebreidere game met meerdere levels, eigen tekeningen en geluid kost meer, afhankelijk van de inhoud. Op de pagina game laten maken staan de pakketten en voorbeelden, waaronder ons eigen spel Eiland Express."),
         ("Hoe vraag ik een offerte voor een app aan?", "Beschrijf in een paar zinnen wat de app moet doen en voor wie hij is, via het formulier onderaan deze pagina. Binnen 48 uur krijg je een paar korte vragen en daarna een gratis concept met een vaste prijs, uitgesplitst per onderdeel. Je zit nergens aan vast tot je akkoord geeft. Wil je eerst zelf een indicatie, gebruik dan de kostencalculator."),
     ]
-    pages.append(page("app-laten-maken-kosten.html", "App laten maken kosten 2026: prijzen vanaf €3.150 | Collens Group",
-        "Wat kost een app laten maken in 2026? Marktprijzen in Nederland, alle bijkomende kosten (Apple, Google, hosting, onderhoud) en onze vaste prijzen vanaf €3.150.",
+    pages.append(page("app-laten-maken-kosten.html", "App laten maken kosten 2026: vanaf €3.150 | Collens Group",
+        "Wat kost een app laten maken in 2026? Marktprijzen, alle bijkomende kosten (Apple, Google, hosting, onderhoud) en onze vaste prijzen vanaf €3.150.",
         f'''<article class="tekst breed">
 <h1>Wat kost een app laten maken in 2026?</h1>
 <p class="lead2">Kort antwoord: bij Nederlandse bureaus en freelancers betaal je voor een eenvoudige app meestal €5.000 tot €25.000. Bij Collens Group begint een Basis-app bij €3.150 en een complete app met accounts en database bij €6.750. Alle prijzen zijn eindprijzen, er komt geen btw bij. Hieronder vind je de kosten per functie, een rekenvoorbeeld, de totale kosten over 3 jaar en een checklist om offertes te vergelijken.</p>

@@ -99,7 +99,7 @@ LANDINGS = [
   "offers":[("Basis-app horeca",3150),("Standaard-app horeca",6750),("Maatwerk-app horeca",13050)], "rel":[("website-laten-maken-horeca.html","Website voor horeca"),("app-laten-maken-kosten.html","Wat kost een app"),("mvp-app-laten-maken.html","MVP-app laten maken"),("chatbot-laten-maken.html","AI-chatbot laten maken")]},
  {"slug":"website-laten-maken-kapper","lang":"nl","kort":"Website kapper",
   "titel":"Website laten maken voor kapper vanaf €495 | Collens Group",
-  "desc":"Website laten maken voor je kapsalon of barbershop: prijslijst, online afspraak maken, foto's van je werk en route. Vaste prijs vanaf €495, klaar in 3–5 dagen.",
+  "desc":"Website voor je kapsalon of barbershop: prijslijst, online afspraak maken, foto's van je werk en route. Vanaf €495, klaar in 3–5 dagen.",
   "h1":"Website laten maken voor je kapsalon of barbershop",
   "lead":"Een snelle website voor je kapsalon, barbershop of beautysalon, waarop klanten in een paar seconden je prijzen zien en een afspraak maken. Vanaf €495 (geen btw erbij), met een vaste prijs vooraf en een gratis concept binnen 48 uur.",
   "secties":[

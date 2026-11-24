@@ -149,7 +149,7 @@ BOEK_PAGINAS = [
 
  {"slug": "boek-claude-voor-beginners", "lang": "nl", "kort": "Boek: Claude voor beginners",
   "titel": "Boek: Claude voor beginners (€29,99) | Collens Group",
-  "desc": "Claude voor beginners: in gewoon Nederlands van je eerste vraag tot je eigen AI-assistent. Herziene editie, 106 pagina's, PDF en EPUB, €29,99. Geen techniek nodig.",
+  "desc": "Claude voor beginners: in gewoon Nederlands van je eerste vraag tot je eigen AI-assistent. 106 pagina's, PDF en EPUB, €29,99. Geen techniek nodig.",
   "h1": "Claude voor beginners",
   "lead": "Van je eerste vraag tot je eigen AI-assistent. Een praktische gids in gewoon Nederlands, voor iedereen die AI wil gebruiken zonder technische kennis. Herziene editie november 2026: 106 pagina's, als PDF en EPUB, €29,99.",
   "knop": ("Koop het boek op Gumroad", GUMROAD),

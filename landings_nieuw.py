@@ -69,8 +69,8 @@ NIEUW = [
   "coach, trainer of adviseur",
   {}, [("Moet ik zelf teksten schrijven?", "Nee, dat hoeft niet. Jij vertelt ons de kern: wat je doet, voor wie je het doet en hoe je werkt. Een paar zinnen per onderwerp is genoeg. Wij maken daar heldere websiteteksten van die je bezoekers aanspreken en die Google goed kan lezen. Jij leest alles na en keurt het goed voordat de site live gaat, zodat het klinkt zoals jij praat.")]),
  _maak("website-laten-maken-vakantiehuis", "Website vakantiehuis",
-  "Website voor vakantiehuis en B&B vanaf €495 | Collens Group",
-  "Website laten maken voor je vakantiehuis, B&B of campingstek: foto's, beschikbaarheid en aanvragen rechtstreeks. Vanaf €495, gratis concept binnen 48 uur.",
+  "Website vakantiehuis of B&B vanaf €495 | Collens Group",
+  "Website voor je vakantiehuis, B&B of campingstek: foto's, beschikbaarheid en directe aanvragen. Vanaf €495, gratis concept binnen 48 uur.",
   "Website laten maken voor je vakantiehuis of B&B",
   "Een eigen website voor je vakantiehuis, B&B of kleine camping waarop gasten je accommodatie zien, prijzen vinden en rechtstreeks een aanvraag doen. Vanaf €495, geen btw erbij, met een gratis concept binnen 48 uur.",
   "Wat moet er op de website van een vakantiehuis staan?",
@@ -103,7 +103,7 @@ NIEUW.append(BELGIE)
 
 # Bedrijfsapp / zakelijke app (22-11, uit Search Console: 'bedrijfsapp laten maken', 'zakelijke app laten maken' zonder eigen pagina)
 BEDRIJFSAPP = {"slug": "bedrijfsapp-laten-maken", "lang": "nl", "kort": "Bedrijfsapp",
-  "titel": "Bedrijfsapp of zakelijke app laten maken vanaf €3.150 | Collens Group",
+  "titel": "Bedrijfsapp laten maken vanaf €3.150 | Collens Group",
   "desc": "Een bedrijfsapp laten maken voor je klanten of je team: wat het kost, wat erin kan en hoe het werkt. Vaste eindprijs vanaf €3.150, voor iPhone en Android.",
   "h1": "Bedrijfsapp laten maken",
   "lead": "Een eigen zakelijke app voor je klanten of je team, voor iPhone en Android tegelijk. Vaste eindprijs vooraf, vanaf €3.150, geen btw erbij, en eerst een gratis concept van de belangrijkste schermen.",
