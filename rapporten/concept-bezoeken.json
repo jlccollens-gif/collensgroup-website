@@ -1,26 +1,24 @@
 {
  "fout": null,
- "gemaakt": "2026-11-23T15:55:33Z",
+ "gemaakt": "2026-11-24T15:49:02Z",
  "per_concept": {
   "atelier-ombre": {
    "apparaten": {
-    "desktop": 12,
-    "mobile": 2
+    "desktop": 1,
+    "mobile": 1
    },
-   "bezoeken": 13,
+   "bezoeken": 1,
    "dagen": {
-    "2026-11-17": 12,
     "2026-11-18": 2
    },
    "landen": {
-    "IE": 5,
-    "NL": 7,
-    "TH": 2
+    "IE": 1,
+    "TH": 1
    },
    "verwijzers": {
     "collensgroup.com": 1
    },
-   "weergaven": 14
+   "weergaven": 2
   },
   "collensgroup-v2": {
    "apparaten": {
@@ -56,37 +54,6 @@
    },
    "weergaven": 2
   },
-  "euro-index": {
-   "apparaten": {
-    "desktop": 5
-   },
-   "bezoeken": 5,
-   "dagen": {
-    "2026-11-17": 5
-   },
-   "landen": {
-    "IE": 5
-   },
-   "verwijzers": {},
-   "weergaven": 5
-  },
-  "giraffe-removals": {
-   "apparaten": {
-    "mobile": 4
-   },
-   "bezoeken": 1,
-   "dagen": {
-    "2026-11-17": 4
-   },
-   "landen": {
-    "AU": 4
-   },
-   "verwijzers": {
-    "collensgroup.com": 3,
-    "www.google.com": 1
-   },
-   "weergaven": 4
-  },
   "quickstart-auto": {
    "apparaten": {
     "mobile": 3
@@ -111,12 +78,12 @@
    },
    "bezoeken": 128,
    "dagen": {
-    "2026-11-16": 1,
     "2026-11-18": 113,
     "2026-11-19": 27,
     "2026-11-20": 98,
     "2026-11-22": 131,
-    "2026-11-23": 97
+    "2026-11-23": 97,
+    "2026-11-24": 1
    },
    "landen": {
     "NL": 8,
@@ -161,6 +128,6 @@
    "weergaven": 2
   }
  },
- "tot": "2026-11-23T15:55:33Z",
- "van": "2026-11-16T15:55:33Z"
+ "tot": "2026-11-24T15:49:02Z",
+ "van": "2026-11-17T15:49:02Z"
 }

@@ -1,14 +1,14 @@
 {
- "gemaakt": "2026-11-23T15:55:37Z",
- "van": "2026-10-26T15:55:37Z",
- "tot": "2026-11-23T15:55:37Z",
+ "gemaakt": "2026-11-24T15:49:04Z",
+ "van": "2026-10-27T15:49:04Z",
+ "tot": "2026-11-24T15:49:04Z",
  "dagen_periode": 28,
  "fout": null,
- "rijen": 61,
+ "rijen": 62,
  "per_soort": {
   "site": {
-   "weergaven": 400,
-   "bezoeken": 170
+   "weergaven": 410,
+   "bezoeken": 180
   },
   "concept": {
    "weergaven": 560,
@@ -59,24 +59,29 @@
    "weergaven": 80,
    "bezoeken": 40,
    "zoekmachine": 0
+  },
+  "2026-11-23": {
+   "weergaven": 10,
+   "bezoeken": 10,
+   "zoekmachine": 0
   }
  },
  "paginas": {
-  "/": 220,
-  "/artikelen": 30,
+  "/": 230,
   "/website-laten-maken": 30,
+  "/artikelen": 30,
   "/en": 20,
   "/over-ons": 20,
   "/boeken": 20,
   "/en-app-development": 10,
+  "/apps": 10,
   "/privacy": 10,
   "/ai-automatisering": 10,
-  "/apps": 10,
   "/game-laten-maken": 10,
   "/en-website-roofing-company": 10
  },
  "landen": {
-  "US": 90,
+  "US": 100,
   "TH": 40,
   "CA": 20,
   "CN": 10,
@@ -84,10 +89,10 @@
  },
  "apparaten": {
   "mobile": 90,
-  "desktop": 80
+  "desktop": 90
  },
  "bronnen": {
-  "direct/intern": 130,
+  "direct/intern": 140,
   "andere site": 40
  },
  "zoekmachines": {},
