@@ -19,7 +19,7 @@ LANDINGS = [
          ("Welke betaalmethoden zijn mogelijk?","iDEAL en andere gangbare betaalmethoden, zoals creditcard. Welke het beste passen, hangt af van waar je klanten wonen; voor klanten buiten Nederland richten we de methoden in die daar gebruikelijk zijn. De betaalprovider rekent een klein bedrag per transactie. Die tarieven staan vooraf in de offerte, zodat je weet wat een bestelling je kost."),
          ("Wat kost een webshop per maand?","Een domeinnaam kost meestal €10 tot €25 per jaar. Het webshopplatform en de betaalprovider rekenen hun eigen tarieven, en die staan vooraf in de offerte. Onderhoud door ons is optioneel, vanaf €29 per maand."),
          ("Staat de btw erbij?","Nee. Alle prijzen op onze site zijn eindprijzen: er komt geen btw bij. Wat je in de offerte ziet, is wat je betaalt voor ons werk. Externe kosten, zoals een domeinnaam of de kosten van een betaalprovider, betaal je rechtstreeks aan die partij. Die staan vooraf in de offerte, zodat je niet voor verrassingen komt te staan.")],
-  "offers":[("Webshop",1950)], "rel":[("website-laten-maken.html","Alle websitepakketten"),("goedkope-website-laten-maken.html","Goedkope website laten maken")]},
+  "offers":[("Webshop",1950)], "rel":[("website-laten-maken.html","Alle websitepakketten"),("goedkope-website-laten-maken.html","Goedkope website laten maken"),("dropshipping-webshop-laten-maken.html","Dropshipping-webshop laten maken")]},
  {"slug":"goedkope-website-laten-maken","lang":"nl","kort":"Goedkope website",
   "titel":"Goedkope website laten maken vanaf €495 | Collens Group",
   "desc":"Goedkope website laten maken zonder dat het goedkoop oogt: one-page vanaf €495, bedrijfswebsite vanaf €995. Snel en vindbaar in Google.",
