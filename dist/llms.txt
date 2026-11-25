@@ -43,6 +43,7 @@
 - [en-ai-automation.html](https://collensgroup.com/en-ai-automation)
 - [en-about.html](https://collensgroup.com/en-about)
 - [en-website-roofing-company.html](https://collensgroup.com/en-website-roofing-company)
+- [en-website-removals-company.html](https://collensgroup.com/en-website-removals-company)
 - [boeken.html](https://collensgroup.com/boeken)
 - [boek-claude-voor-beginners.html](https://collensgroup.com/boek-claude-voor-beginners)
 - [prijzen.html](https://collensgroup.com/prijzen)
