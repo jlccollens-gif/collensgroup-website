@@ -1,18 +1,19 @@
 # Bezoeken collensgroup.com (laatste 28 dagen)
-Gemaakt: 2026-11-24T15:49:04Z (UTC). Bron: Cloudflare Web Analytics (cookieloos, zonder bots).
+Gemaakt: 2026-11-25T15:34:00Z (UTC). Bron: Cloudflare Web Analytics (cookieloos, zonder bots).
 
-- Site: **180 bezoeken**, 410 paginaweergaven
+- Site: **190 bezoeken**, 420 paginaweergaven
 - Conceptpagina's (klanten): 200 bezoeken · testerpagina's: 10 bezoeken
 
 ## Waar komen bezoekers vandaan
 - direct/intern: 140
 - andere site: 40
+- zoekmachine: 10
 
 ## Zoekmachines
-- nog geen
+- www.google.com: 10
 
 ## Top 15 pagina's (weergaven)
-- /: 230
+- /: 240
 - /website-laten-maken: 30
 - /artikelen: 30
 - /en: 20
@@ -29,8 +30,8 @@ Gemaakt: 2026-11-24T15:49:04Z (UTC). Bron: Cloudflare Web Analytics (cookieloos,
 - US: 100
 - TH: 40
 - CA: 20
+- NL: 20
 - CN: 10
-- NL: 10
 
 ## Per dag (bezoeken / via zoekmachine)
 - 2026-11-14: 60 / 0
@@ -42,3 +43,4 @@ Gemaakt: 2026-11-24T15:49:04Z (UTC). Bron: Cloudflare Web Analytics (cookieloos,
 - 2026-11-20: 0 / 0
 - 2026-11-22: 40 / 0
 - 2026-11-23: 10 / 0
+- 2026-11-24: 10 / 10

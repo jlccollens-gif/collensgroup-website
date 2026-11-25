@@ -1,14 +1,14 @@
 {
- "gemaakt": "2026-11-24T15:49:04Z",
- "van": "2026-10-27T15:49:04Z",
- "tot": "2026-11-24T15:49:04Z",
+ "gemaakt": "2026-11-25T15:34:00Z",
+ "van": "2026-10-28T15:34:00Z",
+ "tot": "2026-11-25T15:34:00Z",
  "dagen_periode": 28,
  "fout": null,
- "rijen": 62,
+ "rijen": 63,
  "per_soort": {
   "site": {
-   "weergaven": 410,
-   "bezoeken": 180
+   "weergaven": 420,
+   "bezoeken": 190
   },
   "concept": {
    "weergaven": 560,
@@ -64,10 +64,15 @@
    "weergaven": 10,
    "bezoeken": 10,
    "zoekmachine": 0
+  },
+  "2026-11-24": {
+   "weergaven": 10,
+   "bezoeken": 10,
+   "zoekmachine": 10
   }
  },
  "paginas": {
-  "/": 230,
+  "/": 240,
   "/website-laten-maken": 30,
   "/artikelen": 30,
   "/en": 20,
@@ -84,18 +89,21 @@
   "US": 100,
   "TH": 40,
   "CA": 20,
-  "CN": 10,
-  "NL": 10
+  "NL": 20,
+  "CN": 10
  },
  "apparaten": {
-  "mobile": 90,
+  "mobile": 100,
   "desktop": 90
  },
  "bronnen": {
   "direct/intern": 140,
-  "andere site": 40
+  "andere site": 40,
+  "zoekmachine": 10
  },
- "zoekmachines": {},
+ "zoekmachines": {
+  "www.google.com": 10
+ },
  "verwijzers": {
   "m.facebook.com": 30,
   "www.facebook.com": 10
