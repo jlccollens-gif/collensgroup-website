@@ -1,14 +1,14 @@
 {
- "gemaakt": "2026-11-25T15:34:00Z",
- "van": "2026-10-28T15:34:00Z",
- "tot": "2026-11-25T15:34:00Z",
+ "gemaakt": "2026-11-26T15:08:12Z",
+ "van": "2026-10-29T15:08:12Z",
+ "tot": "2026-11-26T15:08:12Z",
  "dagen_periode": 28,
  "fout": null,
- "rijen": 63,
+ "rijen": 65,
  "per_soort": {
   "site": {
-   "weergaven": 420,
-   "bezoeken": 190
+   "weergaven": 440,
+   "bezoeken": 210
   },
   "concept": {
    "weergaven": 560,
@@ -69,35 +69,42 @@
    "weergaven": 10,
    "bezoeken": 10,
    "zoekmachine": 10
+  },
+  "2026-11-26": {
+   "weergaven": 20,
+   "bezoeken": 20,
+   "zoekmachine": 0
   }
  },
  "paginas": {
   "/": 240,
-  "/website-laten-maken": 30,
   "/artikelen": 30,
+  "/website-laten-maken": 30,
   "/en": 20,
   "/over-ons": 20,
   "/boeken": 20,
   "/en-app-development": 10,
-  "/apps": 10,
   "/privacy": 10,
+  "/apps": 10,
   "/ai-automatisering": 10,
   "/game-laten-maken": 10,
-  "/en-website-roofing-company": 10
+  "/en-website-roofing-company": 10,
+  "/app-koffer-vol": 10,
+  "/app-eiland-express": 10
  },
  "landen": {
-  "US": 100,
+  "US": 120,
   "TH": 40,
   "CA": 20,
   "NL": 20,
   "CN": 10
  },
  "apparaten": {
-  "mobile": 100,
-  "desktop": 90
+  "desktop": 110,
+  "mobile": 100
  },
  "bronnen": {
-  "direct/intern": 140,
+  "direct/intern": 160,
   "andere site": 40,
   "zoekmachine": 10
  },
