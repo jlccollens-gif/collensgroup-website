@@ -226,7 +226,7 @@ function suisStart() {
     $("#shop-titel").textContent = titel;
     if (mat && !cat) { $("#shop-intro").textContent = "Alles van " + MAT[mat][1].toLowerCase() + " uit de collectie."; subnav.innerHTML = Object.keys(MAT).map(function (k) { return '<a href="shop.html?mat=' + k + '"' + (k === mat ? ' aria-current="page"' : "") + ">" + MAT[k][1] + "</a>"; }).join(""); }
     if (cat) $("#shop-intro").textContent = sub ? "Uit de collectie " + CATS[cat].toLowerCase() + ", in warme, natuurlijke tinten." : "Alles uit " + CATS[cat].toLowerCase() + ", in warme, natuurlijke tinten.";
-    document.title = titel + " | Suismuis Home (concept)";
+    document.title = titel + " | Suismuis Home" + (location.pathname.indexOf("/concept/") === 0 ? " (concept)" : "");
     var teken = function () {
       var lijst = P.filter(function (p) { return (!cat || p.c === cat) && (!sub || p.s === sub) && (!mat || vanMat(p, mat)); });
       if (sort === "standaard") lijst.sort(function (a, b) { return (a.s === b.s ? 0 : (a.s < b.s ? -1 : 1)) || ((a.o || 0) - (b.o || 0)); });
@@ -246,7 +246,7 @@ function suisStart() {
 
   if (pag === "product") {
     var p = vind(url.get("p")) || P[0];
-    document.title = p.n + " | Suismuis Home (concept)";
+    document.title = p.n + " | Suismuis Home" + (location.pathname.indexOf("/concept/") === 0 ? " (concept)" : "");
     var extra = P.filter(function (x) { return x.c === p.c && x.id !== p.id; }).concat(P.filter(function (x) { return x.c !== p.c; })).slice(0, 4);
     var beelden = p.u ? p.u.slice() : [foto(p, true)].concat(p.f ? [] : extra.slice(0, 2).map(function (x) { return foto(x, true); }));
     var lever = p.lt ? "Levertijd " + p.lt : "Levertijd 8–15 werkdagen";
@@ -256,7 +256,7 @@ function suisStart() {
       (p.ok ? '<p class="noot" style="margin-top:6px">Eerste foto: het werk vrijstaand. Daarna alle foto’s van de maker, ook sfeer- en detailfoto’s.</p>' : '<p class="noot" style="margin-top:6px">' + "Voorbeeldbeelden; bij lancering komen hier je eigen productfoto’s." + '</p>') + '</div>' +
       '<div class="pdp-info"><nav class="kruimel" aria-label="Kruimelpad"><a href="index.html">Home</a><span>/</span><a href="shop.html">Shop</a><span>/</span><a href="shop.html?cat=' + p.c + '">' + CATS[p.c] + '</a>' + (p.s ? '<span>/</span><a href="shop.html?cat=' + p.c + '&amp;sub=' + p.s + '">' + SUBCAT[p.s][1] + '</a>' : '') + '</nav>' +
       '<span class="klein">' + (p.s ? SUBCAT[p.s][1] : CATS[p.c]) + '</span><h1>' + esc(p.n) + '</h1><div class="prijs">' + (p.maten && p.maten.length > 1 ? '<span class="vanaf">vanaf</span> ' : '') + euro(p.p) + '</div>' +
-      (p.var && p.var.length > 1 ? '<div class="opties"><p class="optie-kop">Uitvoering: <b id="var-naam">' + esc(p.var[0].n) + '</b></p><div class="stalen">' + p.var.map(function (v, i) { return '<button type="button" class="staal" data-var="' + i + '" aria-pressed="' + (i === 0) + '" aria-label="Uitvoering ' + esc(v.n) + '"><img src="' + v.b + '" alt=""></button>'; }).join("") + '</div></div>' : '') +
+      (p.var && p.var.length > 1 ? '<div class="opties"><p class="optie-kop">Uitvoering: <b id="var-naam">' + esc(p.var[0].n) + '</b></p><div class="stalen">' + p.var.map(function (v, i) { return '<button type="button" class="staal" data-var="' + i + '" aria-pressed="' + (i === 0) + '" aria-label="Uitvoering ' + esc(v.n) + '">' + (v.b ? '<img src="' + v.b + '" alt="">' : '<span style="font-size:11px;padding:0 4px">' + esc(v.n) + '</span>') + '</button>'; }).join("") + '</div></div>' : '') +
       (p.maten && p.maten.length ? '<div class="opties"><label class="optie-kop" for="maat">Maat (cm)</label><select id="maat">' + p.maten.map(function (m) { return "<option>" + m + " cm</option>"; }).join("") + '</select>' + (p.maten.length > 1 ? '<p class="optie-noot" id="maat-noot">De prijs geldt voor de maat ' + esc(p.maten[0]) + ' cm. Wil je een andere maat? Dan vragen we de prijs voor je op.</p>' : '') + '</div>' : '') +
       '<p>' + esc(p.t) + '</p><p class="voorraad">' + lever + '</p>' +
       '<div class="koop"><div class="stapper"><button type="button" data-stap="-1" aria-label="Minder">−</button><input id="aantal-p" type="number" min="1" max="20" value="1" aria-label="Aantal"><button type="button" data-stap="1" aria-label="Meer">+</button></div>' +
@@ -277,7 +277,7 @@ function suisStart() {
       var b = e.target.closest("[data-beeld]");
       if (b) { $("#hoofdbeeld").src = b.getAttribute("data-beeld"); $$("[data-beeld]").forEach(function (x) { x.setAttribute("aria-current", x === b); }); }
       var v = e.target.closest("[data-var]");
-      if (v) { var vv = p.var[+v.getAttribute("data-var")]; $("#hoofdbeeld").src = vv.b; $("#var-naam").textContent = vv.n; $$("[data-var]").forEach(function (x) { x.setAttribute("aria-pressed", x === v); }); }
+      if (v) { var vv = p.var[+v.getAttribute("data-var")]; if (vv.b) $("#hoofdbeeld").src = vv.b; $("#var-naam").textContent = vv.n; $$("[data-var]").forEach(function (x) { x.setAttribute("aria-pressed", x === v); }); }
       var s = e.target.closest("[data-stap]");
       if (s) { var i = $("#aantal-p"); i.value = Math.max(1, Math.min(20, (+i.value || 1) + (+s.getAttribute("data-stap")))); }
       if (e.target.closest("#koop-p")) {
