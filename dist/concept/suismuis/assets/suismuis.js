@@ -422,7 +422,7 @@ function suisStart() {
         }).then(function (j) {
           knop.disabled = false; knop.textContent = "Verder naar betalen";
           if (j.fout) { $("#fout").textContent = j.fout; return; }
-          order = j; $("#overzicht").innerHTML = regelsHtml(j);
+          order = j; $("#overzicht").innerHTML = regelsHtml(j); if (window.suisNaStart) window.suisNaStart(j);
           $("#gegevens").hidden = true; $("#betalen").hidden = false; stap(2);
           $("#kaart-voor").textContent = "Totaal " + euro(j.totaal) + " · ordernummer " + j.nr;
           bk.textContent = "Betaal " + euro(j.totaal) + " veilig"; bk.disabled = true;

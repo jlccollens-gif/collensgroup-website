@@ -31,7 +31,7 @@ export async function onRequest(ctx) {
   if (rest.startsWith("/api/") || rest.startsWith("/concept/") || rest.startsWith("/functions/")) return new Response("Niet gevonden", { status: 404 });
 
   if (live && rest === "/robots.txt")
-    return new Response(`User-agent: *\nAllow: /\nDisallow: /beheer.html\nDisallow: /afrekenen.html\nDisallow: /winkelmand.html\nDisallow: /bestelling.html\nSitemap: ${url.origin}/sitemap.xml\n`, { headers: { "content-type": "text/plain; charset=utf-8" } });
+    return new Response(`User-agent: *\nAllow: /\nDisallow: /beheer.html\nDisallow: /afrekenen.html\nDisallow: /winkelmand.html\nDisallow: /bestelling.html\nDisallow: /account.html\nSitemap: ${url.origin}/sitemap.xml\n`, { headers: { "content-type": "text/plain; charset=utf-8" } });
   if (live && rest === "/sitemap.xml") {
     const c = await env.ASSETS.fetch(new Request(new URL(BRON + "/assets/catalogus.json", url)));
     const ids = c.ok ? Object.keys((await c.json()).producten || {}) : [];

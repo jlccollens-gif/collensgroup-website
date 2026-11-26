@@ -51,3 +51,11 @@ create table if not exists public.suismuis_voorraad (nr int primary key, status 
 alter table public.suismuis_voorraad enable row level security;
 alter table public.suismuis_beheer add column if not exists croncode text default encode(gen_random_bytes(24), 'hex');
 update public.suismuis_beheer set croncode = encode(gen_random_bytes(24), 'hex') where croncode is null;
+-- Klantaccounts en interieuradvies (26-11-2026), gebruikt door de functie suismuis-klant (map functie-klant).
+create table if not exists public.suismuis_klanten (id uuid primary key default gen_random_uuid(), created_at timestamptz not null default now(), email text not null unique, naam text not null default '', tel text, adres jsonb not null default '{}'::jsonb, wachtwoord_hash text not null, nieuwsbrief boolean not null default false, laatst_ingelogd timestamptz);
+create table if not exists public.suismuis_klant_sessies (token_hash text primary key, klant_id uuid not null references public.suismuis_klanten(id) on delete cascade, verloopt timestamptz not null);
+create table if not exists public.suismuis_klant_reset (token_hash text primary key, klant_id uuid not null references public.suismuis_klanten(id) on delete cascade, verloopt timestamptz not null);
+create table if not exists public.suismuis_pogingen (id bigint generated always as identity primary key, created_at timestamptz not null default now(), soort text not null, sleutel text not null);
+create table if not exists public.suismuis_chat (id bigint generated always as identity primary key, created_at timestamptz not null default now(), bezoeker text not null, vraag text not null, antwoord text, producten jsonb);
+alter table public.suismuis_orders add column if not exists klant_id uuid references public.suismuis_klanten(id) on delete set null;
+alter table public.suismuis_klanten enable row level security; alter table public.suismuis_klant_sessies enable row level security; alter table public.suismuis_klant_reset enable row level security; alter table public.suismuis_pogingen enable row level security; alter table public.suismuis_chat enable row level security;
