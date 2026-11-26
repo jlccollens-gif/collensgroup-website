@@ -1,6 +1,6 @@
 // Suismuis Home: klantaccounts (eigen klantenbestand, los van Supabase Auth) en de interieuradviseur (chat).
-// Geheimen alleen in Supabase-secrets: ANTHROPIC_API_KEY (chat), BREVO_API_KEY + SUISMUIS_AFZENDER (mail, optioneel).
-// Instelbaar: SUISMUIS_CHAT_MODEL, SUISMUIS_CHAT_DAGLIMIET. Gebouwd door Collens Group.
+// Chat-AI via een Make-scenario (Make's eigen AI); adres + code in tabel suismuis_instellingen. Mail: BREVO_API_KEY + SUISMUIS_AFZENDER (optioneel).
+// Instelbaar: SUISMUIS_CHAT_DAGLIMIET. Gebouwd door Collens Group.
 import { createClient } from "npm:@supabase/supabase-js@2";
 
 const env = (k: string, d = "") => Deno.env.get(k) || d;
@@ -99,54 +99,52 @@ async function assortiment() {
   const alle = JSON.parse(t.slice(t.indexOf("["), t.lastIndexOf("]") + 1)) as any[];
   const cat = await catalogus();
   const weg = new Set(await uitverkocht());
-  const lijst = alle.filter((p) => cat.producten[p.id] && !weg.has(Number(p.nr))).map((p) => ({ id: p.id, n: p.n, s: p.s, p: p.p, m: p.m || "", d: p.d || "", v: (p.var || []).map((v: any) => v.n).join(", "), t: p.t || "", lt: p.lt || "", img: p.u?.[0] || (p.img ? "img/" + String(p.img).replace(/^img\//, "") + ".jpg" : "") }));
+  const lijst = alle.filter((p) => cat.producten[p.id] && !weg.has(Number(p.nr))).map((p) => ({ id: p.id, nr: p.nr, n: p.n, s: p.s, p: p.p, m: p.m || "", d: p.d || "", v: (p.var || []).map((v: any) => v.n).join(", "), t: p.t || "", lt: p.lt || "", img: p.u?.[0] || (p.img ? "img/" + String(p.img).replace(/^img\//, "") + ".jpg" : "") }));
   // producten die Kim zelf in haar bestelbalie toevoegde
   const { data: eigen } = await sb.from("suismuis_producten").select("nr,data").eq("actief", true);
-  for (const r of eigen || []) { const p = r.data || {}; if (p.id && !weg.has(Number(r.nr))) lijst.push({ id: p.id, n: p.n, s: p.s, p: p.p, m: p.m || "", d: p.d || "", v: (p.var || []).map((v: any) => v.n).join(", "), t: p.t || "", lt: p.lt || "", img: p.u?.[0] || "" }); }
+  for (const r of eigen || []) { const p = r.data || {}; if (p.id && !weg.has(Number(r.nr))) lijst.push({ id: p.id, nr: r.nr, n: p.n, s: p.s, p: p.p, m: p.m || "", d: p.d || "", v: (p.var || []).map((v: any) => v.n).join(", "), t: p.t || "", lt: p.lt || "", img: p.u?.[0] || "" }); }
   assort = { t: Date.now(), lijst };
   return lijst;
 }
 async function chatAntwoord(vraag: string, geschiedenis: { rol: string; t: string }[], product: string) {
-  const key = env("ANTHROPIC_API_KEY");
-  if (!key) return null;
   const lijst = await assortiment();
-  const regels = lijst.map((p) => `${p.id} | ${p.n} | ${p.s} | € ${Number(p.p).toFixed(2).replace(".", ",")} | ${p.m.slice(0, 110)} | ${p.d.slice(0, 110)}${p.v ? " | uitvoeringen: " + p.v.slice(0, 120) : ""} | levertijd ${p.lt}`).join("\n");
+  const regels = lijst.map((p) => `${p.nr}|${p.n}|${p.s}|€${Number(p.p).toFixed(2).replace(".", ",")}|${p.m.replace(/\s+/g, " ").slice(0, 60)}${p.v ? "|kleuren/uitvoeringen: " + p.v.slice(0, 60) : ""}`).join("\n");
   const huidig = product ? lijst.find((p) => p.id === product) : null;
   const system = `Je bent de interieuradviseur van Suismuis Home, een Nederlandse webshop voor warme, tijdloze woonaccessoires en meubels in de stijl "Organic Luxury" (rustig, naturel, crème, zand, taupe, mokka, linnen, keramiek, rotan, travertin, hout). Je helpt bezoekers hun huis in te richten en het juiste product te kiezen.
 Regels:
 - Schrijf in het Nederlands (of in de taal van de klant), warm, kort en concreet: maximaal 5 zinnen of een kort lijstje. Geen opsmuk, geen emoji's.
 - Je bent een AI-assistent; zeg dat eerlijk als iemand ernaar vraagt.
 - Raad ALLEEN producten aan uit de lijst hieronder. Verzin nooit producten, prijzen, maten, materialen, kortingen, voorraad of levertijden. Staat iets niet in de lijst, zeg dat eerlijk.
-- Geef bij een advies 1 tot 3 passende producten en zeg in één zin waarom ze passen (kleur, materiaal, ruimte, maat). Stel één vervolgvraag als dat helpt (bijv. welke ruimte, welke kleuren, welk budget).
+- Geef bij een advies 1 tot 3 passende producten en zeg in één zin waarom ze passen (kleur, materiaal, ruimte, maat). Stel één vervolgvraag als dat helpt (bijv. welke ruimte, welke kleuren, welk budget). Noem producten altijd met hun exacte naam uit de lijst, en noem alleen producten die echt passen (dus niets buiten het budget van de klant).
 - Algemeen stijladvies (kleuren combineren, styling, verhoudingen, licht) mag je ook geven.
 - Vaste informatie: gratis verzending vanaf € 75, anders € 5,95. 14 dagen bedenktijd. Betalen met PayPal, creditcard of bankoverschrijving. Voor vragen over een bestelling, retour of klacht: verwijs naar de pagina Klantenservice (contactformulier) of "Bestelling volgen"; je kunt zelf geen bestellingen inzien of wijzigen.
 - Vraag nooit om persoonsgegevens, wachtwoorden of betaalgegevens.
-${huidig ? `\nDe klant bekijkt nu dit product: ${huidig.id} | ${huidig.n} | € ${huidig.p} | ${huidig.m} | ${huidig.d} | ${huidig.t.slice(0, 300)}\n` : ""}
-Assortiment (id | naam | subcategorie | prijs | materiaal | afmetingen | uitvoeringen | levertijd):
+${huidig ? `\nDe klant bekijkt nu dit product: ${huidig.n} | € ${huidig.p} | ${huidig.m} | ${huidig.d} | levertijd ${huidig.lt} | ${huidig.t.slice(0, 300)}\n` : ""}
+Assortiment (nr|naam|subcategorie|prijs vanaf|materiaal|uitvoeringen). Afmetingen en levertijd staan op de productpagina; noem die niet zelf.
 ${regels}
 
-Antwoord ALLEEN met JSON: {"antwoord": "...", "producten": ["id", ...]} met maximaal 3 ids uit de lijst (of []).`;
-  const msgs: { role: string; content: string }[] = [];
-  for (const m of geschiedenis.slice(-10)) {
-    const role = m.rol === "klant" ? "user" : "assistant";
-    const t = tekst(m.t, 1500); if (!t) continue;
-    const last = msgs[msgs.length - 1];
-    if (last && last.role === role) last.content += "\n" + t; else msgs.push({ role, content: role === "assistant" ? JSON.stringify({ antwoord: t, producten: [] }) : t });
-  }
-  while (msgs.length && msgs[0].role !== "user") msgs.shift();
-  if (msgs.length && msgs[msgs.length - 1].role === "user") msgs[msgs.length - 1].content += "\n" + vraag; else msgs.push({ role: "user", content: vraag });
-  const r = await fetch("https://api.anthropic.com/v1/messages", { method: "POST",
-    headers: { "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-    body: JSON.stringify({ model: env("SUISMUIS_CHAT_MODEL", "claude-haiku-4-5-20251001"), max_tokens: 700, system: [{ type: "text", text: system, cache_control: { type: "ephemeral" } }], messages: [...msgs, { role: "assistant", content: "{" }] }) });
-  if (!r.ok) { console.log("chat", r.status, (await r.text()).slice(0, 300)); return null; }
-  const j = await r.json();
-  const raw = "{" + (j?.content?.[0]?.text ?? "");
+Antwoord ALLEEN met JSON: {"antwoord": "...", "producten": [nr, ...]} met maximaal 3 nummers uit de lijst (of []). Zet geen nummers of codes in de antwoordtekst.`;
+  // AI via Make (Make's eigen AI, Claude Haiku); webhook-adres en code staan in suismuis_instellingen
+  const { data: inst } = await sb.from("suismuis_instellingen").select("sleutel,waarde").in("sleutel", ["chat_hook", "chat_code"]);
+  const cfg: Record<string, string> = {}; for (const r of inst || []) cfg[r.sleutel] = r.waarde;
+  if (!cfg.chat_hook) return null;
+  const regelsGesprek = geschiedenis.slice(-10).map((m) => (m.rol === "klant" ? "Klant: " : "Adviseur: ") + tekst(m.t, 1500)).filter((x) => x.length > 9).join("\n");
+  const prompt = system + "\n\nGesprek tot nu toe:\n" + (regelsGesprek || "(nog geen)") + "\nKlant: " + vraag + "\n\nGeef nu je antwoord als adviseur, ALLEEN als JSON zonder uitleg of codeblok.";
+  const r = await fetch(cfg.chat_hook, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ code: cfg.chat_code, prompt }) });
+  if (!r.ok) { console.log("chat", r.status); return null; }
+  const raw = (await r.text()).replace(/```(json)?/g, "");
   let uit: any = null;
   try { uit = JSON.parse(raw.match(/\{[\s\S]*\}/)?.[0] || ""); } catch { uit = null; }
   if (!uit || typeof uit.antwoord !== "string") { const m = raw.match(/"antwoord"\s*:\s*"((?:[^"\\]|\\.)*)"/); if (!m) return null; try { uit = { antwoord: JSON.parse('"' + m[1] + '"'), producten: [] }; } catch { return null; } }
-  const ids = (Array.isArray(uit.producten) ? uit.producten : []).map(String).slice(0, 3);
-  const prods = ids.map((id: string) => lijst.find((p) => p.id === id)).filter(Boolean).map((p: any) => ({ id: p.id, n: p.n, p: p.p, img: p.img }));
-  return { antwoord: uit.antwoord.trim().slice(0, 2000), producten: prods };
+  // kaartjes: eerst de nummers die het model teruggeeft, aangevuld met producten die bij naam in het antwoord staan
+  const laag = uit.antwoord.toLowerCase();
+  const kern = (n: string) => n.toLowerCase().replace(/\s*\([^)]*\)\s*/g, " ").trim();
+  const genoemd = lijst.map((p) => { const i = laag.indexOf(p.n.toLowerCase()); const j = i < 0 && kern(p.n).length > 8 ? laag.indexOf(kern(p.n)) : i; return { p, i: j }; }).filter((x) => x.i >= 0).sort((x, y) => x.i - y.i).map((x) => x.p);
+  const ids = (Array.isArray(uit.producten) ? uit.producten : []).map(String);
+  const vanIds = ids.map((id: string) => lijst.find((p) => String(p.nr) === id || p.id === id)).filter(Boolean);
+  const gekozen = [...new Set([...vanIds, ...genoemd])].slice(0, 3);
+  const prods = gekozen.map((p: any) => ({ id: p.id, n: p.n, p: p.p, img: p.img }));
+  return { antwoord: uit.antwoord.replace(/\s*\((s?\d{2,4}|nr\.?\s*\d+)\)/gi, "").trim().slice(0, 2000), producten: prods };
 }
 
 
@@ -237,10 +235,10 @@ Deno.serve(async (req) => {
     const ip = await ipVan(req);
     const dag = new Date(Date.now() - 864e5).toISOString();
     const { count: perBezoeker } = await sb.from("suismuis_chat").select("id", { count: "exact", head: true }).eq("bezoeker", bezoeker).gte("created_at", dag);
-    if ((perBezoeker ?? 0) >= 30) return antwoord({ fout: "Je hebt vandaag veel vragen gesteld. Morgen helpen we je graag verder, of stuur ons een bericht via Klantenservice." }, 429);
+    if ((perBezoeker ?? 0) >= 15) return antwoord({ fout: "Je hebt vandaag veel vragen gesteld. Morgen helpen we je graag verder, of stuur ons een bericht via Klantenservice." }, 429);
     if (await teVaak("chat", ip, 60, 1440)) return antwoord({ fout: "Je hebt vandaag veel vragen gesteld. Stuur ons gerust een bericht via Klantenservice." }, 429);
     const { count: totaal } = await sb.from("suismuis_chat").select("id", { count: "exact", head: true }).gte("created_at", dag);
-    if ((totaal ?? 0) >= Number(env("SUISMUIS_CHAT_DAGLIMIET", "1500"))) return antwoord({ fout: "De adviseur is even niet beschikbaar. Stuur ons een bericht via Klantenservice." }, 503);
+    if ((totaal ?? 0) >= Number(env("SUISMUIS_CHAT_DAGLIMIET", "25"))) return antwoord({ fout: "De adviseur is even niet beschikbaar. Stuur ons een bericht via Klantenservice." }, 503);
     let uit = null;
     try { uit = await chatAntwoord(vraag, Array.isArray(b.geschiedenis) ? b.geschiedenis : [], tekst(b.product, 80)); } catch (e) { console.log("chat fout", String(e)); }
     if (!uit) return antwoord({ fout: "De adviseur is even niet beschikbaar. Probeer het zo opnieuw." }, 503);

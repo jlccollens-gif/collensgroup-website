@@ -124,8 +124,8 @@
   Array.prototype.forEach.call(document.querySelectorAll('.iconen a[href="bestelling.html"]'), function (a) { a.href = "account.html"; a.setAttribute("aria-label", "Mijn account"); });
 
   /* ---------- interieuradviseur ---------- */
-  /* staat uit tot de AI-sleutel in Supabase werkt (eigenaar zet ANTHROPIC_API_KEY); testen kan met ?advies=1 */
-  var CHAT_AAN = false;
+  /* AI via Make (scenario 8815970); zet op false om de adviseur te verbergen */
+  var CHAT_AAN = true;
   if (pag === "beheer" || !(CHAT_AAN || /[?&]advies=1/.test(location.search))) return;
   var bezoeker = opslag("suis-bezoeker");
   if (!bezoeker) { bezoeker = "b-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 10); opslag("suis-bezoeker", bezoeker); }
