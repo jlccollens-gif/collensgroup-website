@@ -172,4 +172,32 @@ EN_EXTRA = [
           ("Who owns the website?", "The website, the domain and the content are registered in your name. If you later want to work with someone else, you take everything with you.")],
   "offers": [("One-page website", 495), ("Business website", 995)],
   "rel": [("en-website-design.html", "Website design"), ("en-website-roofing-company.html", "Roofing websites"), ("en-pricing.html", "All prices")]},
+ {"slug": "en-website-cost", "lang": "en", "kort": "Website cost",
+  "titel": "What does a website cost in 2026? | Collens Group",
+  "desc": "What a business website costs in 2026: market prices in the Netherlands and Belgium, yearly extras and our fixed prices from €495. Final prices, no VAT added.",
+  "h1": "What does a website cost in 2026?",
+  "lead": "Short answer: in our home market, the Netherlands, a simple business website usually costs between €500 and €2,000, and a more advanced one €2,000 to €5,000. At Collens Group a one-page website starts at €495 and a business website at €995, as final prices. " + FINAL,
+  "secties": [
+   ("What websites cost on the market", "<p>Prices differ a lot between a freelancer, an agency and a do-it-yourself builder. These are published figures for the markets we know best. We have not found comparable, trustworthy price surveys for every country, so we do not quote any we cannot source.</p><div class='scroll'><table class='tabel vergelijk'><tr><th>Type</th><th>Market price</th><th>Source</th></tr>"
+    "<tr><td>Simple website, Netherlands</td><td>€500 to €2,000</td><td><a href='https://trustoo.nl/kosten/webdesign-kosten/' rel='nofollow noopener'>Trustoo (Nov 2026)</a></td></tr>"
+    "<tr><td>Advanced website, Netherlands</td><td>€2,000 to €5,000</td><td><a href='https://trustoo.nl/kosten/webdesign-kosten/' rel='nofollow noopener'>Trustoo (Nov 2026)</a></td></tr>"
+    "<tr><td>Business website, Belgium</td><td>€2,000 to €6,000</td><td><a href='https://lunidev.com/nl/blog/website-kosten-2026-complete-prijsgids-belgie' rel='nofollow noopener'>Lunidev (2026)</a></td></tr></table></div>"
+    "<p>These are market averages from third parties, not offers from us. Your own quote depends on what you need.</p>"),
+   ("Our prices", "<div class='scroll'><table class='tabel vergelijk'><tr><th>Package</th><th>Ready in</th><th>From</th></tr>"
+    "<tr><td>One-page website</td><td>3–5 days</td><td>€495</td></tr>"
+    "<tr><td>Business website (up to 6 pages)</td><td>2–3 weeks</td><td>€995</td></tr>"
+    "<tr><td>Web shop (up to 50 products)</td><td>3–5 weeks</td><td>€1,950</td></tr>"
+    "<tr><td>Extra page, including SEO copy</td><td>–</td><td>€95</td></tr></table></div>"
+    "<p>All prices are final prices in euros. You get a fixed price before we start. See <a href='en-pricing.html'>all prices</a>.</p>"),
+   ("What you pay after the website is built", "<ul><li><strong>Domain name:</strong> usually €10 to €25 a year.</li><li><strong>Hosting:</strong> free for most small websites.</li><li><strong>Maintenance (optional):</strong> from €29 a month, with updates, backups and small changes up to 30 minutes a month.</li></ul><p>Without maintenance you typically pay less than €25 a year. With maintenance it is about €350 a year plus your domain. Ask every provider for the yearly costs before you sign.</p>"),
+   ("What decides the price", "<ul><li><strong>Number of pages and features:</strong> a contact form is simple, a web shop or booking system is not.</li><li><strong>Who writes the copy and supplies photos:</strong> if we write the text, the job takes more time.</li><li><strong>Integrations:</strong> a calendar, a payment provider or a CRM adds work.</li><li><strong>Languages:</strong> every extra language means more pages to write and check.</li><li><strong>Custom design:</strong> a design made only for your business costs more than a ready-made template. That is the difference we show in our free concept.</li></ul>"),
+   ("How to compare quotes", "<p>Compare the final amount, not the headline. Check whether VAT is included, what happens after delivery, who owns the domain and the content, and how many rounds of changes are included. A very low price often leaves out copy, photos or mobile testing. A very high price does not guarantee a better result. Nobody can promise a top Google ranking, so be careful with anyone who does. For a longer checklist, see our Dutch guide with <a href='website-laten-maken-afspraken.html'>8 agreements to make up front</a>.</p>"),
+   ("See what you get before you pay", "<ol><li>Email us your business name, what you offer and who your customers are. A link to your current site or social page helps.</li><li>Within 48 hours you get a free concept of your homepage, made for your business.</li><li>You approve the design and the fixed price, or you walk away.</li><li>We build, you check it on your phone, we launch.</li></ol><p>More on <a href='en-website-design.html'>website design</a>, or the pages for <a href='en-website-roofing-company.html'>roofing companies</a> and <a href='en-website-removals-company.html'>removals companies</a>.</p>")],
+  "faq": [("What does a website cost on average?", "In the Netherlands, Trustoo reports roughly €500 to €2,000 for a simple website and €2,000 to €5,000 for a more advanced one. In Belgium, Lunidev reports €2,000 to €6,000 for a professional business website. Our own prices start at €495 for a one-page website and €995 for a business website, final prices with no VAT added."),
+          ("Are there yearly costs?", "Yes, small ones. A domain usually costs €10 to €25 a year, and hosting is free for most small sites. Maintenance by us is optional, from €29 a month."),
+          ("Do your prices change per country?", "No. We work fully online, in English or Dutch, and the prices are the same final prices in euros."),
+          ("Is there a risk if I don't like the result?", "You see a free concept of your homepage before you decide, so you can judge the design and the fixed price first."),
+          ("Who owns my website?", "You do. The website, the domain and the content are registered in your name, so you can take everything with you if you ever work with someone else.")],
+  "offers": [("One-page website", 495), ("Business website", 995)],
+  "rel": [("en-pricing.html", "All prices"), ("en-website-design.html", "Website design"), ("en-web-shop.html", "Web shop")]},
 ]
