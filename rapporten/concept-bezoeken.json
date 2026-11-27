@@ -1,6 +1,6 @@
 {
  "fout": null,
- "gemaakt": "2026-11-26T15:08:09Z",
+ "gemaakt": "2026-11-27T14:59:33Z",
  "per_concept": {
   "collensgroup-v2": {
    "apparaten": {
@@ -56,26 +56,24 @@
   "suismuis": {
    "apparaten": {
     "desktop": 93,
-    "mobile": 236
+    "mobile": 138
    },
-   "bezoeken": 109,
+   "bezoeken": 104,
    "dagen": {
-    "2026-11-20": 98,
     "2026-11-22": 131,
     "2026-11-23": 97,
     "2026-11-24": 1,
     "2026-11-26": 2
    },
    "landen": {
-    "NL": 8,
-    "TH": 230,
+    "NL": 7,
+    "TH": 133,
     "US": 91
    },
    "verwijzers": {
-    "collensgroup.com": 220,
-    "www.google.com": 3
+    "collensgroup.com": 127
    },
-   "weergaven": 329
+   "weergaven": 231
   },
   "v2-roof-smart": {
    "apparaten": {
@@ -92,6 +90,6 @@
    "weergaven": 1
   }
  },
- "tot": "2026-11-26T15:08:09Z",
- "van": "2026-11-19T15:08:09Z"
+ "tot": "2026-11-27T14:59:33Z",
+ "van": "2026-11-20T14:59:33Z"
 }
