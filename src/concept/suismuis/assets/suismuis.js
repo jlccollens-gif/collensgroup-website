@@ -35,7 +35,7 @@ function suisStart() {
     { id: "kruk-tronc", n: "Kruk Tronc", c: "meubels", s: "bijzettafels", p: 129.00, img: "p-kruk", m: "Massief walnotenhout", d: "H 60 × Ø 30 cm", t: "Een slanke houten kruk die ook dienstdoet als bijzettafel of plantentafel." }
   ];
   /* Kim 18-11: voorbeeldproducten en de producten van haar schermfoto's eruit */
-  var WEG = [110, 113, 117, 118, 125, 134, 149, 151, 153, 155, 157, 105, 111, 114, 116, 119, 120, 122, 126, 141, 142, 144, 166, 174, 176, 178, 179, 180, 190, 311]; /* 149: Kim 22-11; 105-311: eigenaar 26-11, uitvoeringen met andere maat/aantal tegen één prijs (verliesrisico) of inkoop onbekend */
+  var WEG = [110, 113, 117, 118, 125, 134, 149, 151, 153, 155, 157, 105, 111, 114, 116, 119, 120, 122, 126, 141, 142, 144, 166, 174, 176, 178, 179, 180, 190, 311, 115, 121, 364, 304, 319, 273, 307, 323, 321, 112, 147, 355, 351, 161, 162, 164, 165, 358, 171, 172, 175, 177, 328, 186, 182, 189, 183, 260, 259, 191, 199, 226, 229, 230, 222, 220, 249, 250, 333, 337, 338, 210, 335, 203, 209, 340, 236, 233, 240]; /* 28-11: Kim mail 'verwijderen' (49 producten van haar schermfoto's) */ /* 149: Kim 22-11; 105-311: eigenaar 26-11, uitvoeringen met andere maat/aantal tegen één prijs (verliesrisico) of inkoop onbekend */
   P = (window.SUIS_EXTRA || []).filter(function (p) { return WEG.indexOf(p.nr) < 0; });
   var GRATIS = 75, VERZEND = 5.95, CADEAU = 3.95;
   var euro = function (x) { return "€ " + x.toFixed(2).replace(".", ","); };
